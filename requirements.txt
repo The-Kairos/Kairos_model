@@ -7,8 +7,12 @@ numpy>=1.26,<2
 opencv-python>=4.7 #OpenCV for video processing
 scenedetect>=0.6 # PySceneDetect
 
-# BLIP 
-torch = 2.9.1 
-transformers=4.57.1
-Pillow= 12.0.0
+# Light Captioning - BLIP 
+torch == 2.9.1 
+transformers==4.57.1
+Pillow== 12.0.0
 
+# Heavy Captioning - InternLM-XComposer2
+sentencepiece==0.2.1
+torchvision==0.24.1
+einops==0.8.1
