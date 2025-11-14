@@ -14,7 +14,7 @@ model = BlipForConditionalGeneration.from_pretrained(
     "Salesforce/blip-image-captioning-base"
 ).to(device)
 processor = BlipProcessor.from_pretrained(
-    "Salesforce/blip-image-captioning-base")
+    "Salesforce/blip-image-captioning-base", use_fast=True)
 # ======================================================================
 # # Load BLIP2 model and processor
 # from transformers import Blip2Processor, Blip2ForConditionalGeneration
