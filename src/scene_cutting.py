@@ -3,6 +3,36 @@ from scenedetect import open_video, SceneManager
 from scenedetect.detectors import ContentDetector
 
 def get_scene_list(input_video_path: str, threshold: float = 27.0, min_scene_len: int = 15) -> List[Dict]:
+    """
+    Detect scenes in a video using PySceneDetect and return structured metadata.
+
+    Parameters
+    ----------
+    input_video_path : str
+        Path to the input video file.
+    threshold : float, optional
+        Sensitivity for the ContentDetector. Lower values detect more scene cuts.
+        Default is 27.0.
+    min_scene_len : int, optional
+        Minimum scene length in frames. Default is 15.
+
+    Returns
+    -------
+    List[Dict]
+        A list of dictionaries, each containing:
+        - "scene_index": Index of the detected scene.
+        - "start_timecode": Start timecode (HH:MM:SS.mmm).
+        - "end_timecode": End timecode (HH:MM:SS.mmm).
+        - "start_seconds": Start time in seconds (float).
+        - "end_seconds": End time in seconds (float).
+        - "duration_seconds": Duration of the scene in seconds.
+
+    Notes
+    -----
+    This function uses PySceneDetect's ContentDetector to locate abrupt content
+    changes. It is suitable for preprocessing steps in segmentation, retrieval,
+    summarization, and other video analysis workflows.
+    """
     video = open_video(input_video_path)
 
     scene_manager = SceneManager()
