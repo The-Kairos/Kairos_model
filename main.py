@@ -1,22 +1,18 @@
 from src.scene_cutting import get_scene_list
 from src.frame_sampling import sample_frames
 from src.frame_captioning_blip import caption_frames
+from src.frame_captioning_heavy import refine_caption_frames   
+from src.debug_utils import see_first_scene, see_scenes_cuts
 
 test_video = r'Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4'
-scenes = get_scene_list(test_video)
 
-print(f"Found {len(scenes)} scenes.")
-# for s in scenes:
-#     print(
-#         f"Scene {s['scene_index']:03d}: "
-#         f"{s['start_timecode']} -> {s['end_timecode']} "
-#         f"({s['duration_seconds']:.2f} sec)"
-#     )
+scenes = get_scene_list(test_video)
+see_scenes_cuts(scenes)
 
 scenes_with_frames = sample_frames(
     input_video_path=test_video,
     scenes=scenes,
-    num_frames=4,
+    num_frames=2,
     output_dir="./output/frames",
 )
 
@@ -28,3 +24,18 @@ captioned_scenes = caption_frames(
     debug=True,
     prompt="a video frame of"
 )
+
+# refined_scenes = refine_caption_frames(
+#     scenes=captioned_scenes,
+#     num_prev=1,
+#     num_next=1,
+#     extra_instruction=(
+#         "Using the image and these captions as temporal context, "
+#         "write ONE concise sentence describing what is happening "
+#         "in this frame, focusing on new details or clarifications."
+#     ),
+#     do_sample=False,
+#     debug=True,
+# )
+
+see_first_scene(refined_scenes)
