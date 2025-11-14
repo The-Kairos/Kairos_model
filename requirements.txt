@@ -1,4 +1,8 @@
-# & ".venv\Scripts\Activate.ps1" pip install -r requirements.txt --force-reinstall
+# ===============================================
+# Note to avoid future compatibility issues: 
+# (1) Use a virtual environment.
+# (2) Please add version numbers when adding new packages.
+# ===============================================
 
 # General Utils
 numpy>=1.26,<2
