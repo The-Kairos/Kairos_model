@@ -1,13 +1,17 @@
-def see_first_scene(scenes):
-    if not scenes or not scenes[0]["frames"]:
-        print("No frames to display.")
-        return
 
-    first_frame = scenes[0]["frames"][0]
-    print(f"First scene frame info: {first_frame}")
+def see_first_scene(df):
+    print("Printing first captioned scene:")
+    print("{")
+    for key in df[0]:
+        if key == "frames": continue
+        print(f"{key}, {df[0][key]},")
+    print("}")
 
-
-def see_scenes_cuts(scenes):
-    print("Detected scenes:")
-    for i, s in enumerate(scenes):
-        print(f"Scene {i}: start={s['start']} end={s['end']} frames={len(s['frames'])}")
+def see_scenes_cuts(df):
+    print(f"Found {len(df)} scenes.")
+    for s in df:
+        print(
+            f"Scene {s['scene_index']:03d}: "
+            f"{s['start_timecode']} -> {s['end_timecode']} "
+            f"({s['duration_seconds']:.2f} sec)"
+        )
