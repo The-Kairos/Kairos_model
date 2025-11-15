@@ -1,32 +1,17 @@
-# ===============================================
-# Note to avoid future compatibility issues: 
-# (1) Use a virtual environment.
-# (2) Please add version numbers when adding new packages.
-# ===============================================
+## Kairos Video Analysis Pipeline
 
-# General Utils
-numpy>=1.26,<2
+This project implements a video understanding pipeline that combines:
+- YOLOv8 object detection per frame
+- BLIP image captioning per frame
+- LLM-based segment captioning using Google Gemini (fuses BLIP captions + YOLO outputs to generate concise segment descriptions)
 
-# General Video Processing
-opencv-python>=4.7 # OpenCV for video processing
-scenedetect>=0.6   # PySceneDetect
+It also tracks execution time and memory usage for each stage.
 
-# Light Captioning - BLIP 
-torch==2.9.1
-transformers==4.57.1
-Pillow==12.0.0
 
-# Heavy Captioning - InternLM-XComposer2
-sentencepiece==0.2.1
-torchvision==0.24.1
-einops==0.8.1
+### Features
 
-# YOLOv8
-ultralytics>=8.0.100
-
-# Monitoring & metrics
-psutil>=5.9.0
-tqdm>=4.66.0
-
-# LLM / OpenAI client
-openai>=1.33.0
+- Scene detection & frame sampling
+- Per-frame BLIP captions + YOLO detections
+- Segment-level descriptions via Gemini LLM
+- Metrics collection (time & memory per step)
+- JSON output storing all intermediate and final results
