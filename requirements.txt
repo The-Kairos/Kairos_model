@@ -27,3 +27,6 @@ einops==0.8.1
 # Heavy Captioning - Gemini Pro 2.5
 google-genai==1.50.1
 dotenv==0.9.9
+
+# Object Detection - YOLOv8
+ultralytics==8.3.230
