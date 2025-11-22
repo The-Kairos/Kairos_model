@@ -28,5 +28,5 @@ captioned_scenes, step['caption_frames'] = caption_frames_log(
 )
 save_vid_df(captioned_scenes, "output/captioned_scenes.json")
 
-log['steps'] = step
+log = complete_log(log, step, vid_len=scenes[-1]["end_seconds"], scene_num=len(scenes))
 save_log(log, folder="logs", filename="sponge_40_scenethreshold_justblip")

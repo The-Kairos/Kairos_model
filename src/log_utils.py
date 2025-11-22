@@ -87,9 +87,8 @@ def initiate_log(video_path, run_description):
     return {
         "run_description": run_description,
         "video_path": video_path,
-        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+        "start_process": time.time(),
         "computer": get_system_context(),
-        "steps": []
     }
 
 def get_gpu_stats():
@@ -148,7 +147,6 @@ def get_gpu_stats():
     # No GPU available
     # -------------------------
     return []
-
 
 def log_step():
     """Decorator that logs CPU, RAM, GPU, IO, runtime and returns (output, log_dict)."""
@@ -219,6 +217,19 @@ def log_step():
         return wrapper
     return decorator
 
+def complete_log(log, steps, vid_len, scene_num):
+    return {
+        "run_description": log["run_description"],
+        "video_path": log["video_path"],
+        "video_length": vid_len,
+        "scene_number": scene_num,
+        "total_process_(s)": time.time() - log["start_process"],
+        "start_process": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(log["start_process"])),
+        "end_process": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
+        "computer": get_system_context(),
+        "steps": steps
+    }
+
 def save_log(data, folder="logs", filename="log"):
     """
     Saves any serializable data to a JSON file.
@@ -237,6 +248,7 @@ def save_log(data, folder="logs", filename="log"):
         
     print(f"Log saved to: {file_path}")
     return file_path
+
 
 # ================================================================================================
 # WRAPPER FUNCTIONS
