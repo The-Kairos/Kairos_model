@@ -260,6 +260,7 @@ from src.scene_cutting import get_scene_list
 from src.frame_sampling import sample_frames
 from src.frame_captioning_blip import caption_frames
 from src.frame_obj_d_yolo import detect_object_yolo
+from src.scene_description import describe_scenes
 from src.debug_utils import save_clips, save_vid_df
 
 
@@ -282,6 +283,10 @@ def caption_frames_log(*args, **kwargs):
 @log_step()
 def detect_object_yolo_log(*args, **kwargs):
     return detect_object_yolo(*args, **kwargs)
+
+@log_step()
+def describe_scenes_log(*args, **kwargs):
+    return describe_scenes(*args, **kwargs)
 
 @log_step()
 def save_vid_df_log(*args, **kwargs):

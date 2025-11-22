@@ -1,4 +1,79 @@
 import json
+from dotenv import load_dotenv
+import os
+from google import genai
+from google.genai import types
+
+load_dotenv()
+api_key = os.getenv("FLASH2.5")
+
+def describe_flash_scene(
+                        scene_text: str,
+                        client,
+                        prompt_path="prompts/flash_scene_prompt_manahil.txt",
+                        model = "gemini-2.5-flash", 
+                         ) -> str:
+    """
+    Takes ONE raw scene description (string) and returns
+    a concise Gemini-generated summary describing:
+      - key objects
+      - actions
+      - spatial relationships
+      - temporal relationships
+    """
+
+    # Load template prompt from external file
+    with open(prompt_path, "r", encoding="utf-8") as f:
+        template = f.read()
+
+    # Insert scene text into {{SCENE_TEXT}} placeholder
+    prompt = template.replace("{{SCENE_TEXT}}", scene_text)
+
+    chat = client.chats.create(model=model)
+    resp = chat.send_message(prompt)
+    return resp.text.strip()
+
+def describe_scenes(
+    scenes: list,
+    YOLO_key="yolo_detections",
+    FLIP_key="frame_captions",
+    model= "gemini-2.5-flash",
+    prompt_path = "prompts/flash_scene_prompt_manahil.txt",
+    debug= False,
+):
+    """
+    Takes a list of scene dictionaries.
+    Adds a new key to each: llm_scene_description
+
+    Uses the previously built `format_all_scenes()` to generate
+    raw scene descriptions.
+    """
+
+    # First format all scenes using your existing system
+    formatted_scenes = raw_descriptions(
+        scenes,
+        YOLO_key=YOLO_key,
+        FLIP_key=FLIP_key
+    )
+
+    updated = []
+
+    client = genai.Client(api_key=api_key)
+
+    for idx, (scene, formatted_text) in enumerate(zip(scenes, formatted_scenes)):
+        summary = describe_flash_scene(formatted_text, 
+                                       client, 
+                                       prompt_path= prompt_path,
+                                       model= model )
+
+        new_scene = dict(scene)
+        new_scene["llm_scene_description"] = summary
+
+        updated.append(new_scene)
+        if debug: print("Scene",idx, summary)
+
+
+    return updated
 
 # ================================================================================================
 # SCENE DESCRIPTION FORMATTING
@@ -18,7 +93,7 @@ def normalize_bbox(bbox):
 
     return x_center, y_center, area
 
-def format_single_scene(
+def format_single_description(
     captions: list,
     yolo: dict,
 ) -> str:
@@ -69,7 +144,7 @@ def format_single_scene(
 
     return "\n".join(lines)
 
-def format_all_scenes(
+def raw_descriptions(
     scenes: list,
     YOLO_key: str = "yolo_detections",
     FLIP_key: str = "frame_captions"
@@ -87,7 +162,7 @@ def format_all_scenes(
         captions = scene.get(FLIP_key, []) if FLIP_key else []
         yolo = scene.get(YOLO_key, {}) if YOLO_key else {}
 
-        single_scene_text = format_single_scene(
+        single_scene_text = format_single_description(
             captions=captions,
             yolo=yolo,
         )
@@ -102,7 +177,7 @@ def test(
     FLIP_key="frame_captions"
 ):
     """
-    Quick test function for format_all_scenes().
+    Quick test function for raw_descriptions().
     Loads captioned scenes JSON and prints the formatted descriptions.
     """
 
@@ -111,7 +186,7 @@ def test(
         scenes = json.load(f)
 
     # Format scenes
-    formatted_scenes = format_all_scenes(
+    formatted_scenes = raw_descriptions(
         scenes,
         YOLO_key=YOLO_key,
         FLIP_key=FLIP_key

@@ -1,0 +1,14 @@
+You are an expert in video scene understanding.
+
+Given the following per-frame breakdown of a scene, produce a SINGLE,
+CONCISE description that captures the essential details across time:
+  - important objects
+  - their actions or changes
+  - spatial relationships (left/right/center/movement)
+  - temporal relationships (how things evolve from frame to frame)
+
+DO NOT repeat frame-by-frame text.
+DO NOT output a list. Output ONLY a short paragraph.
+
+Scene Data:
+{{SCENE_TEXT}}
