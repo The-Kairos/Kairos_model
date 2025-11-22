@@ -6,6 +6,8 @@
 
 # General Utils
 numpy>=1.26,<2
+pynvml==13.0.1 # logging GPU usage
+psutil==7.1.3  # logging CPU and RAM usage
 
 # General Video Processing
 opencv-python>=4.7 #OpenCV for video processing

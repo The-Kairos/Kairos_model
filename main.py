@@ -1,15 +1,16 @@
-from src.scene_cutting import get_scene_list
-from src.frame_sampling import sample_frames
-from src.frame_captioning_blip import caption_frames
 from src.debug_utils import *
+from src.log_utils import *
 
-test_video = r"Videos\Spain Vlog.mp4"
+test_video = r"Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4"
 
-scenes = get_scene_list(test_video, min_scene_sec=2) 
-scenes = save_clips(test_video, scenes, output_dir="./output/clips")
+log = initiate_log(video_path=test_video, run_description="Test run for video processing pipeline.")
+step = {}
+
+scenes, step['get_scene_list'] = get_scene_list_log(test_video, min_scene_sec=2) 
+scenes, step['save_clips'] = save_clips_log(test_video, scenes, output_dir="./output/clips")
 see_scenes_cuts(scenes)
 
-scenes_with_frames = sample_frames(
+scenes_with_frames, step['sample_frames'] = sample_frames_log(
     input_video_path=test_video,
     scenes=scenes,
     num_frames=3,
@@ -17,7 +18,7 @@ scenes_with_frames = sample_frames(
     output_dir="./output/frames",
 )
 
-captioned_scenes = caption_frames(
+captioned_scenes, step['caption_frames'] = caption_frames_log(
     scenes=scenes_with_frames,
     max_length=30,
     num_beams=4,
@@ -25,5 +26,7 @@ captioned_scenes = caption_frames(
     debug=True,
     prompt="a video frame of"
 )
-
 save_vid_df(captioned_scenes, "output/captioned_scenes.json")
+
+log['steps'] = step
+save_log(log, folder="logs", filename="sponge_40_scenethreshold_justblip")
