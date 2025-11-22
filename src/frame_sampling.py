@@ -2,7 +2,7 @@ import os
 import cv2
 import numpy as np
 
-def sample_from_clip(video_path, scene_idx, start_s, end_s, n=4, margin_ratio=0.10):
+def sample_from_clip(video_path, scene_idx, start_s, end_s, n=2, margin_ratio=0.10):
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
 
@@ -39,7 +39,7 @@ def sample_from_clip(video_path, scene_idx, start_s, end_s, n=4, margin_ratio=0.
     return frames
 
 
-def sample_frames(video_path, scenes, num_frames=4, output_dir=None):
+def sample_frames(video_path, scenes, num_frames=2, output_dir=None):
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
 

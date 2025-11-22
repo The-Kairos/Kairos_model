@@ -2,7 +2,7 @@ from typing import List, Dict
 from scenedetect import open_video, SceneManager
 from scenedetect.detectors import ContentDetector
 
-def get_scene_list(input_video_path: str, threshold: float = 27.0, min_scene_len: int = 15) -> List[Dict]:
+def get_scene_list(input_video_path: str, threshold: float = 35.0, min_scene_len: int = 15) -> List[Dict]:
     """
     Detect scenes in a video using PySceneDetect and return structured metadata.
 

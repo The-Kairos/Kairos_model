@@ -18,7 +18,7 @@ class LLMSegmentCaptioner:
         prompt = (
             "You are analyzing a video segment.\n"
             "Using the following frame information — object detections and BLIP frame captions — "
-            f"produce a concise description captures objects, actions, spatial relationships and changes overtime.\n\n"
+            f"produce a concise description that captures objects, actions and spatial and temporal relationships for the entire scene.\n\n"
             f"FRAME INFORMATION:\n{joined}\n\n"
             "Segment description:"
             )

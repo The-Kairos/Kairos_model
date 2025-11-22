@@ -1,34 +1,40 @@
 import time
 import psutil
 import os
+import torch
 
-def measure_performance(func):
-    """
-    Decorator to measure execution time and memory usage of a function.
-    """
-    def wrapper(*args, **kwargs):
-        process = psutil.Process(os.getpid())
-        mem_before = process.memory_info().rss / (1024**2)  # MB
-        start_time = time.time()
+class StageProfiler:
+    def __init__(self, name: str):
+        self.name = name
+        self.process = psutil.Process(os.getpid())
+        self.metrics = {}
 
-        result = func(*args, **kwargs)
+    def __enter__(self):
+        self.t0 = time.perf_counter()
+        self.mem_before = self.process.memory_info().rss
 
-        end_time = time.time()
-        mem_after = process.memory_info().rss / (1024**2)  # MB
-
-        print(f"[PERF] {func.__name__} -> Time: {end_time - start_time:.2f}s, "
-              f"Memory: {mem_after - mem_before:.2f} MB (delta)")
-
-        return result
-    return wrapper
-
-def get_gpu_stats():
-    try:
-        import torch
         if torch.cuda.is_available():
-            util = torch.cuda.utilization() if hasattr(torch.cuda, "utilization") else 0
-            mem = torch.cuda.memory_allocated() / 1024 / 1024
-            return util, mem
-    except Exception:
-        pass
-    return 0, 0
+            torch.cuda.synchronize()
+            torch.cuda.reset_peak_memory_stats()
+            self.vram_before = torch.cuda.memory_allocated()
+        else:
+            self.vram_before = 0
+
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if torch.cuda.is_available():
+            torch.cuda.synchronize()
+            peak_vram = torch.cuda.max_memory_allocated()
+        else:
+            peak_vram = 0
+
+        self.t1 = time.perf_counter()
+        self.mem_after = self.process.memory_info().rss
+
+        self.metrics = {
+            "stage": self.name,
+            "time_s": self.t1 - self.t0,
+            "ram_delta_mb": (self.mem_after - self.mem_before) / 1024 / 1024,
+            "peak_vram_mb": peak_vram / 1024 / 1024,
+        }
