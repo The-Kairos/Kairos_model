@@ -48,7 +48,14 @@ def sample_from_clip(
     List[np.ndarray]
         List of frames as BGR numpy arrays (OpenCV format).
         Length may be <= num_frames if decoding fails on some positions.
+        Samples `num_frames` frames from [start_seconds, end_seconds], but:
+        - frame1 is exactly at start_seconds
+        - frameN is exactly one equal gap before end_seconds
+        - end_seconds is NOT sampled
+        - spacing: [start] [f1] -gap- [f2] -gap- ... -gap- [fN] -gap- [end]
+
     """
+
     cap = cv2.VideoCapture(input_video_path)
     if not cap.isOpened():
         raise ValueError(f"Cannot open video: {input_video_path}")
@@ -56,29 +63,35 @@ def sample_from_clip(
     fps = cap.get(cv2.CAP_PROP_FPS)
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    # Convert seconds → frame indices (inclusive range)
+    # Convert to frame numbers
     start_frame = int(round(start_seconds * fps))
-    end_frame = int(round(end_seconds * fps)) - 1
+    end_frame   = int(round(end_seconds   * fps))
 
-    # Clamp to valid range
+    # Clamp strictly inside video
     start_frame = max(0, min(start_frame, total_frames - 1))
-    end_frame = max(0, min(end_frame, total_frames - 1))
+    end_frame   = max(0, min(end_frame,   total_frames - 1))
 
-    if end_frame < start_frame:
-        end_frame = start_frame
-
-    # Compute evenly spaced positions
-    if num_frames <= 1 or start_frame == end_frame:
+    # Handle 0-duration scene
+    if end_frame <= start_frame:
         frame_positions = [start_frame]
     else:
-        frame_positions = [
-            int(round(start_frame + (i / (num_frames - 1)) * (end_frame - start_frame)))
-            for i in range(num_frames)
-        ]
+        # We need N frames + 1 gap to the end → (N+1) equal gaps
+        if num_frames <= 1:
+            frame_positions = [start_frame]
+        else:
+            total_range = end_frame - start_frame
+            gap = total_range / (num_frames + 1)
 
-    # Final clamp and deduplicate (just in case of rounding collisions)
+            # i = 0 → start_frame
+            # i = num_frames-1 → start + (num_frames-1)*gap = end - gap
+            frame_positions = [
+                int(round(start_frame + i * gap))
+                for i in range(num_frames)
+            ]
+
+    # Final clamp (safety, avoids rounding outside bounds)
     frame_positions = sorted(
-        set(max(0, min(p, total_frames - 1)) for p in frame_positions)
+        set(max(0, min(pos, total_frames - 1)) for pos in frame_positions)
     )
 
     frames: List[np.ndarray] = []
@@ -86,9 +99,10 @@ def sample_from_clip(
     for frame_num in frame_positions:
         cap.set(cv2.CAP_PROP_POS_FRAMES, frame_num)
         ret, frame = cap.read()
+
         if not ret or frame is None:
-            # Skip unreadable frames, but keep going
             continue
+
         frame_resized = resize_frame(frame, new_size)
         frames.append(frame_resized)
 
