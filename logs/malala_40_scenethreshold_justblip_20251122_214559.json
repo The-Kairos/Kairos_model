@@ -1,7 +1,11 @@
 {
   "run_description": "Test run for video processing pipeline.",
-  "video_path": "Videos\\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
-  "timestamp": "2025-11-22 21:03:29",
+  "video_path": "Videos\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
+  "video_length": 273.4732,
+  "scene_number": 22,
+  "total_process_(s)": 108.4882607460022,
+  "start_process": "2025-11-22 21:44:11",
+  "end_process": "2025-11-22 21:45:59",
   "computer": {
     "os_info": {
       "os": "Windows 11",
@@ -22,14 +26,14 @@
     },
     "ram_info": {
       "total_RAM_GB": 15.84,
-      "available_RAM_GB": 3.64,
-      "used_RAM_GB": 12.2,
-      "RAM_usage_percent": 77.0
+      "available_RAM_GB": 2.79,
+      "used_RAM_GB": 13.05,
+      "RAM_usage_percent": 82.4
     },
     "disk_info": {
       "disk_total_GB": 932.98,
-      "disk_used_GB": 459.18,
-      "disk_free_GB": 473.8,
+      "disk_used_GB": 459.22,
+      "disk_free_GB": 473.76,
       "disk_usage_percent": 49.2
     },
     "gpu_info": {
@@ -41,12 +45,12 @@
   },
   "steps": {
     "get_scene_list": {
-      "wall_time_sec": 0.67773,
-      "cpu_time_sec": 2.89062,
-      "ram_before_MB": 326,
-      "ram_after_MB": 337,
+      "wall_time_sec": 6.7848,
+      "cpu_time_sec": 22.9375,
+      "ram_before_MB": 325,
+      "ram_after_MB": 336,
       "ram_used_MB": 11,
-      "io_read_MB": 32.879167556762695,
+      "io_read_MB": 386.8367395401001,
       "io_write_MB": 0.0,
       "gpu_before": [],
       "gpu_after": [],
@@ -55,12 +59,12 @@
       "cuda_peak_MB": null
     },
     "save_clips": {
-      "wall_time_sec": 0.1869,
-      "cpu_time_sec": 0.01562,
-      "ram_before_MB": 337,
-      "ram_after_MB": 337,
+      "wall_time_sec": 1.87862,
+      "cpu_time_sec": 0.07812,
+      "ram_before_MB": 336,
+      "ram_after_MB": 336,
       "ram_used_MB": 0,
-      "io_read_MB": 0.016431808471679688,
+      "io_read_MB": 0.0720834732055664,
       "io_write_MB": 0.0,
       "gpu_before": [],
       "gpu_after": [],
@@ -69,13 +73,13 @@
       "cuda_peak_MB": null
     },
     "sample_frames": {
-      "wall_time_sec": 0.85612,
-      "cpu_time_sec": 3.95312,
-      "ram_before_MB": 337,
-      "ram_after_MB": 338,
-      "ram_used_MB": 1,
-      "io_read_MB": 47.68252468109131,
-      "io_write_MB": 0.2727184295654297,
+      "wall_time_sec": 3.13267,
+      "cpu_time_sec": 20.29688,
+      "ram_before_MB": 336,
+      "ram_after_MB": 344,
+      "ram_used_MB": 8,
+      "io_read_MB": 252.8962860107422,
+      "io_write_MB": 1.261357307434082,
       "gpu_before": [],
       "gpu_after": [],
       "cuda_before_MB": null,
@@ -83,11 +87,11 @@
       "cuda_peak_MB": null
     },
     "caption_frames": {
-      "wall_time_sec": 21.05302,
-      "cpu_time_sec": 166.09375,
-      "ram_before_MB": 338,
-      "ram_after_MB": 1350,
-      "ram_used_MB": 1012,
+      "wall_time_sec": 96.63463,
+      "cpu_time_sec": 764.75,
+      "ram_before_MB": 344,
+      "ram_after_MB": 1365,
+      "ram_used_MB": 1021,
       "io_read_MB": 0.03395271301269531,
       "io_write_MB": 0.0,
       "gpu_before": [],

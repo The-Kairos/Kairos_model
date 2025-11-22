@@ -3,9 +3,9 @@
   "video_path": "Videos\\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
   "video_length": 29.029,
   "scene_number": 5,
-  "total_process": 23.243346214294434,
-  "start_process": "2025-11-22 21:24:13",
-  "end_process": "2025-11-22 21:24:36",
+  "total_process_(s)": 21.650696992874146,
+  "start_process": "2025-11-22 22:03:41",
+  "end_process": "2025-11-22 22:04:03",
   "computer": {
     "os_info": {
       "os": "Windows 11",
@@ -26,15 +26,15 @@
     },
     "ram_info": {
       "total_RAM_GB": 15.84,
-      "available_RAM_GB": 2.4,
-      "used_RAM_GB": 13.44,
-      "RAM_usage_percent": 84.8
+      "available_RAM_GB": 4.96,
+      "used_RAM_GB": 10.88,
+      "RAM_usage_percent": 68.7
     },
     "disk_info": {
       "disk_total_GB": 932.98,
-      "disk_used_GB": 459.18,
-      "disk_free_GB": 473.8,
-      "disk_usage_percent": 49.2
+      "disk_used_GB": 460.06,
+      "disk_free_GB": 472.92,
+      "disk_usage_percent": 49.3
     },
     "gpu_info": {
       "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
@@ -45,11 +45,11 @@
   },
   "steps": {
     "get_scene_list": {
-      "wall_time_sec": 0.73192,
-      "cpu_time_sec": 2.375,
-      "ram_before_MB": 326,
-      "ram_after_MB": 337,
-      "ram_used_MB": 11,
+      "wall_time_sec": 0.67448,
+      "cpu_time_sec": 3.40625,
+      "ram_before_MB": 1440,
+      "ram_after_MB": 1446,
+      "ram_used_MB": 6,
       "io_read_MB": 32.879167556762695,
       "io_write_MB": 0.0,
       "gpu_before": [],
@@ -59,12 +59,12 @@
       "cuda_peak_MB": null
     },
     "save_clips": {
-      "wall_time_sec": 0.18774,
-      "cpu_time_sec": 0.0,
-      "ram_before_MB": 337,
-      "ram_after_MB": 337,
+      "wall_time_sec": 0.19921,
+      "cpu_time_sec": 0.01562,
+      "ram_before_MB": 1446,
+      "ram_after_MB": 1446,
       "ram_used_MB": 0,
-      "io_read_MB": 0.01643085479736328,
+      "io_read_MB": 0.0164642333984375,
       "io_write_MB": 0.0,
       "gpu_before": [],
       "gpu_after": [],
@@ -73,13 +73,13 @@
       "cuda_peak_MB": null
     },
     "sample_frames": {
-      "wall_time_sec": 0.90882,
-      "cpu_time_sec": 4.60938,
-      "ram_before_MB": 337,
-      "ram_after_MB": 338,
-      "ram_used_MB": 1,
-      "io_read_MB": 47.68252468109131,
-      "io_write_MB": 0.2727184295654297,
+      "wall_time_sec": 0.70103,
+      "cpu_time_sec": 3.75,
+      "ram_before_MB": 1446,
+      "ram_after_MB": 1449,
+      "ram_used_MB": 3,
+      "io_read_MB": 40.88918876647949,
+      "io_write_MB": 0.29976558685302734,
       "gpu_before": [],
       "gpu_after": [],
       "cuda_before_MB": null,
@@ -87,12 +87,12 @@
       "cuda_peak_MB": null
     },
     "caption_frames": {
-      "wall_time_sec": 21.35679,
-      "cpu_time_sec": 168.53125,
-      "ram_before_MB": 338,
-      "ram_after_MB": 1350,
-      "ram_used_MB": 1012,
-      "io_read_MB": 0.03395271301269531,
+      "wall_time_sec": 20.03444,
+      "cpu_time_sec": 159.01562,
+      "ram_before_MB": 1449,
+      "ram_after_MB": 1441,
+      "ram_used_MB": -8,
+      "io_read_MB": 0.0,
       "io_write_MB": 0.0,
       "gpu_before": [],
       "gpu_after": [],

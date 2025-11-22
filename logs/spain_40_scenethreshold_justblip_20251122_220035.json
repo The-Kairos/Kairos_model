@@ -1,0 +1,104 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\Spain Vlog.mp4",
+  "video_length": 245.753,
+  "scene_number": 43,
+  "total_process_(s)": 274.35063672065735,
+  "start_process": "2025-11-22 21:56:00",
+  "end_process": "2025-11-22 22:00:35",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 4.97,
+      "used_RAM_GB": 10.87,
+      "RAM_usage_percent": 68.6
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 460.02,
+      "disk_free_GB": 472.95,
+      "disk_usage_percent": 49.3
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 44.00935,
+      "cpu_time_sec": 138.35938,
+      "ram_before_MB": 326,
+      "ram_after_MB": 336,
+      "ram_used_MB": 10,
+      "io_read_MB": 562.6685075759888,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 5.01759,
+      "cpu_time_sec": 0.0625,
+      "ram_before_MB": 336,
+      "ram_after_MB": 336,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.1462879180908203,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 53.01982,
+      "cpu_time_sec": 111.45312,
+      "ram_before_MB": 336,
+      "ram_after_MB": 378,
+      "ram_used_MB": 42,
+      "io_read_MB": 493.4144868850708,
+      "io_write_MB": 2.7007837295532227,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 172.23551,
+      "cpu_time_sec": 1361.67188,
+      "ram_before_MB": 378,
+      "ram_after_MB": 1405,
+      "ram_used_MB": 1027,
+      "io_read_MB": 0.03395271301269531,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  }
+}
