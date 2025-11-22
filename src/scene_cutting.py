@@ -1,8 +1,9 @@
 from typing import List, Dict
 from scenedetect import open_video, SceneManager
 from scenedetect.detectors import ContentDetector
+import cv2
 
-def get_scene_list(input_video_path: str, threshold: float = 27.0, min_scene_len: int = 15) -> List[Dict]:
+def get_scene_list(input_video_path: str, threshold: float = 40, min_scene_sec: int = 2) -> List[Dict]:
     """
     Detect scenes in a video using PySceneDetect and return structured metadata.
 
@@ -35,6 +36,10 @@ def get_scene_list(input_video_path: str, threshold: float = 27.0, min_scene_len
     """
     video = open_video(input_video_path)
 
+    # Getting the min_scene_len based on fps
+    fps = cv2.VideoCapture(input_video_path).get(cv2.CAP_PROP_FPS)
+    min_scene_len = int(fps * min_scene_sec) 
+    
     scene_manager = SceneManager()
     scene_manager.add_detector(ContentDetector(threshold=threshold, min_scene_len=min_scene_len))
 
