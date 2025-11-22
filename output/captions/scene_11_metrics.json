@@ -1,0 +1,35 @@
+{
+  "scene_index": 11,
+  "time_range_sec": [
+    93.5935,
+    96.36293333333333
+  ],
+  "asr_timings": {
+    "load_audio_sec": 0.006085872650146484,
+    "noise_reduction_sec": 0.03756141662597656,
+    "vad_detection_sec": 0.031877994537353516,
+    "asr_duration_sec": 0.07552528381347656
+  },
+  "ast_timings": {
+    "load_audio_sec": 0.0,
+    "vad_detection_sec": 0.033242225646972656,
+    "mask_speech_sec": 0.0,
+    "feature_extract_sec": 0.005174398422241211,
+    "ast_forward_sec": 6.753526449203491,
+    "ast_duration_sec": 6.793950796127319
+  },
+  "asr_system_usage": {
+    "cpu_percent": 9.9,
+    "ram_percent": 83.7,
+    "ram_used_mb": 13438.8125,
+    "ram_available_mb": 2618.6796875,
+    "timestamp": 1763819301.278108
+  },
+  "ast_system_usage": {
+    "cpu_percent": 0.0,
+    "ram_percent": 84.0,
+    "ram_used_mb": 13484.52734375,
+    "ram_available_mb": 2572.96484375,
+    "timestamp": 1763819308.185206
+  }
+}
