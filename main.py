@@ -29,11 +29,20 @@ captioned_scenes, step['caption_frames'] = caption_frames_log(
 
 detected_obj_scenes, step['detect_object_yolo'] = detect_object_yolo_log(
     scenes= captioned_scenes,
-    model_size = "yolov8s",
-    conf = 0.25,
+    model_size = "model/yolov8s",
+    conf = 0.5,
     iou = 0.45,
+    output_dir=f"./{OUTPUT_DIR}/yolo",
 )
 
-save_safe_df = save_vid_df(detected_obj_scenes, f"{OUTPUT_DIR}/captioned_scenes.json")
+described_scenes, step['describe_scenes'] = describe_scenes_log(
+    scenes= detected_obj_scenes,
+    YOLO_key="yolo_detections",
+    FLIP_key="frame_captions",
+    debug= True,
+    prompt_path= "prompts/flash_scene_prompt_manahil.txt",
+    model= "gemini-2.5-flash",
+)
+save_safe_df = save_vid_df(described_scenes, f"{OUTPUT_DIR}/captioned_scenes.json")
 log = complete_log(log, step, vid_len=scenes[-1]["end_seconds"], scene_num=len(scenes), vid_df= save_safe_df)
-save_log(log, folder=f"{OUTPUT_DIR}/logs", filename="sponge_40_scenethreshold_justblip")
+save_log(log, filename="blip_yolo_llm_sponge")
