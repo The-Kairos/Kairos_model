@@ -18,7 +18,7 @@ STEP_KEYS = {
     "sample_frames": ("scene_number", "Frame sampling"),
     "caption_frames": ("scene_number", "BLIP caption"),
     "detect_object_yolo": ("scene_number", "YOLO detection"),
-    "describe_scenes": ("scene_number", "BLIP + YOLO + AST + ASR into LLM"),
+    "describe_scenes": ("scene_number", "BLIP + YOLO + AST + ASR in Gemini2.5Pro"),
 }
 
 METRIC_COLUMNS = [
@@ -28,6 +28,8 @@ METRIC_COLUMNS = [
     "io_read_MB",
     "io_write_MB"
 ]
+
+DELAY = 5
 
 def safe_div(x, d):
     return x / d if d not in [0, None] else x
@@ -60,7 +62,7 @@ for file_path in json_files:
 
             # Special rule for describe_scenes because of delay 
             if step_key == "describe_scenes" and metric == "wall_time_sec":
-                row[metric] -= 5 # time.sleep(5) for API
+                row[metric] -= DELAY # time.sleep(5) for API
 
             if step_key in ["get_scene_list", "ast_timings", "asr_timings"]:
                 row[metric] *= 60 
@@ -84,13 +86,14 @@ for file_path in json_files:
     video_length = document.get("video_length", 1)
     total_sec = document.get("total_process_sec", 1)
 
-    k = (total_sec / video_length) if video_length > 0 else 0
+    run_without_delay = total_sec - (DELAY * scene_count)
+    k = (run_without_delay / video_length)  if video_length > 0 else 0
 
     md += (
         f"**Footnote:**  \n"
-        f"`total_process_sec` is **{k:.2f}× longer** than `video_length` of {document.get("video_length", "`error: video_length not found`")}s.  \n"
-        f"**{scene_count} scenes** were detected in `{video_path}` \n"
-        f"**`get_scene_list`, `ast_timings`, and `asr_timings` are measured per minute of video, whereas the remaining processes are measured per scenes. \n"
+        f"`total_process_sec` without LLM cooldown of {run_without_delay:.2f}s is **{k:.2f}× longer** than `video_length` of {document["video_length"]:.2f}s.\n"
+        f"**{scene_count} scenes** were detected in `{video_path}`\n"
+        f"\* `get_scene_list`, `ast_timings`, and `asr_timings` are measured per minute of video, whereas the remaining processes are measured per scenes. \n"
     )
 
     markdown_sections.append(md)
