@@ -1,11 +1,13 @@
 from src.debug_utils import *
 from src.log_utils import *
+import time
 
 test_videos = {
-    "sponge_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
-    "malala_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
-    "car_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\Cartastrophe.mp4",
-    "spain_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\Spain Vlog.mp4",
+    # "sponge_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
+    # "malala_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
+    # "car_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\.Cartastrophe.mp4",
+    # "spain_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\.Spain Vlog.mp4",
+    "CCIT_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\.UDST CCIT graduation 30 mins.mp4",
 }
 OUTPUT_DIR = "spain"
 
@@ -14,7 +16,11 @@ for OUTPUT_DIR, test_video in test_videos.items():
     step = {}
 
     scenes, step['get_scene_list'] = get_scene_list_log(test_video, min_scene_sec=2) 
+    time.sleep(10)
+
     scenes, step['save_clips'] = save_clips_log(test_video, scenes, output_dir=f"./{OUTPUT_DIR}/clips")
+    time.sleep(10)
+    
     see_scenes_cuts(scenes)
 
     scenes_with_frames, step['sample_frames'] = sample_frames_log(
@@ -24,6 +30,7 @@ for OUTPUT_DIR, test_video in test_videos.items():
         new_size = 320,
         output_dir=f"./{OUTPUT_DIR}/frames",
     )
+    time.sleep(10)
 
     captioned_scenes, step['caption_frames'] = caption_frames_log(
         scenes=scenes_with_frames,
@@ -33,6 +40,7 @@ for OUTPUT_DIR, test_video in test_videos.items():
         debug=True,
         prompt="a video frame of"
     )
+    time.sleep(10)
 
     detected_obj_scenes, step['detect_object_yolo'] = detect_object_yolo_log(
         scenes= captioned_scenes,
@@ -41,12 +49,14 @@ for OUTPUT_DIR, test_video in test_videos.items():
         iou = 0.45,
         output_dir=f"./{OUTPUT_DIR}/yolo",
     )
+    time.sleep(10)
 
     sound_audio, step['ast_timings'] = extract_sounds_log(
             test_video,
             scenes=detected_obj_scenes,
             debug=True
     )
+    time.sleep(10)
 
     speech_audio, step['asr_timings'] = extract_speech_log(
             video_path = test_video, 
@@ -56,6 +66,7 @@ for OUTPUT_DIR, test_video in test_videos.items():
             target_sr=16000,
             debug = True
         )
+    time.sleep(10)
 
     described_scenes, step['describe_scenes'] = describe_scenes_log(
         scenes= speech_audio,
@@ -67,6 +78,7 @@ for OUTPUT_DIR, test_video in test_videos.items():
         prompt_path= "prompts/flash_scene_prompt_manahil.txt",
         model= "gemini-2.5-flash",
     )
+    time.sleep(10)
 
     save_safe_df = save_vid_df(described_scenes, f"{OUTPUT_DIR}/captioned_scenes.json")
     log = complete_log(log, step, vid_len=scenes[-1]["end_seconds"], scene_num=len(scenes), vid_df= save_safe_df)
