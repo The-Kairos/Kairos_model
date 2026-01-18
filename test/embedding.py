@@ -61,13 +61,37 @@ def get_top_k_similar(question, embeddings, scenes, k=5, debug=False):
     
     return top_matches
 
+def create_answer(question, top_matches):
+    context = "\n".join([text for text, _ in top_matches])
+    prompt = f"""
+You are answering questions about a video.
+Use ONLY the information provided below.
+If the answer is not present, say "Not shown in the video."
+
+Video scenes:
+{context}
+
+Question:
+{question}
+"""
+
+    response = client.models.generate_content(
+        model="gemini-2.5-pro",
+        contents=prompt
+    )
+
+    return response.text
+
 log_path= r"logs\car_pyscene_blip_yolo_ASR_AST_GeminiPro25_20251123_180938.json"
 with open(log_path, "r", encoding="utf-8") as f:
     logs = json.load(f)
 scenes = format_embedding_text(logs.get("scenes"))
-question = "Why is the car not running" # input("Give questions about cartastrophy: ")
+scene_embeddings = embed_scenes(scenes)
 
-scene_embeddings  = embed_scenes(scenes)
-question_embedding = embed_question(question)
-top_matches = get_top_k_similar(question_embedding, scene_embeddings, scenes, k=5, debug=True)
-ask_question
+while True:
+    question = input("Give questions about cartastrophy: ")
+    question_embedding = embed_question(question)
+    top_matches = get_top_k_similar(question_embedding, scene_embeddings, scenes, k=5)
+    answer = create_answer(question, top_matches)
+    print(answer)
+    print()
