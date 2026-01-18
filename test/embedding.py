@@ -1,5 +1,6 @@
 import json
 import os
+import numpy as np
 from dotenv import load_dotenv
 from google import genai
 
@@ -46,21 +47,27 @@ def embed_question(question: str):
     )
     return result.embeddings
 
-# REAL TESTING
-# log_path= r"logs\car_pyscene_blip_yolo_ASR_AST_GeminiPro25_20251123_180938.json"
-# with open(log_path, "r", encoding="utf-8") as f:
-#     logs = json.load(f)
-# scenes = format_embedding_text(logs.get("scenes"))
-# question = input("Give questions about cartastrophy: ")
-# --------------------------------------------------------
-scenes = [
-    "The cat sat on the mat.",
-    "A dog ran in the park.",
-    "The weather is sunny today.",
-    "The cat is black and white."
-]
-question = "Is it sunny today"
+def get_top_k_similar(question, embeddings, scenes, k=5, debug=False):
+    q_vec = np.array(question[0].values)
+    s_vecs = np.array([s.values for s in embeddings])
+    similarities = np.dot(s_vecs, q_vec)
 
+    top_indices = np.argsort(similarities)[::-1][:k]
+    top_matches =  [(scenes[i], similarities[i]) for i in top_indices]
+    
+    if debug:
+        for text, score in top_matches:
+            print(f"Score: {score:.4f} | Text: {text}\n")
+    
+    return top_matches
+
+log_path= r"logs\car_pyscene_blip_yolo_ASR_AST_GeminiPro25_20251123_180938.json"
+with open(log_path, "r", encoding="utf-8") as f:
+    logs = json.load(f)
+scenes = format_embedding_text(logs.get("scenes"))
+question = "Why is the car not running" # input("Give questions about cartastrophy: ")
 
 scene_embeddings  = embed_scenes(scenes)
 question_embedding = embed_question(question)
+top_matches = get_top_k_similar(question_embedding, scene_embeddings, scenes, k=5, debug=True)
+ask_question
