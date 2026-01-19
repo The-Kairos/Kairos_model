@@ -40,7 +40,6 @@ noisereduce>=2.0.1
 # Voice Activity Detection
 pyannote.audio==3.2.0  
 
-
 # Note: ffmpeg must be installed on your system
 # For Windows, run: winget install ffmpeg
 # Then in your System Environment Variables, add the path to ffmpeg/bin to your PATH variable by:
@@ -51,3 +50,15 @@ pyannote.audio==3.2.0
 # 5. Open System Environment Variables
 # 6. Edit the PATH variable and add the copied directory path
 # 7. Restart your VS Code or IDE to apply changes
+
+# Azure OpenAI SDK
+openai>=1.9.2
+
+# Google Cloud Audio Intelligence API
+google-cloud-videointelligence>=2.10.0
+google-api-core>=2.11.0
+grpcio>=1.56.0
+protobuf>=4.24.0
+
+# Progress bars / helpers
+tqdm>=4.66.1

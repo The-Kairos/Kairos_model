@@ -1,0 +1,440 @@
+Scene 0 | 0.00-15.85 sec
+  ASR duration: 99.7417 sec
+    Load audio: 6.8051 sec
+    Noise reduction: 0.2761 sec
+    VAD detection: 1.0317 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 91.6145 sec
+  ASR CPU: 15.70%
+  ASR RAM used: 12967.32 MB
+  ASR RAM %: 80.80%
+  AST duration: 33.4456 sec
+    Load audio: 0.0097 sec
+    VAD detection: 0.7499 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0344 sec
+    AST forward: 32.6177 sec
+  AST CPU: 15.50%
+  AST RAM used: 12083.89 MB
+  AST RAM %: 75.30%
+------------------------------------------------------------
+Scene 1 | 15.85-21.76 sec
+  ASR duration: 0.2549 sec
+    Load audio: 0.0210 sec
+    Noise reduction: 0.1266 sec
+    VAD detection: 0.1073 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 6.80%
+  ASR RAM used: 12091.00 MB
+  ASR RAM %: 75.30%
+  AST duration: 15.4785 sec
+    Load audio: 0.0029 sec
+    VAD detection: 0.1094 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0073 sec
+    AST forward: 15.3562 sec
+  AST CPU: 13.00%
+  AST RAM used: 12047.43 MB
+  AST RAM %: 75.00%
+------------------------------------------------------------
+Scene 2 | 21.76-25.79 sec
+  ASR duration: 0.1333 sec
+    Load audio: 0.0000 sec
+    Noise reduction: 0.0792 sec
+    VAD detection: 0.0541 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 18.50%
+  ASR RAM used: 12037.81 MB
+  ASR RAM %: 75.00%
+  AST duration: 18.6301 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.1104 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0069 sec
+    AST forward: 18.5062 sec
+  AST CPU: 16.90%
+  AST RAM used: 11636.55 MB
+  AST RAM %: 72.50%
+------------------------------------------------------------
+Scene 3 | 25.79-28.56 sec
+  ASR duration: 0.1360 sec
+    Load audio: 0.0000 sec
+    Noise reduction: 0.0661 sec
+    VAD detection: 0.0699 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 30.40%
+  ASR RAM used: 11622.97 MB
+  ASR RAM %: 72.40%
+  AST duration: 10.7669 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.0704 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0049 sec
+    AST forward: 10.6916 sec
+  AST CPU: 26.20%
+  AST RAM used: 11951.70 MB
+  AST RAM %: 74.40%
+------------------------------------------------------------
+Scene 4 | 28.56-52.15 sec
+  ASR duration: 85.2881 sec
+    Load audio: 0.0000 sec
+    Noise reduction: 0.3017 sec
+    VAD detection: 0.6831 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 84.2957 sec
+  ASR CPU: 33.80%
+  ASR RAM used: 15084.24 MB
+  ASR RAM %: 93.90%
+  AST duration: 67.3346 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.2991 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0685 sec
+    AST forward: 66.9169 sec
+  AST CPU: 31.20%
+  AST RAM used: 15008.83 MB
+  AST RAM %: 93.50%
+------------------------------------------------------------
+Scene 5 | 52.15-56.62 sec
+  ASR duration: 0.1224 sec
+    Load audio: 0.0056 sec
+    Noise reduction: 0.0540 sec
+    VAD detection: 0.0627 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 34.20%
+  ASR RAM used: 15002.29 MB
+  ASR RAM %: 93.40%
+  AST duration: 10.9948 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.0583 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0059 sec
+    AST forward: 10.9285 sec
+  AST CPU: 2.70%
+  AST RAM used: 15022.95 MB
+  AST RAM %: 93.60%
+------------------------------------------------------------
+Scene 6 | 56.62-59.46 sec
+  ASR duration: 91.9294 sec
+    Load audio: 0.0017 sec
+    Noise reduction: 0.0473 sec
+    VAD detection: 0.0330 sec
+    Chunk extraction: 0.0020 sec
+    Whisper: 91.8436 sec
+  ASR CPU: 17.80%
+  ASR RAM used: 13423.44 MB
+  ASR RAM %: 83.60%
+  AST duration: 25.1797 sec
+    Load audio: 0.0049 sec
+    VAD detection: 0.0927 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0290 sec
+    AST forward: 25.0531 sec
+  AST CPU: 15.10%
+  AST RAM used: 13644.96 MB
+  AST RAM %: 85.00%
+------------------------------------------------------------
+Scene 7 | 59.46-63.53 sec
+  ASR duration: 74.7118 sec
+    Load audio: 0.0069 sec
+    Noise reduction: 0.1071 sec
+    VAD detection: 0.1430 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 74.4548 sec
+  ASR CPU: 14.90%
+  ASR RAM used: 14004.40 MB
+  ASR RAM %: 87.20%
+  AST duration: 34.8095 sec
+    Load audio: 0.0020 sec
+    VAD detection: 0.1080 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0157 sec
+    AST forward: 34.6619 sec
+  AST CPU: 10.30%
+  AST RAM used: 14186.33 MB
+  AST RAM %: 88.30%
+------------------------------------------------------------
+Scene 8 | 63.53-71.20 sec
+  ASR duration: 76.0179 sec
+    Load audio: 0.0261 sec
+    Noise reduction: 0.2002 sec
+    VAD detection: 0.3097 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 75.4741 sec
+  ASR CPU: 10.50%
+  ASR RAM used: 14170.02 MB
+  ASR RAM %: 88.20%
+  AST duration: 13.6352 sec
+    Load audio: 0.0043 sec
+    VAD detection: 0.0947 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0313 sec
+    AST forward: 13.4888 sec
+  AST CPU: 0.00%
+  AST RAM used: 14022.58 MB
+  AST RAM %: 87.30%
+------------------------------------------------------------
+Scene 9 | 71.20-78.45 sec
+  ASR duration: 35.8578 sec
+    Load audio: 0.0310 sec
+    Noise reduction: 0.0637 sec
+    VAD detection: 0.0800 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 35.6831 sec
+  ASR CPU: 100.00%
+  ASR RAM used: 13812.86 MB
+  ASR RAM %: 86.00%
+  AST duration: 13.9944 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.0995 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0186 sec
+    AST forward: 13.8702 sec
+  AST CPU: 19.20%
+  AST RAM used: 13879.35 MB
+  AST RAM %: 86.40%
+------------------------------------------------------------
+Scene 10 | 78.45-93.59 sec
+  ASR duration: 35.5679 sec
+    Load audio: 0.0220 sec
+    Noise reduction: 0.1103 sec
+    VAD detection: 0.2354 sec
+    Chunk extraction: 0.0010 sec
+    Whisper: 35.1877 sec
+  ASR CPU: 8.00%
+  ASR RAM used: 13634.86 MB
+  ASR RAM %: 84.90%
+  AST duration: 27.4133 sec
+    Load audio: 0.0100 sec
+    VAD detection: 0.2028 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0261 sec
+    AST forward: 27.1650 sec
+  AST CPU: 5.30%
+  AST RAM used: 13435.00 MB
+  AST RAM %: 83.70%
+------------------------------------------------------------
+Scene 11 | 93.59-96.36 sec
+  ASR duration: 0.0755 sec
+    Load audio: 0.0061 sec
+    Noise reduction: 0.0376 sec
+    VAD detection: 0.0319 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 9.90%
+  ASR RAM used: 13438.81 MB
+  ASR RAM %: 83.70%
+  AST duration: 6.7940 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.0332 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0052 sec
+    AST forward: 6.7535 sec
+  AST CPU: 0.00%
+  AST RAM used: 13484.53 MB
+  AST RAM %: 84.00%
+------------------------------------------------------------
+Scene 12 | 96.36-98.67 sec
+  ASR duration: 0.0711 sec
+    Load audio: 0.0049 sec
+    Noise reduction: 0.0280 sec
+    VAD detection: 0.0383 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 6.10%
+  ASR RAM used: 13468.23 MB
+  ASR RAM %: 83.90%
+  AST duration: 7.0783 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.0296 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0064 sec
+    AST forward: 7.0403 sec
+  AST CPU: 13.90%
+  AST RAM used: 13506.18 MB
+  AST RAM %: 84.10%
+------------------------------------------------------------
+Scene 13 | 98.67-102.54 sec
+  ASR duration: 0.0733 sec
+    Load audio: 0.0000 sec
+    Noise reduction: 0.0454 sec
+    VAD detection: 0.0279 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 22.50%
+  ASR RAM used: 13508.69 MB
+  ASR RAM %: 84.10%
+  AST duration: 7.1291 sec
+    Load audio: 0.0020 sec
+    VAD detection: 0.0469 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0040 sec
+    AST forward: 7.0742 sec
+  AST CPU: 28.90%
+  AST RAM used: 13523.64 MB
+  AST RAM %: 84.20%
+------------------------------------------------------------
+Scene 14 | 102.54-144.51 sec
+  ASR duration: 45.3831 sec
+    Load audio: 0.0099 sec
+    Noise reduction: 0.5389 sec
+    VAD detection: 0.4519 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 44.3824 sec
+  ASR CPU: 8.50%
+  ASR RAM used: 13968.83 MB
+  ASR RAM %: 87.00%
+  AST duration: 72.0193 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.4725 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0477 sec
+    AST forward: 71.4720 sec
+  AST CPU: 1.50%
+  AST RAM used: 14131.87 MB
+  AST RAM %: 88.00%
+------------------------------------------------------------
+Scene 15 | 144.51-148.58 sec
+  ASR duration: 32.3227 sec
+    Load audio: 0.0000 sec
+    Noise reduction: 0.0575 sec
+    VAD detection: 0.0383 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 32.2116 sec
+  ASR CPU: 24.70%
+  ASR RAM used: 13348.43 MB
+  ASR RAM %: 83.10%
+  AST duration: 10.3528 sec
+    Load audio: 0.0043 sec
+    VAD detection: 0.0548 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0025 sec
+    AST forward: 10.2820 sec
+  AST CPU: 14.00%
+  AST RAM used: 13309.93 MB
+  AST RAM %: 82.90%
+------------------------------------------------------------
+Scene 16 | 148.58-204.30 sec
+  ASR duration: 60.6316 sec
+    Load audio: 0.0176 sec
+    Noise reduction: 0.5284 sec
+    VAD detection: 0.6094 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 59.4639 sec
+  ASR CPU: 35.30%
+  ASR RAM used: 13410.71 MB
+  ASR RAM %: 83.50%
+  AST duration: 96.7790 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.6239 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.1228 sec
+    AST forward: 95.9957 sec
+  AST CPU: 43.20%
+  AST RAM used: 13211.01 MB
+  AST RAM %: 82.30%
+------------------------------------------------------------
+Scene 17 | 204.30-207.61 sec
+  ASR duration: 0.0943 sec
+    Load audio: 0.0000 sec
+    Noise reduction: 0.0556 sec
+    VAD detection: 0.0387 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 6.40%
+  ASR RAM used: 13222.02 MB
+  ASR RAM %: 82.30%
+  AST duration: 6.9226 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.0488 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0000 sec
+    AST forward: 6.8718 sec
+  AST CPU: 12.70%
+  AST RAM used: 13247.58 MB
+  AST RAM %: 82.50%
+------------------------------------------------------------
+Scene 18 | 207.61-210.21 sec
+  ASR duration: 0.0665 sec
+    Load audio: 0.0030 sec
+    Noise reduction: 0.0330 sec
+    VAD detection: 0.0305 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 20.00%
+  ASR RAM used: 13250.69 MB
+  ASR RAM %: 82.50%
+  AST duration: 6.8214 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.0479 sec
+    Mask speech: 0.0020 sec
+    Feature extraction: 0.0060 sec
+    AST forward: 6.7654 sec
+  AST CPU: 2.50%
+  AST RAM used: 13283.46 MB
+  AST RAM %: 82.70%
+------------------------------------------------------------
+Scene 19 | 210.21-213.31 sec
+  ASR duration: 0.0799 sec
+    Load audio: 0.0000 sec
+    Noise reduction: 0.0430 sec
+    VAD detection: 0.0370 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 4.20%
+  ASR RAM used: 13297.80 MB
+  ASR RAM %: 82.80%
+  AST duration: 6.8489 sec
+    Load audio: 0.0000 sec
+    VAD detection: 0.0563 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0020 sec
+    AST forward: 6.7896 sec
+  AST CPU: 100.00%
+  AST RAM used: 13315.29 MB
+  AST RAM %: 82.90%
+------------------------------------------------------------
+Scene 20 | 213.31-216.75 sec
+  ASR duration: 0.0808 sec
+    Load audio: 0.0029 sec
+    Noise reduction: 0.0374 sec
+    VAD detection: 0.0406 sec
+    Chunk extraction: -1.0000 sec
+    Whisper: -1.0000 sec
+  ASR CPU: 2.60%
+  ASR RAM used: 13319.66 MB
+  ASR RAM %: 82.90%
+  AST duration: 6.9094 sec
+    Load audio: 0.0032 sec
+    VAD detection: 0.0478 sec
+    Mask speech: 0.0000 sec
+    Feature extraction: 0.0000 sec
+    AST forward: 6.8584 sec
+  AST CPU: 100.00%
+  AST RAM used: 13338.78 MB
+  AST RAM %: 83.10%
+------------------------------------------------------------
+Scene 21 | 216.75-273.47 sec
+  ASR duration: 45.8124 sec
+    Load audio: 0.0070 sec
+    Noise reduction: 0.5996 sec
+    VAD detection: 0.8037 sec
+    Chunk extraction: 0.0000 sec
+    Whisper: 44.3893 sec
+  ASR CPU: 100.00%
+  ASR RAM used: 13458.57 MB
+  ASR RAM %: 83.80%
+  AST duration: 101.7210 sec
+    Load audio: 0.0065 sec
+    VAD detection: 0.6528 sec
+    Mask speech: 0.0011 sec
+    Feature extraction: 0.0384 sec
+    AST forward: 100.9970 sec
+  AST CPU: 25.30%
+  AST RAM used: 13751.56 MB
+  AST RAM %: 85.60%
+------------------------------------------------------------

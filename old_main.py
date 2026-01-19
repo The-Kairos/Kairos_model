@@ -1,13 +1,13 @@
-# main.py
+# old_main.py
 """
-Video-to-Text Pipeline (Scene-based) — API-based Audio
+Video-to-Text Pipeline (Scene-based)
 
 Steps:
 1. Scene detection
 2. Frame sampling + BLIP captions
 3. Audio extraction per scene
-4. ASR (speech transcription) per scene using OpenAI Whisper API
-5. AST (natural/environmental audio labels) per scene using Google Cloud Audio Intelligence API
+4. ASR (speech transcription) per scene
+5. AST (natural/environmental audio labels) per scene
 6. Save results:
    - scene_X.wav
    - scene_X_asr.txt
@@ -22,39 +22,19 @@ import os
 import time
 import json
 from pathlib import Path
+
 import sys
-from dotenv import load_dotenv
-
-# ----------------------------
-# LOAD ENV VARIABLES
-# ----------------------------
-load_dotenv()  # loads .env in project root
-
-# Azure OpenAI credentials
-AZURE_KEY = os.environ.get("AZURE_OPENAI_KEY")
-AZURE_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
-AZURE_DEPLOYMENT = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
-AZURE_API_VERSION = os.environ.get("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
-
-# Google Cloud (WE DO NOT HAVE THE API KEY YET)
-# GCLOUD_JSON = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-
-# ----------------------------
-# PROJECT ROOT SETUP
-# ----------------------------
+# Ensure the project root is on sys.path so the 'src' package can be imported when running main.py directly
 PROJECT_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-# ----------------------------
-# IMPORT LOCAL MODULES
-# ----------------------------
 from src.scene_cutting import get_scene_list
 from src.frame_sampling import sample_frames
 from src.frame_captioning_blip import caption_frames
 from src.debug_utils import see_scenes_cuts
 from src.audio_utils import extract_scene_audio_ffmpeg, get_ffmpeg_executable
-from src.audio_asr_api import extract_speech_asr_api
-from src.audio_natural_api import extract_natural_audio_api
+from src.audio_asr import extract_speech_asr
+from src.audio_natural import extract_natural_audio_labels
 from src.system_metrics import get_system_usage
 
 # ----------------------------
@@ -119,7 +99,7 @@ for scene in captioned_scenes:
     scene["blip_caption"] = " ".join([f["caption"] for f in scene["frames"]])
 
 # ----------------------------
-# AUDIO EXTRACTION + ASR + AST (API)
+# AUDIO EXTRACTION + ASR + AST
 # ----------------------------
 for scene in captioned_scenes:
     start_sec, end_sec = scene["start_seconds"], scene["end_seconds"]
@@ -131,18 +111,17 @@ for scene in captioned_scenes:
     scene["audio_path"] = str(audio_path)
 
     # -------------------------
-    # ASR via Azure OpenAI Whisper API
+    # ASR
     # -------------------------
-    from src.audio_asr_api import extract_speech_asr_api  # already updated for Azure
-
-    speech_text, asr_timings = extract_speech_asr_api(
-        audio_path=str(audio_path),
-        enable_logs=False  # Azure key is used internally from env
+    speech_text, asr_timings = extract_speech_asr(
+        str(audio_path),
+        model_name="medium",
+        enable_logs=False
     )
     scene["speech"] = speech_text
     scene["asr_timings"] = asr_timings
 
-    # System usage after ASR
+    # NEW: system usage after ASR
     scene["asr_system_usage"] = get_system_usage()
 
     # Save ASR text
@@ -151,36 +130,37 @@ for scene in captioned_scenes:
     )
 
     # -------------------------
-    # AST via Google Cloud Audio Intelligence API
+    # AST
     # -------------------------
-    # natural_labels, ast_timings = extract_natural_audio_api(
-    #     audio_path=str(audio_path),
-    #     gcloud_json_path=GCLOUD_JSON,
-    #     enable_logs=False
-    # )
-    # scene["natural_audio_labels"] = natural_labels
-    # scene["ast_timings"] = ast_timings
+    natural_labels, ast_timings = extract_natural_audio_labels(
+        str(audio_path),
+        clip_sec=2,
+        device="cpu",
+        threshold=0.3,
+        enable_logs=False
+    )
+    scene["natural_audio_labels"] = natural_labels
+    scene["ast_timings"] = ast_timings
 
-    # # System usage after AST
-    # scene["ast_system_usage"] = get_system_usage()
+    # NEW: system usage after AST
+    scene["ast_system_usage"] = get_system_usage()
 
-    # # Save AST labels
-    # Path(CAPTIONS_DIR / f"scene_{idx:02d}_audio_labels.json").write_text(
-    #     json.dumps(natural_labels, indent=2), encoding="utf-8"
-    # )
+    Path(CAPTIONS_DIR / f"scene_{idx:02d}_audio_labels.json").write_text(
+        json.dumps(natural_labels, indent=2), encoding="utf-8"
+    )
 
     # -------------------------
-    # FINAL caption aggregation
+    # FINAL caption
     # -------------------------
     blip_caption = scene.get("blip_caption", "").strip()
     speech_caption = scene["speech"].strip()
-    #audio_labels_caption = ", ".join(lbl for clip in natural_labels for lbl in clip["labels"])
+    audio_labels_caption = ", ".join(lbl for clip in natural_labels for lbl in clip["labels"])
 
     scene["final_caption"] = " + ".join(
         list(filter(None, [
             f"BLIP: {blip_caption}" if blip_caption else None,
             f"ASR: {speech_caption}" if speech_caption else None,
-            #f"AST: {audio_labels_caption}" if audio_labels_caption else None,
+            f"AST: {audio_labels_caption}" if audio_labels_caption else None,
         ]))
     )
 
@@ -195,7 +175,7 @@ for scene in captioned_scenes:
         "scene_index": idx,
         "time_range_sec": [start_sec, end_sec],
         "asr_timings": asr_timings,
-        #"ast_timings": ast_timings,
+        "ast_timings": ast_timings,
         "asr_system_usage": scene["asr_system_usage"],
         "ast_system_usage": scene["ast_system_usage"]
     }
@@ -224,12 +204,12 @@ for scene in captioned_scenes:
         f.write(f"  ASR RAM %: {scene['asr_system_usage']['ram_percent']:.2f}%\n")
 
         # AST timings
-        # f.write(f"  AST duration: {ast_timings.get('ast_duration_sec', -1):.4f} sec\n")
-        # f.write(f"    Load audio: {ast_timings.get('load_audio_sec', -1):.4f} sec\n")
-        # f.write(f"    VAD detection: {ast_timings.get('vad_detection_sec', -1):.4f} sec\n")
-        # f.write(f"    Mask speech: {ast_timings.get('mask_speech_sec', -1):.4f} sec\n")
-        # f.write(f"    Feature extraction: {ast_timings.get('feature_extract_sec', -1):.4f} sec\n")
-        # f.write(f"    AST forward: {ast_timings.get('ast_forward_sec', -1):.4f} sec\n")
+        f.write(f"  AST duration: {ast_timings.get('ast_duration_sec', -1):.4f} sec\n")
+        f.write(f"    Load audio: {ast_timings.get('load_audio_sec', -1):.4f} sec\n")
+        f.write(f"    VAD detection: {ast_timings.get('vad_detection_sec', -1):.4f} sec\n")
+        f.write(f"    Mask speech: {ast_timings.get('mask_speech_sec', -1):.4f} sec\n")
+        f.write(f"    Feature extraction: {ast_timings.get('feature_extract_sec', -1):.4f} sec\n")
+        f.write(f"    AST forward: {ast_timings.get('ast_forward_sec', -1):.4f} sec\n")
 
         # AST system usage
         f.write(f"  AST CPU: {scene['ast_system_usage']['cpu_percent']:.2f}%\n")
@@ -242,19 +222,19 @@ for scene in captioned_scenes:
 # GLOBAL CONSOLIDATED METRICS
 # ----------------------------
 total_asr = sum(s["asr_timings"]["asr_duration_sec"] for s in captioned_scenes)
-#total_ast = sum(s["ast_timings"]["ast_duration_sec"] for s in captioned_scenes)
+total_ast = sum(s["ast_timings"]["ast_duration_sec"] for s in captioned_scenes)
 
 global_metrics = {
     "total_scenes": len(captioned_scenes),
     "total_asr_time_sec": total_asr,
-    #"total_ast_time_sec": total_ast,
+    "total_ast_time_sec": total_ast,
     "scenes": [
         {
             "scene_index": s["scene_index"],
             "asr_timings": s["asr_timings"],
             "ast_timings": s["ast_timings"],
             "asr_system_usage": s["asr_system_usage"],
-            #"ast_system_usage": s["ast_system_usage"],
+            "ast_system_usage": s["ast_system_usage"],
         }
         for s in captioned_scenes
     ]
@@ -270,7 +250,7 @@ with open(Path(OUTPUT_DIR) / "metrics.txt", "w", encoding="utf-8") as f:
     f.write("FINAL METRICS\n")
     f.write(f"Total scenes: {len(captioned_scenes)}\n")
     f.write(f"Total ASR time: {total_asr:.3f} sec\n")
-    #f.write(f"Total AST time: {total_ast:.3f} sec\n")
+    f.write(f"Total AST time: {total_ast:.3f} sec\n")
 
 print(f"\nAll processing complete.\nTimings saved to {TIMINGS_FILE}")
 print("Video-wide metrics saved to metrics.json and metrics.txt")
