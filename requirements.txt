@@ -4,6 +4,9 @@
 # (2) Please add version numbers when adding new packages.
 # ===============================================
 
+# Environment / .env
+python-dotenv>=1.1.0
+
 # General Utils
 numpy>=1.26,<2
 pynvml==13.0.1 # logging GPU usage
@@ -31,14 +34,31 @@ dotenv==0.9.9
 # Object Detection - YOLOv8
 ultralytics==8.3.230
 
-# Audio / ASR / Audio Captioning 
-openai-whisper>=20230314
-torchaudio==2.9.1  # Must match torch 2.9.1 on Windows
-torchcodec>=0.0.7
-librosa>=0.10.0
-soundfile>=0.12.1
+# System monitoring / profiling
+psutil>=5.9.0
+
+# Audio cutting per scene using ffmpeg
 ffmpeg_downloader>=0.3.0
 ffmpeg-python>=0.1.20
-noisereduce>=2.0.1 # Noise reduction
-pyannote.audio==3.2.0  # Voice Activity Detection
-av==16.1.0
+# Note: ffmpeg must be installed on your system
+# For Windows, run: winget install ffmpeg
+# Then in your System Environment Variables, add the path to ffmpeg/bin to your PATH variable by:
+# 1. Open CMD
+# 2. Run: winget install ffmpeg
+# 3. Run: where ffmpeg
+# 4. Copy the directory path (excluding ffmpeg.exe)
+# 5. Open System Environment Variables
+# 6. Edit the PATH variable and add the copied directory path
+# 7. Restart your VS Code or IDE to apply changes
+
+# Azure OpenAI SDK
+openai>=1.9.2
+
+# Google Cloud Audio Intelligence API
+google-cloud-videointelligence>=2.10.0
+google-api-core>=2.11.0
+grpcio>=1.56.0
+protobuf>=4.24.0
+
+# Progress bars / helpers
+tqdm>=4.66.1
