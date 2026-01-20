@@ -9,7 +9,8 @@ python-dotenv>=1.1.0
 
 # General Utils
 numpy>=1.26,<2
-pynvml==13.0.1 # logging GPU usage
+# pynvml==13.0.1 # logging GPU usage - (FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead)
+nvidia-ml-py==12.560.30  # logging GPU usage (NVML official bindings)
 psutil==7.1.3  # logging CPU and RAM usage
 
 # General Video Processing
