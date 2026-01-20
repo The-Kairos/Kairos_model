@@ -197,7 +197,7 @@ for scene in captioned_scenes:
         "asr_timings": asr_timings,
         #"ast_timings": ast_timings,
         "asr_system_usage": scene["asr_system_usage"],
-        "ast_system_usage": scene["ast_system_usage"]
+        #"ast_system_usage": scene["ast_system_usage"]
     }
 
     Path(CAPTIONS_DIR / f"scene_{idx:02d}_metrics.json").write_text(
@@ -210,13 +210,11 @@ for scene in captioned_scenes:
     with open(TIMINGS_FILE, "a", encoding="utf-8") as f:
         f.write(f"Scene {idx} | {start_sec:.2f}-{end_sec:.2f} sec\n")
 
-        # ASR timings
-        f.write(f"  ASR duration: {asr_timings.get('asr_duration_sec', -1):.4f} sec\n")
-        f.write(f"    Load audio: {asr_timings.get('load_audio_sec', -1):.4f} sec\n")
-        f.write(f"    Noise reduction: {asr_timings.get('noise_reduction_sec', -1):.4f} sec\n")
-        f.write(f"    VAD detection: {asr_timings.get('vad_detection_sec', -1):.4f} sec\n")
-        f.write(f"    Chunk extraction: {asr_timings.get('extract_chunks_sec', -1):.4f} sec\n")
-        f.write(f"    Whisper: {asr_timings.get('whisper_sec', -1):.4f} sec\n")
+        # ASR timings (Azure Whisper API – end-to-end)
+        f.write(
+            f"  ASR duration (Azure Whisper API): "
+            f"{asr_timings.get('asr_duration_sec', -1):.4f} sec\n"
+        )
 
         # ASR system usage
         f.write(f"  ASR CPU: {scene['asr_system_usage']['cpu_percent']:.2f}%\n")
@@ -232,9 +230,9 @@ for scene in captioned_scenes:
         # f.write(f"    AST forward: {ast_timings.get('ast_forward_sec', -1):.4f} sec\n")
 
         # AST system usage
-        f.write(f"  AST CPU: {scene['ast_system_usage']['cpu_percent']:.2f}%\n")
-        f.write(f"  AST RAM used: {scene['ast_system_usage']['ram_used_mb']:.2f} MB\n")
-        f.write(f"  AST RAM %: {scene['ast_system_usage']['ram_percent']:.2f}%\n")
+        # f.write(f"  AST CPU: {scene['ast_system_usage']['cpu_percent']:.2f}%\n")
+        # f.write(f"  AST RAM used: {scene['ast_system_usage']['ram_used_mb']:.2f} MB\n")
+        # f.write(f"  AST RAM %: {scene['ast_system_usage']['ram_percent']:.2f}%\n")
 
         f.write("-" * 60 + "\n")
 
@@ -252,7 +250,7 @@ global_metrics = {
         {
             "scene_index": s["scene_index"],
             "asr_timings": s["asr_timings"],
-            "ast_timings": s["ast_timings"],
+            #"ast_timings": s["ast_timings"],
             "asr_system_usage": s["asr_system_usage"],
             #"ast_system_usage": s["ast_system_usage"],
         }

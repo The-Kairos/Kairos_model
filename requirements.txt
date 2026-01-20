@@ -25,21 +25,9 @@ einops==0.8.1
 # System monitoring / profiling
 psutil>=5.9.0
 
-# --- Audio / ASR / Audio Captioning ---
-openai-whisper>=20230314
-torchaudio==2.9.1  # Must match torch 2.9.1 on Windows
-torchcodec>=0.0.7
-librosa>=0.10.0
-soundfile>=0.12.1
+# Audio cutting per scene using ffmpeg
 ffmpeg_downloader>=0.3.0
 ffmpeg-python>=0.1.20
-
-# Noise reduction
-noisereduce>=2.0.1
-
-# Voice Activity Detection
-pyannote.audio==3.2.0  
-
 # Note: ffmpeg must be installed on your system
 # For Windows, run: winget install ffmpeg
 # Then in your System Environment Variables, add the path to ffmpeg/bin to your PATH variable by:
@@ -62,3 +50,4 @@ protobuf>=4.24.0
 
 # Progress bars / helpers
 tqdm>=4.66.1
+
