@@ -4,4 +4,6 @@ produce a concise description that captures objects, actions and spatial and tem
 
 FRAME INFORMATION:{{SCENE_TEXT}}
 
+Treat YOLOv8 object detections as potentially noisy; discard or correct them when contradicted by context or captions
+
 Segment description:
