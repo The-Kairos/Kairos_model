@@ -61,22 +61,35 @@ def describe_scenes(
     )
 
     updated = []
+    previous_summaries = []  # ← store generated summaries
 
-    client = genai.Client(api_key=api_key)
+    client = genai.Client(vertexai=True, api_key=api_key) # vertexai=True is needed if youre Dr. Oussama's key
 
     for idx, (scene, formatted_text) in enumerate(zip(scenes, formatted_scenes)):
-        summary = describe_flash_scene(formatted_text, 
-                                       client, 
-                                       prompt_path= prompt_path,
-                                       model= model )
+
+        # ---- build context from last 3 summaries ----
+        if previous_summaries:
+            context = "\n\nPrevious scenes:\n"
+            for i, s in enumerate(previous_summaries[-3:], start=1):
+                context += f"Scene -{len(previous_summaries) - i + 1}:\n{s}\n"
+            formatted_text += "\n" + context 
+
+        print(formatted_text, "\n\n\n\n\n")
+        summary = describe_flash_scene(
+            formatted_text,
+            client,
+            prompt_path=prompt_path,
+            model=model,
+        )
 
         new_scene = dict(scene)
         new_scene["llm_scene_description"] = summary
-
         updated.append(new_scene)
-        if debug: print("Scene",idx, summary)
-        time.sleep(5)  # To avoid rate limits
 
+        previous_summaries.append(summary)  # ← save summary
+
+        if debug: print("Scene", idx, summary)
+        time.sleep(5)
 
     return updated
 
