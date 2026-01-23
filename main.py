@@ -1,13 +1,40 @@
 from src.debug_utils import *
 from src.log_utils import *
 import time
+from dotenv import load_dotenv
+load_dotenv()
+
+use_gemini = False
+
+if use_gemini:
+    # =============== GEMINI FLASH 2.5 ===============
+    api_key = os.getenv("GEMINI_API_KEY")
+
+    from google import genai
+    model_name= "gemini-2.5-flash",
+    client = genai.Client(vertexai=True, api_key=api_key) # vertexai=True is needed if youre Dr. Oussama's key
+else:
+    # =============== GPT 4o ===============
+    endpoint = "https://60099-m1xc2jq0-australiaeast.openai.azure.com/"
+    model_name = "gpt-4o"
+    deployment = os.getenv("GPT_DEPLOYMENT")
+
+    subscription_key = os.getenv("SUPSCRIPTION_KEY")
+    api_version = os.getenv("API_VERSION")
+
+    from openai import AzureOpenAI
+    client = AzureOpenAI(
+        api_version=api_version,
+        azure_endpoint=endpoint,
+        api_key=subscription_key,
+    )
 
 test_videos = {
-    # "sponge_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
-    # "malala_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
-    # "car_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\.Cartastrophe.mp4",
-    # "spain_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\.Spain Vlog.mp4",
-    "CCIT_pyscene_blip_yolo_ASR_AST_GeminiPro25": r"Videos\.UDST CCIT graduation 30 mins.mp4",
+    f"car_hist3_{model_name}": r"Videos\.Cartastrophe.mp4",
+    # f"malala_hist3_{model_name}": r"Videos\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
+    f"CCIT_hist3_{model_name}": r"Videos\.UDST CCIT graduation 30 mins.mp4",
+    f"sponge_hist3_{model_name}": r"Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
+    f"spain_hist3_{model_name}": r"Videos\.Spain Vlog.mp4",
 }
 OUTPUT_DIR = "spain"
 
@@ -70,13 +97,16 @@ for OUTPUT_DIR, test_video in test_videos.items():
 
     described_scenes, step['describe_scenes'] = describe_scenes_log(
         scenes= speech_audio,
+        client= client,
+        hist_size = 3,
         YOLO_key="yolo_detections",
         FLIP_key="frame_captions",
         ASR_key= "audio_natural",
         AST_key= "audio_speech",
+        SUMMARY_key = "llm_scene_description",
         debug= True,
         prompt_path= "prompts/flash_scene_prompt_manahil.txt",
-        model= "gemini-2.5-flash",
+        model= model_name,
     )
     time.sleep(10)
 

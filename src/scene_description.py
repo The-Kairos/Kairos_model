@@ -1,17 +1,13 @@
 import json
-from dotenv import load_dotenv
-import os
-from google import genai
-from google.genai import types
 import time
-load_dotenv()
-api_key = os.getenv("FLASH2.5")
 
 def describe_flash_scene(
                         scene_text: str,
                         client,
                         prompt_path="prompts/flash_scene_prompt_manahil.txt",
                         model = "gemini-2.5-flash", 
+                        gpt_deployment = "gpt-4o-kairos",
+                        gpt_temperature = 0.3
                          ) -> str:
     """
     Takes ONE raw scene description (string) and returns
@@ -29,16 +25,41 @@ def describe_flash_scene(
     # Insert scene text into {{SCENE_TEXT}} placeholder
     prompt = template.replace("{{SCENE_TEXT}}", scene_text)
 
-    chat = client.chats.create(model=model)
-    resp = chat.send_message(prompt)
-    return resp.text.strip()
+    # Asking LLM
+    if "gemini" in model.lower():
+        chat = client.chats.create(model=model)
+        resp = chat.send_message(prompt)
+        answer = resp.text.strip()
+    elif "gpt" in model.lower():
+        response = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant that summarizes visual scenes.",
+                },
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+            max_tokens=4096,
+            temperature=gpt_temperature,
+            top_p=1.0,
+            model=gpt_deployment
+        )
+        answer = response.choices[0].message.content
+
+    return answer
 
 def describe_scenes(
     scenes: list,
+    client,
+    hist_size = 3,
     YOLO_key="yolo_detections",
     FLIP_key="frame_captions",
     ASR_key: str = "audio_natural",
     AST_key: str = "audio_speech",
+    SUMMARY_key: str = "llm_scene_description",
     model= "gemini-2.5-flash",
     prompt_path = "prompts/flash_scene_prompt_manahil.txt",
     debug= False,
@@ -63,18 +84,15 @@ def describe_scenes(
     updated = []
     previous_summaries = []  # ← store generated summaries
 
-    client = genai.Client(vertexai=True, api_key=api_key) # vertexai=True is needed if youre Dr. Oussama's key
-
     for idx, (scene, formatted_text) in enumerate(zip(scenes, formatted_scenes)):
 
-        # ---- build context from last 3 summaries ----
+        # ---- build context from last K summaries ----
         if previous_summaries:
             context = "\n\nPrevious scenes:\n"
-            for i, s in enumerate(previous_summaries[-3:], start=1):
+            for i, s in enumerate(previous_summaries[-hist_size:], start=1):
                 context += f"Scene -{len(previous_summaries) - i + 1}:\n{s}\n"
             formatted_text += "\n" + context 
 
-        print(formatted_text, "\n\n\n\n\n")
         summary = describe_flash_scene(
             formatted_text,
             client,
@@ -83,7 +101,7 @@ def describe_scenes(
         )
 
         new_scene = dict(scene)
-        new_scene["llm_scene_description"] = summary
+        new_scene[SUMMARY_key] = summary
         updated.append(new_scene)
 
         previous_summaries.append(summary)  # ← save summary
@@ -234,26 +252,3 @@ def test(
     return formatted_scenes
 
 # test()
-'''
-------------------------------------------------------------
---- Scene 8 ---
-Frame 0:
-  Caption: "a video frame of two men sitting at a table"
-  Objects:
-    - person (conf=0.94), x_center=165.1, y_center=90.7, area=41058.3
-    - person (conf=0.73), x_center=9.9, y_center=142.4, area=1378.2
-    - chair (conf=0.61), x_center=50.8, y_center=150.0, area=949.4
-Frame 1:
-  Caption: "a video frame of pm modi ' s speech in parliament"
-  Objects:
-    - person (conf=0.95), x_center=163.9, y_center=92.0, area=40143.1
-    - person (conf=0.70), x_center=9.3, y_center=144.9, area=1213.2
-    - chair (conf=0.60), x_center=50.6, y_center=151.8, area=897.4
-Frame 2:
-  Caption: "a video frame of pm modi and pm naji"
-  Objects:
-    - person (conf=0.95), x_center=163.6, y_center=92.3, area=39761.5
-    - person (conf=0.69), x_center=9.4, y_center=145.5, area=1197.7
-    - chair (conf=0.56), x_center=50.7, y_center=152.2, area=873.2
-------------------------------------------------------------
-'''
