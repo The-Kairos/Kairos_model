@@ -4,14 +4,14 @@ import time
 from dotenv import load_dotenv
 load_dotenv()
 
-use_gemini = False
+use_gemini = True
 
 if use_gemini:
     # =============== GEMINI FLASH 2.5 ===============
     api_key = os.getenv("GEMINI_API_KEY")
 
     from google import genai
-    model_name= "gemini-2.5-flash",
+    model_name= "gemini-2.5-flash"
     client = genai.Client(vertexai=True, api_key=api_key) # vertexai=True is needed if youre Dr. Oussama's key
 else:
     # =============== GPT 4o ===============

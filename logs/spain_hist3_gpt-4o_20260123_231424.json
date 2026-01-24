@@ -1,0 +1,4667 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\.Spain Vlog.mp4",
+  "video_length": 245.753,
+  "total_process_sec": 898.0143356323242,
+  "scene_number": 43,
+  "start_process": "2026-01-23 22:59:25",
+  "end_process": "2026-01-23 23:14:23",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 3.49,
+      "used_RAM_GB": 12.35,
+      "RAM_usage_percent": 78.0
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 459.97,
+      "disk_free_GB": 473.01,
+      "disk_usage_percent": 49.3
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 39.6358,
+      "cpu_time_sec": 125.125,
+      "ram_before_MB": 3185,
+      "ram_after_MB": 3190,
+      "ram_used_MB": 5,
+      "io_read_MB": 562.6685075759888,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 5.51734,
+      "cpu_time_sec": 0.1875,
+      "ram_before_MB": 3190,
+      "ram_after_MB": 3190,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.14655494689941406,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 49.82248,
+      "cpu_time_sec": 104.51562,
+      "ram_before_MB": 3190,
+      "ram_after_MB": 3205,
+      "ram_used_MB": 15,
+      "io_read_MB": 493.4144868850708,
+      "io_write_MB": 2.7007837295532227,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 139.85439,
+      "cpu_time_sec": 1113.03125,
+      "ram_before_MB": 3205,
+      "ram_after_MB": 3133,
+      "ram_used_MB": -72,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 9.65569,
+      "cpu_time_sec": 76.60938,
+      "ram_before_MB": 3133,
+      "ram_after_MB": 3161,
+      "ram_used_MB": 28,
+      "io_read_MB": 21.875014305114746,
+      "io_write_MB": 3.0099353790283203,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "wall_time_sec": 35.62693,
+      "cpu_time_sec": 277.71875,
+      "ram_before_MB": 3161,
+      "ram_after_MB": 3135,
+      "ram_used_MB": -26,
+      "io_read_MB": 562.4587125778198,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "wall_time_sec": 170.51236,
+      "cpu_time_sec": 1312.51562,
+      "ram_before_MB": 3135,
+      "ram_after_MB": 3236,
+      "ram_used_MB": 101,
+      "io_read_MB": 1485.1514348983765,
+      "io_write_MB": 9.5367431640625e-07,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "wall_time_sec": 367.3043,
+      "cpu_time_sec": 0.25,
+      "ram_before_MB": 3236,
+      "ram_after_MB": 3153,
+      "ram_used_MB": -83,
+      "io_read_MB": 0.017551422119140625,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:03.600",
+      "start_seconds": 0.0,
+      "end_seconds": 3.599799810117998,
+      "duration_seconds": 3.599799810117998,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0000.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_000\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_000\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_000\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing headphones",
+        "a video frame of a woman wearing headphones",
+        "a video frame of a woman wearing headphones"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9197192192077637,
+            "bbox": [
+              0.5641632080078125,
+              59.33857727050781,
+              132.84674072265625,
+              178.81890869140625
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8934873938560486,
+            "bbox": [
+              116.60836791992188,
+              1.9117279052734375,
+              318.64093017578125,
+              178.26670837402344
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7953833341598511,
+            "bbox": [
+              302.07391357421875,
+              35.39456558227539,
+              319.85211181640625,
+              117.65985107421875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7550175786018372,
+            "bbox": [
+              284.94549560546875,
+              67.20344543457031,
+              303.90631103515625,
+              104.88514709472656
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6785922646522522,
+            "bbox": [
+              18.517135620117188,
+              87.31430053710938,
+              39.262210845947266,
+              112.11398315429688
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6537363529205322,
+            "bbox": [
+              12.21710205078125,
+              80.46753692626953,
+              25.09111785888672,
+              98.67211151123047
+            ]
+          },
+          {
+            "label": "chair",
+            "confidence": 0.5846622586250305,
+            "bbox": [
+              0.53515625,
+              99.10041809082031,
+              20.940959930419922,
+              112.11991882324219
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9120631814002991,
+            "bbox": [
+              0.1807403564453125,
+              54.44040298461914,
+              134.87704467773438,
+              178.13961791992188
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.862201988697052,
+            "bbox": [
+              117.40699005126953,
+              1.10028076171875,
+              318.6458740234375,
+              178.10568237304688
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8158562779426575,
+            "bbox": [
+              288.18670654296875,
+              75.97017669677734,
+              305.3046875,
+              109.05487823486328
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6862242221832275,
+            "bbox": [
+              302.742431640625,
+              43.97515869140625,
+              319.9002685546875,
+              120.59226989746094
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6018639802932739,
+            "bbox": [
+              23.043306350708008,
+              87.94310760498047,
+              43.60345458984375,
+              109.11676788330078
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8635539412498474,
+            "bbox": [
+              285.70648193359375,
+              57.3976936340332,
+              319.88446044921875,
+              125.13789367675781
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8065158724784851,
+            "bbox": [
+              2.3490753173828125,
+              49.95176315307617,
+              118.52592468261719,
+              177.6245880126953
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.729092538356781,
+            "bbox": [
+              111.19766235351562,
+              0.606903076171875,
+              318.81396484375,
+              178.00765991210938
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6759496331214905,
+            "bbox": [
+              270.7354736328125,
+              92.03135681152344,
+              283.0474853515625,
+              111.22663879394531
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.49)",
+      "audio_speech": " Hi guys!",
+      "llm_scene_description": "The video segment depicts a woman wearing headphones as the central focus, with several other individuals present in the background. The woman appears stationary and consistently positioned near the left side of the frame across all three frames. Other people are scattered throughout the scene, with varying levels of visibility and confidence in detection. A chair is briefly detected in the first frame but does not appear consistently. The spatial arrangement suggests the setting may be indoors, possibly in a casual or social environment. The audio includes the woman greeting with \"Hi guys!\" indicating interaction or engagement with others."
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:03.600",
+      "end_timecode": "00:00:06.666",
+      "start_seconds": 3.599799810117998,
+      "end_seconds": 6.666295944662959,
+      "duration_seconds": 3.0664961345449613,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0001.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_001\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_001\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_001\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person wearing headphones",
+        "a video frame of a woman wearing headphones",
+        "a video frame of a woman wearing headphones"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8054128289222717,
+            "bbox": [
+              99.17633819580078,
+              0.55389404296875,
+              316.8350830078125,
+              177.74832153320312
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8607640862464905,
+            "bbox": [
+              48.61541748046875,
+              0.5935211181640625,
+              303.26190185546875,
+              178.56251525878906
+            ]
+          },
+          {
+            "label": "chair",
+            "confidence": 0.763187050819397,
+            "bbox": [
+              0.0953369140625,
+              140.42198181152344,
+              44.9935417175293,
+              179.47093200683594
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.637190580368042,
+            "bbox": [
+              66.15906524658203,
+              90.56683349609375,
+              85.95059967041016,
+              124.377197265625
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8699285387992859,
+            "bbox": [
+              76.765380859375,
+              1.0331268310546875,
+              286.3702697753906,
+              178.13145446777344
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6443179249763489,
+            "bbox": [
+              0.09434890747070312,
+              59.05955505371094,
+              60.66908264160156,
+              177.81436157226562
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " union.",
+      "llm_scene_description": "The video segment shows a woman wearing headphones as the central figure, positioned consistently near the left side of the frame across all three frames. She appears stationary, suggesting she is the focus of the scene. Other individuals are faintly visible in the background, with varying clarity, and a chair is briefly detected in one frame but does not persist. The setting appears to be indoors, likely a casual or social environment. No discernible actions or interactions occur in this segment, and the audio transcript is unavailable."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:06.666",
+      "end_timecode": "00:00:12.399",
+      "start_seconds": 6.666295944662959,
+      "end_seconds": 12.399310457073105,
+      "duration_seconds": 5.733014512410145,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0002.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_002\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_002\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_002\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing headphones",
+        "a video frame of a woman wearing headphones",
+        "a video frame of a man wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8557961583137512,
+            "bbox": [
+              6.45086669921875,
+              0.323150634765625,
+              299.38671875,
+              178.0395965576172
+            ]
+          },
+          {
+            "label": "cell phone",
+            "confidence": 0.8279638290405273,
+            "bbox": [
+              63.17251205444336,
+              125.6455078125,
+              128.05599975585938,
+              179.54547119140625
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.604178786277771,
+            "bbox": [
+              0.026813507080078125,
+              98.9122314453125,
+              18.117900848388672,
+              138.67221069335938
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9111988544464111,
+            "bbox": [
+              53.922210693359375,
+              0.5607757568359375,
+              319.5207214355469,
+              178.28811645507812
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.819232702255249,
+            "bbox": [
+              0.24983978271484375,
+              18.787399291992188,
+              79.25155639648438,
+              177.64157104492188
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7885188460350037,
+            "bbox": [
+              263.94000244140625,
+              0.3769378662109375,
+              299.26287841796875,
+              108.90538024902344
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6697220802307129,
+            "bbox": [
+              250.93264770507812,
+              30.97187042236328,
+              267.0546569824219,
+              75.44158935546875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5721093416213989,
+            "bbox": [
+              32.65232849121094,
+              1.47802734375,
+              60.7991943359375,
+              55.187583923339844
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5491194128990173,
+            "bbox": [
+              74.02255249023438,
+              27.956619262695312,
+              87.39169311523438,
+              50.718841552734375
+            ]
+          },
+          {
+            "label": "backpack",
+            "confidence": 0.522220253944397,
+            "bbox": [
+              292.794921875,
+              28.083038330078125,
+              313.349609375,
+              71.32073974609375
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.6830947399139404,
+            "bbox": [
+              1.32403564453125,
+              0.0,
+              266.2617492675781,
+              178.34634399414062
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.56)",
+      "audio_speech": " Okay, our boards to",
+      "llm_scene_description": "The video segment features a woman wearing headphones as the central figure, consistently positioned near the left side of the frame. She appears stationary throughout the scene. Other individuals are faintly visible in the background, with varying levels of clarity and confidence in detection, suggesting a social or casual indoor setting. In the final frame, the focus shifts to a man wearing glasses, possibly indicating a change in perspective or subject. A cell phone and a backpack are briefly detected but do not play a significant role in the scene. The audio includes partial speech, \"Okay, our boards to,\" hinting at a conversational or instructional context."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:12.399",
+      "end_timecode": "00:00:16.932",
+      "start_seconds": 12.399310457073105,
+      "end_seconds": 16.932391699443915,
+      "duration_seconds": 4.533081242370811,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0003.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_003\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_003\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_003\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing headphones",
+        "a video frame of a woman wearing headphones",
+        "a video frame of a woman wearing headphones"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.7717432975769043,
+            "bbox": [
+              68.19164276123047,
+              0.0736846923828125,
+              320.0,
+              178.2783660888672
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6132049560546875,
+            "bbox": [
+              0.0,
+              74.72114562988281,
+              75.10411071777344,
+              157.38137817382812
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.579378068447113,
+            "bbox": [
+              74.6822738647461,
+              107.8367919921875,
+              82.23741912841797,
+              123.01504516601562
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8297666311264038,
+            "bbox": [
+              33.171783447265625,
+              0.3155364990234375,
+              320.0,
+              177.96856689453125
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5798207521438599,
+            "bbox": [
+              69.45753479003906,
+              103.6600341796875,
+              77.49348449707031,
+              118.07821655273438
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5334989428520203,
+            "bbox": [
+              0.11551666259765625,
+              61.2933349609375,
+              70.37247467041016,
+              152.7707977294922
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8380674123764038,
+            "bbox": [
+              33.69976806640625,
+              0.0,
+              318.5206298828125,
+              178.16525268554688
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.809274435043335,
+            "bbox": [
+              0.11196136474609375,
+              59.73162841796875,
+              71.83303833007812,
+              154.39431762695312
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6770137548446655,
+            "bbox": [
+              238.89089965820312,
+              73.349853515625,
+              267.4151306152344,
+              143.0652618408203
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5380890369415283,
+            "bbox": [
+              71.37297058105469,
+              104.31120300292969,
+              81.49906921386719,
+              118.02693176269531
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5235884785652161,
+            "bbox": [
+              105.60182189941406,
+              110.20086669921875,
+              115.52040100097656,
+              124.17926025390625
+            ]
+          },
+          {
+            "label": "cell phone",
+            "confidence": 0.517116367816925,
+            "bbox": [
+              78.18408203125,
+              148.75186157226562,
+              119.80958557128906,
+              180.0
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " It's going to be a seven hour flight. I'll vlog more when we get there.",
+      "llm_scene_description": "The video segment centers on a woman wearing headphones, consistently positioned near the left side of the frame. She appears stationary and is the primary focus of the scene. Several other individuals are visible in the background, though they are less prominent and vary in clarity across frames. In the final frame, a cell phone is briefly detected, but it does not play a significant role. The setting appears to be indoors, likely a casual or social environment. The audio suggests the woman is speaking to an audience, mentioning a \"seven-hour flight\" and plans to \"vlog more\" later, indicating a travel-related context."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:16.932",
+      "end_timecode": "00:00:21.999",
+      "start_seconds": 16.932391699443915,
+      "end_seconds": 21.998776617387765,
+      "duration_seconds": 5.06638491794385,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0004.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_004\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_004\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_004\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing headphones",
+        "a video frame of a woman wearing headphones",
+        "a video frame of two women on a plane"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8602103590965271,
+            "bbox": [
+              20.77484130859375,
+              0.8430938720703125,
+              320.0,
+              177.88299560546875
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9282765984535217,
+            "bbox": [
+              136.8360595703125,
+              0.4534912109375,
+              320.0,
+              177.2840576171875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7160143852233887,
+            "bbox": [
+              0.218963623046875,
+              23.388916015625,
+              86.64895629882812,
+              177.51414489746094
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.915593683719635,
+            "bbox": [
+              219.86656188964844,
+              0.868896484375,
+              319.637939453125,
+              177.45443725585938
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.896458625793457,
+            "bbox": [
+              80.1221694946289,
+              55.770999908447266,
+              213.58035278320312,
+              179.30221557617188
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " Bye bye. It's just a lander! Thank you guys!",
+      "llm_scene_description": "The video segment depicts a scene involving two women, one of whom is wearing headphones and appears to be the primary focus. Initially, the woman with headphones is alone, but by the second frame, another woman becomes visible, and by the third frame, both women are clearly present, suggesting they are seated near each other, possibly on a plane. The setting is indoors, as indicated by the caption mentioning \"a plane.\" The women appear stationary, with no significant actions or interactions observed. The audio includes a brief conversational snippet, \"Bye bye. It's just a lander! Thank you guys!\" which may indicate a casual farewell or commentary, aligning with the travel-related context."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:21.999",
+      "end_timecode": "00:00:27.332",
+      "start_seconds": 21.998776617387765,
+      "end_seconds": 27.331813373118134,
+      "duration_seconds": 5.333036755730369,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0005.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_005\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_005\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_005\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a couple taking a selfie",
+        "a video frame of a man wearing headphones",
+        "a video frame of a man wearing headphones"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.7774293422698975,
+            "bbox": [
+              32.08441162109375,
+              0.0,
+              295.04241943359375,
+              178.48416137695312
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7715462446212769,
+            "bbox": [
+              0.13704681396484375,
+              95.1418685913086,
+              71.99569702148438,
+              177.69436645507812
+            ]
+          },
+          {
+            "label": "cell phone",
+            "confidence": 0.7607389688491821,
+            "bbox": [
+              165.48806762695312,
+              84.90684509277344,
+              259.5824279785156,
+              138.82493591308594
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7174801826477051,
+            "bbox": [
+              235.93890380859375,
+              0.459686279296875,
+              319.7391357421875,
+              176.77581787109375
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9390630722045898,
+            "bbox": [
+              149.35238647460938,
+              0.5079345703125,
+              319.7995300292969,
+              178.19332885742188
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8705301880836487,
+            "bbox": [
+              128.917236328125,
+              0.6053009033203125,
+              318.39715576171875,
+              177.6107940673828
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.65)",
+      "audio_speech": " Pero hablo español. Pero, pero...",
+      "llm_scene_description": "The video segment depicts a social scene transitioning between different individuals and contexts. Initially, a couple is seen taking a selfie, with a cell phone prominently visible, suggesting a casual or lighthearted moment. The focus then shifts to a man wearing headphones, who appears stationary and becomes the central figure in the subsequent frames. The setting is likely indoors, with no significant background activity or interactions observed. The audio includes partial speech in Spanish, \"Pero hablo español. Pero, pero...,\" adding a conversational element to the scene. The segment conveys a mix of personal and social interactions, with a gradual shift in focus from a group activity to an individual."
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:27.332",
+      "end_timecode": "00:00:29.865",
+      "start_seconds": 27.331813373118134,
+      "end_seconds": 29.86500583209006,
+      "duration_seconds": 2.533192458971925,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0006.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_006\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_006\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_006\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing headphones",
+        "a video frame of a young man wearing headphones",
+        "a video frame of a woman wearing headphones"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9197677969932556,
+            "bbox": [
+              65.5701904296875,
+              0.66192626953125,
+              319.9619140625,
+              178.17596435546875
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8954949378967285,
+            "bbox": [
+              39.165191650390625,
+              1.057830810546875,
+              319.91741943359375,
+              177.61749267578125
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9383077025413513,
+            "bbox": [
+              52.7574462890625,
+              0.7224578857421875,
+              319.857421875,
+              177.9676971435547
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " very tiring flight",
+      "llm_scene_description": "The video segment alternates between a woman and a young man, both wearing headphones, appearing in separate frames. The individuals are stationary and positioned centrally, with no visible interactions or significant background activity. The setting is likely indoors, and the focus shifts between the two subjects without overlap. The audio includes a brief mention of a \"very tiring flight,\" suggesting a travel-related context. The scene emphasizes individual moments rather than group dynamics or actions."
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:29.865",
+      "end_timecode": "00:00:34.531",
+      "start_seconds": 29.86500583209006,
+      "end_seconds": 34.53141299335413,
+      "duration_seconds": 4.666407161264072,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0007.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_007\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_007\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_007\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man and a woman on a plane",
+        "a video frame of a man and a woman on a plane",
+        "a video frame of a woman and a man in a car"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.7707129120826721,
+            "bbox": [
+              0.20843505859375,
+              1.290435791015625,
+              96.02084350585938,
+              177.36141967773438
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6595197319984436,
+            "bbox": [
+              226.91925048828125,
+              0.7543792724609375,
+              319.593994140625,
+              176.7572021484375
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9415192604064941,
+            "bbox": [
+              221.37193298339844,
+              0.6181640625,
+              319.713134765625,
+              177.82757568359375
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9307670593261719,
+            "bbox": [
+              37.63377380371094,
+              43.01702880859375,
+              187.03257751464844,
+              178.21043395996094
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9231765270233154,
+            "bbox": [
+              246.81373596191406,
+              1.0573272705078125,
+              319.673095703125,
+              177.7749481201172
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8106948137283325,
+            "bbox": [
+              2.7388153076171875,
+              25.709930419921875,
+              157.18836975097656,
+              178.22274780273438
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.44)",
+      "audio_speech": " I was in a vlog. Hold on, hold on, hold on. That's it.",
+      "llm_scene_description": "The video segment depicts a man and a woman in a confined indoor setting, transitioning from what appears to be a plane to a car. In the first two frames, the man and woman are seated near each other on a plane, as indicated by the captions and the stationary positioning of the individuals. By the third frame, the setting shifts to a car, with the woman now appearing more prominently. The transition suggests a change in context or location, though the individuals remain the focus throughout. The audio includes a casual remark, \"I was in a vlog. Hold on, hold on, hold on. That's it,\" adding a conversational tone to the scene. The segment emphasizes the presence of the two individuals and their changing environment, with no significant actions or interactions beyond the setting transition."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:00:34.531",
+      "end_timecode": "00:00:37.865",
+      "start_seconds": 34.53141299335413,
+      "end_seconds": 37.864560965685605,
+      "duration_seconds": 3.3331479723314743,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0008.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_008\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_008\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_008\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman on a train",
+        "a video frame of a woman on a plane",
+        "a video frame of a man and a woman on a train"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8952473402023315,
+            "bbox": [
+              80.55117797851562,
+              0.4065399169921875,
+              314.46368408203125,
+              177.93434143066406
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9291312098503113,
+            "bbox": [
+              128.04257202148438,
+              35.001922607421875,
+              284.1850280761719,
+              178.6832275390625
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.757818877696991,
+            "bbox": [
+              280.67889404296875,
+              60.11756896972656,
+              319.86114501953125,
+              178.99839782714844
+            ]
+          },
+          {
+            "label": "cell phone",
+            "confidence": 0.5518977642059326,
+            "bbox": [
+              160.43600463867188,
+              133.40704345703125,
+              183.1761474609375,
+              170.9376220703125
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9056292176246643,
+            "bbox": [
+              154.06915283203125,
+              0.802978515625,
+              319.4307556152344,
+              177.9166259765625
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8591393828392029,
+            "bbox": [
+              65.34829711914062,
+              94.89177703857422,
+              165.28213500976562,
+              179.3221435546875
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.74)",
+      "audio_speech": " I want to work hard. I want to work hard right now.",
+      "llm_scene_description": "The video segment depicts a sequence of scenes involving a woman and other individuals in various transportation settings. Initially, the woman is seen alone on a train. The focus then shifts to a scene on a plane, where the woman is accompanied by another person, and a cell phone is briefly visible, suggesting casual activity. In the final scene, the setting transitions back to a train, where a man and the woman are present, seated near each other. The audio features a motivational statement, \"I want to work hard. I want to work hard right now,\" adding an introspective tone to the segment. The transitions between locations and the presence of multiple individuals suggest a narrative involving travel and interpersonal dynamics."
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:00:37.865",
+      "end_timecode": "00:00:39.998",
+      "start_seconds": 37.864560965685605,
+      "end_seconds": 39.997775667977756,
+      "duration_seconds": 2.1332147022921504,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0009.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_009\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_009\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_009\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man and woman on a plane",
+        "a video frame of a man and woman in a car",
+        "a video frame of a man wearing headphones"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8284463882446289,
+            "bbox": [
+              0.22325515747070312,
+              50.66080093383789,
+              62.13005828857422,
+              177.78668212890625
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9221552014350891,
+            "bbox": [
+              0.11615371704101562,
+              66.79107666015625,
+              58.94009780883789,
+              178.2645263671875
+            ]
+          }
+        ],
+        "2": []
+      },
+      "audio_natural": "meow (conf=0.59)",
+      "audio_speech": " I have Wi-Fi, but there's no service.",
+      "llm_scene_description": "The video segment depicts a man and a woman transitioning between different transportation settings. Initially, they are seated together on a plane, as indicated by the caption and their stationary positioning. The setting then shifts to a car, where the two individuals remain the focus. In a subsequent frame, the man is shown wearing headphones, though no additional objects or interactions are visible. The audio includes a casual remark about Wi-Fi and service, adding a conversational tone to the scene. The segment emphasizes the changing environments and the presence of the two individuals, with minimal action or interaction beyond the transitions."
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:00:39.998",
+      "end_timecode": "00:00:47.331",
+      "start_seconds": 39.997775667977756,
+      "end_seconds": 47.33070120710701,
+      "duration_seconds": 7.332925539129256,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0010.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_010\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_010\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_010\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a man and a woman walking down a street",
+        "a video frame of a woman with glasses and a backpack"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.940814733505249,
+            "bbox": [
+              28.212677001953125,
+              52.581600189208984,
+              136.7689666748047,
+              178.86883544921875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9146019816398621,
+            "bbox": [
+              132.25991821289062,
+              0.1839599609375,
+              315.2154235839844,
+              177.57943725585938
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9415180683135986,
+            "bbox": [
+              136.09457397460938,
+              0.07135009765625,
+              319.8705749511719,
+              177.75604248046875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9384675025939941,
+            "bbox": [
+              82.82231140136719,
+              38.141815185546875,
+              168.735595703125,
+              178.40676879882812
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9372317790985107,
+            "bbox": [
+              109.05471801757812,
+              6.302947998046875,
+              319.5516357421875,
+              178.1182403564453
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7555434107780457,
+            "bbox": [
+              48.14373016357422,
+              104.53700256347656,
+              90.02178192138672,
+              178.7490692138672
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6411648392677307,
+            "bbox": [
+              261.857177734375,
+              105.55802917480469,
+              278.9276123046875,
+              129.2596435546875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6281101107597351,
+            "bbox": [
+              278.3906555175781,
+              104.91680908203125,
+              294.2876892089844,
+              130.31326293945312
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5127419233322144,
+            "bbox": [
+              253.2310028076172,
+              110.26889038085938,
+              260.73480224609375,
+              123.14564514160156
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.88)",
+      "audio_speech": " I'm vlogging. It's cold. It's actually really nice. The weather's so nice. Walking out of the airstore. My what?",
+      "llm_scene_description": "The video segment shows a man and a woman walking outdoors, possibly on a street. The woman is wearing glasses and carrying a backpack, as noted in the captions. The two individuals remain the focus throughout the frames, with the spatial positioning suggesting they are walking together. Additional detected individuals in the background appear to be less prominent and possibly unrelated to the main action. The audio adds context, with the woman casually mentioning vlogging, commenting on the weather, and referencing walking out of a store. The scene emphasizes a casual, outdoor interaction between the man and woman, with a focus on their movement and conversation."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:00:47.331",
+      "end_timecode": "00:00:50.664",
+      "start_seconds": 47.33070120710701,
+      "end_seconds": 50.66384917943849,
+      "duration_seconds": 3.3331479723314814,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0011.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_011\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_011\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_011\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man wearing glasses",
+        "a video frame of a man in a gray jacket",
+        "a video frame of a man with dread hair"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9246982336044312,
+            "bbox": [
+              184.46844482421875,
+              1.4441375732421875,
+              319.66534423828125,
+              177.78897094726562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.804289698600769,
+            "bbox": [
+              0.4375495910644531,
+              122.958984375,
+              42.14446258544922,
+              179.8272705078125
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.83599853515625,
+            "bbox": [
+              1.37701416015625,
+              0.3270416259765625,
+              111.13319396972656,
+              177.8508758544922
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "baseball bat",
+            "confidence": 0.9183309674263,
+            "bbox": [
+              29.74791717529297,
+              36.8868408203125,
+              82.39340209960938,
+              178.09164428710938
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7166215777397156,
+            "bbox": [
+              137.509521484375,
+              10.533203125,
+              313.4624938964844,
+              177.9802703857422
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6199719309806824,
+            "bbox": [
+              138.87237548828125,
+              160.25668334960938,
+              150.8577880859375,
+              179.91952514648438
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.43)",
+      "audio_speech": " Fuck you!",
+      "llm_scene_description": "The video segment depicts a tense interaction involving multiple individuals. Initially, a man wearing glasses is visible, followed by a man in a gray jacket. In a subsequent frame, a man with dreadlocks is present alongside a baseball bat, which appears prominently in the scene. The spatial arrangement suggests that the individuals are in close proximity, with varying levels of prominence. The audio features an aggressive expletive, \"Fuck you!\", adding a confrontational tone to the scene. The sequence conveys escalating tension, with the presence of the baseball bat hinting at potential conflict or threat."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:00:50.664",
+      "end_timecode": "00:00:59.463",
+      "start_seconds": 50.66384917943849,
+      "end_seconds": 59.4633598263936,
+      "duration_seconds": 8.799510646955106,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0012.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_012\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_012\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_012\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man wearing glasses",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9340290427207947,
+            "bbox": [
+              65.22915649414062,
+              0.0,
+              319.78900146484375,
+              178.12451171875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9330927133560181,
+            "bbox": [
+              0.0712432861328125,
+              75.19328308105469,
+              84.24545288085938,
+              178.7405242919922
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8116021752357483,
+            "bbox": [
+              68.46793365478516,
+              108.21004486083984,
+              90.60970306396484,
+              150.88705444335938
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9346306324005127,
+            "bbox": [
+              82.52499389648438,
+              1.6591644287109375,
+              319.2620544433594,
+              178.4095458984375
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9283132553100586,
+            "bbox": [
+              0.14361572265625,
+              101.39118957519531,
+              82.39151000976562,
+              179.49635314941406
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9048251509666443,
+            "bbox": [
+              125.32736206054688,
+              0.4338226318359375,
+              319.4053955078125,
+              178.2261505126953
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8409671783447266,
+            "bbox": [
+              38.78923797607422,
+              147.9270477294922,
+              77.9598388671875,
+              179.9561004638672
+            ]
+          }
+        ]
+      },
+      "audio_natural": "explosion (conf=0.43)",
+      "audio_speech": " We're gonna be heading to the hotel and then we're gonna go out later so I'll vlog a little bit but probably not too much because I don't want to get my phone stolen.",
+      "llm_scene_description": "The video segment depicts a transition involving a man and a woman, both wearing glasses, as they appear in different settings. Initially, the man is the focus, followed by the woman in subsequent frames. The spatial positioning and changing object sizes suggest movement, with the woman becoming more prominent as the scene progresses. Background individuals are detected but remain insignificant to the main action. The audio adds context, with casual remarks about heading to a hotel and concerns about vlogging to avoid phone theft, suggesting a relaxed but cautious tone. The scene emphasizes the shifting focus between the man and woman, with minimal interaction or notable actions beyond the commentary."
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:00:59.463",
+      "end_timecode": "00:01:01.863",
+      "start_seconds": 59.4633598263936,
+      "end_seconds": 61.86322636647226,
+      "duration_seconds": 2.399866540078662,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0013.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_013\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_013\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_013\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses and talking on a cell phone",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing a tie and glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9353777766227722,
+            "bbox": [
+              114.42589569091797,
+              2.4835357666015625,
+              319.45147705078125,
+              178.54379272460938
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9273266792297363,
+            "bbox": [
+              53.51731872558594,
+              66.91230773925781,
+              134.38882446289062,
+              178.65785217285156
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6011810302734375,
+            "bbox": [
+              277.1610412597656,
+              100.18495178222656,
+              289.6434631347656,
+              112.74568176269531
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8429022431373596,
+            "bbox": [
+              70.1551513671875,
+              53.8046760559082,
+              163.14512634277344,
+              178.3503875732422
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6750061511993408,
+            "bbox": [
+              128.6761474609375,
+              6.09014892578125,
+              319.498046875,
+              177.7687530517578
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8976565599441528,
+            "bbox": [
+              86.279541015625,
+              52.159942626953125,
+              160.02359008789062,
+              178.1918487548828
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8222911357879639,
+            "bbox": [
+              115.73827362060547,
+              0.575592041015625,
+              319.9058837890625,
+              178.53427124023438
+            ]
+          },
+          {
+            "label": "tv",
+            "confidence": 0.5370122790336609,
+            "bbox": [
+              33.976966857910156,
+              76.41000366210938,
+              54.189697265625,
+              96.01910400390625
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5051683783531189,
+            "bbox": [
+              142.65200805664062,
+              86.99764251708984,
+              161.35205078125,
+              108.8399429321289
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " We're double blogging right now.",
+      "llm_scene_description": "The video segment depicts a woman wearing glasses as the central figure, engaging in casual conversation while holding a cell phone. Across the frames, she remains the primary focus, with varying spatial positioning and prominence of other individuals. In the initial frame, she is actively talking on the phone, while subsequent frames highlight her presence without the phone, with minor changes in attire such as a tie mentioned in the captions. Background individuals are detected but appear insignificant to the main action. A TV is briefly noted in one frame but does not contribute meaningfully to the scene. The audio adds context with the phrase \"We're double blogging right now,\" suggesting a casual and collaborative activity. The scene emphasizes the woman's actions and presence, with minimal interaction or notable dynamics involving other individuals or objects."
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:01.863",
+      "end_timecode": "00:01:11.063",
+      "start_seconds": 61.86322636647226,
+      "end_seconds": 71.06271477010715,
+      "duration_seconds": 9.199488403634888,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0014.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_014\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_014\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_014\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a car driving down a street",
+        "a video frame of people on a bus",
+        "a video frame of a person reading a book"
+      ],
+      "yolo_detections": {
+        "0": [],
+        "1": [
+          {
+            "label": "cell phone",
+            "confidence": 0.8146280646324158,
+            "bbox": [
+              167.09136962890625,
+              137.30361938476562,
+              203.58786010742188,
+              168.00381469726562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6739214658737183,
+            "bbox": [
+              0.0139617919921875,
+              100.42244720458984,
+              58.09857177734375,
+              179.41201782226562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6062671542167664,
+            "bbox": [
+              191.39617919921875,
+              101.30644989013672,
+              319.3466796875,
+              178.962158203125
+            ]
+          }
+        ],
+        "2": []
+      },
+      "audio_natural": "speech (conf=0.89), vehicle (conf=0.51)",
+      "audio_speech": " It was warm. It's deep. Oh, so beautiful. I'm here, baby. You're welcome. Wow. We're in the bus. I got a full row of toys.",
+      "llm_scene_description": "The video segment transitions through three distinct frames, depicting different scenes and contexts. In the first frame, a car is seen driving down a street, establishing an outdoor setting. The second frame shifts to the interior of a bus, where at least two people are present, one of whom is holding a cell phone. The spatial arrangement suggests a casual, seated environment. The third frame focuses on a person reading a book, though no additional objects or context are detected. The accompanying audio provides a conversational tone, with remarks about the warmth, beauty, and being on a bus, along with playful mentions of toys. The segment conveys a progression from an outdoor scene to a more intimate, indoor setting, with a relaxed and reflective atmosphere."
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:01:11.063",
+      "end_timecode": "00:01:21.195",
+      "start_seconds": 71.06271477010715,
+      "end_seconds": 81.19548460599485,
+      "duration_seconds": 10.1327698358877,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0015.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_015\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_015\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_015\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a young girl driving a car",
+        "a video frame of a young girl driving a car",
+        "a video frame of a woman wearing headphones"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9329723119735718,
+            "bbox": [
+              145.18191528320312,
+              8.191558837890625,
+              319.7103576660156,
+              178.4633331298828
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8568651676177979,
+            "bbox": [
+              55.884307861328125,
+              2.27703857421875,
+              319.3061828613281,
+              177.61361694335938
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5289806723594666,
+            "bbox": [
+              0.12964820861816406,
+              86.5232162475586,
+              11.623300552368164,
+              177.44454956054688
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9353752732276917,
+            "bbox": [
+              113.67435455322266,
+              0.326202392578125,
+              319.9245910644531,
+              178.05783081054688
+            ]
+          },
+          {
+            "label": "donut",
+            "confidence": 0.7382096648216248,
+            "bbox": [
+              226.74490356445312,
+              128.87948608398438,
+              316.2919006347656,
+              178.73104858398438
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.98)",
+      "audio_speech": " What editor in the NAH would be certain to picture right here? A bee sitting in the water, maybe? I don't know if you can hear what I said, so I'll send a cat sound there.",
+      "llm_scene_description": "The video segment depicts a young girl driving a car, as suggested by consistent captions across the first two frames. In the third frame, the focus shifts to a woman wearing headphones, with a donut detected nearby. The transition suggests a change in context or perspective, moving from the girl driving to the woman in a separate setting. Spatially, the individuals are central to their respective frames, with the girl's prominence decreasing slightly between frames 0 and 1, possibly indicating movement or a change in camera angle. The audio adds a playful and nonsensical tone, mentioning a bee in water and a cat sound, which does not directly relate to the visual content but contributes to the casual and whimsical atmosphere. The segment highlights a shift in focus from one individual to another, with minimal interaction or narrative continuity between the two."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:01:21.195",
+      "end_timecode": "00:01:23.729",
+      "start_seconds": 81.19548460599485,
+      "end_seconds": 83.72867706496677,
+      "duration_seconds": 2.533192458971925,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0016.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_016\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_016\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_016\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a young boy wearing glasses",
+        "a video frame of a young man wearing glasses",
+        "a video frame of a young boy wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.940399706363678,
+            "bbox": [
+              2.94818115234375,
+              0.51025390625,
+              319.3563537597656,
+              177.11795043945312
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8827938437461853,
+            "bbox": [
+              19.2205810546875,
+              0.5105743408203125,
+              319.4422912597656,
+              178.05210876464844
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9236010313034058,
+            "bbox": [
+              1.3741455078125,
+              0.849822998046875,
+              319.1101989746094,
+              177.96926879882812
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.94)",
+      "audio_speech": " I'll put the caption right here.",
+      "llm_scene_description": "The video segment features a young boy wearing glasses as the central figure across three frames. He remains consistently positioned and prominent, with slight variations in spatial placement and size, suggesting minimal movement. The captions alternate between describing him as a \"young boy\" and a \"young man,\" but the visual context supports the depiction of a young boy. No additional objects or interactions are present in the scene. The audio adds context with the phrase, \"I'll put the caption right here,\" implying a casual or instructional tone. The segment focuses solely on the boy, with no significant changes or actions beyond his presence."
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:01:23.729",
+      "end_timecode": "00:01:35.861",
+      "start_seconds": 83.72867706496677,
+      "end_seconds": 95.86133568425335,
+      "duration_seconds": 12.132658619286573,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0017.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_017\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_017\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_017\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman walking down a street",
+        "a video frame of people walking down a street",
+        "a video frame of a person walking down a street"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8792927861213684,
+            "bbox": [
+              110.29896545410156,
+              99.01497650146484,
+              170.0159454345703,
+              178.98806762695312
+            ]
+          },
+          {
+            "label": "suitcase",
+            "confidence": 0.5778318643569946,
+            "bbox": [
+              102.46287536621094,
+              125.84625244140625,
+              120.77436828613281,
+              152.04547119140625
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5587561130523682,
+            "bbox": [
+              112.56526184082031,
+              100.35640716552734,
+              127.44810485839844,
+              146.95065307617188
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5010155439376831,
+            "bbox": [
+              105.24639892578125,
+              98.46768188476562,
+              114.36666870117188,
+              128.55035400390625
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.848788857460022,
+            "bbox": [
+              0.07384490966796875,
+              88.58926391601562,
+              58.5356330871582,
+              178.92324829101562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7956193089485168,
+            "bbox": [
+              129.49090576171875,
+              108.52867126464844,
+              146.43292236328125,
+              157.3722381591797
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7654392123222351,
+            "bbox": [
+              142.4507598876953,
+              101.31067657470703,
+              161.1204376220703,
+              150.313232421875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7485283017158508,
+            "bbox": [
+              87.47981262207031,
+              104.7776870727539,
+              111.89518737792969,
+              155.75906372070312
+            ]
+          },
+          {
+            "label": "suitcase",
+            "confidence": 0.6489672660827637,
+            "bbox": [
+              77.52772521972656,
+              131.25228881835938,
+              97.11123657226562,
+              159.35598754882812
+            ]
+          },
+          {
+            "label": "suitcase",
+            "confidence": 0.5571610331535339,
+            "bbox": [
+              101.65693664550781,
+              135.85475158691406,
+              117.26361083984375,
+              157.08399963378906
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9099610447883606,
+            "bbox": [
+              54.52626037597656,
+              35.14033508300781,
+              156.26773071289062,
+              177.65264892578125
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.45)",
+      "audio_speech": " We're walking uphill because the bus is going to take us to the hotel. And Ada is carrying two packages. Our luggage got busted.",
+      "llm_scene_description": "The video segment depicts a scene of people walking down a street, with a focus on a woman carrying luggage. In the first frame, a woman is seen walking, accompanied by a suitcase, with other individuals visible in the background. The second frame expands the view to show multiple people walking, some carrying suitcases, suggesting a shared activity or journey. The third frame narrows the focus to a single person walking, emphasizing movement. The accompanying audio provides context, mentioning walking uphill to catch a bus to a hotel and referencing someone named Ada carrying two packages due to damaged luggage. The segment conveys a sense of travel and shared effort, with a progression from a broader group dynamic to an individual focus."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:01:35.861",
+      "end_timecode": "00:01:38.795",
+      "start_seconds": 95.86133568425335,
+      "end_seconds": 98.79450589990506,
+      "duration_seconds": 2.933170215651714,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0018.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_018\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_018\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_018\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of two people walking down the street",
+        "a video frame of a man walking down the street",
+        "a video frame of a person walking down the street"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9307743906974792,
+            "bbox": [
+              0.28884124755859375,
+              0.5496826171875,
+              64.32735443115234,
+              177.60177612304688
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.918601393699646,
+            "bbox": [
+              146.75201416015625,
+              0.16375732421875,
+              257.1831359863281,
+              175.69485473632812
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9051597714424133,
+            "bbox": [
+              53.165164947509766,
+              0.020050048828125,
+              168.73944091796875,
+              177.468505859375
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7646152973175049,
+            "bbox": [
+              158.41070556640625,
+              0.18862533569335938,
+              181.51544189453125,
+              56.2342643737793
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5735698938369751,
+            "bbox": [
+              8.215003967285156,
+              0.2826576232910156,
+              26.868656158447266,
+              17.088550567626953
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8997324705123901,
+            "bbox": [
+              92.65361022949219,
+              0.6632080078125,
+              205.07310485839844,
+              178.15328979492188
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6754176616668701,
+            "bbox": [
+              8.171390533447266,
+              0.0,
+              19.91287612915039,
+              30.497509002685547
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5054806470870972,
+            "bbox": [
+              45.841861724853516,
+              3.0467758178710938,
+              57.140377044677734,
+              37.21754455566406
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.83)",
+      "audio_speech": " And I need to get a new one.",
+      "llm_scene_description": "The video segment depicts a scene of people walking down a street. Initially, two individuals are prominently visible walking together, but as the frames progress, the focus shifts to one person walking, with other smaller figures appearing in the background. The scene emphasizes movement along the street, with the spatial arrangement suggesting the individuals are at varying distances from the camera. The audio adds unrelated context, mentioning the need to \"get a new one,\" which does not directly connect to the visual content. The segment primarily highlights walking as the central action, with a gradual narrowing of focus from multiple individuals to one."
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:01:38.795",
+      "end_timecode": "00:01:41.461",
+      "start_seconds": 98.79450589990506,
+      "end_seconds": 101.46102427777024,
+      "duration_seconds": 2.6665183778651738,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0019.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_019\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_019\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_019\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman walking down a street",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman walking down the street"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9333029389381409,
+            "bbox": [
+              72.05999755859375,
+              0.2401275634765625,
+              319.268310546875,
+              178.4902801513672
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8561317920684814,
+            "bbox": [
+              75.71763610839844,
+              69.340576171875,
+              155.2205047607422,
+              139.7780303955078
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9476819634437561,
+            "bbox": [
+              88.99346160888672,
+              0.435882568359375,
+              320.0,
+              178.1282958984375
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8779403567314148,
+            "bbox": [
+              116.08656311035156,
+              66.60404968261719,
+              156.3522186279297,
+              126.1044921875
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9392828941345215,
+            "bbox": [
+              88.10629272460938,
+              0.5496368408203125,
+              320.0,
+              178.2250518798828
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.7754007577896118,
+            "bbox": [
+              135.07034301757812,
+              63.26422119140625,
+              161.2855224609375,
+              106.19781494140625
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.74)",
+      "audio_speech": " We're going out now. We're gonna go visit.",
+      "llm_scene_description": "The video segment shows a woman walking down a street, consistently featured across three frames. She is described as wearing glasses in one frame, and her position and size remain relatively stable, indicating steady movement. A car is visible in the background, gradually shifting position and decreasing in prominence, suggesting it is either stationary or moving away. The audio adds context with the phrase, \"We're going out now. We're gonna go visit,\" implying the woman is heading somewhere. The scene focuses on her walking, with minimal interaction between her and the car, emphasizing her as the central figure and the action of walking as the primary activity."
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:01:41.461",
+      "end_timecode": "00:01:44.394",
+      "start_seconds": 101.46102427777024,
+      "end_seconds": 104.39419449342194,
+      "duration_seconds": 2.9331702156516997,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0020.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_020\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_020\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_020\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9029672145843506,
+            "bbox": [
+              44.4012451171875,
+              0.48101806640625,
+              317.75616455078125,
+              177.88848876953125
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9030477404594421,
+            "bbox": [
+              76.19690704345703,
+              0.3722686767578125,
+              319.13531494140625,
+              178.89671325683594
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5492395162582397,
+            "bbox": [
+              239.69094848632812,
+              47.068809509277344,
+              260.2245788574219,
+              107.91881561279297
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8973785638809204,
+            "bbox": [
+              94.30007934570312,
+              0.0,
+              311.41571044921875,
+              177.31723022460938
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8676499724388123,
+            "bbox": [
+              0.358489990234375,
+              56.62911605834961,
+              161.25494384765625,
+              177.85675048828125
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8332741856575012,
+            "bbox": [
+              263.80535888671875,
+              20.044769287109375,
+              287.90087890625,
+              93.66586303710938
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5881301164627075,
+            "bbox": [
+              240.9830322265625,
+              27.756240844726562,
+              266.89068603515625,
+              93.28961181640625
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " center and the loader is really nice.",
+      "llm_scene_description": "The video segment features a woman wearing glasses as the central figure across three frames. She appears to be stationary or moving slightly, with her position shifting minimally between frames. In the second and third frames, additional figures are detected in the background, though their presence is minor and lacks clear activity or interaction. A car is visible in the third frame, positioned in the background, but it does not play a significant role in the scene. The audio mentions a loader being \"really nice,\" but this does not directly connect to the visual content. Overall, the scene focuses on the woman, with limited movement or interaction, suggesting a moment of pause or subtle activity."
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:01:44.394",
+      "end_timecode": "00:01:46.527",
+      "start_seconds": 104.39419449342194,
+      "end_seconds": 106.52740919571409,
+      "duration_seconds": 2.1332147022921504,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0021.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_021\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_021\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_021\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman walking down the street",
+        "a video frame of a woman wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "car",
+            "confidence": 0.914581298828125,
+            "bbox": [
+              0.0967254638671875,
+              68.85330200195312,
+              121.67442321777344,
+              175.31732177734375
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9013413190841675,
+            "bbox": [
+              49.044464111328125,
+              1.3194122314453125,
+              310.0943908691406,
+              177.85928344726562
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9171713590621948,
+            "bbox": [
+              65.87335968017578,
+              0.0,
+              319.31396484375,
+              178.59823608398438
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.9061185121536255,
+            "bbox": [
+              42.92995071411133,
+              72.54920959472656,
+              142.3715362548828,
+              150.2552032470703
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.6330916285514832,
+            "bbox": [
+              0.20059967041015625,
+              138.3744659423828,
+              87.33634185791016,
+              177.82545471191406
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9123285412788391,
+            "bbox": [
+              59.763092041015625,
+              0.9696044921875,
+              320.0,
+              177.629150390625
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8862040638923645,
+            "bbox": [
+              0.33892822265625,
+              111.5214614868164,
+              103.06700134277344,
+              178.79159545898438
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.7698695063591003,
+            "bbox": [
+              74.04682922363281,
+              90.80064392089844,
+              148.71347045898438,
+              148.5382843017578
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " Yeah, we're having a lot of fun.",
+      "llm_scene_description": "The video segment depicts a woman wearing glasses as the central figure, consistently featured across three frames. She is walking down the street, with her position shifting slightly between frames, indicating steady movement. Cars are visible in the background, changing positions and sizes across frames, suggesting either movement or varying perspectives. The spatial arrangement highlights the woman as the primary focus, with the cars serving as secondary, non-interactive elements. The audio provides unrelated context, mentioning \"having a lot of fun,\" which does not directly connect to the visual content. Overall, the scene emphasizes the woman's walking action along the street, with minimal interaction or dynamic activity beyond her movement."
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:01:46.527",
+      "end_timecode": "00:01:54.794",
+      "start_seconds": 106.52740919571409,
+      "end_seconds": 114.79361616709616,
+      "duration_seconds": 8.266206971382076,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0022.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_022\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_022\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_022\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses and making a funny face",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8962448239326477,
+            "bbox": [
+              42.6021728515625,
+              0.101104736328125,
+              319.7350769042969,
+              178.18008422851562
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.5933607816696167,
+            "bbox": [
+              0.36383819580078125,
+              114.9434814453125,
+              81.03907012939453,
+              178.419921875
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9010583162307739,
+            "bbox": [
+              66.08971405029297,
+              0.5372772216796875,
+              319.44317626953125,
+              178.7234649658203
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8254283666610718,
+            "bbox": [
+              13.953582763671875,
+              79.23928833007812,
+              149.25289916992188,
+              177.46444702148438
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8964743614196777,
+            "bbox": [
+              83.28753662109375,
+              1.5533905029296875,
+              319.9794616699219,
+              177.90106201171875
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8028361797332764,
+            "bbox": [
+              0.3453826904296875,
+              86.93014526367188,
+              142.6487579345703,
+              178.00250244140625
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.7578782439231873,
+            "bbox": [
+              97.82215881347656,
+              54.43339538574219,
+              153.46180725097656,
+              109.03211975097656
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " I don't really want to take too many videos outside because I don't want to get my clothes. Yeah, I'll also send pictures of like the scenery.",
+      "llm_scene_description": "The video segment features a woman wearing glasses as the central figure across three frames. In the first frame, she is making a funny face, but in subsequent frames, her expression appears neutral. Her position shifts slightly between frames, suggesting subtle movement or a stationary stance. Cars are present in the background across all frames, with their positions and sizes changing, indicating movement or varying perspectives. The woman remains the primary focus, with no direct interaction between her and the cars. The audio provides unrelated commentary about avoiding outdoor videos and sending pictures of scenery, which does not directly connect to the visual content. Overall, the scene emphasizes the woman's presence and subtle activity, with the cars serving as secondary, non-interactive elements in the background."
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:01:54.794",
+      "end_timecode": "00:01:57.593",
+      "start_seconds": 114.79361616709616,
+      "end_seconds": 117.5934604638546,
+      "duration_seconds": 2.7998442967584367,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0023.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_023\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_023\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_023\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8998261094093323,
+            "bbox": [
+              32.48321533203125,
+              0.0,
+              318.6552734375,
+              178.12918090820312
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8428343534469604,
+            "bbox": [
+              0.2296295166015625,
+              72.49612426757812,
+              73.78572082519531,
+              178.0921630859375
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "car",
+            "confidence": 0.8829419612884521,
+            "bbox": [
+              0.31781005859375,
+              73.2803955078125,
+              115.97604370117188,
+              177.6976318359375
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8775230646133423,
+            "bbox": [
+              87.22624206542969,
+              94.57499694824219,
+              139.41322326660156,
+              138.44801330566406
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8557168841362,
+            "bbox": [
+              115.28829956054688,
+              0.0619354248046875,
+              319.0380554199219,
+              177.4492950439453
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.5981104373931885,
+            "bbox": [
+              119.9281005859375,
+              87.39949798583984,
+              147.93905639648438,
+              106.8713150024414
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8132334351539612,
+            "bbox": [
+              100.88177490234375,
+              1.0032958984375,
+              318.9202880859375,
+              178.03973388671875
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.7103299498558044,
+            "bbox": [
+              0.4594268798828125,
+              68.65657806396484,
+              132.58363342285156,
+              178.02517700195312
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.47)",
+      "audio_speech": " and my editor.",
+      "llm_scene_description": "The video segment centers on a woman wearing glasses, consistently featured across three frames. She remains the primary focus, with her position shifting slightly, suggesting minimal movement or a stationary stance. Cars are visible in the background throughout the frames, with their positions and sizes changing, indicating movement or a shifting camera perspective. There is no interaction between the woman and the cars, and the scene overall conveys a quiet, observational moment. The audio mentions unrelated context about editing, which does not connect to the visual content."
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:01:57.593",
+      "end_timecode": "00:02:02.260",
+      "start_seconds": 117.5934604638546,
+      "end_seconds": 122.25986762511867,
+      "duration_seconds": 4.666407161264075,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0024.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_024\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_024\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_024\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8350963592529297,
+            "bbox": [
+              80.71685028076172,
+              0.0,
+              319.90020751953125,
+              176.98760986328125
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.7288873195648193,
+            "bbox": [
+              38.1309814453125,
+              66.78271484375,
+              177.52383422851562,
+              169.89065551757812
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9097024202346802,
+            "bbox": [
+              65.6136474609375,
+              0.5372314453125,
+              319.82562255859375,
+              177.80813598632812
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8284424543380737,
+            "bbox": [
+              39.9551887512207,
+              58.43724060058594,
+              147.0134735107422,
+              140.82095336914062
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.6563364863395691,
+            "bbox": [
+              0.26139068603515625,
+              123.43582153320312,
+              97.10887145996094,
+              178.48037719726562
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "car",
+            "confidence": 0.8583551645278931,
+            "bbox": [
+              0.373291015625,
+              95.8751220703125,
+              132.5908203125,
+              177.91287231445312
+            ]
+          },
+          {
+            "label": "car",
+            "confidence": 0.8110934495925903,
+            "bbox": [
+              94.20986938476562,
+              76.83938598632812,
+              157.7262725830078,
+              132.7766571044922
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7680432200431824,
+            "bbox": [
+              89.00222778320312,
+              0.0,
+              318.7556457519531,
+              178.60894775390625
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.59)",
+      "audio_speech": " We'll do some crazy stuff right here. Okay?",
+      "llm_scene_description": "The video segment depicts a woman wearing glasses as the central figure across three frames. She is stationary or moving subtly, with her position shifting slightly between frames, suggesting steady walking or minimal movement. Cars are visible in the background, changing positions and sizes across frames, indicating movement or a shifting camera perspective. The spatial arrangement consistently highlights the woman as the primary focus, with the cars serving as secondary, non-interactive elements. The audio includes unrelated commentary about \"doing some crazy stuff,\" which does not directly connect to the visual content. Overall, the scene emphasizes the woman's presence and subtle activity, with background cars providing context but no direct interaction."
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:02:02.260",
+      "end_timecode": "00:02:10.393",
+      "start_seconds": 122.25986762511867,
+      "end_seconds": 130.39274867760747,
+      "duration_seconds": 8.132881052488798,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0025.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_025\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_025\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_025\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a group of people on a street",
+        "a video frame of a group of women dancing in the street",
+        "a video frame of a woman walking down the street with her back to the camera"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.900773286819458,
+            "bbox": [
+              156.59410095214844,
+              65.01100158691406,
+              210.9065399169922,
+              178.44375610351562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8211491703987122,
+            "bbox": [
+              109.49085235595703,
+              64.24711608886719,
+              164.6102294921875,
+              178.03622436523438
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7787801027297974,
+            "bbox": [
+              135.46316528320312,
+              78.022705078125,
+              162.64801025390625,
+              146.24778747558594
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.636292040348053,
+            "bbox": [
+              155.30459594726562,
+              64.30560302734375,
+              177.44537353515625,
+              117.88304138183594
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5956701040267944,
+            "bbox": [
+              163.2882843017578,
+              82.16586303710938,
+              181.42579650878906,
+              117.13580322265625
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9025564789772034,
+            "bbox": [
+              162.16653442382812,
+              62.669830322265625,
+              211.10232543945312,
+              178.63412475585938
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8838334083557129,
+            "bbox": [
+              109.19625854492188,
+              55.92201232910156,
+              164.14743041992188,
+              178.49026489257812
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7797896862030029,
+            "bbox": [
+              132.19464111328125,
+              78.40249633789062,
+              163.837646484375,
+              143.25698852539062
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6118245720863342,
+            "bbox": [
+              128.28887939453125,
+              74.89718627929688,
+              141.740234375,
+              109.85458374023438
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.903367280960083,
+            "bbox": [
+              109.15782165527344,
+              32.752349853515625,
+              205.28269958496094,
+              177.81155395507812
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6797996759414673,
+            "bbox": [
+              167.5809326171875,
+              64.30998229980469,
+              208.80685424804688,
+              167.32412719726562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5069371461868286,
+            "bbox": [
+              196.77764892578125,
+              48.576602935791016,
+              210.61163330078125,
+              107.70745849609375
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.96), music (conf=0.31)",
+      "audio_speech": "",
+      "llm_scene_description": "The video segment captures a dynamic street scene involving a group of people, primarily women, engaging in activity. Initially, the group is seen standing or gathered on the street. In subsequent frames, the scene transitions to show the group dancing or moving energetically in the street, suggesting a lively or celebratory atmosphere. By the final frame, the focus shifts to a single woman walking away from the camera, her back turned, creating a sense of departure or conclusion. The spatial arrangement highlights the group’s collective activity before narrowing to the individual. Background audio includes speech with faint music, adding to the lively tone. The scene transitions from group interaction to individual focus, emphasizing movement and activity in a public setting."
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:02:10.393",
+      "end_timecode": "00:02:12.526",
+      "start_seconds": 130.39274867760747,
+      "end_seconds": 132.52596337989962,
+      "duration_seconds": 2.1332147022921504,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0026.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_026\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_026\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_026\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a variety of desserts on display",
+        "a video frame of desserts on display in a store",
+        "a video frame of desserts on display in a store"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "cup",
+            "confidence": 0.7992440462112427,
+            "bbox": [
+              132.78419494628906,
+              64.65733337402344,
+              185.62046813964844,
+              136.20387268066406
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.771837592124939,
+            "bbox": [
+              0.24439239501953125,
+              63.22480773925781,
+              38.822540283203125,
+              126.24650573730469
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.7528871297836304,
+            "bbox": [
+              80.42080688476562,
+              62.30596923828125,
+              126.08795166015625,
+              132.47048950195312
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.7484572529792786,
+            "bbox": [
+              36.26617431640625,
+              66.66220092773438,
+              82.57603454589844,
+              128.29721069335938
+            ]
+          },
+          {
+            "label": "vase",
+            "confidence": 0.6014304161071777,
+            "bbox": [
+              194.98626708984375,
+              59.52734375,
+              246.52310180664062,
+              137.99256896972656
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.5193856954574585,
+            "bbox": [
+              251.97171020507812,
+              57.53668212890625,
+              312.0218200683594,
+              140.33876037597656
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "cup",
+            "confidence": 0.8459032773971558,
+            "bbox": [
+              275.1426086425781,
+              54.7575569152832,
+              319.7245788574219,
+              135.0355682373047
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.8302951455116272,
+            "bbox": [
+              154.39837646484375,
+              62.251922607421875,
+              207.10345458984375,
+              131.31378173828125
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.6597785949707031,
+            "bbox": [
+              58.80913162231445,
+              61.79534912109375,
+              106.13029479980469,
+              123.339599609375
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.6371074914932251,
+            "bbox": [
+              217.90444946289062,
+              56.847442626953125,
+              269.4045715332031,
+              133.4063720703125
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.6326538324356079,
+            "bbox": [
+              0.04975128173828125,
+              60.13151550292969,
+              27.285470962524414,
+              118.17878723144531
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "cup",
+            "confidence": 0.892036497592926,
+            "bbox": [
+              247.88084411621094,
+              63.3614501953125,
+              298.6146240234375,
+              135.14175415039062
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.6728810667991638,
+            "bbox": [
+              0.040424346923828125,
+              64.00404357910156,
+              28.25659942626953,
+              116.10377502441406
+            ]
+          },
+          {
+            "label": "vase",
+            "confidence": 0.644529402256012,
+            "bbox": [
+              198.7259979248047,
+              64.75642395019531,
+              242.44041442871094,
+              130.4779510498047
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.59767085313797,
+            "bbox": [
+              57.19101333618164,
+              67.46177673339844,
+              97.75582885742188,
+              121.73768615722656
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.546751856803894,
+            "bbox": [
+              25.61552619934082,
+              63.831634521484375,
+              58.09715270996094,
+              119.44468688964844
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.5350789427757263,
+            "bbox": [
+              144.023681640625,
+              72.90377807617188,
+              188.608154296875,
+              129.66622924804688
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.5268272161483765,
+            "bbox": [
+              199.02090454101562,
+              64.69114685058594,
+              242.22482299804688,
+              131.14369201660156
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.60)",
+      "audio_speech": " Ready? It's my vlog! It's my vlog too!",
+      "llm_scene_description": "The video segment depicts a display of desserts, likely in a store setting, as seen across three frames. Various cups and a vase are arranged on display, with their positions and sizes slightly shifting between frames, suggesting either a change in camera angle or subtle adjustments in the scene. The captions consistently describe the focus on desserts, reinforcing the setting as a store or display area. The audio adds a casual, conversational tone with phrases like \"Ready? It's my vlog! It's my vlog too!\" suggesting the video might be part of a personal or informal recording. The scene emphasizes the arrangement of desserts and objects, with no significant actions or interactions occurring."
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:02:12.526",
+      "end_timecode": "00:02:22.792",
+      "start_seconds": 132.52596337989962,
+      "end_seconds": 142.79205913468058,
+      "duration_seconds": 10.266095754780963,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0027.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_027\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_027\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_027\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman holding two cups of ice cream sundaes",
+        "a video frame of a person holding a bowl of food",
+        "a video frame of a woman holding a bowl of food"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "cup",
+            "confidence": 0.9217087626457214,
+            "bbox": [
+              119.03054809570312,
+              63.49920654296875,
+              210.33029174804688,
+              177.09646606445312
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.8849896192550659,
+            "bbox": [
+              222.41738891601562,
+              86.80474853515625,
+              293.7977600097656,
+              172.72463989257812
+            ]
+          },
+          {
+            "label": "wine glass",
+            "confidence": 0.618068516254425,
+            "bbox": [
+              0.07372283935546875,
+              139.82183837890625,
+              44.21509552001953,
+              179.88165283203125
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "cup",
+            "confidence": 0.7770717740058899,
+            "bbox": [
+              52.29524230957031,
+              43.56524658203125,
+              109.52935791015625,
+              109.96369934082031
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8874458074569702,
+            "bbox": [
+              0.87066650390625,
+              0.5025177001953125,
+              234.54824829101562,
+              177.90585327148438
+            ]
+          },
+          {
+            "label": "bowl",
+            "confidence": 0.6681329011917114,
+            "bbox": [
+              0.15671539306640625,
+              106.74638366699219,
+              76.35008239746094,
+              178.90272521972656
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.56), silence (conf=0.54)",
+      "audio_speech": " So we got the Dubai chocolate. I'm totally allowed to eat this. No one's helped my dad's. Oh that's good. I never see guys.",
+      "llm_scene_description": "The video segment depicts a woman interacting with food items across three frames. In the first frame, she is holding two cups of ice cream sundaes, with one cup larger and more prominent than the other. A wine glass is visible in the background but does not play a significant role. In the second frame, the focus shifts to a person holding a bowl of food, with the cups no longer visible. By the third frame, the woman is seen holding the bowl of food, confirming her as the central figure throughout the segment. Her position and actions suggest minimal movement, likely standing or subtly shifting. The audio features casual commentary about chocolate and eating, adding a personal and informal tone to the scene. The spatial arrangement consistently highlights the woman and the food items, with transitions between frames emphasizing her interaction with different objects."
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:02:22.792",
+      "end_timecode": "00:02:29.858",
+      "start_seconds": 142.79205913468058,
+      "end_seconds": 149.85833283602332,
+      "duration_seconds": 7.0662737013427375,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0028.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_028\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_028\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_028\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a group of people eating food",
+        "a video frame of a group of people eating food",
+        "a video frame of a man and woman eating ice cream"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9339109659194946,
+            "bbox": [
+              0.143890380859375,
+              28.520156860351562,
+              159.19378662109375,
+              177.79762268066406
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8490731716156006,
+            "bbox": [
+              141.39801025390625,
+              44.42027282714844,
+              224.9521484375,
+              178.38009643554688
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8087661266326904,
+            "bbox": [
+              0.07846832275390625,
+              70.13526916503906,
+              39.20965576171875,
+              119.92649841308594
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.80027174949646,
+            "bbox": [
+              211.92774963378906,
+              51.04591751098633,
+              319.7584228515625,
+              177.83775329589844
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8596875071525574,
+            "bbox": [
+              188.9832763671875,
+              51.749359130859375,
+              319.6197204589844,
+              178.20712280273438
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8595974445343018,
+            "bbox": [
+              0.058841705322265625,
+              47.209075927734375,
+              50.866172790527344,
+              101.44638061523438
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.82750403881073,
+            "bbox": [
+              0.571014404296875,
+              16.111114501953125,
+              172.7784423828125,
+              177.46502685546875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7911834716796875,
+            "bbox": [
+              124.46006774902344,
+              44.310638427734375,
+              220.3909454345703,
+              177.704833984375
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.7878815531730652,
+            "bbox": [
+              129.52020263671875,
+              120.03704833984375,
+              163.2479248046875,
+              179.17068481445312
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.6920894384384155,
+            "bbox": [
+              218.6199493408203,
+              135.45172119140625,
+              252.16136169433594,
+              164.52044677734375
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9211544394493103,
+            "bbox": [
+              0.332183837890625,
+              14.866424560546875,
+              171.80316162109375,
+              178.32174682617188
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8554959893226624,
+            "bbox": [
+              181.53143310546875,
+              55.697017669677734,
+              319.709228515625,
+              177.83663940429688
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.765645444393158,
+            "bbox": [
+              114.75372314453125,
+              48.16259765625,
+              209.51095581054688,
+              173.91769409179688
+            ]
+          },
+          {
+            "label": "cup",
+            "confidence": 0.6487029790878296,
+            "bbox": [
+              306.19439697265625,
+              81.1978759765625,
+              319.91802978515625,
+              118.00691223144531
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.89)",
+      "audio_speech": " Is it good guys? Yeah. How's it? It's good.",
+      "llm_scene_description": "The video segment captures a casual dining scene involving a small group of people eating together. Across the frames, individuals are seated or positioned closely, engaging with food and beverages. The captions suggest a relaxed atmosphere, with a specific mention of a man and woman eating ice cream in the final frame. Cups are visible in some frames, reinforcing the dining context. The audio features casual dialogue, with participants commenting on the food, such as \"Is it good guys? Yeah. How's it? It's good,\" adding a conversational and informal tone. The spatial arrangement remains consistent, with the group seated in proximity, and the temporal progression highlights their interaction with food items. The scene emphasizes shared activity and camaraderie in a dining setting."
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:02:29.858",
+      "end_timecode": "00:02:46.257",
+      "start_seconds": 149.85833283602332,
+      "end_seconds": 166.2574208598942,
+      "duration_seconds": 16.39908802387089,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0029.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_029\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_029\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_029\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man and woman eating food",
+        "a video frame of two women eating food",
+        "a video frame of food being served at a restaurant"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8848553895950317,
+            "bbox": [
+              0.1107940673828125,
+              19.796371459960938,
+              165.88229370117188,
+              178.44937133789062
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8368315100669861,
+            "bbox": [
+              242.40750122070312,
+              58.14540100097656,
+              319.8052673339844,
+              177.8755340576172
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.707571268081665,
+            "bbox": [
+              0.11176300048828125,
+              84.77035522460938,
+              49.60981750488281,
+              138.06365966796875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6015893816947937,
+            "bbox": [
+              153.385986328125,
+              42.87101745605469,
+              279.50946044921875,
+              178.40057373046875
+            ]
+          },
+          {
+            "label": "hot dog",
+            "confidence": 0.5468418002128601,
+            "bbox": [
+              201.1534423828125,
+              146.7965087890625,
+              231.54525756835938,
+              171.64141845703125
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8599228262901306,
+            "bbox": [
+              214.6768341064453,
+              37.70890808105469,
+              319.26593017578125,
+              177.6844940185547
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7987463474273682,
+            "bbox": [
+              45.946197509765625,
+              0.739593505859375,
+              296.475341796875,
+              177.99917602539062
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7634487152099609,
+            "bbox": [
+              0.14253997802734375,
+              69.52088928222656,
+              21.877056121826172,
+              178.44053649902344
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "bowl",
+            "confidence": 0.7904888987541199,
+            "bbox": [
+              0.08667755126953125,
+              0.5567131042480469,
+              71.21076202392578,
+              43.8333854675293
+            ]
+          },
+          {
+            "label": "dining table",
+            "confidence": 0.7228939533233643,
+            "bbox": [
+              1.390869140625,
+              4.5946807861328125,
+              319.3414306640625,
+              177.8341827392578
+            ]
+          },
+          {
+            "label": "sandwich",
+            "confidence": 0.5749486088752747,
+            "bbox": [
+              167.025634765625,
+              99.37237548828125,
+              260.61419677734375,
+              177.611328125
+            ]
+          }
+        ]
+      },
+      "audio_natural": "silence (conf=0.57)",
+      "audio_speech": " comment again it's so very 8.5 8.5 i'm getting pylons all sea boons so much stuff where's that big tent? i bought that one",
+      "llm_scene_description": "The video segment depicts a casual dining scene involving multiple individuals interacting with food. In the first two frames, people are seen eating, with captions describing a man and woman in the first frame and two women in the second frame. The spatial arrangement suggests a group seated or positioned closely, sharing a meal. In the third frame, the focus shifts to food being served at a restaurant, with objects like a bowl, dining table, and sandwich visible, emphasizing the dining context. The audio features casual and fragmented commentary, reinforcing the informal and conversational tone of the scene. The temporal progression transitions from individuals eating to a broader focus on the dining environment, highlighting both personal interaction and the setting."
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:02:46.257",
+      "end_timecode": "00:02:55.457",
+      "start_seconds": 166.2574208598942,
+      "end_seconds": 175.4569092635291,
+      "duration_seconds": 9.199488403634888,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0030.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_030\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_030\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_030\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of two people on a street at night",
+        "a video frame of a woman and a man with glasses on",
+        "a video frame of a group of people on a street at night time"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9138447046279907,
+            "bbox": [
+              188.2291259765625,
+              0.387298583984375,
+              319.55902099609375,
+              177.725341796875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9113783836364746,
+            "bbox": [
+              0.5577239990234375,
+              0.0,
+              215.48272705078125,
+              177.88424682617188
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5875170230865479,
+            "bbox": [
+              154.7625732421875,
+              58.121246337890625,
+              208.0474853515625,
+              150.11386108398438
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.892659604549408,
+            "bbox": [
+              0.2615203857421875,
+              6.163299560546875,
+              119.45235443115234,
+              176.17031860351562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7766813039779663,
+            "bbox": [
+              93.83682250976562,
+              78.43661499023438,
+              228.71200561523438,
+              179.02362060546875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7700176239013672,
+            "bbox": [
+              228.30123901367188,
+              23.661697387695312,
+              319.4003601074219,
+              176.970947265625
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9269886612892151,
+            "bbox": [
+              193.4578399658203,
+              25.29058837890625,
+              319.79522705078125,
+              178.42230224609375
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8642359972000122,
+            "bbox": [
+              0.0,
+              0.1024932861328125,
+              195.89312744140625,
+              178.73556518554688
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7849363684654236,
+            "bbox": [
+              149.30999755859375,
+              69.57473754882812,
+              222.81756591796875,
+              178.79525756835938
+            ]
+          }
+        ]
+      },
+      "audio_natural": "silence (conf=0.39)",
+      "audio_speech": " Hello everyone. Hello everyone. So we got out of the marketplace, ate so much food. First day? Yeah. First day I spent like 20 euros.",
+      "llm_scene_description": "The video segment captures a nighttime street scene involving a small group of people. Across three frames, individuals are seen standing or moving casually, with captions describing them as \"two people,\" \"a woman and a man with glasses,\" and \"a group of people.\" The spatial arrangement suggests the group is loosely distributed along the street, with slight shifts in positioning between frames. The audio overlay provides conversational context, indicating the group has recently left a marketplace where they ate extensively, with one speaker casually mentioning spending 20 euros on the first day. The scene combines a relaxed social atmosphere with a sense of movement and transition, emphasizing the group's shared experience in an urban nighttime setting."
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:02:55.457",
+      "end_timecode": "00:03:01.323",
+      "start_seconds": 175.4569092635291,
+      "end_seconds": 181.3232496948325,
+      "duration_seconds": 5.866340431303399,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0031.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_031\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_031\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_031\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man and woman on a street at night",
+        "a video frame of a man and woman smoking a cigarette",
+        "a video frame of a man and woman on a street at night"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.7755187749862671,
+            "bbox": [
+              178.0291748046875,
+              81.51687622070312,
+              260.1884765625,
+              179.01507568359375
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7518565654754639,
+            "bbox": [
+              0.138641357421875,
+              17.118392944335938,
+              169.11541748046875,
+              178.5239715576172
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6691730618476868,
+            "bbox": [
+              242.07264709472656,
+              15.334121704101562,
+              319.7005615234375,
+              177.51361083984375
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.576359212398529,
+            "bbox": [
+              80.23643493652344,
+              99.9094009399414,
+              170.28199768066406,
+              178.70327758789062
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8303875923156738,
+            "bbox": [
+              0.6248779296875,
+              3.586517333984375,
+              185.388427734375,
+              178.47308349609375
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.678989052772522,
+            "bbox": [
+              235.9401092529297,
+              2.399932861328125,
+              319.61187744140625,
+              177.12258911132812
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5864002704620361,
+            "bbox": [
+              177.77597045898438,
+              84.15583801269531,
+              268.8319396972656,
+              178.8605194091797
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8474153876304626,
+            "bbox": [
+              0.733673095703125,
+              2.4853668212890625,
+              183.53125,
+              177.95936584472656
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5988226532936096,
+            "bbox": [
+              177.10159301757812,
+              76.64157104492188,
+              283.0771484375,
+              178.34197998046875
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " I bought chocolate strawberries, a paila, the churros, and I got the empanada. Yay! Yeah, I'm good.",
+      "llm_scene_description": "The video segment captures a nighttime street scene featuring a small group of people, including a man and a woman, casually interacting. Across the frames, individuals are seen standing or moving slightly, with one frame suggesting the man and woman are smoking a cigarette. The spatial arrangement indicates the group is loosely distributed along the street, with minor shifts in positioning. The audio overlay provides a casual and lighthearted tone, with one person enthusiastically listing various food items they purchased, suggesting the group may have recently visited a marketplace or food vendors. The scene emphasizes a relaxed social interaction in an urban nighttime setting, with a focus on shared experiences and casual conversation."
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:03:01.323",
+      "end_timecode": "00:03:05.590",
+      "start_seconds": 181.3232496948325,
+      "end_seconds": 185.5896790994168,
+      "duration_seconds": 4.266429404584301,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0032.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_032\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_032\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_032\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man and a woman laughing in the street at night",
+        "a video frame of a woman singing into a microphone",
+        "a video frame of a man with glasses talking to a woman on the street"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9055107235908508,
+            "bbox": [
+              0.0877838134765625,
+              0.440399169921875,
+              188.5658721923828,
+              178.47344970703125
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5784211158752441,
+            "bbox": [
+              248.88006591796875,
+              1.510040283203125,
+              319.7939453125,
+              177.75570678710938
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8586738109588623,
+            "bbox": [
+              0.5467529296875,
+              13.627182006835938,
+              174.5447540283203,
+              177.05369567871094
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7277705669403076,
+            "bbox": [
+              238.90634155273438,
+              85.97451782226562,
+              319.8332824707031,
+              178.60671997070312
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9216791987419128,
+            "bbox": [
+              0.24627685546875,
+              3.1885223388671875,
+              156.71412658691406,
+              178.4044189453125
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7876044511795044,
+            "bbox": [
+              281.755615234375,
+              72.4931411743164,
+              319.8502197265625,
+              178.13247680664062
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " I ate so much. Wait, we're gonna be fine. We're gonna be fine.",
+      "llm_scene_description": "The video segment depicts a nighttime street scene featuring a man and a woman engaging in lighthearted interaction. In the first frame, they are seen laughing together, creating a casual and cheerful atmosphere. The second frame shifts focus to the woman, who appears to be singing into a microphone, suggesting a playful or performative moment. In the third frame, the man, now described as wearing glasses, is talking to the woman, indicating an ongoing conversation or interaction. The spatial arrangement suggests the two individuals remain close throughout the segment, with slight positional shifts. The audio overlay adds a casual and humorous tone, with dialogue referencing eating too much and reassuring each other. The scene emphasizes a relaxed and sociable interaction in an urban nighttime setting, blending humor, conversation, and lighthearted moments."
+    },
+    {
+      "scene_index": 33,
+      "start_timecode": "00:03:05.590",
+      "end_timecode": "00:03:08.923",
+      "start_seconds": 185.5896790994168,
+      "end_seconds": 188.92282707174826,
+      "duration_seconds": 3.33314797233146,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0033.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_033\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_033\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_033\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man and a woman talking to each other people",
+        "a video frame of a man and woman on a street at night",
+        "a video frame of two people on a street at night time"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8240658640861511,
+            "bbox": [
+              163.08456420898438,
+              154.6878662109375,
+              189.39358520507812,
+              179.95965576171875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7785554528236389,
+            "bbox": [
+              224.232177734375,
+              5.6621246337890625,
+              319.8236083984375,
+              178.644775390625
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6754891276359558,
+            "bbox": [
+              0.2109222412109375,
+              1.111358642578125,
+              129.03472900390625,
+              161.87124633789062
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5841959714889526,
+            "bbox": [
+              65.77253723144531,
+              105.3082046508789,
+              167.21389770507812,
+              178.83218383789062
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8627883195877075,
+            "bbox": [
+              0.633636474609375,
+              0.0,
+              180.79965209960938,
+              177.96311950683594
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8585659265518188,
+            "bbox": [
+              190.29510498046875,
+              56.19943618774414,
+              319.828857421875,
+              178.68487548828125
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5005729794502258,
+            "bbox": [
+              137.28785705566406,
+              101.58746337890625,
+              208.0276336669922,
+              178.37371826171875
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8735767602920532,
+            "bbox": [
+              129.08154296875,
+              38.02119445800781,
+              287.90655517578125,
+              179.02001953125
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5994789004325867,
+            "bbox": [
+              1.1345672607421875,
+              2.400665283203125,
+              150.54327392578125,
+              177.42095947265625
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.59)",
+      "audio_speech": " Two weeks to... This one.",
+      "llm_scene_description": "The video segment depicts a nighttime street scene featuring a man and a woman engaging in casual interaction. Across the frames, the two are seen standing and talking to each other, with slight shifts in positioning. The surrounding environment suggests a quiet urban street at night, with minimal activity beyond the pair. The audio overlay includes a brief, incomplete statement, \"Two weeks to... This one,\" adding a conversational but ambiguous context. The scene emphasizes a relaxed and personal interaction between the two individuals in a calm nighttime setting."
+    },
+    {
+      "scene_index": 34,
+      "start_timecode": "00:03:08.923",
+      "end_timecode": "00:03:24.789",
+      "start_seconds": 188.92282707174826,
+      "end_seconds": 204.7886114200461,
+      "duration_seconds": 15.865784348297836,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0034.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_034\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_034\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_034\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man in a suit and tie",
+        "a video frame of a man talking on a cell phone",
+        "a video frame of a man wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8407919406890869,
+            "bbox": [
+              25.9588623046875,
+              74.56846618652344,
+              129.93594360351562,
+              179.04249572753906
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7343516945838928,
+            "bbox": [
+              0.49889373779296875,
+              0.5578155517578125,
+              70.9283676147461,
+              176.86227416992188
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8088105916976929,
+            "bbox": [
+              1.2102737426757812,
+              0.8587188720703125,
+              93.99198913574219,
+              176.0968780517578
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6209322214126587,
+            "bbox": [
+              65.3671875,
+              52.745479583740234,
+              168.0360107421875,
+              178.3604736328125
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.8821293115615845,
+            "bbox": [
+              2.4788055419921875,
+              2.406097412109375,
+              171.41371154785156,
+              178.07461547851562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5945312976837158,
+            "bbox": [
+              173.2733612060547,
+              114.52445220947266,
+              241.56553649902344,
+              179.27481079101562
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.58), silence (conf=0.70)",
+      "audio_speech": " I got a box just gonna be fat Can I cancel? No that's not Cancel me? No cancel Cancel me now I can cancel I'm with Sam All the fourth years Don't leave",
+      "llm_scene_description": "The video segment captures a casual indoor interaction involving two men, one of whom is wearing a suit and tie. Across the frames, the men are positioned near each other, with slight shifts in spatial arrangement. One man is seen talking on a cell phone, while the other is described as wearing glasses. The audio overlay features fragmented speech, including mentions of canceling plans, being with \"Sam,\" and references to \"fourth years,\" suggesting a conversational or possibly logistical discussion. The scene emphasizes a low-key interaction between the two individuals, with a focus on dialogue and subtle movement in a quiet indoor setting."
+    },
+    {
+      "scene_index": 35,
+      "start_timecode": "00:03:24.789",
+      "end_timecode": "00:03:29.455",
+      "start_seconds": 204.7886114200461,
+      "end_seconds": 209.45501858131018,
+      "duration_seconds": 4.66640716126409,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0035.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_035\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_035\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_035\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a group of people on a street at night",
+        "a video frame of a group of people in a city",
+        "a video frame of a group of people taking a selfie"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.924239456653595,
+            "bbox": [
+              182.37066650390625,
+              60.48394775390625,
+              304.38848876953125,
+              178.92874145507812
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9127489328384399,
+            "bbox": [
+              84.30136108398438,
+              63.81535339355469,
+              190.21530151367188,
+              178.76629638671875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7805882692337036,
+            "bbox": [
+              27.50701141357422,
+              86.63458251953125,
+              91.78144836425781,
+              179.33352661132812
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7737430334091187,
+            "bbox": [
+              0.36346435546875,
+              0.5446014404296875,
+              58.10456848144531,
+              178.72531127929688
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9187225699424744,
+            "bbox": [
+              0.4492340087890625,
+              0.3836517333984375,
+              75.4510498046875,
+              177.1811981201172
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.91596919298172,
+            "bbox": [
+              40.56157302856445,
+              64.04312133789062,
+              107.11174011230469,
+              178.8821258544922
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8762357831001282,
+            "bbox": [
+              183.73501586914062,
+              50.152130126953125,
+              320.0,
+              178.27432250976562
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8517311215400696,
+            "bbox": [
+              97.04100799560547,
+              53.16530990600586,
+              202.044189453125,
+              178.53421020507812
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9161699414253235,
+            "bbox": [
+              0.2648773193359375,
+              0.6822052001953125,
+              83.96743774414062,
+              177.46522521972656
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8829353451728821,
+            "bbox": [
+              102.89241790771484,
+              52.729644775390625,
+              214.74075317382812,
+              178.772705078125
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8735684752464294,
+            "bbox": [
+              40.09214782714844,
+              62.02044677734375,
+              107.88150024414062,
+              178.9352569580078
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7415565252304077,
+            "bbox": [
+              242.73138427734375,
+              38.602325439453125,
+              319.7423095703125,
+              176.91921997070312
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.66302490234375,
+            "bbox": [
+              151.39480590820312,
+              50.09144592285156,
+              308.61395263671875,
+              177.964599609375
+            ]
+          },
+          {
+            "label": "tie",
+            "confidence": 0.5806776881217957,
+            "bbox": [
+              7.171810150146484,
+              93.00701141357422,
+              60.12685012817383,
+              178.09393310546875
+            ]
+          }
+        ]
+      },
+      "audio_natural": "silence (conf=0.48)",
+      "audio_speech": " Go to work out together!",
+      "llm_scene_description": "The video segment depicts a nighttime urban street scene featuring a group of people interacting. Across the frames, the group remains in close proximity, with slight positional shifts. The captions suggest a progression of actions: initially, the group is simply present on the street, then identified as being in a city, and finally described as taking a selfie, indicating a moment of collective engagement or celebration. The presence of a tie in the final frame may suggest a mix of casual and formal attire among the individuals. The audio overlay, \"Go to work out together!\" adds a playful and energetic tone, possibly hinting at camaraderie or shared plans. The scene emphasizes a dynamic and sociable interaction among the group in a lively nighttime urban setting."
+    },
+    {
+      "scene_index": 36,
+      "start_timecode": "00:03:29.455",
+      "end_timecode": "00:03:37.055",
+      "start_seconds": 209.45501858131018,
+      "end_seconds": 217.05459595822595,
+      "duration_seconds": 7.599577376915761,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0036.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_036\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_036\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_036\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a man with glasses on",
+        "a video frame of a woman wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9181539416313171,
+            "bbox": [
+              68.77581024169922,
+              0.0,
+              319.1890869140625,
+              177.7669219970703
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.7250286936759949,
+            "bbox": [
+              97.25049591064453,
+              125.71095275878906,
+              107.94953155517578,
+              154.68565368652344
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.790916383266449,
+            "bbox": [
+              0.008331298828125,
+              123.17092895507812,
+              39.711952209472656,
+              179.21603393554688
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9231253266334534,
+            "bbox": [
+              58.10906982421875,
+              0.2475433349609375,
+              318.5759582519531,
+              178.3018798828125
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.5736010670661926,
+            "bbox": [
+              54.89427947998047,
+              130.63140869140625,
+              68.44609069824219,
+              163.29547119140625
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " I didn't take pictures of no I took some pictures of the food so my editor is gonna put some pictures right here of the food",
+      "llm_scene_description": "The video segment captures a casual indoor interaction involving a woman and a man, both wearing glasses. Across the frames, the woman is consistently featured prominently, while the man appears briefly in one frame before the focus returns to the woman. The spatial arrangement suggests the woman is closer to the camera, with the man positioned further away. The audio overlay references taking pictures of food and an editor adding them to the video, indicating a conversational and possibly informal context related to food or media creation. The scene emphasizes a relaxed and personal moment with minimal action, centered around dialogue and subtle movements."
+    },
+    {
+      "scene_index": 37,
+      "start_timecode": "00:03:37.055",
+      "end_timecode": "00:03:44.388",
+      "start_seconds": 217.05459595822595,
+      "end_seconds": 224.3875214973552,
+      "duration_seconds": 7.332925539129263,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0037.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_037\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_037\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_037\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a man singing into a microphone",
+        "a video frame of a woman talking on a cell"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9242347478866577,
+            "bbox": [
+              117.9715576171875,
+              4.951690673828125,
+              319.8072509765625,
+              178.48834228515625
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9007658362388611,
+            "bbox": [
+              0.06470489501953125,
+              81.020751953125,
+              99.62979125976562,
+              178.58126831054688
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9005057215690613,
+            "bbox": [
+              93.0609130859375,
+              0.489715576171875,
+              319.2874450683594,
+              177.73390197753906
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.8180842399597168,
+            "bbox": [
+              0.37529754638671875,
+              45.80061340332031,
+              93.14306640625,
+              177.3936004638672
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9096135497093201,
+            "bbox": [
+              69.04483032226562,
+              1.6550140380859375,
+              319.2771301269531,
+              178.02606201171875
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.6394361257553101,
+            "bbox": [
+              0.2745246887207031,
+              59.47129821777344,
+              63.97389602661133,
+              177.80435180664062
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.90), vehicle (conf=0.33)",
+      "audio_speech": " We're walking back to the hotel and we're walking uphill and it's still tiring.",
+      "llm_scene_description": "The video segment captures a casual interaction involving a woman and a man in what appears to be an outdoor setting. Across the frames, the focus alternates between the individuals, with the woman initially wearing glasses and later described as talking on a cell phone, while the man is depicted singing into a microphone. The spatial arrangement suggests the woman is closer to the camera in earlier frames, with the man becoming more prominent as the scene progresses. The audio overlay describes walking uphill toward a hotel, adding context to the setting and suggesting a shared activity or journey. The scene emphasizes a mix of personal actions and dialogue, with a relaxed and conversational tone."
+    },
+    {
+      "scene_index": 38,
+      "start_timecode": "00:03:44.388",
+      "end_timecode": "00:03:48.921",
+      "start_seconds": 224.3875214973552,
+      "end_seconds": 228.920602739726,
+      "duration_seconds": 4.533081242370798,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0038.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_038\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_038\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_038\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man and a woman",
+        "a video frame of a man with glasses talking to a woman",
+        "a video frame of a man with glasses and a backpack"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9009177088737488,
+            "bbox": [
+              111.20205688476562,
+              0.075103759765625,
+              319.5088806152344,
+              177.4437255859375
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.931593656539917,
+            "bbox": [
+              166.50543212890625,
+              0.1355743408203125,
+              319.60638427734375,
+              177.83580017089844
+            ]
+          },
+          {
+            "label": "person",
+            "confidence": 0.9078094959259033,
+            "bbox": [
+              0.5048370361328125,
+              0.7253570556640625,
+              119.12326049804688,
+              177.209228515625
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9291732907295227,
+            "bbox": [
+              132.90325927734375,
+              0.428070068359375,
+              319.6533508300781,
+              178.09396362304688
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.94)",
+      "audio_speech": " It's literally getting there.",
+      "llm_scene_description": "The video segment depicts a brief interaction between a man and a woman in an ambiguous setting. Initially, the man and woman are present together, with the man later described as wearing glasses and talking to the woman. In the final frame, the man is noted to have a backpack, suggesting he may be preparing to leave or is in transit. The spatial arrangement indicates the two individuals are positioned near each other throughout the segment, with slight shifts in focus. The audio overlay, \"It's literally getting there,\" adds a conversational tone, potentially hinting at progress or anticipation related to their interaction. The scene emphasizes a casual and brief exchange between the two individuals."
+    },
+    {
+      "scene_index": 39,
+      "start_timecode": "00:03:48.921",
+      "end_timecode": "00:03:52.787",
+      "start_seconds": 228.920602739726,
+      "end_seconds": 232.78705438763055,
+      "duration_seconds": 3.8664516479045403,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0039.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_039\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_039\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_039\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman laughing",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman talking to someone"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9040493369102478,
+            "bbox": [
+              123.83028411865234,
+              0.0,
+              318.9412536621094,
+              178.0619354248047
+            ]
+          },
+          {
+            "label": "toothbrush",
+            "confidence": 0.6340447068214417,
+            "bbox": [
+              0.18008804321289062,
+              1.67254638671875,
+              41.56827926635742,
+              176.05979919433594
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9314615726470947,
+            "bbox": [
+              101.18087768554688,
+              3.7844390869140625,
+              319.597900390625,
+              178.8056182861328
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.9369900822639465,
+            "bbox": [
+              106.42760467529297,
+              0.4545135498046875,
+              319.2091064453125,
+              178.42730712890625
+            ]
+          },
+          {
+            "label": "cell phone",
+            "confidence": 0.5553238987922668,
+            "bbox": [
+              159.58340454101562,
+              98.71098327636719,
+              190.66751098632812,
+              163.5508270263672
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " It's a hike and",
+      "llm_scene_description": "The video segment captures a casual indoor interaction centered around a woman. Across the frames, she is depicted laughing, wearing glasses, and talking, suggesting a relaxed and conversational tone. A toothbrush briefly appears in the first frame, and a cell phone is noted in the final frame, possibly indicating everyday objects in her vicinity. The spatial arrangement consistently places the woman prominently in the scene, with no other individuals visible. The audio overlay, mentioning \"It's a hike and,\" hints at an unrelated or conversational remark, adding a casual and informal context. The segment emphasizes the woman’s expressions and subtle actions in a personal and low-key setting."
+    },
+    {
+      "scene_index": 40,
+      "start_timecode": "00:03:52.787",
+      "end_timecode": "00:03:55.854",
+      "start_seconds": 232.78705438763055,
+      "end_seconds": 235.8535505221755,
+      "duration_seconds": 3.0664961345449626,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0040.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_040\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_040\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_040\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman ' s face"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.9254346489906311,
+            "bbox": [
+              87.75546264648438,
+              0.5155181884765625,
+              319.6089782714844,
+              178.4151153564453
+            ]
+          },
+          {
+            "label": "clock",
+            "confidence": 0.5502343773841858,
+            "bbox": [
+              0.1974639892578125,
+              1.4757080078125,
+              44.42163848876953,
+              145.68804931640625
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.8656567931175232,
+            "bbox": [
+              82.11437225341797,
+              1.1940460205078125,
+              317.4090576171875,
+              177.39736938476562
+            ]
+          }
+        ],
+        "2": []
+      },
+      "audio_natural": "none",
+      "audio_speech": " We're trying to play volleyball on the left. My calves hurt.",
+      "llm_scene_description": "The video segment focuses on a woman wearing glasses, prominently featured in the scene. Across the frames, she is consistently positioned near the center, with her face becoming the focal point in the final frame. A clock briefly appears in the background of the first frame but is not central to the scene. The audio overlay mentions playing volleyball and references calf pain, suggesting a casual and conversational tone, though no related actions or objects are visually depicted. The segment emphasizes the woman’s presence and expressions in a neutral setting, with minimal context or activity beyond her appearance."
+    },
+    {
+      "scene_index": 41,
+      "start_timecode": "00:03:55.854",
+      "end_timecode": "00:04:04.253",
+      "start_seconds": 235.8535505221755,
+      "end_seconds": 244.25308341245082,
+      "duration_seconds": 8.39953289027531,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0041.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_041\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_041\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_041\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman wearing glasses"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.8304564356803894,
+            "bbox": [
+              71.48880767822266,
+              0.0,
+              316.8759460449219,
+              177.06285095214844
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.934891939163208,
+            "bbox": [
+              72.53579711914062,
+              0.577545166015625,
+              319.63299560546875,
+              177.13650512695312
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.7682711482048035,
+            "bbox": [
+              103.04013061523438,
+              0.04559326171875,
+              319.3900146484375,
+              178.40237426757812
+            ]
+          }
+        ]
+      },
+      "audio_natural": "speech (conf=0.33)",
+      "audio_speech": " my toes hurt and I'm gonna go home. I'm gonna eat dinner, I'm gonna take a nice hot shower and I'll pass out.",
+      "llm_scene_description": "The video segment focuses on a woman wearing glasses, prominently featured in the center of the frames. She remains stationary throughout, with slight shifts in position and size suggesting minimal movement. The captions consistently describe her appearance, emphasizing her glasses and presence. The audio overlay adds a conversational tone, as the woman mentions feeling discomfort in her toes and outlines her plans to go home, eat dinner, take a hot shower, and rest. The setting appears neutral and lacks additional context or activity beyond her presence and speech. The segment highlights a personal and introspective moment centered on the woman."
+    },
+    {
+      "scene_index": 42,
+      "start_timecode": "00:04:04.253",
+      "end_timecode": "00:04:05.753",
+      "start_seconds": 244.25308341245082,
+      "end_seconds": 245.753,
+      "duration_seconds": 1.4999165875491656,
+      "clip_path": "spain_hist3_gpt-4o\\clips\\scene_0042.mp4",
+      "frame_paths": [
+        "./spain_hist3_gpt-4o/frames\\scene_042\\frame_00.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_042\\frame_01.jpg",
+        "./spain_hist3_gpt-4o/frames\\scene_042\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man wearing glasses",
+        "a video frame of a woman wearing glasses",
+        "a video frame of a woman holding a drink"
+      ],
+      "yolo_detections": {
+        "0": [
+          {
+            "label": "person",
+            "confidence": 0.7943514585494995,
+            "bbox": [
+              100.18854522705078,
+              15.986068725585938,
+              302.06646728515625,
+              178.1348419189453
+            ]
+          }
+        ],
+        "1": [
+          {
+            "label": "person",
+            "confidence": 0.9392663836479187,
+            "bbox": [
+              99.05526733398438,
+              2.8072662353515625,
+              319.53997802734375,
+              177.70870971679688
+            ]
+          }
+        ],
+        "2": [
+          {
+            "label": "person",
+            "confidence": 0.7848777770996094,
+            "bbox": [
+              105.13967895507812,
+              0.0,
+              319.7343444824219,
+              177.78607177734375
+            ]
+          }
+        ]
+      },
+      "audio_natural": "none",
+      "audio_speech": " It's the end of day one",
+      "llm_scene_description": "The video segment captures a casual indoor interaction transitioning between two individuals. In the first frame, a man wearing glasses is prominently featured, followed by a woman wearing glasses in the second frame. The third frame focuses on the same woman, now holding a drink, suggesting a shift in her activity. The spatial arrangement places each person centrally within their respective frames, with the woman becoming the focal point in the latter part of the segment. The audio overlay, stating \"It's the end of day one,\" adds temporal context, implying the conclusion of an event or activity. The scene emphasizes the individuals' presence and subtle actions in a neutral and informal setting."
+    }
+  ]
+}
