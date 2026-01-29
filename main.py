@@ -30,11 +30,13 @@ else:
     )
 
 test_videos = {
-    f"car_hist3_{model_name}": r"Videos\.Cartastrophe.mp4",
-    # f"malala_hist3_{model_name}": r"Videos\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
-    f"CCIT_hist3_{model_name}": r"Videos\.UDST CCIT graduation 30 mins.mp4",
-    f"sponge_hist3_{model_name}": r"Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
-    f"spain_hist3_{model_name}": r"Videos\.Spain Vlog.mp4",
+    # f"car_hist3_{model_name}": r"Videos\.Cartastrophe.mp4",
+    # # f"malala_hist3_{model_name}": r"Videos\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
+    # f"CCIT_hist3_{model_name}": r"Videos\.UDST CCIT graduation 30 mins.mp4",
+    # f"sponge_hist3_{model_name}": r"Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
+    # f"spain_hist3_{model_name}": r"Videos\.Spain Vlog.mp4",
+    f"pasta_hist3_{model_name}": r"Videos\.How to Make Pasta - Without a Machine.mp4",
+
 }
 OUTPUT_DIR = "spain"
 
