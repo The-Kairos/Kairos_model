@@ -35,7 +35,8 @@ test_videos = {
     # f"CCIT_hist3_{model_name}": r"Videos\.UDST CCIT graduation 30 mins.mp4",
     # f"sponge_hist3_{model_name}": r"Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4",
     # f"spain_hist3_{model_name}": r"Videos\.Spain Vlog.mp4",
-    f"pasta_hist3_{model_name}": r"Videos\.How to Make Pasta - Without a Machine.mp4",
+    # f"pasta_hist3_{model_name}": r"Videos\.How to Make Pasta - Without a Machine.mp4",
+    f"sheldon_hist3_{model_name}": r"Videos\.Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
 
 }
 OUTPUT_DIR = "spain"
