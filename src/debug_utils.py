@@ -65,3 +65,7 @@ def save_vid_df(df, filepath):
         json.dump(cleaned, f, indent=4)
     print(f"Scenes saved to {filepath}")
     return cleaned
+
+PROMPTS_DIR = Path(__file__).resolve().parents[1] / "prompts"
+def load_prompt(filename: str) -> str:
+    return (PROMPTS_DIR / filename).read_text(encoding="utf-8")

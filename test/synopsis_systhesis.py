@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from openai import AzureOpenAI
 from dotenv import load_dotenv
 load_dotenv()
@@ -77,46 +78,15 @@ def call_gpt(prompt):
     return response.choices[0].message.content.strip()
 
 # ----------------------
-# 4. Segment synthesis prompts
+# 4. Segment synthesis prompts (loaded from prompts folder)
 # ----------------------
-SEGMENT_PROMPT = """
-You are a factual narrative generator. Your task is to write a **story-like, readable synopsis** of a video segment.
+PROMPTS_DIR = Path(__file__).resolve().parents[1] / "prompts"
 
-Rules:
-- Write in **chronological order**, following the scenes as they happen.
-- Include only **essential visual elements, actions, and spoken/audio cues** that are relevant to the story.
-- Do **not** quote dialogue.
-- Do **not** mention minor objects or incidental details that do not affect the story flow.
-- Do **not** add interpretation, opinions, emotions, or inferred intent.
-- Maintain **continuity** with previous segments using the carryover context.
-- Write as if the narrative is being read as a continuous story, not a list of facts.
-- Write timestaps as references
+def load_prompt(filename: str) -> str:
+    return (PROMPTS_DIR / filename).read_text(encoding="utf-8")
 
-Carryover context from previous segments:
-{carryover_context}
-
-Scenes for this segment:
-{scene_chunk}
-
-Write a flowing narrative paragraph (or multiple paragraphs if needed) for this segment.
-"""
-
-CARRYOVER_PROMPT = """
-Extract carryover context for the next segment.
-
-From the narrative below, list:
-- Active characters
-- Unresolved objects or events
-- Current setting
-
-Rules:
-- Be concise
-- Use bullet points
-- Do NOT infer beyond the text
-
-Narrative:
-{segment_narrative}
-"""
+SEGMENT_PROMPT = load_prompt("segment_prompt.txt")
+CARRYOVER_PROMPT = load_prompt("carryover_prompt.txt")
 
 # ----------------------
 # 5. Generate segment-level narratives
@@ -168,13 +138,58 @@ def generate_segment_narratives(chunks):
 def synthesize_full_narrative(segments):
     """
     Combine all segment narratives into a single chronological story
+    and extract structured answers to common video-understanding questions.
     """
     text = "\n\n".join(s["segment_narrative"] for s in segments)
-    prompt = f"""
-Combine the following narrative segments into a single continuous factual account.
-Maintain chronological order.
-Do not omit events.
 
+    prompt = f"""
+You are given multiple narrative segments describing a video in chronological order.
+
+TASK:
+1. Produce a concise but complete factual summary of the entire video.
+2. Answer ALL of the questions listed below.
+3. Base answers ONLY on the provided text. Do not infer or invent details.
+4. If information is missing, say "Not explicitly stated."
+
+OUTPUT FORMAT (follow exactly):
+
+Summary:
+<single coherent paragraph>
+
+What is the central activity or situation?
+<answer>
+
+What are the key actions performed? Who performs each action?
+<answer>
+
+What are the main phases or steps? Are there repeated or cyclical actions?
+<answer>
+
+Who is involved and what are their characteristcs and roles?
+<answer>
+
+Where does this take place? Does the location change? Is the setting important to what happens?
+<answer>
+
+What objects are central to the video and which ones are incidental?
+<answer>
+
+What is the most important thing said or heard?
+<answer>
+
+What is different at the end vs the beginning?
+<answer>
+
+What type of video is this? What is the mood or tone?
+<answer>
+
+What is the goal or intent or theme of the video?
+<answer>
+
+What context is missing or assumed? What would require outside knowledge?
+<answer>
+
+INPUT NARRATIVE:
 {text}
 """
     full_narrative = call_gpt(prompt)
@@ -185,7 +200,7 @@ Do not omit events.
 # ----------------------
 if __name__ == "__main__":
     # scenes = load_your_scenes()  # Your list of scene dictionaries
-    log_path= r"logs\car_hist3_gpt-4o_20260123_221906.json"
+    log_path= r"logs\pasta_hist3_gpt-4o_20260129_105840.json"
     with open(log_path, "r", encoding="utf-8") as f:
         logs = json.load(f)
 
@@ -194,10 +209,10 @@ if __name__ == "__main__":
     full_narrative = synthesize_full_narrative(segments)
 
     # Save results for RAG
-    with open(r"logs\segment_narratives_2.json", "w") as f:
+    with open(r"logs\pasta_segment_narratives.json", "w") as f:
         json.dump(segments, f, indent=2)
 
-    with open(r"logs\full_narrative_2.txt", "w") as f:
+    with open(r"logs\pasta_synopsis.txt", "w") as f:
         f.write(full_narrative)
 
     print("Done! Segment narratives and full narrative saved.")
