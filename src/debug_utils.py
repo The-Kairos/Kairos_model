@@ -1,7 +1,9 @@
 import os
 import subprocess
+import json
 from pathlib import Path
 import imageio_ffmpeg as ffmpeg
+import pandas as pd
 
 def see_first_scene(df):
     print("Printing first captioned scene:")
@@ -55,16 +57,43 @@ def save_clips(video_path, scenes, output_dir):
 
     return updated_scenes
 
-def save_vid_df(df, filepath):
-    import json
+def clear_frames(scene_list):
     cleaned = [
         {k: v for k, v in scene.items() if k != "frames"}
-        for scene in df
+        for scene in scene_list
     ]
-    with open(filepath, 'w') as f:
-        json.dump(cleaned, f, indent=4)
-    print(f"Scenes saved to {filepath}")
     return cleaned
+
+def read_json(json_path):
+    json_path = Path(json_path)
+    if not json_path.exists():
+        print(f"JSON path does not exist: {json_path}")
+        return {}
+
+    print(f"Reading JSON from {json_path}")
+    with open(json_path, "r", encoding="utf-8") as f:
+        checkpoint= json.load(f)
+        if isinstance(checkpoint, list):
+            return {"scenes": checkpoint}
+
+def save_checkpoint(checkpoint, path):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    if isinstance(checkpoint, list):
+        payload = {"scenes": clear_frames(checkpoint)}
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=4)
+    elif isinstance(checkpoint, dict):
+        checkpoint["scenes"] = clear_frames(checkpoint["scenes"])
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(checkpoint, f, indent=4)
+    else:
+        raise TypeError("checkpoint must be a dict or list")
+
+
+def have_key(scenes, key: str) -> bool:
+    return bool(scenes) and all(key in s for s in scenes)
 
 PROMPTS_DIR = Path(__file__).resolve().parents[1] / "prompts"
 def load_prompt(filename: str) -> str:

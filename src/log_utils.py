@@ -263,7 +263,8 @@ from src.frame_obj_d_yolo import detect_object_yolo
 from src.scene_description import describe_scenes
 from src.audio_natural import extract_sounds
 from src.audio_speech import extract_speech
-from src.debug_utils import save_clips, save_vid_df
+from src.debug_utils import save_clips
+from src.synopsis_systhesis import summarize_scenes, synthesize_synopsis
 
 
 @log_step()
@@ -299,7 +300,11 @@ def extract_speech_log(*args, **kwargs):
     return extract_speech(*args, **kwargs)
 
 @log_step()
-def save_vid_df_log(*args, **kwargs):
-    return save_vid_df(*args, **kwargs)
+def summarize_scenes_log(*args, **kwargs):
+    return summarize_scenes(*args, **kwargs)
+
+@log_step()
+def synthesize_synopsis_log(*args, **kwargs):
+    return synthesize_synopsis(*args, **kwargs)
 
 # ================================================================================================

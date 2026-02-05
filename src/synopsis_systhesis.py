@@ -7,9 +7,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 CHUNK_SIZE = 7000
-FINAL_CHUNK_SIZE = CHUNK_SIZE* 5 #15000
+FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
 
-
+# ----------------------
+# 1. Debug helper
+# ----------------------
 def _debug_print(enabled: bool, message: str):
     if enabled:
         print(message)
@@ -39,13 +41,13 @@ def chunk_scenes(scenes: list, max_chars: int = CHUNK_SIZE, debug: bool = False)
     if this_chunk:
         chunks.append(this_chunk)
 
-    _debug_print(debug, f"chunk_scenes: {scene_count} scenes produced {len(chunks)} chunks")
+    _debug_print(debug, f"chunk_scenes: {scene_count} scenes turned into {len(chunks)} chunk_scenes")
     return chunks
 
 # ----------------------
 # 3. GPT call helper
 # ----------------------
-def call_gpt(prompt):
+def call_gpt(client, deployment, prompt):
     """
     Minimal GPT call using AzureOpenAI client
     """
@@ -77,7 +79,7 @@ SYSTHESIS_PROMPT = load_prompt("systhesis_prompt.txt")
 # ----------------------
 # 5. Summarize segments with carryover context
 # ----------------------
-def condense_chunk(chunk_text: str, pre_carryover_context: str, debug: bool = False):
+def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: str, debug: bool = False):
     """
     Summarize a chunk and return (summary, new_carryover_context).
     """
@@ -85,12 +87,12 @@ def condense_chunk(chunk_text: str, pre_carryover_context: str, debug: bool = Fa
         carryover_context=pre_carryover_context,
         scene_chunk=chunk_text
     )
-    summary = call_gpt(segment_prompt)
+    summary = call_gpt(client, deployment, segment_prompt)
 
     carryover_prompt = CARRYOVER_PROMPT.format(
         segment_narrative=summary
     )
-    new_carryover_context = call_gpt(carryover_prompt)
+    new_carryover_context = call_gpt(client, deployment, carryover_prompt)
     _debug_print(debug, f"condense_chunk: chunk_len={len(chunk_text)} condensed into len={len(summary)}")
     return summary, new_carryover_context
 
@@ -122,81 +124,110 @@ def chunk_narrative(narrative: str, max_chars: int = CHUNK_SIZE, debug: bool = F
     _debug_print(debug, f"chunk_narrative: splitting narrative len={len(narrative)} to {len(chunks)} chunks")
     return chunks
 
-def summarize_scenes(scene_dict, max_chars: int = FINAL_CHUNK_SIZE, debug: bool = False):
+def summarize_scenes(client, deployment, scenes, max_chars: int = FINAL_CHUNK_SIZE, debug: bool = False, output_dir: str | None = None):
     """
-    Summarize scene chunks into a narrative, then recursively compress
+    Summarize scenes into a narrative, then recursively compress
     until the narrative fits within max_chars.
     """
-    narrative = ""
+    scene_chunks = chunk_scenes(scenes, debug=debug)
+    narratives = []
     pre_carryover_context = "None"
-    debug_narratives = {}
-    pass_index = 1
 
-    scene_chunks = chunk_scenes(scene_dict, debug=debug)
-    _debug_print(debug, f"summarize_scenes: round {pass_index} with {len(scene_chunks)} chunks")
-
+    narrative = ""
     for scene in scene_chunks:
-        summary, pre_carryover_context = condense_chunk(scene, pre_carryover_context, debug=debug)
+        summary, pre_carryover_context = condense_chunk(client, deployment, scene, pre_carryover_context, debug=debug)
         narrative += summary + "\n"
 
-    debug_narratives[f"narrative_{pass_index}"] = {
-        "len": len(narrative),
-        "narrative": narrative.strip(),
-        "chunks": len(scene_chunks)
-    }
-    (
-        debug,
-        f"summarize_scenes: round {pass_index} -> narrative len={len(narrative)} (chunks={len(scene_chunks)})"
-    )
+    narratives.append({
+        "narrative_len": len(narrative),
+        "chunk_len": len(scene_chunks),
+        "narrative": narrative.strip()
+    })
 
-    while len(narrative) > max_chars:
-
-        pass_index += 1
-        narrative_chunks = chunk_narrative(narrative, max_chars=max_chars, debug=debug)
-        _debug_print(debug, f"summarize_scenes: round {pass_index} with {len(narrative_chunks)} chunks")
-        narrative = ""
-        for chunk in narrative_chunks:
-            summary, pre_carryover_context = condense_chunk(chunk, pre_carryover_context, debug=debug)
-            narrative += summary + "\n"
-
-        debug_narratives[f"narrative_{pass_index}"] = {
-            "len": len(narrative),
-            "narrative": narrative.strip(),
-            "chunks": len(narrative_chunks)
-        }
-        (
+    if debug:
+        _debug_print(debug, "summarize_scenes:")
+        _debug_print(
             debug,
-            f"summarize_scenes: round {pass_index} -> narrative len={len(narrative)} (chunks={len(narrative_chunks)})"
+            f"- narrative_size 1: {len(narrative)} char ({len(scene_chunks)} chunks)"
         )
 
-    return narrative.strip(), debug_narratives
+    round_index = 1
+    while len(narrative) > max_chars:
+        round_index += 1
+        narrative_chunks = chunk_narrative(narrative, max_chars=max_chars, debug=debug)
+        narrative = ""
+        for chunk in narrative_chunks:
+            summary, pre_carryover_context = condense_chunk(client, deployment, chunk, pre_carryover_context, debug=debug)
+            narrative += summary + "\n"
+
+        narratives.append({
+            "narrative_len": len(narrative),
+            "chunk_len": len(narrative_chunks),
+            "narrative": narrative.strip()
+        })
+
+        if debug:
+            _debug_print(
+                debug,
+                f"- narrative_size {round_index}: {len(narrative)} char ({len(narrative_chunks)} chunks)"
+            )
+
+    if output_dir:
+        out_dir = Path(output_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        for i, item in enumerate(narratives, start=1):
+            out_path = out_dir / f"narrative_{i}_len_{item['narrative_len']}.txt"
+            out_path.write_text(item["narrative"], encoding="utf-8")
+            _debug_print(debug, f"summarize_scenes: saved {out_path}")
+
+    return {
+        "scenes": scenes,
+        "narratives": narratives
+    }
 
 # ----------------------
 # 6. Full narrative synthesis
 # ----------------------
-def synthesize_synopsis(narrative: str, debug: bool = False):
+def synthesize_synopsis(client, deployment, data: dict, debug: bool = False, output_dir: str | None = None):
     """
     Produce a final synopsis + Q&A from the narrative.
     """
-    _debug_print(debug, f"synthesize_synopsis: start (narrative len={len(narrative)})")
-    return call_gpt(SYSTHESIS_PROMPT.format(text=narrative))
+    narratives = data.get("narratives", [])
+    narrative_text = narratives[-1]["narrative"] if narratives else ""
+    synopsis = call_gpt(client, deployment, SYSTHESIS_PROMPT.format(text=narrative_text))
+
+    if output_dir:
+        out_dir = Path(output_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        synopsis_path = out_dir / "synopsis.txt"
+        synopsis_path.write_text(synopsis, encoding="utf-8")
+        _debug_print(debug, f"synopsis is saved in {synopsis_path}")
+
+    return {
+        "scenes": data.get("scenes", []),
+        "narratives": narratives,
+        "synopsis": synopsis
+    }
 
 # ----------------------
 # 7. Example usage
 # ----------------------
 def test(log_path):
-    # scenes = load_your_scenes()  # Your list of scene dictionaries
+    endpoint = os.getenv("GPT_ENDPOINT")
+    deployment = os.getenv("GPT_DEPLOYMENT")
+    subscription_key = os.getenv("GPT_KEY")
+    api_version = os.getenv("GPT_VERSION")
+
+    client = AzureOpenAI(
+        api_version=api_version,
+        azure_endpoint=endpoint,
+        api_key=subscription_key,
+    )
     with open(log_path, "r", encoding="utf-8") as f:
         logs = json.load(f)
 
-    narrative, debug_narratives = summarize_scenes(logs.get("scenes"), debug=True)
-    synopsys = synthesize_synopsis(narrative, debug=True)
+    data = summarize_scenes(client, deployment, logs.get("scenes"), debug=True, output_dir="logs/synonsis_test")
+    result = synthesize_synopsis(client, deployment, data, debug=True, output_dir="logs/synonsis_test")
+    return result
 
-    synopsis_path = fr"PASTTTTAAA.txt"
-    with open(synopsis_path, "w", encoding="utf-8") as f:
-        f.write(synopsys)
-
-    _debug_print(True, f"synopsis is saved in {synopsis_path}")
-    print("Done! Synopsis saved.")
-
-test(r"logs\pasta_hist3_gpt-4o_20260129_105840.json")
+# test(r"logs\pasta_hist3_gpt-4o_20260129_105840.json")

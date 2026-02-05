@@ -3,12 +3,11 @@ from openai import AzureOpenAI
 from dotenv import load_dotenv
 load_dotenv()
 
-endpoint = "https://60099-m1xc2jq0-australiaeast.openai.azure.com/"
 model_name = "gpt-4o"
+endpoint = os.getenv("GPT_ENDPOINT")
 deployment = os.getenv("GPT_DEPLOYMENT")
-
-subscription_key = os.getenv("SUPSCRIPTION_KEY")
-api_version = os.getenv("API_VERSION")
+subscription_key = os.getenv("GPT_KEY")
+api_version = os.getenv("GPT_VERSION")
 
 from openai import AzureOpenAI
 client = AzureOpenAI(
