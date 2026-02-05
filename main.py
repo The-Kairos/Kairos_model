@@ -33,12 +33,12 @@ else:
 
 # todo: in the future, i want to have different params ready for videos with motions, or params to run things for faster but assume no motion 
 test_videos = {
-    f".batch2/sheldon": r"Videos\.Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
-    f".batch2/pasta": r"Videos\.How to Make Pasta - Without a Machine.mp4",
-    f".batch2/messi": r"Videos\.Argentina v France Full Penalty Shoot-out.mp4",
+    f".batch2/sheldon": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
+    f".batch2/pasta": r"Videos\How to Make Pasta - Without a Machine.mp4",
+    f".batch2/messi": r"Videos\Argentina v France Full Penalty Shoot-out.mp4",
     f".batch2/malala_long": r"Videos\.Malala Yousafzai FULL Nobel Peace Prize Lecture 2014.mp4",
     f".batch2/grad_honors": r"Videos\.UDST honors graduation.mp4",
-    f".batch2/web_summit": r"Videos\Web Summit Qatar 2026 Day Three.mp4",
+    f".batch2/web_summit": r"Videos\.Web Summit Qatar 2026 Day Three.mp4",
 }
 
 for OUTPUT_DIR, test_video in test_videos.items():
@@ -145,5 +145,5 @@ for OUTPUT_DIR, test_video in test_videos.items():
     # log = complete_log(log, step, vid_len=checkpoint["scenes"][-1]["end_seconds"], scene_num=len(checkpoint["scenes"]), vid_df= save_safe_df)
     # save_log(log, filename=OUTPUT_DIR)
 
-    # do to = checkpoint and scene should be the same. scene should not be a list it should be in {scene: scenes}
     # todo: integrate the RAG to have the synopsis and narratives as "long summary? the "key" is summary  
+    # todo: the RAG should be able to answer questions like "how long is the video"
