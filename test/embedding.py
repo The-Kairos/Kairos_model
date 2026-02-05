@@ -9,7 +9,7 @@ load_dotenv(".env")
 api_key = os.environ.get("GEMINI_API_KEY")
 client = genai.Client(vertexai=True, api_key=api_key) # put "vertexai=True" if you're using Dr. Oussama's key
 
-def format_embedding_text(scenes: list):
+def format_scene_embedding(scenes: list):
     embedding_texts = []
     for scene in scenes:
         start_timecode = scene.get("start_timecode")
@@ -31,11 +31,14 @@ def format_embedding_text(scenes: list):
         
     return embedding_texts
 
-def embed_scenes(scenes: list):
+def format_paragraph_embedding(paragraphs: str):
+    return paragraphs.split("\n\n")
+
+def embed_contexts(context: list):
     # https://ai.google.dev/gemini-api/docs/embeddings#generate-embeddings
     result = client.models.embed_content(
         model="gemini-embedding-001",
-        contents=scenes
+        contents=context
     )
     return [embedding for embedding in result.embeddings]
 
@@ -47,13 +50,13 @@ def embed_question(question: str):
     )
     return result.embeddings
 
-def get_top_k_similar(question, embeddings, scenes, k=5, debug=False):
+def get_top_k_similar(question, embeddings, contexts, k=5, debug=False):
     q_vec = np.array(question[0].values)
     s_vecs = np.array([s.values for s in embeddings])
     similarities = np.dot(s_vecs, q_vec)
 
     top_indices = np.argsort(similarities)[::-1][:k]
-    top_matches =  [(scenes[i], similarities[i]) for i in top_indices]
+    top_matches = [(contexts[i], similarities[i]) for i in top_indices]
     
     if debug:
         for text, score in top_matches:
@@ -82,16 +85,19 @@ Question:
 
     return response.text
 
-log_path= r"logs\car_pyscene_blip_yolo_ASR_AST_GeminiPro25_20251123_180938.json"
+log_path= r".batch2\sheldon\checkpoint.json"
 with open(log_path, "r", encoding="utf-8") as f:
     logs = json.load(f)
-scenes = format_embedding_text(logs.get("scenes"))
-scene_embeddings = embed_scenes(scenes)
+scenes = format_scene_embedding(logs.get("scenes"))
+narratives = format_paragraph_embedding(logs.get("narratives")[-1]['narrative'])
+synopsis = format_paragraph_embedding(logs.get("synopsis")[-1])
+contexts = scenes + narratives + synopsis
+scene_embeddings = embed_contexts(contexts)
 
 while True:
-    question = input("Give questions about cartastrophy: ")
+    question = input("Give questions about sheldon: ")
     question_embedding = embed_question(question)
-    top_matches = get_top_k_similar(question_embedding, scene_embeddings, scenes, k=5)
+    top_matches = get_top_k_similar(question_embedding, scene_embeddings, contexts, k=5)
     answer = create_answer(question, top_matches)
     print(answer)
     print()
