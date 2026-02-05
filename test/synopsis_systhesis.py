@@ -25,7 +25,7 @@ client = AzureOpenAI(
 # ----------------------
 # 2. Chunk scenes
 # ----------------------
-def format_story_chunks(scenes: list, max_chars: int = 3000):
+def format_story_chunks(scenes: list, max_chars: int = 15000):
     """
     Break scenes into chunks for segment-level synthesis
     """
@@ -87,6 +87,7 @@ def load_prompt(filename: str) -> str:
 
 SEGMENT_PROMPT = load_prompt("segment_prompt.txt")
 CARRYOVER_PROMPT = load_prompt("carryover_prompt.txt")
+SYSTHESIS_PROMPT = load_prompt("systhesis_prompt.txt")
 
 # ----------------------
 # 5. Generate segment-level narratives
@@ -135,64 +136,14 @@ def generate_segment_narratives(chunks):
 # ----------------------
 # 6. Optional: Full narrative synthesis
 # ----------------------
-def synthesize_full_narrative(segments):
+def generate_systhesis(segments):
     """
     Combine all segment narratives into a single chronological story
     and extract structured answers to common video-understanding questions.
     """
     text = "\n\n".join(s["segment_narrative"] for s in segments)
 
-    prompt = f"""
-You are given multiple narrative segments describing a video in chronological order.
-
-TASK:
-1. Produce a concise but complete factual summary of the entire video.
-2. Answer ALL of the questions listed below.
-3. Base answers ONLY on the provided text. Do not infer or invent details.
-4. If information is missing, say "Not explicitly stated."
-
-OUTPUT FORMAT (follow exactly):
-
-Summary:
-<single coherent paragraph>
-
-What is the central activity or situation?
-<answer>
-
-What are the key actions performed? Who performs each action?
-<answer>
-
-What are the main phases or steps? Are there repeated or cyclical actions?
-<answer>
-
-Who is involved and what are their characteristcs and roles?
-<answer>
-
-Where does this take place? Does the location change? Is the setting important to what happens?
-<answer>
-
-What objects are central to the video and which ones are incidental?
-<answer>
-
-What is the most important thing said or heard?
-<answer>
-
-What is different at the end vs the beginning?
-<answer>
-
-What type of video is this? What is the mood or tone?
-<answer>
-
-What is the goal or intent or theme of the video?
-<answer>
-
-What context is missing or assumed? What would require outside knowledge?
-<answer>
-
-INPUT NARRATIVE:
-{text}
-"""
-    full_narrative = call_gpt(prompt)
+    full_narrative = call_gpt(SYSTHESIS_PROMPT)
     return full_narrative
 
 # ----------------------
@@ -206,7 +157,7 @@ if __name__ == "__main__":
 
     chunks = format_story_chunks(logs.get("scenes"))
     segments = generate_segment_narratives(chunks)
-    full_narrative = synthesize_full_narrative(segments)
+    full_narrative = generate_systhesis(segments)
 
     # Save results for RAG
     with open(r"logs\pasta_segment_narratives.json", "w") as f:
