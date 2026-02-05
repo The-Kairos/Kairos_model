@@ -1,61 +1,45 @@
 import os
+import json
 from pathlib import Path
 from openai import AzureOpenAI
 from dotenv import load_dotenv
+
 load_dotenv()
 
-# ----------------------
-# 1. Create the AzureOpenAI client
-# ----------------------
+CHUNK_SIZE = 7000
+FINAL_CHUNK_SIZE = CHUNK_SIZE* 5 #15000
 
-endpoint = "https://60099-m1xc2jq0-australiaeast.openai.azure.com/"
-model_name = "gpt-4o"
-deployment = os.getenv("GPT_DEPLOYMENT")
 
-subscription_key = os.getenv("SUPSCRIPTION_KEY")
-api_version = os.getenv("API_VERSION")
-
-from openai import AzureOpenAI
-client = AzureOpenAI(
-    api_version=api_version,
-    azure_endpoint=endpoint,
-    api_key=subscription_key,
-)
+def _debug_print(enabled: bool, message: str):
+    if enabled:
+        print(message)
 
 # ----------------------
 # 2. Chunk scenes
 # ----------------------
-def format_story_chunks(scenes: list, max_chars: int = 15000):
+def chunk_scenes(scenes: list, max_chars: int = CHUNK_SIZE, debug: bool = False):
     """
-    Break scenes into chunks for segment-level synthesis
+    Break scene dictionaries into <= max_chars chunks.
     """
+    scene_count = len(scenes) if scenes else 0
     chunks = []
     this_chunk = ""
-    start_index = None
-    start_time = None
 
     for scene in scenes:
-        scene_index = scene.get("scene_index")
         start_timecode = scene.get("start_timecode")
-        end_timecode = scene.get("end_timecode")
         audio_speech = scene.get("audio_speech")
         llm_scene_description = scene.get("llm_scene_description")
-
-        if start_index is None:
-            start_index = scene_index
-            start_time = start_timecode
 
         this_chunk += f'At {start_timecode}, {llm_scene_description}. It says "{audio_speech}".'
 
         if len(this_chunk) >= max_chars:
-            chunks.append((start_index, scene_index, start_time, end_timecode, this_chunk))
+            chunks.append(this_chunk)
             this_chunk = ""
-            start_index = None
-            start_time = None
 
     if this_chunk:
-        chunks.append((start_index, scene_index, start_time, end_timecode, this_chunk))
+        chunks.append(this_chunk)
 
+    _debug_print(debug, f"chunk_scenes: {scene_count} scenes produced {len(chunks)} chunks")
     return chunks
 
 # ----------------------
@@ -75,7 +59,8 @@ def call_gpt(prompt):
         top_p=1.0,
         model=deployment
     )
-    return response.choices[0].message.content.strip()
+    text = response.choices[0].message.content.strip()
+    return text
 
 # ----------------------
 # 4. Segment synthesis prompts (loaded from prompts folder)
@@ -90,80 +75,128 @@ CARRYOVER_PROMPT = load_prompt("carryover_prompt.txt")
 SYSTHESIS_PROMPT = load_prompt("systhesis_prompt.txt")
 
 # ----------------------
-# 5. Generate segment-level narratives
+# 5. Summarize segments with carryover context
 # ----------------------
-import json
-def generate_segment_narratives(chunks):
+def condense_chunk(chunk_text: str, pre_carryover_context: str, debug: bool = False):
     """
-    chunks: list of tuples
-      (start_index, end_index, start_time, end_time, chunk_text)
+    Summarize a chunk and return (summary, new_carryover_context).
     """
-    results = []
-    carryover_context = "None"
+    segment_prompt = SEGMENT_PROMPT.format(
+        carryover_context=pre_carryover_context,
+        scene_chunk=chunk_text
+    )
+    summary = call_gpt(segment_prompt)
 
-    for i, (start_idx, end_idx, start_tc, end_tc, chunk_text) in enumerate(chunks):
-        print(f"Processing segment {i+1}/{len(chunks)}")
+    carryover_prompt = CARRYOVER_PROMPT.format(
+        segment_narrative=summary
+    )
+    new_carryover_context = call_gpt(carryover_prompt)
+    _debug_print(debug, f"condense_chunk: chunk_len={len(chunk_text)} condensed into len={len(summary)}")
+    return summary, new_carryover_context
 
-        # 1. Generate segment narrative
-        segment_prompt = SEGMENT_PROMPT.format(
-            carryover_context=carryover_context,
-            scene_chunk=chunk_text
+def chunk_narrative(narrative: str, max_chars: int = CHUNK_SIZE, debug: bool = False):
+    """
+    Chunk narrative into <= max_chars blocks, preferring paragraph breaks.
+    """
+    paragraphs = [p.strip() for p in narrative.split("\n\n") if p.strip()]
+    chunks = []
+    this_chunk = ""
+
+    for para in paragraphs:
+        candidate = f"{this_chunk}\n\n{para}".strip() if this_chunk else para
+        if len(candidate) <= max_chars:
+            this_chunk = candidate
+        else:
+            if this_chunk:
+                chunks.append(this_chunk)
+            if len(para) > max_chars:
+                # Fallback: hard split a long paragraph
+                for i in range(0, len(para), max_chars):
+                    chunks.append(para[i:i + max_chars])
+                this_chunk = ""
+            else:
+                this_chunk = para
+
+    if this_chunk:
+        chunks.append(this_chunk)
+    _debug_print(debug, f"chunk_narrative: splitting narrative len={len(narrative)} to {len(chunks)} chunks")
+    return chunks
+
+def summarize_scenes(scene_dict, max_chars: int = FINAL_CHUNK_SIZE, debug: bool = False):
+    """
+    Summarize scene chunks into a narrative, then recursively compress
+    until the narrative fits within max_chars.
+    """
+    narrative = ""
+    pre_carryover_context = "None"
+    debug_narratives = {}
+    pass_index = 1
+
+    scene_chunks = chunk_scenes(scene_dict, debug=debug)
+    _debug_print(debug, f"summarize_scenes: round {pass_index} with {len(scene_chunks)} chunks")
+
+    for scene in scene_chunks:
+        summary, pre_carryover_context = condense_chunk(scene, pre_carryover_context, debug=debug)
+        narrative += summary + "\n"
+
+    debug_narratives[f"narrative_{pass_index}"] = {
+        "len": len(narrative),
+        "narrative": narrative.strip(),
+        "chunks": len(scene_chunks)
+    }
+    (
+        debug,
+        f"summarize_scenes: round {pass_index} -> narrative len={len(narrative)} (chunks={len(scene_chunks)})"
+    )
+
+    while len(narrative) > max_chars:
+
+        pass_index += 1
+        narrative_chunks = chunk_narrative(narrative, max_chars=max_chars, debug=debug)
+        _debug_print(debug, f"summarize_scenes: round {pass_index} with {len(narrative_chunks)} chunks")
+        narrative = ""
+        for chunk in narrative_chunks:
+            summary, pre_carryover_context = condense_chunk(chunk, pre_carryover_context, debug=debug)
+            narrative += summary + "\n"
+
+        debug_narratives[f"narrative_{pass_index}"] = {
+            "len": len(narrative),
+            "narrative": narrative.strip(),
+            "chunks": len(narrative_chunks)
+        }
+        (
+            debug,
+            f"summarize_scenes: round {pass_index} -> narrative len={len(narrative)} (chunks={len(narrative_chunks)})"
         )
 
-        segment_narrative = call_gpt(segment_prompt)
-        print('segment_narrative', segment_narrative , "\n\n")
-        # 2. Extract carryover context
-        carryover_prompt = CARRYOVER_PROMPT.format(
-            segment_narrative=segment_narrative
-        )
-        new_carryover_context = call_gpt(carryover_prompt)
-        print('new_carryover_context', new_carryover_context , "\n\n")
-        # 3. Store segment
-        results.append({
-            "segment_id": i,
-            "scene_index_start": start_idx,
-            "scene_index_end": end_idx,
-            "time_range": f"{start_tc}–{end_tc}",
-            "segment_narrative": segment_narrative,
-            "carryover_context": new_carryover_context
-        })
-
-        # 4. Update carryover for next segment
-        carryover_context = new_carryover_context
-
-    return results
+    return narrative.strip(), debug_narratives
 
 # ----------------------
-# 6. Optional: Full narrative synthesis
+# 6. Full narrative synthesis
 # ----------------------
-def generate_systhesis(segments):
+def synthesize_synopsis(narrative: str, debug: bool = False):
     """
-    Combine all segment narratives into a single chronological story
-    and extract structured answers to common video-understanding questions.
+    Produce a final synopsis + Q&A from the narrative.
     """
-    text = "\n\n".join(s["segment_narrative"] for s in segments)
-
-    full_narrative = call_gpt(SYSTHESIS_PROMPT)
-    return full_narrative
+    _debug_print(debug, f"synthesize_synopsis: start (narrative len={len(narrative)})")
+    return call_gpt(SYSTHESIS_PROMPT.format(text=narrative))
 
 # ----------------------
 # 7. Example usage
 # ----------------------
-if __name__ == "__main__":
+def test(log_path):
     # scenes = load_your_scenes()  # Your list of scene dictionaries
-    log_path= r"logs\pasta_hist3_gpt-4o_20260129_105840.json"
     with open(log_path, "r", encoding="utf-8") as f:
         logs = json.load(f)
 
-    chunks = format_story_chunks(logs.get("scenes"))
-    segments = generate_segment_narratives(chunks)
-    full_narrative = generate_systhesis(segments)
+    narrative, debug_narratives = summarize_scenes(logs.get("scenes"), debug=True)
+    synopsys = synthesize_synopsis(narrative, debug=True)
 
-    # Save results for RAG
-    with open(r"logs\pasta_segment_narratives.json", "w") as f:
-        json.dump(segments, f, indent=2)
+    synopsis_path = fr"PASTTTTAAA.txt"
+    with open(synopsis_path, "w", encoding="utf-8") as f:
+        f.write(synopsys)
 
-    with open(r"logs\pasta_synopsis.txt", "w") as f:
-        f.write(full_narrative)
+    _debug_print(True, f"synopsis is saved in {synopsis_path}")
+    print("Done! Synopsis saved.")
 
-    print("Done! Segment narratives and full narrative saved.")
+test(r"logs\pasta_hist3_gpt-4o_20260129_105840.json")
