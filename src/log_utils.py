@@ -83,12 +83,13 @@ def get_system_context():
         "gpu_info": gpu_info,
     }
 
-def initiate_log(video_path, run_description):
+def initiate_log(video_path, run_description, params=None):
     return {
         "run_description": run_description,
         "video_path": video_path,
         "start_process": time.time(),
         "computer": get_system_context(),
+        "params": params or {},
     }
 
 def get_gpu_stats():
