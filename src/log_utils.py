@@ -269,6 +269,7 @@ from src.audio_natural import extract_sounds
 from src.audio_speech import extract_speech
 from src.debug_utils import save_clips
 from src.synopsis_systhesis import summarize_scenes, synthesize_synopsis
+from src.rag_convo import make_embedding, ask_rag
 
 
 @log_step()
@@ -310,5 +311,13 @@ def summarize_scenes_log(*args, **kwargs):
 @log_step()
 def synthesize_synopsis_log(*args, **kwargs):
     return synthesize_synopsis(*args, **kwargs)
+
+@log_step()
+def make_embedding_log(*args, **kwargs):
+    return make_embedding(*args, **kwargs)
+
+@log_step()
+def ask_rag_log(*args, **kwargs):
+    return ask_rag(*args, **kwargs)
 
 # ================================================================================================

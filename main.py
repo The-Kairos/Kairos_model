@@ -32,6 +32,10 @@ else:
     )
 
 # todo: in the future, i want to have different params ready for videos with motions, or params to run things for faster but assume no motion 
+
+# =========================================================
+# RAG IS ONLY ACTIVE WHEN THERES ONE VIDEO IN TESTVIDS
+# =========================================================
 run_folder = "./.runs"
 test_videos = {
     f"{run_folder}/pasta": r"Videos\How to Make Pasta - Without a Machine.mp4",
@@ -150,9 +154,21 @@ for OUTPUT_DIR, test_video in test_videos.items():
     if "synopsis" not in checkpoint:
         checkpoint, step['synthesize_synopsis'] = synthesize_synopsis_log(client, deployment, checkpoint, debug=True, output_dir=f"./{OUTPUT_DIR}")
 
+    rag_path = f"./{OUTPUT_DIR}/rag_embedding.json"
+    if not os.path.exists(rag_path):
+        checkpoint["rag_embedding"] , step['make_embedding'] = make_embedding_log(checkpoint, rag_path)
+        
         cleared_checkpoint = save_checkpoint(checkpoint, checkpoint_path)
         log = complete_log(log, step, vid_len=checkpoint["scenes"][-1]["end_timecode"], scene_num=len(checkpoint["scenes"]), vid_df= cleared_checkpoint)
-        save_log(log, path=f"logs/{OUTPUT_DIR}.json")
+        
+        logpath = save_log(log, path=f"logs/{OUTPUT_DIR}.json")
+        save_checkpoint(log, checkpoint_path)
 
+    # RAG IS ONLY ACTIVE WHEN THERES ONE VIDEO IN TESTVIDS
+    if len(test_videos) == 1 and os.path.exists(rag_path):
+        ask_rag(rag_path, k=10, show_k_context=True, 
+                conv_path=f"./{OUTPUT_DIR}/conversation_history.json",
+                log_source = checkpoint_path )
+        
     # todo: integrate the RAG to have the synopsis and narratives as "long summary? the "key" is summary  
     # todo: the RAG should be able to answer questions like "how long is the video"
