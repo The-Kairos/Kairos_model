@@ -112,8 +112,15 @@ for file_path in json_files:
     if SAVE_CSV:
         df.to_csv(csv_path, index=False)
 
+    synopsis = document.get("synopsis")
+
     # Markdown section
     md = f"## {video_title}\n\n"
+    if synopsis:
+        # Use only the first paragraph (summary) from the synopsis text.
+        parts = [p.strip() for p in synopsis.split("\n\n") if p.strip()]
+        if parts:
+            md += f"{parts[0]}\n\n"
     md += df.to_markdown(index=False)
     md += "\n\n"
 
@@ -149,4 +156,3 @@ if SAVE_CSV:
     print(f"Done! CSVs + Markdown generated in {OUTPUT_MD}")
 else:
     print(f"Done! Markdown generated in {OUTPUT_MD}")
-
