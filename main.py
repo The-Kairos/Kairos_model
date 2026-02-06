@@ -2,7 +2,6 @@ from src.debug_utils import *
 from src.log_utils import *
 import time
 import os
-import json
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
@@ -48,10 +47,11 @@ test_videos = {
 
 for OUTPUT_DIR, test_video in test_videos.items():
     log = initiate_log(video_path=test_video, run_description="Test run for video processing pipeline.")
+    output_dir = Path(OUTPUT_DIR)
 
     # I added checkpoints so if you wanna redo the whole process,
     # youd have to delete the checkpoint json in the path below
-    checkpoint_path = f"./{OUTPUT_DIR}/checkpoint.json"
+    checkpoint_path = output_dir / "checkpoint.json"
     checkpoint = read_json(checkpoint_path) # if deleted it will return a {}
     checkpoint.setdefault("steps", {})
     step = checkpoint["steps"]
@@ -61,7 +61,11 @@ for OUTPUT_DIR, test_video in test_videos.items():
         see_scenes_cuts(checkpoint["scenes"])
         time.sleep(10)
 
-        checkpoint["scenes"], step['save_clips'] = save_clips_log(test_video, checkpoint["scenes"], output_dir=f"./{OUTPUT_DIR}/clips")
+        checkpoint["scenes"], step['save_clips'] = save_clips_log(
+            test_video,
+            checkpoint["scenes"],
+            output_dir=output_dir / "clips",
+        )
         save_checkpoint(checkpoint, checkpoint_path)
 
     if "frame_captions" not in checkpoint["scenes"][-1].keys():
@@ -70,7 +74,7 @@ for OUTPUT_DIR, test_video in test_videos.items():
             scenes=checkpoint["scenes"],
             num_frames=3,
             new_size=320,
-            output_dir=f"./{OUTPUT_DIR}/frames",
+            output_dir=output_dir / "frames",
         )
         time.sleep(10)
 
@@ -94,7 +98,7 @@ for OUTPUT_DIR, test_video in test_videos.items():
             scenes=checkpoint["scenes"],
             num_frames=3,
             new_size=320,
-            output_dir=f"./{OUTPUT_DIR}/frames",
+            output_dir=output_dir / "frames",
         )
         time.sleep(10)
 
@@ -103,7 +107,7 @@ for OUTPUT_DIR, test_video in test_videos.items():
             model_size="model/yolov8s.pt",
             conf=0.5,
             iou=0.45,
-            output_dir=f"./{OUTPUT_DIR}/yolo",
+            output_dir=output_dir / "yolo",
         )
         time.sleep(10)
         save_checkpoint(checkpoint, checkpoint_path)
@@ -148,26 +152,30 @@ for OUTPUT_DIR, test_video in test_videos.items():
         save_checkpoint(checkpoint, checkpoint_path)
 
     if "narratives" not in checkpoint:
-        checkpoint, step['summarize_scenes'] = summarize_scenes_log(client, deployment, checkpoint["scenes"], debug=True, output_dir=f"./{OUTPUT_DIR}")
+        checkpoint, step['summarize_scenes'] = summarize_scenes_log(
+            client, deployment, checkpoint["scenes"], debug=True, output_dir=output_dir
+        )
         save_checkpoint(checkpoint, checkpoint_path)
 
     if "synopsis" not in checkpoint:
-        checkpoint, step['synthesize_synopsis'] = synthesize_synopsis_log(client, deployment, checkpoint, debug=True, output_dir=f"./{OUTPUT_DIR}")
+        checkpoint, step['synthesize_synopsis'] = synthesize_synopsis_log(
+            client, deployment, checkpoint, debug=True, output_dir=output_dir
+        )
 
-    rag_path = f"./{OUTPUT_DIR}/rag_embedding.json"
-    if not os.path.exists(rag_path):
+    rag_path = output_dir / "rag_embedding.json"
+    if not rag_path.exists():
         checkpoint["rag_embedding"] , step['make_embedding'] = make_embedding_log(checkpoint, rag_path)
         
         cleared_checkpoint = save_checkpoint(checkpoint, checkpoint_path)
         log = complete_log(log, step, vid_len=checkpoint["scenes"][-1]["end_timecode"], scene_num=len(checkpoint["scenes"]), vid_df= cleared_checkpoint)
         
-        logpath = save_log(log, path=f"logs/{OUTPUT_DIR}.json")
+        logpath = save_log(log, path=Path("logs") / f"{output_dir}.json")
         save_checkpoint(log, checkpoint_path)
 
     # RAG IS ONLY ACTIVE WHEN THERES ONE VIDEO IN TESTVIDS
-    if len(test_videos) == 1 and os.path.exists(rag_path):
+    if len(test_videos) == 1 and rag_path.exists():
         ask_rag(rag_path, k=10, show_k_context=True, 
-                conv_path=f"./{OUTPUT_DIR}/conversation_history.json",
+                conv_path=output_dir / "conversation_history.json",
                 log_source = checkpoint_path )
         
     # todo: integrate the RAG to have the synopsis and narratives as "long summary? the "key" is summary  
