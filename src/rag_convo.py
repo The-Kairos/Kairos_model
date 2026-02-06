@@ -60,26 +60,11 @@ def format_paragraph_embedding(paragraphs):
     return [p.strip() for p in paragraphs.split("\n\n") if p.strip()]
 
 
-def _extract_latest_text(items, key=None):
-    if not items:
-        return ""
-    last = items[-1]
-    if isinstance(last, dict):
-        if key and isinstance(last.get(key), str):
-            return last.get(key, "")
-        for value in last.values():
-            if isinstance(value, str) and value.strip():
-                return value
-        return ""
-    if isinstance(last, str):
-        return last
-    return str(last)
-
 
 def build_contexts(checkpoint: dict):
     scenes = format_scene_embedding(checkpoint.get("scenes", []))
 
-    synopsis_text = _extract_latest_text(checkpoint.get("synopsis", []), key="synopsis")
+    synopsis_text = checkpoint.get("synopsis", "")
     synopsis = format_paragraph_embedding(synopsis_text)
 
     return [c for c in (scenes + synopsis) if c and c.strip()]
