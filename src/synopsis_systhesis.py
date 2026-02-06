@@ -154,7 +154,7 @@ def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, s
     round_index = 1
     while len(narrative) > summary_len:
         round_index += 1
-        narrative_chunks = chunk_narrative(narrative, summary_len=summary_len, debug=debug)
+        narrative_chunks = chunk_narrative(narrative, chunk_size, debug=debug)
         narrative = ""
         for chunk in narrative_chunks:
             summary, pre_carryover_context = condense_chunk(client, deployment, chunk, pre_carryover_context, debug=debug)
