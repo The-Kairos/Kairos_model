@@ -1,11 +1,12 @@
 import json
 import time
 
+
 def describe_flash_scene(
                         scene_text: str,
                         client,
                         prompt_path="prompts/flash_scene_prompt_manahil.txt",
-                        model = "gemini-2.5-flash", 
+                        model = "gemini-2.5-flash",
                         gpt_deployment = "gpt-4o-kairos",
                         gpt_temperature = 0.3
                          ) -> str:
@@ -51,6 +52,7 @@ def describe_flash_scene(
 
     return answer
 
+
 def describe_scenes(
     scenes: list,
     client,
@@ -82,7 +84,7 @@ def describe_scenes(
     )
 
     updated = []
-    previous_summaries = []  # ← store generated summaries
+    previous_summaries = []  # store generated summaries
 
     for idx, (scene, formatted_text) in enumerate(zip(scenes, formatted_scenes)):
 
@@ -91,7 +93,7 @@ def describe_scenes(
             context = "\n\nPrevious scenes:\n"
             for i, s in enumerate(previous_summaries[-hist_size:], start=1):
                 context += f"Scene -{len(previous_summaries) - i + 1}:\n{s}\n"
-            formatted_text += "\n" + context 
+            formatted_text += "\n" + context
 
         summary = describe_flash_scene(
             formatted_text,
@@ -104,9 +106,10 @@ def describe_scenes(
         new_scene[SUMMARY_key] = summary
         updated.append(new_scene)
 
-        previous_summaries.append(summary)  # ← save summary
+        previous_summaries.append(summary)  # save summary
 
-        if debug: print("Scene", idx, summary)
+        if debug:
+            print("Scene", idx, summary)
         time.sleep(5)
 
     return updated
@@ -131,15 +134,34 @@ def normalize_bbox(bbox):
 
 def format_single_description(
     captions: list,
-    yolo: dict,
+    yolo,
 ) -> str:
-    # Determine number of frames
+    lines = []
+
+    # If yolo is a list of track summaries (new format)
+    if isinstance(yolo, list):
+        from src.frame_obj_d_yolo import format_track_summaries
+
+        for idx, cap in enumerate(captions or []):
+            lines.append(f"Frame {idx}:")
+            lines.append(f'  Caption: "{cap}"')
+            lines.append("")
+
+        if yolo:
+            lines.append("Tracks:")
+            formatted = format_track_summaries(yolo, style="narrative")
+            for line in formatted:
+                lines.append(f"  - {line}")
+        else:
+            lines.append("Tracks: none detected.")
+
+        return "\n".join(lines)
+
+    # Legacy per-frame yolo dict format
     frame_count = max(
         len(captions),
         max([int(k) for k in yolo.keys()], default=-1) + 1
     )
-
-    lines = []
 
     for idx in range(frame_count):
         lines.append(f"Frame {idx}:")
@@ -207,11 +229,10 @@ def raw_descriptions(
             yolo=yolo,
         )
 
-        if asr: single_scene_text += f"\nAudio transcript {asr}\n"
-        if ast: single_scene_text += f"\nAudio sounds {ast}\n"
+        if asr: single_scene_text += f"\nAudio transcript: {asr}"
+        if ast: single_scene_text += f"\nAudio sounds: {ast}\n"
 
         formatted_list.append(single_scene_text)
-
     return formatted_list
 
 def test(

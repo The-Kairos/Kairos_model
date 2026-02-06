@@ -58,8 +58,13 @@ def save_clips(video_path, scenes, output_dir):
     return updated_scenes
 
 def clear_frames(scene_list):
+    omit_keys = {
+        "frames", "yolo_frames", 
+        "frame_paths", "yolo_frame_paths", "frame_indices", "frame_timestamps", 
+        "sample_fps", "motion_bullets", "yolo_tracks", "yolo_track_summaries", 
+        }
     cleaned = [
-        {k: v for k, v in scene.items() if k != "frames"}
+        {k: v for k, v in scene.items() if k not in omit_keys}
         for scene in scene_list
     ]
     return cleaned

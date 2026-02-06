@@ -39,13 +39,14 @@ blip_caption_len    = 30        # max blip caption length
 blip_caption_len    = 30        # max blip caption length
 blip_num_beams      = 4         # beam search width (whatever that means)
 blip_do_sample      = False     # sampling vs deterministic decoding
+yolo_action_fps     = 4
 yolo_conf_thres     = 0.8       # YOLO confidence threshold
 yolo_iou_thres      = 0.5       # YOLO IoU threshold for NMS
 ast_target_sr       = 16000     # audio target sample rate for AST
 asr_model_size      = 'small'
 asr_use_vad         = True      # enable VAD for ASR (whatever that means)
 asr_target_sr       = 16000     # audio target sample rate for ASR
-llm_scene_history   = 3         # number of prior scenes in LLM context
+llm_scene_history   = 5         # number of prior scenes in LLM context
 llm_chunk_len       = 7000      # max char len of combined scenes for one chunk
 llm_summary_len     = 20000     # max char len of final context for synopsis
 rag_top_k_context   = 10        # top-k RAG scenes to include
@@ -56,8 +57,10 @@ prioritize_speed            = False
 if improve_motion_detection:
     pyscene_threshold   = 40     # sensitivity of scene detected
     pyscene_shortest    = 0.5    # the minimum scene length  
+    yolo_action_fps     = 5
 if prioritize_speed:
     frames_per_scene    = 1      # number of frames sampled in each scene
+    llm_scene_history   = 3      # number of prior scenes in LLM context
     llm_chunk_len       = 128000 # max char len of combined scenes for one chunk 
     llm_summary_len     = 128000 # max char len of final context for synopsis
     rag_top_k_context   = 5      # top-k RAG scenes to include
@@ -89,14 +92,15 @@ params = {
 # =========================================================
 # RAG IS ONLY ACTIVE WHEN THERES ONE VIDEO IN TESTVIDS
 # =========================================================
-run_folder = "./.runs1"
+run_folder = "./.action"
 test_videos = {
-    f"{run_folder}/pasta": r"Videos\How to Make Pasta - Without a Machine.mp4",
     f"{run_folder}/messi": r"Videos\Argentina v France Full Penalty Shoot-out.mp4",
+    f"{run_folder}/pasta": r"Videos\How to Make Pasta - Without a Machine.mp4",
     f"{run_folder}/malala_long": r"Videos\.Malala Yousafzai FULL Nobel Peace Prize Lecture 2014.mp4",
+    f"{run_folder}/sheldon": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
+    f"{run_folder}/titanic": r"Videos\.Titanic.1997.NaijaPrey.com.mkv",
+    # f"{run_folder}/grad_honors": r"Videos\.UDST honors graduation.mp4",
     # f"{run_folder}/web_summit": r"Videos\.Web Summit Qatar 2026 Day Three.mp4",
-    f"{run_folder}/grad_honors": r"Videos\.UDST honors graduation.mp4",
-    f"{run_folder}/sheldon2": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
 }
 
 for output_dir, test_video in test_videos.items():
@@ -135,7 +139,7 @@ for output_dir, test_video in test_videos.items():
             scenes=checkpoint["scenes"],
             num_frames = frames_per_scene,
             new_size = frame_resolution,
-            output_dir=f"{output_dir}/frames",
+            output_dir=f"{output_dir}/fps",
         )
         time.sleep(10)
 
@@ -152,14 +156,15 @@ for output_dir, test_video in test_videos.items():
     
 
     if "yolo_detections" not in checkpoint["scenes"][-1].keys():
-        
-        if "frames" not in checkpoint["scenes"][-1].keys():
-            checkpoint["scenes"], step['sample_frames'] = sample_frames_log(
+        if "yolo_frames" not in checkpoint["scenes"][-1].keys():
+            checkpoint["scenes"], step['sample_fps'] = sample_fps_log(
                 input_video_path=test_video,
                 scenes=checkpoint["scenes"],
-                num_frames=frames_per_scene,
+                fps=yolo_action_fps,
                 new_size=frame_resolution,
                 output_dir=f"{output_dir}/frames",
+                frames_key="yolo_frames",
+                frame_paths_key="yolo_frame_paths",
             )
         time.sleep(10)
 
@@ -169,6 +174,9 @@ for output_dir, test_video in test_videos.items():
             conf=yolo_conf_thres,
             iou=yolo_iou_thres,
             output_dir=f"{output_dir}/yolo",
+            frame_key="yolo_frames",
+            summary_key="yolo_detections",
+            debug=True,
         )
         time.sleep(10)
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
