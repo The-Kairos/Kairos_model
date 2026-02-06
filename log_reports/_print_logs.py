@@ -5,7 +5,8 @@ import os
 
 LOG_DIR = "./logs"
 OUTPUT_DIR = "./log_reports"
-OUTPUT_MD = os.path.join(OUTPUT_DIR, "all_logs_report.md")
+OUTPUT_MD = os.path.join(OUTPUT_DIR, f"new_report.md")
+SAVE_CSV = False
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -18,7 +19,9 @@ STEP_KEYS = {
     "sample_frames": ("scene_number", "Frame sampling"),
     "caption_frames": ("scene_number", "BLIP caption"),
     "detect_object_yolo": ("scene_number", "YOLO detection"),
-    "describe_scenes": ("scene_number", "BLIP + YOLO + AST + ASR in Gemini2.5Pro"),
+    "describe_scenes": ("scene_number", "BLIP + YOLO + AST + ASR in GPT4o"),
+    "summarize_scenes": ("video_length", "Summarization*"),
+    "synthesize_synopsis": ("video_length", "Synopsis + common Q&A*"),
 }
 
 METRIC_COLUMNS = [
@@ -31,8 +34,33 @@ METRIC_COLUMNS = [
 
 DELAY = 5
 
+def to_number(value):
+    if isinstance(value, (int, float)):
+        return float(value)
+    if isinstance(value, str):
+        if ":" in value:
+            parts = value.split(":")
+            if len(parts) == 3:
+                try:
+                    hours = float(parts[0])
+                    minutes = float(parts[1])
+                    seconds = float(parts[2])
+                    return hours * 3600 + minutes * 60 + seconds
+                except ValueError:
+                    return value
+        try:
+            return float(value)
+        except ValueError:
+            return value
+    return value
+
 def safe_div(x, d):
     return x / d if d not in [0, None] else x
+
+def format_num(value, precision=2, fallback="n/a"):
+    if isinstance(value, (int, float)):
+        return f"{value:.{precision}f}"
+    return fallback
 
 markdown_sections = []
 
@@ -45,7 +73,7 @@ for file_path in json_files:
 
     video_path = document.get("video_path", "unknown")
     video_title = os.path.basename(video_path)
-    scene_count = document.get("scene_number", 1)
+    scene_count = to_number(document.get("scene_number", 1))
 
     rows = []
 
@@ -53,19 +81,24 @@ for file_path in json_files:
         step_data = document.get("steps", {}).get(step_key, {})
         row = {"step": friendly_name}  # Use friendly name here
 
-        divisor_value = document.get(divisor_key, 1)
+        divisor_value = to_number(document.get(divisor_key, 1))
 
         for metric in METRIC_COLUMNS:
-            raw_value = step_data.get(metric, 0)
+            raw_value = to_number(step_data.get(metric, 0))
 
-            row[metric] = raw_value / divisor_value if divisor_value else raw_value
+            if isinstance(raw_value, (int, float)) and isinstance(divisor_value, (int, float)):
+                row[metric] = safe_div(raw_value, divisor_value)
+            else:
+                row[metric] = raw_value
 
             # Special rule for describe_scenes because of delay 
             if step_key == "describe_scenes" and metric == "wall_time_sec":
-                row[metric] -= DELAY # time.sleep(5) for API
+                if isinstance(row[metric], (int, float)):
+                    row[metric] -= DELAY # time.sleep(5) for API
 
             if step_key in ["get_scene_list", "ast_timings", "asr_timings"]:
-                row[metric] *= 60 
+                if isinstance(row[metric], (int, float)):
+                    row[metric] *= 60 
 
         rows.append(row)
 
@@ -76,24 +109,32 @@ for file_path in json_files:
     base_name = os.path.splitext(video_title)[0].replace(" ", "_")
     csv_path = os.path.join(OUTPUT_DIR, f"{base_name}.csv")
 
-    df.to_csv(csv_path, index=False)
+    if SAVE_CSV:
+        df.to_csv(csv_path, index=False)
 
     # Markdown section
     md = f"## {video_title}\n\n"
     md += df.to_markdown(index=False)
     md += "\n\n"
 
-    video_length = document.get("video_length", 1)
-    total_sec = document.get("total_process_sec", 1)
+    video_length = to_number(document.get("video_length", 1))
+    total_sec = to_number(document.get("total_process_sec", 1))
 
-    run_without_delay = total_sec - (DELAY * scene_count)
-    k = (run_without_delay / video_length)  if video_length > 0 else 0
+    if isinstance(scene_count, (int, float)) and isinstance(total_sec, (int, float)):
+        run_without_delay = total_sec - (DELAY * scene_count)
+    else:
+        run_without_delay = total_sec
+
+    if isinstance(video_length, (int, float)) and video_length > 0 and isinstance(run_without_delay, (int, float)):
+        k = run_without_delay / video_length
+    else:
+        k = 0
 
     md += (
         f"**Footnote:**  \n"
-        f"`total_process_sec` without LLM cooldown of {run_without_delay:.2f}s is **{k:.2f}× longer** than `video_length` of {document["video_length"]:.2f}s.\n"
+        f"`total_process_sec` without LLM cooldown of {format_num(run_without_delay)}s is **{format_num(k)}x longer** than `video_length` of {format_num(video_length)}s.\n"
         f"**{scene_count} scenes** were detected in `{video_path}`\n"
-        f"\* `get_scene_list`, `ast_timings`, and `asr_timings` are measured per minute of video, whereas the remaining processes are measured per scenes. \n"
+        f"\\* `get_scene_list`, `ast_timings`,  `asr_timings`, `summarize_scenes`, and `synthesize_synopsis` are measured per minute of video, whereas the remaining processes are measured per scenes. \n"
     )
 
     markdown_sections.append(md)
@@ -104,4 +145,8 @@ with open(OUTPUT_MD, "w", encoding="utf-8") as f:
     for section in markdown_sections:
         f.write(section)
 
-print("Done! Markdown + CSVs generated in ./log_reports")
+if SAVE_CSV:
+    print(f"Done! CSVs + Markdown generated in {OUTPUT_MD}")
+else:
+    print(f"Done! Markdown generated in {OUTPUT_MD}")
+
