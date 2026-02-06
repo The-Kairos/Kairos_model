@@ -222,7 +222,7 @@ def complete_log(log, steps, vid_len, scene_num, vid_df=None):
         "run_description": log["run_description"],
         "video_path": log["video_path"],
         "video_length": vid_len,
-        "total_process_sec": time.time() - log["start_process"],
+        "total_process_sec": sum([steps[s]["wall_time_sec"] for s in steps]),
         "scene_number": scene_num,
         "start_process": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(log["start_process"])),
         "end_process": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
@@ -230,27 +230,31 @@ def complete_log(log, steps, vid_len, scene_num, vid_df=None):
         "steps": steps
     }
     if vid_df is not None:
-        new_log["scenes"] = vid_df
+        new_log.update(vid_df)
     return new_log
 
-def save_log(data, folder="logs", filename="log"):
+def save_log(data, path):
     """
     Saves any serializable data to a JSON file.
-    - Creates folder if it does not exist
-    - Automatically appends timestamp to filename
+    - Creates the parent folder if it does not exist
+    - Automatically appends timestamp to the filename (before .json)
     - Returns the full path to the saved file
     """
-    
-    os.makedirs(folder, exist_ok=True)
+    folder = os.path.dirname(path)
+    if folder:
+        os.makedirs(folder, exist_ok=True)
 
     timestamp = time.strftime("%Y%m%d_%H%M%S")
-    file_path = os.path.join(folder, f"{filename}_{timestamp}.json")
+    base, ext = os.path.splitext(path)
+    if not ext:
+        ext = ".json"
+    path = f"{base}_{timestamp}{ext}"
 
-    with open(file_path, "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
-        
-    print(f"Log saved to: {file_path}")
-    return file_path
+
+    print(f"Log saved to: {path}")
+    return path
 
 
 # ================================================================================================

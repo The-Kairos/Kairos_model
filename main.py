@@ -32,25 +32,26 @@ else:
     )
 
 # todo: in the future, i want to have different params ready for videos with motions, or params to run things for faster but assume no motion 
+run_folder = "./.runs"
 test_videos = {
-    f".batch2/sheldon": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
-    f".batch2/pasta": r"Videos\How to Make Pasta - Without a Machine.mp4",
-    f".batch2/messi": r"Videos\Argentina v France Full Penalty Shoot-out.mp4",
-    f".batch2/malala_long": r"Videos\.Malala Yousafzai FULL Nobel Peace Prize Lecture 2014.mp4",
-    f".batch2/grad_honors": r"Videos\.UDST honors graduation.mp4",
-    f".batch2/web_summit": r"Videos\.Web Summit Qatar 2026 Day Three.mp4",
+    f"{run_folder}/pasta": r"Videos\How to Make Pasta - Without a Machine.mp4",
+    f"{run_folder}/messi": r"Videos\Argentina v France Full Penalty Shoot-out.mp4",
+    f"{run_folder}/malala_long": r"Videos\.Malala Yousafzai FULL Nobel Peace Prize Lecture 2014.mp4",
+    f"{run_folder}/grad_honors": r"Videos\.UDST honors graduation.mp4",
+    f"{run_folder}/web_summit": r"Videos\.Web Summit Qatar 2026 Day Three.mp4",
+    f"{run_folder}/sheldon2": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
 }
 
 for OUTPUT_DIR, test_video in test_videos.items():
     log = initiate_log(video_path=test_video, run_description="Test run for video processing pipeline.")
-    step = {}
 
     # I added checkpoints so if you wanna redo the whole process,
     # youd have to delete the checkpoint json in the path below
     checkpoint_path = f"./{OUTPUT_DIR}/checkpoint.json"
     checkpoint = read_json(checkpoint_path) # if deleted it will return a {}
-    if isinstance(checkpoint, list):
-        checkpoint = {"scenes": checkpoint}
+    checkpoint.setdefault("steps", {})
+    step = checkpoint["steps"]
+    print("step", step)
 
     if not checkpoint.get("scenes"):
         checkpoint["scenes"], step['get_scene_list'] = get_scene_list_log(test_video, min_scene_sec=2)
@@ -126,7 +127,7 @@ for OUTPUT_DIR, test_video in test_videos.items():
             AST_key="audio_speech",
             SUMMARY_key="llm_scene_description",
             debug=True,
-            prompt_path="prompts/flash_scene_prompt_manahil.txt",
+            prompt_path="prompts/flash_scene_prompt_joy.txt",
             model=model_name,
         )
         time.sleep(10)
@@ -138,12 +139,10 @@ for OUTPUT_DIR, test_video in test_videos.items():
 
     if "synopsis" not in checkpoint:
         checkpoint, step['synthesize_synopsis'] = synthesize_synopsis_log(client, deployment, checkpoint, debug=True, output_dir=f"./{OUTPUT_DIR}")
-        save_checkpoint(checkpoint, checkpoint_path)
 
-
-    # save_safe_df = save_vid_df(checkpoint, f"{OUTPUT_DIR}/captioned_scenes.json")
-    # log = complete_log(log, step, vid_len=checkpoint["scenes"][-1]["end_seconds"], scene_num=len(checkpoint["scenes"]), vid_df= save_safe_df)
-    # save_log(log, filename=OUTPUT_DIR)
+        cleared_checkpoint = save_checkpoint(checkpoint, checkpoint_path)
+        log = complete_log(log, step, vid_len=checkpoint["scenes"][-1]["end_timecode"], scene_num=len(checkpoint["scenes"]), vid_df= cleared_checkpoint)
+        save_log(log, path=f"logs/{OUTPUT_DIR}.json")
 
     # todo: integrate the RAG to have the synopsis and narratives as "long summary? the "key" is summary  
     # todo: the RAG should be able to answer questions like "how long is the video"

@@ -75,21 +75,24 @@ def read_json(json_path):
         checkpoint= json.load(f)
         if isinstance(checkpoint, list):
             return {"scenes": checkpoint}
+        return checkpoint
 
 def save_checkpoint(checkpoint, path):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
 
     if isinstance(checkpoint, list):
-        payload = {"scenes": clear_frames(checkpoint)}
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(payload, f, indent=4)
+        checkpoint = {"scenes": clear_frames(checkpoint)}
+
     elif isinstance(checkpoint, dict):
         checkpoint["scenes"] = clear_frames(checkpoint["scenes"])
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(checkpoint, f, indent=4)
     else:
         raise TypeError("checkpoint must be a dict or list")
+        
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(checkpoint, f, indent=4)
+
+    return checkpoint
 
 
 def have_key(scenes, key: str) -> bool:
