@@ -19,9 +19,9 @@ def _debug_print(enabled: bool, message: str):
 # ----------------------
 # 2. Chunk scenes
 # ----------------------
-def chunk_scenes(scenes: list, max_chars: int = CHUNK_SIZE, debug: bool = False):
+def chunk_scenes(scenes: list, chunk_size: int = CHUNK_SIZE, debug: bool = False):
     """
-    Break scene dictionaries into <= max_chars chunks.
+    Break scene dictionaries into <= chunk_size chunks.
     """
     scene_count = len(scenes) if scenes else 0
     chunks = []
@@ -34,7 +34,7 @@ def chunk_scenes(scenes: list, max_chars: int = CHUNK_SIZE, debug: bool = False)
 
         this_chunk += f'At {start_timecode}, {llm_scene_description}. It says "{audio_speech}".'
 
-        if len(this_chunk) >= max_chars:
+        if len(this_chunk) >= chunk_size:
             chunks.append(this_chunk)
             this_chunk = ""
 
@@ -96,9 +96,9 @@ def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: s
     _debug_print(debug, f"condense_chunk: chunk_len={len(chunk_text)} condensed into len={len(summary)}")
     return summary, new_carryover_context
 
-def chunk_narrative(narrative: str, max_chars: int = CHUNK_SIZE, debug: bool = False):
+def chunk_narrative(narrative: str, chunk_size: int = CHUNK_SIZE, debug: bool = False):
     """
-    Chunk narrative into <= max_chars blocks, preferring paragraph breaks.
+    Chunk narrative into <= chunk_size blocks, preferring paragraph breaks.
     """
     paragraphs = [p.strip() for p in narrative.split("\n\n") if p.strip()]
     chunks = []
@@ -106,15 +106,15 @@ def chunk_narrative(narrative: str, max_chars: int = CHUNK_SIZE, debug: bool = F
 
     for para in paragraphs:
         candidate = f"{this_chunk}\n\n{para}".strip() if this_chunk else para
-        if len(candidate) <= max_chars:
+        if len(candidate) <= chunk_size:
             this_chunk = candidate
         else:
             if this_chunk:
                 chunks.append(this_chunk)
-            if len(para) > max_chars:
+            if len(para) > chunk_size:
                 # Fallback: hard split a long paragraph
-                for i in range(0, len(para), max_chars):
-                    chunks.append(para[i:i + max_chars])
+                for i in range(0, len(para), chunk_size):
+                    chunks.append(para[i:i + chunk_size])
                 this_chunk = ""
             else:
                 this_chunk = para
@@ -124,12 +124,12 @@ def chunk_narrative(narrative: str, max_chars: int = CHUNK_SIZE, debug: bool = F
     _debug_print(debug, f"chunk_narrative: splitting narrative len={len(narrative)} to {len(chunks)} chunks")
     return chunks
 
-def summarize_scenes(client, deployment, scenes, max_chars: int = FINAL_CHUNK_SIZE, debug: bool = False, output_dir: str | None = None):
+def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, summary_len: int = FINAL_CHUNK_SIZE, debug: bool = False, output_dir: str | None = None):
     """
     Summarize scenes into a narrative, then recursively compress
-    until the narrative fits within max_chars.
+    until the narrative fits within summary_len.
     """
-    scene_chunks = chunk_scenes(scenes, debug=debug)
+    scene_chunks = chunk_scenes(scenes, chunk_size, debug=debug,)
     narratives = []
     pre_carryover_context = "None"
 
@@ -152,9 +152,9 @@ def summarize_scenes(client, deployment, scenes, max_chars: int = FINAL_CHUNK_SI
         )
 
     round_index = 1
-    while len(narrative) > max_chars:
+    while len(narrative) > summary_len:
         round_index += 1
-        narrative_chunks = chunk_narrative(narrative, max_chars=max_chars, debug=debug)
+        narrative_chunks = chunk_narrative(narrative, summary_len=summary_len, debug=debug)
         narrative = ""
         for chunk in narrative_chunks:
             summary, pre_carryover_context = condense_chunk(client, deployment, chunk, pre_carryover_context, debug=debug)
