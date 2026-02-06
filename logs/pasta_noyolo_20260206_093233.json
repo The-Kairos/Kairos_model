@@ -1,0 +1,1527 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\[WithOUT Yolo] How to Make Pasta - Without a Machine.mp4",
+  "video_length": "00:05:28.000",
+  "total_process_sec": 1749.66778,
+  "scene_number": 57,
+  "start_process": "2026-02-06 09:02:33",
+  "end_process": "2026-02-06 09:32:32",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 5.16,
+      "used_RAM_GB": 10.68,
+      "RAM_usage_percent": 67.4
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 469.0,
+      "disk_free_GB": 463.98,
+      "disk_usage_percent": 50.3
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 5.44531,
+      "cpu_time_sec": 26.125,
+      "ram_before_MB": 491,
+      "ram_after_MB": 505,
+      "ram_used_MB": 14,
+      "io_read_MB": 360.3068218231201,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 6.14012,
+      "cpu_time_sec": 0.26562,
+      "ram_before_MB": 505,
+      "ram_after_MB": 505,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.18529510498046875,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 7.14342,
+      "cpu_time_sec": 54.375,
+      "ram_before_MB": 493,
+      "ram_after_MB": 530,
+      "ram_used_MB": 37,
+      "io_read_MB": 675.0435857772827,
+      "io_write_MB": 3.573409080505371,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 451.60144,
+      "cpu_time_sec": 450.21875,
+      "ram_before_MB": 530,
+      "ram_after_MB": 1546,
+      "ram_used_MB": 1016,
+      "io_read_MB": 0.03395271301269531,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 0.04749,
+      "cpu_time_sec": 0.04688,
+      "ram_before_MB": 1518,
+      "ram_after_MB": 1522,
+      "ram_used_MB": 4,
+      "io_read_MB": 21.919177055358887,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "wall_time_sec": 162.97886,
+      "cpu_time_sec": 162.3125,
+      "ram_before_MB": 1522,
+      "ram_after_MB": 1893,
+      "ram_used_MB": 371,
+      "io_read_MB": 362.9238157272339,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "wall_time_sec": 609.56486,
+      "cpu_time_sec": 608.21875,
+      "ram_before_MB": 1893,
+      "ram_after_MB": 2115,
+      "ram_used_MB": 222,
+      "io_read_MB": 1280.8898668289185,
+      "io_write_MB": 4.76837158203125e-06,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "wall_time_sec": 443.35609,
+      "cpu_time_sec": 0.73438,
+      "ram_before_MB": 2115,
+      "ram_after_MB": 2109,
+      "ram_used_MB": -6,
+      "io_read_MB": 1.235250473022461,
+      "io_write_MB": 0.0002193450927734375,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "summarize_scenes": {
+      "wall_time_sec": 48.84481,
+      "cpu_time_sec": 0.0625,
+      "ram_before_MB": 2109,
+      "ram_after_MB": 2109,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.009922981262207031,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "synthesize_synopsis": {
+      "wall_time_sec": 14.54538,
+      "cpu_time_sec": 0.0,
+      "ram_before_MB": 2109,
+      "ram_after_MB": 2109,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0037107467651367188,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:06.500",
+      "start_seconds": 0.0,
+      "end_seconds": 6.5,
+      "duration_seconds": 6.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0000.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_000\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_000\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_000\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of pasta on a cutting board",
+        "a video frame of pasta on a cutting board",
+        "a video frame of pasta on a cutting board"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.",
+      "llm_scene_description": "The scene shows a cutting board with pasta dough being prepared, suggesting a cooking demonstration. The audio provides instructions for making homemade pasta dough, accompanied by light background music. The setting is focused on the ingredients and preparation process, creating a calm and instructional atmosphere."
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:06.500",
+      "end_timecode": "00:00:11.667",
+      "start_seconds": 6.5,
+      "end_seconds": 11.666666666666666,
+      "duration_seconds": 5.166666666666666,
+      "clip_path": ".runs\\pasta\\clips\\scene_0001.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_001\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_001\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_001\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of pasta being made on a wooden cutting board",
+        "a video frame of pasta being made on a wooden cutting board",
+        "a video frame of a person kning pasta on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.34)",
+      "audio_speech": " I'm not making the fanciest or the best or the most luxurious recipe, but it's easy and you",
+      "llm_scene_description": "The scene continues a cooking demonstration focused on making homemade pasta. A person is shown kneading pasta dough on a wooden surface, emphasizing the hands-on preparation process. The setting remains consistent with the previous scene, featuring a cutting board and a rustic, simple atmosphere. Light background music accompanies the demonstration, while the speaker provides casual commentary about the recipe, highlighting its ease and practicality. The overall tone is relaxed and instructional, with attention on the craft of pasta-making."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:11.667",
+      "end_timecode": "00:00:14.333",
+      "start_seconds": 11.666666666666666,
+      "end_seconds": 14.333333333333334,
+      "duration_seconds": 2.666666666666668,
+      "clip_path": ".runs\\pasta\\clips\\scene_0002.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_002\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_002\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_002\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of food",
+        "a video frame of a person cutting a piece of pasta",
+        "a video frame of a bowl of food"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " probably already have all the ingredients in your house.",
+      "llm_scene_description": "The scene continues the cooking demonstration, now focusing on the next steps of the pasta-making process. A bowl of food, likely containing prepared or partially prepared pasta, is shown intermittently. A person is briefly seen cutting a piece of pasta, suggesting the transition from preparation to shaping or serving. The setting remains consistent with the previous scenes, maintaining a rustic and instructional atmosphere. Light commentary emphasizes the simplicity of the recipe, reinforcing the approachable tone of the demonstration."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:14.333",
+      "end_timecode": "00:00:18.167",
+      "start_seconds": 14.333333333333334,
+      "end_seconds": 18.166666666666668,
+      "duration_seconds": 3.833333333333334,
+      "clip_path": ".runs\\pasta\\clips\\scene_0003.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_003\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_003\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_003\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of food",
+        "a video frame of a bowl of food",
+        "a video frame of a bowl of pasta with a fork in it"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " So if the past aisle at your grocery store is empty, don't panic.",
+      "llm_scene_description": "The scene continues the cooking demonstration, now focusing on a bowl of prepared pasta with a fork in it, suggesting the dish is ready to serve or nearing completion. The setting remains consistent with the previous scenes, maintaining a rustic and instructional atmosphere. The calm tone and light commentary provide reassurance and practical tips, aligning with the approachable and educational nature of the demonstration."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:18.167",
+      "end_timecode": "00:00:22.833",
+      "start_seconds": 18.166666666666668,
+      "end_seconds": 22.833333333333332,
+      "duration_seconds": 4.666666666666664,
+      "clip_path": ".runs\\pasta\\clips\\scene_0004.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_004\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_004\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_004\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a black background with a white border",
+        "a video frame of a person washing their hands in a bathroom sink",
+        "a video frame of a person washing their hands in a sink"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " have no fear, it's a super easy to make at home. First things first, for God's sake...",
+      "llm_scene_description": "The scene transitions briefly from the cooking demonstration to a person washing their hands at a bathroom sink, suggesting a moment of cleanliness or preparation before continuing the process. The audio provides casual commentary, maintaining the instructional and approachable tone consistent with the previous scenes. While the setting shifts temporarily, the focus remains on practical steps related to the overall activity."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:22.833",
+      "end_timecode": "00:00:26.667",
+      "start_seconds": 22.833333333333332,
+      "end_seconds": 26.666666666666668,
+      "duration_seconds": 3.8333333333333357,
+      "clip_path": ".runs\\pasta\\clips\\scene_0005.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_005\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_005\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_005\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person cutting a piece of wood",
+        "a video frame of a person ' s hand on a table",
+        "a video frame of a person cutting a piece of wood"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "silence (conf=0.42)",
+      "audio_speech": " Wash your hands people and sanitize your work surface.",
+      "llm_scene_description": "The scene continues the instructional demonstration, focusing on practical steps related to preparation. A person is shown cutting a piece of wood, likely as part of a process requiring precision and care. The setting remains consistent with the previous scenes, maintaining a rustic and educational atmosphere. Light audio commentary emphasizes cleanliness and preparation, reinforcing the importance of maintaining a sanitary workspace. The calm and methodical tone aligns with the approachable and practical nature of the demonstration."
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:26.667",
+      "end_timecode": "00:00:31.833",
+      "start_seconds": 26.666666666666668,
+      "end_seconds": 31.833333333333332,
+      "duration_seconds": 5.166666666666664,
+      "clip_path": ".runs\\pasta\\clips\\scene_0006.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_006\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_006\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_006\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a blend being poured into a measuring cup",
+        "a video frame of an american flag in a measuring cup",
+        "a video frame of an american flag being added in a measuring cup"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.67)",
+      "audio_speech": " Then you'll need two cups of flour.",
+      "llm_scene_description": "The scene continues the instructional demonstration, focusing on the preparation of ingredients for a recipe. A measuring cup is shown being used, with the process involving pouring or adding items into it. While some visual details appear unclear or symbolic, the context suggests the measuring cup is central to the activity. The audio mentions flour as an ingredient, reinforcing the cooking theme. The calm and practical tone aligns with the educational and approachable nature of the demonstration, maintaining consistency with previous scenes."
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:31.833",
+      "end_timecode": "00:00:36.000",
+      "start_seconds": 31.833333333333332,
+      "end_seconds": 36.0,
+      "duration_seconds": 4.166666666666668,
+      "clip_path": ".runs\\pasta\\clips\\scene_0007.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_007\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_007\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_007\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a piece of wood that has been stripped off",
+        "a video frame of a person kning flour on a wooden table",
+        "a video frame of flour being made on a wooden cutting board"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.72)",
+      "audio_speech": " Dump the flour onto your clean work surface and create a little wh...",
+      "llm_scene_description": "The scene focuses on a cooking demonstration, continuing the instructional and practical tone of previous segments. A person is shown working with flour on a wooden surface, likely kneading or preparing dough as part of a recipe. The rustic setting and methodical actions emphasize a hands-on, educational approach to cooking. The audio provides guidance, reinforcing the step-by-step nature of the process. The atmosphere remains calm and approachable, consistent with the overall theme of the demonstration."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:00:36.000",
+      "end_timecode": "00:00:40.667",
+      "start_seconds": 36.0,
+      "end_seconds": 40.666666666666664,
+      "duration_seconds": 4.666666666666664,
+      "clip_path": ".runs\\pasta\\clips\\scene_0008.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_008\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_008\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_008\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person putting flour onto a wooden table",
+        "a video frame of a person putting flour onto a wooden table",
+        "a video frame of a person kning flour on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.59)",
+      "audio_speech": " well in the center.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the preparation of dough. A person is shown spreading flour onto a wooden table and kneading it, emphasizing hands-on techniques. The calm and methodical actions align with the educational tone of the demonstration, maintaining consistency with previous segments. Light background music adds to the relaxed and approachable atmosphere."
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:00:40.667",
+      "end_timecode": "00:00:45.000",
+      "start_seconds": 40.666666666666664,
+      "end_seconds": 45.0,
+      "duration_seconds": 4.333333333333336,
+      "clip_path": ".runs\\pasta\\clips\\scene_0009.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_009\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_009\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_009\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person preparing flour on a wooden table",
+        "a video frame of a person kning flour on a wooden table",
+        "a video frame of a person kning flour on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.73)",
+      "audio_speech": " Then crack in three eggs.",
+      "llm_scene_description": "The scene depicts a continuation of an instructional cooking demonstration in a rustic setting. A person is shown working with flour on a wooden table, likely kneading it as part of dough preparation for a recipe. The actions are methodical and hands-on, emphasizing practical techniques. Light background music plays, enhancing the calm and approachable atmosphere. The audio suggests the next step involves cracking eggs, indicating progression in the recipe. The scene maintains a consistent educational and relaxed tone, aligning with previous segments."
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:00:45.000",
+      "end_timecode": "00:00:53.833",
+      "start_seconds": 45.0,
+      "end_seconds": 53.833333333333336,
+      "duration_seconds": 8.833333333333336,
+      "clip_path": ".runs\\pasta\\clips\\scene_0010.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_010\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_010\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_010\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of flour with an egg in it",
+        "a video frame of a person ' s hand holding an egg in flour",
+        "a video frame of two eggs in a bowl of flour"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.46)",
+      "audio_speech": " stora nowhere samen practice",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the next step of the recipe. A bowl of flour is shown, and eggs are being added to it, with a person briefly holding one of the eggs before placing it in the flour. The actions are methodical and hands-on, consistent with the practical and educational tone of the demonstration. Light background music contributes to the calm and approachable atmosphere, reinforcing the step-by-step progression of the cooking process."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:00:53.833",
+      "end_timecode": "00:00:56.833",
+      "start_seconds": 53.833333333333336,
+      "end_seconds": 56.833333333333336,
+      "duration_seconds": 3.0,
+      "clip_path": ".runs\\pasta\\clips\\scene_0011.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_011\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_011\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_011\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of flour with eggs in it",
+        "a video frame of a bowl of flour with eggs in it",
+        "a video frame of floured dough with eggs in it"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.71)",
+      "audio_speech": " Add in a tablespoon of olive oil.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the preparation of dough. A bowl of flour with eggs is shown, emphasizing the next step in the recipe. The audio suggests adding a tablespoon of olive oil, indicating progression in the process. The calm and methodical actions align with the educational tone of the demonstration, supported by light background music that enhances the relaxed and approachable atmosphere. The segment maintains consistency with the step-by-step, hands-on approach of the previous scenes."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:00:56.833",
+      "end_timecode": "00:01:00.167",
+      "start_seconds": 56.833333333333336,
+      "end_seconds": 60.166666666666664,
+      "duration_seconds": 3.3333333333333286,
+      "clip_path": ".runs\\pasta\\clips\\scene_0012.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_012\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_012\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_012\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of flour and eggs on a wooden table",
+        "a video frame of a person kning an egg in flour",
+        "a video frame of a person putting flour onto a wooden cutting board"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.56)",
+      "audio_speech": " and a teaspoon of salt.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the preparation of dough. A person is shown working with flour on a wooden surface, cracking eggs into the flour and incorporating them methodically. The actions emphasize practical, hands-on techniques, with the addition of flour and other ingredients like salt subtly suggested. Light background music plays, maintaining a calm and approachable atmosphere. The segment aligns with the step-by-step progression of the recipe, consistent with the educational and relaxed tone of previous scenes."
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:01:00.167",
+      "end_timecode": "00:01:12.667",
+      "start_seconds": 60.166666666666664,
+      "end_seconds": 72.66666666666667,
+      "duration_seconds": 12.500000000000007,
+      "clip_path": ".runs\\pasta\\clips\\scene_0013.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_013\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_013\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_013\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a woman ' s hands mixing flour into a bowl with an egg",
+        "a video frame of a person mixing flour into a bowl of eggs",
+        "a video frame of a person kning flour on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.66)",
+      "audio_speech": " Then using a fork, whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the preparation of dough. A person is shown mixing flour and eggs in a bowl, using deliberate and hands-on techniques to incorporate the ingredients. The process transitions to kneading the flour on a wooden surface, emphasizing the practical steps of the recipe. Light background music plays, contributing to the calm and approachable atmosphere. The demonstration maintains its educational tone, progressing methodically through the recipe in a clear and engaging manner."
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:12.667",
+      "end_timecode": "00:01:21.000",
+      "start_seconds": 72.66666666666667,
+      "end_seconds": 81.0,
+      "duration_seconds": 8.333333333333329,
+      "clip_path": ".runs\\pasta\\clips\\scene_0014.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_014\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_014\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_014\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person kning flour on a wooden table",
+        "a video frame of a person ' s hands mixing flour onto a wooden cutting board",
+        "a video frame of a person ' s hands mixing flour into a bowl"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.72)",
+      "audio_speech": " Continue bringing the flour into the bowl.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the preparation of dough. A person is shown methodically working with flour, transitioning between mixing it on a wooden surface and incorporating it into a bowl. The actions are deliberate and hands-on, emphasizing practical techniques for combining ingredients. Light background music plays, enhancing the calm and approachable atmosphere. The demonstration maintains its educational tone, progressing step-by-step through the recipe in a clear and engaging manner."
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:01:21.000",
+      "end_timecode": "00:01:25.000",
+      "start_seconds": 81.0,
+      "end_seconds": 85.0,
+      "duration_seconds": 4.0,
+      "clip_path": ".runs\\pasta\\clips\\scene_0015.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_015\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_015\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_015\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person making dough",
+        "a video frame of a person preparing food on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "silence (conf=0.43)",
+      "audio_speech": " the center like this until the dough has pulled together enough to be worked by hand.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the preparation of dough. A person is shown working on a wooden table, rolling and shaping the dough as part of the recipe's progression. The actions are deliberate and hands-on, emphasizing practical techniques for food preparation. The calm and approachable atmosphere is maintained with light background sounds, aligning with the educational tone of the demonstration. The segment builds on previous steps, showcasing the methodical process of crafting dough in a clear and engaging manner."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:01:25.000",
+      "end_timecode": "00:01:31.333",
+      "start_seconds": 85.0,
+      "end_seconds": 91.33333333333333,
+      "duration_seconds": 6.333333333333329,
+      "clip_path": ".runs\\pasta\\clips\\scene_0016.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_016\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_016\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_016\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person kning flour on a wooden cutting board",
+        "a video frame of a person kning dough on a table",
+        "a video frame of a person kning dough"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.53)",
+      "audio_speech": " From here you'll want to bring the dough together to form a shaggy ball.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of kneading dough. A person is shown working hands-on with the dough on a wooden surface, methodically bringing it together to form a cohesive ball. The actions are deliberate and practical, emphasizing the tactile techniques involved in food preparation. Light background music plays, contributing to the calm and approachable atmosphere. The demonstration maintains its educational tone, progressing step-by-step through the recipe in a clear and engaging manner."
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:01:31.333",
+      "end_timecode": "00:01:36.833",
+      "start_seconds": 91.33333333333333,
+      "end_seconds": 96.83333333333333,
+      "duration_seconds": 5.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0017.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_017\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_017\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_017\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person ' s hand kning a piece of dough",
+        "a video frame of a person kning dough",
+        "a video frame of floured dough on a cutting board"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.63)",
+      "audio_speech": " If it's too dry like mine was here, then you can just add a touch of water.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of kneading and preparing dough. A person is shown working hands-on, methodically kneading the dough on a floured surface and adjusting its consistency by adding water as needed. The actions are deliberate and practical, emphasizing tactile techniques for achieving the desired texture. The calm and approachable atmosphere is maintained with light background music, aligning with the educational tone of the demonstration. The segment builds on previous steps, showcasing the methodical progression of crafting dough in a clear and engaging manner."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:01:36.833",
+      "end_timecode": "00:01:40.833",
+      "start_seconds": 96.83333333333333,
+      "end_seconds": 100.83333333333333,
+      "duration_seconds": 4.0,
+      "clip_path": ".runs\\pasta\\clips\\scene_0018.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_018\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_018\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_018\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person kning dough",
+        "a video frame of a person kning dough",
+        "a video frame of a person kning a dough"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.68)",
+      "audio_speech": " and if it's too wet then all you have to do is add in a little bit more flak.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of kneading dough. A person is shown working hands-on with the dough on a wooden or floured surface, methodically kneading and adjusting its consistency. The actions are deliberate and practical, emphasizing tactile techniques for achieving the desired texture. The calm and approachable atmosphere is maintained, with light background sounds and instructional commentary providing guidance on how to adjust the dough if it is too wet. The demonstration progresses step-by-step, maintaining its clear and engaging educational tone."
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:01:40.833",
+      "end_timecode": "00:01:43.167",
+      "start_seconds": 100.83333333333333,
+      "end_seconds": 103.16666666666667,
+      "duration_seconds": 2.333333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0019.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_019\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_019\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_019\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person kning a ball of dough",
+        "a video frame of a person kning a ball of dough",
+        "a video frame of a person kning a ball of dough"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.86), television (conf=0.55)",
+      "audio_speech": " Todo",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of kneading dough. A person is shown methodically working with a ball of dough on a flat surface, using deliberate and practical techniques to shape and refine its texture. The calm and approachable atmosphere is supported by light background music, maintaining the educational and engaging tone of the demonstration. The segment builds on previous steps, emphasizing the tactile process of preparing dough in a clear and methodical manner."
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:01:43.167",
+      "end_timecode": "00:01:49.667",
+      "start_seconds": 103.16666666666667,
+      "end_seconds": 109.66666666666667,
+      "duration_seconds": 6.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0020.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_020\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_020\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_020\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person kning dough",
+        "a video frame of a person kning dough on a wooden table",
+        "a video frame of a person kning dough on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " dough has completely pulled together, you'll need to knead the dough for about 10 minutes.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of kneading dough. A person is shown methodically kneading dough on a wooden table, emphasizing hands-on techniques to achieve the proper texture. The actions are deliberate and practical, aligning with the educational tone of the demonstration. Light background music plays, and instructional commentary provides guidance on the kneading process, reinforcing the calm and approachable atmosphere. This segment builds on previous steps, maintaining a clear and engaging progression in the dough preparation process."
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:01:49.667",
+      "end_timecode": "00:01:54.667",
+      "start_seconds": 109.66666666666667,
+      "end_seconds": 114.66666666666667,
+      "duration_seconds": 5.0,
+      "clip_path": ".runs\\pasta\\clips\\scene_0021.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_021\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_021\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_021\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person cutting a piece of food",
+        "a video frame of a person chopping a piece of food",
+        "a video frame of someone cutting a piece of wood"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.62)",
+      "audio_speech": "",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting. A person is shown preparing ingredients, focusing on cutting or chopping a piece of food on a flat surface. The actions are deliberate and precise, aligning with the educational tone of the demonstration. Light background music plays, maintaining the calm and approachable atmosphere established in previous segments. The focus remains on practical techniques, contributing to the step-by-step progression of the cooking process."
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:01:54.667",
+      "end_timecode": "00:02:04.000",
+      "start_seconds": 114.66666666666667,
+      "end_seconds": 124.0,
+      "duration_seconds": 9.333333333333329,
+      "clip_path": ".runs\\pasta\\clips\\scene_0022.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_022\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_022\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_022\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person kning a ball of dough",
+        "a video frame of a person kning a ball of dough"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.80), silence (conf=0.40)",
+      "audio_speech": " from looking shaggy and rough to smooth and taut and you'll know it's done when you push a finger into the dough and the dough springs back.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of kneading dough. A person is shown methodically working with the dough on a wooden table, transitioning from rolling to kneading techniques. The actions emphasize achieving the correct texture, with commentary describing how to identify when the dough is ready. Light background music complements the calm and educational tone, maintaining the approachable and practical atmosphere of the demonstration. This segment builds on previous steps, reinforcing the tactile and methodical nature of dough preparation."
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:02:04.000",
+      "end_timecode": "00:02:11.833",
+      "start_seconds": 124.0,
+      "end_seconds": 131.83333333333334,
+      "duration_seconds": 7.833333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0023.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_023\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_023\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_023\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough dough on a wooden cutting board",
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough dough on a table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.73)",
+      "audio_speech": " Wrap up your dough in cling film and let it rest for a minimum of 30 minutes.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of rolling dough on a wooden surface. A person is shown methodically using a rolling pin to flatten the dough, emphasizing practical techniques for even preparation. Light background music plays, and instructional commentary provides guidance on the next step, suggesting wrapping the dough in cling film and allowing it to rest for 30 minutes. The actions are deliberate and align with the calm and educational tone of the demonstration, maintaining a step-by-step progression in the dough preparation process."
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:02:11.833",
+      "end_timecode": "00:02:19.333",
+      "start_seconds": 131.83333333333334,
+      "end_seconds": 139.33333333333334,
+      "duration_seconds": 7.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0024.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_024\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_024\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_024\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a black background with a white border",
+        "a video frame of a ball of dough on a wooden cutting board",
+        "a video frame of a person cutting an apple"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.71)",
+      "audio_speech": " Once the dough has rested, cut it in half so that you have more manageable portions to work with.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting. The focus shifts from dough preparation to ingredient preparation, maintaining the step-by-step progression of the recipe. The segment begins with a brief view of the dough on a wooden cutting board, transitioning to a person cutting an apple with deliberate and precise movements. Light background music complements the calm and educational tone, while instructional commentary provides guidance on dividing the dough into smaller portions for easier handling. The actions and narration emphasize practical techniques, aligning with the approachable and methodical style of the demonstration."
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:02:19.333",
+      "end_timecode": "00:02:24.167",
+      "start_seconds": 139.33333333333334,
+      "end_seconds": 144.16666666666666,
+      "duration_seconds": 4.833333333333314,
+      "clip_path": ".runs\\pasta\\clips\\scene_0025.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_025\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_025\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_025\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person cutting a piece of wood",
+        "a video frame of a person ' s hand on a table",
+        "a video frame of a person walking on a table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.67)",
+      "audio_speech": " Lightly flour your work surface and start rolling out your pasta dough.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the preparation of pasta dough. A person is shown working on a wooden table, engaging in tasks such as cutting and handling the dough. The actions appear deliberate and methodical, aligning with the calm and educational tone of the demonstration. Light background music plays, while instructional commentary provides guidance on flouring the surface and rolling out the dough. The scene maintains the step-by-step progression of the recipe, emphasizing practical techniques and a hands-on approach to cooking."
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:02:24.167",
+      "end_timecode": "00:02:28.500",
+      "start_seconds": 144.16666666666666,
+      "end_seconds": 148.5,
+      "duration_seconds": 4.333333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0026.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_026\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_026\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_026\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.48)",
+      "audio_speech": "",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of rolling dough on a wooden table. A person is shown methodically using a rolling pin to flatten the dough, maintaining a calm and deliberate pace. Light background music plays faintly, complementing the educational and step-by-step tone of the demonstration. The actions emphasize practical techniques for achieving an even dough consistency, consistent with the hands-on and approachable style of the ongoing recipe preparation."
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:02:28.500",
+      "end_timecode": "00:02:31.833",
+      "start_seconds": 148.5,
+      "end_seconds": 151.83333333333334,
+      "duration_seconds": 3.333333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0027.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_027\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_027\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_027\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person kning dough",
+        "a video frame of a person kning dough",
+        "a video frame of a person kning dough"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " From here we're going to eliminate the dough three times.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of kneading dough. A person is shown methodically working the dough on a wooden surface, maintaining a calm and deliberate pace. Light background music and instructional commentary guide the viewer through the process, emphasizing the importance of kneading the dough multiple times for optimal texture. The actions align with the hands-on, step-by-step approach of the demonstration, maintaining the practical and approachable tone of the ongoing recipe preparation."
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:02:31.833",
+      "end_timecode": "00:02:38.167",
+      "start_seconds": 151.83333333333334,
+      "end_seconds": 158.16666666666666,
+      "duration_seconds": 6.333333333333314,
+      "clip_path": ".runs\\pasta\\clips\\scene_0028.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_028\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_028\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_028\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person kning dough on a table",
+        "a video frame of a person kning dough on a wooden table",
+        "a video frame of a person kning dough on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.45)",
+      "audio_speech": " all that means is we're going to fold it in thirds like this, then roll it out.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of kneading dough on a wooden table. A person is shown methodically working the dough, maintaining a calm and deliberate pace. Light background music plays faintly, while instructional commentary provides guidance on folding and rolling the dough. The actions emphasize practical techniques and align with the hands-on, step-by-step approach of the recipe preparation, maintaining the educational and approachable tone of the demonstration."
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:02:38.167",
+      "end_timecode": "00:02:42.333",
+      "start_seconds": 158.16666666666666,
+      "end_seconds": 162.33333333333334,
+      "duration_seconds": 4.166666666666686,
+      "clip_path": ".runs\\pasta\\clips\\scene_0029.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_029\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_029\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_029\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person ' s hand cutting a piece of bread",
+        "a video frame of a person ' s hand rolling dough",
+        "a video frame of a person rolling dough dough on a table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.63)",
+      "audio_speech": " Fold it in thirds again, then roll it out, and then repeat this process.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of preparing dough. A person is shown using their hands to roll and fold the dough on a wooden surface, demonstrating deliberate and methodical techniques. Light background music plays faintly, while instructional commentary provides guidance on folding and rolling the dough repeatedly to achieve the desired consistency. The actions maintain the calm, hands-on, and educational tone of the ongoing recipe preparation, emphasizing practical and approachable methods."
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:02:42.333",
+      "end_timecode": "00:02:51.500",
+      "start_seconds": 162.33333333333334,
+      "end_seconds": 171.5,
+      "duration_seconds": 9.166666666666657,
+      "clip_path": ".runs\\pasta\\clips\\scene_0030.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_030\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_030\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_030\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person ' s hands rolling dough dough on a wooden table",
+        "a video frame of a person rolling dough dough",
+        "a video frame of a person kning dough"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "heart sounds, heartbeat (conf=0.37), music (conf=0.45), throbbing (conf=0.36)",
+      "audio_speech": " one more time. From there we want to roll our dough into a large",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of working with dough on a wooden surface. A person is shown methodically rolling and kneading the dough with their hands, demonstrating deliberate and practical techniques. Light background music plays faintly, accompanied by instructional commentary that guides the viewer through the steps of preparing the dough. The calm and hands-on approach maintains the educational and approachable tone of the demonstration, emphasizing the importance of proper technique for achieving the desired texture."
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:02:51.500",
+      "end_timecode": "00:02:53.833",
+      "start_seconds": 171.5,
+      "end_seconds": 173.83333333333334,
+      "duration_seconds": 2.333333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0031.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_031\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_031\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_031\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough",
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " rectangle. If you find your",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration set in a rustic environment, focusing on the process of rolling dough on a wooden table. A person is shown methodically working the dough with their hands, demonstrating deliberate and practical techniques. The actions emphasize a calm, hands-on approach, consistent with the educational and approachable tone of the ongoing recipe preparation. Light background music and instructional commentary likely accompany the demonstration, guiding viewers through the steps to achieve the desired results."
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:02:53.833",
+      "end_timecode": "00:02:57.333",
+      "start_seconds": 173.83333333333334,
+      "end_seconds": 177.33333333333334,
+      "duration_seconds": 3.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0032.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_032\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_032\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_032\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a person rolling dough on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "silence (conf=0.39)",
+      "audio_speech": " dough is shrinking back leave it for a few minutes to let the gluten relax",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of rolling dough on a wooden table. A person is shown methodically working the dough with their hands, demonstrating deliberate and practical techniques to achieve the desired texture. The calm and hands-on approach maintains the educational and approachable tone of the demonstration, with light background music and commentary providing guidance on allowing the dough to rest briefly to relax the gluten before proceeding further. The actions emphasize patience and proper technique in the preparation process."
+    },
+    {
+      "scene_index": 33,
+      "start_timecode": "00:02:57.333",
+      "end_timecode": "00:03:00.500",
+      "start_seconds": 177.33333333333334,
+      "end_seconds": 180.5,
+      "duration_seconds": 3.166666666666657,
+      "clip_path": ".runs\\pasta\\clips\\scene_0033.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_033\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_033\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_033\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough",
+        "a video frame of a person rolling dough on a wooden board"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Then go back in once it's completely rolled out",
+      "llm_scene_description": "The scene is part of an ongoing instructional cooking demonstration set in a rustic environment. A person is shown methodically rolling dough on a wooden surface, using deliberate and practical techniques to prepare it. The calm, hands-on approach reflects an educational tone, likely accompanied by light background music and instructional commentary. The demonstration emphasizes proper technique and patience in achieving the desired dough consistency, maintaining a relaxed and approachable atmosphere."
+    },
+    {
+      "scene_index": 34,
+      "start_timecode": "00:03:00.500",
+      "end_timecode": "00:03:05.167",
+      "start_seconds": 180.5,
+      "end_seconds": 185.16666666666666,
+      "duration_seconds": 4.666666666666657,
+      "clip_path": ".runs\\pasta\\clips\\scene_0034.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_034\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_034\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_034\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person cutting a piece of cheese",
+        "a video frame of a person rolling out a piece of pizza dough",
+        "a video frame of a person cutting a piece of cheese"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " we want it to be thin enough to see the color of our fingers through it. From here you can cut the",
+      "llm_scene_description": "The scene is part of an ongoing instructional cooking demonstration set in a rustic environment. A person is shown preparing ingredients for a recipe, alternating between rolling out pizza dough to achieve the desired thinness and cutting cheese into pieces. The actions are deliberate and methodical, reflecting a calm, hands-on approach consistent with the educational tone of the demonstration. Light background music and instructional commentary likely guide viewers through the process, emphasizing proper technique and attention to detail in the preparation steps. The atmosphere remains relaxed and approachable, encouraging viewers to follow along."
+    },
+    {
+      "scene_index": 35,
+      "start_timecode": "00:03:05.167",
+      "end_timecode": "00:03:11.000",
+      "start_seconds": 185.16666666666666,
+      "end_seconds": 191.0,
+      "duration_seconds": 5.833333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0035.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_035\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_035\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_035\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a person rolling dough on a table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " the pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of rolling dough on a wooden table. A person is shown methodically working the dough with their hands, demonstrating deliberate techniques to shape it for pasta preparation. The calm and practical approach maintains an educational tone, with commentary providing guidance on shaping the dough into long tagliatelle-style pasta. The actions emphasize patience, proper technique, and attention to detail, creating a relaxed and approachable atmosphere for viewers to follow along."
+    },
+    {
+      "scene_index": 36,
+      "start_timecode": "00:03:11.000",
+      "end_timecode": "00:03:24.000",
+      "start_seconds": 191.0,
+      "end_seconds": 204.0,
+      "duration_seconds": 13.0,
+      "clip_path": ".runs\\pasta\\clips\\scene_0036.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_036\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_036\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_036\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.72), silence (conf=0.41)",
+      "audio_speech": " to make this style of pasta that I'm making just lightly flour the surface of the dough and fold it up into a rectangle.",
+      "llm_scene_description": "The scene is part of an ongoing instructional cooking demonstration set in a rustic environment. A person is shown rolling dough on a wooden table, using deliberate and methodical techniques to prepare it for pasta-making. The process emphasizes lightly flouring the surface and folding the dough into a rectangle, reflecting a calm and educational tone. Light background music and instructional commentary likely guide viewers through the steps, encouraging proper technique and patience. The atmosphere remains relaxed and approachable, consistent with the overall instructional style of the demonstration."
+    },
+    {
+      "scene_index": 37,
+      "start_timecode": "00:03:24.000",
+      "end_timecode": "00:03:31.667",
+      "start_seconds": 204.0,
+      "end_seconds": 211.66666666666666,
+      "duration_seconds": 7.666666666666657,
+      "clip_path": ".runs\\pasta\\clips\\scene_0037.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_037\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_037\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_037\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.71)",
+      "audio_speech": " Then gently slice it into strips.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of rolling dough on a wooden table. A person is shown methodically working the dough, demonstrating careful and deliberate techniques to prepare it for the next steps in the recipe. Light background music plays, and instructional commentary suggests slicing the dough into strips, indicating preparation for pasta or a similar dish. The atmosphere remains calm, educational, and approachable, emphasizing proper technique and encouraging viewers to follow along with the process."
+    },
+    {
+      "scene_index": 38,
+      "start_timecode": "00:03:31.667",
+      "end_timecode": "00:03:42.000",
+      "start_seconds": 211.66666666666666,
+      "end_seconds": 222.0,
+      "duration_seconds": 10.333333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0038.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_038\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_038\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_038\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person cutting pasta on a wooden cutting board",
+        "a video frame of a person choping a pile of pasta",
+        "a video frame of a person peeling a piece of food"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.75)",
+      "audio_speech": " Once you've unraveled your pasta, toss it in a dusting of flour to stop it from sticking to itself. And then from here you can portion it.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the next steps of pasta preparation. A person is shown cutting and portioning pasta on a wooden cutting board, demonstrating careful and deliberate techniques. The commentary provides guidance on handling the pasta, including tossing it in flour to prevent sticking and preparing it for portioning. Light background music complements the calm and educational tone, maintaining a relaxed and approachable atmosphere consistent with the previous scenes. The focus remains on clear, methodical instruction to guide viewers through the process."
+    },
+    {
+      "scene_index": 39,
+      "start_timecode": "00:03:42.000",
+      "end_timecode": "00:03:47.000",
+      "start_seconds": 222.0,
+      "end_seconds": 227.0,
+      "duration_seconds": 5.0,
+      "clip_path": ".runs\\pasta\\clips\\scene_0039.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_039\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_039\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_039\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of pasta on a wooden cutting board",
+        "a video frame of pasta on a wooden cutting board",
+        "a video frame of a person cutting pasta on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.73)",
+      "audio_speech": " Wrap it and freeze it or refrigerate it.",
+      "llm_scene_description": "The scene is part of an ongoing instructional cooking demonstration set in a rustic environment. A person is shown cutting freshly prepared pasta on a wooden cutting board, continuing the methodical and deliberate techniques established in previous steps. The process emphasizes precision and care, maintaining the calm and educational tone of the demonstration. Light background music plays, and commentary provides guidance on storing the pasta, suggesting options like refrigeration or freezing to preserve its quality. The atmosphere remains relaxed and approachable, encouraging viewers to follow along and learn proper techniques for pasta preparation."
+    },
+    {
+      "scene_index": 40,
+      "start_timecode": "00:03:47.000",
+      "end_timecode": "00:03:52.333",
+      "start_seconds": 227.0,
+      "end_seconds": 232.33333333333334,
+      "duration_seconds": 5.333333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0040.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_040\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_040\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_040\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of pasta being made on a cutting board",
+        "a video frame of a person cutting pasta on a wooden cutting board",
+        "a video frame of pasta being made on a wooden cutting board"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.43)",
+      "audio_speech": "",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic setting, focusing on the process of preparing pasta on a wooden cutting board. A person is shown methodically cutting and shaping the pasta, demonstrating careful techniques consistent with previous steps in the recipe. The calm and educational tone is maintained, with light background music enhancing the approachable atmosphere. The focus remains on clear, deliberate actions to guide viewers through the pasta-making process."
+    },
+    {
+      "scene_index": 41,
+      "start_timecode": "00:03:52.333",
+      "end_timecode": "00:03:56.833",
+      "start_seconds": 232.33333333333334,
+      "end_seconds": 236.83333333333334,
+      "duration_seconds": 4.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0041.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_041\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_041\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_041\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of pasta on a cutting board",
+        "a video frame of pasta on a cutting board",
+        "a video frame of pasta on a cutting board"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.62)",
+      "audio_speech": " And if you're hungry like me, you can cook it straight away. Just remember that-",
+      "llm_scene_description": "The scene is part of an ongoing instructional cooking demonstration set in a rustic environment, focusing on pasta preparation. A wooden cutting board is shown with freshly made pasta, emphasizing the next steps in the process. The demonstration maintains a calm and methodical tone, with light background music creating a relaxed atmosphere. Commentary suggests cooking the pasta immediately if desired, continuing the approachable and educational style of the tutorial. The focus remains on guiding viewers through the process with clear and deliberate instructions."
+    },
+    {
+      "scene_index": 42,
+      "start_timecode": "00:03:56.833",
+      "end_timecode": "00:04:01.333",
+      "start_seconds": 236.83333333333334,
+      "end_seconds": 241.33333333333334,
+      "duration_seconds": 4.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0042.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_042\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_042\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_042\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a pot on a stove",
+        "a video frame of a person ' s hand stirring something into a pot on a stove",
+        "a video frame of a person pouring liquid into a pot"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "silence (conf=0.48)",
+      "audio_speech": " fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic kitchen setting, transitioning from pasta preparation to cooking. A pot is shown on the stove, and the person demonstrates adding liquid and stirring ingredients into the pot, likely preparing the next step in the recipe. The calm and educational tone persists, with light background music and commentary providing guidance on cooking freshly made pasta. The atmosphere remains relaxed and approachable, encouraging viewers to follow along with the step-by-step process."
+    },
+    {
+      "scene_index": 43,
+      "start_timecode": "00:04:01.333",
+      "end_timecode": "00:04:04.500",
+      "start_seconds": 241.33333333333334,
+      "end_seconds": 244.5,
+      "duration_seconds": 3.166666666666657,
+      "clip_path": ".runs\\pasta\\clips\\scene_0043.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_043\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_043\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_043\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a mixing bowl with a red handle",
+        "a video frame of a person stirring food into a pot",
+        "a video frame of a person stirring a bowl of food"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.44)",
+      "audio_speech": " Let's do this together.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic kitchen setting. The focus shifts to mixing and stirring ingredients, with a person shown using a mixing bowl and stirring food in a pot. The actions suggest the next steps in preparing a dish, likely incorporating previously prepared elements such as pasta. The calm and educational tone is maintained, with light background music and encouraging commentary fostering an approachable and collaborative atmosphere. The demonstration emphasizes clear, deliberate actions to guide viewers through the cooking process."
+    },
+    {
+      "scene_index": 44,
+      "start_timecode": "00:04:04.500",
+      "end_timecode": "00:04:08.333",
+      "start_seconds": 244.5,
+      "end_seconds": 248.33333333333334,
+      "duration_seconds": 3.833333333333343,
+      "clip_path": ".runs\\pasta\\clips\\scene_0044.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_044\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_044\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_044\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of pasta being stirred with a wooden spoon",
+        "a video frame of pasta being poured into a pot of tomato sauce",
+        "a video frame of pasta being cooked in a pan"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.35)",
+      "audio_speech": " I'm serving mine with my simple tomato sauce which is super easy to make.",
+      "llm_scene_description": "The scene is part of an ongoing instructional cooking demonstration in a rustic kitchen setting, focusing on the preparation and cooking of pasta with tomato sauce. The presenter demonstrates stirring pasta in a bowl, transferring it into a pot of tomato sauce, and cooking it in a pan, showcasing the steps to combine and heat the dish. The atmosphere remains calm and approachable, with light background music and commentary providing simple and encouraging guidance. The focus is on clear, methodical actions to help viewers follow along with the recipe."
+    },
+    {
+      "scene_index": 45,
+      "start_timecode": "00:04:08.333",
+      "end_timecode": "00:04:11.833",
+      "start_seconds": 248.33333333333334,
+      "end_seconds": 251.83333333333334,
+      "duration_seconds": 3.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0045.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_045\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_045\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_045\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a jar of tomato sauce on a cutting board",
+        "a video frame of a person squeezing a drink into a jar",
+        "a video frame of a jar of tomato soup on a wooden cutting board"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.49)",
+      "audio_speech": " I'll leave the link to that on the screen and also in the description box below.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic kitchen setting. The focus shifts to preparing a jar of tomato sauce or soup, with a person shown adding liquid to the jar on a wooden cutting board. The actions suggest the preparation or adjustment of ingredients for the next step in the recipe. The calm and educational tone persists, accompanied by light background music and commentary, maintaining a relaxed and approachable atmosphere. The demonstration emphasizes clear and deliberate actions to guide viewers through the cooking process."
+    },
+    {
+      "scene_index": 46,
+      "start_timecode": "00:04:11.833",
+      "end_timecode": "00:04:19.000",
+      "start_seconds": 251.83333333333334,
+      "end_seconds": 259.0,
+      "duration_seconds": 7.166666666666657,
+      "clip_path": ".runs\\pasta\\clips\\scene_0046.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_046\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_046\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_046\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of pasta being cooked in a pan on a stove",
+        "a video frame of a pan full of pasta",
+        "a video frame of a pan of pasta cooking on a stove"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.40)",
+      "audio_speech": " t",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic kitchen setting, focusing on cooking pasta in a pan on the stove. The presenter appears to be demonstrating the process of heating and preparing the pasta, likely as part of a larger recipe. The atmosphere remains calm and approachable, with light background music enhancing the educational tone. The focus is on clear and deliberate actions to guide viewers through this step of the cooking process."
+    },
+    {
+      "scene_index": 47,
+      "start_timecode": "00:04:19.000",
+      "end_timecode": "00:04:22.500",
+      "start_seconds": 259.0,
+      "end_seconds": 262.5,
+      "duration_seconds": 3.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0047.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_047\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_047\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_047\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a plate of food being eaten",
+        "a video frame of a person eating a bowl of food",
+        "a video frame of a bowl of food with a fork in it"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.44), music (conf=0.42)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "The scene continues the instructional cooking demonstration in the rustic kitchen setting, transitioning to the final step of enjoying the prepared dish. A person is shown eating from a bowl of pasta, likely the completed recipe from previous scenes. The atmosphere remains calm and inviting, with light background music underscoring the moment. The focus shifts from cooking to savoring the meal, emphasizing the satisfaction of the process and the enjoyment of the finished dish."
+    },
+    {
+      "scene_index": 48,
+      "start_timecode": "00:04:22.500",
+      "end_timecode": "00:04:26.333",
+      "start_seconds": 262.5,
+      "end_seconds": 266.3333333333333,
+      "duration_seconds": 3.8333333333333144,
+      "clip_path": ".runs\\pasta\\clips\\scene_0048.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_048\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_048\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_048\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of pasta with tomato sauce",
+        "a video frame of a bowl of pasta with tomato sauce",
+        "a video frame of a bowl of pasta with tomato sauce"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "silence (conf=0.44)",
+      "audio_speech": " Then I just added in some arugula that we needed to use up and a little bit of",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic kitchen setting, focusing on a bowl of pasta with tomato sauce as the completed dish. The presenter describes adding arugula to the recipe, suggesting a final touch or variation to the meal. The atmosphere remains calm and educational, with light background music and commentary maintaining a relaxed and approachable tone. The focus is on showcasing the finished dish and providing additional tips for enhancing the recipe."
+    },
+    {
+      "scene_index": 49,
+      "start_timecode": "00:04:26.333",
+      "end_timecode": "00:04:28.667",
+      "start_seconds": 266.3333333333333,
+      "end_seconds": 268.6666666666667,
+      "duration_seconds": 2.3333333333333712,
+      "clip_path": ".runs\\pasta\\clips\\scene_0049.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_049\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_049\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_049\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of pasta and a piece of cheese",
+        "a video frame of a bowl of pasta and a piece of cheese",
+        "a video frame of a person cutting a piece of bread"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " of old Parmesan that was just chilling in the fridge.",
+      "llm_scene_description": "The scene continues the instructional cooking demonstration in a rustic kitchen setting, focusing on the preparation and presentation of food. A bowl of pasta with cheese is shown, likely highlighting the completed dish or its components. The presenter transitions to cutting a piece of bread, suggesting an accompaniment or additional step in the meal preparation. The atmosphere remains calm and educational, maintaining the approachable tone of the demonstration. The focus is on showcasing the food and guiding viewers through the process in a relaxed and inviting manner."
+    },
+    {
+      "scene_index": 50,
+      "start_timecode": "00:04:28.667",
+      "end_timecode": "00:04:32.167",
+      "start_seconds": 268.6666666666667,
+      "end_seconds": 272.1666666666667,
+      "duration_seconds": 3.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0050.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_050\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_050\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_050\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a person eating pasta",
+        "a video frame of a bowl of food on a wooden table",
+        "a video frame of a bowl of food on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.45)",
+      "audio_speech": " and then topped it off with some olive oil. There you go.",
+      "llm_scene_description": "The scene takes place in a rustic kitchen setting, continuing an instructional cooking demonstration that transitions to enjoying the finished dish. A bowl of pasta is shown on a wooden table, emphasizing the completed recipe. The presenter appears to describe adding olive oil as a final touch, reinforcing the idea of savoring the meal. Light background music complements the calm and inviting atmosphere, maintaining the focus on the satisfaction of both preparing and enjoying the food."
+    },
+    {
+      "scene_index": 51,
+      "start_timecode": "00:04:32.167",
+      "end_timecode": "00:04:36.667",
+      "start_seconds": 272.1666666666667,
+      "end_seconds": 276.6666666666667,
+      "duration_seconds": 4.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0051.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_051\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_051\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_051\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of pasta with parise and cheese",
+        "a video frame of a bowl of pasta",
+        "a video frame of a white bowl filled with pasta and vegetables"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "door (conf=0.61)",
+      "audio_speech": " No need to panic if there isn't pasta at the store. It's super easy to make your own.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic kitchen setting, focusing on a bowl of pasta as the completed dish. The presenter highlights the simplicity of making pasta at home, possibly as a solution if store-bought options are unavailable. The bowl of pasta, garnished with vegetables and cheese, is prominently displayed, reinforcing the idea of a wholesome, homemade meal. The atmosphere remains calm and educational, with light background commentary maintaining the approachable tone of the demonstration. The focus is on inspiring viewers to create their own pasta dishes with ease and enjoyment."
+    },
+    {
+      "scene_index": 52,
+      "start_timecode": "00:04:36.667",
+      "end_timecode": "00:04:42.667",
+      "start_seconds": 276.6666666666667,
+      "end_seconds": 282.6666666666667,
+      "duration_seconds": 6.0,
+      "clip_path": ".runs\\pasta\\clips\\scene_0052.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_052\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_052\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_052\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of food on a table",
+        "a video frame of a bowl of food on a wooden table",
+        "a video frame of a bowl of food on a wooden table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "silence (conf=0.55)",
+      "audio_speech": " it may be a little bit more time consuming, but let's be real, we all have more time on our hands than normal right now, so really.",
+      "llm_scene_description": "The scene continues an instructional cooking demonstration in a rustic kitchen setting, focusing on a bowl of food placed on a wooden table. The atmosphere remains calm and educational, with the presenter likely discussing the process or benefits of preparing meals at home. The bowl of food appears to be the completed dish, emphasizing the satisfaction of creating and enjoying homemade meals. The setting and tone maintain a relaxed and approachable vibe, encouraging viewers to engage with the cooking process."
+    },
+    {
+      "scene_index": 53,
+      "start_timecode": "00:04:42.667",
+      "end_timecode": "00:04:50.167",
+      "start_seconds": 282.6666666666667,
+      "end_seconds": 290.1666666666667,
+      "duration_seconds": 7.5,
+      "clip_path": ".runs\\pasta\\clips\\scene_0053.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_053\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_053\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_053\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of food",
+        "a video frame of a bowl of food",
+        "a video frame of a bowl of pasta"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "silence (conf=0.63)",
+      "audio_speech": " No excuse. I'll probably be posting pasta videos every day this week So if you like this video and haven't already consider subscribing",
+      "llm_scene_description": "The scene takes place in a rustic kitchen setting, continuing the focus on a bowl of pasta as the centerpiece. The bowl, likely the completed dish from a cooking demonstration, is prominently displayed on a wooden table. The presenter appears to discuss their enthusiasm for sharing pasta recipes, encouraging viewers to engage with the content and consider subscribing for more. The atmosphere remains calm and inviting, emphasizing the satisfaction of creating and enjoying homemade meals. The scene maintains a relaxed and approachable tone, inspiring viewers to explore simple and enjoyable cooking at home."
+    },
+    {
+      "scene_index": 54,
+      "start_timecode": "00:04:50.167",
+      "end_timecode": "00:05:03.833",
+      "start_seconds": 290.1666666666667,
+      "end_seconds": 303.8333333333333,
+      "duration_seconds": 13.666666666666629,
+      "clip_path": ".runs\\pasta\\clips\\scene_0054.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_054\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_054\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_054\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a bowl of food on a table",
+        "a video frame of a bowl of food on a table",
+        "a video frame of a bowl of food on a table"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.79), silence (conf=0.84)",
+      "audio_speech": " and connect with me on Instagram at chefstudio underscore if you want to reach out to me there. Also, if you have any questions or want to hear my thoughts on literally anything at all, leave them in the comment section below.",
+      "llm_scene_description": "The scene continues in a rustic kitchen setting, focusing on a bowl of food placed on a table, likely the completed dish from an instructional cooking demonstration. The atmosphere remains calm and inviting, with light background music and commentary reinforcing the approachable tone. The presenter appears to encourage engagement with the content, offering to connect with viewers and answer questions. The bowl of food serves as the centerpiece, emphasizing the satisfaction of creating and enjoying homemade meals. The scene maintains a relaxed and educational vibe, inspiring viewers to explore simple and enjoyable cooking at home."
+    },
+    {
+      "scene_index": 55,
+      "start_timecode": "00:05:03.833",
+      "end_timecode": "00:05:21.833",
+      "start_seconds": 303.8333333333333,
+      "end_seconds": 321.8333333333333,
+      "duration_seconds": 18.0,
+      "clip_path": ".runs\\pasta\\clips\\scene_0055.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_055\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_055\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_055\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a black background with a white border",
+        "a video frame of a person stirring food into a pot",
+        "a video frame of a person stirring food into a pot"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "audio_speech": " because I'm saving a little bit of pasta dough from every video and I'm gonna do like a little chef studio chat slash answer questions slash talk nonsense while I'm learning to shape different kinds of pasta at the end of the week so yeah leave me your questions if you have any until then yeah keep saving",
+      "llm_scene_description": "The scene takes place in a rustic kitchen setting, continuing the instructional cooking demonstration. The presenter is seen stirring food in a pot, likely preparing pasta as part of the ongoing process. The atmosphere remains calm and educational, with light commentary suggesting a focus on experimenting with pasta shapes and engaging with viewers through questions and discussions. The setting emphasizes a hands-on approach to cooking, fostering a relaxed and approachable vibe that encourages creativity and enjoyment in the kitchen."
+    },
+    {
+      "scene_index": 56,
+      "start_timecode": "00:05:21.833",
+      "end_timecode": "00:05:28.000",
+      "start_seconds": 321.8333333333333,
+      "end_seconds": 328.0,
+      "duration_seconds": 6.166666666666686,
+      "clip_path": ".runs\\pasta\\clips\\scene_0056.mp4",
+      "frame_paths": [
+        "././.runs/pasta/frames\\scene_056\\frame_00.jpg",
+        "././.runs/pasta/frames\\scene_056\\frame_01.jpg",
+        "././.runs/pasta/frames\\scene_056\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a black background with a white border",
+        "a video frame of a black background with the text, ` ` '",
+        "a video frame of a black background with the text, ` ` '"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " kids at we'll see you tomorrow.",
+      "llm_scene_description": "The scene transitions from the rustic kitchen setting to a black background with minimal visual elements, featuring a white border and occasional text. The audio includes faint music and indistinct voices, suggesting the conclusion of a previous segment. This likely serves as an outro or transitional moment, signaling the end of the cooking demonstration and encouraging viewers to return for future content. The tone remains calm and inviting, consistent with the previous scenes' emphasis on engagement and enjoyment."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 10370,
+      "chunk_len": 5,
+      "narrative": "The video begins with a cooking demonstration focused on making homemade pasta dough. On a cutting board, pasta dough is being prepared, accompanied by light background music and instructional narration. The presenter mentions they are sharing a simple, accessible recipe for homemade dough, emphasizing its practicality.\n\nThe demonstration then shows a person kneading the dough on a wooden surface, highlighting the hands-on preparation process. The narration notes that the recipe is not overly fancy or luxurious but remains easy to make, using basic ingredients likely already available at home. As the process continues, the video briefly shifts to images of a bowl with food, possibly partially prepared pasta, and a person cutting a piece of pasta, signaling the progression toward shaping or serving.\n\nThe focus moves to a bowl of prepared pasta with a fork, suggesting the dish is nearing completion. The commentary reassures viewers about the simplicity of making pasta at home, even if grocery store shelves are empty. The demonstration briefly transitions to a person washing their hands at a bathroom sink, underscoring cleanliness and preparation before continuing. The narrator emphasizes the importance of washing hands and sanitizing the workspace.\n\nReturning to the rustic setting, the presenter introduces flour as the main ingredient for creating pasta dough. A measuring cup is shown, and the process of adding two cups of flour begins. The flour is poured onto a clean wooden surface, and the presenter directs viewers to create a well at its center as preparation continues. The next step involves cracking three eggs into the well, shown methodically in the video, followed by the addition of a tablespoon of olive oil and a teaspoon of salt. Light background music complements the calm and instructional tone, maintaining the simple, hands-on approach to pasta-making.\nThe instructional cooking demonstration continues in the rustic kitchen setting, focusing on the careful preparation of pasta dough. The presenter directs attention to a bowl of flour and eggs, where a person uses a fork to whisk the eggs and methodically incorporates the surrounding flour into the mixture, following a deliberate technique. The process transitions onto a wooden surface, where the person works the dough by hand, gradually bringing it together. The presenter explains the next step, highlighting how to shape the dough into a cohesive ball by pulling the ingredients from the center outward until it becomes workable by touch.\n\nAs the demonstration progresses, the person continues kneading the dough, adjusting its texture carefully. Commentary underscores the importance of balance, noting that a dry mixture can be remedied with a splash of water while a wet mixture can be corrected with additional flour. On the floured surface, the hands-on technique emphasizes achieving the correct consistency, guided step-by-step with practical instructions. Once the dough is fully combined and has transformed into a smoother texture, the presenter advises kneading it for roughly ten minutes to perfect its elasticity.\n\nAt this stage, the person transitions briefly to preparing other ingredients on the work surface with precise cutting motions, though the focus remains primarily on the pasta dough. Returning to the task at hand, the presenter describes how to identify when the dough is properly kneaded, illustrating this by pressing a finger into it to observe if it springs back, signaling readiness. The scene shifts to rolling the dough with a pin, flattening it evenly across the wooden table. The segment concludes with the presenter recommending wrapping the dough in cling film and allowing it to rest for at least thirty minutes before the next step in the pasta-making process.\nThe cooking demonstration continues in the rustic kitchen, focusing on the pasta-making process as the rested dough is prepared for rolling. The segment begins with a view of the dough resting on a wooden cutting board. Instructional guidance explains the need to divide the dough into halves for more manageable portions, while the presenter moves the dough to a wooden work surface. With the scene set, light flour is sprinkled over the surface before the rolling begins. Using a rolling pin, the dough is methodically flattened, the deliberate motions emphasizing the importance of achieving an even texture for the next steps of the recipe.\n\nThe demonstration progresses to a series of kneading and rolling techniques designed to refine the dough’s consistency. Step-by-step instructions encourage folding the dough into thirds, rolling it out, and repeating this process multiple times. The presenter works diligently on the wooden surface, showing each fold and roll with precision. This sequence is repeated systematically, underscoring the significance of texture and technique in achieving the desired results. Commentary highlights the need for patience and attention to detail as the dough is rolled into a large rectangle. If the dough resists by shrinking back, viewers are advised to let it rest briefly to relax the gluten.\n\nOnce rolled to the desired size, the focus shifts briefly to cutting cheese, only to circle back to the dough preparation. The presenter explains the importance of rolling the dough thin enough to see the faint color of fingers through it. This note highlights the delicate balance and precision required in pasta-making. As the dough reaches this thin consistency, viewers are informed of the next step: cutting the dough, signaling the transition to shaping the pasta. The calm and deliberate pace of the demonstration remains consistent, maintaining the approachable and educational tone that encourages viewers to follow along carefully.\nThe instructional cooking demonstration continues in the rustic kitchen, picking up with the process of shaping the previously rested pasta dough. On the wooden table, the presenter rolls out the dough with steady, deliberate movements, explaining the technique required to turn it into long tagliatelle-style pasta. Viewers are guided to lightly flour the surface of the dough and fold it into a rectangle to prepare it for cutting. Maintaining a calm and educational tone, accompanied by soft background music, the presenter then slices the folded dough into even strips, demonstrating care and precision.\n\nOnce the dough has been cut, the presenter moves on to unravel the strips of pasta, ensuring they are separated to avoid sticking. A dusting of flour is applied, and the presenter shares tips for preparing portions and storing the pasta, offering options such as refrigeration or freezing for later use. For those eager to cook immediately, the presenter advises that fresh pasta requires only a short cooking time—just two to three minutes in salted boiling water. The explanation flows naturally into the next stage of the recipe.\n\nTransitioning to the stovetop, the next scene shows a pot of boiling water, where the freshly made pasta is briefly cooked. Meanwhile, the presenter prepares the next elements of the dish. The cooked pasta is stirred in a bowl before being combined with a simple tomato sauce in a pan, showing viewers the process of integrating the flavors. The presenter remarks on preferring the homemade tomato sauce, briefly suggesting a link to the recipe for those interested. The scene emphasizes the step-by-step process, with clear and approachable visuals and commentary, maintaining the calm, instructive tone as the dish nears completion.\nThe demonstration continues in the rustic kitchen, as the presenter meticulously heats pasta in a pan on the stovetop, clearly guiding the audience through the preparation process as part of a larger recipe. The calm atmosphere is maintained by light background music that complements the instructional tone, setting the stage for the transition to the completed dish. Shortly after, the focus shifts to enjoying the meal, with a person eating pasta from a bowl, signaling the culmination of the cooking process. The calm and inviting ambiance persists, highlighting the satisfaction of the effort and the joy of consuming homemade food.\n\nThe completed dish—a bowl of pasta with tomato sauce—takes center stage as the presenter suggests adding fresh arugula as a thoughtful garnish or variation, followed by sprinkling Parmesan cheese from the fridge. Next, the presenter cuts a piece of bread, demonstrating it as an accompaniment to the meal. The bowl is topped with olive oil for a finishing touch before being displayed on the wooden table as the focal point of the recipe, emphasizing its simplicity and wholesome qualities. The commentary shifts to emphasize how easy it is to make pasta at home, providing reassurance that lacking store-bought options should not deter anyone from preparing a homemade dish. The presenter notes that making pasta might require more time but affirms that current circumstances leave most people with plenty of it to spare, framing the process as an achievable and rewarding activity.\n\nThe scene moves seamlessly into highlighting the satisfaction of mastering cooking at home, encouraging viewers to take part in the process by pointing to the ongoing recipes shared on the channel. The presenter expresses enthusiasm about sharing pasta ideas and encourages viewers to subscribe for future videos. Alongside this, the invitation extends to connect on Instagram or leave questions and comments as a way to engage with the content and foster community involvement. The demonstration circles back to the preparation process, with the presenter stirring pasta in a pot while discussing their intent to experiment with pasta shapes later in the week. This sets the tone for inviting creative curiosity and encouraging viewers to ask questions or share thoughts, reinforcing an engaging and collaborative learning environment.\n\nFinally, the rustic kitchen fades away as the scene transitions into a black background with minimal text and faint music, signaling the end of the segment. The presenter briefly mentions seeing viewers tomorrow, tying the outro to the previous discussions on ongoing content. This transitional moment serves as an invitation to return for future demonstrations, preserving the approachable and friendly tone established throughout the segment."
+    }
+  ],
+  "synopsis": "**Summary:**  \nThe video is a step-by-step cooking demonstration focused on making homemade pasta dough in a rustic kitchen setting. The process starts with introducing flour, eggs, olive oil, and salt as the key ingredients, followed by methodically explaining how to combine and knead the dough to achieve proper texture and elasticity. After resting the dough, it is divided, rolled thin, folded, and cut into tagliatelle strips. Tips are offered for storing and cooking fresh pasta, which is then briefly boiled and combined with homemade tomato sauce. The completed dish is garnished with arugula, Parmesan, and olive oil, suggesting bread as an accompaniment. The presenter emphasizes the simplicity, practicality, and accessibility of making pasta at home, particularly when store-bought options are unavailable. The video ends by encouraging viewers to continue exploring pasta recipes, engage through social media and comments, and subscribe for future content, maintaining a calm, approachable tone throughout.\n\n**What is the central activity or situation?**  \nMaking homemade pasta from scratch.\n\n**What are the key actions performed? Who performs each action?**  \n- Preparing ingredients and creating a well with flour (presenter).\n- Cracking eggs, adding salt, olive oil, whisking the eggs, and gradually incorporating flour (presenter).  \n- Kneading the dough and adjusting its texture (presenter).  \n- Resting the dough and cutting it into tagliatelle strips (presenter).  \n- Boiling the pasta, preparing tomato sauce, and combining them (presenter).  \n- Garnishing and serving the pasta dish (presenter).  \n- Eating the completed dish (another person briefly shown).\n\n**What are the main phases or steps? Are there repeated or cyclical actions?**  \nMain phases: Ingredient preparation, dough-making, resting, shaping, cooking, assembling, and serving the dish.  \nRepeated/cyclical actions: Kneading and rolling the dough multiple times to achieve the correct consistency.\n\n**Who is involved and what are their characteristics and roles?**  \nThe presenter, whose characteristics are calm, instructional, and approachable, serves as the primary guide. A secondary individual is briefly shown eating the finished pasta dish, contributing minimal interaction.\n\n**Where does this take place? Does the location change? Is the setting important to what happens?**  \nThe video is set entirely in a rustic kitchen adorned with wooden surfaces. The setting does not change; it reinforces the homemade cooking theme and adds charm and warmth to the demonstration.\n\n**What objects are central to the video and which ones are incidental?**  \nCentral objects: Flour, eggs, olive oil, salt, rolling pin, dough, boiling water, tomato sauce, Parmesan cheese, arugula, cutting board, utensils (e.g., fork).  \nIncidental objects: Bread, cling film, measuring cups.\n\n**What is the most important thing said or heard?**  \nEncouragement that pasta-making is simple, accessible, and achievable, even when store shelves are empty.\n\n**What is different at the end vs the beginning?**  \nAt the beginning, the focus is on preparing raw dough; at the end, the completed pasta dish is served, highlighting the satisfaction of homemade cooking.\n\n**What type of video is this? What is the mood or tone?**  \nIt is an instructional cooking video. The mood is calm, inviting, and reassuring.\n\n**What is the goal or intent or theme of the video?**  \nTo teach viewers how to make homemade pasta in an accessible and enjoyable way, while promoting engagement and creativity with simple recipes.\n\n**What context is missing or assumed? What would require outside knowledge?**  \nViewer familiarity with basic kitchen tools and techniques is assumed. Extraneous knowledge, such as how to prepare tomato sauce or other garnishes, may require external recipes or instructions."
+}

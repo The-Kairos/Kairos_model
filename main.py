@@ -37,9 +37,9 @@ test_videos = {
     f"{run_folder}/pasta": r"Videos\How to Make Pasta - Without a Machine.mp4",
     f"{run_folder}/messi": r"Videos\Argentina v France Full Penalty Shoot-out.mp4",
     f"{run_folder}/malala_long": r"Videos\.Malala Yousafzai FULL Nobel Peace Prize Lecture 2014.mp4",
-    f"{run_folder}/grad_honors": r"Videos\.UDST honors graduation.mp4",
     f"{run_folder}/web_summit": r"Videos\.Web Summit Qatar 2026 Day Three.mp4",
-    f"{run_folder}/sheldon2": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
+    # f"{run_folder}/grad_honors": r"Videos\.UDST honors graduation.mp4",
+    # f"{run_folder}/sheldon2": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
 }
 
 for OUTPUT_DIR, test_video in test_videos.items():
@@ -51,7 +51,6 @@ for OUTPUT_DIR, test_video in test_videos.items():
     checkpoint = read_json(checkpoint_path) # if deleted it will return a {}
     checkpoint.setdefault("steps", {})
     step = checkpoint["steps"]
-    print("step", step)
 
     if not checkpoint.get("scenes"):
         checkpoint["scenes"], step['get_scene_list'] = get_scene_list_log(test_video, min_scene_sec=2)
@@ -84,9 +83,20 @@ for OUTPUT_DIR, test_video in test_videos.items():
     
 
     if "yolo_detections" not in checkpoint["scenes"][-1].keys():
+        
+        if "frames" not in checkpoint["scenes"][-1].keys():
+            checkpoint["scenes"], step['sample_frames'] = sample_frames_log(
+            input_video_path=test_video,
+            scenes=checkpoint["scenes"],
+            num_frames=3,
+            new_size=320,
+            output_dir=f"./{OUTPUT_DIR}/frames",
+        )
+        time.sleep(10)
+
         checkpoint["scenes"], step['detect_object_yolo'] = detect_object_yolo_log(
             scenes=checkpoint["scenes"],
-            model_size="model/yolov8s",
+            model_size="model/yolov8s.pt",
             conf=0.5,
             iou=0.45,
             output_dir=f"./{OUTPUT_DIR}/yolo",
