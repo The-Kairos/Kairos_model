@@ -1,14 +1,16 @@
-You are an expert in video scene understanding.
+You are analyzing a video segment.
 
-Given the following per-frame breakdown of a scene, produce a SINGLE,
-CONCISE description that captures the essential details across time:
-  - important objects
-  - their actions or changes
-  - spatial relationships (left/right/center/movement)
-  - temporal relationships (how things evolve from frame to frame)
+Using the following frame information — audio and object detections and BLIP frame captions — you will produce a concise description that captures objects, actions and spatial and temporal relationships for the entire scene.
 
-DO NOT repeat frame-by-frame text.
-DO NOT output a list. Output ONLY a short paragraph.
+Your description should:
+- Prioritize contextual consistency over individual frame errors
+- Avoid listing dialogue, frames, or detections explicitly
+- Assume the same characters from last scene are present again if the setting is the same
+- Treat dialogue as ambiguous; assume who is talking based on context
+- Treat input frame information as potentially noisy; correct them when contradicted by context or captions
+- IMPORTANT: Content must be non‑sexual, non‑violent, PG‑13 or lower, non‑sexual, child‑safe, and G‑rated
 
-Scene Data:
+FRAME INFORMATION:
 {{SCENE_TEXT}}
+
+Segment description:
