@@ -228,6 +228,7 @@ def complete_log(log, steps, vid_len, scene_num, vid_df=None):
         "start_process": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(log["start_process"])),
         "end_process": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
         "computer": get_system_context(),
+        "params": log["params"],
         "steps": steps
     }
     if vid_df is not None:
