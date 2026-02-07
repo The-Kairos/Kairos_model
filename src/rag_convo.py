@@ -31,14 +31,23 @@ def format_scene_embedding(scenes: list):
         llm_scene_description = scene.get("llm_scene_description")
 
         yolo_objects = scene.get("yolo_detections", {})
-        objects = ", ".join(
-            {
-                obj.get("label")
-                for yolo_scene in yolo_objects.values()
-                for obj in yolo_scene
-                if obj.get("label")
-            }
-        )
+        labels = set()
+
+        if isinstance(yolo_objects, list):
+            # New format: list of track summaries
+            for obj in yolo_objects:
+                label = obj.get("label")
+                if label:
+                    labels.add(label)
+        elif isinstance(yolo_objects, dict):
+            # Legacy format: dict of per-frame detections
+            for yolo_scene in yolo_objects.values():
+                for obj in yolo_scene:
+                    label = obj.get("label")
+                    if label:
+                        labels.add(label)
+
+        objects = ", ".join(sorted(labels))
         if not objects:
             objects = "none"
 
