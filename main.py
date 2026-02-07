@@ -47,8 +47,8 @@ asr_model_size      = 'small'
 asr_use_vad         = True      # enable VAD for ASR (whatever that means)
 asr_target_sr       = 16000     # audio target sample rate for ASR
 llm_scene_history   = 5         # number of prior scenes in LLM context
-llm_chunk_len       = 7000      # max char len of combined scenes for one chunk
-llm_summary_len     = 20000     # max char len of final context for synopsis
+llm_chunk_len       = 10000     # max char len of combined scenes for one chunk
+llm_summary_len     = 60000     # max char len of final context for synopsis
 rag_top_k_context   = 10        # top-k RAG scenes to include
 # =========================================================
 improve_motion_detection    = False

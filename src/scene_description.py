@@ -5,7 +5,7 @@ import time
 def describe_flash_scene(
                         scene_text: str,
                         client,
-                        prompt_path="prompts/flash_scene_prompt_manahil.txt",
+                        prompt_path="prompts/describe_scene.txt",
                         model = "gemini-2.5-flash",
                         gpt_deployment = "gpt-4o-kairos",
                         gpt_temperature = 0.3
@@ -63,7 +63,7 @@ def describe_scenes(
     AST_key: str = "audio_speech",
     SUMMARY_key: str = "llm_scene_description",
     model= "gemini-2.5-flash",
-    prompt_path = "prompts/flash_scene_prompt_manahil.txt",
+    prompt_path = "prompts/describe_scene.txt",
     debug= False,
 ):
     """
