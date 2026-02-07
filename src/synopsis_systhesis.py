@@ -188,7 +188,7 @@ def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, s
 # ----------------------
 # 6. Full narrative synthesis
 # ----------------------
-def synthesize_synopsis(client, deployment, data: dict, debug: bool = False, output_dir: str | None = None):
+def synthesize_synopsis(client, deployment, data: dict, debug: bool = False, output_dir: str | None = None, synopsis_ext: str = "md"):
     """
     Produce a final synopsis + Q&A from the narrative.
     """
@@ -199,7 +199,8 @@ def synthesize_synopsis(client, deployment, data: dict, debug: bool = False, out
     if output_dir:
         out_dir = Path(output_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
-        synopsis_path = out_dir / "synopsis.txt"
+        ext = synopsis_ext.lstrip(".") if synopsis_ext else "md"
+        synopsis_path = out_dir / f"synopsis.{ext}"
         synopsis_path.write_text(synopsis, encoding="utf-8")
         _debug_print(debug, f"synopsis is saved in {synopsis_path}")
 
