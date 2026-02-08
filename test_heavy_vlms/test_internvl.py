@@ -49,6 +49,7 @@ if __name__ == "__main__":
         import numpy as np
         dummy_img = Image.fromarray(np.zeros((336, 336, 3), dtype=np.uint8))
         dummy_img.save(TEST_IMAGE)
+        print(f"Created dummy image {TEST_IMAGE}")
 
     model, tokenizer = load_vlm_model()
     image = load_test_image(TEST_IMAGE)
@@ -56,13 +57,3 @@ if __name__ == "__main__":
     result, metrics = benchmark_inference(caption_image, model, tokenizer, image)
     print("Result:", result)
     print("Metrics:", metrics)
-
-if __name__ == "__main__":
-    if not os.path.exists(TEST_IMAGE):
-        from PIL import Image
-        import numpy as np
-        dummy_img = Image.fromarray(np.zeros((336, 336, 3), dtype=np.uint8))
-        dummy_img.save(TEST_IMAGE)
-        print(f"Created dummy image {TEST_IMAGE}")
-
-    test_internvl()

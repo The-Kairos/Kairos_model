@@ -5,6 +5,7 @@ import json
 import torch
 import cv2
 import copy
+import numpy as np
 from pathlib import Path
 from PIL import Image
 from dotenv import load_dotenv
@@ -175,10 +176,10 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     t5 = time.time()
     gemini_key = os.getenv("GEMINI_API_KEY")
     from google import genai
-    client = genai.Client(vertexai=True, api_key=gemini_key)
+    client = genai.Client(api_key=gemini_key)
     
     # Retry logic for Gemini 429 errors
-    max_retries = 3
+    max_retries = 5
     for attempt in range(max_retries):
         try:
             vlm_scenes = describe_scenes(
@@ -187,17 +188,20 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
                 FLIP_key="frame_captions",
                 ASR_key="audio_speech",
                 AST_key="audio_natural",
-                model="gemini-2.5-flash"
+                model="gemini-1.5-flash"
             )
             break
         except Exception as e:
-            if "429" in str(e) and attempt < max_retries - 1:
-                wait_time = (attempt + 1) * 10
-                print(f"      [Wait] Gemini 429 Resource Exhausted. Retrying in {wait_time}s...")
+            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e).upper() and attempt < max_retries - 1:
+                wait_time = (attempt + 1) * 30  # Increased wait time for rate limits
+                print(f"      [Wait] Gemini Rate Limit reached. Retrying in {wait_time}s... (Attempt {attempt+1}/{max_retries})")
                 time.sleep(wait_time)
             else:
-                print(f"      [Error] Fusion failed: {e}")
-                break
+                print(f"      [Error] Fusion failed on attempt {attempt+1}: {e}")
+                if attempt == max_retries - 1:
+                    print("      [Giving Up] Max retries reached for Gemini Fusion.")
+                else:
+                    break
 
     vlm_metrics["duration_llm_fusion"] = time.time() - t5
     vlm_metrics["total_duration_sec"] = sum(v for k,v in vlm_metrics.items() if k.startswith("duration_"))
