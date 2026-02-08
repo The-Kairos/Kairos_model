@@ -56,36 +56,47 @@ def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
 
     # 1. Scene Detection
     print("  [Step 1/6] Scene Detection...")
+    t1 = time.time()
     scenes = get_scene_list(str(video_path))
+    pipeline_metrics["duration_scene_detection"] = time.time() - t1
     pipeline_metrics["scene_count"] = len(scenes)
+    
+    # Save intermediate scenes for robustness
+    with open(output_dir / "detected_scenes.json", "w", encoding="utf-8") as f:
+        json.dump(scenes, f, indent=2)
 
     # 2. Audio Processing (ASR & AST)
     print("  [Step 2/6] Audio Processing (ASR + Local AST)...")
-    # AST still uses local model for now
+    # ASR
+    t2_asr = time.time()
     for scene in scenes:
         idx = scene["scene_index"]
         start, end = scene["start_seconds"], scene["end_seconds"]
         wav_path = audio_dir / f"scene_{idx:02d}.wav"
         extract_scene_audio_ffmpeg(str(video_path), str(wav_path), start, end)
-        speech, asr_timings = extract_speech_asr_api(str(wav_path), enable_logs=False)
+        speech, _ = extract_speech_asr_api(str(wav_path), enable_logs=False)
         scene["audio_speech"] = speech
+    pipeline_metrics["duration_asr"] = time.time() - t2_asr
 
-    # Local AST processes all scenes in one pass efficiently
+    # AST
+    t2_ast = time.time()
     extract_sounds(str(video_path), scenes, debug=False)
+    pipeline_metrics["duration_ast"] = time.time() - t2_ast
 
     # 3. YOLO Detection
     print("  [Step 3/6] YOLO Object Detection...")
-    # Sample some frames for YOLO (using existing sample_fps logic or similar)
-    # For testing, we'll just run on 1 frame per scene to be faster
+    t3 = time.time()
     from src.frame_sampling import sample_fps
     scenes = sample_fps(str(video_path), scenes, fps=1.0, new_size=320, store_meta=True)
     scenes = detect_object_yolo(scenes, model_size="model/yolov8s.pt", summary_key="yolo_detections")
+    pipeline_metrics["duration_yolo"] = time.time() - t3
 
     # 4. Heavy VLM Captioning
     print(f"  [Step 4/6] Heavy VLM Captioning ({vlm_name})...")
     vlm_mod = get_vlm_module(vlm_name)
     model, processor = vlm_mod.load_vlm_model()
     
+    t4 = time.time()
     for scene in scenes:
         # Sample one high-res frame for the VLM
         mid = (scene["start_seconds"] + scene["end_seconds"]) / 2
@@ -93,20 +104,20 @@ def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
         if frames:
             pil_img = Image.fromarray(cv2.cvtColor(frames[0], cv2.COLOR_BGR2RGB))
             caption = vlm_mod.caption_image(model, processor, pil_img)
-            scene["frame_captions"] = [caption] # List format for describe_scenes compatibility
+            scene["frame_captions"] = [caption]
         else:
             scene["frame_captions"] = ["None"]
+    pipeline_metrics["duration_vlm_inference"] = time.time() - t4
+    pipeline_metrics["gpu_mem_vlm_peak_mb"] = torch.cuda.max_memory_allocated() / 1024**2 if torch.cuda.is_available() else 0
 
-    # Clear memory after VLM usage to allow LLM/next VLM
+    # Clear memory after VLM usage
     del model
     del processor
     torch.cuda.empty_cache()
 
     # 5. Scene Description (LLM Fusion)
     print("  [Step 5/6] Scene Description (LLM Fusion)...")
-    # Using Gemini/GPT for fusion as in main.py
-    # We'll assume LLM client is configured in main_test
-    # This part requires the GEMINI_API_KEY
+    t5 = time.time()
     from google import genai
     gemini_key = os.getenv("GEMINI_API_KEY")
     client = genai.Client(vertexai=True, api_key=gemini_key)
@@ -119,11 +130,12 @@ def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
         AST_key="audio_natural",
         model="gemini-2.5-flash"
     )
+    pipeline_metrics["duration_llm_fusion"] = time.time() - t5
 
     # 6. Save Results
     print("  [Step 6/6] Saving Results...")
     pipeline_metrics["total_duration_sec"] = time.time() - t_start
-    pipeline_metrics["system_usage"] = get_system_usage()
+    pipeline_metrics["system_usage_final"] = get_system_usage()
     
     result_data = {
         "vlm": vlm_name,
@@ -163,6 +175,18 @@ if __name__ == "__main__":
     for vlm in VLMS:
         all_metrics[vlm] = {}
         for video in videos:
+            # Skip if already processed
+            results_file = RESULTS_DIR / vlm / video.stem / "pipeline_results.json"
+            if results_file.exists():
+                print(f"\n>>> SKIPPING: {video.name} | VLM: {vlm} (Found pipeline_results.json)")
+                try:
+                    with open(results_file, "r") as f:
+                        old_data = json.load(f)
+                        all_metrics[vlm][video.name] = old_data.get("metrics", {})
+                except:
+                    pass
+                continue
+
             try:
                 metrics = run_pipeline_with_vlm(video, vlm, RESULTS_DIR, GCLOUD_JSON)
                 all_metrics[vlm][video.name] = metrics
