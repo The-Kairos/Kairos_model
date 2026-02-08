@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from src.debug_utils import *
 from src.log_utils import *
 from src.audio_utils import extract_scene_audio_ffmpeg, get_ffmpeg_executable
@@ -7,8 +10,6 @@ from src.system_metrics import get_system_usage
 import time
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv()
 
 use_gemini = False
 if use_gemini:

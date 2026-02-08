@@ -6,9 +6,13 @@ import torch
 import cv2
 from pathlib import Path
 from PIL import Image
+from dotenv import load_dotenv
+
+# Load .env from project root before ANY other imports
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(PROJECT_ROOT / ".env")
 
 # Add project root and src to sys.path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
@@ -143,8 +147,7 @@ def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
     return pipeline_metrics
 
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
+    # load_dotenv() is now at the top
     
     RESULTS_DIR = Path(__file__).parent / "results"
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
