@@ -35,12 +35,22 @@ def load_vlm_model(model_id="Qwen/Qwen-VL-Chat"):
 def caption_image(model, tokenizer, pil_image, prompt="Describe the scene in detail."):
     temp_path = "temp_qwen.jpg"
     pil_image.save(temp_path)
-    query = tokenizer.from_list([{'image': temp_path}, {'text': prompt}])
+    
+    # Correct Qwen-VL API: use the image path directly in the prompt
+    query = f"<img>{temp_path}</img>{prompt}"
     inputs = tokenizer(query, return_tensors='pt').to(model.device)
-    out = model.generate(**inputs)
-    caption = tokenizer.decode(out[0], skip_special_tokens=True)
-    if os.path.exists(temp_path): os.remove(temp_path)
-    return caption.replace(prompt, "").strip()
+    
+    with torch.no_grad():
+        output_ids = model.generate(**inputs, max_new_tokens=100)
+    
+    caption = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+    
+    if os.path.exists(temp_path): 
+        os.remove(temp_path)
+    
+    # Remove the prompt from the output
+    caption = caption.replace(query, "").replace(prompt, "").strip()
+    return caption
 
 def run_inference(model, tokenizer, scenes, video_path):
     import cv2
