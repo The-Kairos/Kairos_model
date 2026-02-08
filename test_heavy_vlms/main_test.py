@@ -32,6 +32,14 @@ from src.frame_obj_d_yolo import detect_object_yolo
 from src.scene_description import describe_scenes
 from src.system_metrics import get_system_usage
 
+# SETTINGS
+ENABLE_VLM_LLAVA = True
+ENABLE_VLM_QWEN = True
+ENABLE_VLM_INTERNVL = True
+# Disabled per user request (Gemini 401 and policy blocks)
+USE_LLM_FUSION = False 
+SUMMARY_key = "llm_scene_description"
+
 # VLM Module Imports (Delayed to avoid VRAM issues during init)
 def get_vlm_module(vlm_name):
     if vlm_name == "llava":
@@ -132,13 +140,18 @@ def get_gcp_token():
         return None, None
 
 def cleanup_memory(model=None, tokenizer=None):
-    if model:
-        del model
-    if tokenizer:
+    if model is not None:
+        try:
+            model = model.to('cpu')
+            del model
+        except:
+            pass
+    if tokenizer is not None:
         del tokenizer
     gc.collect()
     torch.cuda.empty_cache()
-    print("    [Memory] GPU Cache cleared.")
+    torch.cuda.ipc_collect()
+    print("    [Memory] GPU and System Cache cleared.")
 
 def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     """
@@ -146,6 +159,12 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     """
     video_name = video_path.stem
     output_dir = results_dir / vlm_name / video_name
+    
+    # --- SESSION RECOVERY (Skip if exists) ---
+    if (output_dir / "vlm_captions.json").exists():
+        print(f"  [Skip] Results already exist for {vlm_name} on {video_name}")
+        return
+    
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # We work on a deep copy to avoid polluting base scenes for other VLMs
@@ -154,18 +173,29 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     
     print(f"  [VLM] Running {vlm_name} on {video_name}...")
     vlm_mod = get_vlm_module(vlm_name)
-    model, processor = vlm_mod.load_vlm_model()
     
-    t4 = time.time()
-    for scene in vlm_scenes:
-        mid = (scene["start_seconds"] + scene["end_seconds"]) / 2
-        frames = sample_from_clip(str(video_path), scene["scene_index"], mid, mid+0.1, num_frames=1, new_size=336)
-        if frames:
-            pil_img = Image.fromarray(cv2.cvtColor(frames[0], cv2.COLOR_BGR2RGB))
-            caption = vlm_mod.caption_image(model, processor, pil_img)
-            scene["frame_captions"] = [caption]
-        else:
-            scene["frame_captions"] = ["None"]
+    model, processor = None, None
+    try:
+        model, processor = vlm_mod.load_vlm_model()
+        
+        t4 = time.time()
+        for scene in vlm_scenes:
+            mid = (scene["start_seconds"] + scene["end_seconds"]) / 2
+            # Sample frames
+            frames = sample_from_clip(str(video_path), scene["scene_index"], mid, mid+0.1, num_frames=1, new_size=336)
+            if frames:
+                pil_img = Image.fromarray(cv2.cvtColor(frames[0], cv2.COLOR_BGR2RGB))
+                caption = vlm_mod.caption_image(model, processor, pil_img)
+                scene["frame_captions"] = [caption]
+            else:
+                scene["frame_captions"] = ["None"]
+    except Exception as e:
+        print(f"      [Error] VLM Phase Failed for {vlm_name}: {e}")
+        return None, None
+    finally:
+        # Aggressive cleanup even if it fails
+        cleanup_memory(model, processor)
+        del model, processor
     
     vlm_metrics["duration_vlm_inference"] = time.time() - t4
     vlm_metrics["gpu_mem_vlm_peak_mb"] = torch.cuda.max_memory_allocated() / 1024**2 if torch.cuda.is_available() else 0
@@ -210,34 +240,63 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     torch.cuda.empty_cache()
 
     # 5. Scene Description (LLM Fusion)
-    print("    [Step 5] Scene Description (LLM Fusion)...")
     t5 = time.time()
-    import google.generativeai as genai_legacy
-    gemini_key = os.getenv("GEMINI_API_KEY")
-    
-    # Check for VM auth credentials to bypass 401 "API keys not supported"
-    creds, proj = get_gcp_token()
-    if creds:
-        print("      [Auth] Using VM Service Account (OAuth2) for Gemini.")
-        genai_legacy.configure(credentials=creds)
+    if not USE_LLM_FUSION:
+        print("    [Step 5] Scene Description (LLM Fusion) BYPASSED.")
+        print("      [Manual] Creating structured scene descriptions from raw data...")
+        # Manual fusion: Concatenate all available data sources
+        for s in vlm_scenes:
+            parts = []
+            
+            # 1. VLM Caption
+            if "frame_captions" in s and s["frame_captions"]:
+                parts.append(f"Visual: {s['frame_captions'][0]}")
+            
+            # 2. Audio Speech (ASR)
+            if "audio_speech" in s and s["audio_speech"]:
+                parts.append(f"Speech: {s['audio_speech']}")
+            
+            # 3. Natural Sounds (AST)
+            if "audio_natural" in s and s["audio_natural"]:
+                sounds = ", ".join(s["audio_natural"]) if isinstance(s["audio_natural"], list) else s["audio_natural"]
+                parts.append(f"Sounds: {sounds}")
+            
+            # 4. Detected Objects (YOLO)
+            if "objects" in s and s["objects"]:
+                objects = ", ".join([obj.get("class", "unknown") for obj in s["objects"][:5]])  # Top 5 objects
+                parts.append(f"Objects: {objects}")
+            
+            # Combine into structured description
+            s[SUMMARY_key] = " | ".join(parts) if parts else "No data available"
     else:
-        if not gemini_key:
-            print("      [Warning] GEMINI_API_KEY not found in .env")
-        genai_legacy.configure(api_key=gemini_key)
-    
-    # We now rely on the robust per-scene retry logic inside describe_scenes()
-    try:
-        vlm_scenes = describe_scenes(
-            vlm_scenes,
-            genai_legacy,
-            FLIP_key="frame_captions",
-            ASR_key="audio_speech",
-            AST_key="audio_natural",
-            model="gemini-1.5-flash"
-        )
-    except Exception as e:
-        print(f"      [Critical Error] LLM Fusion call failed for complete video: {e}")
-        # We don't crash here, we just use the default "Fusion Failed" status from describe_scenes if partial
+        print("    [Step 5] Scene Description (LLM Fusion)...")
+        import google.generativeai as genai_legacy
+        gemini_key = os.getenv("GEMINI_API_KEY")
+        
+        # Check for VM auth credentials to bypass 401 "API keys not supported"
+        creds, proj = get_gcp_token()
+        if creds:
+            print("      [Auth] Using VM Service Account (OAuth2) for Gemini.")
+            genai_legacy.configure(credentials=creds)
+        else:
+            if not gemini_key:
+                print("      [Warning] GEMINI_API_KEY not found in .env")
+            if gemini_key:
+                genai_legacy.configure(api_key=gemini_key)
+        
+        # We now rely on the robust per-scene retry logic inside describe_scenes()
+        try:
+            vlm_scenes = describe_scenes(
+                vlm_scenes,
+                genai_legacy,
+                FLIP_key="frame_captions",
+                ASR_key="audio_speech",
+                AST_key="audio_natural",
+                model="gemini-1.5-flash"
+            )
+        except Exception as e:
+            print(f"      [Critical Error] LLM Fusion call failed for complete video: {e}")
+            # We don't crash here, we just use the default "Fusion Failed" status from describe_scenes if partial
 
     vlm_metrics["duration_llm_fusion"] = time.time() - t5
     vlm_metrics["total_duration_sec"] = sum(v for k,v in vlm_metrics.items() if k.startswith("duration_"))

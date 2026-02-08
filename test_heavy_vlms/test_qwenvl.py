@@ -1,9 +1,25 @@
 import torch
-# Patch for transformers_stream_generator / transformers version conflict
+import sys
+
+# CRITICAL PATCH: Must patch BEFORE any transformers imports
+# transformers_stream_generator (used by Qwen) tries to import BeamSearchScorer
+# In newer transformers, it's in a different location
+class MockBeamSearchScorer:
+    """Mock BeamSearchScorer for compatibility with transformers_stream_generator"""
+    pass
+
+# Inject into transformers module namespace BEFORE it's imported
+if 'transformers' not in sys.modules:
+    import transformers
+    transformers.BeamSearchScorer = MockBeamSearchScorer
+else:
+    sys.modules['transformers'].BeamSearchScorer = MockBeamSearchScorer
+
+# Also try the real import path if it exists
 try:
     from transformers.generation import BeamSearchScorer
+    sys.modules['transformers'].BeamSearchScorer = BeamSearchScorer
 except ImportError:
-    # In some versions, it might be in a different place or missing
     pass
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -13,49 +29,33 @@ from PIL import Image
 def load_vlm_model(model_id="Qwen/Qwen-VL-Chat"):
     print(f"Loading {model_id}...")
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_id, 
-        device_map="auto", 
-        trust_remote_code=True, 
-        fp16=True
-    ).eval()
+    model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto", trust_remote_code=True, fp16=True).eval()
     return model, tokenizer
 
-def caption_image(model, tokenizer, image, question=None):
-    if question is None:
-        question = "Describe the scene in detail. Focus only on what is visually observable. Mention actions, objects, and interactions."
-    
-    # Qwen-VL needs a file path or a special format. 
-    # To avoid saving files constantly in a library-like call, we use the list_format
-    # But Qwen-VL-Chat's chat method usually expects a path in the list_format.
-    # We'll save to a temp file for compatibility.
-    temp_path = "temp_qwen_frame.jpg"
-    if isinstance(image, Image.Image):
-        image.save(temp_path)
-    else:
-        # assume numpy array
-        Image.fromarray(image).save(temp_path)
-        
-    query = tokenizer.from_list_format([
-        {'image': temp_path},
-        {'text': question},
-    ])
-    
-    response, history = model.chat(tokenizer, query=query, history=None)
-    return response
+def caption_image(model, tokenizer, pil_image, prompt="Describe the scene in detail."):
+    temp_path = "temp_qwen.jpg"
+    pil_image.save(temp_path)
+    query = tokenizer.from_list([{'image': temp_path}, {'text': prompt}])
+    inputs = tokenizer(query, return_tensors='pt').to(model.device)
+    out = model.generate(**inputs)
+    caption = tokenizer.decode(out[0], skip_special_tokens=True)
+    if os.path.exists(temp_path): os.remove(temp_path)
+    return caption.replace(prompt, "").strip()
 
-if __name__ == "__main__":
-    from benchmark_utils import benchmark_inference, load_test_image
-    TEST_IMAGE = "test_frame.jpg"
-    if not os.path.exists(TEST_IMAGE):
-        import numpy as np
-        dummy_img = Image.fromarray(np.zeros((336, 336, 3), dtype=np.uint8))
-        dummy_img.save(TEST_IMAGE)
-        print(f"Created dummy image {TEST_IMAGE}")
-
-    model, tokenizer = load_vlm_model()
-    image = load_test_image(TEST_IMAGE)
-    
-    result, metrics = benchmark_inference(caption_image, model, tokenizer, image)
-    print("Result:", result)
-    print("Metrics:", metrics)
+def run_inference(model, tokenizer, scenes, video_path):
+    import cv2
+    vlm_scenes = []
+    for scene in scenes:
+        video = cv2.VideoCapture(str(video_path))
+        fps = video.get(cv2.CAP_PROP_FPS)
+        mid_frame_idx = int(((scene["start_seconds"] + scene["end_seconds"]) / 2) * fps)
+        video.set(cv2.CAP_PROP_POS_FRAMES, mid_frame_idx)
+        ret, frame = video.read()
+        if ret:
+            pil_img = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+            caption = caption_image(model, tokenizer, pil_img)
+            new_scene = dict(scene); new_scene["frame_captions"] = [caption]; vlm_scenes.append(new_scene)
+        else:
+            new_scene = dict(scene); new_scene["frame_captions"] = ["None"]; vlm_scenes.append(new_scene)
+        video.release()
+    return vlm_scenes
