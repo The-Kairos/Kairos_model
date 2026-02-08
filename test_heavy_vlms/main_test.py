@@ -39,6 +39,16 @@ def get_vlm_module(vlm_name):
         raise ValueError(f"Unknown VLM: {vlm_name}")
     return vlm
 
+class CustomJSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        return super().default(obj)
+
 def get_base_video_data(video_path, base_results_dir):
     """
     Performs Step 1-3 (Scene Detection, ASR, AST, YOLO) once per video.
@@ -91,11 +101,20 @@ def get_base_video_data(video_path, base_results_dir):
     scenes = detect_object_yolo(scenes, model_size="model/yolov8s.pt", summary_key="yolo_detections")
     base_metrics["duration_yolo"] = time.time() - t3
 
-    # Save to cache
+    # CRITICAL: Strip the raw 'frames' (ndarray) before saving to JSON to save space and avoid errors
+    # We only save metadata in base_data.json
+    serializable_scenes = []
+    for sc in scenes:
+        sc_copy = copy.deepcopy(sc)
+        if "frames" in sc_copy:
+            del sc_copy["frames"]
+        serializable_scenes.append(sc_copy)
+
+    # Save to cache using custom encoder for safety
     with open(cache_file, "w", encoding="utf-8") as f:
-        json.dump({"scenes": scenes, "metrics": base_metrics}, f, indent=2)
+        json.dump({"scenes": serializable_scenes, "metrics": base_metrics}, f, indent=2, cls=CustomJSONEncoder)
         
-    return scenes, base_metrics
+    return serializable_scenes, base_metrics
 
 def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     """
@@ -167,7 +186,7 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     }
     
     with open(output_dir / "pipeline_results.json", "w", encoding="utf-8") as f:
-        json.dump(result_data, f, indent=2)
+        json.dump(result_data, f, indent=2, cls=CustomJSONEncoder)
         
     return vlm_metrics
 
@@ -211,6 +230,6 @@ if __name__ == "__main__":
             print(f"  FAILED VIDEO: {video.name} | Error: {e}")
 
     with open(Path(__file__).parent / "vlm_metrics.json", "w", encoding="utf-8") as f:
-        json.dump(all_metrics, f, indent=2)
+        json.dump(all_metrics, f, indent=2, cls=CustomJSONEncoder)
         
     print("\n\nBENCHMARKING COMPLETE. Results saved to test_heavy_vlms/results/")
