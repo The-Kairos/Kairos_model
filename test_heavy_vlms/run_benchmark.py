@@ -12,7 +12,7 @@ import time
 
 # Configuration
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-VIDEOS_DIR = PROJECT_ROOT / "videos"
+VIDEOS_DIR = Path(__file__).resolve().parent / "videos"  # test_heavy_vlms/videos
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 BASE_RESULTS_DIR = RESULTS_DIR / "base"
 
