@@ -18,11 +18,12 @@ def load_vlm_model(model_id="llava-hf/llava-v1.6-vicuna-7b-hf"):
 
 def caption_image(model, processor, image, prompt=None):
     if prompt is None:
-        prompt = "[INST] <image>\nDescribe the scene in detail. Focus only on what is visually observable. Do not assume intentions or unseen events. Mention actions, objects, and interactions. [/INST]"
+        # Standard LLaVA 1.6 Prompt Template
+        prompt = "USER: <image>\nDescribe the scene in detail. Focus only on what is visually observable. Mention actions, objects, and interactions. ASSISTANT:"
     
-    inputs = processor(prompt, image, return_tensors="pt").to("cuda")
+    # Use explicit keyword arguments to avoid "Incorrect image source" error
+    inputs = processor(text=prompt, images=image, return_tensors="pt").to("cuda")
     
-    # We use a separate generate call to measure duration correctly in main_test
     output = model.generate(**inputs, max_new_tokens=256)
     return processor.decode(output[0], skip_special_tokens=True)
 

@@ -14,14 +14,30 @@ def load_vlm_model(model_id="OpenGVLab/InternVL-Chat-V1-5"):
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
     return model, tokenizer
 
+import torchvision.transforms as T
+from torchvision.transforms.functional import InterpolationMode
+
+def build_transform(input_size):
+    MEAN, STD = (0.485, 0.456, 0.406), (0.229, 0.224, 0.225)
+    transform = T.Compose([
+        T.Lambda(lambda img: img.convert('RGB') if img.mode != 'RGB' else img),
+        T.Resize((input_size, input_size), interpolation=InterpolationMode.BICUBIC),
+        T.ToTensor(),
+        T.Normalize(mean=MEAN, std=STD)
+    ])
+    return transform
+
 def caption_image(model, tokenizer, image, question=None):
     if question is None:
         question = "Describe the scene in detail. Focus only on what is visually observable. Mention actions, objects, and interactions."
     
-    # InternVL preprocessing - simplified, in real high-res InternVL this might be more complex
-    pixel_values = model.extract_feature(image)
+    # Standard InterVL preprocessing for Chat-V1-5
+    transform = build_transform(input_size=448)
+    pixel_values = transform(image).unsqueeze(0).to(torch.bfloat16).cuda()
     
-    response, history = model.chat(tokenizer, pixel_values, question, generation_config={"max_new_tokens": 256})
+    generation_config = dict(max_new_tokens=256, do_sample=False)
+    
+    response, history = model.chat(tokenizer, pixel_values, question, generation_config)
     return response
 
 if __name__ == "__main__":

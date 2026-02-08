@@ -23,10 +23,12 @@ torch == 2.9.1
 transformers==4.57.1
 Pillow== 12.0.0
 
-# Heavy Captioning - InternLM-XComposer2
+# Heavy Captioning - InternLM / VLM Tests
 sentencepiece==0.2.1
 torchvision==0.24.1
 einops==0.8.1
+timm
+tiktoken
 
 # Heavy Captioning - Gemini Pro 2.5
 google-genai==1.50.1
