@@ -12,7 +12,7 @@ def describe_flash_scene(
                         scene_text: str,
                         client,
                         prompt_path=None,
-                        model = "gemini-2.5-flash",
+                        model = "gemini-1.5-flash",
                         gpt_deployment = "gpt-4o-kairos",
                         gpt_temperature = 0.3
                          ) -> str:
@@ -32,8 +32,9 @@ def describe_flash_scene(
 
     # Asking LLM
     if "gemini" in model.lower():
-        chat = client.chats.create(model=model)
-        resp = chat.send_message(prompt)
+        # Legacy Gemini API call (google-generativeai)
+        m = client.GenerativeModel(model)
+        resp = m.generate_content(prompt)
         answer = resp.text.strip()
     elif "gpt" in model.lower():
         response = client.chat.completions.create(
@@ -66,7 +67,7 @@ def describe_scenes(
     ASR_key: str = "audio_natural",
     AST_key: str = "audio_speech",
     SUMMARY_key: str = "llm_scene_description",
-    model= "gemini-2.5-flash",
+    model= "gemini-2.0-flash",
     prompt_path = None,
     debug= False,
 ):

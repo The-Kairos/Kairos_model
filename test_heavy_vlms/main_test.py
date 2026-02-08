@@ -6,6 +6,10 @@ import torch
 import cv2
 import copy
 import numpy as np
+import gc
+import torch
+import google.auth
+from google.auth.transport.requests import Request
 from pathlib import Path
 from PIL import Image
 from dotenv import load_dotenv
@@ -118,6 +122,24 @@ def get_base_video_data(video_path, base_results_dir):
         
     return serializable_scenes, base_metrics
 
+def get_gcp_token():
+    try:
+        credentials, project = google.auth.default()
+        credentials.refresh(Request())
+        return credentials, project
+    except Exception as e:
+        print(f"      [Auth] Could not fetch VM credentials: {e}")
+        return None, None
+
+def cleanup_memory(model=None, tokenizer=None):
+    if model:
+        del model
+    if tokenizer:
+        del tokenizer
+    gc.collect()
+    torch.cuda.empty_cache()
+    print("    [Memory] GPU Cache cleared.")
+
 def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     """
     Performs Step 4-6 (VLM Captioning, LLM Fusion) per VLM.
@@ -160,6 +182,9 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     with open(output_dir / "vlm_captions.json", "w", encoding="utf-8") as f:
         json.dump(vlm_captions_data, f, indent=2, cls=CustomJSONEncoder)
     print(f"    [Save] Captions saved to {output_dir / 'vlm_captions.json'}")
+    
+    # --- MEMORY CLEANUP ---
+    cleanup_memory()
 
     # Intermediate Save: Save captions before fusion in case fusion fails
     intermediate_data = {
@@ -187,15 +212,24 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     # 5. Scene Description (LLM Fusion)
     print("    [Step 5] Scene Description (LLM Fusion)...")
     t5 = time.time()
+    import google.generativeai as genai_legacy
     gemini_key = os.getenv("GEMINI_API_KEY")
-    from google import genai
-    client = genai.Client(api_key=gemini_key)
+    
+    # Check for VM auth credentials to bypass 401 "API keys not supported"
+    creds, proj = get_gcp_token()
+    if creds:
+        print("      [Auth] Using VM Service Account (OAuth2) for Gemini.")
+        genai_legacy.configure(credentials=creds)
+    else:
+        if not gemini_key:
+            print("      [Warning] GEMINI_API_KEY not found in .env")
+        genai_legacy.configure(api_key=gemini_key)
     
     # We now rely on the robust per-scene retry logic inside describe_scenes()
     try:
         vlm_scenes = describe_scenes(
             vlm_scenes,
-            client,
+            genai_legacy,
             FLIP_key="frame_captions",
             ASR_key="audio_speech",
             AST_key="audio_natural",

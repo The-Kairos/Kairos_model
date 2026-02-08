@@ -1,4 +1,11 @@
 import torch
+# Patch for transformers_stream_generator / transformers version conflict
+try:
+    from transformers.generation import BeamSearchScorer
+except ImportError:
+    # In some versions, it might be in a different place or missing
+    pass
+
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
 from PIL import Image

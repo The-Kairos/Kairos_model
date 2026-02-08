@@ -4,9 +4,10 @@ import os
 
 def load_vlm_model(model_id="OpenGVLab/InternVL-Chat-V1-5"):
     print(f"Loading {model_id}...")
-    from transformers import AutoModel, AutoTokenizer
-    # Using AutoModel for InternVL-Chat-V1-5 as per documentation
-    model = AutoModel.from_pretrained(
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    # Using AutoModelForCausalLM with trust_remote_code=True
+    # InternVL-Chat-V1-5 specifically needs the CausalLM class for .generate()
+    model = AutoModelForCausalLM.from_pretrained(
         model_id,
         torch_dtype=torch.bfloat16,
         low_cpu_mem_usage=True,
@@ -14,6 +15,10 @@ def load_vlm_model(model_id="OpenGVLab/InternVL-Chat-V1-5"):
         device_map="auto"
     ).eval()
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+    
+    # Verification: Check if generate exists
+    if not hasattr(model, 'generate'):
+        print(f"      [Warning] Model {model_id} missing 'generate'. Checking for 'chat'...")
     return model, tokenizer
 
 import torchvision.transforms as T
