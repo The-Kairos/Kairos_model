@@ -1,10 +1,11 @@
 import torch
-from transformers import AutoModel, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
 
 def load_vlm_model(model_id="OpenGVLab/InternVL-Chat-V1-5"):
     print(f"Loading {model_id}...")
-    model = AutoModel.from_pretrained(
+    # Using AutoModelForCausalLM to ensure generate() attribute is available
+    model = AutoModelForCausalLM.from_pretrained(
         model_id,
         torch_dtype=torch.bfloat16,
         low_cpu_mem_usage=True,

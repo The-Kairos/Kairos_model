@@ -29,6 +29,7 @@ torchvision==0.24.1
 einops==0.8.1
 timm
 tiktoken
+transformers_stream_generator
 
 # Heavy Captioning - Gemini Pro 2.5
 google-genai==1.50.1

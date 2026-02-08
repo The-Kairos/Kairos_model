@@ -147,6 +147,25 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     vlm_metrics["duration_vlm_inference"] = time.time() - t4
     vlm_metrics["gpu_mem_vlm_peak_mb"] = torch.cuda.max_memory_allocated() / 1024**2 if torch.cuda.is_available() else 0
 
+    # Intermediate Save: Save captions before fusion in case fusion fails
+    intermediate_data = {
+        "vlm": vlm_name,
+        "video": video_name,
+        "metrics": vlm_metrics,
+        "scenes": [
+            {
+                "idx": s["scene_index"],
+                "start": s["start_seconds"],
+                "end": s["end_seconds"],
+                "vlm_caption": s["frame_captions"][0],
+                "fusion_description": "PENDING"
+            }
+            for s in vlm_scenes
+        ]
+    }
+    with open(output_dir / "pipeline_results_partial.json", "w", encoding="utf-8") as f:
+        json.dump(intermediate_data, f, indent=2, cls=CustomJSONEncoder)
+
     del model
     del processor
     torch.cuda.empty_cache()
@@ -158,14 +177,28 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     from google import genai
     client = genai.Client(vertexai=True, api_key=gemini_key)
     
-    vlm_scenes = describe_scenes(
-        vlm_scenes,
-        client,
-        FLIP_key="frame_captions",
-        ASR_key="audio_speech",
-        AST_key="audio_natural",
-        model="gemini-2.5-flash"
-    )
+    # Retry logic for Gemini 429 errors
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            vlm_scenes = describe_scenes(
+                vlm_scenes,
+                client,
+                FLIP_key="frame_captions",
+                ASR_key="audio_speech",
+                AST_key="audio_natural",
+                model="gemini-2.5-flash"
+            )
+            break
+        except Exception as e:
+            if "429" in str(e) and attempt < max_retries - 1:
+                wait_time = (attempt + 1) * 10
+                print(f"      [Wait] Gemini 429 Resource Exhausted. Retrying in {wait_time}s...")
+                time.sleep(wait_time)
+            else:
+                print(f"      [Error] Fusion failed: {e}")
+                break
+
     vlm_metrics["duration_llm_fusion"] = time.time() - t5
     vlm_metrics["total_duration_sec"] = sum(v for k,v in vlm_metrics.items() if k.startswith("duration_"))
     vlm_metrics["system_usage_final"] = get_system_usage()
@@ -180,7 +213,7 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
                 "start": s["start_seconds"],
                 "end": s["end_seconds"],
                 "vlm_caption": s["frame_captions"][0],
-                "fusion_description": s.get("llm_scene_description", "")
+                "fusion_description": s.get("llm_scene_description", "Fusion Failed")
             }
             for s in vlm_scenes
         ]
@@ -188,6 +221,11 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     
     with open(output_dir / "pipeline_results.json", "w", encoding="utf-8") as f:
         json.dump(result_data, f, indent=2, cls=CustomJSONEncoder)
+    
+    # Clean up partial file on success
+    partial_file = output_dir / "pipeline_results_partial.json"
+    if partial_file.exists():
+        partial_file.unlink()
         
     return vlm_metrics
 
