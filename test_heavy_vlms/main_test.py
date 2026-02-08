@@ -148,6 +148,19 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     vlm_metrics["duration_vlm_inference"] = time.time() - t4
     vlm_metrics["gpu_mem_vlm_peak_mb"] = torch.cuda.max_memory_allocated() / 1024**2 if torch.cuda.is_available() else 0
 
+    # --- STEP 4.5: Explicitly Save VLM Captions (Requested) ---
+    vlm_captions_data = {
+        "vlm": vlm_name,
+        "video": video_name,
+        "captions": [
+            {"idx": s["scene_index"], "caption": s["frame_captions"][0]}
+            for s in vlm_scenes
+        ]
+    }
+    with open(output_dir / "vlm_captions.json", "w", encoding="utf-8") as f:
+        json.dump(vlm_captions_data, f, indent=2, cls=CustomJSONEncoder)
+    print(f"    [Save] Captions saved to {output_dir / 'vlm_captions.json'}")
+
     # Intermediate Save: Save captions before fusion in case fusion fails
     intermediate_data = {
         "vlm": vlm_name,
@@ -178,30 +191,19 @@ def run_vlm_on_base(video_path, vlm_name, scenes, base_metrics, results_dir):
     from google import genai
     client = genai.Client(api_key=gemini_key)
     
-    # Retry logic for Gemini 429 errors
-    max_retries = 5
-    for attempt in range(max_retries):
-        try:
-            vlm_scenes = describe_scenes(
-                vlm_scenes,
-                client,
-                FLIP_key="frame_captions",
-                ASR_key="audio_speech",
-                AST_key="audio_natural",
-                model="gemini-1.5-flash"
-            )
-            break
-        except Exception as e:
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e).upper() and attempt < max_retries - 1:
-                wait_time = (attempt + 1) * 30  # Increased wait time for rate limits
-                print(f"      [Wait] Gemini Rate Limit reached. Retrying in {wait_time}s... (Attempt {attempt+1}/{max_retries})")
-                time.sleep(wait_time)
-            else:
-                print(f"      [Error] Fusion failed on attempt {attempt+1}: {e}")
-                if attempt == max_retries - 1:
-                    print("      [Giving Up] Max retries reached for Gemini Fusion.")
-                else:
-                    break
+    # We now rely on the robust per-scene retry logic inside describe_scenes()
+    try:
+        vlm_scenes = describe_scenes(
+            vlm_scenes,
+            client,
+            FLIP_key="frame_captions",
+            ASR_key="audio_speech",
+            AST_key="audio_natural",
+            model="gemini-1.5-flash"
+        )
+    except Exception as e:
+        print(f"      [Critical Error] LLM Fusion call failed for complete video: {e}")
+        # We don't crash here, we just use the default "Fusion Failed" status from describe_scenes if partial
 
     vlm_metrics["duration_llm_fusion"] = time.time() - t5
     vlm_metrics["total_duration_sec"] = sum(v for k,v in vlm_metrics.items() if k.startswith("duration_"))

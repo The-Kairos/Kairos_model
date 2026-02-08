@@ -101,12 +101,26 @@ def describe_scenes(
                 context += f"Scene -{len(previous_summaries) - i + 1}:\n{s}\n"
             formatted_text += "\n" + context
 
-        summary = describe_flash_scene(
-            formatted_text,
-            client,
-            prompt_path=prompt_path,
-            model=model,
-        )
+        # ---- retry loop for individual scene fusion ----
+        max_scene_retries = 5
+        summary = "Fusion Failed"
+        for attempt in range(max_scene_retries):
+            try:
+                summary = describe_flash_scene(
+                    formatted_text,
+                    client,
+                    prompt_path=prompt_path,
+                    model=model,
+                )
+                break
+            except Exception as e:
+                if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e).upper():
+                    wait_time = (attempt + 1) * 30
+                    print(f"      [Wait] Scene {idx} Gemini Rate Limit. Retrying in {wait_time}s... (Attempt {attempt+1}/{max_scene_retries})")
+                    time.sleep(wait_time)
+                else:
+                    print(f"      [Error] Scene {idx} Fusion failed: {e}")
+                    break
 
         new_scene = dict(scene)
         new_scene[SUMMARY_key] = summary
