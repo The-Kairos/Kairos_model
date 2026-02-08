@@ -2,7 +2,7 @@
 """
 Orchestrator: Run VLMs one at a time on all videos.
 Each VLM runs in a separate Python process that exits after completion.
-This forces OS-level GPU memory cleanup.
+This forces OS-level GPU memory cleanup. yep
 """
 import subprocess
 import sys
@@ -12,7 +12,7 @@ import time
 
 # Configuration
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-VIDEOS_DIR = Path(__file__).resolve().parent / "videos"  # test_heavy_vlms/videos
+VIDEOS_DIR = PROJECT_ROOT / "Videos"  # Kairos_model/Videos (capital V)
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 BASE_RESULTS_DIR = RESULTS_DIR / "base"
 
