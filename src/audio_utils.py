@@ -15,10 +15,15 @@ def get_ffmpeg_executable():
     if ffmpeg_path:
         return ffmpeg_path
 
-    # Try common Windows install locations (winget, gyan, etc.)
+    # Try common install locations
     possible_paths = [
+        # Windows
         os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\WinGet\Packages\Gyan.FFmpeg*\ffmpeg-*\bin\ffmpeg.exe"),
         r"C:\ffmpeg\bin\ffmpeg.exe",
+        # Linux
+        "/usr/bin/ffmpeg",
+        "/usr/local/bin/ffmpeg",
+        "/usr/bin/avconv",
     ]
     import glob
     for pattern in possible_paths:
