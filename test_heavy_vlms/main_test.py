@@ -98,7 +98,8 @@ def get_base_video_data(video_path, base_results_dir):
     print("    [Step 3] YOLO Object Detection...")
     t3 = time.time()
     scenes = sample_fps(str(video_path), scenes, fps=1.0, new_size=320, store_meta=True)
-    scenes = detect_object_yolo(scenes, model_size="model/yolov8s.pt", summary_key="yolo_detections")
+    yolo_model_path = PROJECT_ROOT / "model" / "yolov8s.pt"
+    scenes = detect_object_yolo(scenes, model_size=str(yolo_model_path), summary_key="yolo_detections")
     base_metrics["duration_yolo"] = time.time() - t3
 
     # CRITICAL: Strip the raw 'frames' (ndarray) before saving to JSON to save space and avoid errors

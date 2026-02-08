@@ -1,23 +1,27 @@
+import os
 import json
 import time
+from pathlib import Path
 
+# Calculate absolute path to prompts directory
+SRC_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SRC_DIR.parent
+DEFAULT_PROMPT_PATH = PROJECT_ROOT / "prompts" / "describe_scene.txt"
 
 def describe_flash_scene(
                         scene_text: str,
                         client,
-                        prompt_path="prompts/describe_scene.txt",
+                        prompt_path=None,
                         model = "gemini-2.5-flash",
                         gpt_deployment = "gpt-4o-kairos",
                         gpt_temperature = 0.3
                          ) -> str:
     """
     Takes ONE raw scene description (string) and returns
-    a concise Gemini-generated summary describing:
-      - key objects
-      - actions
-      - spatial relationships
-      - temporal relationships
+    a concise Gemini-generated summary.
     """
+    if prompt_path is None:
+        prompt_path = DEFAULT_PROMPT_PATH
 
     # Load template prompt from external file
     with open(prompt_path, "r", encoding="utf-8") as f:
@@ -63,9 +67,11 @@ def describe_scenes(
     AST_key: str = "audio_speech",
     SUMMARY_key: str = "llm_scene_description",
     model= "gemini-2.5-flash",
-    prompt_path = "prompts/describe_scene.txt",
+    prompt_path = None,
     debug= False,
 ):
+    if prompt_path is None:
+        prompt_path = DEFAULT_PROMPT_PATH
     """
     Takes a list of scene dictionaries.
     Adds a new key to each: llm_scene_description

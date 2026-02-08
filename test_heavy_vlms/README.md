@@ -30,6 +30,29 @@ To run the full pipeline test across all videos and all models:
 python test_heavy_vlms/main_test.py
 ```
 
-## Results & Metrics
-- **Results Folder**: Detailed JSON results per video are saved in `test_heavy_vlms/results/{vlm_name}/{video_name}/`.
-- **Metrics Summary**: A consolidated benchmark report is saved to `test_heavy_vlms/vlm_metrics.json`.
+### Results
+- Shared data: `results/_shared_base_data/`
+- Per-VLM metrics: `results/{vlm_name}/{video_name}/pipeline_results.json`
+- Final comparison: `vlm_metrics.json`
+
+## Troubleshooting VM Issues
+
+### 1. Out of Memory / Ctrl+Z
+If you stopped the script with `^Z` (Ctrl+Z), the GPU memory is still locked. Run:
+```bash
+pkill -f python
+```
+
+### 2. Missing Dependencies
+If you get `ModuleNotFoundError`, ensure the latest specialized libraries are installed:
+```bash
+pip install tiktoken timm torchvision torchaudio
+```
+
+### 3. File Path Errors
+If you get `Errno 2: describe_scene.txt not found`, ensure you have synced the latest `src/scene_description.py` which now uses absolute paths.
+
+### 4. Syncing changes to VM
+If your VM code doesn't match the local code:
+1. PUSH from local machine: `git add . && git commit -m "update" && git push`
+2. PULL on VM: `git pull origin main`
