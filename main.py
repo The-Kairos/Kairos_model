@@ -105,6 +105,11 @@ test_videos = {
     f"{run_folder}/malala_long": r"Videos\.Malala Yousafzai FULL Nobel Peace Prize Lecture 2014.mp4",
     f"{run_folder}/sheldon": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
     f"{run_folder}/titanic": r"Videos\.Titanic.1997.NaijaPrey.com.mkv",
+    f"{run_folder}/kfold_online": r"Videos\.Statistical Learning_ 5.2 K-fold Cross Validation",
+    f"{run_folder}/svm_class": r"Videos\.Learning_ Support Vector Machines",
+    f"{run_folder}/ai_beyond_vision": r"Videos\.AI beyond language and vision _ Paul Liang _ TEDxMIT",
+    f"{run_folder}/chinatown_walk": r"Videos\.DJI Osmo Pocket 3 Walk in NYC Manhattan Chinatown",
+    f"{run_folder}/times_square_walk": r"Videos\.NEW YORK TIMES SQUARE 2024 _ 4K WALK TOUR MORNING",
     # f"{run_folder}/grad_honors": r"Videos\.UDST honors graduation.mp4",
     # f"{run_folder}/web_summit": r"Videos\.Web Summit Qatar 2026 Day Three.mp4",
 }

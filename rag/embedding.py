@@ -8,7 +8,7 @@ from google import genai
 # =========================================================
 
 from pathlib import Path
-load_dotenv(Path(__file__).parent / ".env")
+load_dotenv(Path(__file__).parent / "../.env")
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 if not GEMINI_API_KEY:

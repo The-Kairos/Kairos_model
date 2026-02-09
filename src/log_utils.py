@@ -268,7 +268,7 @@ from src.frame_captioning_blip import caption_frames
 from src.frame_obj_d_yolo import detect_object_yolo
 from src.scene_description import describe_scenes
 from src.audio_natural import extract_sounds
-from src.audio_speech import extract_speech
+from src.audio_speech import extract_speech_asr_api
 from src.debug_utils import save_clips
 from src.synopsis_systhesis import summarize_scenes, synthesize_synopsis
 from src.rag_convo import make_embedding, ask_rag
@@ -308,7 +308,7 @@ def extract_sounds_log(*args, **kwargs):
 
 @log_step()
 def extract_speech_log(*args, **kwargs):
-    return extract_speech(*args, **kwargs)
+    return extract_speech_asr_api(*args, **kwargs)
 
 @log_step()
 def summarize_scenes_log(*args, **kwargs):

@@ -7,7 +7,7 @@ from src.debug_utils import load_prompt
 from dotenv import load_dotenv
 from google import genai
 
-load_dotenv(".env")
+load_dotenv("././.env")
 
 EMBEDDING_MODEL = "gemini-embedding-001"
 GENERATION_MODEL = "gemini-2.5-pro"
