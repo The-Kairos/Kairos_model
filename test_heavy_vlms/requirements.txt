@@ -1,9 +1,10 @@
 # test_heavy_vlms/requirements.txt
-transformers>=4.40.0
+transformers>=4.45.0
 torch
 torchvision
-accelerate
+accelerate>=0.26.0
 bitsandbytes
+protobuf
 pillow
 sentencepiece
 av

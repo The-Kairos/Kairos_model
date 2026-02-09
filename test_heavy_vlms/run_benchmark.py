@@ -16,7 +16,7 @@ VIDEOS_DIR = PROJECT_ROOT / "Videos"  # Kairos_model/Videos (capital V)
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 BASE_RESULTS_DIR = RESULTS_DIR / "base"
 
-VLMS = ["llava", "qwenvl", "internvl"]
+VLMS = ["llava", "phi3v", "llama32"]
 VIDEO_EXTENSIONS = [".mp4", ".avi", ".mov", ".mkv"]
 
 def get_videos():
@@ -45,10 +45,21 @@ def process_base_data(video_path):
         str(base_data_file)
     ]
     
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    
-    if result.returncode != 0:
-        print(f"  ✗ Base processing FAILED: {result.stderr}")
+    try:
+        # Add 5-minute timeout for base processing (ASR can be slow)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+        
+        if result.returncode != 0:
+            print(f"  ✗ Base processing FAILED: {result.stderr}")
+            if result.stdout:
+                print(f"  [Stdout Last 500 chars]: {result.stdout[-500:]}")
+            return None
+            
+    except subprocess.TimeoutExpired:
+        print(f"  ✗ Base processing TIMED OUT after 300s")
+        return None
+    except Exception as e:
+        print(f"  ✗ Base processing Error: {e}")
         return None
     
     print(f"  ✓ Base data saved to {base_data_file}")
@@ -111,28 +122,98 @@ def main():
     print(f"Found {len(videos)} videos")
     print(f"Will test {len(VLMS)} VLMs: {', '.join(VLMS)}\n")
     
+    # Metrics tracking
+    overall_start = time.time()
+    metrics = {
+        "videos": {},
+        "vlms": {vlm: {"total_time": 0, "success": 0, "failed": 0} for vlm in VLMS},
+        "overall_start": overall_start
+    }
+    
     # Process each video
     for video_idx, video_path in enumerate(videos, 1):
+        video_name = video_path.stem
         print(f"\n{'='*80}")
         print(f"VIDEO {video_idx}/{len(videos)}: {video_path.name}")
         print(f"{'='*80}\n")
         
+        video_start = time.time()
+        metrics["videos"][video_name] = {"base_time": 0, "vlms": {}}
+        
         # Step 1: Process base data (scenes, audio, YOLO)
+        base_start = time.time()
         base_data_file = process_base_data(video_path)
+        base_time = time.time() - base_start
+        metrics["videos"][video_name]["base_time"] = base_time
+        
         if not base_data_file:
             print(f"  ✗ Skipping video due to base processing failure\n")
             continue
         
         # Step 2: Run each VLM in isolation
         for vlm_name in VLMS:
+            vlm_start = time.time()
             success = run_vlm_on_video(vlm_name, video_path, base_data_file)
+            vlm_time = time.time() - vlm_start
+            
+            metrics["videos"][video_name]["vlms"][vlm_name] = {
+                "time": vlm_time,
+                "success": success
+            }
+            metrics["vlms"][vlm_name]["total_time"] += vlm_time
+            if success:
+                metrics["vlms"][vlm_name]["success"] += 1
+            else:
+                metrics["vlms"][vlm_name]["failed"] += 1
+            
             if not success:
                 print(f"    [Warning] {vlm_name} failed, continuing with next VLM...")
+        
+        video_total = time.time() - video_start
+        metrics["videos"][video_name]["total_time"] = video_total
     
+    overall_time = time.time() - overall_start
+    
+    # Print summary
     print("\n" + "="*80)
-    print("BENCHMARK COMPLETE")
+    print("BENCHMARK SUMMARY")
     print("="*80)
-    print(f"\nResults saved to: {RESULTS_DIR}")
+    print(f"\nTotal Time: {overall_time:.1f}s ({overall_time/60:.1f} minutes)")
+    
+    print(f"\n{'─'*80}")
+    print("PER-VIDEO BREAKDOWN")
+    print(f"{'─'*80}")
+    for video_name, video_metrics in metrics["videos"].items():
+        print(f"\n📹 {video_name}")
+        print(f"  Base Processing: {video_metrics['base_time']:.1f}s")
+        for vlm_name, vlm_metrics in video_metrics.get("vlms", {}).items():
+            status = "✓" if vlm_metrics["success"] else "✗"
+            print(f"  {vlm_name:12s}: {vlm_metrics['time']:6.1f}s {status}")
+        print(f"  {'─'*40}")
+        print(f"  Total:        {video_metrics.get('total_time', 0):6.1f}s")
+    
+    print(f"\n{'─'*80}")
+    print("PER-VLM SUMMARY")
+    print(f"{'─'*80}")
+    for vlm_name, vlm_metrics in metrics["vlms"].items():
+        total_runs = vlm_metrics["success"] + vlm_metrics["failed"]
+        avg_time = vlm_metrics["total_time"] / max(total_runs, 1)
+        success_rate = (vlm_metrics["success"] / max(total_runs, 1)) * 100
+        print(f"\n🤖 {vlm_name.upper()}")
+        print(f"  Total Time:     {vlm_metrics['total_time']:.1f}s")
+        print(f"  Avg Time/Video: {avg_time:.1f}s")
+        print(f"  Success Rate:   {vlm_metrics['success']}/{total_runs} ({success_rate:.0f}%)")
+    
+    # Save metrics
+    metrics["overall_time"] = overall_time
+    metrics_file = RESULTS_DIR / "benchmark_metrics.json"
+    with open(metrics_file, 'w') as f:
+        json.dump(metrics, f, indent=2)
+    
+    print(f"\n{'='*80}")
+    print(f"Results saved to: {RESULTS_DIR}")
+    print(f"Metrics saved to: {metrics_file}")
+    print(f"{'='*80}\n")
 
 if __name__ == "__main__":
     main()
