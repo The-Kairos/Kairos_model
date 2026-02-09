@@ -83,7 +83,10 @@ def run_vlm_on_video(vlm_name, video_path, base_data_file):
     
     if result.returncode != 0:
         print(f"    ✗ {vlm_name} FAILED after {duration:.1f}s")
-        print(f"       Error: {result.stderr[-200:]}")  # Last 200 chars
+        # Show last 500 chars of stderr for debugging
+        if result.stderr:
+            error_msg = result.stderr.strip()[-500:]
+            print(f"       Error: {error_msg}")
         return False
     
     print(f"    ✓ {vlm_name} completed in {duration:.1f}s")

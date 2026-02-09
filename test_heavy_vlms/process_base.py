@@ -14,6 +14,10 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
+# Load .env file for Azure credentials
+from dotenv import load_dotenv
+load_dotenv(PROJECT_ROOT / ".env")
+
 from src.scene_cutting import get_scene_list
 from src.audio_utils import extract_scene_audio_ffmpeg
 from src.audio_speech import extract_speech_asr_api
@@ -59,9 +63,12 @@ def process_base_data(video_path, output_file):
         # Extract audio - correct argument order: (input_video, output_wav, start_sec, end_sec)
         extract_scene_audio_ffmpeg(str(video_path), str(wav_path), start, end)
         
-        # ASR - returns (transcription, timings) tuple
-        transcription, _ = extract_speech_asr_api(str(wav_path), enable_logs=False)
-        scene["audio_speech"] = transcription
+        # ASR - returns (transcription, timings) tuple, but may fail if credentials missing
+        try:
+            transcription, _ = extract_speech_asr_api(str(wav_path), enable_logs=False)
+            scene["audio_speech"] = transcription
+        except Exception as e:
+            scene["audio_speech"] = f"[ASR unavailable: {str(e)[:50]}]"
     
     # 2.5. AST (Natural Sounds) - process all scenes at once
     print("  [2.5/4] Audio processing (AST - Natural Sounds)...")

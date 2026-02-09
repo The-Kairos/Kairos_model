@@ -56,12 +56,23 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
         print(f"ERROR: Unknown VLM {vlm_name}")
         sys.exit(1)
     
+    # Clear GPU memory before loading model
+    print(f"[0/3] Clearing GPU memory...")
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        torch.cuda.ipc_collect()
+        print(f"    GPU memory cleared. Available: {torch.cuda.mem_get_info()[0] / 1024**3:.2f} GB")
+    
     # Load model
     print(f"[1/3] Loading {vlm_name} model...")
     try:
         model, processor = vlm_module.load_vlm_model()
+        print(f"    Model loaded successfully")
     except Exception as e:
         print(f"ERROR loading model: {e}")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
     
     # Run inference on all scenes
@@ -73,8 +84,13 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
             mid = (scene["start_seconds"] + scene["end_seconds"]) / 2
             frames = sample_from_clip(str(video_path), scene["scene_index"], mid, mid+0.1, num_frames=1, new_size=336)
             
-            if frames:
+            if frames and len(frames) > 0 and frames[0] is not None:
                 pil_img = Image.fromarray(cv2.cvtColor(frames[0], cv2.COLOR_BGR2RGB))
+                
+                # Double-check PIL image is valid
+                if pil_img is None or pil_img.size[0] == 0:
+                    raise ValueError("Invalid PIL image")
+                
                 caption = vlm_module.caption_image(model, processor, pil_img)
                 
                 # Clean up the caption (remove prompt artifacts)
@@ -93,8 +109,9 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
                     "scene_index": scene["scene_index"],
                     "start_seconds": scene["start_seconds"],
                     "end_seconds": scene["end_seconds"],
-                    "caption": "No frame available"
+                    "caption": "[No valid frame extracted]"
                 })
+                print(f"  Scene {i+1}/{len(scenes)}: No valid frame")
         except Exception as e:
             print(f"  Scene {i+1} FAILED: {e}")
             captions.append({
