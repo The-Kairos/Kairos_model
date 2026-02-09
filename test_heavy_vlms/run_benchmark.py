@@ -46,8 +46,8 @@ def process_base_data(video_path):
     ]
     
     try:
-        # Add 5-minute timeout for base processing (ASR can be slow)
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+        # Add 20-minute timeout for base processing (ASR/YOLO can be slow for long videos)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=1200)
         
         if result.returncode != 0:
             print(f"  ✗ Base processing FAILED: {result.stderr}")
