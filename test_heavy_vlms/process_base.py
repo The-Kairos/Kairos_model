@@ -49,30 +49,55 @@ def process_base_data(video_path, output_file):
     scenes = get_scene_list(str(video_path))
     print(f"    Found {len(scenes)} scenes")
     
-    # 2. Audio Processing
-    print("  [2/4] Audio processing (ASR + AST)...")
+    # 2. Audio Processing (ASR only first)
+    print("  [2/4] Audio processing (ASR)...")
     for scene in scenes:
         idx = scene["scene_index"]
         start, end = scene["start_seconds"], scene["end_seconds"]
         wav_path = audio_dir / f"scene_{idx:02d}.wav"
         
-        # Extract audio
-        extract_scene_audio_ffmpeg(str(video_path), start, end, str(wav_path))
+        # Extract audio - correct argument order: (input_video, output_wav, start_sec, end_sec)
+        extract_scene_audio_ffmpeg(str(video_path), str(wav_path), start, end)
         
-        # ASR
-        scene["audio_speech"] = extract_speech_asr_api(str(wav_path))
-        
-        # AST
-        scene["audio_natural"] = extract_sounds(str(wav_path))
+        # ASR - returns (transcription, timings) tuple
+        transcription, _ = extract_speech_asr_api(str(wav_path), enable_logs=False)
+        scene["audio_speech"] = transcription
+    
+    # 2.5. AST (Natural Sounds) - process all scenes at once
+    print("  [2.5/4] Audio processing (AST - Natural Sounds)...")
+    try:
+        from src.audio_natural import extract_sounds
+        scenes = extract_sounds(str(video_path), scenes, debug=False)
+    except Exception as e:
+        print(f"    Warning: AST failed: {e}")
+        for scene in scenes:
+            if "audio_natural" not in scene:
+                scene["audio_natural"] = []
     
     # 3. YOLO Object Detection
     print("  [3/4] YOLO object detection...")
     try:
+        from ultralytics import YOLO
+        yolo_model = YOLO("yolov8n.pt")  # Use nano model for speed
+        
         for scene in scenes:
             mid = (scene["start_seconds"] + scene["end_seconds"]) / 2
             frames = sample_from_clip(str(video_path), scene["scene_index"], mid, mid+0.1, num_frames=1)
             if frames:
-                scene["objects"] = detect_object_yolo(frames[0])
+                # Run YOLO on single frame
+                results = yolo_model.predict(frames[0], conf=0.5, verbose=False)
+                detections = []
+                for r in results:
+                    if hasattr(r, "boxes"):
+                        for box in r.boxes:
+                            cls = int(box.cls[0])
+                            label = yolo_model.names[cls]
+                            conf_score = float(box.conf[0])
+                            detections.append({
+                                "class": label,
+                                "confidence": conf_score
+                            })
+                scene["objects"] = detections
             else:
                 scene["objects"] = []
     except Exception as e:

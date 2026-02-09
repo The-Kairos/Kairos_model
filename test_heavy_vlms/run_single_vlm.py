@@ -47,11 +47,11 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
     
     # Import VLM module
     if vlm_name == "llava":
-        import test_heavy_vlms.test_llava_1_6 as vlm
+        import test_llava_1_6 as vlm_module
     elif vlm_name == "internvl":
-        import test_heavy_vlms.test_internvl as vlm
+        import test_internvl as vlm_module
     elif vlm_name == "qwenvl":
-        import test_heavy_vlms.test_qwenvl as vlm
+        import test_qwenvl as vlm_module
     else:
         print(f"ERROR: Unknown VLM {vlm_name}")
         sys.exit(1)
@@ -59,7 +59,7 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
     # Load model
     print(f"[1/3] Loading {vlm_name} model...")
     try:
-        model, processor = vlm.load_vlm_model()
+        model, processor = vlm_module.load_vlm_model()
     except Exception as e:
         print(f"ERROR loading model: {e}")
         sys.exit(1)
@@ -75,14 +75,19 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
             
             if frames:
                 pil_img = Image.fromarray(cv2.cvtColor(frames[0], cv2.COLOR_BGR2RGB))
-                caption = vlm.caption_image(model, processor, pil_img)
+                caption = vlm_module.caption_image(model, processor, pil_img)
+                
+                # Clean up the caption (remove prompt artifacts)
+                if "ASSISTANT:" in caption:
+                    caption = caption.split("ASSISTANT:")[-1].strip()
+                
                 captions.append({
                     "scene_index": scene["scene_index"],
                     "start_seconds": scene["start_seconds"],
                     "end_seconds": scene["end_seconds"],
                     "caption": caption
                 })
-                print(f"  Scene {i+1}/{len(scenes)}: {caption[:60]}...")
+                print(f"  Scene {i+1}/{len(scenes)}: {caption[:80]}...")
             else:
                 captions.append({
                     "scene_index": scene["scene_index"],
