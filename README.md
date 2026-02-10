@@ -32,6 +32,7 @@ Kairos is a video understanding platform designed to analyze **long-form videos*
 ## Usage
 
 ```bash
+python _download_videos.py          # download videos
 python main.py                      # process the videos
 python log_reports\_print_logs.py   # see hardware metrics of video processing
 ```
