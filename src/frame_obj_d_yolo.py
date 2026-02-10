@@ -722,12 +722,22 @@ def debug_draw_yolo(
     - Per-class consistent colors
     """
 
-    drawn = frame.copy()
+    pad = 20
+    drawn = cv2.copyMakeBorder(
+        frame,
+        pad, pad, pad, pad,
+        borderType=cv2.BORDER_CONSTANT,
+        value=(0, 0, 0)
+    )
 
     for det in detections:
         label = det["label"]
         conf = det["confidence"]
         x1, y1, x2, y2 = map(int, det["bbox"])
+        x1 += pad
+        y1 += pad
+        x2 += pad
+        y2 += pad
 
         # Unique color for class
         color = get_color_for_label(label)
