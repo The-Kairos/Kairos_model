@@ -3,10 +3,6 @@ load_dotenv()
 
 from src.debug_utils import *
 from src.log_utils import *
-from src.audio_utils import extract_scene_audio_ffmpeg, get_ffmpeg_executable
-from src.audio_speech import extract_speech_asr_api
-from src.audio_natural import extract_sounds
-from src.system_metrics import get_system_usage
 import argparse
 import os
 import time
@@ -61,7 +57,7 @@ improve_motion_detection    = False
 prioritize_speed            = False
 
 if improve_motion_detection:
-    pyscene_threshold   = 15     # more sensitivity pyscene
+    pyscene_threshold   = 15     # more sensitive pyscene
     pyscene_shortest    = 0.5    # the minimum scene length  
     frames_per_scene    = 5      # more frames sampled per scene
     yolo_action_fps     = 8      # more frames sampled per scene
@@ -230,50 +226,27 @@ for output_dir, test_video in test_videos.items():
         time.sleep(10)
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
-    # ----------------------------
-    # AUDIO EXTRACTION + ASR + AST (API)
-    # ----------------------------
-    audio_dir = Path(output_dir) / "audio"
-    audio_dir.mkdir(parents=True, exist_ok=True)
-    gcloud_json = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-
-    # ASR Step
-    if "audio_speech" not in checkpoint["scenes"][-1].keys():
-        t0_asr = time.time()
-        for scene in checkpoint["scenes"]:
-            if "audio_speech" not in scene:
-                idx = scene["scene_index"]
-                start_sec, end_sec = scene["start_seconds"], scene["end_seconds"]
-                audio_path = audio_dir / f"scene_{idx:02d}.wav"
-                
-                # Extract per-scene audio if not exists
-                if not audio_path.exists():
-                    extract_scene_audio_ffmpeg(test_video, str(audio_path), start_sec, end_sec)
-                
-                # ASR via Azure Whisper API
-                speech_text, asr_timings = extract_speech_asr_api(str(audio_path), enable_logs=False)
-                scene["audio_speech"] = speech_text
-                scene["asr_timings"] = asr_timings
-                scene["asr_system_usage"] = get_system_usage()
-
-        step['asr_timings'] = {
-            "wall_time_sec": time.time() - t0_asr,
-            "api": "Azure Whisper"
-        }
+    if "audio_natural" not in checkpoint["scenes"][-1].keys():
+        checkpoint["scenes"], step['ast_timings'] = extract_sounds_log(
+            video_path=test_video,
+            scenes=checkpoint["scenes"],
+            target_sr=ast_target_sr,
+            debug=True,
+        )
+        time.sleep(10)
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
-    # AST Step (Local Model)
-    if "audio_natural" not in checkpoint["scenes"][-1].keys():
-        t0_ast = time.time()
-        missing_ast_scenes = [s for s in checkpoint["scenes"] if "audio_natural" not in s]
-        
-        print(f"Running local AST on {len(missing_ast_scenes)} scenes...")
-        extract_sounds(test_video, missing_ast_scenes, debug=True)
-        
-        step['ast_timings'] = {
-            "wall_time_sec": time.time() - t0_ast,
-            "api": "Local AST (MIT/Audioset)"
-        }
+
+    if "audio_speech" not in checkpoint["scenes"][-1].keys():
+        checkpoint["scenes"], step['asr_timings'] = extract_speech_log(
+            video_path=test_video,
+            scenes=checkpoint["scenes"],
+            model=asr_model_size,
+            use_vad=asr_use_vad,
+            target_sr=asr_target_sr,
+            debug=True,
+        )
+        time.sleep(10)
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     if "llm_scene_description" not in checkpoint["scenes"][-1].keys():
