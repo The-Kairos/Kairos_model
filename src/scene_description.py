@@ -45,7 +45,7 @@ def describe_flash_scene(
                     "content": prompt,
                 }
             ],
-            max_tokens=16384, # apparently the max for gpt4o
+            max_tokens=2048,
             temperature=gpt_temperature,
             top_p=1.0,
             model=gpt_deployment
@@ -66,6 +66,7 @@ def describe_scenes(
     SUMMARY_key: str = "llm_scene_description",
     model= "gemini-2.5-flash",
     prompt_path = "prompts/describe_scene.txt",
+    cooldown_sec: float = 5,
     debug= False,
 ):
     """
@@ -112,7 +113,8 @@ def describe_scenes(
 
         if debug:
             print("Scene", idx, summary)
-        time.sleep(5)
+        if cooldown_sec and cooldown_sec > 0:
+            time.sleep(cooldown_sec)
 
     return updated
 

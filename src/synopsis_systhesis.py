@@ -56,7 +56,7 @@ def call_gpt(client, deployment, prompt):
             {"role": "system", "content": "You are a precise and reliable assistant."},
             {"role": "user", "content": prompt}
         ],
-        max_tokens=4096,
+        max_tokens=16384,  # apparently the max for gpt4o
         temperature=1.0,
         top_p=1.0,
         model=deployment
