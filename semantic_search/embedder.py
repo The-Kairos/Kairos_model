@@ -2,13 +2,13 @@ import os
 import numpy as np
 from dotenv import load_dotenv
 from google import genai
+from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
 # =========================================================
-# Environment & Client Setup
+# CHANGED: Environment & API Setup (was: local SentenceTransformer)
 # =========================================================
 
-from pathlib import Path
 load_dotenv(Path(__file__).parent / "../.env")
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -18,12 +18,12 @@ if not GEMINI_API_KEY:
 EMBEDDING_MODEL = "gemini-embedding-001"
 
 client = genai.Client(
-    vertexai=True,   # set to False if not using Vertex-backed key
+    vertexai=True,
     api_key=GEMINI_API_KEY
 )
 
 # =========================================================
-# Utilities
+# CHANGED: Normalization utility (was: built-in to SentenceTransformer)
 # =========================================================
 
 def _normalize(vec: np.ndarray) -> np.ndarray:
@@ -36,15 +36,14 @@ def _normalize(vec: np.ndarray) -> np.ndarray:
     return vec / norm
 
 # =========================================================
-# Scene → Text Conversion (Shared)
+# CHANGED: Rich text formatting (was: no text preparation)
 # =========================================================
 
 def format_embedding_text(scenes: list[dict]) -> list[str]:
     """
     Convert scene metadata into embedding-ready text chunks.
-    One chunk = one scene.
+    CHANGED: Now includes timecodes, objects, and audio in addition to description.
     """
-
     embedding_texts = []
 
     for scene in scenes:
@@ -79,18 +78,18 @@ def format_embedding_text(scenes: list[dict]) -> list[str]:
     return embedding_texts
 
 # =========================================================
-# CHANGED: Embedding Class (supports both methods)
+# CHANGED: Embedding functions (was: SentenceTransformer.encode)
+# Now: Supports both Google Gemini API and SentenceTransformer
 # =========================================================
 
-class EmbeddingEngine:
-    """
-    Embedding engine supporting multiple methods.
-    Methods:
-        - "gemini": Google Gemini API (gemini-embedding-001)
-        - "sentence-transformer": SentenceTransformer (all-MiniLM-L6-v2)
-    """
-    
+class TextEmbedder:
     def __init__(self, method: str = "gemini"):
+        """
+        CHANGED: Constructor now accepts method parameter.
+        Methods:
+            - "gemini": Uses Google Gemini API (gemini-embedding-001)
+            - "sentence-transformer": Uses SentenceTransformer (all-MiniLM-L6-v2)
+        """
         if method not in ["gemini", "sentence-transformer"]:
             raise ValueError(f"Unknown method: {method}. Must be 'gemini' or 'sentence-transformer'")
         
@@ -99,14 +98,15 @@ class EmbeddingEngine:
         
         if method == "sentence-transformer":
             self.model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
-    
-    def embed_texts(self, texts: list[str]) -> list[np.ndarray]:
+
+    def embed_texts(self, texts):
         """
-        Embed a list of texts (scenes).
-        Returns a list of normalized numpy vectors.
+        Embed a list of texts using selected method.
+        CHANGED: Now supports both Gemini API and SentenceTransformer.
+        Returns a 2D numpy array.
         """
         if not texts:
-            return []
+            return np.array([])
 
         if self.method == "gemini":
             result = client.models.embed_content(
@@ -119,22 +119,21 @@ class EmbeddingEngine:
                 vec = np.array(emb.values, dtype=np.float32)
                 embeddings.append(_normalize(vec))
 
-            return embeddings
+            return np.stack(embeddings) if embeddings else np.array([])
         
         else:  # sentence-transformer
-            vectors = self.model.encode(
+            return self.model.encode(
                 texts,
                 convert_to_numpy=True,
                 normalize_embeddings=True,
                 show_progress_bar=False,
             ).astype(np.float32)
-            
-            return [vectors[i] for i in range(len(texts))]
 
-    def embed_query(self, query: str) -> np.ndarray:
+    def embed_query(self, query: str):
         """
-        Embed a single query string.
-        Returns a normalized numpy vector.
+        Embed a single query string using selected method.
+        CHANGED: Now supports both Gemini API and SentenceTransformer.
+        Returns a normalized numpy vector (1D).
         """
         if not query or not query.strip():
             raise ValueError("Query must be a non-empty string.")
@@ -154,43 +153,3 @@ class EmbeddingEngine:
                 convert_to_numpy=True,
                 normalize_embeddings=True,
             )[0].astype(np.float32)
-
-
-# =========================================================
-# Default instance for backward compatibility
-# =========================================================
-
-_default_engine = EmbeddingEngine(method="gemini")
-
-# =========================================================
-# Module-level functions (backward compatible)
-# =========================================================
-
-def embed_texts(texts: list[str]) -> list[np.ndarray]:
-    """
-    CHANGED: Now uses EmbeddingEngine class (default: Gemini)
-    Embed a list of texts (scenes).
-    Returns a list of normalized numpy vectors.
-    """
-    return _default_engine.embed_texts(texts)
-
-
-def embed_query(query: str) -> np.ndarray:
-    """
-    CHANGED: Now uses EmbeddingEngine class (default: Gemini)
-    Embed a single query string.
-    Returns a normalized numpy vector.
-    """
-    return _default_engine.embed_query(query)
-
-
-# =========================================================
-# (Optional) Local Similarity Debug Helper
-# =========================================================
-
-def cosine_similarity_matrix(query_vec: np.ndarray, vectors: list[np.ndarray]):
-    """
-    Debug helper for local similarity checks (NOT used in final RAG).
-    """
-    mat = np.stack(vectors)
-    return np.dot(mat, query_vec)
