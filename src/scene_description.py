@@ -1,6 +1,7 @@
 import json
 import time
 from src.debug_utils import apply_gpt_normalization
+from src.debug_utils import print_prefixed
 
 
 def describe_flash_scene(
@@ -112,7 +113,9 @@ def describe_scenes(
         previous_summaries.append(summary)  # save summary
 
         if debug:
-            print("Scene", idx, summary)
+            print_prefixed("(GPT4o)", f"----- Scene {idx} -----")
+            print(summary.strip())
+            print("")
         if cooldown_sec and cooldown_sec > 0:
             time.sleep(cooldown_sec)
 

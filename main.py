@@ -165,6 +165,8 @@ for output_dir, test_video in test_videos.items():
     step = checkpoint["steps"]
 
     if not checkpoint.get("scenes"):
+        print("")
+        print_section("Running PysceneDetect...")
         checkpoint["scenes"], step['get_scene_list'] = get_scene_list_log(
             input_video_path=test_video,
             threshold = pyscene_threshold,
@@ -173,6 +175,8 @@ for output_dir, test_video in test_videos.items():
         see_scenes_cuts(df=checkpoint["scenes"])
         time.sleep(10)
 
+        print("")
+        print(f"Saving clips in: {output_dir}/.clips")
         checkpoint["scenes"], step['save_clips'] = save_clips_log(
             video_path=test_video,
             scenes=checkpoint["scenes"],
@@ -181,6 +185,7 @@ for output_dir, test_video in test_videos.items():
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     if "frame_captions" not in checkpoint["scenes"][-1].keys():
+        print(f"Saving sampled frames in: {output_dir}/.frames")
         checkpoint["scenes"], step['sample_frames'] = sample_frames_log(
             input_video_path=test_video,
             scenes=checkpoint["scenes"],
@@ -190,6 +195,8 @@ for output_dir, test_video in test_videos.items():
         )
         time.sleep(10)
 
+        print("")
+        print_section("Running BLIP...")
         checkpoint["scenes"], step['caption_frames'] = caption_frames_log(
             scenes=checkpoint["scenes"],
             prompt= blip_start_prompt,
@@ -204,6 +211,8 @@ for output_dir, test_video in test_videos.items():
 
     if "yolo_detections" not in checkpoint["scenes"][-1].keys():
         if "yolo_frames" not in checkpoint["scenes"][-1].keys():
+            print("")
+            print(f"Saving sampled fps in: {output_dir}/.fps")
             checkpoint["scenes"], step['sample_fps'] = sample_fps_log(
                 input_video_path=test_video,
                 scenes=checkpoint["scenes"],
@@ -215,6 +224,8 @@ for output_dir, test_video in test_videos.items():
             )
         time.sleep(10)
 
+        print("")
+        print_section("Running YOLOv8...")
         checkpoint["scenes"], step['detect_object_yolo'] = detect_object_yolo_log(
             scenes=checkpoint["scenes"],
             model_size="model/yolov8s.pt",
@@ -229,6 +240,8 @@ for output_dir, test_video in test_videos.items():
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     if "audio_natural" not in checkpoint["scenes"][-1].keys():
+        print("")
+        print_section("Running MIT AST...")
         checkpoint["scenes"], step['ast_timings'] = extract_sounds_log(
             video_path=test_video,
             scenes=checkpoint["scenes"],
@@ -240,6 +253,8 @@ for output_dir, test_video in test_videos.items():
 
 
     if "audio_speech" not in checkpoint["scenes"][-1].keys():
+        print("")
+        print_section("Running Whisper...")
         checkpoint["scenes"], step['asr_timings'] = extract_speech_log(
             video_path=test_video,
             scenes=checkpoint["scenes"],
@@ -252,6 +267,8 @@ for output_dir, test_video in test_videos.items():
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     if "llm_scene_description" not in checkpoint["scenes"][-1].keys():
+        print("")
+        print_section("Running GPT4o Scene Descriptions...")
         checkpoint["scenes"], step['describe_scenes'] = describe_scenes_log(
             scenes=checkpoint["scenes"],
             client=client,
@@ -270,6 +287,8 @@ for output_dir, test_video in test_videos.items():
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     if "narratives" not in checkpoint:
+        print("")
+        print_section("Running GPT4o Summary narrative...")
         checkpoint, step['summarize_scenes'] = summarize_scenes_log(
             client=client,
             deployment=deployment,
@@ -279,9 +298,16 @@ for output_dir, test_video in test_videos.items():
             debug=True,
             output_dir=output_dir,
         )
+        narratives = checkpoint.get("narratives", [])
+        if narratives:
+            last = narratives[-1]
+            narrative_path = Path(output_dir) / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
+            print(f"Saving narrative in: {narrative_path}")
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     if "synopsis" not in checkpoint:
+        print("")
+        print_section("Running GPT4o Synopsis generation...")
         checkpoint, step['synthesize_synopsis'] = synthesize_synopsis_log(
             client=client,
             deployment=deployment,

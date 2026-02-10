@@ -1,5 +1,6 @@
 # src/yolo_inference.py
 from ultralytics import YOLO
+from src.debug_utils import print_prefixed
 import math
 import os
 import random
@@ -686,10 +687,12 @@ def detect_object_yolo(
 
         if debug:
             lines = format_track_summaries(track_summaries, style="compact")
+            print_prefixed("(YOLOv8)", f"Scene {s}:")
             if lines:
-                print(f"Yolo Scene {s}: " + "; ".join(lines))
+                for line in lines:
+                    print_prefixed("(YOLOv8)", line, indent=4)
             else:
-                print(f"Yolo Scene {s}: no tracks detected")
+                print_prefixed("(YOLOv8)", "none detected", indent=4)
 
     return results_scenes
 

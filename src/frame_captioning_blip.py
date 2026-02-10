@@ -1,4 +1,5 @@
 from typing import List, Dict
+from src.debug_utils import print_prefixed
 import cv2
 import numpy as np
 import torch
@@ -150,7 +151,9 @@ def caption_frames(
     enriched_scenes: List[Dict] = []
 
     for scene in scenes:
-        if debug: print("Scene", scene.get("scene_index", "??"))
+        if debug:
+            scene_idx = scene.get("scene_index", "??")
+            print_prefixed("(BLIP)", f"Scene {scene_idx}")
         frames = scene.get("frames", [])
         captions: List[str] = []
 
@@ -165,7 +168,8 @@ def caption_frames(
                 do_sample=do_sample,
             )
             captions.append(caption)
-            if debug: print(f"  {caption}")
+            if debug:
+                print_prefixed("(BLIP)", f"{caption}", indent=2)
 
         new_scene = dict(scene)  # shallow copy so we don't mutate original reference
         new_scene["frame_captions"] = captions

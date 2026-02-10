@@ -255,7 +255,7 @@ def save_log(data, path):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    print(f"Log saved to: {path}")
+    print(f"Saving log: {path}")
     return path
 
 

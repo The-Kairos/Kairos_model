@@ -1,6 +1,7 @@
 import av
 import numpy as np
 import torch
+from src.debug_utils import print_prefixed, format_timecode
 import librosa
 from transformers import AutoFeatureExtractor, AutoModelForAudioClassification
 
@@ -130,7 +131,9 @@ def extract_sounds(video_path, scenes, target_sr=16000, debug=False):
         scene["audio_natural"] = label
 
         if debug:
-            print(f"{start} → {end} : {label}")
+            start_tc = scene.get("start_timecode") or format_timecode(start)
+            end_tc = scene.get("end_timecode") or format_timecode(end)
+            print_prefixed("(MIT AST)", f"{start_tc} -> {end_tc} {label}")
 
         # ADD DEBUG TO SAVE THE AUDIO CLIPS IF NEEDED
 
@@ -156,3 +159,4 @@ def test():
     )
 
 # test()
+

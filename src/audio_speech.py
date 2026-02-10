@@ -4,6 +4,7 @@ import noisereduce as nr
 import torch
 import av
 import whisper
+from src.debug_utils import print_prefixed
 
 # Load Silero VAD (once)
 silero_model, utils = torch.hub.load(
@@ -145,7 +146,7 @@ def extract_speech(video_path, scenes, model, use_vad=True, target_sr=16000, deb
     )
 
     # 2) Process each segment
-    for scene in scenes:
+    for idx, scene in enumerate(scenes):
         t0 = float(scene["start_seconds"])
         t1 = float(scene["end_seconds"])
 
@@ -154,7 +155,11 @@ def extract_speech(video_path, scenes, model, use_vad=True, target_sr=16000, deb
 
         # add new key
         scene["audio_speech"] = speech
-        if debug: print(f"Scene {t0:.2f}-{t1:.2f}s: {speech}")
+        if debug:
+            scene_idx = scene.get("scene_index", idx)
+            scene_label = f"{int(scene_idx):03d}" if isinstance(scene_idx, (int, float)) else str(scene_idx)
+            text = (speech or "").strip()
+            print_prefixed("(Whisper)", f"Scene {scene_label}: \"{text}\"")
 
     return scenes
 

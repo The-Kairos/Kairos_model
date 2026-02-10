@@ -14,7 +14,7 @@ FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
 # ----------------------
 def _debug_print(enabled: bool, message: str):
     if enabled:
-        print(message)
+        print(f"(GPT4o) {message}")
 
 # ----------------------
 # 2. Chunk scenes
@@ -93,7 +93,7 @@ def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: s
         segment_narrative=summary
     )
     new_carryover_context = call_gpt(client, deployment, carryover_prompt)
-    _debug_print(debug, f"condense_chunk: chunk_len={len(chunk_text)} condensed into len={len(summary)}")
+    _debug_print(debug, f"    condense_chunk: chunk_len={len(chunk_text)} condensed into len={len(summary)}")
     return summary, new_carryover_context
 
 def chunk_narrative(narrative: str, chunk_size: int = CHUNK_SIZE, debug: bool = False):
@@ -148,7 +148,7 @@ def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, s
         _debug_print(debug, "summarize_scenes:")
         _debug_print(
             debug,
-            f"- narrative_size 1: {len(narrative)} char ({len(scene_chunks)} chunks)"
+            f"    narrative_size 1: {len(narrative)} char ({len(scene_chunks)} chunks)"
         )
 
     round_index = 1
@@ -169,7 +169,7 @@ def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, s
         if debug:
             _debug_print(
                 debug,
-                f"- narrative_size {round_index}: {len(narrative)} char ({len(narrative_chunks)} chunks)"
+                f"    narrative_size {round_index}: {len(narrative)} char ({len(narrative_chunks)} chunks)"
             )
 
     if output_dir:
@@ -178,7 +178,6 @@ def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, s
         for i, item in enumerate(narratives, start=1):
             out_path = out_dir / f"narrative_{i}_len_{item['narrative_len']}.txt"
             out_path.write_text(item["narrative"], encoding="utf-8")
-            _debug_print(debug, f"summarize_scenes: saved {out_path}")
 
     return {
         "scenes": scenes,

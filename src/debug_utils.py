@@ -6,6 +6,32 @@ from pathlib import Path
 import imageio_ffmpeg as ffmpeg
 import pandas as pd
 
+SECTION_LINE = "=" * 40
+
+
+def print_section(title: str) -> None:
+    print(SECTION_LINE)
+    print(title)
+    print(SECTION_LINE)
+
+
+def print_prefixed(prefix: str, message: str, indent: int = 0) -> None:
+    pad = " " * indent
+    print(f"{prefix} {pad}{message}")
+
+
+def format_timecode(seconds: float | None) -> str:
+    if seconds is None:
+        return "??:??:??.???"
+    try:
+        ms_total = int(round(float(seconds) * 1000))
+    except (TypeError, ValueError):
+        return "??:??:??.???"
+    sec_total, ms = divmod(ms_total, 1000)
+    mins_total, sec = divmod(sec_total, 60)
+    hrs, mins = divmod(mins_total, 60)
+    return f"{hrs:02d}:{mins:02d}:{sec:02d}.{ms:03d}"
+
 def see_first_scene(df):
     print("Printing first captioned scene:")
     print("{")
@@ -15,12 +41,16 @@ def see_first_scene(df):
     print("}")
 
 def see_scenes_cuts(df):
-    print(f"Found {len(df)} scenes.")
-    for s in df:
-        print(
-            f"Scene {s['scene_index']:03d}: "
-            f"{s['start_timecode']} -> {s['end_timecode']} "
-            f"({s['duration_seconds']:.2f} sec)"
+    print_prefixed("(PysceneDetect)", f"Found {len(df)} scenes.")
+    for idx, s in enumerate(df):
+        scene_index = s.get("scene_index", idx)
+        scene_label = f"{int(scene_index):03d}" if isinstance(scene_index, (int, float)) else str(scene_index)
+        start_tc = s.get("start_timecode") or format_timecode(s.get("start_seconds"))
+        end_tc = s.get("end_timecode") or format_timecode(s.get("end_seconds"))
+        print_prefixed(
+            "(PysceneDetect)",
+            f"Scene {scene_label}: {start_tc} -> {end_tc} ({s['duration_seconds']:.2f} sec)",
+            indent=4,
         )
 
 def save_clips(video_path, scenes, output_dir):
