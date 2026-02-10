@@ -1,6 +1,7 @@
 import os
 import subprocess
 import json
+import re
 from pathlib import Path
 import imageio_ffmpeg as ffmpeg
 import pandas as pd
@@ -106,3 +107,19 @@ def have_key(scenes, key: str) -> bool:
 PROMPTS_DIR = Path(__file__).resolve().parents[1] / "prompts"
 def load_prompt(filename: str) -> str:
     return (PROMPTS_DIR / filename).read_text(encoding="utf-8")
+
+def apply_gpt_normalization(text: str, filename: str = "gpt_normalizations.json") -> str:
+    """
+    Normalize text before sending to GPT using word-boundary replacements.
+    Mapping is loaded from prompts/gpt_normalizations.json by default.
+    """
+    path = PROMPTS_DIR / filename
+    if not path.exists():
+        return text
+
+    with open(path, "r", encoding="utf-8") as f:
+        mapping = json.load(f)
+
+    for src, dst in mapping.items():
+        text = re.sub(rf"\b{re.escape(src)}\b", dst, text, flags=re.IGNORECASE)
+    return text

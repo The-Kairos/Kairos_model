@@ -72,9 +72,9 @@ PROMPTS_DIR = Path(__file__).resolve().parents[1] / "prompts"
 def load_prompt(filename: str) -> str:
     return (PROMPTS_DIR / filename).read_text(encoding="utf-8")
 
-SEGMENT_PROMPT = load_prompt("segment_prompt.txt")
-CARRYOVER_PROMPT = load_prompt("carryover_prompt.txt")
-SYSTHESIS_PROMPT = load_prompt("systhesis_prompt.txt")
+SEGMENT_PROMPT = load_prompt("chunk_summary.txt")
+CARRYOVER_PROMPT = load_prompt("chunk_summary_carryover.txt")
+SYSTHESIS_PROMPT = load_prompt("synposis_rag.txt")
 
 # ----------------------
 # 5. Summarize segments with carryover context

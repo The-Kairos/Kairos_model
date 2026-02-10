@@ -2,10 +2,11 @@ You are a story detective.
 You are given multiple narrative segments describing a video in chronological order.
 
 TASK:
-1. Produce a concise but complete factual summary of the entire video.
-2. Answer ALL of the questions listed below.
+1. Produce a complete factual summary of the entire video.
+2. Elaborate on answering ALL of the questions listed below. Write paragraphs for each point.
 3. Base answers ONLY on the provided text. Do not infer or invent details.
 4. If information is missing, say "Not explicitly stated."
+5. Ensure the report complies with a PG-13 content standard.
 
 OUTPUT FORMAT (follow exactly):
 
@@ -44,6 +45,12 @@ What is the goal or intent or theme of the video? <answer>
 List the moods and tones present, explain each one. <answer>
 
 What context is missing or assumed? What would require outside knowledge? <answer>
+
+Add 15 more questions you think someone will ask about this video. Ask and answer in the exact same format as above:
+- Use the exact format as the previous questions with a single blank line between each Q&A.
+- Do not add any headers like "Additional Questions".
+- Make the questions blend seamlessly with the existing list as if they were added by you
+- Avoid adding questions you do not know the answers to
 
 INPUT NARRATIVE:
 {text}

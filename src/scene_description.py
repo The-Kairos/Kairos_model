@@ -1,5 +1,6 @@
 import json
 import time
+from src.debug_utils import apply_gpt_normalization
 
 
 def describe_flash_scene(
@@ -24,7 +25,8 @@ def describe_flash_scene(
         template = f.read()
 
     # Insert scene text into {{SCENE_TEXT}} placeholder
-    prompt = template.replace("{{SCENE_TEXT}}", scene_text)
+    normalized_text = apply_gpt_normalization(scene_text)
+    prompt = template.replace("{{SCENE_TEXT}}", normalized_text)
 
     # Asking LLM
     if "gemini" in model.lower():

@@ -249,7 +249,7 @@ for output_dir, test_video in test_videos.items():
             AST_key="audio_speech",
             SUMMARY_key="llm_scene_description",
             model=model_name,
-            prompt_path="prompts/flash_scene_prompt_joy.txt",
+            prompt_path="prompts/describe_scene.txt",
             debug=True,
         )
         time.sleep(10)
@@ -306,5 +306,4 @@ for output_dir, test_video in test_videos.items():
             show_timings=False,
         )
         
-    # todo: integrate the RAG to have the synopsis and narratives as "long summary? the "key" is summary  
     # todo: the RAG should be able to answer questions like "how long is the video"
