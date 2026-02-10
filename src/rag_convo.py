@@ -79,16 +79,27 @@ def build_contexts(checkpoint: dict):
     return [c for c in (scenes + synopsis) if c and c.strip()]
 
 
-def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL):
+MAX_EMBED_BATCH = 250  # Vertex AI embed_content supports up to 250 items per request.
+
+
+def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL, batch_size=MAX_EMBED_BATCH):
     if client is None:
         client = _get_gemini_client()
     if not contexts:
         return []
-    result = client.models.embed_content(
-        model=model,
-        contents=contexts
-    )
-    return [embedding.values for embedding in result.embeddings]
+    if batch_size < 1:
+        raise ValueError("batch_size must be >= 1")
+
+    embeddings = []
+    for start in range(0, len(contexts), batch_size):
+        batch = contexts[start:start + batch_size]
+        result = client.models.embed_content(
+            model=model,
+            contents=batch,
+        )
+        embeddings.extend([embedding.values for embedding in result.embeddings])
+
+    return embeddings
 
 
 def embed_question(question: str, client=None, model=EMBEDDING_MODEL):
