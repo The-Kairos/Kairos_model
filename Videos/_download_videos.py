@@ -1,5 +1,6 @@
 import json
 import re
+import shlex
 import subprocess
 import time
 from datetime import datetime
@@ -12,6 +13,7 @@ base_dir = Path(__file__).resolve().parent
 data_path = base_dir / "_all_videos.json"
 out_dir = base_dir
 log_path = base_dir / "_logs.json"
+cheatsheet_path = base_dir.parent / ".cli_cheatsheet.md"
 
 if data_path.exists():
     with open(data_path) as f:
@@ -201,6 +203,50 @@ def get_log_record(name: str) -> dict:
     return record
 
 
+def _bash_escape(value: str) -> str:
+    # Prefer double-quoted strings so single quotes stay readable in bash.
+    escaped = value.replace("\\", "\\\\").replace('"', '\\"')
+    escaped = escaped.replace("$", "\\$").replace("`", "\\`")
+    return f'"{escaped}"'
+
+
+def write_run_cheatsheet(videos: list[dict], path: Path) -> None:
+    blobs = [v.get("blob") for v in videos if isinstance(v, dict) and v.get("blob")]
+
+    lines: list[str] = []
+    lines.append("# Cheatsheet")
+    lines.append("")
+    lines.append("## Process all catalog videos")
+    lines.append("```bash")
+    lines.append("python main.py process --all")
+    lines.append("```")
+    lines.append("")
+    lines.append("## Process only short/medium/long/extra (inclusive)")
+    lines.append("```bash")
+    lines.append("python main.py process --filter short     (<10 min videos)")
+    lines.append("python main.py process --filter medium    (<30 min videos)")
+    lines.append("python main.py process --filter long      (<90 min videos)")
+    lines.append("python main.py process --filter extra     (all video lenghts)")
+    lines.append("python main.py process --filter long --include-unknown")
+    lines.append("```")
+    lines.append("")
+    lines.append("## Process a single video (blob name or path)")
+    lines.append("```bash")
+    for blob in blobs:
+        safe_blob = _bash_escape(blob)
+        lines.append(f"python main.py process --video {safe_blob}")
+    lines.append("```")
+    lines.append("")
+    lines.append("## Run RAG on a single video (requires prior processing)")
+    lines.append("```bash")
+    for blob in blobs:
+        safe_blob = _bash_escape(blob)
+        lines.append(f"python main.py rag --video {safe_blob}")
+    lines.append("```")
+
+    path.write_text("\r\n".join(lines) + "\r\n", encoding="utf-8")
+
+
 def get_video_length_seconds(video: dict) -> float | None:
     value = video.get("video_length")
     if isinstance(value, (int, float)) and value > 0:
@@ -354,3 +400,5 @@ print(f"Downloaded : {downloaded_count}")
 print(f"Skipped    : {skipped_count}")
 print(f"Folder     : {out_dir.resolve()}")
 print("==============================================")
+write_run_cheatsheet(data, cheatsheet_path)
+print(f"Cheatsheet : {cheatsheet_path}")

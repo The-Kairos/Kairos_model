@@ -7,8 +7,9 @@ from src.audio_utils import extract_scene_audio_ffmpeg, get_ffmpeg_executable
 from src.audio_speech import extract_speech_asr_api
 from src.audio_natural import extract_sounds
 from src.system_metrics import get_system_usage
-import time
+import argparse
 import os
+import time
 from pathlib import Path
 
 use_gemini = False
@@ -95,25 +96,63 @@ params = {
 }
 
 # =========================================================
-# RAG IS ONLY ACTIVE WHEN THERES ONE VIDEO IN TESTVIDS
-# =========================================================
-run_folder = "./.action"
-test_videos = {
-    f"{run_folder}/messi": r"Videos\Argentina v France Full Penalty Shoot-out.mp4",
-    f"{run_folder}/pasta": r"Videos\How to Make Pasta - Without a Machine.mp4",
-    f"{run_folder}/malala_long": r"Videos\.Malala Yousafzai FULL Nobel Peace Prize Lecture 2014.mp4",
-    f"{run_folder}/sheldon": r"Videos\Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
-    f"{run_folder}/titanic": r"Videos\.Titanic.1997.NaijaPrey.com.mkv",
-    f"{run_folder}/kfold_online": r"Videos\.Statistical Learning_ 5.2 K-fold Cross Validation",
-    f"{run_folder}/svm_class": r"Videos\.Learning_ Support Vector Machines",
-    f"{run_folder}/ai_beyond_vision": r"Videos\.AI beyond language and vision _ Paul Liang _ TEDxMIT",
-    f"{run_folder}/chinatown_walk": r"Videos\.DJI Osmo Pocket 3 Walk in NYC Manhattan Chinatown",
-    f"{run_folder}/times_square_walk": r"Videos\.NEW YORK TIMES SQUARE 2024 _ 4K WALK TOUR MORNING",
-    # f"{run_folder}/grad_honors": r"Videos\.UDST honors graduation.mp4",
-    # f"{run_folder}/web_summit": r"Videos\.Web Summit Qatar 2026 Day Three.mp4",
-}
+def parse_args():
+    parser = argparse.ArgumentParser(description="Process videos or run RAG.")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    process = subparsers.add_parser("process", help="Process videos")
+    process.add_argument("--video", action="append", help="Blob name or path (repeatable)")
+    process.add_argument("--all", action="store_true", help="Process all catalog videos")
+    process.add_argument(
+        "--filter",
+        choices=["short", "medium", "long", "extra"],
+        help="Inclusive length filter",
+    )
+    process.add_argument(
+        "--include-unknown",
+        action="store_true",
+        help="Include videos with unknown length when filtering",
+    )
+
+    rag = subparsers.add_parser("rag", help="Run RAG for a single video")
+    rag.add_argument("--video", required=True, help="Blob name or path")
+
+    return parser.parse_args()
+
+VIDEOS_DIR = Path("Videos")
+CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
+PROCESSED_ROOT = Path("_processed")
+args = parse_args()
+catalog = load_video_catalog(CATALOG_PATH)
+selected_paths = select_videos(args, catalog, VIDEOS_DIR)
+
+if not selected_paths:
+    raise SystemExit("No videos selected.")
+if args.command == "rag" and len(selected_paths) != 1:
+    raise SystemExit("RAG supports exactly one video. Use --video to pick one.")
+
+test_videos = {make_output_dir(p, PROCESSED_ROOT): str(p) for p in selected_paths}
+rag_only = args.command == "rag"
 
 for output_dir, test_video in test_videos.items():
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+
+    if rag_only:
+        rag_path = f"{output_dir}/rag_embedding.json"
+        checkpoint_path = f"{output_dir}/checkpoint.json"
+        if not os.path.exists(rag_path):
+            print(f"RAG embedding not found: {rag_path}. Run process first.")
+            continue
+        ask_rag(
+            rag_path=rag_path,
+            show_k_context=True,
+            k=rag_top_k_context,
+            conv_path=f"{output_dir}/conversation_history.json",
+            log_source=checkpoint_path,
+            show_timings=False,
+        )
+        continue
+
     log = initiate_log(
         video_path=test_video,
         run_description="Test run for video processing pipeline.",
@@ -139,7 +178,7 @@ for output_dir, test_video in test_videos.items():
         checkpoint["scenes"], step['save_clips'] = save_clips_log(
             video_path=test_video,
             scenes=checkpoint["scenes"],
-            output_dir=f"{output_dir}/clips",
+            output_dir=f"{output_dir}/.clips",
         )
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
@@ -149,7 +188,7 @@ for output_dir, test_video in test_videos.items():
             scenes=checkpoint["scenes"],
             num_frames = frames_per_scene,
             new_size = frame_resolution,
-            output_dir=f"{output_dir}/fps",
+            output_dir=f"{output_dir}/.frames",
         )
         time.sleep(10)
 
@@ -172,7 +211,7 @@ for output_dir, test_video in test_videos.items():
                 scenes=checkpoint["scenes"],
                 fps=yolo_action_fps,
                 new_size=frame_resolution,
-                output_dir=f"{output_dir}/frames",
+                output_dir=f"{output_dir}/.fps",
                 frames_key="yolo_frames",
                 frame_paths_key="yolo_frame_paths",
             )
@@ -183,7 +222,7 @@ for output_dir, test_video in test_videos.items():
             model_size="model/yolov8s.pt",
             conf=yolo_conf_thres,
             iou=yolo_iou_thres,
-            output_dir=f"{output_dir}/yolo",
+            output_dir=f"{output_dir}/.yolo",
             frame_key="yolo_frames",
             summary_key="yolo_detections",
             debug=True,
@@ -224,7 +263,7 @@ for output_dir, test_video in test_videos.items():
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     # AST Step (Local Model)
-    if any("audio_natural" not in s for s in checkpoint["scenes"]):
+    if "audio_natural" not in checkpoint["scenes"][-1].keys():
         t0_ast = time.time()
         missing_ast_scenes = [s for s in checkpoint["scenes"] if "audio_natural" not in s]
         
@@ -294,15 +333,4 @@ for output_dir, test_video in test_videos.items():
         logpath = save_log(data=log, path=f"logs/{output_dir}.json")
         save_checkpoint(checkpoint=log, path=checkpoint_path)
 
-    # RAG IS ONLY ACTIVE WHEN THERES ONE VIDEO IN TESTVIDS
-    if len(test_videos) == 1 and os.path.exists(rag_path):
-        ask_rag(
-            rag_path=rag_path,
-            show_k_context=True,
-            k=rag_top_k_context,
-            conv_path=f"{output_dir}/conversation_history.json",
-            log_source=checkpoint_path,
-            show_timings=False,
-        )
-        
     # todo: the RAG should be able to answer questions like "how long is the video"
