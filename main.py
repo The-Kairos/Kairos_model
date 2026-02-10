@@ -51,6 +51,7 @@ asr_target_sr       = 16000     # audio target sample rate for ASR
 llm_scene_history   = 5         # number of prior scenes in LLM context
 llm_chunk_len       = 50000     # max char len of combined scenes for one chunk
 llm_summary_len     = 50000     # max char len of final context for synopsis
+llm_cooldown_sec    = 5         # LLM cooldown between scene calls
 rag_top_k_context   = 10        # top-k RAG scenes to include
 # =========================================================
 improve_motion_detection    = False
@@ -88,6 +89,7 @@ params = {
     "llm_scene_history": llm_scene_history,
     "llm_chunk_len": llm_chunk_len,
     "llm_summary_len": llm_summary_len,
+    "llm_cooldown_sec": llm_cooldown_sec,
     "rag_top_k_context": rag_top_k_context,
 }
 
@@ -261,6 +263,7 @@ for output_dir, test_video in test_videos.items():
             SUMMARY_key="llm_scene_description",
             model=model_name,
             prompt_path="prompts/describe_scene.txt",
+            cooldown_sec=llm_cooldown_sec,
             debug=True,
         )
         time.sleep(10)

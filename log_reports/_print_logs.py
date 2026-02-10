@@ -32,7 +32,6 @@ METRIC_COLUMNS = [
     "io_write_MB"
 ]
 
-DELAY = 5
 
 def to_number(value):
     if isinstance(value, (int, float)):
@@ -74,6 +73,7 @@ for file_path in json_files:
     video_path = document.get("video_path", "unknown")
     video_title = os.path.basename(video_path)
     scene_count = to_number(document.get("scene_number", 1))
+    llm_cooldown_sec = document.get("params", {}).get("llm_cooldown_sec", 5)
 
     rows = []
 
@@ -91,10 +91,10 @@ for file_path in json_files:
             else:
                 row[metric] = raw_value
 
-            # Special rule for describe_scenes because of delay 
+            # Special rule for describe_scenes because of cooldown 
             if step_key == "describe_scenes" and metric == "wall_time_sec":
                 if isinstance(row[metric], (int, float)):
-                    row[metric] -= DELAY # time.sleep(5) for API
+                    row[metric] -= llm_cooldown_sec # time.sleep(cooldown) for API
 
             if step_key in ["get_scene_list", "ast_timings", "asr_timings"]:
                 if isinstance(row[metric], (int, float)):
@@ -128,7 +128,7 @@ for file_path in json_files:
     total_sec = to_number(document.get("total_process_sec", 1))
 
     if isinstance(scene_count, (int, float)) and isinstance(total_sec, (int, float)):
-        run_without_delay = total_sec - (DELAY * scene_count)
+        run_without_delay = total_sec - (llm_cooldown_sec * scene_count)
     else:
         run_without_delay = total_sec
 
@@ -139,7 +139,7 @@ for file_path in json_files:
 
     md += (
         f"**Footnote:**  \n"
-        f"`total_process_sec` without LLM cooldown of {format_num(run_without_delay)}s is **{format_num(k)}x longer** than `video_length` of {format_num(video_length)}s.\n"
+        f"`total_process_sec` without LLM cooldown ({format_num(llm_cooldown_sec)}s per scene, {format_num(run_without_delay)}s total) is **{format_num(k)}x longer** than `video_length` of {format_num(video_length)}s.\n"
         f"**{scene_count} scenes** were detected in `{video_path}`\n"
         f"\\* `get_scene_list`, `ast_timings`,  `asr_timings`, `summarize_scenes`, and `synthesize_synopsis` are measured per minute of video, whereas the remaining processes are measured per scenes. \n"
     )
