@@ -42,7 +42,6 @@ frames_per_scene    = 3         # number of frames sampled in each scene
 frame_resolution    = 320       # resolution on the longest axis
 blip_start_prompt   = "a video frame of"
 blip_caption_len    = 30        # max blip caption length
-blip_caption_len    = 30        # max blip caption length
 blip_num_beams      = 4         # beam search width (whatever that means)
 blip_do_sample      = False     # sampling vs deterministic decoding
 yolo_action_fps     = 4
@@ -53,23 +52,23 @@ asr_model_size      = 'small'
 asr_use_vad         = True      # enable VAD for ASR (whatever that means)
 asr_target_sr       = 16000     # audio target sample rate for ASR
 llm_scene_history   = 5         # number of prior scenes in LLM context
-llm_chunk_len       = 10000     # max char len of combined scenes for one chunk
-llm_summary_len     = 60000     # max char len of final context for synopsis
+llm_chunk_len       = 50000     # max char len of combined scenes for one chunk
+llm_summary_len     = 50000     # max char len of final context for synopsis
 rag_top_k_context   = 10        # top-k RAG scenes to include
 # =========================================================
 improve_motion_detection    = False
 prioritize_speed            = False
 
 if improve_motion_detection:
-    pyscene_threshold   = 40     # sensitivity of scene detected
+    pyscene_threshold   = 15     # more sensitivity pyscene
     pyscene_shortest    = 0.5    # the minimum scene length  
-    yolo_action_fps     = 5
+    frames_per_scene    = 5      # more frames sampled per scene
+    yolo_action_fps     = 8      # more frames sampled per scene
 if prioritize_speed:
+    pyscene_threshold   = 40     # less sensitive pyscene
     frames_per_scene    = 1      # number of frames sampled in each scene
-    llm_scene_history   = 3      # number of prior scenes in LLM context
-    llm_chunk_len       = 128000 # max char len of combined scenes for one chunk 
-    llm_summary_len     = 128000 # max char len of final context for synopsis
-    rag_top_k_context   = 5      # top-k RAG scenes to include
+    llm_chunk_len       = 500000 # x10 bigger story chunks
+    llm_summary_len     = 500000 # x10 bigger context for synopsis
 # =========================================================
 
 params = {

@@ -45,7 +45,7 @@ def describe_flash_scene(
                     "content": prompt,
                 }
             ],
-            max_tokens=4096,
+            max_tokens=16384, # apparently the max for gpt4o
             temperature=gpt_temperature,
             top_p=1.0,
             model=gpt_deployment

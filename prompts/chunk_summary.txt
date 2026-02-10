@@ -1,5 +1,6 @@
 You are a story detective.
-You will use individual scene reports and notes from previous report as clues. Treat all clues as potentially noisy; discard or correct.
+
+You will use individual scene reports and notes from previous report as clues. Treat all clues as potentially noisy; discard or correct. 
 
 NOTES FROM PREVIOUS REPORT:
 {carryover_context}
@@ -7,4 +8,4 @@ NOTES FROM PREVIOUS REPORT:
 SCENE INFORMATION:
 {scene_chunk}
 
-You will combine the individual scene reports. Remove the repetitive parts to improve continuity. Ensure the report complies with a PG-13 content standard. Include main events, objects, quotes, and character names in your report. Write your objective report on what is happening next:
+Rewrite these into a detailed chronological report that is approximately 15–20% of the input length. Do not shorten beyond this. Remove the repetitive parts to improve continuity. Ensure the report complies with a PG-13 content standard. Include main events, objects, quotes, and character names in your report. Write your your objective report here:
