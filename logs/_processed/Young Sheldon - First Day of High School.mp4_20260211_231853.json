@@ -1,0 +1,3811 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\Young Sheldon - First Day of High School.mp4",
+  "video_length": "00:02:48.502",
+  "total_process_sec": 704.48503,
+  "scene_number": 34,
+  "start_process": "2026-02-11 23:18:07",
+  "end_process": "2026-02-11 23:18:52",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 6.9,
+      "used_RAM_GB": 8.94,
+      "RAM_usage_percent": 56.5
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 491.19,
+      "disk_free_GB": 441.79,
+      "disk_usage_percent": 52.6
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "params": {
+    "improve_motion_detection": false,
+    "prioritize_speed": false,
+    "process_static_videos": true,
+    "pyscene_threshold": 3,
+    "pyscene_shortest": 2,
+    "frames_per_scene": 1,
+    "frame_resolution": 320,
+    "blip_start_prompt": "a video frame of",
+    "blip_caption_len": 30,
+    "blip_num_beams": 4,
+    "blip_do_sample": false,
+    "yolo_conf_thres": 0.8,
+    "yolo_iou_thres": 0.5,
+    "ast_target_sr": 16000,
+    "asr_model_size": "small",
+    "asr_use_vad": true,
+    "asr_target_sr": 16000,
+    "llm_scene_history": 5,
+    "llm_chunk_len": 50000,
+    "llm_summary_len": 50000,
+    "llm_cooldown_sec": 0,
+    "rag_top_k_context": 10
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 2.93863,
+      "cpu_time_sec": 13.98438,
+      "ram_before_MB": 515,
+      "ram_after_MB": 527,
+      "ram_used_MB": 12,
+      "io_read_MB": 160.78702640533447,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 2.50962,
+      "cpu_time_sec": 0.15625,
+      "ram_before_MB": 527,
+      "ram_after_MB": 527,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.1120138168334961,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 4.06632,
+      "cpu_time_sec": 34.10938,
+      "ram_before_MB": 1607,
+      "ram_after_MB": 1628,
+      "ram_used_MB": 21,
+      "io_read_MB": 325.7796449661255,
+      "io_write_MB": 2.098550796508789,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 305.37006,
+      "cpu_time_sec": 304.23438,
+      "ram_before_MB": 594,
+      "ram_after_MB": 1624,
+      "ram_used_MB": 1030,
+      "io_read_MB": 0.03395271301269531,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 59.78334,
+      "cpu_time_sec": 470.70312,
+      "ram_before_MB": 507,
+      "ram_after_MB": 2708,
+      "ram_used_MB": 2201,
+      "io_read_MB": 21.875880241394043,
+      "io_write_MB": 16.365753173828125,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "wall_time_sec": 37.34547,
+      "cpu_time_sec": 280.45312,
+      "ram_before_MB": 1653,
+      "ram_after_MB": 2051,
+      "ram_used_MB": 398,
+      "io_read_MB": 164.3946237564087,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "wall_time_sec": 129.01489,
+      "cpu_time_sec": 978.89062,
+      "ram_before_MB": 2051,
+      "ram_after_MB": 2156,
+      "ram_used_MB": 105,
+      "io_read_MB": 1082.3400535583496,
+      "io_write_MB": 4.76837158203125e-06,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "wall_time_sec": 93.89679,
+      "cpu_time_sec": 0.32812,
+      "ram_before_MB": 10809,
+      "ram_after_MB": 7154,
+      "ram_used_MB": -3655,
+      "io_read_MB": 0.0267181396484375,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "summarize_scenes": {
+      "wall_time_sec": 0.0,
+      "cpu_time_sec": 0.01562,
+      "ram_before_MB": 548,
+      "ram_after_MB": 548,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.02567577362060547,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "synthesize_synopsis": {
+      "wall_time_sec": 29.6177,
+      "cpu_time_sec": 0.01562,
+      "ram_before_MB": 548,
+      "ram_after_MB": 548,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.008215904235839844,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "make_embedding": {
+      "wall_time_sec": 15.44651,
+      "cpu_time_sec": 1.32812,
+      "ram_before_MB": 548,
+      "ram_after_MB": 549,
+      "ram_used_MB": 1,
+      "io_read_MB": 0.7752056121826172,
+      "io_write_MB": 6.088592529296875,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_fps": {
+      "wall_time_sec": 24.4957,
+      "cpu_time_sec": 236.07812,
+      "ram_before_MB": 338,
+      "ram_after_MB": 507,
+      "ram_used_MB": 169,
+      "io_read_MB": 2082.563370704651,
+      "io_write_MB": 14.26533317565918,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:02.836",
+      "start_seconds": 0.0,
+      "end_seconds": 2.8361666666666663,
+      "duration_seconds": 2.8361666666666663,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0000.mp4",
+      "frame_captions": [
+        "a video frame of a person riding a skateboard",
+        "a video frame of a car driving down the road",
+        "a video frame of a car driving down a street"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "truck",
+          "confidence_avg": 0.868,
+          "start_frame": 11,
+          "end_frame": 11,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.69)",
+      "audio_speech": " I",
+      "llm_scene_description": "The scene transitions from a person riding a skateboard to a car driving down a road and then a street. A stationary truck is visible in the middle of the frame. Background music is playing faintly, but no dialogue or significant sounds are present. The events suggest a shift in focus from the skateboarder to vehicles on the road, possibly setting up a connection or contrast between the two."
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:02.836",
+      "end_timecode": "00:00:06.340",
+      "start_seconds": 2.8361666666666663,
+      "end_seconds": 6.339666666666666,
+      "duration_seconds": 3.5035,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0001.mp4",
+      "frame_captions": [
+        "a video frame of a car driving down a street",
+        "a video frame of a van driving down a street",
+        "a video frame of a lad in a car"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "truck",
+          "confidence_avg": 0.908,
+          "start_frame": 0,
+          "end_frame": 14,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left, getting closer, looping/circling",
+          "path_length": 64.318,
+          "net_displacement": 10.83,
+          "direction_change_var": 1.9384,
+          "relations": []
+        },
+        {
+          "track_id": 3,
+          "label": "tie",
+          "confidence_avg": 0.874,
+          "start_frame": 9,
+          "end_frame": 9,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.41), explosion (conf=0.41)",
+      "audio_speech": "",
+      "llm_scene_description": "In this scene, the focus shifts to vehicles on a street. A car and a van are seen driving, with a young male passenger (\"lad\") visible in the car. A truck (#1) is moving in a looping or circling pattern, suggesting potential erratic or deliberate movement. A tie (#3) remains stationary in the bottom-center of the frame, though its relevance is unclear. Background audio includes faint music and a low-confidence sound resembling an explosion, which may indicate tension or an unfolding event. The scene builds on the previous focus on vehicles, possibly hinting at an interaction or conflict involving the truck and the car."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:06.340",
+      "end_timecode": "00:00:09.009",
+      "start_seconds": 6.339666666666666,
+      "end_seconds": 9.008999999999999,
+      "duration_seconds": 2.6693333333333324,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0002.mp4",
+      "frame_captions": [
+        "a video frame of a woman driving a car",
+        "a video frame of a woman driving a car",
+        "a video frame of a woman driving a car"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.91,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 8.697,
+          "net_displacement": 7.51,
+          "direction_change_var": 1.28,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.59)",
+      "audio_speech": "",
+      "llm_scene_description": "In this scene, the focus is on a woman driving a car, continuing the theme of vehicles established in previous scenes. The woman appears to be the central character, as the camera tracks her movement within the car. The background music, though faint and low-confidence, adds to the atmosphere but does not provide significant narrative clues. There are no visible interactions with other vehicles or characters, and no dialogue or notable sounds are present. This scene seems to establish the woman as a potential new focal point, possibly connecting her to the earlier events involving the car, truck, and erratic movements. The context suggests a buildup to a larger narrative involving vehicles and their drivers."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:09.009",
+      "end_timecode": "00:00:11.678",
+      "start_seconds": 9.008999999999999,
+      "end_seconds": 11.678333333333333,
+      "duration_seconds": 2.6693333333333342,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0003.mp4",
+      "frame_captions": [
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a lad wearing a bow tie"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.909,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 2.741,
+          "net_displacement": 1.352,
+          "direction_change_var": 2.3917,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.66)",
+      "audio_speech": " Would you like to play a driving game?",
+      "llm_scene_description": "In this scene, the focus shifts to a young male (\"lad\") wearing a bow tie, who is stationary in the middle of the frame. The setting appears calm, with no significant movement or action beyond his presence. Background audio includes faint music and a voice asking, \"Would you like to play a driving game?\" This suggests a potential setup for an interactive or playful scenario, possibly connected to the earlier focus on vehicles and driving. The lad's bow tie might symbolize formality or contrast with the previous scenes' themes of motion and vehicles. The narrative appears to be transitioning toward a new development, possibly involving the lad and a driving-related activity."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:11.678",
+      "end_timecode": "00:00:13.680",
+      "start_seconds": 11.678333333333333,
+      "end_seconds": 13.680333333333332,
+      "duration_seconds": 2.001999999999999,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0004.mp4",
+      "frame_captions": [
+        "a video frame of a woman driving a car with a lad",
+        "a video frame of a woman driving a car with a lad in the passenger seat",
+        "a video frame of a woman driving a car with a lad in the passenger seat"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.919,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 72.315,
+          "net_displacement": 13.243,
+          "direction_change_var": 1.7329,
+          "relations": [
+            "right-of person #5"
+          ]
+        },
+        {
+          "track_id": 5,
+          "label": "person",
+          "confidence_avg": 0.861,
+          "start_frame": 3,
+          "end_frame": 6,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 1.611,
+          "net_displacement": 0.83,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #1"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " Not really, I always lose.",
+      "llm_scene_description": "In this scene, a woman is driving a car with a young male passenger (\"lad\") seated beside her. The focus remains on the two characters inside the vehicle, continuing the narrative's emphasis on driving and vehicles from earlier scenes. The lad makes a comment, \"Not really, I always lose,\" suggesting a conversation or reflection, possibly related to a prior question or topic, though the exact context is unclear. The scene appears calm, with no significant external action or conflict visible. The narrative seems to be building on the relationship or interaction between the woman and the lad, potentially setting up a deeper connection or development involving their journey."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:13.680",
+      "end_timecode": "00:00:18.352",
+      "start_seconds": 13.680333333333332,
+      "end_seconds": 18.351666666666667,
+      "duration_seconds": 4.671333333333335,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0005.mp4",
+      "frame_captions": [
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a lad sitting in a car"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.927,
+          "start_frame": 0,
+          "end_frame": 18,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 18.508,
+          "net_displacement": 7.908,
+          "direction_change_var": 1.5499,
+          "relations": []
+        }
+      ],
+      "audio_natural": "speech (conf=0.33), quack (conf=0.30)",
+      "audio_speech": " I know, that's why it's fun. How about license plates with prime numbers?",
+      "llm_scene_description": "In this scene, the focus is on a young male (\"lad\") wearing a bow tie, who transitions from being stationary to sitting in a car. The lad appears to be the same passenger seen in earlier scenes. The audio includes a low-confidence speech snippet, \"I know, that's why it's fun. How about license plates with prime numbers?\" suggesting a playful or intellectual conversation, though the exact context is unclear. The lad's movement and dialogue hint at a continuation of the driving-related theme established in previous scenes, possibly involving a game or discussion about vehicles. The narrative appears to be gradually unfolding around the lad's interactions and the journey he is part of."
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:18.352",
+      "end_timecode": "00:00:20.520",
+      "start_seconds": 18.351666666666667,
+      "end_seconds": 20.5205,
+      "duration_seconds": 2.168833333333332,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0006.mp4",
+      "frame_captions": [
+        "a video frame of a woman driving a car",
+        "a video frame of a woman driving a car",
+        "a video frame of a woman driving a car"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.868,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 24.863,
+          "net_displacement": 2.478,
+          "direction_change_var": 5.1965,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " Why don't we just talk?",
+      "llm_scene_description": "In this scene, the focus remains on a woman driving a car, continuing the narrative's emphasis on vehicles and travel. The woman appears calm and focused on the road, with no significant external action or visible interactions with other characters or vehicles. The audio introduces a new element, with a voice saying, \"Why don't we just talk?\" This suggests a potential shift toward dialogue or an attempt to resolve a situation, though it is unclear who is speaking or what the context of the statement is. The scene builds on previous moments involving the woman and a young male passenger, hinting at an ongoing journey or conversation that may develop further. The narrative continues to suggest themes of connection, travel, and possibly tension or resolution."
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:20.520",
+      "end_timecode": "00:00:27.861",
+      "start_seconds": 20.5205,
+      "end_seconds": 27.861166666666666,
+      "duration_seconds": 7.340666666666667,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0007.mp4",
+      "frame_captions": [
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a woman driving a car",
+        "a video frame of a woman driving a car"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.904,
+          "start_frame": 0,
+          "end_frame": 29,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 63.582,
+          "net_displacement": 3.912,
+          "direction_change_var": 3.2758,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.88)",
+      "audio_speech": " Very well. You understand that some people are gonna be intimidated by you because of how smart you are.",
+      "llm_scene_description": "In this scene, the focus alternates between a young male (\"lad\") wearing a bow tie and a woman driving a car, suggesting their continued involvement in the narrative. The lad appears stationary, possibly reflecting or preparing for an interaction. Meanwhile, the woman remains central to the driving theme, with the camera tracking her movements in the car. Background music plays, and a voice states, \"Very well. You understand that some people are gonna be intimidated by you because of how smart you are,\" hinting at a conversation or internal reflection about intelligence or confidence. The narrative continues to build on the relationship between these two characters, potentially exploring themes of intellect, connection, and travel."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:00:27.861",
+      "end_timecode": "00:00:32.199",
+      "start_seconds": 27.861166666666666,
+      "end_seconds": 32.19883333333333,
+      "duration_seconds": 4.337666666666667,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0008.mp4",
+      "frame_captions": [
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a lad sitting in a car"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 17,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 16.899,
+          "net_displacement": 10.144,
+          "direction_change_var": 2.9702,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.48)",
+      "audio_speech": " Or maybe they'll recognize my intellect and make me their leader.",
+      "llm_scene_description": "In this scene, the focus is on a young male (\"lad\") wearing a bow tie, who transitions from being stationary to sitting in a car. The lad appears to be the same passenger seen in earlier scenes. The audio includes a low-confidence snippet of music and a voice saying, \"Or maybe they'll recognize my intellect and make me their leader,\" suggesting the lad is reflecting on his intelligence and potential leadership abilities. The narrative continues to explore themes of intellect, self-perception, and travel, with the lad's bow tie symbolizing his formal or intellectual demeanor. The scene builds on previous moments involving the lad and his journey, possibly hinting at his aspirations or internal dialogue during this car ride."
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:00:32.199",
+      "end_timecode": "00:00:39.373",
+      "start_seconds": 32.19883333333333,
+      "end_seconds": 39.37266666666667,
+      "duration_seconds": 7.173833333333334,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0009.mp4",
+      "frame_captions": [
+        "a video frame of a woman driving a car with a lad behind her",
+        "a video frame of a woman driving a car with a lad behind her",
+        "a video frame of a woman driving a car with a child in the passenger seat"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 0,
+          "end_frame": 28,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 74.027,
+          "net_displacement": 27.791,
+          "direction_change_var": 2.9916,
+          "relations": [
+            "right-of person #6"
+          ]
+        },
+        {
+          "track_id": 6,
+          "label": "person",
+          "confidence_avg": 0.887,
+          "start_frame": 1,
+          "end_frame": 28,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 14.116,
+          "net_displacement": 1.784,
+          "direction_change_var": 1.316,
+          "relations": [
+            "left-of person #1"
+          ]
+        }
+      ],
+      "audio_natural": "music (conf=0.72)",
+      "audio_speech": " Lord, look after my son. Don't let him get stuffed in a gym bag.",
+      "llm_scene_description": "In this scene, a woman is driving a car, with a young male passenger (\"lad\") seated behind her initially, but later appearing in the front passenger seat. The transition suggests a shift in seating or perspective. The audio features a mix of music and a voice saying, \"Lord, look after my son. Don't let him get stuffed in a gym bag,\" implying concern or a protective sentiment, possibly from the woman. The narrative continues to focus on the journey, with themes of connection and care between the woman and the lad. The lad's movement and the woman's driving reinforce the ongoing travel motif, while the dialogue hints at deeper emotional stakes or fears."
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:00:39.373",
+      "end_timecode": "00:00:41.541",
+      "start_seconds": 39.37266666666667,
+      "end_seconds": 41.5415,
+      "duration_seconds": 2.168833333333332,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0010.mp4",
+      "frame_captions": [
+        "a video frame of a car driving down a country road",
+        "a video frame of a car driving down a country road",
+        "a video frame of a car driving down a country road"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "car",
+          "confidence_avg": 0.855,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.48)",
+      "audio_speech": " I love you",
+      "llm_scene_description": "In this scene, a car is driving down a country road, with no significant movement or action beyond the steady progression of the vehicle. The audio includes faint music and a low-confidence snippet of someone saying, \"I love you,\" though it is unclear who is speaking or if it is part of the music. This moment seems to continue the journey of the woman driving and the young male passenger (\"lad\") seen in previous scenes. The serene country road setting and the ambiguous audio suggest a reflective or emotional tone, potentially building on the themes of connection and care established earlier in the narrative."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:00:41.541",
+      "end_timecode": "00:00:50.384",
+      "start_seconds": 41.5415,
+      "end_seconds": 50.38366666666666,
+      "duration_seconds": 8.842166666666664,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0011.mp4",
+      "frame_captions": [
+        "a video frame of a car driving down a street",
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a group of people outside a building"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "car",
+          "confidence_avg": 0.918,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 6,
+          "label": "person",
+          "confidence_avg": 0.815,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 2,
+          "end_frame": 35,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-center",
+          "movement": "moving left, getting closer",
+          "path_length": 163.118,
+          "net_displacement": 84.47,
+          "direction_change_var": 1.3186,
+          "relations": [
+            "left-of person #22",
+            "left-of person #25",
+            "right-of bicycle #13",
+            "right-of person #10",
+            "right-of person #11",
+            "right-of person #12",
+            "right-of person #14",
+            "right-of person #16",
+            "right-of person #17",
+            "right-of person #21"
+          ]
+        },
+        {
+          "track_id": 10,
+          "label": "person",
+          "confidence_avg": 0.829,
+          "start_frame": 2,
+          "end_frame": 18,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 7.225,
+          "net_displacement": 6.398,
+          "direction_change_var": 1.415,
+          "relations": [
+            "below person #17",
+            "left-of bicycle #13",
+            "left-of person #11",
+            "left-of person #16",
+            "left-of person #9",
+            "right-of person #12",
+            "right-of person #14"
+          ]
+        },
+        {
+          "track_id": 11,
+          "label": "person",
+          "confidence_avg": 0.834,
+          "start_frame": 2,
+          "end_frame": 24,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-left",
+          "movement": "moving left, getting closer",
+          "path_length": 227.537,
+          "net_displacement": 177.103,
+          "direction_change_var": 1.1277,
+          "relations": [
+            "above bicycle #13",
+            "left-of person #16",
+            "left-of person #17",
+            "left-of person #21",
+            "left-of person #22",
+            "left-of person #9",
+            "moving-with bicycle #13",
+            "right-of person #10",
+            "right-of person #12",
+            "right-of person #14"
+          ]
+        },
+        {
+          "track_id": 12,
+          "label": "person",
+          "confidence_avg": 0.83,
+          "start_frame": 2,
+          "end_frame": 6,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.375,
+          "net_displacement": 0.255,
+          "direction_change_var": 1.8331,
+          "relations": [
+            "left-of bicycle #13",
+            "left-of person #10",
+            "left-of person #11",
+            "left-of person #9",
+            "right-of person #14"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "bicycle",
+          "confidence_avg": 0.864,
+          "start_frame": 3,
+          "end_frame": 7,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "moving left",
+          "path_length": 47.734,
+          "net_displacement": 47.714,
+          "direction_change_var": 0.0026,
+          "relations": [
+            "below person #11",
+            "left-of person #9",
+            "moving-with person #11",
+            "right-of person #10",
+            "right-of person #12",
+            "right-of person #14"
+          ]
+        },
+        {
+          "track_id": 14,
+          "label": "person",
+          "confidence_avg": 0.851,
+          "start_frame": 3,
+          "end_frame": 27,
+          "start_pos": "bottom-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting closer",
+          "path_length": 94.285,
+          "net_displacement": 43.7,
+          "direction_change_var": 3.2018,
+          "relations": [
+            "left-of bicycle #13",
+            "left-of person #10",
+            "left-of person #11",
+            "left-of person #12",
+            "left-of person #16",
+            "left-of person #17",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.871,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.904,
+          "start_frame": 10,
+          "end_frame": 30,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 159.924,
+          "net_displacement": 148.833,
+          "direction_change_var": 1.3899,
+          "relations": [
+            "left-of person #22",
+            "left-of person #9",
+            "right-of person #10",
+            "right-of person #11",
+            "right-of person #14",
+            "right-of person #17",
+            "right-of person #21",
+            "right-of tie #18"
+          ]
+        },
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.888,
+          "start_frame": 10,
+          "end_frame": 35,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting farther",
+          "path_length": 184.17,
+          "net_displacement": 77.02,
+          "direction_change_var": 1.783,
+          "relations": [
+            "above person #10",
+            "above tie #18",
+            "left-of person #16",
+            "left-of person #21",
+            "left-of person #22",
+            "left-of person #25",
+            "left-of person #9",
+            "moving-with person #21",
+            "right-of person #11",
+            "right-of person #14"
+          ]
+        },
+        {
+          "track_id": 18,
+          "label": "tie",
+          "confidence_avg": 0.855,
+          "start_frame": 10,
+          "end_frame": 14,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 5.196,
+          "net_displacement": 3.288,
+          "direction_change_var": 1.9453,
+          "relations": [
+            "below person #17",
+            "left-of person #16"
+          ]
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.874,
+          "start_frame": 19,
+          "end_frame": 35,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting closer",
+          "path_length": 91.286,
+          "net_displacement": 67.696,
+          "direction_change_var": 0.4657,
+          "relations": [
+            "left-of person #16",
+            "left-of person #22",
+            "left-of person #25",
+            "left-of person #9",
+            "moving-with person #17",
+            "right-of person #11",
+            "right-of person #17"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.863,
+          "start_frame": 20,
+          "end_frame": 30,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer",
+          "path_length": 74.202,
+          "net_displacement": 36.692,
+          "direction_change_var": 0.7154,
+          "relations": [
+            "right-of person #11",
+            "right-of person #16",
+            "right-of person #17",
+            "right-of person #21",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 25,
+          "label": "person",
+          "confidence_avg": 0.898,
+          "start_frame": 24,
+          "end_frame": 35,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up-left, getting closer",
+          "path_length": 9.478,
+          "net_displacement": 7.608,
+          "direction_change_var": 0.1277,
+          "relations": [
+            "right-of person #17",
+            "right-of person #21",
+            "right-of person #9"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.42), music (conf=0.56)",
+      "audio_speech": "",
+      "llm_scene_description": "In this scene, the focus shifts to a group of people gathered outside a building, with notable movement and interactions among them. A stationary car is present, possibly connected to the ongoing journey of the woman and the young male passenger (\"lad\") seen in earlier scenes. The lad, wearing a bow tie, appears among the group, suggesting he has exited the car and joined the gathering. Various individuals are moving closer to the center of the scene, with some stationary, creating a sense of convergence or interaction. The audio includes low-confidence speech and music, adding an ambiguous tone to the scene. This moment may represent a transition from the journey to a social or significant event, with themes of connection and intellect continuing to develop."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:00:50.384",
+      "end_timecode": "00:00:55.389",
+      "start_seconds": 50.38366666666666,
+      "end_seconds": 55.388666666666666,
+      "duration_seconds": 5.005000000000003,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0012.mp4",
+      "frame_captions": [
+        "a video frame of a woman and a lad standing in front of school buses",
+        "a video frame of a woman and a lad standing in front of school buses",
+        "a video frame of a woman and a lad standing in front of school buses"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.825,
+          "start_frame": 12,
+          "end_frame": 20,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 30.06,
+          "net_displacement": 26.479,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #22",
+            "left-of person #29",
+            "right-of bus #21",
+            "right-of person #14",
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 14,
+          "label": "person",
+          "confidence_avg": 0.844,
+          "start_frame": 0,
+          "end_frame": 18,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 52.841,
+          "net_displacement": 47.784,
+          "direction_change_var": 0.2995,
+          "relations": [
+            "left-of bus #21",
+            "left-of person #16",
+            "left-of person #22",
+            "left-of person #25",
+            "left-of person #29",
+            "left-of person #9",
+            "right-of person #30"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.925,
+          "start_frame": 0,
+          "end_frame": 19,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-left",
+          "movement": "moving left, getting closer",
+          "path_length": 31.407,
+          "net_displacement": 17.812,
+          "direction_change_var": 1.6946,
+          "relations": [
+            "below bus #21",
+            "left-of person #22",
+            "left-of person #25",
+            "left-of person #29",
+            "left-of person #9",
+            "right-of person #14",
+            "right-of person #30"
+          ]
+        },
+        {
+          "track_id": 21,
+          "label": "bus",
+          "confidence_avg": 0.861,
+          "start_frame": 0,
+          "end_frame": 20,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 61.879,
+          "net_displacement": 47.319,
+          "direction_change_var": 1.9147,
+          "relations": [
+            "above person #16",
+            "left-of person #22",
+            "left-of person #25",
+            "left-of person #29",
+            "left-of person #9",
+            "right-of person #14"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 20,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 19.418,
+          "net_displacement": 10.918,
+          "direction_change_var": 1.6425,
+          "relations": [
+            "left-of person #25",
+            "left-of person #29",
+            "right-of bus #21",
+            "right-of person #14",
+            "right-of person #16",
+            "right-of person #30",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 25,
+          "label": "person",
+          "confidence_avg": 0.839,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 20.304,
+          "net_displacement": 11.927,
+          "direction_change_var": 5.14,
+          "relations": [
+            "right-of bus #21",
+            "right-of person #14",
+            "right-of person #16",
+            "right-of person #22",
+            "right-of person #29"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.883,
+          "start_frame": 8,
+          "end_frame": 19,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting closer",
+          "path_length": 63.43,
+          "net_displacement": 35.332,
+          "direction_change_var": 0.9979,
+          "relations": [
+            "left-of person #25",
+            "right-of bus #21",
+            "right-of person #14",
+            "right-of person #16",
+            "right-of person #22",
+            "right-of person #30",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 30,
+          "label": "person",
+          "confidence_avg": 0.887,
+          "start_frame": 17,
+          "end_frame": 19,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 18.901,
+          "net_displacement": 18.89,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #14",
+            "left-of person #16",
+            "left-of person #22",
+            "left-of person #29"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.75)",
+      "audio_speech": " Oh dear. Yeah. That boy has an expo-",
+      "llm_scene_description": "In this scene, a woman and a young male (\"lad\") are standing in front of school buses, suggesting they have arrived at a school or event location. The lad, previously characterized by his bow tie and intellectual demeanor, is now interacting with a larger group of people, as indicated by the movement of multiple individuals in the frame. The audio captures a snippet of speech, \"Oh dear. Yeah. That boy has an expo-\" which hints at a potential event or presentation involving the lad, possibly showcasing his intellect or leadership abilities. The movement of the buses and individuals creates a sense of activity and preparation, aligning with the narrative's ongoing themes of connection, intellect, and personal growth. The scene appears to mark a transition into a pivotal moment for the lad, potentially involving public recognition or interaction."
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:00:55.389",
+      "end_timecode": "00:01:04.731",
+      "start_seconds": 55.388666666666666,
+      "end_seconds": 64.73133333333332,
+      "duration_seconds": 9.34266666666666,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0013.mp4",
+      "frame_captions": [
+        "a video frame of a group of people walking down a sidewalk",
+        "a video frame of a lad wearing a bow tie",
+        "a video frame of a lad wearing a bow tie"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.862,
+          "start_frame": 0,
+          "end_frame": 37,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, moving in a loop",
+          "path_length": 71.752,
+          "net_displacement": 19.631,
+          "direction_change_var": 2.1782,
+          "relations": [
+            "left-of person #22",
+            "left-of person #33",
+            "left-of person #37",
+            "right-of person #14",
+            "right-of person #16",
+            "right-of person #21",
+            "right-of person #34",
+            "right-of person #41"
+          ]
+        },
+        {
+          "track_id": 14,
+          "label": "person",
+          "confidence_avg": 0.826,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 7.404,
+          "net_displacement": 7.404,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #22",
+            "left-of person #9",
+            "right-of person #21"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.869,
+          "start_frame": 12,
+          "end_frame": 36,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 93.388,
+          "net_displacement": 33.331,
+          "direction_change_var": 2.2814,
+          "relations": [
+            "left-of person #22",
+            "left-of person #37",
+            "left-of person #41",
+            "left-of person #9",
+            "right-of person #21"
+          ]
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 0,
+          "end_frame": 13,
+          "start_pos": "middle-left",
+          "end_pos": "bottom-left",
+          "movement": "moving down-left, getting farther",
+          "path_length": 79.967,
+          "net_displacement": 34.719,
+          "direction_change_var": 2.4809,
+          "relations": [
+            "left-of person #14",
+            "left-of person #16",
+            "left-of person #22",
+            "left-of person #33",
+            "left-of person #37",
+            "left-of person #9",
+            "right-of person #34"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.897,
+          "start_frame": 0,
+          "end_frame": 18,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer",
+          "path_length": 84.205,
+          "net_displacement": 48.831,
+          "direction_change_var": 1.6516,
+          "relations": [
+            "left-of person #33",
+            "left-of person #37",
+            "right-of person #14",
+            "right-of person #16",
+            "right-of person #21",
+            "right-of person #34",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 25,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 14,
+          "end_frame": 14,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.817,
+          "start_frame": 4,
+          "end_frame": 6,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 6.96,
+          "net_displacement": 6.922,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #21",
+            "right-of person #22",
+            "right-of person #34",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 34,
+          "label": "person",
+          "confidence_avg": 0.873,
+          "start_frame": 5,
+          "end_frame": 7,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, getting farther",
+          "path_length": 23.911,
+          "net_displacement": 20.372,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #21",
+            "left-of person #22",
+            "left-of person #33",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 35,
+          "label": "person",
+          "confidence_avg": 0.843,
+          "start_frame": 6,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.925,
+          "start_frame": 8,
+          "end_frame": 37,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer, moving in a loop",
+          "path_length": 152.037,
+          "net_displacement": 44.517,
+          "direction_change_var": 1.7764,
+          "relations": [
+            "right-of person #16",
+            "right-of person #21",
+            "right-of person #22",
+            "right-of person #41",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 40,
+          "label": "person",
+          "confidence_avg": 0.871,
+          "start_frame": 18,
+          "end_frame": 18,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 41,
+          "label": "person",
+          "confidence_avg": 0.899,
+          "start_frame": 21,
+          "end_frame": 37,
+          "start_pos": "bottom-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting closer",
+          "path_length": 75.966,
+          "net_displacement": 57.624,
+          "direction_change_var": 0.3415,
+          "relations": [
+            "left-of person #37",
+            "left-of person #9",
+            "right-of person #16"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.72)",
+      "audio_speech": " tattoo. He does. I wonder if he knows that's in violation of the dress code. Speaking of which, how about we lose the bowtie?",
+      "llm_scene_description": "In this scene, a group of people is walking down a sidewalk, with the focus on a young male (\"lad\") wearing a bow tie, who is likely the same individual seen in previous scenes. The lad is surrounded by various individuals moving in different directions, creating a dynamic and somewhat chaotic atmosphere. The audio suggests a conversation about the lad's bow tie and a tattoo, with a remark implying that the bow tie may violate a dress code and a suggestion to remove it. This dialogue hints at social norms or expectations being challenged, possibly tied to the lad's intellectual or formal persona established earlier. The scene continues to explore themes of individuality, perception, and interaction, with the lad's bow tie remaining a symbolic element of his character."
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:04.731",
+      "end_timecode": "00:01:09.069",
+      "start_seconds": 64.73133333333332,
+      "end_seconds": 69.06899999999999,
+      "duration_seconds": 4.337666666666664,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0014.mp4",
+      "frame_captions": [
+        "a video frame of a lad getting off a school bus",
+        "a video frame of a lad and a woman talking to each other children",
+        "a video frame of a woman and a lad on the street"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.915,
+          "start_frame": 0,
+          "end_frame": 17,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-right, getting closer",
+          "path_length": 25.044,
+          "net_displacement": 10.239,
+          "direction_change_var": 2.4071,
+          "relations": [
+            "left-of person #25",
+            "left-of person #37",
+            "left-of person #40",
+            "left-of person #49",
+            "right-of person #16",
+            "right-of person #22"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.842,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting farther",
+          "path_length": 8.561,
+          "net_displacement": 8.553,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #22",
+            "left-of person #25",
+            "left-of person #37",
+            "left-of person #40",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.874,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 114.443,
+          "net_displacement": 5.508,
+          "direction_change_var": 2.8727,
+          "relations": [
+            "left-of person #25",
+            "left-of person #37",
+            "left-of person #40",
+            "left-of person #49",
+            "left-of person #9",
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 25,
+          "label": "person",
+          "confidence_avg": 0.888,
+          "start_frame": 0,
+          "end_frame": 17,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 20.711,
+          "net_displacement": 5.625,
+          "direction_change_var": 1.2199,
+          "relations": [
+            "right-of person #16",
+            "right-of person #22",
+            "right-of person #37",
+            "right-of person #40",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.927,
+          "start_frame": 0,
+          "end_frame": 17,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 24.444,
+          "net_displacement": 8.683,
+          "direction_change_var": 0.4143,
+          "relations": [
+            "below person #49",
+            "left-of person #25",
+            "left-of person #40",
+            "right-of person #16",
+            "right-of person #22",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 40,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 0,
+          "end_frame": 12,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 33.205,
+          "net_displacement": 28.759,
+          "direction_change_var": 1.2373,
+          "relations": [
+            "left-of person #25",
+            "right-of person #16",
+            "right-of person #22",
+            "right-of person #37",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 49,
+          "label": "person",
+          "confidence_avg": 0.838,
+          "start_frame": 10,
+          "end_frame": 15,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "moving right",
+          "path_length": 7.574,
+          "net_displacement": 7.574,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #37",
+            "right-of person #22",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 52,
+          "label": "person",
+          "confidence_avg": 0.838,
+          "start_frame": 13,
+          "end_frame": 13,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 53,
+          "label": "backpack",
+          "confidence_avg": 0.821,
+          "start_frame": 14,
+          "end_frame": 14,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " Why? Look around, I'm letting none of the other kids are wearing them.",
+      "llm_scene_description": "In this scene, a young male (\"lad\") is seen getting off a school bus and later talking with a woman on the street, possibly a guardian or parent. The interaction occurs amidst other children and individuals in the area, suggesting a school or community setting. The audio captures the woman saying, \"Why? Look around, I'm letting none of the other kids are wearing them,\" which appears to reference a concern about conformity or fitting in, potentially tied to the lad's attire or accessories. The ongoing movement and positioning of people in the scene suggest a casual but active environment, with the focus remaining on the relationship and dialogue between the lad and the woman. This moment continues to explore themes of individuality, social expectations, and the protective nature of the woman toward the lad."
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:01:09.069",
+      "end_timecode": "00:01:11.238",
+      "start_seconds": 69.06899999999999,
+      "end_seconds": 71.23783333333333,
+      "duration_seconds": 2.168833333333339,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0015.mp4",
+      "frame_captions": [
+        "a video frame of a lad and girl standing in front of school bus",
+        "a video frame of a lad and girl standing in front of school bus",
+        "a video frame of a lad and girl standing in front of school bus"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.949,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 11.021,
+          "net_displacement": 6.093,
+          "direction_change_var": 2.1969,
+          "relations": [
+            "left-of person #37",
+            "right-of person #22",
+            "right-of person #52",
+            "right-of person #56"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.861,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 9.773,
+          "net_displacement": 6.125,
+          "direction_change_var": 3.1643,
+          "relations": [
+            "left-of person #37",
+            "left-of person #56",
+            "left-of person #9",
+            "right-of person #52"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.952,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 18.92,
+          "net_displacement": 13.858,
+          "direction_change_var": 1.5815,
+          "relations": [
+            "right-of person #22",
+            "right-of person #52",
+            "right-of person #56",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 52,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 4,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, getting closer",
+          "path_length": 19.821,
+          "net_displacement": 12.215,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #22",
+            "left-of person #37",
+            "left-of person #56",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 56,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 4,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting closer",
+          "path_length": 13.689,
+          "net_displacement": 13.689,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #37",
+            "left-of person #9",
+            "right-of person #22",
+            "right-of person #52"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.80)",
+      "audio_speech": " who cracks all sort of fat.",
+      "llm_scene_description": "In this scene, a young male (\"lad\") and a girl are standing in front of a school bus, with several other individuals moving or standing nearby. The positioning and movement of the people suggest a gathering or interaction is taking place, though the focus remains on the lad and the girl. The audio includes a low-confidence snippet of speech, \"who cracks all sort of fat,\" which is unclear in meaning but may hint at a humorous or descriptive comment about someone present. This moment appears to continue the narrative of the lad's interactions in a school or community setting, potentially highlighting themes of connection, individuality, or social dynamics. The presence of the school bus reinforces the setting as educational or event-related."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:01:11.238",
+      "end_timecode": "00:01:13.240",
+      "start_seconds": 71.23783333333333,
+      "end_seconds": 73.23983333333332,
+      "duration_seconds": 2.0019999999999953,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0016.mp4",
+      "frame_captions": [
+        "a video frame of a woman and a lad talking to each other people",
+        "a video frame of a lad and girl talking to each other boy",
+        "a video frame of a lad talking to a woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.946,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.896,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up-left, getting closer, moving in a loop",
+          "path_length": 36.451,
+          "net_displacement": 10.068,
+          "direction_change_var": 1.2305,
+          "relations": [
+            "left-of person #37",
+            "right-of person #52"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.922,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right, moving in a loop",
+          "path_length": 48.552,
+          "net_displacement": 12.926,
+          "direction_change_var": 3.2,
+          "relations": [
+            "right-of person #22",
+            "right-of person #52"
+          ]
+        },
+        {
+          "track_id": 52,
+          "label": "person",
+          "confidence_avg": 0.812,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "bottom-left",
+          "movement": "moving down",
+          "path_length": 8.041,
+          "net_displacement": 8.041,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #22",
+            "left-of person #37"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " you won't please trust mommy.",
+      "llm_scene_description": "In this scene, a woman and a young male (\"lad\") are engaged in a conversation, with the lad appearing to be the central focus. The setting seems to involve other individuals moving around, with some looping or shifting positions, suggesting a social or interactive environment. The lad and the woman are likely continuing their ongoing dialogue, which has previously explored themes of individuality and social expectations. The audio captures a snippet of speech, \"you won't please trust mom,\" which may indicate a moment of tension or disagreement between the lad and the woman, potentially his mother or guardian. The lack of clear context for the statement adds ambiguity but suggests a personal or emotional undertone. The scene continues to build on the dynamic between the lad and the woman, with the presence of others adding a backdrop of activity or community."
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:01:13.240",
+      "end_timecode": "00:01:15.742",
+      "start_seconds": 73.23983333333332,
+      "end_seconds": 75.74233333333333,
+      "duration_seconds": 2.502500000000012,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0017.mp4",
+      "frame_captions": [
+        "a video frame of a lad and girl standing in front of school bus",
+        "a video frame of a lad standing in front of the school bus",
+        "a video frame of a lad standing in front of the school bus"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.935,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 12.954,
+          "net_displacement": 4.424,
+          "direction_change_var": 0.9342,
+          "relations": [
+            "left-of person #37",
+            "right-of person #22"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.872,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-right, getting farther",
+          "path_length": 24.663,
+          "net_displacement": 13.641,
+          "direction_change_var": 0.5065,
+          "relations": [
+            "left-of person #37",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.94,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting farther",
+          "path_length": 48.861,
+          "net_displacement": 30.299,
+          "direction_change_var": 2.3709,
+          "relations": [
+            "right-of person #22",
+            "right-of person #9"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.81), run (conf=0.39)",
+      "audio_speech": " I tell you what.",
+      "llm_scene_description": "In this scene, a young male (\"lad\") is standing in front of a school bus, while a girl who was initially present in the first frame appears to have moved out of view. The lad remains mostly stationary, while two other individuals (person #22 and person #37) are moving around him, suggesting a dynamic environment. The audio captures a snippet of speech, \"I tell you what,\" which may indicate someone addressing the lad or making a statement nearby. The word \"run\" is faintly detected, potentially hinting at urgency or movement, though its low confidence makes it unclear. The scene appears to continue the narrative of the lad's interactions in a school or community setting, with the focus on his presence and the activity around him. Themes of connection and social dynamics persist, as the positioning and movement of people suggest ongoing interactions or preparations."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:01:15.742",
+      "end_timecode": "00:01:20.747",
+      "start_seconds": 75.74233333333333,
+      "end_seconds": 80.74733333333333,
+      "duration_seconds": 5.0049999999999955,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0018.mp4",
+      "frame_captions": [
+        "a video frame of a lad and a woman",
+        "a video frame of a girl talking to a boy",
+        "a video frame of a lad and a woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.835,
+          "start_frame": 0,
+          "end_frame": 20,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 25.005,
+          "net_displacement": 3.913,
+          "direction_change_var": 2.1639,
+          "relations": [
+            "left-of person #37",
+            "right-of person #22",
+            "right-of person #57",
+            "right-of person #58"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.907,
+          "start_frame": 0,
+          "end_frame": 19,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, getting closer, moving in a loop",
+          "path_length": 32.094,
+          "net_displacement": 2.774,
+          "direction_change_var": 1.5991,
+          "relations": [
+            "left-of person #37",
+            "left-of person #9",
+            "right-of person #57",
+            "right-of person #58"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.939,
+          "start_frame": 0,
+          "end_frame": 20,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting closer",
+          "path_length": 54.717,
+          "net_displacement": 35.12,
+          "direction_change_var": 1.5699,
+          "relations": [
+            "right-of person #22",
+            "right-of person #57",
+            "right-of person #58",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 57,
+          "label": "person",
+          "confidence_avg": 0.852,
+          "start_frame": 2,
+          "end_frame": 17,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up-right, getting farther",
+          "path_length": 24.16,
+          "net_displacement": 15.979,
+          "direction_change_var": 0.3644,
+          "relations": [
+            "left-of person #22",
+            "left-of person #37",
+            "left-of person #9",
+            "right-of person #58"
+          ]
+        },
+        {
+          "track_id": 58,
+          "label": "person",
+          "confidence_avg": 0.846,
+          "start_frame": 7,
+          "end_frame": 19,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 9.168,
+          "net_displacement": 5.962,
+          "direction_change_var": 2.2224,
+          "relations": [
+            "left-of person #22",
+            "left-of person #37",
+            "left-of person #57",
+            "left-of person #9"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " You take it off and this weekend I'll take you to Radio Shack.",
+      "llm_scene_description": "In this scene, a young male (\"lad\") and a woman are seen interacting, with the lad likely being the same individual from previous scenes. The environment appears to be active, with multiple people moving around in a loop or shifting positions. The audio captures a statement, \"You take it off and this weekend I'll take you to Radio Shack,\" suggesting the woman is addressing the lad, possibly regarding an item he is wearing or carrying. This dialogue hints at a negotiation or compromise, potentially tied to themes of individuality and social expectations established earlier. The mention of \"Radio Shack\" adds a specific, casual detail, possibly indicating a reward or incentive. The scene continues to explore the dynamic between the lad and the woman, likely his guardian, while the surrounding movement of others provides a backdrop of community or school-related activity."
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:01:20.747",
+      "end_timecode": "00:01:24.418",
+      "start_seconds": 80.74733333333333,
+      "end_seconds": 84.41766666666666,
+      "duration_seconds": 3.670333333333332,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0019.mp4",
+      "frame_captions": [
+        "a video frame of a lad and girl standing in front of school bus",
+        "a video frame of a lad and a woman standing in front of school buses",
+        "a video frame of a lad and girl standing in front of school bus"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.939,
+          "start_frame": 0,
+          "end_frame": 14,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 4.48,
+          "net_displacement": 3.521,
+          "direction_change_var": 2.4522,
+          "relations": [
+            "left-of person #37"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.923,
+          "start_frame": 0,
+          "end_frame": 14,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 11.018,
+          "net_displacement": 9.073,
+          "direction_change_var": 1.3934,
+          "relations": [
+            "right-of person #9"
+          ]
+        }
+      ],
+      "audio_natural": "music (conf=0.54)",
+      "audio_speech": "",
+      "llm_scene_description": "In this scene, a young male (\"lad\") and a girl are standing in front of a school bus, with a brief moment where the lad is seen interacting with a woman, possibly his guardian. The individuals appear to shift positions slightly, with the lad remaining mostly stationary while the woman moves to the right before leaving the frame. The setting remains consistent with a school or community environment, as indicated by the presence of school buses. The audio features faint music, but no discernible dialogue, leaving the interaction largely visual. This scene continues to depict the lad's interactions in a social setting, with the focus on his relationships and the activity around him. Themes of connection and social dynamics persist, though no significant new developments or dialogue are introduced."
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:01:24.418",
+      "end_timecode": "00:01:34.928",
+      "start_seconds": 84.41766666666666,
+      "end_seconds": 94.92816666666666,
+      "duration_seconds": 10.510499999999993,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0020.mp4",
+      "frame_captions": [
+        "a video frame of a group of people in a room",
+        "a video frame of a group of people walking down a hallway",
+        "a video frame of a dog in a display case"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 42,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 210.745,
+          "net_displacement": 78.442,
+          "direction_change_var": 1.619,
+          "relations": [
+            "below person #60",
+            "left-of person #63",
+            "right-of person #22",
+            "right-of person #58",
+            "right-of person #61",
+            "right-of person #64"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.895,
+          "start_frame": 1,
+          "end_frame": 41,
+          "start_pos": "middle-left",
+          "end_pos": "middle-center",
+          "movement": "moving right, moving in a loop",
+          "path_length": 234.318,
+          "net_displacement": 48.595,
+          "direction_change_var": 1.7916,
+          "relations": [
+            "left-of person #37",
+            "left-of person #63",
+            "left-of person #9",
+            "right-of person #58",
+            "right-of person #64"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.892,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-right",
+          "end_pos": "bottom-right",
+          "movement": "moving down, getting farther",
+          "path_length": 67.794,
+          "net_displacement": 27.112,
+          "direction_change_var": 0.3488,
+          "relations": [
+            "right-of person #22",
+            "right-of person #58",
+            "right-of person #60",
+            "right-of person #61"
+          ]
+        },
+        {
+          "track_id": 58,
+          "label": "person",
+          "confidence_avg": 0.856,
+          "start_frame": 7,
+          "end_frame": 15,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting closer",
+          "path_length": 47.756,
+          "net_displacement": 44.667,
+          "direction_change_var": 0.4973,
+          "relations": [
+            "left-of person #22",
+            "left-of person #37",
+            "left-of person #63",
+            "left-of person #9",
+            "right-of person #64"
+          ]
+        },
+        {
+          "track_id": 60,
+          "label": "person",
+          "confidence_avg": 0.821,
+          "start_frame": 4,
+          "end_frame": 28,
+          "start_pos": "middle-right",
+          "end_pos": "top-right",
+          "movement": "moving up, getting farther",
+          "path_length": 66.569,
+          "net_displacement": 63.175,
+          "direction_change_var": 0.1953,
+          "relations": [
+            "above person #9",
+            "left-of person #37",
+            "right-of person #61"
+          ]
+        },
+        {
+          "track_id": 61,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 5,
+          "end_frame": 42,
+          "start_pos": "bottom-right",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer",
+          "path_length": 151.523,
+          "net_displacement": 138.649,
+          "direction_change_var": 1.0233,
+          "relations": [
+            "left-of person #37",
+            "left-of person #60",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.891,
+          "start_frame": 10,
+          "end_frame": 32,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving down, getting farther",
+          "path_length": 35.842,
+          "net_displacement": 28.017,
+          "direction_change_var": 0.9561,
+          "relations": [
+            "right-of person #22",
+            "right-of person #58",
+            "right-of person #64",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 64,
+          "label": "person",
+          "confidence_avg": 0.902,
+          "start_frame": 14,
+          "end_frame": 15,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 9.577,
+          "net_displacement": 9.577,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #22",
+            "left-of person #58",
+            "left-of person #63",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 69,
+          "label": "person",
+          "confidence_avg": 0.827,
+          "start_frame": 35,
+          "end_frame": 35,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "speech (conf=0.74), music (conf=0.72)",
+      "audio_speech": " You doing okay? I guess.",
+      "llm_scene_description": "In this scene, a group of people is seen walking down a hallway, transitioning from a room in the previous frame. The movement of individuals suggests a dynamic and social environment, with people shifting positions and interacting as they walk. A notable object in the scene is a dog in a display case, which stands out as an unusual or attention-grabbing detail. The audio captures faint music and a snippet of dialogue, \"You doing okay? I guess,\" indicating a casual or concerned exchange between individuals, though the context remains unclear. This scene continues to depict a social setting, potentially tied to a school or community environment, with themes of interaction and observation. The presence of the dog in the display case may hint at an event or exhibit, adding a layer of curiosity to the unfolding narrative."
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:01:34.928",
+      "end_timecode": "00:01:39.099",
+      "start_seconds": 94.92816666666666,
+      "end_seconds": 99.09899999999999,
+      "duration_seconds": 4.170833333333334,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0021.mp4",
+      "frame_captions": [
+        "a video frame of a group of people walking down a hallway",
+        "a video frame of a group of people walking down a hallway",
+        "a video frame of a group of people walking down a hallway"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.891,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 69.695,
+          "net_displacement": 66.893,
+          "direction_change_var": 0.1087,
+          "relations": [
+            "left-of person #22",
+            "left-of person #63",
+            "left-of person #73",
+            "left-of person #75",
+            "moving-with person #58",
+            "right-of person #58",
+            "right-of person #61",
+            "right-of person #64",
+            "right-of person #74"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.889,
+          "start_frame": 8,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 48.73,
+          "net_displacement": 47.848,
+          "direction_change_var": 0.1216,
+          "relations": [
+            "left-of person #73",
+            "right-of person #58",
+            "right-of person #74",
+            "right-of person #75",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 58,
+          "label": "person",
+          "confidence_avg": 0.894,
+          "start_frame": 2,
+          "end_frame": 16,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "moving left, getting closer",
+          "path_length": 57.61,
+          "net_displacement": 55.868,
+          "direction_change_var": 0.2616,
+          "relations": [
+            "below person #74",
+            "left-of person #22",
+            "left-of person #63",
+            "left-of person #73",
+            "left-of person #75",
+            "left-of person #9",
+            "moving-with person #9",
+            "right-of person #61"
+          ]
+        },
+        {
+          "track_id": 61,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther, moving in a loop",
+          "path_length": 30.417,
+          "net_displacement": 1.266,
+          "direction_change_var": 1.921,
+          "relations": [
+            "left-of person #58",
+            "left-of person #63",
+            "left-of person #64",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.9,
+          "start_frame": 1,
+          "end_frame": 7,
+          "start_pos": "bottom-right",
+          "end_pos": "middle-right",
+          "movement": "moving up-left, getting closer",
+          "path_length": 10.418,
+          "net_displacement": 10.162,
+          "direction_change_var": 0.0918,
+          "relations": [
+            "right-of person #58",
+            "right-of person #61",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 64,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 6.055,
+          "net_displacement": 6.055,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #9",
+            "right-of person #61"
+          ]
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 7,
+          "end_frame": 13,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 56.316,
+          "net_displacement": 56.096,
+          "direction_change_var": 0.0132,
+          "relations": [
+            "right-of person #22",
+            "right-of person #58",
+            "right-of person #74",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 74,
+          "label": "person",
+          "confidence_avg": 0.817,
+          "start_frame": 8,
+          "end_frame": 11,
+          "start_pos": "middle-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 5.127,
+          "net_displacement": 4.856,
+          "direction_change_var": 0.3419,
+          "relations": [
+            "above person #58",
+            "left-of person #22",
+            "left-of person #73",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 75,
+          "label": "person",
+          "confidence_avg": 0.84,
+          "start_frame": 14,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.363,
+          "net_displacement": 2.408,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #22",
+            "right-of person #58",
+            "right-of person #9"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " I smell ammonia. They must have done a thorough cleaning recently.",
+      "llm_scene_description": "In this scene, a group of people is walking down a hallway, continuing the social and dynamic atmosphere established in earlier scenes. Individuals are moving in various directions, with some walking together, such as person #9 and person #58, while others remain stationary or shift positions slightly. The hallway appears to be part of a larger communal or school-like setting. The audio notes the smell of ammonia, suggesting recent cleaning, which adds a subtle environmental detail to the scene. No dialogue is present, and the focus remains on the movement and interactions of the group. This scene builds on the ongoing theme of social dynamics and activity in a shared space, maintaining a sense of continuity with previous events."
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:01:39.099",
+      "end_timecode": "00:01:46.440",
+      "start_seconds": 99.09899999999999,
+      "end_seconds": 106.43966666666665,
+      "duration_seconds": 7.340666666666664,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0022.mp4",
+      "frame_captions": [
+        "a video frame of a lad and his mother walking down a hallway",
+        "a video frame of a girl walking down a hallway",
+        "a video frame of a group of people walking down a hallway"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 0,
+          "end_frame": 20,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-left",
+          "movement": "moving left, getting farther",
+          "path_length": 165.614,
+          "net_displacement": 137.332,
+          "direction_change_var": 1.2135,
+          "relations": [
+            "left-of person #22",
+            "left-of person #61",
+            "left-of person #75",
+            "left-of person #76",
+            "left-of person #78",
+            "right-of person #58",
+            "right-of person #69"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.917,
+          "start_frame": 0,
+          "end_frame": 21,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 48.676,
+          "net_displacement": 20.647,
+          "direction_change_var": 2.7005,
+          "relations": [
+            "right-of person #58",
+            "right-of person #61",
+            "right-of person #69",
+            "right-of person #75",
+            "right-of person #76",
+            "right-of person #78",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 58,
+          "label": "person",
+          "confidence_avg": 0.897,
+          "start_frame": 0,
+          "end_frame": 12,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-left",
+          "movement": "moving left, getting closer",
+          "path_length": 100.897,
+          "net_displacement": 78.184,
+          "direction_change_var": 2.3334,
+          "relations": [
+            "left-of person #22",
+            "left-of person #75",
+            "left-of person #76",
+            "left-of person #78",
+            "left-of person #9",
+            "right-of person #69"
+          ]
+        },
+        {
+          "track_id": 61,
+          "label": "person",
+          "confidence_avg": 0.857,
+          "start_frame": 16,
+          "end_frame": 19,
+          "start_pos": "middle-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 22.005,
+          "net_displacement": 5.219,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #22",
+            "left-of person #76",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.869,
+          "start_frame": 15,
+          "end_frame": 17,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left",
+          "path_length": 20.811,
+          "net_displacement": 20.811,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 69,
+          "label": "person",
+          "confidence_avg": 0.905,
+          "start_frame": 3,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "bottom-left",
+          "movement": "moving down, getting farther",
+          "path_length": 70.347,
+          "net_displacement": 37.126,
+          "direction_change_var": 0.5222,
+          "relations": [
+            "left-of person #22",
+            "left-of person #58",
+            "left-of person #75",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 75,
+          "label": "person",
+          "confidence_avg": 0.886,
+          "start_frame": 0,
+          "end_frame": 29,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer, moving in a loop",
+          "path_length": 246.026,
+          "net_displacement": 53.036,
+          "direction_change_var": 1.5162,
+          "relations": [
+            "left-of person #22",
+            "left-of person #76",
+            "right-of person #58",
+            "right-of person #69",
+            "right-of person #78",
+            "right-of person #88",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 76,
+          "label": "person",
+          "confidence_avg": 0.893,
+          "start_frame": 6,
+          "end_frame": 29,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer, looping/circling",
+          "path_length": 163.767,
+          "net_displacement": 7.767,
+          "direction_change_var": 2.6778,
+          "relations": [
+            "left-of person #22",
+            "right-of person #58",
+            "right-of person #61",
+            "right-of person #75",
+            "right-of person #78",
+            "right-of person #88",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 78,
+          "label": "person",
+          "confidence_avg": 0.895,
+          "start_frame": 8,
+          "end_frame": 14,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting closer",
+          "path_length": 142.044,
+          "net_displacement": 141.949,
+          "direction_change_var": 0.0069,
+          "relations": [
+            "left-of person #22",
+            "left-of person #75",
+            "left-of person #76",
+            "right-of person #58",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 88,
+          "label": "person",
+          "confidence_avg": 0.844,
+          "start_frame": 25,
+          "end_frame": 29,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 35.088,
+          "net_displacement": 35.087,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #75",
+            "left-of person #76"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.79)",
+      "audio_speech": " I like that. I remember if anybody bothers you, what do you say? My dad's a football coach.",
+      "llm_scene_description": "In this scene, a young boy (\"lad\") and his mother are seen walking down a hallway, followed by a girl walking alone, and later a group of people moving together. The setting appears to be a school or community space, with individuals moving dynamically and interacting. The audio captures a snippet of dialogue, \"I like that. I remember if anybody bothers you, what do you say? My dad's a football coach,\" suggesting a conversation about confidence or self-assurance, possibly between the mother and the lad. The movement of people, including looping and shifting positions, reflects a lively and social environment. This scene continues to explore themes of relationships, social interactions, and personal growth, with the mother offering guidance to the lad in a supportive manner."
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:01:46.440",
+      "end_timecode": "00:01:50.444",
+      "start_seconds": 106.43966666666665,
+      "end_seconds": 110.44366666666666,
+      "duration_seconds": 4.004000000000005,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0023.mp4",
+      "frame_captions": [
+        "a video frame of a woman helping a boy with a backpack",
+        "a video frame of a woman and a lad in a hallway",
+        "a video frame of a woman and a lad in a hallway"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.867,
+          "start_frame": 2,
+          "end_frame": 15,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting farther",
+          "path_length": 54.075,
+          "net_displacement": 47.709,
+          "direction_change_var": 1.0988,
+          "relations": [
+            "right-of person #63",
+            "right-of person #75",
+            "right-of person #88",
+            "right-of person #89",
+            "right-of person #95"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.919,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 61.881,
+          "net_displacement": 18.175,
+          "direction_change_var": 1.7152,
+          "relations": [
+            "left-of person #22",
+            "left-of person #76",
+            "right-of person #75",
+            "right-of person #88",
+            "right-of person #89",
+            "right-of person #95",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 75,
+          "label": "person",
+          "confidence_avg": 0.886,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving down-left, getting farther",
+          "path_length": 65.085,
+          "net_displacement": 24.932,
+          "direction_change_var": 1.4171,
+          "relations": [
+            "left-of person #22",
+            "left-of person #63",
+            "left-of person #76",
+            "right-of person #88",
+            "right-of person #89",
+            "right-of person #95",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 76,
+          "label": "person",
+          "confidence_avg": 0.881,
+          "start_frame": 15,
+          "end_frame": 16,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 5.872,
+          "net_displacement": 5.872,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #63",
+            "right-of person #75",
+            "right-of person #95",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 88,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting farther",
+          "path_length": 44.261,
+          "net_displacement": 38.327,
+          "direction_change_var": 1.6513,
+          "relations": [
+            "left-of person #22",
+            "left-of person #63",
+            "left-of person #75",
+            "right-of person #89"
+          ]
+        },
+        {
+          "track_id": 89,
+          "label": "person",
+          "confidence_avg": 0.843,
+          "start_frame": 1,
+          "end_frame": 11,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting farther",
+          "path_length": 42.574,
+          "net_displacement": 40.246,
+          "direction_change_var": 0.0535,
+          "relations": [
+            "left-of person #22",
+            "left-of person #63",
+            "left-of person #75",
+            "left-of person #88",
+            "right-of person #95"
+          ]
+        },
+        {
+          "track_id": 95,
+          "label": "person",
+          "confidence_avg": 0.919,
+          "start_frame": 10,
+          "end_frame": 16,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 39.081,
+          "net_displacement": 38.86,
+          "direction_change_var": 0.0083,
+          "relations": [
+            "left-of person #22",
+            "left-of person #63",
+            "left-of person #75",
+            "left-of person #76",
+            "left-of person #89",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 96,
+          "label": "person",
+          "confidence_avg": 0.892,
+          "start_frame": 15,
+          "end_frame": 16,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 4.19,
+          "net_displacement": 4.19,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #63",
+            "left-of person #75",
+            "left-of person #76",
+            "left-of person #95"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.51)",
+      "audio_speech": " And? My brother's a football player. Good.",
+      "llm_scene_description": "In this scene, a woman is seen helping a boy, likely her son, adjust his backpack in a hallway. The environment remains active, with multiple people moving around in various directions, suggesting a school or community setting. The audio captures a snippet of dialogue, \"And? My brother's a football player. Good,\" though the context is unclear, possibly indicating a casual or prideful exchange between individuals. The boy and the woman continue to interact briefly before the focus shifts to the movement of others in the hallway. This scene builds on the ongoing themes of social dynamics and familial relationships, with the woman providing support to the boy amidst the bustling environment."
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:01:50.444",
+      "end_timecode": "00:01:55.782",
+      "start_seconds": 110.44366666666666,
+      "end_seconds": 115.78233333333333,
+      "duration_seconds": 5.3386666666666684,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0024.mp4",
+      "frame_captions": [
+        "a video frame of a woman and a lad walking down a hallway",
+        "a video frame of a woman and a lad walking down a hallway",
+        "a video frame of a woman and a lad walking down a hallway"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.813,
+          "start_frame": 19,
+          "end_frame": 19,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.911,
+          "start_frame": 0,
+          "end_frame": 20,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 153.776,
+          "net_displacement": 104.602,
+          "direction_change_var": 1.5027,
+          "relations": [
+            "above person #88",
+            "left-of person #76",
+            "right-of person #103",
+            "right-of person #75",
+            "right-of person #89",
+            "right-of person #95",
+            "right-of person #96",
+            "right-of person #99"
+          ]
+        },
+        {
+          "track_id": 75,
+          "label": "person",
+          "confidence_avg": 0.861,
+          "start_frame": 0,
+          "end_frame": 11,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 33.671,
+          "net_displacement": 6.071,
+          "direction_change_var": 2.8347,
+          "relations": [
+            "below person #89",
+            "left-of person #63",
+            "left-of person #76",
+            "right-of person #95",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 76,
+          "label": "person",
+          "confidence_avg": 0.887,
+          "start_frame": 0,
+          "end_frame": 11,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving down-right, getting farther",
+          "path_length": 52.924,
+          "net_displacement": 27.403,
+          "direction_change_var": 1.7096,
+          "relations": [
+            "right-of person #63",
+            "right-of person #75",
+            "right-of person #95",
+            "right-of person #96",
+            "right-of person #99"
+          ]
+        },
+        {
+          "track_id": 88,
+          "label": "person",
+          "confidence_avg": 0.86,
+          "start_frame": 14,
+          "end_frame": 17,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "moving right, getting closer",
+          "path_length": 67.573,
+          "net_displacement": 67.548,
+          "direction_change_var": 0.0019,
+          "relations": [
+            "below person #63",
+            "right-of person #95"
+          ]
+        },
+        {
+          "track_id": 89,
+          "label": "person",
+          "confidence_avg": 0.874,
+          "start_frame": 4,
+          "end_frame": 21,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 70.348,
+          "net_displacement": 36.998,
+          "direction_change_var": 0.9842,
+          "relations": [
+            "above person #75",
+            "left-of person #103",
+            "left-of person #63",
+            "moving-with person #95",
+            "right-of person #95",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 95,
+          "label": "person",
+          "confidence_avg": 0.885,
+          "start_frame": 0,
+          "end_frame": 21,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, moving in a loop",
+          "path_length": 152.652,
+          "net_displacement": 42.967,
+          "direction_change_var": 1.569,
+          "relations": [
+            "left-of person #103",
+            "left-of person #63",
+            "left-of person #75",
+            "left-of person #76",
+            "left-of person #88",
+            "left-of person #89",
+            "left-of person #99",
+            "moving-with person #89",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 96,
+          "label": "person",
+          "confidence_avg": 0.873,
+          "start_frame": 0,
+          "end_frame": 21,
+          "start_pos": "middle-left",
+          "end_pos": "bottom-left",
+          "movement": "moving down, getting closer",
+          "path_length": 38.979,
+          "net_displacement": 31.883,
+          "direction_change_var": 0.1696,
+          "relations": [
+            "left-of person #103",
+            "left-of person #63",
+            "left-of person #75",
+            "left-of person #76",
+            "left-of person #89",
+            "left-of person #95",
+            "left-of person #99"
+          ]
+        },
+        {
+          "track_id": 99,
+          "label": "person",
+          "confidence_avg": 0.845,
+          "start_frame": 10,
+          "end_frame": 14,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting farther",
+          "path_length": 23.422,
+          "net_displacement": 23.416,
+          "direction_change_var": 0.0003,
+          "relations": [
+            "left-of person #63",
+            "left-of person #76",
+            "right-of person #95",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 103,
+          "label": "person",
+          "confidence_avg": 0.874,
+          "start_frame": 18,
+          "end_frame": 21,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 37.36,
+          "net_displacement": 37.263,
+          "direction_change_var": 0.0017,
+          "relations": [
+            "left-of person #63",
+            "right-of person #89",
+            "right-of person #95",
+            "right-of person #96"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.55)",
+      "audio_speech": " Hey mom, look that girl's pregnant. Congratulations.",
+      "llm_scene_description": "In this scene, a woman and a young boy (\"lad\") are walking down a hallway together, continuing the social and dynamic atmosphere of the previous scenes. The hallway remains active with multiple individuals moving in various directions, suggesting a communal or school-like environment. The audio features a snippet of dialogue, \"Hey mom, look that girl's pregnant. Congratulations,\" spoken by the boy to the woman, indicating an observation and a casual interaction between them. This comment suggests the boy is noticing and reacting to his surroundings, possibly reflecting curiosity or social awareness. The scene maintains its focus on relationships, interactions, and the lively environment of the hallway."
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:01:55.782",
+      "end_timecode": "00:02:01.621",
+      "start_seconds": 115.78233333333333,
+      "end_seconds": 121.6215,
+      "duration_seconds": 5.839166666666671,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0025.mp4",
+      "frame_captions": [
+        "a video frame of a red door with the word boys written on it",
+        "a video frame of a woman walking down a hallway",
+        "a video frame of a little boy and girl holding hands"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.801,
+          "start_frame": 14,
+          "end_frame": 14,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 75,
+          "label": "person",
+          "confidence_avg": 0.896,
+          "start_frame": 8,
+          "end_frame": 20,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-left",
+          "movement": "moving left, getting farther, moving in a loop",
+          "path_length": 129.052,
+          "net_displacement": 38.683,
+          "direction_change_var": 1.0955,
+          "relations": [
+            "below person #108",
+            "left-of person #89",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 89,
+          "label": "person",
+          "confidence_avg": 0.866,
+          "start_frame": 18,
+          "end_frame": 21,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 19.368,
+          "net_displacement": 18.631,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #108",
+            "right-of person #75",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 95,
+          "label": "person",
+          "confidence_avg": 0.801,
+          "start_frame": 7,
+          "end_frame": 7,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 96,
+          "label": "person",
+          "confidence_avg": 0.921,
+          "start_frame": 9,
+          "end_frame": 20,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, getting closer, looping/circling",
+          "path_length": 127.112,
+          "net_displacement": 1.564,
+          "direction_change_var": 0.3565,
+          "relations": [
+            "left-of person #108",
+            "left-of person #75",
+            "left-of person #89"
+          ]
+        },
+        {
+          "track_id": 99,
+          "label": "person",
+          "confidence_avg": 0.832,
+          "start_frame": 13,
+          "end_frame": 13,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 108,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 13,
+          "end_frame": 23,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 100.94,
+          "net_displacement": 85.22,
+          "direction_change_var": 0.566,
+          "relations": [
+            "above person #75",
+            "left-of person #113",
+            "left-of person #89",
+            "moving-with person #113",
+            "right-of person #114",
+            "right-of person #96"
+          ]
+        },
+        {
+          "track_id": 113,
+          "label": "person",
+          "confidence_avg": 0.857,
+          "start_frame": 21,
+          "end_frame": 23,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 11.631,
+          "net_displacement": 11.629,
+          "direction_change_var": 0.0,
+          "relations": [
+            "moving-with person #108",
+            "right-of person #108",
+            "right-of person #114"
+          ]
+        },
+        {
+          "track_id": 114,
+          "label": "person",
+          "confidence_avg": 0.869,
+          "start_frame": 21,
+          "end_frame": 23,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 11.328,
+          "net_displacement": 11.175,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #108",
+            "left-of person #113"
+          ]
+        },
+        {
+          "track_id": 115,
+          "label": "person",
+          "confidence_avg": 0.802,
+          "start_frame": 23,
+          "end_frame": 23,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "speech (conf=0.78), door (conf=0.32)",
+      "audio_speech": " Well that was revolting.",
+      "llm_scene_description": "In this scene, the focus shifts between a red door labeled \"boys,\" a woman walking down a hallway, and a boy and girl holding hands. The environment appears to remain within a school or communal setting, consistent with previous scenes. The movement of individuals suggests a mix of stationary and dynamic activity, with some people looping or shifting positions. The audio captures a voice saying, \"Well, that was revolting,\" alongside the faint sound of a door. This could indicate a reaction to a prior event or interaction, though the context is unclear. The scene continues to explore themes of social interaction and relationships, with the boy and girl holding hands hinting at a moment of connection or friendship amidst the bustling environment."
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:02:01.621",
+      "end_timecode": "00:02:04.958",
+      "start_seconds": 121.6215,
+      "end_seconds": 124.95816666666666,
+      "duration_seconds": 3.336666666666659,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0026.mp4",
+      "frame_captions": [
+        "a video frame of a woman standing in front of lockers",
+        "a video frame of a woman standing in a hallway",
+        "a video frame of a lad walking down a hallway"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 113,
+          "label": "person",
+          "confidence_avg": 0.836,
+          "start_frame": 7,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 116,
+          "label": "person",
+          "confidence_avg": 0.925,
+          "start_frame": 1,
+          "end_frame": 13,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 94.804,
+          "net_displacement": 33.473,
+          "direction_change_var": 2.0123,
+          "relations": [
+            "left-of person #117",
+            "left-of person #119"
+          ]
+        },
+        {
+          "track_id": 117,
+          "label": "person",
+          "confidence_avg": 0.923,
+          "start_frame": 8,
+          "end_frame": 13,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting closer",
+          "path_length": 11.251,
+          "net_displacement": 9.853,
+          "direction_change_var": 0.0805,
+          "relations": [
+            "right-of person #116",
+            "right-of person #119"
+          ]
+        },
+        {
+          "track_id": 119,
+          "label": "person",
+          "confidence_avg": 0.85,
+          "start_frame": 11,
+          "end_frame": 13,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 8.409,
+          "net_displacement": 8.281,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #117",
+            "right-of person #116"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " This is your home room. Do you want me to go in with you?",
+      "llm_scene_description": "In this scene, a woman is standing near lockers before transitioning to a hallway. A boy (\"lad\") is seen walking down the hallway, accompanied by dynamic movement from other individuals (persons #116, #117, and #119). The setting appears to remain within a school environment, consistent with prior scenes. The audio captures a supportive interaction, with the woman asking, \"This is your home room. Do you want me to go in with you?\" suggesting she is offering guidance or reassurance to the boy, possibly her son. The scene continues to explore themes of familial support, social dynamics, and the transition into a new or unfamiliar environment."
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:02:04.958",
+      "end_timecode": "00:02:07.794",
+      "start_seconds": 124.95816666666666,
+      "end_seconds": 127.79433333333333,
+      "duration_seconds": 2.8361666666666707,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0027.mp4",
+      "frame_captions": [
+        "a video frame of a lad standing in front of an adult woman",
+        "a video frame of a lad talking to a woman",
+        "a video frame of a lad standing in front of an adult woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 116,
+          "label": "person",
+          "confidence_avg": 0.9,
+          "start_frame": 0,
+          "end_frame": 11,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 18.435,
+          "net_displacement": 14.427,
+          "direction_change_var": 2.8502,
+          "relations": [
+            "left-of person #117"
+          ]
+        },
+        {
+          "track_id": 117,
+          "label": "person",
+          "confidence_avg": 0.953,
+          "start_frame": 0,
+          "end_frame": 11,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting closer, moving in a loop",
+          "path_length": 15.464,
+          "net_displacement": 5.089,
+          "direction_change_var": 0.9053,
+          "relations": [
+            "right-of person #116"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.61)",
+      "audio_speech": " know, although I couldn't use you in the restroom.",
+      "llm_scene_description": "In this scene, a boy (\"lad\") is standing and talking to an adult woman, likely his mother, in what appears to be a continuation of their interaction within a school or community setting. The boy is positioned to the left of the woman, and their movements are minimal, with the woman mostly stationary. The audio captures a fragment of dialogue, \"know, although I couldn't use you in the restroom,\" though the context is unclear and may involve a lighthearted or casual remark. This scene continues to highlight their ongoing conversation and relationship, with the mother providing a supportive presence as the boy navigates his environment."
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:02:07.794",
+      "end_timecode": "00:02:14.468",
+      "start_seconds": 127.79433333333333,
+      "end_seconds": 134.46766666666664,
+      "duration_seconds": 6.673333333333318,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0028.mp4",
+      "frame_captions": [
+        "a video frame of a woman and a lad",
+        "a video frame of a boy and a girl talking to each other boy",
+        "a video frame of a boy and a girl talking to each other boy"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 116,
+          "label": "person",
+          "confidence_avg": 0.937,
+          "start_frame": 0,
+          "end_frame": 26,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, moving in a loop",
+          "path_length": 72.133,
+          "net_displacement": 11.308,
+          "direction_change_var": 1.8156,
+          "relations": [
+            "left-of person #117"
+          ]
+        },
+        {
+          "track_id": 117,
+          "label": "person",
+          "confidence_avg": 0.93,
+          "start_frame": 0,
+          "end_frame": 26,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, moving in a loop",
+          "path_length": 72.905,
+          "net_displacement": 21.293,
+          "direction_change_var": 0.6475,
+          "relations": [
+            "right-of person #116"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.89), gasp (conf=0.60)",
+      "audio_speech": " Okay, well, you have a good day and I'll pick you up after school. Same dog we came in.",
+      "llm_scene_description": "In this scene, a woman and a boy, likely a mother and her son, are seen talking to each other in what appears to be a school setting. The boy is positioned to the left of the woman, and they are both moving slightly within the frame. The audio captures the woman saying, \"Okay, well, you have a good day and I'll pick you up after school. Same dog we came in,\" suggesting she is dropping him off at school and reassuring him about their routine. The boy appears to be preparing for his day, and the interaction reflects a supportive and caring dynamic between them. The environment remains consistent with previous scenes, indicating a busy school hallway with other people moving around."
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:02:14.468",
+      "end_timecode": "00:02:17.137",
+      "start_seconds": 134.46766666666664,
+      "end_seconds": 137.137,
+      "duration_seconds": 2.6693333333333555,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0029.mp4",
+      "frame_captions": [
+        "a video frame of a lad talking to a woman",
+        "a video frame of a lad looking at a woman",
+        "a video frame of a lad standing in front of an adult woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 116,
+          "label": "person",
+          "confidence_avg": 0.948,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 12.551,
+          "net_displacement": 10.815,
+          "direction_change_var": 0.0357,
+          "relations": [
+            "left-of person #117"
+          ]
+        },
+        {
+          "track_id": 117,
+          "label": "person",
+          "confidence_avg": 0.956,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting closer, moving in a loop",
+          "path_length": 16.68,
+          "net_displacement": 2.872,
+          "direction_change_var": 1.57,
+          "relations": [
+            "right-of person #116"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.79)",
+      "audio_speech": " Are you crying or having an allergy attack?",
+      "llm_scene_description": "In this scene, a boy (\"lad\") is standing and interacting with an adult woman, likely his mother, in what appears to be a school hallway. The boy is positioned to the left of the woman, and their movements are minimal, with the boy slightly shifting position while the woman remains mostly stationary. The dialogue captures the boy asking, \"Are you crying or having an allergy attack?\" This suggests he is observing her emotional or physical state, possibly out of concern or curiosity. The scene continues to focus on their relationship and interaction, maintaining the supportive and conversational tone established in previous scenes. The setting remains consistent with a school environment, with subtle movement in the background indicating a dynamic yet secondary atmosphere."
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:02:17.137",
+      "end_timecode": "00:02:19.473",
+      "start_seconds": 137.137,
+      "end_seconds": 139.47266666666667,
+      "duration_seconds": 2.3356666666666683,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0030.mp4",
+      "frame_captions": [
+        "a video frame of a boy and a girl talking to each other boy",
+        "a video frame of a girl talking to a boy in a school hallway",
+        "a video frame of a boy and a girl talking to each other boy"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 116,
+          "label": "person",
+          "confidence_avg": 0.951,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left, moving in a loop",
+          "path_length": 34.506,
+          "net_displacement": 8.531,
+          "direction_change_var": 1.109,
+          "relations": [
+            "left-of person #117"
+          ]
+        },
+        {
+          "track_id": 117,
+          "label": "person",
+          "confidence_avg": 0.948,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, moving in a loop",
+          "path_length": 24.77,
+          "net_displacement": 8.059,
+          "direction_change_var": 3.1637,
+          "relations": [
+            "right-of person #116"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.72)",
+      "audio_speech": " allergies.",
+      "llm_scene_description": "In this scene, a boy and a girl are seen talking to each other in a school hallway. The boy is positioned to the left of the girl, and both are moving slightly in a looping pattern, suggesting a casual or repetitive interaction. The audio transcript is unclear but includes the word \"allergies,\" which may reference a previous comment or observation. The setting remains consistent with a school environment, and the interaction appears to focus on a conversation between the two, possibly continuing themes of social connection or lighthearted exchanges. The context of their dialogue and relationship remains ambiguous."
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:02:19.473",
+      "end_timecode": "00:02:27.147",
+      "start_seconds": 139.47266666666667,
+      "end_seconds": 147.147,
+      "duration_seconds": 7.674333333333323,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0031.mp4",
+      "frame_captions": [
+        "a video frame of a lad talking to a woman",
+        "a video frame of a boy and a girl talking to each other boy",
+        "a video frame of a lad talking to a woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 116,
+          "label": "person",
+          "confidence_avg": 0.938,
+          "start_frame": 0,
+          "end_frame": 28,
+          "start_pos": "middle-left",
+          "end_pos": "middle-center",
+          "movement": "moving right, moving in a loop",
+          "path_length": 124.725,
+          "net_displacement": 40.407,
+          "direction_change_var": 1.6923,
+          "relations": [
+            "left-of person #117"
+          ]
+        },
+        {
+          "track_id": 117,
+          "label": "person",
+          "confidence_avg": 0.944,
+          "start_frame": 0,
+          "end_frame": 30,
+          "start_pos": "middle-right",
+          "end_pos": "bottom-center",
+          "movement": "moving left, getting farther",
+          "path_length": 178.705,
+          "net_displacement": 86.2,
+          "direction_change_var": 1.0322,
+          "relations": [
+            "right-of person #116"
+          ]
+        }
+      ],
+      "audio_natural": "snort (conf=0.30)",
+      "audio_speech": " It's probably the ammonia. Probably. Okay, let the learning begin.",
+      "llm_scene_description": "In this scene, a boy (\"lad\") and a girl are talking to each other in a school hallway. The boy is positioned to the left of the girl, and their movements suggest a casual interaction, with the boy moving slightly to the right and the girl moving slightly to the left. The dialogue includes the phrase, \"It's probably the ammonia. Probably. Okay, let the learning begin,\" though the context is unclear. There is a faint snort sound, but its significance is uncertain. The setting remains consistent with a school environment, and the interaction appears to focus on a lighthearted or observational exchange, possibly related to their surroundings or a shared experience. The scene continues to explore themes of social connection and adjustment within the school setting."
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:02:27.147",
+      "end_timecode": "00:02:35.322",
+      "start_seconds": 147.147,
+      "end_seconds": 155.32183333333333,
+      "duration_seconds": 8.17483333333334,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0032.mp4",
+      "frame_captions": [
+        "a video frame of a girl and a boy walking down a hallway",
+        "a video frame of a lad and a woman in a hallway",
+        "a video frame of a girl walking down a hallway"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 116,
+          "label": "person",
+          "confidence_avg": 0.908,
+          "start_frame": 0,
+          "end_frame": 32,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 79.714,
+          "net_displacement": 48.892,
+          "direction_change_var": 2.026,
+          "relations": [
+            "right-of person #117"
+          ]
+        },
+        {
+          "track_id": 117,
+          "label": "person",
+          "confidence_avg": 0.928,
+          "start_frame": 0,
+          "end_frame": 13,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-left",
+          "movement": "moving left, getting closer, moving in a loop",
+          "path_length": 219.502,
+          "net_displacement": 63.615,
+          "direction_change_var": 1.1291,
+          "relations": [
+            "left-of person #116"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.38), door (conf=0.64), thunk (conf=0.33)",
+      "audio_speech": " I",
+      "llm_scene_description": "In this scene, a girl and a boy are walking down a school hallway, with their movements indicating they are heading in opposite directions. The boy (\"lad\") is moving left and looping slightly, while the girl is moving right and getting farther away. The audio includes faint sounds of a door and a \"thunk,\" suggesting someone may have interacted with the environment, such as opening or closing a door or dropping something. Speech is present but unclear, with no discernible dialogue. The scene appears to depict a brief, passing interaction or moment of transition between the two characters in the school setting."
+    },
+    {
+      "scene_index": 33,
+      "start_timecode": "00:02:35.322",
+      "end_timecode": "00:02:48.502",
+      "start_seconds": 155.32183333333333,
+      "end_seconds": 168.50166666666667,
+      "duration_seconds": 13.179833333333335,
+      "clip_path": ".runs1\\sheldon2\\clips\\scene_0033.mp4",
+      "frame_captions": [
+        "a video frame of a green and blue background",
+        "a video frame of a blue and green background with the word sub",
+        "a video frame of a blue and green background with the word sub"
+      ],
+      "audio_natural": "music (conf=0.79)",
+      "audio_speech": "",
+      "yolo_detections": [],
+      "llm_scene_description": "The current scene appears to be a transitional or abstract moment, as the visuals consist of a blue and green background with the word \"sub\" appearing in frames 1 and 2. No characters or objects are detected, and the audio features music, suggesting a shift in tone or a pause in the narrative. This scene may serve as a placeholder, symbolic interlude, or introduction to a new segment of the story. It contrasts sharply with the previous school-based interactions and could indicate a change in setting or focus."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 26923,
+      "chunk_len": 1,
+      "narrative": "At 00:00:00.000, The scene transitions from a person riding a skateboard to a car driving down a road and then a street. A stationary truck is visible in the middle of the frame. Background music is playing faintly, but no dialogue or significant sounds are present. The events suggest a shift in focus from the skateboarder to vehicles on the road, possibly setting up a connection or contrast between the two.. It says \" I\".At 00:00:02.836, In this scene, the focus shifts to vehicles on a street. A car and a van are seen driving, with a young male passenger (\"lad\") visible in the car. A truck (#1) is moving in a looping or circling pattern, suggesting potential erratic or deliberate movement. A tie (#3) remains stationary in the bottom-center of the frame, though its relevance is unclear. Background audio includes faint music and a low-confidence sound resembling an explosion, which may indicate tension or an unfolding event. The scene builds on the previous focus on vehicles, possibly hinting at an interaction or conflict involving the truck and the car.. It says \"\".At 00:00:06.340, In this scene, the focus is on a woman driving a car, continuing the theme of vehicles established in previous scenes. The woman appears to be the central character, as the camera tracks her movement within the car. The background music, though faint and low-confidence, adds to the atmosphere but does not provide significant narrative clues. There are no visible interactions with other vehicles or characters, and no dialogue or notable sounds are present. This scene seems to establish the woman as a potential new focal point, possibly connecting her to the earlier events involving the car, truck, and erratic movements. The context suggests a buildup to a larger narrative involving vehicles and their drivers.. It says \"\".At 00:00:09.009, In this scene, the focus shifts to a young male (\"lad\") wearing a bow tie, who is stationary in the middle of the frame. The setting appears calm, with no significant movement or action beyond his presence. Background audio includes faint music and a voice asking, \"Would you like to play a driving game?\" This suggests a potential setup for an interactive or playful scenario, possibly connected to the earlier focus on vehicles and driving. The lad's bow tie might symbolize formality or contrast with the previous scenes' themes of motion and vehicles. The narrative appears to be transitioning toward a new development, possibly involving the lad and a driving-related activity.. It says \" Would you like to play a driving game?\".At 00:00:11.678, In this scene, a woman is driving a car with a young male passenger (\"lad\") seated beside her. The focus remains on the two characters inside the vehicle, continuing the narrative's emphasis on driving and vehicles from earlier scenes. The lad makes a comment, \"Not really, I always lose,\" suggesting a conversation or reflection, possibly related to a prior question or topic, though the exact context is unclear. The scene appears calm, with no significant external action or conflict visible. The narrative seems to be building on the relationship or interaction between the woman and the lad, potentially setting up a deeper connection or development involving their journey.. It says \" Not really, I always lose.\".At 00:00:13.680, In this scene, the focus is on a young male (\"lad\") wearing a bow tie, who transitions from being stationary to sitting in a car. The lad appears to be the same passenger seen in earlier scenes. The audio includes a low-confidence speech snippet, \"I know, that's why it's fun. How about license plates with prime numbers?\" suggesting a playful or intellectual conversation, though the exact context is unclear. The lad's movement and dialogue hint at a continuation of the driving-related theme established in previous scenes, possibly involving a game or discussion about vehicles. The narrative appears to be gradually unfolding around the lad's interactions and the journey he is part of.. It says \" I know, that's why it's fun. How about license plates with prime numbers?\".At 00:00:18.352, In this scene, the focus remains on a woman driving a car, continuing the narrative's emphasis on vehicles and travel. The woman appears calm and focused on the road, with no significant external action or visible interactions with other characters or vehicles. The audio introduces a new element, with a voice saying, \"Why don't we just talk?\" This suggests a potential shift toward dialogue or an attempt to resolve a situation, though it is unclear who is speaking or what the context of the statement is. The scene builds on previous moments involving the woman and a young male passenger, hinting at an ongoing journey or conversation that may develop further. The narrative continues to suggest themes of connection, travel, and possibly tension or resolution.. It says \" Why don't we just talk?\".At 00:00:20.520, In this scene, the focus alternates between a young male (\"lad\") wearing a bow tie and a woman driving a car, suggesting their continued involvement in the narrative. The lad appears stationary, possibly reflecting or preparing for an interaction. Meanwhile, the woman remains central to the driving theme, with the camera tracking her movements in the car. Background music plays, and a voice states, \"Very well. You understand that some people are gonna be intimidated by you because of how smart you are,\" hinting at a conversation or internal reflection about intelligence or confidence. The narrative continues to build on the relationship between these two characters, potentially exploring themes of intellect, connection, and travel.. It says \" Very well. You understand that some people are gonna be intimidated by you because of how smart you are.\".At 00:00:27.861, In this scene, the focus is on a young male (\"lad\") wearing a bow tie, who transitions from being stationary to sitting in a car. The lad appears to be the same passenger seen in earlier scenes. The audio includes a low-confidence snippet of music and a voice saying, \"Or maybe they'll recognize my intellect and make me their leader,\" suggesting the lad is reflecting on his intelligence and potential leadership abilities. The narrative continues to explore themes of intellect, self-perception, and travel, with the lad's bow tie symbolizing his formal or intellectual demeanor. The scene builds on previous moments involving the lad and his journey, possibly hinting at his aspirations or internal dialogue during this car ride.. It says \" Or maybe they'll recognize my intellect and make me their leader.\".At 00:00:32.199, In this scene, a woman is driving a car, with a young male passenger (\"lad\") seated behind her initially, but later appearing in the front passenger seat. The transition suggests a shift in seating or perspective. The audio features a mix of music and a voice saying, \"Lord, look after my son. Don't let him get stuffed in a gym bag,\" implying concern or a protective sentiment, possibly from the woman. The narrative continues to focus on the journey, with themes of connection and care between the woman and the lad. The lad's movement and the woman's driving reinforce the ongoing travel motif, while the dialogue hints at deeper emotional stakes or fears.. It says \" Lord, look after my son. Don't let him get stuffed in a gym bag.\".At 00:00:39.373, In this scene, a car is driving down a country road, with no significant movement or action beyond the steady progression of the vehicle. The audio includes faint music and a low-confidence snippet of someone saying, \"I love you,\" though it is unclear who is speaking or if it is part of the music. This moment seems to continue the journey of the woman driving and the young male passenger (\"lad\") seen in previous scenes. The serene country road setting and the ambiguous audio suggest a reflective or emotional tone, potentially building on the themes of connection and care established earlier in the narrative.. It says \" I love you\".At 00:00:41.541, In this scene, the focus shifts to a group of people gathered outside a building, with notable movement and interactions among them. A stationary car is present, possibly connected to the ongoing journey of the woman and the young male passenger (\"lad\") seen in earlier scenes. The lad, wearing a bow tie, appears among the group, suggesting he has exited the car and joined the gathering. Various individuals are moving closer to the center of the scene, with some stationary, creating a sense of convergence or interaction. The audio includes low-confidence speech and music, adding an ambiguous tone to the scene. This moment may represent a transition from the journey to a social or significant event, with themes of connection and intellect continuing to develop.. It says \"\".At 00:00:50.384, In this scene, a woman and a young male (\"lad\") are standing in front of school buses, suggesting they have arrived at a school or event location. The lad, previously characterized by his bow tie and intellectual demeanor, is now interacting with a larger group of people, as indicated by the movement of multiple individuals in the frame. The audio captures a snippet of speech, \"Oh dear. Yeah. That boy has an expo-\" which hints at a potential event or presentation involving the lad, possibly showcasing his intellect or leadership abilities. The movement of the buses and individuals creates a sense of activity and preparation, aligning with the narrative's ongoing themes of connection, intellect, and personal growth. The scene appears to mark a transition into a pivotal moment for the lad, potentially involving public recognition or interaction.. It says \" Oh dear. Yeah. That boy has an expo-\".At 00:00:55.389, In this scene, a group of people is walking down a sidewalk, with the focus on a young male (\"lad\") wearing a bow tie, who is likely the same individual seen in previous scenes. The lad is surrounded by various individuals moving in different directions, creating a dynamic and somewhat chaotic atmosphere. The audio suggests a conversation about the lad's bow tie and a tattoo, with a remark implying that the bow tie may violate a dress code and a suggestion to remove it. This dialogue hints at social norms or expectations being challenged, possibly tied to the lad's intellectual or formal persona established earlier. The scene continues to explore themes of individuality, perception, and interaction, with the lad's bow tie remaining a symbolic element of his character.. It says \" tattoo. He does. I wonder if he knows that's in violation of the dress code. Speaking of which, how about we lose the bowtie?\".At 00:01:04.731, In this scene, a young male (\"lad\") is seen getting off a school bus and later talking with a woman on the street, possibly a guardian or parent. The interaction occurs amidst other children and individuals in the area, suggesting a school or community setting. The audio captures the woman saying, \"Why? Look around, I'm letting none of the other kids are wearing them,\" which appears to reference a concern about conformity or fitting in, potentially tied to the lad's attire or accessories. The ongoing movement and positioning of people in the scene suggest a casual but active environment, with the focus remaining on the relationship and dialogue between the lad and the woman. This moment continues to explore themes of individuality, social expectations, and the protective nature of the woman toward the lad.. It says \" Why? Look around, I'm letting none of the other kids are wearing them.\".At 00:01:09.069, In this scene, a young male (\"lad\") and a girl are standing in front of a school bus, with several other individuals moving or standing nearby. The positioning and movement of the people suggest a gathering or interaction is taking place, though the focus remains on the lad and the girl. The audio includes a low-confidence snippet of speech, \"who cracks all sort of fat,\" which is unclear in meaning but may hint at a humorous or descriptive comment about someone present. This moment appears to continue the narrative of the lad's interactions in a school or community setting, potentially highlighting themes of connection, individuality, or social dynamics. The presence of the school bus reinforces the setting as educational or event-related.. It says \" who cracks all sort of fat.\".At 00:01:11.238, In this scene, a woman and a young male (\"lad\") are engaged in a conversation, with the lad appearing to be the central focus. The setting seems to involve other individuals moving around, with some looping or shifting positions, suggesting a social or interactive environment. The lad and the woman are likely continuing their ongoing dialogue, which has previously explored themes of individuality and social expectations. The audio captures a snippet of speech, \"you won't please trust mom,\" which may indicate a moment of tension or disagreement between the lad and the woman, potentially his mother or guardian. The lack of clear context for the statement adds ambiguity but suggests a personal or emotional undertone. The scene continues to build on the dynamic between the lad and the woman, with the presence of others adding a backdrop of activity or community.. It says \" you won't please trust mommy.\".At 00:01:13.240, In this scene, a young male (\"lad\") is standing in front of a school bus, while a girl who was initially present in the first frame appears to have moved out of view. The lad remains mostly stationary, while two other individuals (person #22 and person #37) are moving around him, suggesting a dynamic environment. The audio captures a snippet of speech, \"I tell you what,\" which may indicate someone addressing the lad or making a statement nearby. The word \"run\" is faintly detected, potentially hinting at urgency or movement, though its low confidence makes it unclear. The scene appears to continue the narrative of the lad's interactions in a school or community setting, with the focus on his presence and the activity around him. Themes of connection and social dynamics persist, as the positioning and movement of people suggest ongoing interactions or preparations.. It says \" I tell you what.\".At 00:01:15.742, In this scene, a young male (\"lad\") and a woman are seen interacting, with the lad likely being the same individual from previous scenes. The environment appears to be active, with multiple people moving around in a loop or shifting positions. The audio captures a statement, \"You take it off and this weekend I'll take you to Radio Shack,\" suggesting the woman is addressing the lad, possibly regarding an item he is wearing or carrying. This dialogue hints at a negotiation or compromise, potentially tied to themes of individuality and social expectations established earlier. The mention of \"Radio Shack\" adds a specific, casual detail, possibly indicating a reward or incentive. The scene continues to explore the dynamic between the lad and the woman, likely his guardian, while the surrounding movement of others provides a backdrop of community or school-related activity.. It says \" You take it off and this weekend I'll take you to Radio Shack.\".At 00:01:20.747, In this scene, a young male (\"lad\") and a girl are standing in front of a school bus, with a brief moment where the lad is seen interacting with a woman, possibly his guardian. The individuals appear to shift positions slightly, with the lad remaining mostly stationary while the woman moves to the right before leaving the frame. The setting remains consistent with a school or community environment, as indicated by the presence of school buses. The audio features faint music, but no discernible dialogue, leaving the interaction largely visual. This scene continues to depict the lad's interactions in a social setting, with the focus on his relationships and the activity around him. Themes of connection and social dynamics persist, though no significant new developments or dialogue are introduced.. It says \"\".At 00:01:24.418, In this scene, a group of people is seen walking down a hallway, transitioning from a room in the previous frame. The movement of individuals suggests a dynamic and social environment, with people shifting positions and interacting as they walk. A notable object in the scene is a dog in a display case, which stands out as an unusual or attention-grabbing detail. The audio captures faint music and a snippet of dialogue, \"You doing okay? I guess,\" indicating a casual or concerned exchange between individuals, though the context remains unclear. This scene continues to depict a social setting, potentially tied to a school or community environment, with themes of interaction and observation. The presence of the dog in the display case may hint at an event or exhibit, adding a layer of curiosity to the unfolding narrative.. It says \" You doing okay? I guess.\".At 00:01:34.928, In this scene, a group of people is walking down a hallway, continuing the social and dynamic atmosphere established in earlier scenes. Individuals are moving in various directions, with some walking together, such as person #9 and person #58, while others remain stationary or shift positions slightly. The hallway appears to be part of a larger communal or school-like setting. The audio notes the smell of ammonia, suggesting recent cleaning, which adds a subtle environmental detail to the scene. No dialogue is present, and the focus remains on the movement and interactions of the group. This scene builds on the ongoing theme of social dynamics and activity in a shared space, maintaining a sense of continuity with previous events.. It says \" I smell ammonia. They must have done a thorough cleaning recently.\".At 00:01:39.099, In this scene, a young boy (\"lad\") and his mother are seen walking down a hallway, followed by a girl walking alone, and later a group of people moving together. The setting appears to be a school or community space, with individuals moving dynamically and interacting. The audio captures a snippet of dialogue, \"I like that. I remember if anybody bothers you, what do you say? My dad's a football coach,\" suggesting a conversation about confidence or self-assurance, possibly between the mother and the lad. The movement of people, including looping and shifting positions, reflects a lively and social environment. This scene continues to explore themes of relationships, social interactions, and personal growth, with the mother offering guidance to the lad in a supportive manner.. It says \" I like that. I remember if anybody bothers you, what do you say? My dad's a football coach.\".At 00:01:46.440, In this scene, a woman is seen helping a boy, likely her son, adjust his backpack in a hallway. The environment remains active, with multiple people moving around in various directions, suggesting a school or community setting. The audio captures a snippet of dialogue, \"And? My brother's a football player. Good,\" though the context is unclear, possibly indicating a casual or prideful exchange between individuals. The boy and the woman continue to interact briefly before the focus shifts to the movement of others in the hallway. This scene builds on the ongoing themes of social dynamics and familial relationships, with the woman providing support to the boy amidst the bustling environment.. It says \" And? My brother's a football player. Good.\".At 00:01:50.444, In this scene, a woman and a young boy (\"lad\") are walking down a hallway together, continuing the social and dynamic atmosphere of the previous scenes. The hallway remains active with multiple individuals moving in various directions, suggesting a communal or school-like environment. The audio features a snippet of dialogue, \"Hey mom, look that girl's pregnant. Congratulations,\" spoken by the boy to the woman, indicating an observation and a casual interaction between them. This comment suggests the boy is noticing and reacting to his surroundings, possibly reflecting curiosity or social awareness. The scene maintains its focus on relationships, interactions, and the lively environment of the hallway.. It says \" Hey mom, look that girl's pregnant. Congratulations.\".At 00:01:55.782, In this scene, the focus shifts between a red door labeled \"boys,\" a woman walking down a hallway, and a boy and girl holding hands. The environment appears to remain within a school or communal setting, consistent with previous scenes. The movement of individuals suggests a mix of stationary and dynamic activity, with some people looping or shifting positions. The audio captures a voice saying, \"Well, that was revolting,\" alongside the faint sound of a door. This could indicate a reaction to a prior event or interaction, though the context is unclear. The scene continues to explore themes of social interaction and relationships, with the boy and girl holding hands hinting at a moment of connection or friendship amidst the bustling environment.. It says \" Well that was revolting.\".At 00:02:01.621, In this scene, a woman is standing near lockers before transitioning to a hallway. A boy (\"lad\") is seen walking down the hallway, accompanied by dynamic movement from other individuals (persons #116, #117, and #119). The setting appears to remain within a school environment, consistent with prior scenes. The audio captures a supportive interaction, with the woman asking, \"This is your home room. Do you want me to go in with you?\" suggesting she is offering guidance or reassurance to the boy, possibly her son. The scene continues to explore themes of familial support, social dynamics, and the transition into a new or unfamiliar environment.. It says \" This is your home room. Do you want me to go in with you?\".At 00:02:04.958, In this scene, a boy (\"lad\") is standing and talking to an adult woman, likely his mother, in what appears to be a continuation of their interaction within a school or community setting. The boy is positioned to the left of the woman, and their movements are minimal, with the woman mostly stationary. The audio captures a fragment of dialogue, \"know, although I couldn't use you in the restroom,\" though the context is unclear and may involve a lighthearted or casual remark. This scene continues to highlight their ongoing conversation and relationship, with the mother providing a supportive presence as the boy navigates his environment.. It says \" know, although I couldn't use you in the restroom.\".At 00:02:07.794, In this scene, a woman and a boy, likely a mother and her son, are seen talking to each other in what appears to be a school setting. The boy is positioned to the left of the woman, and they are both moving slightly within the frame. The audio captures the woman saying, \"Okay, well, you have a good day and I'll pick you up after school. Same dog we came in,\" suggesting she is dropping him off at school and reassuring him about their routine. The boy appears to be preparing for his day, and the interaction reflects a supportive and caring dynamic between them. The environment remains consistent with previous scenes, indicating a busy school hallway with other people moving around.. It says \" Okay, well, you have a good day and I'll pick you up after school. Same dog we came in.\".At 00:02:14.468, In this scene, a boy (\"lad\") is standing and interacting with an adult woman, likely his mother, in what appears to be a school hallway. The boy is positioned to the left of the woman, and their movements are minimal, with the boy slightly shifting position while the woman remains mostly stationary. The dialogue captures the boy asking, \"Are you crying or having an allergy attack?\" This suggests he is observing her emotional or physical state, possibly out of concern or curiosity. The scene continues to focus on their relationship and interaction, maintaining the supportive and conversational tone established in previous scenes. The setting remains consistent with a school environment, with subtle movement in the background indicating a dynamic yet secondary atmosphere.. It says \" Are you crying or having an allergy attack?\".At 00:02:17.137, In this scene, a boy and a girl are seen talking to each other in a school hallway. The boy is positioned to the left of the girl, and both are moving slightly in a looping pattern, suggesting a casual or repetitive interaction. The audio transcript is unclear but includes the word \"allergies,\" which may reference a previous comment or observation. The setting remains consistent with a school environment, and the interaction appears to focus on a conversation between the two, possibly continuing themes of social connection or lighthearted exchanges. The context of their dialogue and relationship remains ambiguous.. It says \" allergies.\".At 00:02:19.473, In this scene, a boy (\"lad\") and a girl are talking to each other in a school hallway. The boy is positioned to the left of the girl, and their movements suggest a casual interaction, with the boy moving slightly to the right and the girl moving slightly to the left. The dialogue includes the phrase, \"It's probably the ammonia. Probably. Okay, let the learning begin,\" though the context is unclear. There is a faint snort sound, but its significance is uncertain. The setting remains consistent with a school environment, and the interaction appears to focus on a lighthearted or observational exchange, possibly related to their surroundings or a shared experience. The scene continues to explore themes of social connection and adjustment within the school setting.. It says \" It's probably the ammonia. Probably. Okay, let the learning begin.\".At 00:02:27.147, In this scene, a girl and a boy are walking down a school hallway, with their movements indicating they are heading in opposite directions. The boy (\"lad\") is moving left and looping slightly, while the girl is moving right and getting farther away. The audio includes faint sounds of a door and a \"thunk,\" suggesting someone may have interacted with the environment, such as opening or closing a door or dropping something. Speech is present but unclear, with no discernible dialogue. The scene appears to depict a brief, passing interaction or moment of transition between the two characters in the school setting.. It says \" I\".At 00:02:35.322, The current scene appears to be a transitional or abstract moment, as the visuals consist of a blue and green background with the word \"sub\" appearing in frames 1 and 2. No characters or objects are detected, and the audio features music, suggesting a shift in tone or a pause in the narrative. This scene may serve as a placeholder, symbolic interlude, or introduction to a new segment of the story. It contrasts sharply with the previous school-based interactions and could indicate a change in setting or focus.. It says \"\"."
+    }
+  ],
+  "synopsis": "**Summary:**  \nThe video begins with a person skateboarding before transitioning to vehicles on a street. A truck moves in an erratic pattern as a young male passenger (\"lad\") is seen in a car. The focus shifts to a woman driving, suggesting she might play a central role in the narrative. Soon after, the lad, now stationary and wearing a bow tie, is asked, \"Would you like to play a driving game?\" Moments later, the lad dismisses the idea and follows with reflections on losing games, discussing prime numbers, and intellectual confidence in brief exchanges during the car ride with the woman. As the journey progresses into a social environment at what appears to be a school, the lad interacts with various individuals and a woman believed to be his mother. Themes of individuality, intellect, social dynamics, and familial support thread through scenes of hallway interactions, banter about dress codes, casual observations, and ambiguous dialogue. The video concludes with the lad and others navigating the hallways before shifting to a final abstract scene with a blue-green background and the word \"sub,\" signaling a visual pause or tone change.\n\n---\n\n**What is happening in the video?**  \nThe video depicts a progression from skateboarding and driving to interactions in what appears to be a school setting. It explores themes of movement, connection, intellect, social norms, and relationships, focusing largely on the lad and his conversations.\n\n**What are the key events?**  \nKey events include the transition from skateboarding to driving with the woman and lad, the dialogue about games, prime numbers, and intellect, the arrival at the school, and the subsequent hallway interactions. The video culminates in an abstract visual of a blue-green background.\n\n**What are the key actions and who performed them?**  \n1. A person rides a skateboard in the opening.  \n2. A woman drives a car.  \n3. The lad reflects on games, intellect, and social expectations during conversations.  \n4. Multiple people move dynamically or engage in dialogue within the school setting.  \n\n**What are the main conflicts and problems encountered?**  \nConflicts include social expectations around dress codes and individuality (e.g., comments on the lad's bow tie), as well as the lad's self-reflection on being perceived due to his intelligence. There is also ambiguity in dialogues hinting at pressures or concerns like fitting in at the school environment.\n\n**Who is the main character? Describe their journey.**  \nThe lad is the main character. His journey begins with riding in a car with the woman, reflecting on games, intelligence, and leadership while maintaining formal attire (a bow tie symbolic of his individuality). He interacts with others in a school setting, facing comments about conformity, social dynamics, and familial support from the woman, likely his guardian.\n\n**List the characters. For each character, describe their appearance, traits, and role in the story.**  \n1. **The Lad**: Young male wearing a bow tie, symbolizing formality and intellect. He is introspective and reflective, engaging in conversations that highlight his individuality and social expectations.  \n2. **The Woman**: Likely the lad’s mother or guardian, she drives him to school, offers guidance, and engages in supportive dialogue, reflecting her nurturing nature.  \n3. **Supporting Individuals**: A variety of unnamed people in the school, including a girl and the commenters on the lad’s bow tie. Their movements and remarks contribute to the social and dynamic environment.\n\n**What are some significant quotes from the video and who said them?**  \n1. Lad: \"Would you like to play a driving game?\"  \n2. Lad: \"Not really, I always lose.\"  \n3. Woman: \"Why don't we just talk?\"  \n4. Lad: \"Or maybe they'll recognize my intellect and make me their leader.\"  \n5. Lad: \"Are you crying or having an allergy attack?\"  \n\n**What is the setting? Did it change? How is it related to the story?**  \nThe setting transitions from roads and vehicles to a school environment. These changes align with the narrative shift from a journey reflecting intellect to social dynamics in the school setting.\n\n**How did the video start? Explain the start.**  \nThe video starts with a person riding a skateboard before transitioning to vehicles on a road. This sets a tone of motion and progress that carries into a deeper exploration of character and setting.\n\n**How did the video end? Explain the ending.**  \nThe video ends with an abstract visual of a blue-green background with the word \"sub.\" This signifies a pause or tonal change, leaving the narrative's conclusion open to interpretation.\n\n**What objects are central to the video and when do they appear?**  \n1. Vehicles (car, truck, van) appear in the opening scenes.  \n2. Bow tie, worn by the lad, serves as a symbolic object throughout the lad's journey.  \n3. Dog display case (school hallway) stands out as a curious element in the school scenes.\n\n**What is the most important thing said or heard?**  \n\"Very well. You understand that some people are gonna be intimidated by you because of how smart you are.\" This reveals a core theme regarding the lad's self-perception and intellect.\n\n**What is different at the end vs the beginning?**  \nThe video transitions from a physical journey (motion-focused) to social and intellectual themes in the school setting, then ends in an abstract visual moment.\n\n**What type of video is this?**  \nThe video is narrative-driven, likely exploring themes of self-reflection and social dynamics in a slice-of-life format.\n\n**What is the goal or intent or theme of the video?**  \nThe video aims to explore themes of intellect, individuality, relationships, and the journey of fitting into social structures while maintaining personal identity.\n\n**List the moods and tones present, explain each one.**  \n1. Reflective: Dialogue on intellect and individuality creates introspection.  \n2. Calm: Driving and hallways maintain a tranquil yet dynamic atmosphere.  \n3. Supportive: Conversations between the lad and the woman evoke care and guidance.\n\n**What context is missing or assumed? What would require outside knowledge?**  \nDetails on the characters' backgrounds and relationships (e.g., mother-son dynamic) are implied but not explicitly stated. The significance of certain dialogue, like \"Radio Shack\" and \"gym bag,\" remains ambiguous without additional context.\n\n---\n\n**Ask and answer 15 additional questions:**  \n\n**Who owns the truck moving erratically?**  \nNot explicitly stated.  \n\n**Why does the lad’s bow tie stand out in the story?**  \nThe bow tie symbolizes his individuality and is a source of social commentary among peers.  \n\n**Who asked the lad about playing a driving game?**  \nNot explicitly stated.  \n\n**What mood does the background music convey?**  \nThe faint music creates a subdued and reflective atmosphere.  \n\n**Why is the woman concerned about the lad's attire?**  \nShe mentions conformity concerns, reflecting a protective attitude about fitting into social norms.  \n\n**What does the lad mean by sharing thoughts about intellect?**  \nHe is reflective about how intelligence is perceived, hinting at a desire for leadership or recognition.  \n\n**Does the video show the lad making a leader-like action?**  \nNot explicitly stated; his leadership reflections are confined to dialogue.  \n\n**What does the dog display case symbolize?**  \nNot explicitly stated, but it stands out within the school scene, possibly implying curiosity or an exhibit.  \n\n**Why does the woman offer to take the lad to Radio Shack?**  \nLikely as an incentive related to her request for him to adjust his attire.  \n\n**Do any characters express admiration for the lad’s intellect?**  \nNot explicitly stated; references to intellect are the lad's self-reflections.  \n\n**What is the significance of the line, \"Same dog we came in\"?**  \nIt is ambiguous and could symbolize routine or familiarity.  \n\n**What does the ammonia smell mentioned in the hallway convey?**  \nIt suggests recent cleaning, contributing to background details.  \n\n**Is the relationship between the lad and the girl explored?**  \nNot explicitly stated beyond brief interactions in the hallway.  \n\n**Does the word “sub” at the end signify anything deeper?**  \nNot explicitly stated, though it appears symbolic or abstract.  \n\n**What emotion does the lad express most frequently?**  \nReflection and mild frustration regarding fitting in socially and showcasing intellect.",
+  "rag_embedding": {
+    "rag_path": "_processed\\Young Sheldon - First Day of High School.mp4/rag_embedding.json",
+    "context_count": 70,
+    "embedding_dim": 3072,
+    "model": "gemini-embedding-001"
+  }
+}
