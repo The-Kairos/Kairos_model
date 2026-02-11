@@ -56,6 +56,7 @@ rag_top_k_context   = 10        # top-k RAG scenes to include
 # =========================================================
 improve_motion_detection    = False
 prioritize_speed            = False
+process_static_videos       = False
 
 if improve_motion_detection:
     pyscene_threshold   = 15     # more sensitive pyscene
@@ -67,11 +68,17 @@ if prioritize_speed:
     frames_per_scene    = 1      # number of frames sampled in each scene
     llm_chunk_len       = 500000 # x10 bigger story chunks
     llm_summary_len     = 500000 # x10 bigger context for synopsis
+if process_static_videos:
+    pyscene_threshold   = 3      # more sensitive pyscene
+    frames_per_scene    = 1      # number of frames sampled in each scene
+    yolo_action_fps     = 0.5
+# todo: if 0 scenes are found, decrease pyscene_threshold automatically
 # =========================================================
 
 params = {
     "improve_motion_detection": improve_motion_detection,
     "prioritize_speed": prioritize_speed,
+    "process_static_videos": process_static_videos,
     "pyscene_threshold": pyscene_threshold,
     "pyscene_shortest": pyscene_shortest,
     "frames_per_scene": frames_per_scene,
@@ -285,6 +292,7 @@ for output_dir, test_video in test_videos.items():
         )
         time.sleep(10)
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+    #todo: if GPT4o responsibleAI error gets triggered, change prompt?
 
     if "narratives" not in checkpoint:
         print("")
@@ -304,7 +312,7 @@ for output_dir, test_video in test_videos.items():
             narrative_path = Path(output_dir) / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
             print(f"Saving narrative in: {narrative_path}")
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-
+    #todo: if narrative is < final summary_len then go directly to synopsis
     if "synopsis" not in checkpoint:
         print("")
         print_section("Running GPT4o Synopsis generation...")

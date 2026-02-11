@@ -1,0 +1,3829 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\.AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4",
+  "video_length": "00:16:07.600",
+  "total_process_sec": 1631.10553,
+  "scene_number": 47,
+  "start_process": "2026-02-11 06:29:05",
+  "end_process": "2026-02-11 06:57:38",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 1.61,
+      "used_RAM_GB": 14.23,
+      "RAM_usage_percent": 89.8
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 489.04,
+      "disk_free_GB": 443.94,
+      "disk_usage_percent": 52.4
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "params": {
+    "improve_motion_detection": false,
+    "prioritize_speed": false,
+    "pyscene_threshold": 27,
+    "pyscene_shortest": 2,
+    "frames_per_scene": 3,
+    "frame_resolution": 320,
+    "blip_start_prompt": "a video frame of",
+    "blip_caption_len": 30,
+    "blip_num_beams": 4,
+    "blip_do_sample": false,
+    "yolo_conf_thres": 0.8,
+    "yolo_iou_thres": 0.5,
+    "ast_target_sr": 16000,
+    "asr_model_size": "small",
+    "asr_use_vad": true,
+    "asr_target_sr": 16000,
+    "llm_scene_history": 5,
+    "llm_chunk_len": 50000,
+    "llm_summary_len": 50000,
+    "llm_cooldown_sec": 0,
+    "rag_top_k_context": 10
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 19.1824,
+      "cpu_time_sec": 65.4375,
+      "ram_before_MB": 520,
+      "ram_after_MB": 534,
+      "ram_used_MB": 14,
+      "io_read_MB": 1427.365080833435,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 15.8013,
+      "cpu_time_sec": 0.26562,
+      "ram_before_MB": 534,
+      "ram_after_MB": 534,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.15644550323486328,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 8.37143,
+      "cpu_time_sec": 50.6875,
+      "ram_before_MB": 534,
+      "ram_after_MB": 608,
+      "ram_used_MB": 74,
+      "io_read_MB": 860.967737197876,
+      "io_write_MB": 2.8723068237304688,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 370.04849,
+      "cpu_time_sec": 369.25,
+      "ram_before_MB": 608,
+      "ram_after_MB": 1642,
+      "ram_used_MB": 1034,
+      "io_read_MB": 0.03425884246826172,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_fps": {
+      "wall_time_sec": 147.96498,
+      "cpu_time_sec": 1539.29688,
+      "ram_before_MB": 1620,
+      "ram_after_MB": 2250,
+      "ram_used_MB": 630,
+      "io_read_MB": 19851.943685531616,
+      "io_write_MB": 73.72552680969238,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 439.21247,
+      "cpu_time_sec": 2788.89062,
+      "ram_before_MB": 2250,
+      "ram_after_MB": 9446,
+      "ram_used_MB": 7196,
+      "io_read_MB": 22.177271842956543,
+      "io_write_MB": 107.37025451660156,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "wall_time_sec": 67.07516,
+      "cpu_time_sec": 439.5,
+      "ram_before_MB": 9136,
+      "ram_after_MB": 9870,
+      "ram_used_MB": 734,
+      "io_read_MB": 1426.7709131240845,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "wall_time_sec": 319.94105,
+      "cpu_time_sec": 2410.01562,
+      "ram_before_MB": 9870,
+      "ram_after_MB": 10041,
+      "ram_used_MB": 171,
+      "io_read_MB": 2344.757001876831,
+      "io_write_MB": 4.76837158203125e-06,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "wall_time_sec": 175.85481,
+      "cpu_time_sec": 0.75,
+      "ram_before_MB": 10041,
+      "ram_after_MB": 10023,
+      "ram_used_MB": -18,
+      "io_read_MB": 1.2312555313110352,
+      "io_write_MB": 0.0002193450927734375,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "summarize_scenes": {
+      "wall_time_sec": 27.12594,
+      "cpu_time_sec": 0.03125,
+      "ram_before_MB": 10023,
+      "ram_after_MB": 10023,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.007923126220703125,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "synthesize_synopsis": {
+      "wall_time_sec": 24.03041,
+      "cpu_time_sec": 0.01562,
+      "ram_before_MB": 10023,
+      "ram_after_MB": 10023,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.008230209350585938,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "make_embedding": {
+      "wall_time_sec": 16.49709,
+      "cpu_time_sec": 1.51562,
+      "ram_before_MB": 10023,
+      "ram_after_MB": 10033,
+      "ram_used_MB": 10,
+      "io_read_MB": 0.7752056121826172,
+      "io_write_MB": 7.153328895568848,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:07.474",
+      "start_seconds": 0.0,
+      "end_seconds": 7.4741333333333335,
+      "duration_seconds": 7.4741333333333335,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0000.mp4",
+      "frame_captions": [
+        "a video frame of a man on a skateboard",
+        "a video frame of a red and yellow background with the words tedit",
+        "a video frame of a red background with the words paul lang"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "none",
+      "audio_speech": " Gentlemen, I'm really excited for this next...",
+      "llm_scene_description": "The scene begins with a man on a skateboard, suggesting an introduction or casual activity. The following frames display a red and yellow background with the word \"tedit\" and then a red background with the name \"Paul Lang,\" likely indicating a title card or credits introducing a person, possibly the man on the skateboard. The audio includes the start of a statement, \"Gentlemen, I'm really excited for this next...,\" implying anticipation or an announcement. No additional objects or characters are detected."
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:07.474",
+      "end_timecode": "00:00:15.883",
+      "start_seconds": 7.4741333333333335,
+      "end_seconds": 15.882533333333333,
+      "duration_seconds": 8.4084,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0001.mp4",
+      "frame_captions": [
+        "a video frame of people sitting on chairs in a large auditorium",
+        "a video frame of people sitting on chairs in a large auditorium",
+        "a video frame of people sitting on a stage"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "speech (conf=0.39)",
+      "audio_speech": " conversation. So Ted has opened up the guidelines. It used to be all Ted talks needed to be less than 18 minutes and then you'd to be",
+      "llm_scene_description": "The scene transitions to a large auditorium where people are seated on chairs, suggesting an audience setting. The focus then shifts to individuals sitting on a stage, indicating a panel or presentation setup. The audio mentions \"Ted\" and \"guidelines,\" referencing TED Talks and their time limits, hinting at a discussion or presentation about changes to these guidelines. The context suggests this is part of an organized event, possibly a TED Talk or similar conference, following the introduction of a speaker named Paul Lang in the previous scene."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:15.883",
+      "end_timecode": "00:00:44.444",
+      "start_seconds": 15.882533333333333,
+      "end_seconds": 44.4444,
+      "duration_seconds": 28.561866666666667,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0002.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.909,
+          "start_frame": 1,
+          "end_frame": 114,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 27.613,
+          "net_displacement": 1.043,
+          "direction_change_var": 2.1267,
+          "relations": [
+            "left-of chair #4",
+            "left-of person #2",
+            "right-of person #3"
+          ]
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.926,
+          "start_frame": 1,
+          "end_frame": 114,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 25.501,
+          "net_displacement": 1.913,
+          "direction_change_var": 1.6908,
+          "relations": [
+            "right-of chair #4",
+            "right-of person #1",
+            "right-of person #3"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.832,
+          "start_frame": 1,
+          "end_frame": 86,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 38.489,
+          "net_displacement": 1.347,
+          "direction_change_var": 3.3242,
+          "relations": [
+            "left-of chair #4",
+            "left-of person #1",
+            "left-of person #2"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "chair",
+          "confidence_avg": 0.809,
+          "start_frame": 3,
+          "end_frame": 114,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 5.022,
+          "net_displacement": 1.141,
+          "direction_change_var": 1.9374,
+          "relations": [
+            "left-of person #2",
+            "right-of person #1",
+            "right-of person #3"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.67)",
+      "audio_speech": " talks and now they're welcoming conversation. And I thought, who better to have a conversation with than Paul, a very distinguished computer scientist, and innovator, and leader. It was a Carnegie Mellon for a while and was heavily recruited in a worldwide search to come join MIT. And something that's stuck with me, I don't know how true it is, but if you eat a strawberry, when you eat this strawberry, it can cannibalize like 200.",
+      "llm_scene_description": "In this scene, the focus is on a man sitting on a chair, likely part of a panel or discussion on stage, as established in the previous scenes. He is positioned among two other individuals (persons #2 and #3) and a chair (#4), suggesting a structured seating arrangement. The audio indicates that a conversation is taking place, with a speaker introducing \"Paul,\" described as a distinguished computer scientist and innovator with ties to Carnegie Mellon and MIT. The speaker reflects on a metaphor involving strawberries, though its meaning is unclear. This scene continues the formal event setting, likely a TED Talk or similar conference, with Paul as a central figure in the discussion."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:44.444",
+      "end_timecode": "00:01:02.329",
+      "start_seconds": 44.4444,
+      "end_seconds": 62.32893333333333,
+      "duration_seconds": 17.88453333333333,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0003.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 0,
+          "end_frame": 71,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 9.283,
+          "net_displacement": 3.842,
+          "direction_change_var": 2.3112,
+          "relations": [
+            "left-of person #2",
+            "right-of person #3",
+            "right-of person #6"
+          ]
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.922,
+          "start_frame": 0,
+          "end_frame": 71,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 19.546,
+          "net_displacement": 11.83,
+          "direction_change_var": 2.1864,
+          "relations": [
+            "right-of person #1",
+            "right-of person #3",
+            "right-of person #6"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.857,
+          "start_frame": 0,
+          "end_frame": 71,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 5.263,
+          "net_displacement": 0.688,
+          "direction_change_var": 2.6907,
+          "relations": [
+            "left-of person #1",
+            "left-of person #2",
+            "left-of person #6"
+          ]
+        },
+        {
+          "track_id": 6,
+          "label": "person",
+          "confidence_avg": 0.805,
+          "start_frame": 43,
+          "end_frame": 69,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.467,
+          "net_displacement": 0.18,
+          "direction_change_var": 2.4926,
+          "relations": [
+            "left-of person #1",
+            "left-of person #2",
+            "right-of person #3"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.82)",
+      "audio_speech": " 55 taste buds on your tongue. But if you eat a jolly rancher that is strawberry, it's tantalizing five taste buds. And so if a kid grows up having more jolly ranchers than strawberries, do they think the strawberry is really the jolly rancher taste?",
+      "llm_scene_description": "In this scene, the focus remains on a man sitting on a chair, likely Paul Lang, as previously introduced. He is part of a structured panel or discussion, seated among other individuals (persons #2, #3, and #6). The audio features a reflective statement about taste buds and the influence of artificial flavors, using a metaphor about strawberries and jolly ranchers. This continues the intellectual tone of the event, likely a TED Talk or similar conference, with Paul as a key participant. The sigh in the audio suggests a moment of contemplation or emphasis. The setting remains formal, with the discussion centered on thought-provoking ideas."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:01:02.329",
+      "end_timecode": "00:02:13.734",
+      "start_seconds": 62.32893333333333,
+      "end_seconds": 133.7336,
+      "duration_seconds": 71.40466666666666,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0004.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man and woman sitting on chairs",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.92,
+          "start_frame": 0,
+          "end_frame": 285,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer, moving in a loop",
+          "path_length": 23.817,
+          "net_displacement": 4.341,
+          "direction_change_var": 2.388,
+          "relations": [
+            "left-of chair #7",
+            "left-of person #2",
+            "left-of person #8",
+            "right-of person #3"
+          ]
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.93,
+          "start_frame": 0,
+          "end_frame": 285,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting closer, looping/circling",
+          "path_length": 84.577,
+          "net_displacement": 6.255,
+          "direction_change_var": 2.0565,
+          "relations": [
+            "below person #8",
+            "right-of chair #7",
+            "right-of person #1",
+            "right-of person #3"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.832,
+          "start_frame": 5,
+          "end_frame": 285,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 43.132,
+          "net_displacement": 1.147,
+          "direction_change_var": 3.0223,
+          "relations": [
+            "left-of chair #7",
+            "left-of person #1",
+            "left-of person #2",
+            "left-of person #8"
+          ]
+        },
+        {
+          "track_id": 7,
+          "label": "chair",
+          "confidence_avg": 0.81,
+          "start_frame": 13,
+          "end_frame": 279,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 9.819,
+          "net_displacement": 0.367,
+          "direction_change_var": 2.8949,
+          "relations": [
+            "left-of person #2",
+            "left-of person #8",
+            "right-of person #1",
+            "right-of person #3"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.802,
+          "start_frame": 174,
+          "end_frame": 234,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 4.54,
+          "net_displacement": 0.633,
+          "direction_change_var": 3.019,
+          "relations": [
+            "above person #2",
+            "right-of chair #7",
+            "right-of person #1",
+            "right-of person #3"
+          ]
+        }
+      ],
+      "audio_natural": "mantra (conf=0.36)",
+      "audio_speech": " And, you know, our society's been seduced by images. Facebook and other social media has made sure of that. I think millennials and Gen Z take so many selfies to the point where they're like the center of the universe. And that's because we've been seduced by the visual. But we have all these other senses. And I remember reading Slaughterhouse 5 when I was growing up, the Tralfamadorians. They saw things in multiple dimensions. They could see a pencil. It's beginning. It's current. It's future. I remember Madeline Alengel. There were characters that had other senses that we can't even imagine that she wrote in her fantasy stories. Well, Sitting Next to Me is one of the leaders in the world on what is capable from our senses and how AI can complement that and help us be a better species, be a better community, and innovate in some extraordinary ways. Now, I don't know if I did justice to Paul's research, but just to start out, this is no ordinary individual. Ladies and gentlemen, Paul, can you...",
+      "llm_scene_description": "The scene takes place during a formal event, likely a TED Talk or similar conference, continuing the structured discussion from previous scenes. A man, likely Paul Lang, is seated on a chair on stage, joined briefly by a woman before she exits, leaving him alone again. The audio features a speaker reflecting on society's obsession with visual imagery, referencing social media and literature like *Slaughterhouse-Five* and Madeleine L'Engle's works. The speaker introduces Paul as a world leader in sensory innovation and AI, emphasizing his extraordinary contributions to advancing human potential. The setting remains intellectual and reflective, with Paul positioned as the central figure in the ongoing discussion."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:02:13.734",
+      "end_timecode": "00:02:24.945",
+      "start_seconds": 133.7336,
+      "end_seconds": 144.94480000000001,
+      "duration_seconds": 11.21120000000002,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0005.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 0,
+          "end_frame": 44,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 6.582,
+          "net_displacement": 2.32,
+          "direction_change_var": 1.7761,
+          "relations": [
+            "left-of person #2",
+            "right-of person #3",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.92,
+          "start_frame": 0,
+          "end_frame": 44,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left, getting farther",
+          "path_length": 21.777,
+          "net_displacement": 10.098,
+          "direction_change_var": 1.7102,
+          "relations": [
+            "right-of person #1",
+            "right-of person #3",
+            "right-of person #9"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.848,
+          "start_frame": 0,
+          "end_frame": 44,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 7.873,
+          "net_displacement": 5.269,
+          "direction_change_var": 1.7855,
+          "relations": [
+            "left-of person #1",
+            "left-of person #2",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.816,
+          "start_frame": 2,
+          "end_frame": 44,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 1.702,
+          "net_displacement": 1.263,
+          "direction_change_var": 3.7837,
+          "relations": [
+            "left-of person #1",
+            "left-of person #2",
+            "right-of person #3"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.57)",
+      "audio_speech": " Maybe introduce yourself as you might want the world to know you briefly and then maybe talk about smell and AI. That'll be my first question to you, but first introduce yourself.",
+      "llm_scene_description": "The scene takes place during a formal event, likely continuing the structured discussion from previous scenes, with Paul Lang as a central figure. The focus remains on a man, presumably Paul, sitting on a chair on stage, alongside other individuals (persons #2, #3, and #9). The seating arrangement suggests an organized panel or discussion. The audio features a speaker prompting someone, likely Paul, to introduce himself and briefly discuss the topic of smell and AI, indicating the start of a focused conversation. The setting remains intellectual and professional, consistent with the tone of a TED Talk or similar conference."
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:02:24.945",
+      "end_timecode": "00:03:26.740",
+      "start_seconds": 144.94480000000001,
+      "end_seconds": 206.73986666666667,
+      "duration_seconds": 61.795066666666656,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0006.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit sitting in front of an audience",
+        "a video frame of a man in a suit"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.852,
+          "start_frame": 0,
+          "end_frame": 247,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 299.796,
+          "net_displacement": 6.135,
+          "direction_change_var": 2.5831,
+          "relations": [
+            "left-of person #13",
+            "right-of person #10",
+            "right-of person #11"
+          ]
+        },
+        {
+          "track_id": 10,
+          "label": "person",
+          "confidence_avg": 0.934,
+          "start_frame": 1,
+          "end_frame": 247,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 57.129,
+          "net_displacement": 2.109,
+          "direction_change_var": 3.0538,
+          "relations": [
+            "left-of person #11",
+            "left-of person #13",
+            "left-of person #2"
+          ]
+        },
+        {
+          "track_id": 11,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 1,
+          "end_frame": 247,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 407.404,
+          "net_displacement": 3.814,
+          "direction_change_var": 2.2883,
+          "relations": [
+            "left-of person #13",
+            "left-of person #2",
+            "right-of person #10"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.889,
+          "start_frame": 5,
+          "end_frame": 247,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 113.864,
+          "net_displacement": 6.973,
+          "direction_change_var": 2.6743,
+          "relations": [
+            "right-of person #10",
+            "right-of person #11",
+            "right-of person #2"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.48)",
+      "audio_speech": " Absolutely, thanks John, thanks for having me. So I'm really excited about expanding capabilities of AI systems. And I think AI systems today are still very, very far away from humans. People talk about AGI, all the time in Silicon Valley, they only perceive a very, very narrow slice of the world. Humans, as we see, we hear, we touch, we smell and taste. And it is this whole congregation, accumulation of all senses that allows us to really perceive and interact with the world. AI is just so far away from perceiving all of these senses. We have AI that can understand the text that we type on a computer, that we speak to it. It's very purely natural language. And we're starting to see a bit more advancements in AI that can see images, but these are still very much natural images. And very, very far away from AI that can hear, that can touch, that can smell and taste like people can. So really excited to be here. And my group is called Multisensory Intelligence. We're trying to build AI for all senses so they can really perceive and interact with the world like people can. As John mentioned, one of the things",
+      "llm_scene_description": "In this scene, the focus is on a man in a suit, likely Paul Lang, sitting on stage in front of an audience during a formal event, continuing the structured discussion from previous scenes. The audio captures Paul speaking passionately about the limitations of current AI systems compared to human sensory perception. He highlights the gap between AI's capabilities and human senses like touch, smell, and taste, emphasizing the need for advancements in multisensory AI. Paul introduces his group, \"Multisensory Intelligence,\" which aims to develop AI systems capable of perceiving and interacting with the world in a more human-like way. The setting remains professional and intellectual, consistent with a TED Talk or similar conference."
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:03:26.740",
+      "end_timecode": "00:03:34.481",
+      "start_seconds": 206.73986666666667,
+      "end_seconds": 214.48093333333333,
+      "duration_seconds": 7.741066666666654,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0007.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 30,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 10.084,
+          "net_displacement": 7.084,
+          "direction_change_var": 1.1535,
+          "relations": [
+            "right-of person #14",
+            "right-of person #15"
+          ]
+        },
+        {
+          "track_id": 14,
+          "label": "person",
+          "confidence_avg": 0.884,
+          "start_frame": 1,
+          "end_frame": 30,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 6.857,
+          "net_displacement": 1.758,
+          "direction_change_var": 3.0614,
+          "relations": [
+            "left-of person #2",
+            "right-of person #15"
+          ]
+        },
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.836,
+          "start_frame": 1,
+          "end_frame": 30,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.228,
+          "net_displacement": 0.408,
+          "direction_change_var": 1.9351,
+          "relations": [
+            "left-of person #14",
+            "left-of person #2"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " of the projects that most excited about is this potential for AI to smell like people can. Smell is just so...",
+      "llm_scene_description": "In this scene, the focus remains on a man sitting on a chair, likely Paul Lang, as part of a formal event such as a TED Talk or similar conference. He is positioned among two other individuals (persons #14 and #15) in a structured seating arrangement on stage. The audio features a speaker discussing the potential for AI to replicate human sensory abilities, specifically the ability to smell, describing it as an exciting frontier for innovation. The setting continues to be professional and intellectual, with the discussion centered on advancing AI technology to mimic human sensory experiences."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:03:34.481",
+      "end_timecode": "00:04:22.796",
+      "start_seconds": 214.48093333333333,
+      "end_seconds": 262.79586666666665,
+      "duration_seconds": 48.31493333333333,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0008.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit sitting at a table",
+        "a video frame of a man in a suit speaking into a microphone"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.855,
+          "start_frame": 0,
+          "end_frame": 193,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 266.493,
+          "net_displacement": 6.25,
+          "direction_change_var": 2.4892,
+          "relations": [
+            "left-of person #13",
+            "left-of person #19",
+            "right-of person #10",
+            "right-of person #11",
+            "right-of person #17"
+          ]
+        },
+        {
+          "track_id": 10,
+          "label": "person",
+          "confidence_avg": 0.929,
+          "start_frame": 0,
+          "end_frame": 193,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 99.355,
+          "net_displacement": 0.695,
+          "direction_change_var": 3.1897,
+          "relations": [
+            "left-of person #11",
+            "left-of person #13",
+            "left-of person #17",
+            "left-of person #19",
+            "left-of person #2"
+          ]
+        },
+        {
+          "track_id": 11,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 50.4,
+          "net_displacement": 5.109,
+          "direction_change_var": 1.8157,
+          "relations": [
+            "left-of person #13",
+            "left-of person #2",
+            "right-of person #10"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 0,
+          "end_frame": 35,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 18.1,
+          "net_displacement": 3.313,
+          "direction_change_var": 3.0225,
+          "relations": [
+            "right-of person #10",
+            "right-of person #11",
+            "right-of person #17",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.917,
+          "start_frame": 18,
+          "end_frame": 193,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 434.037,
+          "net_displacement": 4.051,
+          "direction_change_var": 2.3969,
+          "relations": [
+            "left-of person #13",
+            "left-of person #19",
+            "left-of person #2",
+            "right-of person #10"
+          ]
+        },
+        {
+          "track_id": 19,
+          "label": "person",
+          "confidence_avg": 0.897,
+          "start_frame": 44,
+          "end_frame": 193,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer, moving in a loop",
+          "path_length": 57.578,
+          "net_displacement": 11.979,
+          "direction_change_var": 2.51,
+          "relations": [
+            "right-of person #10",
+            "right-of person #17",
+            "right-of person #2"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.43)",
+      "audio_speech": " important right it's what affects our perception of what is good what is bad it brings connection you know we send our friends and families the food that we're eating imagine a future where we could spend send not just the photos of the food that we're eating but also send the smells that we're eating together with our friends and families smell is the only modality that can allow us to see the past using smell you can detect what food and beverages are here 30 seconds or a couple minutes ago you can detect how many people were in this room and that's the only modality you know vision can't do it language can't do it sound can't do it smell is the only modality let's us see the past that's why I'm so excited about this future about AI can perceive not just through language but really all the senses that people can",
+      "llm_scene_description": "In this scene, the focus is on a man in a suit, likely Paul Lang, seated at a table and speaking into a microphone during a formal event, likely a continuation of the TED Talk or similar conference from previous scenes. The discussion centers on the unique power of smell as a sensory modality, with Paul passionately explaining how smell allows us to perceive the past in ways that vision, language, and sound cannot. He envisions a future where AI can integrate all human senses, including smell, to enhance connection and understanding. The setting remains professional and intellectual, with Paul positioned as a leading voice in sensory innovation and AI. The audio captures his enthusiasm for advancing multisensory AI, emphasizing its potential to transform human experiences."
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:04:22.796",
+      "end_timecode": "00:04:38.145",
+      "start_seconds": 262.79586666666665,
+      "end_seconds": 278.14453333333336,
+      "duration_seconds": 15.348666666666702,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0009.mp4",
+      "frame_captions": [
+        "a video frame of a man talking to another man",
+        "a video frame of a man in a suit talking to another man",
+        "a video frame of a man talking to another man"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.94,
+          "start_frame": 0,
+          "end_frame": 61,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 41.634,
+          "net_displacement": 5.077,
+          "direction_change_var": 2.3104,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " Paul, can you talk a little bit about your academic journey? What were the building blocks for you to take a risk and go into the space that not a lot of people are in? Did you come up with a PhD in smell? No, no, no.",
+      "llm_scene_description": "In this scene, the focus is on two men, one of whom is wearing a suit, engaged in a professional conversation during what appears to be a formal event, likely a continuation of the TED Talk or conference from previous scenes. The man speaking, presumably Paul Lang, is asked about his academic journey and the risks he took to enter the innovative field of sensory AI. The audio humorously references whether Paul pursued a PhD in smell, which he denies. The dialogue suggests a reflective and intellectual tone, with Paul positioned as an expert in sensory innovation and AI, continuing the discussion on advancing human potential through multisensory technology. The setting remains professional and focused on thought leadership."
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:04:38.145",
+      "end_timecode": "00:05:13.113",
+      "start_seconds": 278.14453333333336,
+      "end_seconds": 313.1128,
+      "duration_seconds": 34.968266666666636,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0010.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit sitting in front of an audience",
+        "a video frame of a man in a suit sitting in front of an audience"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.913,
+          "start_frame": 0,
+          "end_frame": 139,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 233.986,
+          "net_displacement": 5.041,
+          "direction_change_var": 2.5682,
+          "relations": [
+            "left-of person #22",
+            "left-of person #23",
+            "right-of person #21"
+          ]
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.939,
+          "start_frame": 1,
+          "end_frame": 139,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 20.453,
+          "net_displacement": 0.369,
+          "direction_change_var": 3.5403,
+          "relations": [
+            "left-of person #17",
+            "left-of person #22",
+            "left-of person #23"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.91,
+          "start_frame": 1,
+          "end_frame": 139,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 60.51,
+          "net_displacement": 1.19,
+          "direction_change_var": 2.4376,
+          "relations": [
+            "right-of person #17",
+            "right-of person #21",
+            "right-of person #23"
+          ]
+        },
+        {
+          "track_id": 23,
+          "label": "person",
+          "confidence_avg": 0.867,
+          "start_frame": 1,
+          "end_frame": 139,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving down-right, looping/circling",
+          "path_length": 125.345,
+          "net_displacement": 8.749,
+          "direction_change_var": 2.222,
+          "relations": [
+            "left-of person #22",
+            "right-of person #17",
+            "right-of person #21"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.76)",
+      "audio_speech": " I think that's a very new frontier they're trying to tackle. But I started my PhD in 2018, and folks recall that was the era of when deep learning had proliferated computer vision, and we had started to see early signs of language models. And being indecisive, I didn't know whether to work on natural language and large language models or computer vision or speech processing. And there was a very new area of research on understanding human communication. And as we all know, human communication is multifaceted when we speak to verbal words and we tie that together with facial expressions with tone of voice.",
+      "llm_scene_description": "In this scene, the focus remains on a man in a suit, likely Paul Lang, seated on stage in front of an audience during a formal event, continuing the structured discussion from previous scenes. The audio captures Paul reflecting on his academic journey, beginning his PhD in 2018 during the rise of deep learning in computer vision and the emergence of early language models. He shares his indecision at the time about whether to focus on natural language processing, computer vision, or speech processing, ultimately choosing to explore the multifaceted nature of human communication. Paul emphasizes how human communication integrates verbal words, facial expressions, and tone of voice, hinting at the complexity of replicating this in AI systems. The setting remains professional and intellectual, consistent with a conference or TED Talk-like event."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:05:13.113",
+      "end_timecode": "00:05:21.922",
+      "start_seconds": 313.1128,
+      "end_seconds": 321.9216,
+      "duration_seconds": 8.80880000000002,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0011.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 23,
+          "label": "person",
+          "confidence_avg": 0.919,
+          "start_frame": 0,
+          "end_frame": 35,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 9.526,
+          "net_displacement": 7.536,
+          "direction_change_var": 1.6033,
+          "relations": [
+            "right-of person #24",
+            "right-of person #25"
+          ]
+        },
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 1,
+          "end_frame": 35,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 28.953,
+          "net_displacement": 1.348,
+          "direction_change_var": 2.5483,
+          "relations": [
+            "left-of person #23",
+            "right-of person #25"
+          ]
+        },
+        {
+          "track_id": 25,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 1,
+          "end_frame": 35,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 2.563,
+          "net_displacement": 1.611,
+          "direction_change_var": 1.9932,
+          "relations": [
+            "left-of person #23",
+            "left-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "owl (conf=0.44)",
+      "audio_speech": " And I thought that would be a great way to kind of combine natural language processing and visual processing of human faces and speech processing of tone and gesture.",
+      "llm_scene_description": "In this scene, the focus remains on a man, likely Paul Lang, sitting on a chair as part of a formal event, such as a TED Talk or similar conference. The setting continues to be professional and intellectual, with Paul positioned among two other individuals (persons #24 and #25) in a structured seating arrangement. The audio captures a discussion about combining natural language processing, visual processing of human faces, and speech processing of tone and gesture, suggesting a continuation of the broader theme of advancing multisensory AI. The mention of an \"owl\" in the audio transcript may be a misinterpretation or unrelated background noise. The scene aligns with the ongoing exploration of human-like AI capabilities, with Paul likely contributing as a leading voice in the discussion."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:05:21.922",
+      "end_timecode": "00:05:45.278",
+      "start_seconds": 321.9216,
+      "end_seconds": 345.2782666666667,
+      "duration_seconds": 23.356666666666683,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0012.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a woman sitting in a room",
+        "a video frame of a man in a suit sitting in front of an audience"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 23,
+          "label": "person",
+          "confidence_avg": 0.851,
+          "start_frame": 0,
+          "end_frame": 93,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, moving in a loop",
+          "path_length": 156.685,
+          "net_displacement": 11.985,
+          "direction_change_var": 2.0666,
+          "relations": [
+            "left-of person #28",
+            "right-of person #24",
+            "right-of person #27"
+          ]
+        },
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.918,
+          "start_frame": 0,
+          "end_frame": 93,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 231.529,
+          "net_displacement": 14.488,
+          "direction_change_var": 2.2348,
+          "relations": [
+            "left-of person #23",
+            "left-of person #28",
+            "right-of person #27"
+          ]
+        },
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.939,
+          "start_frame": 1,
+          "end_frame": 93,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 22.047,
+          "net_displacement": 0.055,
+          "direction_change_var": 3.2448,
+          "relations": [
+            "left-of person #23",
+            "left-of person #24",
+            "left-of person #28"
+          ]
+        },
+        {
+          "track_id": 28,
+          "label": "person",
+          "confidence_avg": 0.898,
+          "start_frame": 1,
+          "end_frame": 93,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 53.416,
+          "net_displacement": 2.114,
+          "direction_change_var": 2.6212,
+          "relations": [
+            "right-of person #23",
+            "right-of person #24",
+            "right-of person #27"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.65)",
+      "audio_speech": " and come up with better methods to really understand a person, their behaviors, and when they're communicating these behaviors. So if we're lucky, you know, we started working on some of these multimodal models early on, and then when large language models became developed, all of industry started pivoting towards this vision language model, these multimodal models, and we're able to carry on some of this momentum even to today.",
+      "llm_scene_description": "In this scene, the focus is on a man in a suit, likely Paul Lang, seated on stage in front of an audience during what appears to be a continuation of a formal event, such as a TED Talk or conference. The setting remains professional and intellectual. The audio captures a discussion about advancements in multimodal AI models, specifically integrating vision, language, and behavior analysis to better understand human communication. The speaker reflects on the industry's pivot towards vision-language models and the momentum gained from early work in this field. The structured seating arrangement suggests an ongoing panel or presentation format, with Paul Lang likely contributing as a key speaker on the topic of multisensory AI innovation."
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:05:45.278",
+      "end_timecode": "00:06:56.016",
+      "start_seconds": 345.2782666666667,
+      "end_seconds": 416.0156,
+      "duration_seconds": 70.73733333333331,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0013.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man in a suit talking to another man",
+        "a video frame of a man talking to a woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 23,
+          "label": "person",
+          "confidence_avg": 0.923,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 11.645,
+          "net_displacement": 7.556,
+          "direction_change_var": 1.3756,
+          "relations": [
+            "right-of person #29",
+            "right-of person #30"
+          ]
+        },
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.93,
+          "start_frame": 8,
+          "end_frame": 282,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, looping/circling",
+          "path_length": 326.37,
+          "net_displacement": 8.568,
+          "direction_change_var": 2.6379,
+          "relations": [
+            "right-of person #32",
+            "right-of person #33",
+            "right-of person #34"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.871,
+          "start_frame": 1,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 2.406,
+          "net_displacement": 0.326,
+          "direction_change_var": 0.639,
+          "relations": [
+            "left-of person #23",
+            "right-of person #30"
+          ]
+        },
+        {
+          "track_id": 30,
+          "label": "person",
+          "confidence_avg": 0.83,
+          "start_frame": 1,
+          "end_frame": 7,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.53,
+          "net_displacement": 0.186,
+          "direction_change_var": 2.5279,
+          "relations": [
+            "left-of person #23",
+            "left-of person #29"
+          ]
+        },
+        {
+          "track_id": 32,
+          "label": "person",
+          "confidence_avg": 0.816,
+          "start_frame": 9,
+          "end_frame": 23,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 3.39,
+          "net_displacement": 1.713,
+          "direction_change_var": 2.3089,
+          "relations": [
+            "left-of person #24"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.809,
+          "start_frame": 61,
+          "end_frame": 90,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 14.73,
+          "net_displacement": 4.233,
+          "direction_change_var": 2.6003,
+          "relations": [
+            "left-of person #24"
+          ]
+        },
+        {
+          "track_id": 34,
+          "label": "person",
+          "confidence_avg": 0.821,
+          "start_frame": 185,
+          "end_frame": 204,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-left, getting farther",
+          "path_length": 15.886,
+          "net_displacement": 14.685,
+          "direction_change_var": 0.9284,
+          "relations": [
+            "left-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.57), silence (conf=0.46)",
+      "audio_speech": " Let me ask you this, can you walk through the different senses? Which do you think there is unique possibilities with AI that people don't realize, you know, maybe kind of rate them, you know, which have the most potential? And then can you see technology helping to create senses that we don't even realize we could have? You know, I think of being able to walk around and see Wi-Fi. We can't see Wi-Fi with our eyes or being able to see where heat is escaping spaces. You know, is that an extension of vision or is that like a new sense? And with technology, are there other things that we could just like put right into our brain? And I remember, I think at MGH, someone was telling me a story how a metal pipe went through someone's brain and they were able to learn a lot about how the brain worked. My guess is some of what you're doing is also thinking about how as a species we can work with technology and especially how our brain can interact with technology. My guess is, you know, that's the space your group is going to double down on. I'd like to know a little bit about that. But to start with, maybe list the senses, rank them, and can we have other senses that we didn't know we could have or want?",
+      "llm_scene_description": "In this scene, the focus shifts to an intellectual discussion involving a man in a suit, likely Paul Lang, and another individual, possibly a colleague or interviewer, with a woman joining the conversation later. The setting appears to remain professional, likely part of a formal event such as a TED Talk or conference. The audio captures an in-depth exploration of sensory perception and the potential for AI to enhance or create new senses. Paul is asked to list and rank human senses, discuss the unique possibilities AI offers, and consider whether technology could enable entirely new sensory experiences, such as perceiving Wi-Fi or heat. The conversation also touches on the intersection of neuroscience and technology, with a reference to a historical brain injury study. This scene continues the broader theme of advancing human potential through multisensory AI, with Paul positioned as a thought leader in the field."
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:06:56.016",
+      "end_timecode": "00:06:58.285",
+      "start_seconds": 416.0156,
+      "end_seconds": 418.28453333333334,
+      "duration_seconds": 2.2689333333333366,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0014.mp4",
+      "frame_captions": [
+        "a video frame of a man and woman sitting on chairs",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man and woman sitting on chairs"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 60.704,
+          "net_displacement": 24.434,
+          "direction_change_var": 2.1959,
+          "relations": [
+            "left-of chair #37",
+            "left-of person #35",
+            "left-of person #38",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 35,
+          "label": "person",
+          "confidence_avg": 0.907,
+          "start_frame": 1,
+          "end_frame": 9,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 4.928,
+          "net_displacement": 4.772,
+          "direction_change_var": 2.9494,
+          "relations": [
+            "below person #38",
+            "right-of chair #37",
+            "right-of person #24",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 36,
+          "label": "person",
+          "confidence_avg": 0.848,
+          "start_frame": 1,
+          "end_frame": 9,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-right, getting closer",
+          "path_length": 22.487,
+          "net_displacement": 22.32,
+          "direction_change_var": 1.7794,
+          "relations": [
+            "left-of chair #37",
+            "left-of person #24",
+            "left-of person #35",
+            "left-of person #38"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "chair",
+          "confidence_avg": 0.834,
+          "start_frame": 1,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.029,
+          "net_displacement": 0.112,
+          "direction_change_var": 3.2097,
+          "relations": [
+            "left-of person #35",
+            "left-of person #38",
+            "right-of person #24",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 38,
+          "label": "person",
+          "confidence_avg": 0.812,
+          "start_frame": 1,
+          "end_frame": 8,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 0.116,
+          "net_displacement": 0.053,
+          "direction_change_var": 0.8919,
+          "relations": [
+            "above person #35",
+            "right-of chair #37",
+            "right-of person #24",
+            "right-of person #36"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " Yeah, absolutely. So, you know, we seem great",
+      "llm_scene_description": "In this scene, a man and a woman are seated on chairs, engaging in a conversation during what appears to be a continuation of a formal event, likely a TED Talk or conference. The setting remains professional and structured, with the individuals positioned in a panel-like arrangement. The audio captures a brief exchange, with one speaker responding affirmatively, saying, \"Yeah, absolutely. So, you know, we seem great,\" suggesting agreement or enthusiasm about a prior topic. Based on previous scenes, the discussion may still center around advancements in multisensory AI or human communication. The scene reflects a calm and intellectual atmosphere, consistent with the ongoing theme of thought leadership and innovation."
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:06:58.285",
+      "end_timecode": "00:09:03.877",
+      "start_seconds": 418.28453333333334,
+      "end_seconds": 543.8766666666667,
+      "duration_seconds": 125.59213333333332,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0015.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit speaking into a microphone",
+        "a video frame of a man in a suit sitting in front of other people"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.911,
+          "start_frame": 0,
+          "end_frame": 502,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer, looping/circling",
+          "path_length": 1529.983,
+          "net_displacement": 2.098,
+          "direction_change_var": 2.9617,
+          "relations": [
+            "left-of person #35",
+            "left-of person #39",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 35,
+          "label": "person",
+          "confidence_avg": 0.856,
+          "start_frame": 0,
+          "end_frame": 502,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting farther, looping/circling",
+          "path_length": 776.419,
+          "net_displacement": 6.22,
+          "direction_change_var": 2.3769,
+          "relations": [
+            "left-of person #39",
+            "right-of person #24",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 36,
+          "label": "person",
+          "confidence_avg": 0.934,
+          "start_frame": 0,
+          "end_frame": 502,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, getting closer, looping/circling",
+          "path_length": 254.106,
+          "net_displacement": 2.539,
+          "direction_change_var": 3.1084,
+          "relations": [
+            "left-of person #24",
+            "left-of person #35",
+            "left-of person #39"
+          ]
+        },
+        {
+          "track_id": 39,
+          "label": "person",
+          "confidence_avg": 0.889,
+          "start_frame": 0,
+          "end_frame": 502,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 236.692,
+          "net_displacement": 1.367,
+          "direction_change_var": 3.165,
+          "relations": [
+            "right-of person #24",
+            "right-of person #35",
+            "right-of person #36"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.81), silence (conf=0.34)",
+      "audio_speech": " and language of course, vision and audio are probably the next senses that we can really capture using AI. And primarily we have lots of language, vision and audio data on the internet. I think the next sense that we're gonna tackle is a sense of touch, right? And I like to give this example, roboticist might have for this example, but this idea of the Moravex paradox, is this paradox that says, what is really easy for humans is really hard for AI. And what is really hard for humans is conversely very easy for AI. And the example they love to give is, as a human, it's super trivial to pick up an object, to pick up an object, to shake somebody's hand, to grip a microphone. You don't even think about it, it's so intuitive. It is sense of touch. But at the same time, we don't have robots that can grasp all types of microphones, that can pick up all types of objects, that can shake all people's hands with the right force and gestures. And why is that? The sense of touch is so naturally built in, that we can't even describe, because it's so intuitive, we can't even describe in language, what touch and force means, which means it's very hard for AI systems to learn that. At the same time, what we think is really difficult, like passing SATs or bar exams or achieving gold at international math Olympiads, we spend so much time trying to figure out these difficult problems, that we have so much knowledge on the internet about it. And that's why we see AI crushing, SATs, law exams, IMO, mathematical Olympiads. But we're very close. I think touch is the next sense that we're very close to capturing. There's lots of progress in trying to tackle these paradox and building sensors that allow you to digitize how much force you're putting per square inch across spatial resolutions as you're gripping and manipulating different objects. And that's gonna be the next one to fall. And of course, I think smell and taste are the ones that are, of course, even further away. And we need new sensors, we need lots of data, and we need new AI modeling paradigms to really enable these sensors in AI systems.",
+      "llm_scene_description": "In this scene, the focus remains on a man in a suit, likely Paul Lang, who is speaking into a microphone while seated on stage in front of an audience during a formal event, such as a TED Talk or conference. The setting continues to be professional and intellectual, with Paul discussing advancements in AI and sensory perception. He reflects on the challenges of replicating the human sense of touch in AI systems, citing the Moravec's paradox, which highlights the difficulty of teaching AI tasks that are intuitive for humans, such as gripping objects or shaking hands. Paul emphasizes the progress being made in developing sensors to measure force and spatial resolution, predicting that touch will be the next sense AI will successfully capture. He also mentions the future challenges of digitizing smell and taste, requiring new sensors and modeling paradigms. The structured seating arrangement suggests a panel format, with Paul as the central speaker. The audio captures his detailed explanation, underscoring his expertise and thought leadership in advancing multisensory AI."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:09:03.877",
+      "end_timecode": "00:09:06.146",
+      "start_seconds": 543.8766666666667,
+      "end_seconds": 546.1456000000001,
+      "duration_seconds": 2.2689333333333934,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0016.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man and woman sitting on chairs",
+        "a video frame of a man and woman sitting on chairs"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.922,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, moving in a loop",
+          "path_length": 61.712,
+          "net_displacement": 17.886,
+          "direction_change_var": 0.6717,
+          "relations": [
+            "left-of chair #40",
+            "left-of person #35",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 35,
+          "label": "person",
+          "confidence_avg": 0.931,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 3.673,
+          "net_displacement": 3.365,
+          "direction_change_var": 0.6306,
+          "relations": [
+            "right-of chair #40",
+            "right-of person #24",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 36,
+          "label": "person",
+          "confidence_avg": 0.845,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting farther",
+          "path_length": 16.079,
+          "net_displacement": 14.103,
+          "direction_change_var": 0.0668,
+          "relations": [
+            "left-of chair #40",
+            "left-of person #24",
+            "left-of person #35"
+          ]
+        },
+        {
+          "track_id": 40,
+          "label": "chair",
+          "confidence_avg": 0.827,
+          "start_frame": 1,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 0.501,
+          "net_displacement": 0.044,
+          "direction_change_var": 1.9819,
+          "relations": [
+            "left-of person #35",
+            "right-of person #24",
+            "right-of person #36"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " of touch, two things come to mind.",
+      "llm_scene_description": "In this scene, a man and a woman are seated on chairs, continuing what appears to be a formal panel discussion or presentation, likely part of a professional event such as a TED Talk or conference. The setting remains structured and intellectual, with the individuals positioned in a panel-like arrangement. The movement of the tracked individuals suggests subtle adjustments or gestures, possibly indicating engagement in the conversation. The audio captures faint sounds of touch, which could be related to minor interactions with objects, such as adjusting chairs or handling microphones. No speech is recorded in this scene, leaving the context reliant on visual cues and previous discussions. Based on prior scenes, the ongoing theme likely centers around advancements in multisensory AI, with the man, possibly Paul Lang, contributing as a key speaker."
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:09:06.146",
+      "end_timecode": "00:09:34.040",
+      "start_seconds": 546.1456000000001,
+      "end_seconds": 574.0401333333333,
+      "duration_seconds": 27.894533333333243,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0017.mp4",
+      "frame_captions": [
+        "a video frame of a man talking to a woman",
+        "a video frame of a man talking to another man",
+        "a video frame of a man talking to someone"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.935,
+          "start_frame": 0,
+          "end_frame": 111,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 144.896,
+          "net_displacement": 4.216,
+          "direction_change_var": 2.2,
+          "relations": [
+            "right-of person #42"
+          ]
+        },
+        {
+          "track_id": 42,
+          "label": "person",
+          "confidence_avg": 0.804,
+          "start_frame": 8,
+          "end_frame": 24,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 12.727,
+          "net_displacement": 5.08,
+          "direction_change_var": 1.6448,
+          "relations": [
+            "left-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.82)",
+      "audio_speech": " could you make someone think they're touching something when they're not, is that is your research going down that path and then for people who may be limited mobility, have limited mobility, maybe lost some sense, you know, for fire burns or or born that way, can you give them that touch? I don't know if that's the same thing, but is your group looking to either of those options?",
+      "llm_scene_description": "In this scene, the focus is on a conversation between two individuals, a man and another person (possibly a woman initially, then another man), during what appears to be a continuation of a formal event, such as a TED Talk or conference. The setting remains professional and intellectual, with the individuals positioned in a structured arrangement. The audio captures a thoughtful question about the potential of technology to simulate or restore the sense of touch for individuals with limited mobility or sensory impairments. The inquiry explores whether advancements in sensory technology could enable tactile experiences for those who have lost or lack the ability to feel touch due to injury or congenital conditions. The tracked movements suggest the individuals are mostly stationary, indicating a focused discussion. This scene continues the broader theme of multisensory AI and its applications, with the man, likely Paul Lang, being engaged as a thought leader in the field."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:09:34.040",
+      "end_timecode": "00:09:37.911",
+      "start_seconds": 574.0401333333333,
+      "end_seconds": 577.9106666666667,
+      "duration_seconds": 3.8705333333333556,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0018.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 24.548,
+          "net_displacement": 17.847,
+          "direction_change_var": 2.1192,
+          "relations": [
+            "left-of chair #46",
+            "left-of person #43",
+            "left-of person #45",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 43,
+          "label": "person",
+          "confidence_avg": 0.921,
+          "start_frame": 1,
+          "end_frame": 15,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.342,
+          "net_displacement": 0.132,
+          "direction_change_var": 2.1134,
+          "relations": [
+            "below person #45",
+            "right-of chair #46",
+            "right-of person #24",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.835,
+          "start_frame": 1,
+          "end_frame": 15,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 10.704,
+          "net_displacement": 2.461,
+          "direction_change_var": 2.7542,
+          "relations": [
+            "left-of chair #46",
+            "left-of person #24",
+            "left-of person #43",
+            "left-of person #45"
+          ]
+        },
+        {
+          "track_id": 45,
+          "label": "person",
+          "confidence_avg": 0.805,
+          "start_frame": 1,
+          "end_frame": 11,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 0.089,
+          "net_displacement": 0.04,
+          "direction_change_var": 3.1506,
+          "relations": [
+            "above person #43",
+            "right-of chair #46",
+            "right-of person #24",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 46,
+          "label": "chair",
+          "confidence_avg": 0.841,
+          "start_frame": 1,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.673,
+          "net_displacement": 0.762,
+          "direction_change_var": 2.8653,
+          "relations": [
+            "left-of person #43",
+            "left-of person #45",
+            "right-of person #24",
+            "right-of person #44"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " Yeah, absolutely. I think this goes back to the previous point you made about this.",
+      "llm_scene_description": "In this scene, a man is seated on a chair, likely continuing a professional discussion in a formal setting, such as a TED Talk or conference. The setting remains structured, with multiple individuals present, including at least four people and a chair being tracked. The audio captures a brief statement, \"Yeah, absolutely. I think this goes back to the previous point you made about this,\" suggesting agreement or elaboration on a prior topic. The conversation likely ties into the ongoing intellectual themes of the event, potentially involving advancements in multisensory AI or related technology. The individuals appear mostly stationary, with subtle movements indicating engagement in the discussion. This scene maintains the calm and professional tone of the previous scenes, with Paul Lang possibly continuing as a central figure in the dialogue."
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:09:37.911",
+      "end_timecode": "00:10:27.293",
+      "start_seconds": 577.9106666666667,
+      "end_seconds": 627.2933333333333,
+      "duration_seconds": 49.38266666666664,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0019.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit speaking into a microphone",
+        "a video frame of a man in a suit sitting in front of an audience"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.905,
+          "start_frame": 0,
+          "end_frame": 197,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer, looping/circling",
+          "path_length": 521.162,
+          "net_displacement": 6.49,
+          "direction_change_var": 2.8722,
+          "relations": [
+            "left-of person #43",
+            "left-of person #47",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 43,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 0,
+          "end_frame": 197,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting farther, looping/circling",
+          "path_length": 253.974,
+          "net_displacement": 6.855,
+          "direction_change_var": 2.5643,
+          "relations": [
+            "left-of person #47",
+            "right-of person #24",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.938,
+          "start_frame": 0,
+          "end_frame": 197,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-right, getting closer, looping/circling",
+          "path_length": 142.501,
+          "net_displacement": 10.502,
+          "direction_change_var": 3.3771,
+          "relations": [
+            "left-of person #24",
+            "left-of person #43",
+            "left-of person #47"
+          ]
+        },
+        {
+          "track_id": 47,
+          "label": "person",
+          "confidence_avg": 0.884,
+          "start_frame": 1,
+          "end_frame": 197,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer, looping/circling",
+          "path_length": 111.442,
+          "net_displacement": 8.137,
+          "direction_change_var": 3.2921,
+          "relations": [
+            "right-of person #24",
+            "right-of person #43",
+            "right-of person #44"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.59)",
+      "audio_speech": " This case study where a person had a metal rod that affected them, that went through their head, and they lost some senses and they gained some other senses. And us humans were really good at this. We have this concept of cross-modal plasticity. If your brain loses the ability to sense in one of them, they recover and you become much better at another sense. But AI models don't have this. AI models, if you're equipping a language model, if the language model can't read language, it can't do anything else. It can't suddenly transform to a model that sees images better or to hear audio better. So that's a really cool frontier for AI, I believe. And again, back to your question, you know, we're doing a lot of work in tactile sensing. So capturing the sense of touch, how people move and manipulate different objects, the corresponding...",
+      "llm_scene_description": "In this scene, the focus is on a man in a suit, likely Paul Lang, speaking into a microphone during a formal event, such as a TED Talk or conference. He is later seen seated in front of an audience, suggesting a transition from presenting to participating in a panel discussion or Q&A session. The audio captures Paul discussing the concept of cross-modal plasticity in humans, where the brain compensates for the loss of one sense by enhancing others, contrasting this with the limitations of AI models in adapting across sensory modalities. He highlights the challenges and potential of integrating tactile sensing into AI systems, emphasizing its importance as a frontier in AI development. The structured setting and professional tone align with the ongoing theme of innovation in multisensory AI. The audience and other panel members remain stationary, indicating focused attention on Paul’s insights."
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:10:27.293",
+      "end_timecode": "00:10:32.632",
+      "start_seconds": 627.2933333333333,
+      "end_seconds": 632.6320000000001,
+      "duration_seconds": 5.338666666666768,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0020.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of two men sitting on chairs in front of an audience"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.93,
+          "start_frame": 0,
+          "end_frame": 21,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 34.105,
+          "net_displacement": 12.744,
+          "direction_change_var": 2.7173,
+          "relations": [
+            "left-of chair #49",
+            "left-of person #43",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 43,
+          "label": "person",
+          "confidence_avg": 0.934,
+          "start_frame": 0,
+          "end_frame": 21,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 3.018,
+          "net_displacement": 2.242,
+          "direction_change_var": 0.7633,
+          "relations": [
+            "right-of chair #49",
+            "right-of person #24",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.848,
+          "start_frame": 1,
+          "end_frame": 21,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up-left, getting farther",
+          "path_length": 18.218,
+          "net_displacement": 8.22,
+          "direction_change_var": 2.3102,
+          "relations": [
+            "left-of chair #49",
+            "left-of person #24",
+            "left-of person #43"
+          ]
+        },
+        {
+          "track_id": 49,
+          "label": "chair",
+          "confidence_avg": 0.814,
+          "start_frame": 3,
+          "end_frame": 21,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.358,
+          "net_displacement": 0.154,
+          "direction_change_var": 3.5524,
+          "relations": [
+            "left-of person #43",
+            "right-of person #24",
+            "right-of person #44"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " version is haptics. We're also building these gloves. These are called haptic intuition gloves.",
+      "llm_scene_description": "In this scene, two men are seated on chairs in front of an audience, continuing a formal panel discussion or presentation, likely part of a professional event such as a TED Talk or conference. The setting remains structured and intellectual, with the individuals positioned in a panel-like arrangement. The audio captures a speaker discussing \"haptic intuition gloves,\" a technology likely related to advancements in tactile sensing and multisensory AI. The mention of \"haptics\" and \"gloves\" suggests a focus on tools designed to simulate or enhance the sense of touch, aligning with the broader theme of integrating tactile experiences into AI systems. The tracked movements indicate subtle adjustments, with one individual moving slightly left and another remaining mostly stationary, suggesting engagement in the discussion. This scene continues the ongoing exploration of innovative sensory technologies, with Paul Lang likely contributing as a key speaker."
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:10:32.632",
+      "end_timecode": "00:10:48.248",
+      "start_seconds": 632.6320000000001,
+      "end_seconds": 648.2476,
+      "duration_seconds": 15.615599999999972,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0021.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a woman speaking at a conference",
+        "a video frame of a woman sitting in front of an audience"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 0,
+          "end_frame": 61,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 123.052,
+          "net_displacement": 19.09,
+          "direction_change_var": 2.3331,
+          "relations": [
+            "left-of person #43",
+            "left-of person #47",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 43,
+          "label": "person",
+          "confidence_avg": 0.862,
+          "start_frame": 0,
+          "end_frame": 62,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther, moving in a loop",
+          "path_length": 70.949,
+          "net_displacement": 18.657,
+          "direction_change_var": 2.2319,
+          "relations": [
+            "left-of person #47",
+            "right-of person #24",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.941,
+          "start_frame": 0,
+          "end_frame": 61,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-right, getting closer",
+          "path_length": 28.027,
+          "net_displacement": 11.943,
+          "direction_change_var": 2.9238,
+          "relations": [
+            "left-of person #24",
+            "left-of person #43",
+            "left-of person #47"
+          ]
+        },
+        {
+          "track_id": 47,
+          "label": "person",
+          "confidence_avg": 0.86,
+          "start_frame": 0,
+          "end_frame": 61,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 37.504,
+          "net_displacement": 4.732,
+          "direction_change_var": 3.6925,
+          "relations": [
+            "right-of person #24",
+            "right-of person #43",
+            "right-of person #44"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.85)",
+      "audio_speech": " interaction gloves that can essentially allow people to feel something on their hands. So a person who might lose their sense of touch or lose sensitivity in their hands with strong enough haptics to actually be able to feel something that they couldn't actually feel before.",
+      "llm_scene_description": "In this scene, the focus shifts to a woman speaking at a professional conference, likely continuing the ongoing discussion on advancements in multisensory AI. She is seated in front of an audience, suggesting a formal presentation or panel discussion. The audio captures her describing \"interaction gloves\" designed to restore or simulate the sense of touch for individuals with sensory impairments, emphasizing the potential of haptic technology to enable tactile experiences that were previously inaccessible. The tracked movements of individuals in the scene suggest minor adjustments or gestures, with one person sighing audibly, possibly indicating contemplation or emotional engagement with the topic. This scene builds on the broader theme of innovative sensory technologies and their applications, with the woman contributing as a key speaker in the discussion."
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:10:48.248",
+      "end_timecode": "00:10:53.186",
+      "start_seconds": 648.2476,
+      "end_seconds": 653.1858666666667,
+      "duration_seconds": 4.938266666666664,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0022.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 43,
+          "label": "person",
+          "confidence_avg": 0.92,
+          "start_frame": 0,
+          "end_frame": 19,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.331,
+          "net_displacement": 1.497,
+          "direction_change_var": 2.5392,
+          "relations": [
+            "right-of person #50",
+            "right-of person #51"
+          ]
+        },
+        {
+          "track_id": 50,
+          "label": "person",
+          "confidence_avg": 0.891,
+          "start_frame": 0,
+          "end_frame": 19,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 4.873,
+          "net_displacement": 1.746,
+          "direction_change_var": 3.4024,
+          "relations": [
+            "left-of person #43",
+            "right-of person #51"
+          ]
+        },
+        {
+          "track_id": 51,
+          "label": "person",
+          "confidence_avg": 0.837,
+          "start_frame": 0,
+          "end_frame": 19,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.064,
+          "net_displacement": 0.351,
+          "direction_change_var": 2.9844,
+          "relations": [
+            "left-of person #43",
+            "left-of person #50"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " to their sixth senses.",
+      "llm_scene_description": "In this scene, the focus remains on a professional and formal setting, likely a continuation of a conference or panel discussion on multisensory AI. A man, possibly Paul Lang, is seated on a chair, with two other individuals (persons #50 and #51) positioned nearby. All three individuals are mostly stationary, suggesting they are engaged in a focused discussion or listening intently. The absence of audio dialogue but the presence of ambient sounds referencing \"sixth senses\" aligns with the ongoing theme of sensory technology and its potential to enhance or simulate human perception. This scene appears to continue the intellectual exploration of advanced tactile and sensory innovations, maintaining the structured and professional tone of the event."
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:10:53.186",
+      "end_timecode": "00:11:01.461",
+      "start_seconds": 653.1858666666667,
+      "end_seconds": 661.4608000000001,
+      "duration_seconds": 8.274933333333365,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0023.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit and tie",
+        "a video frame of a man in a suit",
+        "a video frame of a woman sitting in a room"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.921,
+          "start_frame": 0,
+          "end_frame": 33,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 52.758,
+          "net_displacement": 12.325,
+          "direction_change_var": 2.1575,
+          "relations": [
+            "left-of person #43",
+            "left-of person #47",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 43,
+          "label": "person",
+          "confidence_avg": 0.845,
+          "start_frame": 0,
+          "end_frame": 31,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting closer, moving in a loop",
+          "path_length": 38.506,
+          "net_displacement": 6.767,
+          "direction_change_var": 2.381,
+          "relations": [
+            "left-of person #47",
+            "right-of person #24",
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.946,
+          "start_frame": 0,
+          "end_frame": 32,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.953,
+          "net_displacement": 0.114,
+          "direction_change_var": 3.0781,
+          "relations": [
+            "left-of person #24",
+            "left-of person #43",
+            "left-of person #47"
+          ]
+        },
+        {
+          "track_id": 47,
+          "label": "person",
+          "confidence_avg": 0.898,
+          "start_frame": 0,
+          "end_frame": 32,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 22.438,
+          "net_displacement": 2.483,
+          "direction_change_var": 1.3535,
+          "relations": [
+            "right-of person #24",
+            "right-of person #43",
+            "right-of person #44"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " is five, you know, you see, hear, touch, smell and taste. By extension, people think other senses, you know, intuition is often a sense. Yeah, spidey...",
+      "llm_scene_description": "In this scene, the focus remains on a formal and professional setting, likely a continuation of a conference or panel discussion on multisensory AI. A man in a suit, possibly Paul Lang, is present, along with a woman seated in a room, suggesting a shift in focus to her as a speaker or participant. The tracked movements indicate subtle positioning adjustments among four individuals, likely panelists or attendees. The audio captures a fragmented discussion about human senses and intuition, possibly tying into the broader theme of sensory perception and its integration into AI systems. The calm and intellectual tone persists, with the dialogue hinting at the exploration of sensory and intuitive capabilities in both humans and AI."
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:11:01.461",
+      "end_timecode": "00:11:11.070",
+      "start_seconds": 661.4608000000001,
+      "end_seconds": 671.0704000000001,
+      "duration_seconds": 9.6096,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0024.mp4",
+      "frame_captions": [
+        "a video frame of a man talking to another man",
+        "a video frame of a man in a suit talking to a woman",
+        "a video frame of a man in a suit talking to another man"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.93,
+          "start_frame": 0,
+          "end_frame": 38,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 31.504,
+          "net_displacement": 4.022,
+          "direction_change_var": 2.9856,
+          "relations": [
+            "right-of person #44"
+          ]
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.841,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting farther",
+          "path_length": 15.529,
+          "net_displacement": 15.529,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.81)",
+      "audio_speech": " My recent intuition, yes. So are there eight, nine, ten that you could create and people talk about artificial intelligence?",
+      "llm_scene_description": "In this scene, the setting remains formal, likely part of the ongoing professional conference or panel discussion on multisensory AI. A man in a suit, possibly Paul Lang, is seen speaking to a woman in one frame and another man in the next, suggesting a shift in conversational focus. The audio captures a fragmented statement about intuition and the potential to create \"eight, nine, ten\" systems, with a mention of artificial intelligence, indicating a continuation of the intellectual discussion on AI advancements. The tracked movements show person #24 (likely Paul) remaining mostly stationary while person #44 moves slightly left, suggesting a conversational exchange or transition. The scene aligns with the broader theme of exploring innovative AI technologies and their sensory or intuitive capabilities."
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:11:11.070",
+      "end_timecode": "00:11:19.612",
+      "start_seconds": 671.0704000000001,
+      "end_seconds": 679.6122666666666,
+      "duration_seconds": 8.541866666666579,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0025.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man and woman sitting on chairs",
+        "a video frame of a man sitting on a chair in front of an audience"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.918,
+          "start_frame": 0,
+          "end_frame": 34,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, moving in a loop",
+          "path_length": 63.789,
+          "net_displacement": 16.641,
+          "direction_change_var": 2.4155,
+          "relations": [
+            "left-of chair #58",
+            "left-of person #57",
+            "right-of person #56"
+          ]
+        },
+        {
+          "track_id": 56,
+          "label": "person",
+          "confidence_avg": 0.843,
+          "start_frame": 0,
+          "end_frame": 34,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, moving in a loop",
+          "path_length": 62.272,
+          "net_displacement": 20.517,
+          "direction_change_var": 3.6195,
+          "relations": [
+            "left-of chair #58",
+            "left-of person #24",
+            "left-of person #57"
+          ]
+        },
+        {
+          "track_id": 57,
+          "label": "person",
+          "confidence_avg": 0.929,
+          "start_frame": 1,
+          "end_frame": 33,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 33.35,
+          "net_displacement": 0.466,
+          "direction_change_var": 3.2486,
+          "relations": [
+            "right-of chair #58",
+            "right-of person #24",
+            "right-of person #56"
+          ]
+        },
+        {
+          "track_id": 58,
+          "label": "chair",
+          "confidence_avg": 0.817,
+          "start_frame": 5,
+          "end_frame": 33,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 3.15,
+          "net_displacement": 0.392,
+          "direction_change_var": 3.6009,
+          "relations": [
+            "left-of person #57",
+            "right-of person #24",
+            "right-of person #56"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.57)",
+      "audio_speech": " But some people say the A could be augmented intelligence and that if you could create these other senses that hasn't evolved to date.",
+      "llm_scene_description": "In this scene, the professional and formal setting of a conference or panel discussion on multisensory AI continues. A man, likely Paul Lang, is seated on a chair, joined by a woman who is also seated, suggesting a collaborative discussion or presentation. The audience remains present, reinforcing the structured nature of the event. The audio captures a speaker discussing the concept of \"augmented intelligence\" and the potential to create new senses beyond those humans have evolved, aligning with the ongoing theme of sensory and AI advancements. Subtle movements among the individuals suggest engagement, while a faint sigh is heard, possibly indicating contemplation or emotional resonance with the topic. The scene builds on the intellectual exploration of innovative technologies, with Paul Lang and the woman contributing as key speakers."
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:11:19.612",
+      "end_timecode": "00:11:26.419",
+      "start_seconds": 679.6122666666666,
+      "end_seconds": 686.4190666666667,
+      "duration_seconds": 6.806800000000067,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0026.mp4",
+      "frame_captions": [
+        "a video frame of a man talking to another man",
+        "a video frame of a man in a suit talking to a woman",
+        "a video frame of a man in a suit talking to another man"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.931,
+          "start_frame": 0,
+          "end_frame": 27,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer",
+          "path_length": 16.807,
+          "net_displacement": 7.686,
+          "direction_change_var": 1.8628,
+          "relations": [
+            "right-of person #56"
+          ]
+        },
+        {
+          "track_id": 56,
+          "label": "person",
+          "confidence_avg": 0.88,
+          "start_frame": 0,
+          "end_frame": 22,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 24.251,
+          "net_displacement": 3.306,
+          "direction_change_var": 2.8013,
+          "relations": [
+            "left-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " we would have a very different kind of experience. Is your group thinking about eight, nine, and 10?",
+      "llm_scene_description": "In this scene, the professional and formal setting of a conference or discussion on multisensory AI continues. A man in a suit, likely Paul Lang, is seen engaging in conversations with two individuals—a woman in one frame and another man in another frame—suggesting a shift in focus between participants. The tracked movements indicate person #24 (likely Paul) moving slightly closer to person #56, who remains mostly stationary, hinting at a conversational exchange. The audio captures a fragmented statement about creating \"eight, nine, and 10\" systems, possibly referring to advancements in sensory or intuitive AI technologies. This scene builds on the ongoing intellectual exploration of innovative AI systems and their potential to expand human perception and experience."
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:11:26.419",
+      "end_timecode": "00:11:28.821",
+      "start_seconds": 686.4190666666667,
+      "end_seconds": 688.8214666666667,
+      "duration_seconds": 2.4023999999999432,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0027.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.888,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 14.166,
+          "net_displacement": 12.849,
+          "direction_change_var": 0.4264,
+          "relations": [
+            "left-of person #57"
+          ]
+        },
+        {
+          "track_id": 57,
+          "label": "person",
+          "confidence_avg": 0.912,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.943,
+          "net_displacement": 0.438,
+          "direction_change_var": 0.7333,
+          "relations": [
+            "right-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.47)",
+      "audio_speech": " Yeah, absolutely.",
+      "llm_scene_description": "In this scene, the professional and formal setting of the conference or panel discussion on multisensory AI continues. A man, likely Paul Lang (person #24), is seated on a chair, positioned left of another individual (person #57), who remains stationary. Paul appears to shift slightly to the left, suggesting a subtle adjustment or moment of thought. The audio captures a faint sigh and the phrase \"Yeah, absolutely,\" though the confidence in the sigh is low, indicating potential ambiguity in the emotional tone. The scene maintains the reflective and intellectual atmosphere of the event, with participants likely engaged in a discussion or moment of contemplation related to sensory AI advancements."
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:11:28.821",
+      "end_timecode": "00:12:26.613",
+      "start_seconds": 688.8214666666667,
+      "end_seconds": 746.6125333333333,
+      "duration_seconds": 57.791066666666666,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0028.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit and tie"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.917,
+          "start_frame": 0,
+          "end_frame": 231,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 474.831,
+          "net_displacement": 5.351,
+          "direction_change_var": 2.5802,
+          "relations": [
+            "left-of person #57",
+            "left-of person #60",
+            "right-of person #56"
+          ]
+        },
+        {
+          "track_id": 56,
+          "label": "person",
+          "confidence_avg": 0.939,
+          "start_frame": 0,
+          "end_frame": 230,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, getting closer, moving in a loop",
+          "path_length": 52.962,
+          "net_displacement": 0.937,
+          "direction_change_var": 2.8695,
+          "relations": [
+            "left-of person #24",
+            "left-of person #57",
+            "left-of person #60"
+          ]
+        },
+        {
+          "track_id": 57,
+          "label": "person",
+          "confidence_avg": 0.861,
+          "start_frame": 0,
+          "end_frame": 231,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther, looping/circling",
+          "path_length": 271.613,
+          "net_displacement": 7.788,
+          "direction_change_var": 2.6077,
+          "relations": [
+            "left-of person #60",
+            "right-of person #24",
+            "right-of person #56"
+          ]
+        },
+        {
+          "track_id": 60,
+          "label": "person",
+          "confidence_avg": 0.902,
+          "start_frame": 1,
+          "end_frame": 230,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 97.745,
+          "net_displacement": 6.366,
+          "direction_change_var": 2.3353,
+          "relations": [
+            "right-of person #24",
+            "right-of person #56",
+            "right-of person #57"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.71), sigh (conf=0.84)",
+      "audio_speech": " Memory is a huge sense, right? The ability to remember long things, weigh into the past to augment current decisions with long-term memory beyond short-term memory, especially important when I see AI as being a very powerful enabler of that. AI technically has unbounded memory if you have unbounded compute. You gotta remember things one year ago that you met this person and here are some common talking points. Memory is a big one. Being able to do higher level reasoning is another big one, right? You look at all this work in AI for health, right? We have these physiological senses tracking our sleep, tracking our diet, tracking our breathing. All of this is data that we can't process by ourselves. Wanna find health, yeah. AI can help us, right? AI can externalize and better augment our decisions around our health and well-being. So again, I see, you know, there's lots of senses that we gotta build into AI systems and at the same time, a lot of senses that AI can provide that we don't have. So you have...",
+      "llm_scene_description": "In this scene, the formal and professional setting of the conference or panel discussion on multisensory AI continues. A man in a suit, likely Paul Lang (person #24), is present alongside three other individuals (persons #56, #57, and #60), who remain mostly stationary but subtly adjust their positions. The audio captures Paul discussing the importance of memory and reasoning in AI, emphasizing how AI can augment human decision-making by externalizing and processing complex data, particularly in areas like health and well-being. His speech highlights the potential of AI to expand human capabilities through advanced sensory and cognitive systems. The calm and intellectual tone persists, with a faint sigh suggesting a moment of reflection or emphasis. The scene builds on the ongoing exploration of AI's role in enhancing human perception and decision-making."
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:12:26.613",
+      "end_timecode": "00:12:39.692",
+      "start_seconds": 746.6125333333333,
+      "end_seconds": 759.6922666666667,
+      "duration_seconds": 13.079733333333365,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0029.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man in a suit and tie",
+        "a video frame of a man talking to a woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 52,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 206.222,
+          "net_displacement": 30.812,
+          "direction_change_var": 2.8142,
+          "relations": [
+            "left-of person #57",
+            "right-of person #61",
+            "right-of person #62",
+            "right-of person #65"
+          ]
+        },
+        {
+          "track_id": 57,
+          "label": "person",
+          "confidence_avg": 0.911,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.98,
+          "net_displacement": 1.972,
+          "direction_change_var": 0.008,
+          "relations": [
+            "right-of person #24",
+            "right-of person #61",
+            "right-of person #62"
+          ]
+        },
+        {
+          "track_id": 61,
+          "label": "person",
+          "confidence_avg": 0.839,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.141,
+          "net_displacement": 0.104,
+          "direction_change_var": 0.185,
+          "relations": [
+            "left-of person #24",
+            "left-of person #57",
+            "left-of person #62"
+          ]
+        },
+        {
+          "track_id": 62,
+          "label": "person",
+          "confidence_avg": 0.814,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.122,
+          "net_displacement": 0.109,
+          "direction_change_var": 0.7123,
+          "relations": [
+            "left-of person #24",
+            "left-of person #57",
+            "right-of person #61"
+          ]
+        },
+        {
+          "track_id": 65,
+          "label": "person",
+          "confidence_avg": 0.818,
+          "start_frame": 40,
+          "end_frame": 49,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 5.14,
+          "net_displacement": 4.506,
+          "direction_change_var": 1.0143,
+          "relations": [
+            "left-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "sigh (conf=0.40), silence (conf=0.36)",
+      "audio_speech": " mentioned BCI for people who may not know brain-computer interface. Is your group do research into that? Are you at the forefront of that or are you letting other people",
+      "llm_scene_description": "In this scene, the formal and professional setting of the conference or panel discussion on multisensory AI continues. A man in a suit, likely Paul Lang (person #24), is seated and appears to be engaged in a conversation with a woman (person #57). The tracked movements suggest Paul is slightly shifting his position while remaining central to the discussion. The audio captures a fragmented question about brain-computer interfaces (BCI), with a speaker asking whether Paul's group conducts research in this area or if they are observing advancements made by others. The mention of BCI aligns with the ongoing theme of exploring innovative AI technologies and their applications in enhancing human capabilities. The faint sigh and silence in the audio may indicate a moment of contemplation or transition in the discussion. This scene builds on the intellectual exploration of AI's role in expanding human perception and interaction through advanced systems."
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:12:39.692",
+      "end_timecode": "00:12:43.296",
+      "start_seconds": 759.6922666666667,
+      "end_seconds": 763.2958666666667,
+      "duration_seconds": 3.6036000000000286,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0030.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man and woman sitting on chairs",
+        "a video frame of a man and woman sitting on chairs"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.927,
+          "start_frame": 0,
+          "end_frame": 14,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 19.258,
+          "net_displacement": 16.276,
+          "direction_change_var": 0.2399,
+          "relations": [
+            "left-of person #66",
+            "right-of person #67"
+          ]
+        },
+        {
+          "track_id": 66,
+          "label": "person",
+          "confidence_avg": 0.933,
+          "start_frame": 1,
+          "end_frame": 14,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.221,
+          "net_displacement": 0.331,
+          "direction_change_var": 1.0077,
+          "relations": [
+            "right-of person #24",
+            "right-of person #67"
+          ]
+        },
+        {
+          "track_id": 67,
+          "label": "person",
+          "confidence_avg": 0.857,
+          "start_frame": 1,
+          "end_frame": 14,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.661,
+          "net_displacement": 0.042,
+          "direction_change_var": 2.3475,
+          "relations": [
+            "left-of person #24",
+            "left-of person #66"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " think about that. Yeah, I think BCIs is something",
+      "llm_scene_description": "In this scene, the formal and professional setting of the conference or panel discussion on multisensory AI continues. A man, likely Paul Lang (person #24), is seated alongside a woman (person #66) and another individual (person #67), suggesting a collaborative discussion among panelists. Paul appears to shift slightly to the left, indicating engagement or adjustment during the conversation. The audio captures a brief statement about brain-computer interfaces (BCIs), with someone expressing interest in the topic by saying, \"Think about that. Yeah, I think BCIs is something.\" This aligns with the ongoing theme of exploring advanced AI technologies and their applications in enhancing human capabilities. The scene maintains its intellectual tone, with subtle movements among the participants reflecting active involvement in the discussion."
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:12:43.296",
+      "end_timecode": "00:12:50.903",
+      "start_seconds": 763.2958666666667,
+      "end_seconds": 770.9034666666666,
+      "duration_seconds": 7.607599999999934,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0031.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit",
+        "a video frame of a woman sitting in a room"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.905,
+          "start_frame": 0,
+          "end_frame": 30,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 77.737,
+          "net_displacement": 14.92,
+          "direction_change_var": 2.3956,
+          "relations": [
+            "left-of person #66",
+            "left-of person #69",
+            "right-of person #67"
+          ]
+        },
+        {
+          "track_id": 66,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 0,
+          "end_frame": 30,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 22.424,
+          "net_displacement": 19.407,
+          "direction_change_var": 0.4744,
+          "relations": [
+            "right-of person #24",
+            "right-of person #67",
+            "right-of person #69"
+          ]
+        },
+        {
+          "track_id": 67,
+          "label": "person",
+          "confidence_avg": 0.933,
+          "start_frame": 0,
+          "end_frame": 30,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-right, getting closer",
+          "path_length": 17.476,
+          "net_displacement": 11.79,
+          "direction_change_var": 1.9682,
+          "relations": [
+            "left-of person #24",
+            "left-of person #66",
+            "left-of person #69"
+          ]
+        },
+        {
+          "track_id": 69,
+          "label": "person",
+          "confidence_avg": 0.847,
+          "start_frame": 5,
+          "end_frame": 29,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 15.491,
+          "net_displacement": 1.377,
+          "direction_change_var": 3.0872,
+          "relations": [
+            "left-of person #66",
+            "right-of person #24",
+            "right-of person #67"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.61)",
+      "audio_speech": " You know, BCIs and AI will integrate probably in this time span of 10 or 20 years. In the next 10 years.",
+      "llm_scene_description": "In this scene, the formal and professional setting of the conference or panel discussion on multisensory AI continues. A man in a suit, likely Paul Lang (person #24), is present alongside three other individuals (persons #66, #67, and #69). The tracked movements suggest subtle shifts in positioning, with Paul moving slightly closer to the center of the group, indicating active engagement in the discussion. The audio captures a statement about the integration of brain-computer interfaces (BCIs) and AI within the next 10 to 20 years, emphasizing the potential for significant advancements in this field. This aligns with the ongoing theme of exploring innovative AI technologies and their applications in enhancing human capabilities. The scene maintains its intellectual and collaborative tone, with participants actively contributing to the discussion."
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:12:50.903",
+      "end_timecode": "00:12:53.039",
+      "start_seconds": 770.9034666666666,
+      "end_seconds": 773.0389333333334,
+      "duration_seconds": 2.13546666666673,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0032.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.931,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 19.426,
+          "net_displacement": 18.224,
+          "direction_change_var": 0.9695,
+          "relations": [
+            "left-of person #69",
+            "right-of person #67"
+          ]
+        },
+        {
+          "track_id": 67,
+          "label": "person",
+          "confidence_avg": 0.857,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up-left, getting farther",
+          "path_length": 15.338,
+          "net_displacement": 12.911,
+          "direction_change_var": 1.5582,
+          "relations": [
+            "left-of person #24",
+            "left-of person #69"
+          ]
+        },
+        {
+          "track_id": 69,
+          "label": "person",
+          "confidence_avg": 0.933,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 4.346,
+          "net_displacement": 3.412,
+          "direction_change_var": 0.5972,
+          "relations": [
+            "right-of person #24",
+            "right-of person #67"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " looking into that.",
+      "llm_scene_description": "In this scene, the formal and professional setting of the conference or panel discussion on multisensory AI continues. Paul Lang (person #24) is seated on a chair, positioned between two other individuals (persons #67 and #69). Paul appears to shift slightly to the left, while person #67 moves up and to the left, and person #69 remains mostly stationary. The audio captures a faint phrase, \"looking into that,\" which may suggest a continuation of the discussion on advanced AI topics, potentially related to earlier mentions of brain-computer interfaces (BCIs) or sensory AI advancements. The scene maintains its intellectual and reflective tone, with participants subtly adjusting their positions, indicating active engagement in the ongoing dialogue."
+    },
+    {
+      "scene_index": 33,
+      "start_timecode": "00:12:53.039",
+      "end_timecode": "00:13:14.127",
+      "start_seconds": 773.0389333333334,
+      "end_seconds": 794.1266666666667,
+      "duration_seconds": 21.08773333333329,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0033.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting in a chair",
+        "a video frame of a man in a suit",
+        "a video frame of a man in a suit"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.912,
+          "start_frame": 0,
+          "end_frame": 84,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left, getting farther, looping/circling",
+          "path_length": 202.33,
+          "net_displacement": 8.257,
+          "direction_change_var": 2.6957,
+          "relations": [
+            "left-of person #66",
+            "left-of person #69",
+            "right-of person #67"
+          ]
+        },
+        {
+          "track_id": 66,
+          "label": "person",
+          "confidence_avg": 0.87,
+          "start_frame": 0,
+          "end_frame": 83,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther, moving in a loop",
+          "path_length": 57.135,
+          "net_displacement": 12.889,
+          "direction_change_var": 2.3143,
+          "relations": [
+            "right-of person #24",
+            "right-of person #67",
+            "right-of person #69"
+          ]
+        },
+        {
+          "track_id": 67,
+          "label": "person",
+          "confidence_avg": 0.937,
+          "start_frame": 0,
+          "end_frame": 83,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, getting closer, moving in a loop",
+          "path_length": 41.375,
+          "net_displacement": 11.489,
+          "direction_change_var": 2.1924,
+          "relations": [
+            "left-of person #24",
+            "left-of person #66",
+            "left-of person #69"
+          ]
+        },
+        {
+          "track_id": 69,
+          "label": "person",
+          "confidence_avg": 0.852,
+          "start_frame": 11,
+          "end_frame": 84,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving down-left, getting farther, looping/circling",
+          "path_length": 76.306,
+          "net_displacement": 8.742,
+          "direction_change_var": 2.5296,
+          "relations": [
+            "left-of person #66",
+            "right-of person #24",
+            "right-of person #67"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.67)",
+      "audio_speech": " In the next 10 years, we're focusing on AI. In 10 or 20 year times 10, we're going to have AI that is really powerful enough and miniature enough that you can implant into people's brains. And of course, you've got to tackle all these challenges about robustness, about privacy, about making decisions that actually augment people instead of overriding people. That's like a 10 or 20 year horizon.",
+      "llm_scene_description": "In this scene, the formal and professional setting of the conference or panel discussion on multisensory AI continues. Paul Lang (person #24), a man in a suit, is present alongside three other individuals (persons #66, #67, and #69), all of whom are subtly moving in looping patterns, suggesting a dynamic but focused discussion. The audio captures Paul speaking about the future of AI, emphasizing advancements over the next 10 to 20 years, including the development of powerful, miniature AI systems that could be implanted into human brains. He highlights the importance of addressing challenges such as robustness, privacy, and ensuring AI augments rather than overrides human decision-making. The scene builds on the ongoing exploration of AI's potential to enhance human capabilities, maintaining an intellectual and forward-looking tone."
+    },
+    {
+      "scene_index": 34,
+      "start_timecode": "00:13:14.127",
+      "end_timecode": "00:13:38.685",
+      "start_seconds": 794.1266666666667,
+      "end_seconds": 818.6845333333333,
+      "duration_seconds": 24.557866666666655,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0034.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man in a suit talking to a woman",
+        "a video frame of a man in a suit talking to a woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.917,
+          "start_frame": 0,
+          "end_frame": 98,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 363.176,
+          "net_displacement": 26.391,
+          "direction_change_var": 1.9547,
+          "relations": [
+            "left-of person #69"
+          ]
+        },
+        {
+          "track_id": 69,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.56,
+          "net_displacement": 2.865,
+          "direction_change_var": 0.8048,
+          "relations": [
+            "right-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.56), sigh (conf=0.70)",
+      "audio_speech": " So let me ask you this. The name of your group again is... Multisensory Intelligence. So you need to recruit a talented range of people because you can't have all people who are expert at smell. You would be able to do all the things you want to do. For people who are listening, if they wanted to join your group or thought they'd have something to contribute, what are you looking for as you think about the important research you're doing in the years to come?",
+      "llm_scene_description": "In this scene, the professional and intellectual tone of the conference or panel discussion on multisensory AI continues. Paul Lang (person #24), a man in a suit, is engaged in a conversation with a woman (person #69). Paul appears to shift slightly to the right, indicating active participation in the dialogue. The audio captures Paul asking about the name of the woman's group, \"Multisensory Intelligence,\" and discussing the importance of recruiting diverse talents for their research. He emphasizes the need for contributors with varied expertise, beyond just sensory specialization, to achieve the group's ambitious goals. The dialogue reflects a collaborative and forward-thinking approach to advancing multisensory AI research, with Paul expressing interest in the group's future plans and encouraging potential contributors to consider joining their efforts."
+    },
+    {
+      "scene_index": 35,
+      "start_timecode": "00:13:38.685",
+      "end_timecode": "00:13:41.621",
+      "start_seconds": 818.6845333333333,
+      "end_seconds": 821.6208,
+      "duration_seconds": 2.936266666666711,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0035.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man and woman sitting on chairs",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.934,
+          "start_frame": 0,
+          "end_frame": 11,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 17.485,
+          "net_displacement": 15.316,
+          "direction_change_var": 0.7664,
+          "relations": [
+            "left-of person #70",
+            "right-of person #71"
+          ]
+        },
+        {
+          "track_id": 70,
+          "label": "person",
+          "confidence_avg": 0.938,
+          "start_frame": 1,
+          "end_frame": 11,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.109,
+          "net_displacement": 0.053,
+          "direction_change_var": 2.4596,
+          "relations": [
+            "right-of person #24",
+            "right-of person #71"
+          ]
+        },
+        {
+          "track_id": 71,
+          "label": "person",
+          "confidence_avg": 0.836,
+          "start_frame": 1,
+          "end_frame": 11,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 2.539,
+          "net_displacement": 1.463,
+          "direction_change_var": 1.6975,
+          "relations": [
+            "left-of person #24",
+            "left-of person #70"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " I would say, you know,",
+      "llm_scene_description": "In this scene, the professional setting of the panel discussion on multisensory AI continues. Paul Lang (person #24) is seated on a chair, with two other individuals (persons #70 and #71) positioned to his right and left, respectively. Paul appears to shift slightly to the left, possibly indicating engagement or adjustment during the discussion. The audio captures a partial phrase, \"I would say, you know,\" suggesting someone is beginning to make a point or respond to a question. The scene maintains the intellectual and collaborative tone of the ongoing discussion, with subtle movements among the participants reflecting active involvement."
+    },
+    {
+      "scene_index": 36,
+      "start_timecode": "00:13:41.621",
+      "end_timecode": "00:14:17.790",
+      "start_seconds": 821.6208,
+      "end_seconds": 857.7902666666666,
+      "duration_seconds": 36.16946666666661,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0036.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a woman singing into a microphone",
+        "a video frame of a man in a suit"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 0,
+          "end_frame": 144,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 413.996,
+          "net_displacement": 16.753,
+          "direction_change_var": 2.9842,
+          "relations": [
+            "left-of person #70",
+            "left-of person #72",
+            "left-of person #75",
+            "right-of person #71"
+          ]
+        },
+        {
+          "track_id": 70,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 0,
+          "end_frame": 144,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting farther, looping/circling",
+          "path_length": 171.197,
+          "net_displacement": 4.751,
+          "direction_change_var": 2.3834,
+          "relations": [
+            "left-of person #75",
+            "right-of person #24",
+            "right-of person #71"
+          ]
+        },
+        {
+          "track_id": 71,
+          "label": "person",
+          "confidence_avg": 0.936,
+          "start_frame": 0,
+          "end_frame": 144,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-right, getting closer, looping/circling",
+          "path_length": 58.012,
+          "net_displacement": 10.47,
+          "direction_change_var": 3.1616,
+          "relations": [
+            "left-of person #24",
+            "left-of person #70",
+            "left-of person #72",
+            "left-of person #75"
+          ]
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.849,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 5.983,
+          "net_displacement": 5.983,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #24",
+            "right-of person #71"
+          ]
+        },
+        {
+          "track_id": 75,
+          "label": "person",
+          "confidence_avg": 0.829,
+          "start_frame": 31,
+          "end_frame": 144,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer, moving in a loop",
+          "path_length": 61.082,
+          "net_displacement": 13.545,
+          "direction_change_var": 3.2302,
+          "relations": [
+            "right-of person #24",
+            "right-of person #70",
+            "right-of person #71"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.40)",
+      "audio_speech": " We're looking for people who expand the horizons in our group. We're trying to improve and expand the convex hull of capabilities and bring about new insights. Just to find ways of bringing together different disciplines. AI for smell, you wouldn't be able to tackle this without people who are of course passionate and have experienced AI, but people who know the biology, who know the chemistry of how people smell, who have experienced neuroscience, who are able to fabricate and build really cool technologies that go beyond the computer. And that's why I love being at MIT, I love being in the media lab because you have this connection of multiple disciplines.",
+      "llm_scene_description": "In this scene, the professional and intellectual tone of the conference or panel discussion on multisensory AI continues. Paul Lang (person #24), a man in a suit, is present alongside several other individuals, who are subtly shifting positions in looping patterns, suggesting active engagement in the discussion. The audio captures a speaker discussing the importance of interdisciplinary collaboration in advancing AI, specifically mentioning the integration of AI with biology, chemistry, neuroscience, and technology to tackle challenges like AI for smell. The speaker expresses enthusiasm for working at MIT's Media Lab due to its focus on connecting multiple disciplines. This aligns with the ongoing theme of fostering innovation through diverse expertise in multisensory AI research. The scene maintains its formal and collaborative atmosphere, with participants contributing to the dialogue."
+    },
+    {
+      "scene_index": 37,
+      "start_timecode": "00:14:17.790",
+      "end_timecode": "00:14:21.928",
+      "start_seconds": 857.7902666666666,
+      "end_seconds": 861.9277333333333,
+      "duration_seconds": 4.137466666666683,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0037.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.928,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 22.506,
+          "net_displacement": 16.852,
+          "direction_change_var": 3.7888,
+          "relations": [
+            "left-of person #70",
+            "right-of person #71"
+          ]
+        },
+        {
+          "track_id": 70,
+          "label": "person",
+          "confidence_avg": 0.92,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 5.812,
+          "net_displacement": 4.982,
+          "direction_change_var": 1.1167,
+          "relations": [
+            "right-of person #24",
+            "right-of person #71"
+          ]
+        },
+        {
+          "track_id": 71,
+          "label": "person",
+          "confidence_avg": 0.842,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up-left, getting farther",
+          "path_length": 16.268,
+          "net_displacement": 10.984,
+          "direction_change_var": 1.7069,
+          "relations": [
+            "left-of person #24",
+            "left-of person #70"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " that enable new opportunities in research.",
+      "llm_scene_description": "In this scene, the professional and intellectual tone of the panel discussion on multisensory AI continues. Paul Lang (person #24) is seated on a chair, positioned between two other individuals (persons #70 and #71). Subtle movements occur as Paul shifts slightly to the left, person #70 remains mostly stationary, and person #71 moves up and to the left. The audio captures the phrase, \"that enable new opportunities in research,\" suggesting the discussion is focused on the potential advancements and applications of multisensory AI. The participants' movements and the dialogue reflect active engagement in the ongoing conversation about the future of AI research."
+    },
+    {
+      "scene_index": 38,
+      "start_timecode": "00:14:21.928",
+      "end_timecode": "00:14:29.535",
+      "start_seconds": 861.9277333333333,
+      "end_seconds": 869.5353333333334,
+      "duration_seconds": 7.607600000000048,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0038.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit and tie",
+        "a video frame of a man in a suit and tie",
+        "a video frame of a man talking to another man"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.929,
+          "start_frame": 0,
+          "end_frame": 30,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 85.179,
+          "net_displacement": 12.351,
+          "direction_change_var": 1.9124,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " what's your favorite smell, what's your favorite taste, what's your favorite haptic experience.",
+      "llm_scene_description": "In this scene, the professional and intellectual tone of the panel discussion on multisensory AI continues. Paul Lang (person #24), a man in a suit, is seen interacting with another man. Paul moves slightly to the right in a looping pattern, suggesting he is actively engaged in the conversation. The audio features a series of questions being asked aloud: \"What's your favorite smell? What's your favorite taste? What's your favorite haptic experience?\" These questions appear to align with the theme of multisensory AI, potentially prompting a discussion about personal sensory experiences and their relevance to AI development. The setting remains formal and focused, consistent with the ongoing exploration of multisensory AI's potential."
+    },
+    {
+      "scene_index": 39,
+      "start_timecode": "00:14:29.535",
+      "end_timecode": "00:14:32.071",
+      "start_seconds": 869.5353333333334,
+      "end_seconds": 872.0712,
+      "duration_seconds": 2.5358666666666068,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0039.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man sitting on a chair"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.88,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, moving in a loop",
+          "path_length": 30.903,
+          "net_displacement": 9.142,
+          "direction_change_var": 0.9408,
+          "relations": [
+            "left-of person #70"
+          ]
+        },
+        {
+          "track_id": 70,
+          "label": "person",
+          "confidence_avg": 0.906,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.935,
+          "net_displacement": 0.663,
+          "direction_change_var": 2.3549,
+          "relations": [
+            "right-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " as you lead your group, your team.",
+      "llm_scene_description": "In this scene, Paul Lang (person #24) is seated on a chair, positioned to the left of another individual (person #70), who remains mostly stationary. Paul subtly shifts to the right in a looping pattern, suggesting attentiveness or engagement. The setting appears to continue the formal and professional tone of a panel discussion on multisensory AI. Although there is no new dialogue captured, the audio includes the phrase, \"as you lead your group, your team,\" which may imply a discussion about leadership or collaboration within the context of advancing multisensory AI research. The participants' subtle movements and the ongoing intellectual atmosphere align with the previous scenes' focus on interdisciplinary teamwork and innovation."
+    },
+    {
+      "scene_index": 40,
+      "start_timecode": "00:14:32.071",
+      "end_timecode": "00:14:39.946",
+      "start_seconds": 872.0712,
+      "end_seconds": 879.9457333333334,
+      "duration_seconds": 7.874533333333375,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0040.mp4",
+      "frame_captions": [
+        "a video frame of a man talking to a woman",
+        "a video frame of a man talking to another man",
+        "a video frame of a man in a suit and tie"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.921,
+          "start_frame": 0,
+          "end_frame": 31,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer, looping/circling",
+          "path_length": 121.137,
+          "net_displacement": 4.337,
+          "direction_change_var": 2.2688,
+          "relations": [
+            "right-of person #80"
+          ]
+        },
+        {
+          "track_id": 80,
+          "label": "person",
+          "confidence_avg": 0.865,
+          "start_frame": 25,
+          "end_frame": 31,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "moving left, getting farther",
+          "path_length": 11.865,
+          "net_displacement": 7.471,
+          "direction_change_var": 1.0146,
+          "relations": [
+            "left-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.45)",
+      "audio_speech": " probably knows that and you probably double down on some of those or it's it's part of the the theme of the group.",
+      "llm_scene_description": "In this scene, the professional and intellectual tone of the panel discussion on multisensory AI continues. Paul Lang (person #24), a man in a suit and tie, is seen interacting with another individual (person #80). Paul remains mostly stationary, subtly shifting in a looping pattern, while person #80 moves slightly to the left and farther away. The visual suggests an ongoing dialogue or exchange between the two, though the audio is partially unclear, capturing the phrase, \"probably knows that and you probably double down on some of those or it's it's part of the the theme of the group.\" This may indicate a discussion about group dynamics or thematic alignment within multisensory AI research. The scene maintains its formal and collaborative atmosphere, consistent with the previous discussions on interdisciplinary innovation and sensory-focused AI development."
+    },
+    {
+      "scene_index": 41,
+      "start_timecode": "00:14:39.946",
+      "end_timecode": "00:15:21.721",
+      "start_seconds": 879.9457333333334,
+      "end_seconds": 921.7208,
+      "duration_seconds": 41.7750666666667,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0041.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit",
+        "a video frame of a woman in a business suit",
+        "a video frame of a man in a suit"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 167,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 382.06,
+          "net_displacement": 6.478,
+          "direction_change_var": 2.7911,
+          "relations": [
+            "left-of person #82",
+            "left-of person #83",
+            "right-of person #81"
+          ]
+        },
+        {
+          "track_id": 81,
+          "label": "person",
+          "confidence_avg": 0.939,
+          "start_frame": 1,
+          "end_frame": 167,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 62.879,
+          "net_displacement": 0.346,
+          "direction_change_var": 3.2863,
+          "relations": [
+            "left-of person #24",
+            "left-of person #82",
+            "left-of person #83"
+          ]
+        },
+        {
+          "track_id": 82,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 1,
+          "end_frame": 167,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer, looping/circling",
+          "path_length": 76.257,
+          "net_displacement": 10.059,
+          "direction_change_var": 2.3128,
+          "relations": [
+            "right-of person #24",
+            "right-of person #81",
+            "right-of person #83"
+          ]
+        },
+        {
+          "track_id": 83,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 1,
+          "end_frame": 167,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 179.278,
+          "net_displacement": 3.727,
+          "direction_change_var": 2.6291,
+          "relations": [
+            "left-of person #82",
+            "right-of person #24",
+            "right-of person #81"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.48)",
+      "audio_speech": " this multi-sensory experience. If you all come by next April at the Media Labs members' week, we're trying to build this exhibition where you can type in a prompt of your favorite memory. Walking down the streets of Paris in the early morning with this misty coffee and baguettes, you type in a prompt of your favorite memory, and you go into this room where you could first, of course, see the image of you on that. That's pretty much easy, but you could also be able to smell what it smells like. You could be able to feel using haptics gloves, the sensation of picking up a croissant, drinking hot coffee, and that would really round up the multi-sensory experience. And then you'd be personalized. Any favorite memory of yours, you'd be able to try it out in this new system.",
+      "llm_scene_description": "In this scene, the professional and intellectual tone of the panel discussion on multisensory AI continues. Paul Lang (person #24), a man in a suit, is present alongside three other individuals (persons #81, #82, and #83), all of whom are subtly shifting positions in looping patterns, suggesting active engagement in the discussion. The audio captures a speaker enthusiastically describing a new multisensory experience being developed at MIT's Media Lab. The speaker explains how users could input a favorite memory, such as walking in Paris, and experience it through visuals, smells, and haptic sensations, creating a personalized and immersive interaction. This aligns with the ongoing theme of innovation in multisensory AI research. The formal and collaborative atmosphere persists, with participants appearing attentive to the presentation."
+    },
+    {
+      "scene_index": 42,
+      "start_timecode": "00:15:21.721",
+      "end_timecode": "00:15:42.141",
+      "start_seconds": 921.7208,
+      "end_seconds": 942.1412,
+      "duration_seconds": 20.420399999999972,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0042.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man talking to another man",
+        "a video frame of a man in a suit and tie"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.926,
+          "start_frame": 0,
+          "end_frame": 81,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 108.977,
+          "net_displacement": 14.37,
+          "direction_change_var": 1.5631,
+          "relations": [
+            "left-of person #83"
+          ]
+        },
+        {
+          "track_id": 83,
+          "label": "person",
+          "confidence_avg": 0.918,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 9.266,
+          "net_displacement": 9.229,
+          "direction_change_var": 0.2635,
+          "relations": [
+            "right-of person #24"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.37)",
+      "audio_speech": " Great. Well, you guys, Paul, I asked Paul to send me some questions and he did, but I don't have cell signal. So I couldn't read any of the questions. So I was just winging this. This won't be in the talk. But I apologize that I didn't ask the questions that he sent me. But who found that a little bit interesting?",
+      "llm_scene_description": "In this scene, Paul Lang (person #24), a man in a suit and tie, is engaged in a conversation with another man (person #83) during what appears to be a continuation of a formal panel discussion or presentation. Paul moves slightly to the right in a looping pattern, while the other man moves slightly to the left, suggesting an interactive exchange. The audio reveals Paul addressing the audience, explaining that he had intended to ask specific questions provided by someone named Paul but was unable to access them due to a lack of cell signal. He admits to improvising and apologizes for not including the prepared questions, adding, \"But who found that a little bit interesting?\" This moment introduces a more casual and self-reflective tone, contrasting with the otherwise professional and intellectual atmosphere of the ongoing discussion on multisensory AI."
+    },
+    {
+      "scene_index": 43,
+      "start_timecode": "00:15:42.141",
+      "end_timecode": "00:15:44.677",
+      "start_seconds": 942.1412,
+      "end_seconds": 944.6770666666666,
+      "duration_seconds": 2.5358666666666068,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0043.mp4",
+      "frame_captions": [
+        "a video frame of a stage with people on it",
+        "a video frame of a stage with people on it",
+        "a video frame of a stage with people on it"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.937,
+          "start_frame": 10,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "gasp (conf=0.45)",
+      "audio_speech": " And the reason I did this interview",
+      "llm_scene_description": "In this scene, the setting remains a formal stage with people present, continuing the context of a panel discussion. Paul Lang (person #24) is stationary at the center of the stage, suggesting he is a key participant or speaker. The audio captures the phrase, \"And the reason I did this interview,\" though it is unclear what interview is being referenced. A faint gasp is also heard, though its significance is uncertain due to low confidence. The scene appears to maintain the professional and intellectual tone of the previous discussions, potentially tied to the ongoing theme of multisensory AI. However, the lack of significant movement or clear dialogue leaves the purpose of this moment ambiguous."
+    },
+    {
+      "scene_index": 44,
+      "start_timecode": "00:15:44.677",
+      "end_timecode": "00:15:57.757",
+      "start_seconds": 944.6770666666666,
+      "end_seconds": 957.7568,
+      "duration_seconds": 13.079733333333365,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0044.mp4",
+      "frame_captions": [
+        "a video frame of a man in a suit and tie",
+        "a video frame of a man talking to a woman",
+        "a video frame of a man wearing a suit"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.933,
+          "start_frame": 0,
+          "end_frame": 52,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 70.238,
+          "net_displacement": 0.273,
+          "direction_change_var": 2.4145,
+          "relations": []
+        },
+        {
+          "track_id": 86,
+          "label": "person",
+          "confidence_avg": 0.803,
+          "start_frame": 18,
+          "end_frame": 18,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "audio_speech": " was I want Paul to do a linear talk in the semesters to come and I want to send out this interview and say come here Paul's talk and I just think he's on to some cutting-edge research that's so important.",
+      "llm_scene_description": "In this scene, Paul Lang (person #24), a man in a suit and tie, is seen speaking to a woman (person #86) in what appears to be a formal or professional setting. Both individuals remain mostly stationary, with Paul subtly shifting in a looping pattern, indicating engagement in the conversation. The audio captures Paul discussing his desire for a \"linear talk\" in future semesters, referencing his intention to promote an interview and highlight cutting-edge research. This suggests Paul is advocating for or organizing an academic presentation or lecture series, likely tied to his work in multisensory AI. The setting and tone remain consistent with the ongoing professional and intellectual atmosphere of the previous scenes."
+    },
+    {
+      "scene_index": 45,
+      "start_timecode": "00:15:57.757",
+      "end_timecode": "00:16:00.026",
+      "start_seconds": 957.7568,
+      "end_seconds": 960.0257333333334,
+      "duration_seconds": 2.2689333333333934,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0045.mp4",
+      "frame_captions": [
+        "a video frame of a man sitting on a chair talking to a woman",
+        "a video frame of a man sitting on a chair",
+        "a video frame of a man shaking hands with a woman"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.922,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther, moving in a loop",
+          "path_length": 60.032,
+          "net_displacement": 13.126,
+          "direction_change_var": 1.4269,
+          "relations": [
+            "left-of person #87",
+            "left-of person #89",
+            "right-of person #88"
+          ]
+        },
+        {
+          "track_id": 87,
+          "label": "person",
+          "confidence_avg": 0.941,
+          "start_frame": 1,
+          "end_frame": 8,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 13.792,
+          "net_displacement": 12.554,
+          "direction_change_var": 1.1809,
+          "relations": [
+            "below person #89",
+            "right-of person #24",
+            "right-of person #88"
+          ]
+        },
+        {
+          "track_id": 88,
+          "label": "person",
+          "confidence_avg": 0.854,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "top-left",
+          "movement": "moving up, getting farther",
+          "path_length": 8.83,
+          "net_displacement": 7.822,
+          "direction_change_var": 0.0462,
+          "relations": [
+            "left-of person #24",
+            "left-of person #87",
+            "left-of person #89"
+          ]
+        },
+        {
+          "track_id": 89,
+          "label": "person",
+          "confidence_avg": 0.828,
+          "start_frame": 2,
+          "end_frame": 8,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 1.142,
+          "net_displacement": 0.526,
+          "direction_change_var": 1.4981,
+          "relations": [
+            "above person #87",
+            "right-of person #24",
+            "right-of person #88"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " Thank you for today. Thanks, Matt.",
+      "llm_scene_description": "In this scene, Paul Lang (person #24), a man in a suit, is seen interacting with a woman (likely person #87) in what appears to be a formal or professional setting. Initially, Paul is sitting on a chair and talking to the woman, but the interaction transitions as they stand and shake hands. The audio captures the woman thanking Paul, saying, \"Thank you for today. Thanks, Matt,\" suggesting the conclusion of a professional meeting or event. The setting and tone remain consistent with the formal and intellectual atmosphere of previous scenes, likely tied to discussions on multisensory AI or related academic topics."
+    },
+    {
+      "scene_index": 46,
+      "start_timecode": "00:16:00.026",
+      "end_timecode": "00:16:07.600",
+      "start_seconds": 960.0257333333334,
+      "end_seconds": 967.5999666666667,
+      "duration_seconds": 7.574233333333268,
+      "clip_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4\\.clips\\scene_0046.mp4",
+      "frame_captions": [
+        "a video frame of a person on a red carpet",
+        "a video frame of a person on a stage",
+        "a video frame of an orange and yellow background with the words ted"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "clapping (conf=0.35), applause (conf=0.82)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "In this scene, the focus shifts from the formal panel discussions on multisensory AI to a more public and celebratory environment. A person is seen transitioning from a red carpet (Frame 0) to a stage (Frame 1), followed by a visual of an orange and yellow background with the word \"TED\" (Frame 2), suggesting the setting is a TED Talk event. The audio captures applause and clapping, indicating audience approval or excitement, and the phrase \"Thank you,\" likely spoken by the person on stage. This scene appears to depict the conclusion of a TED Talk presentation, with the speaker receiving recognition from the audience. The professional and intellectual tone persists, aligning with the context of sharing innovative ideas, possibly related to the previously discussed multisensory AI themes."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 8236,
+      "chunk_len": 2,
+      "narrative": "### Objective Chronological Report:\n\nAt 00:00:00.000, the scene opens with a man riding a skateboard against a background transitioning between red and yellow tones. A title card displays the name \"Paul Lang,\" indicating his introduction. The audio begins with the words, “Gentlemen, I’m really excited for this next…” hinting at an upcoming announcement or moment of importance.\n\nAt 00:00:07.474, the setting shifts to a large auditorium. The audience is seated, and individuals on the stage suggest a formal panel discussion or presentation. The dialogue mentions TED Talks and guidelines, particularly changes to their traditional 18-minute limit and a new emphasis on conversations. This prominently introduces Paul Lang, a distinguished computer scientist affiliated with Carnegie Mellon and MIT.\n\nAt 00:00:15.883, the conversation centers around Paul Lang, described as an innovator and leader in sensory and AI research. The speaker uses a metaphor involving strawberries cannibalizing taste buds, reflecting on sensory perception, suggesting how artificial flavors like Jolly Ranchers influence the way people perceive natural tastes.\n\nAt 00:01:02.329, sensory exploration deepens as the speaker reflects on society’s focus on visual imagery due to platforms like social media and references literature such as *Slaughterhouse-Five* and Madeleine L’Engle’s works. Paul is introduced further as a world leader in sensory innovation and AI, emphasizing his work on advancing human potential and understanding sensory capabilities beyond traditional dimensions.\n\nAt 00:02:13.734, Paul Lang begins his address. He discusses the limitations of current AI systems compared to humans, particularly regarding sensory perception. He introduces his group, \"Multisensory Intelligence,\" which aims to create AI systems capable of perceiving and interacting like humans. He emphasizes the integration of sensory modalities such as touch, smell, and taste as fundamental to AI innovation, laying the foundation for the discussion ahead.\n\nAt 00:03:26.740, Paul identifies smell as a promising frontier in AI development. He explains the unique aspects of smell, such as its ability to detect food, beverages, or people present moments earlier, making it the only modality that offers insights into the past. A vision for sharing food aromas digitally with friends and family is presented, emphasizing how smell could deepen human connection.\n\nAt 00:04:22.796, Paul reflects humorously on his academic journey, which began during the rise of deep learning technologies in 2018. Faced with indecision between focusing on computer vision, speech processing, or natural language models, he chose the area of human communication, which integrates verbal words, facial expressions, and tone, noting its complexity.\n\nAt 00:05:21.922, the discussion shifts to multimodal AI models. Paul explains the fusion of vision, language, and behavior analysis, highlighting how these models better understand human interactions. He mentions industry-wide momentum toward such technologies, marking progress in vision-language AI research.\n\nAt 00:06:56.016, a deeper exploration of sensory possibilities begins. Paul discusses ranking human senses and considers whether AI could enable entirely new sensory experiences—such as the ability to perceive Wi-Fi or heat—through technology like brain-computer interfaces (BCIs). He emphasizes the intersection of neuroscience and AI innovations, envisioning how humanity could evolve alongside sensory technology.\n\nAt 00:09:37.911, Paul elaborates on cross-modal plasticity, a phenomenon in the human brain where lost sensory abilities are compensated by improving other senses. He contrasts this adaptability with AI models, which lack the ability to adapt across sensory modalities. He advocates for integrating tactile sensing into AI, emphasizing its challenges and importance, citing the difficulty robots face in mimicking intuitive human touch.\n\nAt 00:10:27.293, Paul introduces “haptic intuition gloves,” a breakthrough technology designed to simulate or restore the sense of touch. Similarly, “interaction gloves” are described later as a solution for individuals who’ve lost their ability to feel, offering sensory experiences through strong haptics. These innovations are part of ongoing efforts to make AI systems more multidimensional.\n\nAt 00:12:43.296, a forecast for brain-computer interface integration is given, with Paul predicting advancements in AI-equipped BCIs within the next 10 to 20 years. He anticipates lightweight, robust AI systems capable of being implanted in human brains while addressing challenges like privacy and augmenting rather than overriding human decision-making.\n\nAt 00:13:14.127, Paul emphasizes interdisciplinary collaboration in advancing AI research. He values researchers specializing in fields such as biology, chemistry, neuroscience, and technology, particularly for projects like \"AI for smell.\" He commends MIT’s Media Lab for integrating diverse disciplines to uncover new sensory and AI solutions.\n\nAt 00:14:17.790, Paul shares a vision of multisensory immersion: a system at MIT allowing users to relive personal memories, such as walking on Paris streets, enhanced through visual, haptic, and olfactory elements. This system seeks to deepen emotional and physical connections via personalized sensory experiences.\n\nAt 00:15:21.721, Paul closes with a candid confession about improvising his speech due to a lack of access to prepared questions. Although apologetic, he asks the audience for feedback, humorously acknowledging the spontaneity of the discussion and leaving the audience with a sense of authenticity.\n\nThroughout the event, Paul Lang consistently emerges as a thought leader, pioneering sensory innovation and AI integration to transform human communication and perception. His insights and demonstrations illustrate the potential of future technologies to broaden human experiences and redefine AI capabilities.\n### Detailed Chronological Report:\n\nThe sequence begins in a formal stage setting during an ongoing panel discussion. Paul Lang, a computer scientist and AI innovator, is stationary at the center of the stage, signifying his prominent role as a key participant or speaker. The audio captures Paul referencing an interview with the phrase, \"And the reason I did this interview,\" though the specific details or purpose of this interview are unclear. The formal and professional tone continues, consistent with previous discussions centered on multisensory AI, though the significance of this particular moment remains ambiguous.\n\nShortly after, Paul is seen engaging in a professional conversation with a woman in the same formal setting. He discusses his desire to promote an interview and organize a \"linear talk\" in upcoming semesters to draw attention to innovative ideas within cutting-edge AI research. His comments imply an intention to share and further develop topics related to multisensory AI, aligning with the ongoing themes of academic collaboration and intellectual exploration.\n\nLater, Paul is observed interacting with another woman in the same professional environment. Initially seated, he transitions to a standing position during the exchange, which concludes with them shaking hands. The woman expresses gratitude to Paul, saying, \"Thank you for today. Thanks, Matt,\" indicating the conclusion of a meeting or event. While details about \"Matt\" remain unclear, the scene retains a formal and intellectual tone, likely tied to discussions about AI research.\n\nThe final scene transitions to a more public and celebratory atmosphere. A person is seen moving from a red carpet onto a stage, with a backdrop displaying the word \"TED\" in orange and yellow, confirming the setting as a TED Talk event. Applause and clapping from the audience suggest positive reception, reinforcing the idea of recognition for the speaker’s presentation. The audio captures the phrase \"Thank you,\" likely spoken by the person on stage, concluding the event with a note of appreciation and excitement. This moment aligns with a celebration of sharing innovative ideas, possibly linked to the previously discussed themes of multisensory AI."
+    }
+  ],
+  "synopsis": "Summary:  \nThe video showcases a professional event centered around multisensory artificial intelligence (AI), with computer scientist Paul Lang serving as the main speaker. The narrative begins with a creative visual of Lang skateboarding against vibrant color transitions, introducing him as a distinguished innovator. The setting shifts to an auditorium for a formal TED Talk-style presentation, where Lang discusses AI advancements in sensory capabilities, particularly touch, smell, taste, and multimodal integration. The speech emphasizes breakthroughs like haptic gloves to simulate or restore touch, brain-computer interfaces for sensory perception, and technologies enabling smell-sharing or immersive memory reliving. Collaboration across disciplines is highlighted as vital to progress. The video concludes with applause during the TED Talk event, leaving an impression of optimism and authenticity in Lang’s spirited innovations.\n\n---\n\nWhat is happening in the video?  \nThe video presents Paul Lang giving a TED Talk-like presentation focused on multisensory AI advancements. He discusses past challenges, ongoing innovations in sensory perception, collaboration across fields, and future-tech predictions.\n\nWhat are the key events?  \nKey events include Lang’s introduction as an innovator, his TED Talk presentation, descriptions of sensory-focused AI like smell-sharing and touch restoration technologies, and predictions of future sensory AI through BCIs.\n\nWhat are the key actions and who performed them?  \nPaul Lang gives a comprehensive TED Talk. He describes AI technologies, shares personal stories, engages with colleagues professionally, improvises his speech, and receives applause from the audience.\n\nWhat are the main conflicts and problems encountered?  \nLang highlights technical and ethical challenges in advancing sensory AI, such as creating adaptable AI systems, integrating BCIs without privacy violations, and overcoming the limitations of current technology.\n\nWho is the main character? Describe their journey.  \nPaul Lang is the main character. A computer scientist affiliated with leading institutions, he presents and reflects on his journey from indecision in 2018, to innovating sensory AI with interdisciplinary collaborations, culminating in future-tech predictions and addressing audience questions.\n\nList the characters. For each character, describe their appearance, traits, and role in the story.  \n- Paul Lang: A computer scientist known for sensory AI; portrayed as innovative, intellectual, and candid in his speech. Central figure of the video.  \n- Two unnamed women: Appear as professional colleagues; engage in formal exchanges with Lang emphasizing collaboration and gratitude.  \n- Audience members: Seen clapping and participating in the TED Talk event; provide positive reception to Lang’s presentation.  \n\nWhat are some significant quotes from the video and who said them?  \n- “Gentlemen, I’m really excited for this next…” - Unknown speaker introducing the event.  \n- Lang humorously reflects: “And the reason I did this interview…” and “Thank you for today. Thanks, Matt,” highlighting his collaborative tone.  \n\nWhat is the setting? Did it change? How is it related to the story?  \nThe setting transitions from an abstract opening to a formal auditorium where Lang gives his TED Talk. Later, professional exchanges and a celebratory red-carpet TED stage reflect his intellectual and public roles. Setting shifts emphasize the story’s progression.\n\nHow did the video start? Explain the start.  \nThe video begins dynamically with Lang skateboarding against vivid red and yellow tones. This creative imagery introduces Lang as a prominent figure.\n\nHow did the video end? Explain the ending.  \nThe video ends positively with a celebratory scene at the TED Talk stage. Applause and Lang’s appreciation signal audience approval for his presentation and ideas.\n\nWhat objects are central to the video and when do they appear?  \nKey objects include the haptic gloves mentioned during Lang’s sensory discussion and the TED stage, emphasized in the conclusion. Both symbolize technological innovation and intellectual achievement.\n\nWhat is the most important thing said or heard?  \nLang’s emphasis on sensory AI breakthroughs, particularly integrating touch, smell, and BCIs, is the most significant part of the video due to its transformative implications.\n\nWhat is different at the end vs the beginning?  \nThe video transitions from Lang’s dynamic introduction to a formal intellectual discussion to a celebratory conclusion, showcasing his innovation journey.\n\nWhat type of video is this?  \nThe video is an intellectual presentation or lecture, styled in the format of a TED Talk focused on advanced AI technologies.\n\nWhat is the goal or intent or theme of the video?  \nThe video aims to educate viewers about advancements in AI technologies, particularly multisensory AI, and inspire continued innovation and collaboration across disciplines.\n\nList the moods and tones present, explain each one.  \n- Excitement: Demonstrated in Lang’s dynamic opening and the audience’s enthusiastic reception.  \n- Intellectual: The focus on sensory AI advancements throughout.  \n- Optimism: Lang’s predictions for future sensory technologies.  \n- Humor: Lang’s candid remarks add levity to the discussion.  \n\nWhat context is missing or assumed? What would require outside knowledge?  \nNot explicitly stated: Details about Lang’s personal background, extent of current AI capabilities compared to human senses, specific collaborative achievements, and challenges.\n\n---\n\nWhy is sensory AI important to human development?  \nSensory AI can enhance communication, restore sensory loss, and expand human experiential understanding, paving the way for augmented abilities.\n\nWhat do haptic gloves do, and why are they significant?  \nHaptic gloves simulate or restore tactile senses, enabling sensory experiences for individuals with sensory loss. They exemplify advancements in sensory AI.\n\nWhat are BCIs, and how are they integrated into AI?  \nBrain-computer interfaces connect neurological functions with technology to enhance sensory perception, specifically enabling new senses like Wi-Fi and heat detection.\n\nHow is smell analyzed in sensory AI?  \nLang describes smell as essential for detecting past interactions with food, people, or beverages, and predicts its use in digital aroma-sharing to deepen human connections.\n\nWhat challenges are associated with sensory integration in AI?  \nTechnical difficulties, ethical concerns about privacy, and limited adaptability compared to human senses are barriers discussed by Lang.\n\nHow does Lang define multimodal AI models?  \nMultimodal models combine vision, language, and behavior analysis, enabling better responses to human interaction.\n\nWhy does interdisciplinary collaboration matter in AI research?  \nLang emphasizes collaboration among neuroscience, biology, chemistry, and technology for breakthroughs like smell-based sensory AI.\n\nWhat does Lang predict for AI advancements in the next decade?  \nLang foresees lightweight, robust AI-equipped BCIs within 10–20 years, capable of enhancing human cognition without sacrificing privacy.\n\nWhat literary works does Lang reference?  \nLang mentions *Slaughterhouse-Five* and Madeleine L’Engle’s books to highlight societal sensory fixation and its cultural implications.\n\nWhat role does the TED Talk format play in the video?  \nThe TED Talk framework provides a formal platform for Lang to present ideas and interact with the public, reinforcing the video’s intellectual tone.\n\nDoes Lang improvise during his speech?  \nYes, he candidly admits improvising due to unavailability of prepared questions, adding authenticity to his presentation.\n\nWhat is cross-modal plasticity, and how does it relate to AI?  \nCross-modal plasticity allows humans to adapt when senses are lost, inspiring efforts to make AI similarly adaptable.\n\nWhat feedback does Lang request from the audience?  \nLang humorously asks for audience input on his spontaneous speech, fostering open communication.\n\nWhat industries could benefit from sensory AI advancements?  \nIndustries like healthcare, entertainment, tech development, and communication could utilize tactile and olfactory innovations.\n\nWhat makes smell a distinctive sensory feature?  \nSmell’s ability to capture moments from the past uniquely deepens emotional and physical connections, unlike other senses.",
+  "rag_embedding": {
+    "rag_path": "_processed\\AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4/rag_embedding.json",
+    "context_count": 82,
+    "embedding_dim": 3072,
+    "model": "gemini-embedding-001"
+  }
+}
