@@ -1,0 +1,339 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\._SHORT.mp4",
+  "video_length": "00:00:07.257",
+  "total_process_sec": 119.33386,
+  "scene_number": 2,
+  "start_process": "2026-02-10 22:50:31",
+  "end_process": "2026-02-10 22:53:51",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 4.45,
+      "used_RAM_GB": 11.38,
+      "RAM_usage_percent": 71.9
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 496.37,
+      "disk_free_GB": 436.61,
+      "disk_usage_percent": 53.2
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "params": {
+    "improve_motion_detection": false,
+    "prioritize_speed": false,
+    "pyscene_threshold": 27,
+    "pyscene_shortest": 2,
+    "frames_per_scene": 3,
+    "frame_resolution": 320,
+    "blip_start_prompt": "a video frame of",
+    "blip_caption_len": 30,
+    "blip_num_beams": 4,
+    "blip_do_sample": false,
+    "yolo_conf_thres": 0.8,
+    "yolo_iou_thres": 0.5,
+    "ast_target_sr": 16000,
+    "asr_model_size": "small",
+    "asr_use_vad": true,
+    "asr_target_sr": 16000,
+    "llm_scene_history": 5,
+    "llm_chunk_len": 50000,
+    "llm_summary_len": 50000,
+    "llm_cooldown_sec": 5,
+    "rag_top_k_context": 10
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 0.21013,
+      "cpu_time_sec": 1.125,
+      "ram_before_MB": 518,
+      "ram_after_MB": 531,
+      "ram_used_MB": 13,
+      "io_read_MB": 2.990528106689453,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 0.36118,
+      "cpu_time_sec": 0.0,
+      "ram_before_MB": 531,
+      "ram_after_MB": 531,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.006450653076171875,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 0.39495,
+      "cpu_time_sec": 3.28125,
+      "ram_before_MB": 531,
+      "ram_after_MB": 532,
+      "ram_used_MB": 1,
+      "io_read_MB": 7.156289100646973,
+      "io_write_MB": 0.1175384521484375,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 15.62931,
+      "cpu_time_sec": 15.51562,
+      "ram_before_MB": 532,
+      "ram_after_MB": 1574,
+      "ram_used_MB": 1042,
+      "io_read_MB": 0.03425884246826172,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_fps": {
+      "wall_time_sec": 1.57262,
+      "cpu_time_sec": 14.17188,
+      "ram_before_MB": 1574,
+      "ram_after_MB": 1577,
+      "ram_used_MB": 3,
+      "io_read_MB": 35.971131324768066,
+      "io_write_MB": 0.5380125045776367,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 3.6794,
+      "cpu_time_sec": 27.39062,
+      "ram_before_MB": 1577,
+      "ram_after_MB": 2626,
+      "ram_used_MB": 1049,
+      "io_read_MB": 22.177271842956543,
+      "io_write_MB": 0.6493635177612305,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "wall_time_sec": 4.00903,
+      "cpu_time_sec": 19.125,
+      "ram_before_MB": 2626,
+      "ram_after_MB": 2984,
+      "ram_used_MB": 358,
+      "io_read_MB": 8.356587409973145,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "wall_time_sec": 17.12063,
+      "cpu_time_sec": 116.35938,
+      "ram_before_MB": 2984,
+      "ram_after_MB": 2230,
+      "ram_used_MB": -754,
+      "io_read_MB": 926.3428993225098,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "wall_time_sec": 21.39718,
+      "cpu_time_sec": 0.48438,
+      "ram_before_MB": 2207,
+      "ram_after_MB": 2212,
+      "ram_used_MB": 5,
+      "io_read_MB": 1.1958723068237305,
+      "io_write_MB": 0.0002193450927734375,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "summarize_scenes": {
+      "wall_time_sec": 7.94607,
+      "cpu_time_sec": 0.03125,
+      "ram_before_MB": 2212,
+      "ram_after_MB": 2212,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0015897750854492188,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "synthesize_synopsis": {
+      "wall_time_sec": 31.37117,
+      "cpu_time_sec": 0.0,
+      "ram_before_MB": 2212,
+      "ram_after_MB": 2212,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.007641792297363281,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "make_embedding": {
+      "wall_time_sec": 15.64219,
+      "cpu_time_sec": 1.46875,
+      "ram_before_MB": 2212,
+      "ram_after_MB": 2225,
+      "ram_used_MB": 13,
+      "io_read_MB": 0.7752056121826172,
+      "io_write_MB": 6.151400566101074,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:06.340",
+      "start_seconds": 0.0,
+      "end_seconds": 6.339666666666666,
+      "duration_seconds": 6.339666666666666,
+      "clip_path": "_processed\\_SHORT.mp4\\.clips\\scene_0000.mp4",
+      "frame_captions": [
+        "a video frame of a person riding a skateboard",
+        "a video frame of a car driving down a street",
+        "a video frame of a car driving down a street"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 2,
+          "label": "truck",
+          "confidence_avg": 0.903,
+          "start_frame": 11,
+          "end_frame": 25,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer, moving in a loop",
+          "path_length": 83.09,
+          "net_displacement": 22.01,
+          "direction_change_var": 2.0844,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.59)",
+      "audio_speech": "?]",
+      "llm_scene_description": "Based on the provided clues, here is an objective report of the scene:\n\nThe scene begins with a person riding a skateboard (Frame 0). The focus then shifts to a car driving down a street (Frames 1 and 2). A truck, labeled as \"truck #2,\" is observed moving left in a looping motion, appearing to get closer while staying within the middle-center of the frame. The audio includes music, though the confidence in this identification is moderate (confidence score: 0.59). No dialogue or distinct sound effects are clearly identified.\n\nAt this point, the scene appears to depict a transition or juxtaposition between the skateboarder and the vehicles on the street, possibly setting up a connection or contrast between these elements. There is no clear indication of interaction or conflict between the characters or objects yet. The context remains neutral and suitable for a PG-13 audience."
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:06.340",
+      "end_timecode": "00:00:07.257",
+      "start_seconds": 6.339666666666666,
+      "end_seconds": 7.257249999999999,
+      "duration_seconds": 0.917583333333333,
+      "clip_path": "_processed\\_SHORT.mp4\\.clips\\scene_0001.mp4",
+      "frame_captions": [
+        "a video frame of a woman driving a car",
+        "a video frame of a woman driving a car",
+        "a video frame of a woman driving a car"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 2.928,
+          "net_displacement": 2.408,
+          "direction_change_var": 2.3414,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.51)",
+      "audio_speech": "",
+      "llm_scene_description": "Scene 0 Report:\n\nThe scene focuses on a woman driving a car, as indicated by the captions in all three frames (Frames 0, 1, and 2). The woman remains stationary within the middle-center of the frame throughout the sequence, suggesting that the camera is fixed on her as she drives. The audio features music, though the confidence in identifying it as music is moderate (confidence score: 0.51). No dialogue or distinct sound effects are present.\n\nThere is no indication of interaction with other characters or objects, nor any significant movement or change in the environment. The scene appears calm and neutral, possibly serving as a transitional moment or establishing shot to introduce the woman or her activity. The context remains consistent with a PG-13 rating, with no explicit or dramatic events occurring.\n\nAt this point, the connection between this scene and the previous one (Scene -1) is unclear, though the focus has shifted entirely from the skateboarder and vehicles to the woman driving. This may suggest a narrative pivot or introduction of a new character."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 1656,
+      "chunk_len": 1,
+      "narrative": "**Chronological Report:**\n\nThe scene begins at 00:00:00.000 with a skateboarder riding, introduced as the first focus of the sequence. The camera then shifts attention to vehicles on the street—a car moving down the road and a truck, labeled \"truck #2,\" looping leftward while staying prominently visible in the middle-center of the frame. The audio features music, though identification confidence is moderate (0.59). No dialogue or distinct sound effects are noted. The visual elements suggest a neutral setup, possibly hinting at a comparison or connection between the skateboarder and the vehicles, but no interaction or conflict is depicted.\n\nAt 00:00:06.340, the focus transitions completely to a stationary camera view of a woman driving a car. She remains in the middle-center of the frame throughout this sequence, with captions consistently identifying her role. The accompanying audio continues to feature music, albeit with moderate confidence in this classification (0.51). As with the prior scene, no significant environmental changes, dialogue, or sound effects occur, maintaining a calm and neutral tone. The scene introduces the woman and her action of driving, possibly establishing her relevance as a new character or pivoting the storyline. \n\nWhile the first sequence and the second provide contrasting focal points—the movement of vehicles and skateboarder versus the stationary view of the woman—no explicit narrative link or interaction between them can be determined from the current information. Both sequences remain consistent with PG-13 standards, depicting neutral and transitional moments without dramatic or explicit events."
+    }
+  ],
+  "synopsis": "### Summary:\nThe video begins with a skateboarder riding along the street, transitioning to a focus on vehicles, including a car and a truck labeled \"truck #2.\" The truck loops leftward while remaining prominent in the frame. The sequence then shifts to a stationary camera view of a woman driving a car. Music plays throughout the video, but there is no dialogue or apparent sound effects. The video remains neutral in tone, with no explicit interaction, narrative connections, or dramatic events depicted between the skateboarder, vehicles, and the woman.\n\n---\n\n**What is happening in the video?**  \nThe video portrays a skateboarder riding and vehicles on the street, followed by a stationary camera view of a woman driving. These elements appear unrelated, forming two distinct visual sequences accompanied by music. There is no dialogue or inherent conflict.\n\n---\n\n**What are the key events?**  \nKey events include: (1) A skateboarder riding down the street; (2) A car and truck (\"truck #2\") moving on the road, with the truck looping leftward; (3) The scene transitions to a stationary view of a woman driving her car.\n\n---\n\n**What are the key actions and who performed them?**  \n- The skateboarder rides down the street.  \n- The car moves forward, and \"truck #2\" performs a looping leftward motion.  \n- A woman drives a car in a stationary camera sequence.\n\n---\n\n**What are the main conflicts and problems encountered?**  \nNot explicitly stated. No conflicts or problems are presented.\n\n---\n\n**Who is the main character? Describe their journey.**  \nNot explicitly stated. The video introduces different focal points, but it does not establish a definitive main character or discernible journey.\n\n---\n\n**List the characters. For each character, describe their appearance, traits, and role in the story.**  \n- **Skateboarder**: No physical description is provided. Their role appears to be a neutral rider in the opening sequence.  \n- **Woman in the car**: No physical description is provided. Her role involves driving during the second sequence, possibly a transitional or observational point.  \n- **Truck (“truck #2”)**: Not a person; it performs a loop on the road, remaining prominently visible in the middle-center.\n\n---\n\n**What are some significant quotes from the video and who said them?**  \nNot explicitly stated. No dialogue or quotes are present in the video.  \n\n---\n\n**What is the setting? Did it change? How is it related to the story?**  \nThe setting is an outdoor street environment at first, where the skateboarder and vehicles are moving. It changes to the interior view of a car during the second sequence, introducing a stationary perspective. The setting does not explicitly establish a connection to the narrative, if any.\n\n---\n\n**How did the video start? Explain the start.**  \nThe video starts with a skateboarder riding along the street, with music playing. There is a neutral tone with no dialogue or apparent story setup.\n\n---\n\n**How did the video end? Explain the ending.**  \nThe video ends focusing on the woman driving the car in a stationary camera view while music continues playing. No dramatic or concluding events occur.\n\n---\n\n**What objects are central to the video and when do they appear?**  \n- **Skateboard**: Central to the opening scene, as the skateboarder is riding.  \n- **Car**: Visible in both sequences, driven by the woman in the second.  \n- **Truck (“truck #2”)**: Prominent in the transitional motion within the first sequence.\n\n---\n\n**What is the most important thing said or heard?**  \nNot explicitly stated. No dialogue or significant audio other than background music is included.\n\n---\n\n**What is different at the end vs. the beginning?**  \nThe beginning focuses on movement—skateboarder riding and vehicles on the road—while the end shifts to a stationary view of a woman driving. The perspective changes from dynamic to static.\n\n---\n\n**What type of video is this?**  \nThe video is observational and transitional, likely emphasizing visuals and subtle movement without a defined plot or dialogue.  \n\n---\n\n**What is the goal or intent or theme of the video?**  \nNot explicitly stated. The theme appears neutral, potentially portraying everyday motion or visual transitions without overt narrative intent.\n\n---\n\n**List the moods and tones present, explain each one.**  \n- **Neutral**: The skateboarder and vehicles moving along the street convey a regular, calm mood.  \n- **Calm**: The stationary view of the woman driving sustains a tranquil tone without dramatic events.  \n\n---\n\n**What context is missing or assumed? What would require outside knowledge?**  \nIt is not clear why the skateboarder, vehicles, and woman are focused on. The relationships or connections between these elements are missing, requiring outside knowledge to infer a narrative or thematic goal.\n\n---\n\n**Why is the camera stationary when the woman is introduced?**  \nNot explicitly stated. The stationary perspective may serve to focus purely on the woman driving, isolating her action without external interference.\n\n---\n\n**Is the music relevant to the story?**  \nNot explicitly stated. The music appears as a background element without evident ties to plot or themes.\n\n---\n\n**Why is \"truck #2\" labeled specifically?**  \nNot explicitly stated. The video's labeling might highlight the truck's motion as significant, though this importance is unclear.\n\n---\n\n**Do the skateboarder and woman know each other?**  \nNot explicitly stated. No interactions or suggested connections are presented within the video.\n\n---\n\n**What is the pacing of the video?**  \nThe pacing is slow and steady, with smooth transitions between scenes. The tone remains calm throughout.\n\n---\n\n**Why does the truck loop leftward?**  \nNot explicitly stated. The motion appears observational and does not suggest a narrative purpose.\n\n---\n\n**How does the absence of dialogue affect the video?**  \nThe lack of dialogue shifts focus onto visuals and actions, creating an observational tone without thematic clarity.\n\n---\n\n**What perspective is used in the video? How does it affect storytelling?**  \nThe skateboarder and vehicles are depicted externally, while the view of the woman driving is stationary, possibly creating a detached yet focused visualization style.\n\n---\n\n**Does the video convey any emotions through visuals?**  \nNot explicitly stated. The calm actions and transitions suggest neutrality rather than explicit emotion.\n\n---\n\n**What connects the skateboarder and the woman?**  \nNot explicitly stated. The video does not establish a link between these two characters.\n\n---\n\n**Could the skateboarder’s journey be a metaphor?**  \nNot explicitly stated. The video’s observational tone lacks apparent symbolic elements.\n\n---\n\n**Does the truck carry any objects?**  \nNot explicitly stated. The video provides no detail about the truck’s load or purpose.\n\n---\n\n**How long does each scene last?**  \nThe sequence featuring the skateboarder and vehicles lasts about six seconds (00:00:00.000–00:00:06.340), followed by the stationary view of the woman driving.\n\n---\n\n**How does the visual framing of each scene impact the story?**  \nThe framing isolates each subject—the skateboarder, vehicles, and woman—potentially encouraging focus on individual actions rather than narrative connections.\n\n---\n\n**Is there a visible destination for the skateboarder or vehicles?**  \nNot explicitly stated. The video does not clarify destinations for either the skateboarder or the vehicles.\n\n---\n\n**Does the woman react to anything while driving?**  \nNot explicitly stated. The stationary view of the woman driving does not depict any reactions or changes in behavior.\n\n---\n\n**Does the environment suggest any specific time of day?**  \nNot explicitly stated. The video provides no visual cues to indicate the time of day.",
+  "rag_embedding": {
+    "rag_path": "_processed\\_SHORT.mp4/rag_embedding.json",
+    "context_count": 71,
+    "embedding_dim": 3072,
+    "model": "gemini-embedding-001"
+  }
+}

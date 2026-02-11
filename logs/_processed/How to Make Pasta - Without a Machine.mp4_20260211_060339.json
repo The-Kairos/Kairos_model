@@ -1,0 +1,2455 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\How to Make Pasta - Without a Machine.mp4",
+  "video_length": "00:05:28.000",
+  "total_process_sec": 1299.49041,
+  "scene_number": 58,
+  "start_process": "2026-02-11 05:59:08",
+  "end_process": "2026-02-11 06:03:38",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 6.82,
+      "used_RAM_GB": 9.02,
+      "RAM_usage_percent": 56.9
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 488.68,
+      "disk_free_GB": 444.3,
+      "disk_usage_percent": 52.4
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "params": {
+    "improve_motion_detection": false,
+    "prioritize_speed": false,
+    "pyscene_threshold": 27,
+    "pyscene_shortest": 2,
+    "frames_per_scene": 3,
+    "frame_resolution": 320,
+    "blip_start_prompt": "a video frame of",
+    "blip_caption_len": 30,
+    "blip_num_beams": 4,
+    "blip_do_sample": false,
+    "yolo_conf_thres": 0.8,
+    "yolo_iou_thres": 0.5,
+    "ast_target_sr": 16000,
+    "asr_model_size": "small",
+    "asr_use_vad": true,
+    "asr_target_sr": 16000,
+    "llm_scene_history": 5,
+    "llm_chunk_len": 50000,
+    "llm_summary_len": 50000,
+    "llm_cooldown_sec": 0,
+    "rag_top_k_context": 10
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 5.53374,
+      "cpu_time_sec": 25.42188,
+      "ram_before_MB": 514,
+      "ram_after_MB": 527,
+      "ram_used_MB": 13,
+      "io_read_MB": 360.3068218231201,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 6.61712,
+      "cpu_time_sec": 0.25,
+      "ram_before_MB": 527,
+      "ram_after_MB": 528,
+      "ram_used_MB": 1,
+      "io_read_MB": 0.18859291076660156,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 7.9647,
+      "cpu_time_sec": 54.5625,
+      "ram_before_MB": 538,
+      "ram_after_MB": 622,
+      "ram_used_MB": 84,
+      "io_read_MB": 685.5385999679565,
+      "io_write_MB": 3.5943918228149414,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 525.01489,
+      "cpu_time_sec": 522.875,
+      "ram_before_MB": 622,
+      "ram_after_MB": 1653,
+      "ram_used_MB": 1031,
+      "io_read_MB": 0.03395271301269531,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 122.37664,
+      "cpu_time_sec": 967.78125,
+      "ram_before_MB": 1848,
+      "ram_after_MB": 5937,
+      "ram_used_MB": 4089,
+      "io_read_MB": 22.177271842956543,
+      "io_write_MB": 28.734617233276367,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "wall_time_sec": 63.91349,
+      "cpu_time_sec": 470.0625,
+      "ram_before_MB": 1667,
+      "ram_after_MB": 2029,
+      "ram_used_MB": 362,
+      "io_read_MB": 362.9238157272339,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "wall_time_sec": 255.05338,
+      "cpu_time_sec": 1963.375,
+      "ram_before_MB": 2029,
+      "ram_after_MB": 2111,
+      "ram_used_MB": 82,
+      "io_read_MB": 1280.8898668289185,
+      "io_write_MB": 4.76837158203125e-06,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "wall_time_sec": 202.16926,
+      "cpu_time_sec": 0.96875,
+      "ram_before_MB": 523,
+      "ram_after_MB": 529,
+      "ram_used_MB": 6,
+      "io_read_MB": 1.2398996353149414,
+      "io_write_MB": 0.0002193450927734375,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "summarize_scenes": {
+      "wall_time_sec": 18.733,
+      "cpu_time_sec": 0.01562,
+      "ram_before_MB": 529,
+      "ram_after_MB": 530,
+      "ram_used_MB": 1,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0037746429443359375,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "synthesize_synopsis": {
+      "wall_time_sec": 22.05197,
+      "cpu_time_sec": 0.01562,
+      "ram_before_MB": 530,
+      "ram_after_MB": 530,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.008116722106933594,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "make_embedding": {
+      "wall_time_sec": 16.67013,
+      "cpu_time_sec": 1.625,
+      "ram_before_MB": 530,
+      "ram_after_MB": 544,
+      "ram_used_MB": 14,
+      "io_read_MB": 0.7752056121826172,
+      "io_write_MB": 8.43907642364502,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_fps": {
+      "wall_time_sec": 53.39209,
+      "cpu_time_sec": 492.6875,
+      "ram_before_MB": 1630,
+      "ram_after_MB": 1848,
+      "ram_used_MB": 218,
+      "io_read_MB": 4721.4898290634155,
+      "io_write_MB": 28.10202121734619,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:06.500",
+      "start_seconds": 0.0,
+      "end_seconds": 6.5,
+      "duration_seconds": 6.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0000.mp4",
+      "frame_captions": [
+        "a video frame of pasta on a cutting board",
+        "a video frame of pasta on a cutting board",
+        "a video frame of pasta on a cutting board"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "donut",
+          "confidence_avg": 0.89,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.",
+      "llm_scene_description": "The scene depicts a cooking tutorial focused on making homemade pasta dough. The video shows pasta on a cutting board across multiple frames, with a stationary object (possibly a decorative item or unrelated object) labeled as \"donut #1\" in the bottom-left corner. Background music is playing, and the narrator introduces the tutorial, saying, \"Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.\""
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:06.500",
+      "end_timecode": "00:00:11.667",
+      "start_seconds": 6.5,
+      "end_seconds": 11.666666666666666,
+      "duration_seconds": 5.166666666666666,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0001.mp4",
+      "frame_captions": [
+        "a video frame of pasta being made on a wooden cutting board",
+        "a video frame of pasta being made on a wooden cutting board",
+        "a video frame of a person kning pasta on a wooden table"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "music (conf=0.34)",
+      "audio_speech": " I'm not making the fanciest or the best or the most luxurious recipe, but it's easy and you",
+      "llm_scene_description": "The current scene continues the cooking tutorial on making homemade pasta dough. The video shows pasta being worked on a wooden cutting board and table, with the narrator explaining their approach: \"I'm not making the fanciest or the best or the most luxurious recipe, but it's easy.\" Background music plays faintly. The focus remains on the simplicity of the recipe, with no new objects or characters introduced."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:11.667",
+      "end_timecode": "00:00:14.333",
+      "start_seconds": 11.666666666666666,
+      "end_seconds": 14.333333333333334,
+      "duration_seconds": 2.666666666666668,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0002.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of food",
+        "a video frame of a person cutting a piece of pasta",
+        "a video frame of a bowl of food"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 2,
+          "label": "bowl",
+          "confidence_avg": 0.831,
+          "start_frame": 1,
+          "end_frame": 9,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 2.74,
+          "net_displacement": 0.512,
+          "direction_change_var": 1.2844,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " probably already have all the ingredients in your house.",
+      "llm_scene_description": "The scene continues the cooking tutorial, now focusing on a bowl of prepared food and the process of cutting pasta. The video alternates between shots of the bowl and a person cutting a piece of pasta, suggesting the final stages of the recipe. The bowl (tracked as \"bowl #2\") remains stationary in the center of the frame. The narrator's voice is heard, stating, \"probably already have all the ingredients in your house,\" emphasizing the simplicity and accessibility of the recipe. No new characters or significant objects are introduced. The tutorial maintains its straightforward and approachable tone."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:14.333",
+      "end_timecode": "00:00:18.167",
+      "start_seconds": 14.333333333333334,
+      "end_seconds": 18.166666666666668,
+      "duration_seconds": 3.833333333333334,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0003.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of food",
+        "a video frame of a bowl of food",
+        "a video frame of a bowl of pasta with a fork in it"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 2,
+          "label": "bowl",
+          "confidence_avg": 0.844,
+          "start_frame": 8,
+          "end_frame": 13,
+          "start_pos": "middle-center",
+          "end_pos": "top-center",
+          "movement": "moving up-right, getting farther",
+          "path_length": 98.681,
+          "net_displacement": 71.202,
+          "direction_change_var": 0.1111,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " So if the past aisle at your grocery store is empty, don't panic.",
+      "llm_scene_description": "The scene appears to continue the cooking tutorial, now focusing on a bowl of pasta with a fork in it. The bowl (tracked as \"bowl #2\") is seen moving upward and to the right, suggesting it is being lifted or repositioned, possibly by the person conducting the tutorial. The audio includes a voice stating, \"So if the pasta aisle at your grocery store is empty, don't panic,\" which seems to reassure viewers about making pasta at home. This aligns with the tutorial's emphasis on simplicity and accessibility. No new characters or significant objects are introduced. The tone remains instructional and encouraging."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:18.167",
+      "end_timecode": "00:00:22.833",
+      "start_seconds": 18.166666666666668,
+      "end_seconds": 22.833333333333332,
+      "duration_seconds": 4.666666666666664,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0004.mp4",
+      "frame_captions": [
+        "a video frame of a black background with a white border",
+        "a video frame of a person washing their hands in a bathroom sink",
+        "a video frame of a person washing their hands in a sink"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 5,
+          "label": "person",
+          "confidence_avg": 0.864,
+          "start_frame": 7,
+          "end_frame": 17,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 45.494,
+          "net_displacement": 7.328,
+          "direction_change_var": 2.6593,
+          "relations": [
+            "right-of bottle #6"
+          ]
+        },
+        {
+          "track_id": 6,
+          "label": "bottle",
+          "confidence_avg": 0.814,
+          "start_frame": 8,
+          "end_frame": 18,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.325,
+          "net_displacement": 0.291,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #5"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " have no fear, it's a super easy to make at home. First things first, for God's sake...",
+      "llm_scene_description": "The scene transitions away from the cooking tutorial to show a person washing their hands in a bathroom sink. The focus is on hygiene, with the person (tracked as \"person #5\") standing to the right of a stationary bottle (likely soap, tracked as \"bottle #6\"). The audio shifts to a new voice, stating, \"have no fear, it's super easy to make at home. First things first, for God's sake...\" This suggests a potential connection to the earlier tutorial, possibly emphasizing cleanliness or preparation before cooking. The tone remains instructional, though the context has shifted."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:22.833",
+      "end_timecode": "00:00:26.667",
+      "start_seconds": 22.833333333333332,
+      "end_seconds": 26.666666666666668,
+      "duration_seconds": 3.8333333333333357,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0005.mp4",
+      "frame_captions": [
+        "a video frame of a person cutting a piece of wood",
+        "a video frame of a person ' s hand on a table",
+        "a video frame of a person cutting a piece of wood"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.898,
+          "start_frame": 3,
+          "end_frame": 15,
+          "start_pos": "top-left",
+          "end_pos": "middle-center",
+          "movement": "moving down-right, getting closer, moving in a loop",
+          "path_length": 246.333,
+          "net_displacement": 71.463,
+          "direction_change_var": 6.2,
+          "relations": []
+        }
+      ],
+      "audio_natural": "silence (conf=0.42)",
+      "audio_speech": " Wash your hands people and sanitize your work surface.",
+      "llm_scene_description": "The current scene appears to continue the instructional theme, transitioning back to a focus on preparation and hygiene. A person (tracked as \"person #8\") is shown cutting a piece of wood, possibly on a work surface, with alternating shots of their hand on a table. The audio includes a voice saying, \"Wash your hands, people, and sanitize your work surface,\" reinforcing the importance of cleanliness. This suggests a shift in focus from cooking to general preparation or safety practices, potentially tying back to the earlier emphasis on hygiene in Scene -1. The tone remains instructional, with no new significant objects or characters introduced."
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:26.667",
+      "end_timecode": "00:00:31.833",
+      "start_seconds": 26.666666666666668,
+      "end_seconds": 31.833333333333332,
+      "duration_seconds": 5.166666666666664,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0006.mp4",
+      "frame_captions": [
+        "a video frame of a blend being poured into a measuring cup",
+        "a video frame of an american flag in a measuring cup",
+        "a video frame of an american flag being added in a measuring cup"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 8,
+          "label": "cup",
+          "confidence_avg": 0.885,
+          "start_frame": 0,
+          "end_frame": 20,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting farther, moving in a loop",
+          "path_length": 50.332,
+          "net_displacement": 9.457,
+          "direction_change_var": 3.3919,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.67)",
+      "audio_speech": " Then you'll need two cups of flour.",
+      "llm_scene_description": "The current scene appears to return to the cooking tutorial, focusing on measuring ingredients. A measuring cup (tracked as \"cup #8\") is shown being moved, with a blend being poured into it. The visual then shifts to an unexpected and unclear image of an American flag appearing in or being added to the measuring cup. The audio includes faint background music and a voice stating, \"Then you'll need two cups of flour,\" suggesting the continuation of the recipe instructions. The sudden appearance of the flag in the measuring cup may be a visual metaphor or editing error, as it does not align with the straightforward tone of the tutorial so far. The scene maintains an instructional focus, though the imagery introduces some ambiguity."
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:31.833",
+      "end_timecode": "00:00:36.000",
+      "start_seconds": 31.833333333333332,
+      "end_seconds": 36.0,
+      "duration_seconds": 4.166666666666668,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0007.mp4",
+      "frame_captions": [
+        "a video frame of a piece of wood that has been stripped off",
+        "a video frame of a person kning flour on a wooden table",
+        "a video frame of flour being made on a wooden cutting board"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.816,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.72)",
+      "audio_speech": " Dump the flour onto your clean work surface and create a little wh...",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. A person is shown kneading flour on a wooden table, with flour being poured or spread onto a wooden cutting board. The audio provides instructions, stating, \"Dump the flour onto your clean work surface and create a little wh...,\" though the final word is cut off. Background music plays faintly. The emphasis remains on the step-by-step process of making dough, aligning with the instructional tone of the previous scenes. The person in the scene appears to be the same individual conducting the tutorial, though their identity remains unspecified. The scene reinforces the tutorial's focus on simplicity and hands-on preparation."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:00:36.000",
+      "end_timecode": "00:00:40.667",
+      "start_seconds": 36.0,
+      "end_seconds": 40.666666666666664,
+      "duration_seconds": 4.666666666666664,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0008.mp4",
+      "frame_captions": [
+        "a video frame of a person putting flour onto a wooden table",
+        "a video frame of a person putting flour onto a wooden table",
+        "a video frame of a person kning flour on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 11,
+          "label": "person",
+          "confidence_avg": 0.869,
+          "start_frame": 4,
+          "end_frame": 16,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 79.665,
+          "net_displacement": 14.237,
+          "direction_change_var": 5.81,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.59)",
+      "audio_speech": " well in the center.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. A person (tracked as \"person #11\") is shown spreading flour onto a wooden table and then kneading it, suggesting the next step in making homemade pasta or bread. The audio features faint music and an unclear phrase, \"well in the center,\" which may refer to creating a well in the flour for mixing ingredients. The tutorial maintains its instructional tone, emphasizing hands-on techniques and simplicity. The person appears to be the same individual leading the tutorial in previous scenes, though their identity remains unspecified. The scene reinforces the step-by-step process of dough preparation, aligning with earlier themes of accessibility and practicality."
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:00:40.667",
+      "end_timecode": "00:00:45.000",
+      "start_seconds": 40.666666666666664,
+      "end_seconds": 45.0,
+      "duration_seconds": 4.333333333333336,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0009.mp4",
+      "frame_captions": [
+        "a video frame of a person preparing flour on a wooden table",
+        "a video frame of a person kning flour on a wooden table",
+        "a video frame of a person kning flour on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 11,
+          "label": "person",
+          "confidence_avg": 0.843,
+          "start_frame": 4,
+          "end_frame": 14,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 12.366,
+          "net_displacement": 6.483,
+          "direction_change_var": 1.5857,
+          "relations": []
+        },
+        {
+          "track_id": 13,
+          "label": "cake",
+          "confidence_avg": 0.885,
+          "start_frame": 16,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.73)",
+      "audio_speech": " Then crack in three eggs.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. A person (tracked as \"person #11\") is shown kneading flour on a wooden table, with flour already spread across the surface. The process appears to be progressing step-by-step, as the person prepares the dough. The audio includes faint background music and a voice stating, \"Then crack in three eggs,\" suggesting the next step in the recipe involves incorporating eggs into the mixture. The tone remains instructional, consistent with earlier scenes, emphasizing hands-on techniques and simplicity. The scene reinforces the tutorial's focus on accessible cooking methods."
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:00:45.000",
+      "end_timecode": "00:00:48.500",
+      "start_seconds": 45.0,
+      "end_seconds": 48.5,
+      "duration_seconds": 3.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0010.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of flour with an egg in it",
+        "a video frame of a bowl of flour with an egg in it",
+        "a video frame of a person ' s hand holding an egg in flour"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "music (conf=0.48)",
+      "audio_speech": "",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. The visuals show a bowl of flour with an egg in it, followed by a person’s hand holding an egg in the flour, suggesting the process of mixing or adding ingredients. The absence of clear audio dialogue, replaced by faint music, leaves the instructional context implied rather than explicitly stated. This scene likely represents the next step in the recipe, aligning with earlier instructions about incorporating eggs into the flour mixture. The tone remains consistent with the step-by-step instructional approach of the previous scenes."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:00:48.500",
+      "end_timecode": "00:00:53.833",
+      "start_seconds": 48.5,
+      "end_seconds": 53.833333333333336,
+      "duration_seconds": 5.333333333333336,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0011.mp4",
+      "frame_captions": [
+        "a video frame of a person ' s hand holding a bowl of flour with an egg in it",
+        "a video frame of two eggs in a bowl of flour",
+        "a video frame of two eggs in a bowl of flour"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "music (conf=0.43)",
+      "audio_speech": " 당시 마신 후 amazingly íb4 ñ. today",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the process of incorporating eggs into a bowl of flour. The visuals show a progression from one egg in the flour to two eggs in the mixture, suggesting the addition of another egg as part of the recipe. The absence of clear audio dialogue, replaced by faint music and unclear sounds, leaves the instructional context implied rather than explicitly stated. This scene likely represents a continuation of the step-by-step process of preparing dough, consistent with earlier instructions. The tone remains instructional, with an emphasis on hands-on cooking techniques."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:00:53.833",
+      "end_timecode": "00:00:56.833",
+      "start_seconds": 53.833333333333336,
+      "end_seconds": 56.833333333333336,
+      "duration_seconds": 3.0,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0012.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of flour with eggs in it",
+        "a video frame of a bowl of flour with eggs in it",
+        "a video frame of floured dough with eggs in it"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "music (conf=0.71)",
+      "audio_speech": " Add in a tablespoon of olive oil.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. The visuals show a bowl of flour with eggs in it, transitioning to floured dough with eggs incorporated, suggesting the progression of mixing and shaping the dough. The audio provides further instructions, stating, \"Add in a tablespoon of olive oil,\" indicating the next step in the recipe. Background music plays faintly, maintaining the instructional tone. The tutorial emphasizes hands-on techniques and simplicity, consistent with earlier scenes. No characters are explicitly identified, but the person conducting the tutorial appears to be the same individual from previous scenes."
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:00:56.833",
+      "end_timecode": "00:01:00.167",
+      "start_seconds": 56.833333333333336,
+      "end_seconds": 60.166666666666664,
+      "duration_seconds": 3.3333333333333286,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0013.mp4",
+      "frame_captions": [
+        "a video frame of flour and eggs on a wooden table",
+        "a video frame of a person kning an egg in flour",
+        "a video frame of a person putting flour onto a wooden cutting board"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "cake",
+          "confidence_avg": 0.801,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "cake",
+          "confidence_avg": 0.807,
+          "start_frame": 7,
+          "end_frame": 7,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.56)",
+      "audio_speech": " and a teaspoon of salt.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. The visuals show flour and eggs on a wooden table, followed by a person cracking an egg into the flour and spreading more flour onto a wooden cutting board. This suggests the ongoing process of mixing ingredients and preparing the surface for kneading or shaping the dough. The audio includes faint music and the phrase, \"and a teaspoon of salt,\" indicating the addition of salt as the next step in the recipe. The scene maintains the instructional tone of the tutorial, emphasizing hands-on techniques and step-by-step guidance for making dough, likely for pasta or bread. The person leading the tutorial remains unnamed but appears to be the same individual from previous scenes."
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:00.167",
+      "end_timecode": "00:01:12.667",
+      "start_seconds": 60.166666666666664,
+      "end_seconds": 72.66666666666667,
+      "duration_seconds": 12.500000000000007,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0014.mp4",
+      "frame_captions": [
+        "a video frame of a woman ' s hands mixing flour into a bowl with an egg",
+        "a video frame of a person mixing flour into a bowl of eggs",
+        "a video frame of a person kning flour on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.823,
+          "start_frame": 5,
+          "end_frame": 28,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving left, getting closer",
+          "path_length": 25.031,
+          "net_displacement": 20.032,
+          "direction_change_var": 2.0396,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.66)",
+      "audio_speech": " Then using a fork, whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. A person, likely the same individual from previous scenes, is shown mixing flour and eggs in a bowl, transitioning to kneading the mixture on a wooden table. The process appears to follow a step-by-step progression, with the audio providing additional instructions: \"Then using a fork, whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well.\" Background music plays faintly, maintaining the instructional tone. The tutorial emphasizes hands-on techniques, likely for making pasta or bread dough, as the person works methodically to combine the ingredients."
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:01:12.667",
+      "end_timecode": "00:01:21.000",
+      "start_seconds": 72.66666666666667,
+      "end_seconds": 81.0,
+      "duration_seconds": 8.333333333333329,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0015.mp4",
+      "frame_captions": [
+        "a video frame of a person kning flour on a wooden table",
+        "a video frame of a person ' s hands mixing flour onto a wooden cutting board",
+        "a video frame of a person ' s hands mixing flour into a bowl"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.886,
+          "start_frame": 5,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.72)",
+      "audio_speech": " Continue bringing the flour into the bowl.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. The visuals show a person kneading flour on a wooden table, transitioning to mixing flour on a wooden cutting board, and then incorporating the flour into a bowl. The person remains stationary in the middle-center of the frame throughout the scene. The audio features faint background music and provides instructions: \"Continue bringing the flour into the bowl.\" This suggests the step-by-step process of combining ingredients to form dough, consistent with the instructional tone of previous scenes. The tutorial emphasizes hands-on techniques, likely for making bread or pasta dough. No character names are provided, but the person leading the tutorial appears to be the same individual from earlier scenes."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:01:21.000",
+      "end_timecode": "00:01:25.000",
+      "start_seconds": 81.0,
+      "end_seconds": 85.0,
+      "duration_seconds": 4.0,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0016.mp4",
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person making dough",
+        "a video frame of a person preparing food on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 16,
+          "label": "dining table",
+          "confidence_avg": 0.826,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.529,
+          "net_displacement": 3.529,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #21"
+          ]
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, looping/circling",
+          "path_length": 63.228,
+          "net_displacement": 9.968,
+          "direction_change_var": 6.81,
+          "relations": [
+            "right-of dining table #16"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.43)",
+      "audio_speech": " the center like this until the dough has pulled together enough to be worked by hand.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the process of rolling and shaping dough on a wooden table. A person, likely the same individual from previous scenes, is shown working with the dough, transitioning from rolling it out to preparing it further for cooking. The dining table remains stationary, while the person moves slightly, suggesting they are actively engaged in the task. The audio provides instructional context, stating, \"the center like this until the dough has pulled together enough to be worked by hand,\" reinforcing the hands-on nature of the tutorial. The tone remains instructional, emphasizing step-by-step techniques for preparing dough, consistent with earlier scenes."
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:01:25.000",
+      "end_timecode": "00:01:31.333",
+      "start_seconds": 85.0,
+      "end_seconds": 91.33333333333333,
+      "duration_seconds": 6.333333333333329,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0017.mp4",
+      "frame_captions": [
+        "a video frame of a person kning flour on a wooden cutting board",
+        "a video frame of a person kning dough on a table",
+        "a video frame of a person kning dough"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.856,
+          "start_frame": 6,
+          "end_frame": 14,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 44.368,
+          "net_displacement": 5.235,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.53)",
+      "audio_speech": " From here you'll want to bring the dough together to form a shaggy ball.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the kneading process. The visuals show a person kneading dough on a wooden surface, progressing from flour to a cohesive dough. The person, likely the same individual from earlier scenes, remains stationary in the middle-center of the frame, emphasizing the hands-on technique. The audio provides further instructions, stating, \"From here you'll want to bring the dough together to form a shaggy ball,\" aligning with the visual demonstration. Faint background music plays, maintaining the instructional tone. The tutorial remains consistent with previous scenes, guiding viewers through the step-by-step process of making dough, likely for bread or pasta."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:01:31.333",
+      "end_timecode": "00:01:36.833",
+      "start_seconds": 91.33333333333333,
+      "end_seconds": 96.83333333333333,
+      "duration_seconds": 5.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0018.mp4",
+      "frame_captions": [
+        "a video frame of a person ' s hand kning a piece of dough",
+        "a video frame of a person kning dough",
+        "a video frame of floured dough on a cutting board"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "music (conf=0.63)",
+      "audio_speech": " If it's too dry like mine was here, then you can just add a touch of water.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the process of kneading and preparing dough. The visuals show a person working with dough, transitioning from kneading it by hand to placing floured dough on a cutting board. The audio provides additional guidance, stating, \"If it's too dry like mine was here, then you can just add a touch of water,\" suggesting a troubleshooting tip for achieving the right dough consistency. Faint background music plays, maintaining the instructional tone. The tutorial remains consistent with previous scenes, emphasizing hands-on techniques for making dough, likely for bread or pasta. The person leading the tutorial remains unnamed but appears to be the same individual from earlier scenes."
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:01:36.833",
+      "end_timecode": "00:01:51.167",
+      "start_seconds": 96.83333333333333,
+      "end_seconds": 111.16666666666667,
+      "duration_seconds": 14.333333333333343,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0019.mp4",
+      "frame_captions": [
+        "a video frame of a person kning dough",
+        "a video frame of a person kning a ball of dough",
+        "a video frame of a person kning dough on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 25,
+          "label": "donut",
+          "confidence_avg": 0.848,
+          "start_frame": 15,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 26,
+          "label": "donut",
+          "confidence_avg": 0.889,
+          "start_frame": 26,
+          "end_frame": 28,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, getting closer",
+          "path_length": 32.518,
+          "net_displacement": 32.518,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 30,
+          "label": "person",
+          "confidence_avg": 0.897,
+          "start_frame": 53,
+          "end_frame": 57,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer, moving in a loop",
+          "path_length": 56.164,
+          "net_displacement": 16.714,
+          "direction_change_var": 1.7869,
+          "relations": []
+        },
+        {
+          "track_id": 31,
+          "label": "dining table",
+          "confidence_avg": 0.85,
+          "start_frame": 53,
+          "end_frame": 53,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "speech (conf=0.38), music (conf=0.81)",
+      "audio_speech": " and if it's too wet then all you have to do is add in a little bit more flour. Once the dough has completely pulled together, you'll need to knead the dough for about 10 minutes.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the kneading process. A person, likely the same individual from previous scenes, is shown kneading dough on a wooden table, transitioning to forming the dough into a ball. The dining table remains stationary, while the person moves slightly, actively engaged in the task. The audio provides instructional context, stating, \"And if it's too wet, then all you have to do is add in a little bit more flour. Once the dough has completely pulled together, you'll need to knead the dough for about 10 minutes,\" reinforcing the hands-on nature of the tutorial. Background music plays faintly, maintaining the instructional tone. The tutorial remains consistent with previous scenes, guiding viewers step-by-step through the process of preparing dough, likely for bread or pasta."
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:01:51.167",
+      "end_timecode": "00:01:53.500",
+      "start_seconds": 111.16666666666667,
+      "end_seconds": 113.5,
+      "duration_seconds": 2.3333333333333286,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0020.mp4",
+      "frame_captions": [
+        "a video frame of a person cutting a piece of wood",
+        "a video frame of a person cutting a piece of wood",
+        "a video frame of a person peeling a piece of wood"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 30,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 72.804,
+          "net_displacement": 18.046,
+          "direction_change_var": 3.2858,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.47)",
+      "audio_speech": "",
+      "llm_scene_description": "The current scene appears to diverge from the previous cooking tutorial focused on dough preparation. The visuals show a person cutting and peeling a piece of wood, suggesting a shift in activity from culinary tasks to woodworking or crafting. The person, identified as \"person #30,\" moves slightly left within the frame, transitioning from middle-right to middle-center. Background music plays faintly, though its confidence level is low, and no spoken instructions or dialogue are present. This scene introduces a new focus on hands-on techniques, potentially for crafting or preparing materials, marking a distinct change from the earlier cooking tutorial."
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:01:53.500",
+      "end_timecode": "00:02:01.000",
+      "start_seconds": 113.5,
+      "end_seconds": 121.0,
+      "duration_seconds": 7.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0021.mp4",
+      "frame_captions": [
+        "a video frame of a person peeling a piece of wood",
+        "a video frame of a person peeling an apple",
+        "a video frame of a person rolling dough dough on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 30,
+          "label": "person",
+          "confidence_avg": 0.887,
+          "start_frame": 0,
+          "end_frame": 26,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving down, moving in a loop",
+          "path_length": 126.661,
+          "net_displacement": 37.689,
+          "direction_change_var": 3.0486,
+          "relations": []
+        },
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.871,
+          "start_frame": 12,
+          "end_frame": 29,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving up-right, getting farther",
+          "path_length": 119.454,
+          "net_displacement": 51.629,
+          "direction_change_var": 5.063,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " The dough will go from looking shaggy and rough to smooth and taut and you'll know it's done when you push a finger into the dough and the dough springs.",
+      "llm_scene_description": "The current scene returns to the cooking tutorial after a brief divergence into woodworking in earlier scenes. The visuals show a person rolling dough on a wooden table, continuing the step-by-step process of dough preparation. The individual, likely the same person from previous cooking scenes, is actively engaged in shaping the dough. The audio provides instructional guidance, stating, \"The dough will go from looking shaggy and rough to smooth and taut, and you'll know it's done when you push a finger into the dough and the dough springs.\" Background music plays faintly, maintaining the instructional tone. This scene reinforces the hands-on techniques for preparing dough, aligning with the earlier focus on bread or pasta-making."
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:02:01.000",
+      "end_timecode": "00:02:04.000",
+      "start_seconds": 121.0,
+      "end_seconds": 124.0,
+      "duration_seconds": 3.0,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0022.mp4",
+      "frame_captions": [
+        "a video frame of a ball of dough on a wooden cutting board",
+        "a video frame of a ball of dough on a wooden cutting board",
+        "a video frame of a ball of dough on a wooden cutting board"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 30,
+          "label": "person",
+          "confidence_avg": 0.886,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "bottom-right",
+          "movement": "moving down, getting farther",
+          "path_length": 38.438,
+          "net_displacement": 27.725,
+          "direction_change_var": 0.375,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " back.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the resting stage of dough preparation. The visuals show a ball of dough placed on a wooden cutting board, likely after being kneaded in previous scenes. A person, identified as \"person #30,\" moves slightly downward from the middle-right to the bottom-right of the frame, possibly stepping away after completing this stage. Background music plays faintly, and no spoken instructions are heard, suggesting a pause in active teaching. This scene likely represents a transitional moment in the tutorial, where the dough is left to rest before the next step in the bread or pasta-making process."
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:02:04.000",
+      "end_timecode": "00:02:14.833",
+      "start_seconds": 124.0,
+      "end_seconds": 134.83333333333334,
+      "duration_seconds": 10.833333333333343,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0023.mp4",
+      "frame_captions": [
+        "a video frame of a person rolling dough dough on a wooden cutting board",
+        "a video frame of a person cutting a piece of wood",
+        "a video frame of a person cutting a piece of wood"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.867,
+          "start_frame": 8,
+          "end_frame": 29,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "moving down-right, getting closer, moving in a loop",
+          "path_length": 107.282,
+          "net_displacement": 17.87,
+          "direction_change_var": 2.8157,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.78)",
+      "audio_speech": " Wrap up your dough in cling film and let it rest for a minimum of 30 minutes.",
+      "llm_scene_description": "The current scene appears to blend activities from two distinct tutorials: cooking and woodworking. The visuals initially show a person rolling dough on a wooden cutting board, consistent with the ongoing bread or pasta-making tutorial. However, the scene abruptly shifts to show the same or another person cutting a piece of wood, suggesting a return to the woodworking activity introduced in earlier scenes. The audio remains focused on the cooking tutorial, providing instructions: \"Wrap up your dough in cling film and let it rest for a minimum of 30 minutes,\" while faint background music plays. The person, identified as \"person #31,\" moves down-right in the frame, looping slightly. This scene creates a juxtaposition of two unrelated tasks, potentially due to editing inconsistencies or overlapping narratives."
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:02:14.833",
+      "end_timecode": "00:02:17.000",
+      "start_seconds": 134.83333333333334,
+      "end_seconds": 137.0,
+      "duration_seconds": 2.166666666666657,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0024.mp4",
+      "frame_captions": [
+        "a video frame of a person cutting a lemon",
+        "a video frame of a person cutting an apple",
+        "a video frame of a person cutting an apple"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.877,
+          "start_frame": 5,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 20.304,
+          "net_displacement": 20.304,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.71)",
+      "audio_speech": " Once the dough has rested, cut it in half.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on ingredient preparation. A person, identified as \"person #31,\" is shown cutting a lemon in the first frame, then transitioning to cutting an apple in subsequent frames. The individual moves slightly to the left within the frame while performing these tasks. The audio provides instructional context, stating, \"Once the dough has rested, cut it in half,\" suggesting this is part of the ongoing bread or pasta-making process. Background music plays faintly, maintaining the instructional tone. This scene reinforces the step-by-step nature of the tutorial, shifting focus to preparing additional ingredients or accompaniments for the recipe."
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:02:17.000",
+      "end_timecode": "00:02:19.333",
+      "start_seconds": 137.0,
+      "end_seconds": 139.33333333333334,
+      "duration_seconds": 2.333333333333343,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0025.mp4",
+      "frame_captions": [
+        "a video frame of a person ' s hand rolling dough dough on a wooden cutting board",
+        "a video frame of a person ' s hand on a piece of wood",
+        "a video frame of a person cutting a banana"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.837,
+          "start_frame": 9,
+          "end_frame": 9,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " so that you have more manageable portions to work with.",
+      "llm_scene_description": "The current scene appears to blend activities from two distinct tutorials: cooking and crafting. The visuals show a person rolling dough on a wooden cutting board, followed by a brief shot of their hand on a piece of wood, and then cutting a banana. The person, identified as \"person #1,\" remains mostly stationary in the top-right of the frame. No audio instructions or dialogue are present, but faint background sounds suggest a focus on manageable portions. This scene continues the pattern of alternating between culinary tasks and unrelated crafting or woodworking activities, possibly due to editing inconsistencies or an intentional overlap of narratives."
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:02:19.333",
+      "end_timecode": "00:02:24.167",
+      "start_seconds": 139.33333333333334,
+      "end_seconds": 144.16666666666666,
+      "duration_seconds": 4.833333333333314,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0026.mp4",
+      "frame_captions": [
+        "a video frame of a person cutting a piece of wood",
+        "a video frame of a person ' s hand on a table",
+        "a video frame of a person walking on a table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 34,
+          "label": "person",
+          "confidence_avg": 0.873,
+          "start_frame": 5,
+          "end_frame": 11,
+          "start_pos": "top-right",
+          "end_pos": "middle-right",
+          "movement": "moving down",
+          "path_length": 31.27,
+          "net_displacement": 25.944,
+          "direction_change_var": 2.4862,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.67)",
+      "audio_speech": " Lightly flour your work surface and start rolling out your pasta dough.",
+      "llm_scene_description": "The current scene transitions back to the cooking tutorial after a brief focus on woodworking. The visuals show a person cutting a piece of wood, followed by their hand resting on a table, and then an unusual shot of a person walking on the table. The audio provides cooking instructions, stating, \"Lightly flour your work surface and start rolling out your pasta dough,\" accompanied by faint background music. The juxtaposition of unrelated actions—woodworking, a hand on the table, and walking—suggests either editing inconsistencies or an intentional blending of narratives. The cooking tutorial remains the primary focus, continuing the step-by-step process of pasta preparation."
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:02:24.167",
+      "end_timecode": "00:02:29.333",
+      "start_seconds": 144.16666666666666,
+      "end_seconds": 149.33333333333334,
+      "duration_seconds": 5.166666666666686,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0027.mp4",
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 34,
+          "label": "person",
+          "confidence_avg": 0.835,
+          "start_frame": 1,
+          "end_frame": 20,
+          "start_pos": "middle-right",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting closer",
+          "path_length": 193.582,
+          "net_displacement": 152.163,
+          "direction_change_var": 0.8875,
+          "relations": []
+        },
+        {
+          "track_id": 35,
+          "label": "person",
+          "confidence_avg": 0.853,
+          "start_frame": 0,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer",
+          "path_length": 27.949,
+          "net_displacement": 22.887,
+          "direction_change_var": 1.7961,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.62)",
+      "audio_speech": " from here",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the process of rolling out dough on a wooden table. A person, identified as \"person #34,\" moves slightly left across the frame, while another individual, \"person #35,\" moves downward, staying near the center. The repetitive visuals of dough rolling suggest this is a key instructional step in the tutorial. Background music plays faintly, but no spoken instructions or dialogue are present. This scene maintains the tutorial's focus on the bread or pasta-making process, emphasizing the hands-on technique of rolling dough."
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:02:29.333",
+      "end_timecode": "00:02:31.667",
+      "start_seconds": 149.33333333333334,
+      "end_seconds": 151.66666666666666,
+      "duration_seconds": 2.3333333333333144,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0028.mp4",
+      "frame_captions": [
+        "a video frame of a person kning dough",
+        "a video frame of a person kning dough",
+        "a video frame of a person kning dough"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 34,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 4,
+          "end_frame": 9,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 15.247,
+          "net_displacement": 6.895,
+          "direction_change_var": 2.2965,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " we're going to eliminate the dough three times.",
+      "llm_scene_description": "In the current scene, the focus remains on the cooking tutorial, specifically the process of kneading dough. The visuals consistently show a person, identified as \"person #34,\" kneading dough in the middle-left of the frame, remaining mostly stationary. The audio provides instructional context, stating, \"We're going to eliminate the dough three times,\" which may refer to a technique or step in the recipe. No additional objects or actions are introduced, and the scene maintains a straightforward focus on the hands-on dough preparation process, aligning with the ongoing bread or pasta-making tutorial."
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:02:31.667",
+      "end_timecode": "00:02:38.333",
+      "start_seconds": 151.66666666666666,
+      "end_seconds": 158.33333333333334,
+      "duration_seconds": 6.666666666666686,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0029.mp4",
+      "frame_captions": [
+        "a video frame of a person kning dough",
+        "a video frame of a person kning dough on a wooden table",
+        "a video frame of a person kning dough on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 34,
+          "label": "person",
+          "confidence_avg": 0.854,
+          "start_frame": 0,
+          "end_frame": 24,
+          "start_pos": "middle-left",
+          "end_pos": "middle-center",
+          "movement": "moving down-right, getting closer, moving in a loop",
+          "path_length": 131.051,
+          "net_displacement": 16.069,
+          "direction_change_var": 2.0384,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " So all that means is we're going to fold it in thirds like this, then roll it out.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the process of kneading dough. A person, identified as \"person #34,\" is shown kneading dough on a wooden table, moving slightly down-right in a looping motion from the middle-left to the middle-center of the frame. The audio provides instructional guidance, stating, \"So all that means is we're going to fold it in thirds like this, then roll it out,\" accompanied by background music. This scene reinforces the hands-on technique of dough preparation, emphasizing the folding and rolling process as part of the ongoing bread or pasta-making tutorial."
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:02:38.333",
+      "end_timecode": "00:02:40.833",
+      "start_seconds": 158.33333333333334,
+      "end_seconds": 160.83333333333334,
+      "duration_seconds": 2.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0030.mp4",
+      "frame_captions": [
+        "a video frame of someone cutting a piece of cheese",
+        "a video frame of a person ' s hand pressing a piece of cheese",
+        "a video frame of a person ' s hand kning a dough"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 34,
+          "label": "person",
+          "confidence_avg": 0.877,
+          "start_frame": 7,
+          "end_frame": 8,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 1.68,
+          "net_displacement": 1.68,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.31)",
+      "audio_speech": " Fold it in thirds again, then roll it out.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough and cheese. The visuals show a person, identified as \"person #34,\" performing a sequence of tasks: cutting a piece of cheese, pressing it, and then kneading dough. The audio provides instructional guidance, stating, \"Fold it in thirds again, then roll it out,\" suggesting this is part of a step-by-step process for preparing dough, possibly for a bread or pastry recipe. Background music is faint and unclear, adding minimal context. The scene maintains a consistent focus on hands-on culinary techniques, blending cheese preparation with dough handling."
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:02:40.833",
+      "end_timecode": "00:03:00.500",
+      "start_seconds": 160.83333333333334,
+      "end_seconds": 180.5,
+      "duration_seconds": 19.666666666666657,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0031.mp4",
+      "frame_captions": [
+        "a video frame of a person kning dough",
+        "a video frame of a person rolling dough onto a wooden cutting board",
+        "a video frame of a person kning dough on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 34,
+          "label": "person",
+          "confidence_avg": 0.874,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving right",
+          "path_length": 21.071,
+          "net_displacement": 12.996,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 37,
+          "label": "person",
+          "confidence_avg": 0.868,
+          "start_frame": 25,
+          "end_frame": 76,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 498.773,
+          "net_displacement": 34.729,
+          "direction_change_var": 4.3849,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.44)",
+      "audio_speech": " and then repeat this process one more time. From there, we want to roll out our dough into a large rectangle. If you find your dough is shrinking back, leave it for a few minutes to let the gluten relax, then go back in. Once it's completely rolled out,",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the process of kneading and rolling dough. The visuals show a person working with dough on a wooden surface, alternating between kneading and rolling it out. Two individuals, identified as \"person #34\" and \"person #37,\" are moving in the frame, though their movements appear repetitive and may indicate editing loops or instructional emphasis. The audio provides detailed guidance, stating, \"Repeat this process one more time. From there, we want to roll out our dough into a large rectangle. If you find your dough is shrinking back, leave it for a few minutes to let the gluten relax, then go back in.\" Background music plays faintly but is not prominent. This scene reinforces the step-by-step instructions for preparing dough, maintaining the tutorial's focus on hands-on culinary techniques."
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:03:00.500",
+      "end_timecode": "00:03:05.167",
+      "start_seconds": 180.5,
+      "end_seconds": 185.16666666666666,
+      "duration_seconds": 4.666666666666657,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0032.mp4",
+      "frame_captions": [
+        "a video frame of a person cutting a piece of cheese",
+        "a video frame of a person rolling out a piece of pizza dough",
+        "a video frame of a person cutting a piece of cheese"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.8,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " we want it to be thin enough to see the color of our fingers through it. From here you can cut the",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on preparing ingredients for what appears to be a pizza or similar dish. The visuals alternate between a person cutting cheese and rolling out pizza dough, suggesting these are key steps in the recipe. The audio provides instructional guidance, stating, \"We want it to be thin enough to see the color of our fingers through it. From here you can cut the...\" before cutting off, likely referring to the dough's desired thinness and the next step in the process. The person remains mostly stationary in the center of the frame, emphasizing the hands-on preparation. This scene aligns with the ongoing tutorial, combining dough rolling and cheese cutting as part of the recipe's progression."
+    },
+    {
+      "scene_index": 33,
+      "start_timecode": "00:03:05.167",
+      "end_timecode": "00:03:11.000",
+      "start_seconds": 185.16666666666666,
+      "end_seconds": 191.0,
+      "duration_seconds": 5.833333333333343,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0033.mp4",
+      "frame_captions": [
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a person rolling dough on a table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.866,
+          "start_frame": 14,
+          "end_frame": 14,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " the pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on rolling out dough on a wooden table. A person, identified as \"person #44,\" remains stationary in the middle-right of the frame while using a rolling pin to shape the dough. The audio provides instructional guidance, stating, \"The pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta.\" This indicates the transition from general dough preparation to shaping it into pasta, specifically tagliatelle. The scene maintains a consistent focus on hands-on culinary techniques, aligning with the ongoing pasta-making tutorial."
+    },
+    {
+      "scene_index": 34,
+      "start_timecode": "00:03:11.000",
+      "end_timecode": "00:03:13.667",
+      "start_seconds": 191.0,
+      "end_seconds": 193.66666666666666,
+      "duration_seconds": 2.666666666666657,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0034.mp4",
+      "frame_captions": [
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a person cutting a piece of cheese",
+        "a video frame of a person rolling dough on a table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.902,
+          "start_frame": 10,
+          "end_frame": 10,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " to make this style of pasta that I'm making just later.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough and cheese as part of a pasta-making process. The visuals alternate between a person, identified as \"person #44,\" rolling out dough on a table and briefly cutting a piece of cheese. The person remains mostly stationary in the top-right of the frame, suggesting a deliberate and instructional pace. The audio provides context, stating, \"to make this style of pasta that I'm making just later,\" indicating that these steps are part of a larger recipe for pasta. This scene reinforces the hands-on techniques of dough rolling and ingredient preparation, maintaining the tutorial's focus on step-by-step culinary guidance."
+    },
+    {
+      "scene_index": 35,
+      "start_timecode": "00:03:13.667",
+      "end_timecode": "00:03:23.500",
+      "start_seconds": 193.66666666666666,
+      "end_seconds": 203.5,
+      "duration_seconds": 9.833333333333343,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0035.mp4",
+      "frame_captions": [
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a person rolling dough on a table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 46,
+          "label": "person",
+          "confidence_avg": 0.849,
+          "start_frame": 20,
+          "end_frame": 39,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving up-left, getting farther",
+          "path_length": 47.263,
+          "net_displacement": 18.127,
+          "direction_change_var": 2.7353,
+          "relations": []
+        },
+        {
+          "track_id": 47,
+          "label": "person",
+          "confidence_avg": 0.831,
+          "start_frame": 30,
+          "end_frame": 30,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.64)",
+      "audio_speech": " flour the surface of the dough and fold it up into a rectangle.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the preparation of dough. The visuals show a person rolling dough on a table, with one individual (person #46) moving slightly up-left and another (person #47) remaining stationary. The audio provides instructional guidance, stating, \"Flour the surface of the dough and fold it up into a rectangle,\" suggesting this is part of a step-by-step process for shaping the dough. Background music is faint and unclear. This scene aligns with the ongoing tutorial, emphasizing hands-on techniques for dough preparation."
+    },
+    {
+      "scene_index": 36,
+      "start_timecode": "00:03:23.500",
+      "end_timecode": "00:03:31.667",
+      "start_seconds": 203.5,
+      "end_seconds": 211.66666666666666,
+      "duration_seconds": 8.166666666666657,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0036.mp4",
+      "frame_captions": [
+        "a video frame of a person rolling dough on a table",
+        "a video frame of a person rolling dough on a wooden table",
+        "a video frame of a person rolling dough on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.837,
+          "start_frame": 24,
+          "end_frame": 24,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.72)",
+      "audio_speech": " Then gently slice it into strips.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on rolling dough on a wooden table. A single person, identified as \"person #1,\" remains stationary in the middle-left of the frame, using a rolling pin to shape the dough. The audio provides brief guidance, stating, \"Then gently slice it into strips,\" indicating the next step in the recipe involves cutting the rolled dough into strips, likely for pasta or another dish. Background music plays faintly but does not dominate the scene. This scene maintains the tutorial's instructional tone, emphasizing hands-on culinary techniques."
+    },
+    {
+      "scene_index": 37,
+      "start_timecode": "00:03:31.667",
+      "end_timecode": "00:03:41.500",
+      "start_seconds": 211.66666666666666,
+      "end_seconds": 221.5,
+      "duration_seconds": 9.833333333333343,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0037.mp4",
+      "frame_captions": [
+        "a video frame of a person cutting pasta on a wooden cutting board",
+        "a video frame of a person cutting a pile of pasta",
+        "a video frame of a person cutting pasta on a wooden cutting board"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "knife",
+          "confidence_avg": 0.917,
+          "start_frame": 11,
+          "end_frame": 11,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.848,
+          "start_frame": 11,
+          "end_frame": 11,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.84,
+          "start_frame": 14,
+          "end_frame": 14,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.812,
+          "start_frame": 33,
+          "end_frame": 33,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.81)",
+      "audio_speech": " Once you've unraveled your pasta, toss it in a dusting of flour to stop it from sticking to itself. And then from here you can pour...",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on cutting freshly prepared pasta on a wooden cutting board. The visuals show a person using a knife to slice through a pile of pasta, with minimal movement from the individuals in the frame, suggesting a deliberate and instructional pace. The audio provides guidance, stating, \"Once you've unraveled your pasta, toss it in a dusting of flour to stop it from sticking to itself. And then from here you can pour...\" indicating the next steps in the recipe involve flouring the pasta to prevent sticking and possibly preparing it for cooking or serving. Background music plays faintly, maintaining the tutorial's calm and focused tone. This scene aligns with the ongoing pasta-making process, emphasizing hands-on techniques and step-by-step instructions."
+    },
+    {
+      "scene_index": 38,
+      "start_timecode": "00:03:41.500",
+      "end_timecode": "00:03:48.167",
+      "start_seconds": 221.5,
+      "end_seconds": 228.16666666666666,
+      "duration_seconds": 6.666666666666657,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0038.mp4",
+      "frame_captions": [
+        "a video frame of a person cutting pasta on a wooden cutting board",
+        "a video frame of pasta on a wooden cutting board",
+        "a video frame of a person kning a pile of pasta"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.857,
+          "start_frame": 11,
+          "end_frame": 26,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left, getting closer",
+          "path_length": 44.434,
+          "net_displacement": 44.428,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " it, wrap it and freeze it or refrigerate it.",
+      "llm_scene_description": "The current scene continues the pasta-making tutorial, focusing on cutting and handling freshly prepared pasta. A person, identified as \"person #54,\" is seen cutting pasta on a wooden cutting board in the first frame, followed by a close-up of the pasta in the second frame. In the final frame, the person is kneading a pile of pasta, moving slightly up-left but staying near the center of the frame. The audio provides additional instructions, stating, \"Wrap it and freeze it or refrigerate it,\" suggesting storage tips for the prepared pasta. Background music plays faintly, maintaining the instructional and calm tone of the tutorial. This scene emphasizes hands-on techniques and practical advice for preserving the pasta."
+    },
+    {
+      "scene_index": 39,
+      "start_timecode": "00:03:48.167",
+      "end_timecode": "00:03:52.333",
+      "start_seconds": 228.16666666666666,
+      "end_seconds": 232.33333333333334,
+      "duration_seconds": 4.166666666666686,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0039.mp4",
+      "frame_captions": [
+        "a video frame of a person cutting pasta on a wooden cutting board",
+        "a video frame of pasta being sliced on a cutting board",
+        "a video frame of pasta on a wooden cutting board"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "top-left",
+          "movement": "moving left, getting farther",
+          "path_length": 96.122,
+          "net_displacement": 55.669,
+          "direction_change_var": 1.813,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.45)",
+      "audio_speech": "",
+      "llm_scene_description": "The current scene continues the pasta-making tutorial, focusing on slicing freshly prepared pasta on a wooden cutting board. The visuals show a person, identified as \"person #54,\" cutting the pasta in the first frame, followed by close-up shots of the sliced pasta on the board. The person moves slightly up-left, suggesting they are finishing the cutting process and stepping away. The audio consists of faint background music, which does not provide additional instructional context. This scene reinforces the hands-on techniques of pasta preparation, maintaining the calm and instructional tone of the tutorial."
+    },
+    {
+      "scene_index": 40,
+      "start_timecode": "00:03:52.333",
+      "end_timecode": "00:03:56.833",
+      "start_seconds": 232.33333333333334,
+      "end_seconds": 236.83333333333334,
+      "duration_seconds": 4.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0040.mp4",
+      "frame_captions": [
+        "a video frame of pasta on a cutting board",
+        "a video frame of pasta on a cutting board",
+        "a video frame of pasta on a cutting board"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "donut",
+          "confidence_avg": 0.846,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.62)",
+      "audio_speech": " And if you're hungry like me, you can cook it straight away. Just remember that-",
+      "llm_scene_description": "The current scene continues the pasta-making tutorial, focusing on the prepared pasta displayed on a wooden cutting board. The visuals show stationary pasta, with no significant movement or actions from individuals in the frame. Background music plays faintly, and the audio provides a partial instruction: \"And if you're hungry like me, you can cook it straight away. Just remember that—\" suggesting the next step involves cooking the pasta immediately. This scene appears to transition from preparation to cooking, maintaining the calm and instructional tone of the tutorial."
+    },
+    {
+      "scene_index": 41,
+      "start_timecode": "00:03:56.833",
+      "end_timecode": "00:04:01.333",
+      "start_seconds": 236.83333333333334,
+      "end_seconds": 241.33333333333334,
+      "duration_seconds": 4.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0041.mp4",
+      "frame_captions": [
+        "a video frame of a pot on a stove",
+        "a video frame of a person ' s hand stirring something into a pot on a stove",
+        "a video frame of a person pouring liquid into a pot"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 56,
+          "label": "bowl",
+          "confidence_avg": 0.85,
+          "start_frame": 7,
+          "end_frame": 13,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.605,
+          "net_displacement": 0.433,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "silence (conf=0.48)",
+      "audio_speech": " fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, transitioning from pasta preparation to cooking. The visuals show a pot on a stove, followed by a person stirring and pouring liquid into the pot, possibly to cook the freshly prepared pasta. A bowl remains stationary in the frame, suggesting it may hold ingredients or be used later. The audio provides instructions, stating, \"Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water,\" emphasizing the quick cooking process for the pasta. This scene maintains the calm, instructional tone of the tutorial, focusing on the final steps of preparing the dish."
+    },
+    {
+      "scene_index": 42,
+      "start_timecode": "00:04:01.333",
+      "end_timecode": "00:04:04.000",
+      "start_seconds": 241.33333333333334,
+      "end_seconds": 244.0,
+      "duration_seconds": 2.666666666666657,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0042.mp4",
+      "frame_captions": [
+        "a video frame of a mixing bowl with a red handle",
+        "a video frame of a person stirring food into a pot",
+        "a video frame of a person mixing food into a pot"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "music (conf=0.43)",
+      "audio_speech": " Thank you All.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, transitioning to the process of cooking the prepared pasta. The visuals show a mixing bowl with a red handle, followed by a person stirring and mixing food into a pot, suggesting they are combining ingredients or cooking the pasta. The audio features faint background music and the phrase \"Thank you all,\" which may indicate the tutorial is nearing its conclusion or expressing gratitude to the audience. This scene aligns with the final stages of the pasta-making process, focusing on cooking and assembling the dish."
+    },
+    {
+      "scene_index": 43,
+      "start_timecode": "00:04:04.000",
+      "end_timecode": "00:04:08.333",
+      "start_seconds": 244.0,
+      "end_seconds": 248.33333333333334,
+      "duration_seconds": 4.333333333333343,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0043.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of food with a red spat in it",
+        "a video frame of a bowl of pasta being stirred with a wooden spoon",
+        "a video frame of pasta being cooked in a pan"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 56,
+          "label": "bowl",
+          "confidence_avg": 0.832,
+          "start_frame": 7,
+          "end_frame": 12,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 2.14,
+          "net_displacement": 2.14,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.81)",
+      "audio_speech": " I'm serving mine with my simple tomato sauce which is super easy to make.",
+      "llm_scene_description": "The current scene continues the pasta-making tutorial, focusing on the final stages of preparing and serving the dish. The visuals show a bowl of food initially with a red spatula, followed by pasta being stirred with a wooden spoon, and finally pasta cooking in a pan. The stationary bowl (#56) remains central in the frame, possibly holding ingredients or the finished dish. The audio features background music and the speaker stating, \"I'm serving mine with my simple tomato sauce which is super easy to make,\" indicating the tutorial is now emphasizing serving suggestions and the simplicity of the accompanying sauce. This scene transitions from cooking to presentation, maintaining the calm and instructional tone of the tutorial."
+    },
+    {
+      "scene_index": 44,
+      "start_timecode": "00:04:08.333",
+      "end_timecode": "00:04:11.500",
+      "start_seconds": 248.33333333333334,
+      "end_seconds": 251.5,
+      "duration_seconds": 3.166666666666657,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0044.mp4",
+      "frame_captions": [
+        "a video frame of a jar of tomato sauce on a cutting board",
+        "a video frame of a person squeezing a drink into a jar",
+        "a video frame of a person making a drink"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 56,
+          "label": "bottle",
+          "confidence_avg": 0.858,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.46)",
+      "audio_speech": " I'll leave the link to that on the screen and also in the description box.",
+      "llm_scene_description": "The current scene appears to be a continuation of the cooking tutorial, transitioning to the preparation of a drink or sauce. The visuals show a jar of tomato sauce on a cutting board, followed by a person squeezing liquid from a bottle (#56) into the jar, and then seemingly preparing a drink. The stationary bottle suggests it is central to this step. The audio features background music and the speaker stating, \"I'll leave the link to that on the screen and also in the description box,\" which may indicate the tutorial is providing additional resources or instructions for viewers. This scene shifts focus from pasta preparation to a complementary element, maintaining the calm and instructional tone of the tutorial."
+    },
+    {
+      "scene_index": 45,
+      "start_timecode": "00:04:11.500",
+      "end_timecode": "00:04:16.333",
+      "start_seconds": 251.5,
+      "end_seconds": 256.3333333333333,
+      "duration_seconds": 4.833333333333314,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0045.mp4",
+      "frame_captions": [
+        "a video frame of a drink being poured into a glass",
+        "a video frame of a pan of pasta being cooked on a stove",
+        "a video frame of pasta being cooked in a pan"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 56,
+          "label": "bowl",
+          "confidence_avg": 0.872,
+          "start_frame": 1,
+          "end_frame": 19,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 45.96,
+          "net_displacement": 20.978,
+          "direction_change_var": 3.0353,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.68)",
+      "audio_speech": " below.",
+      "llm_scene_description": "The current scene continues the pasta-making tutorial, focusing on the cooking process and complementary elements. The visuals show a drink being poured into a glass, followed by pasta cooking in a pan on the stove. A bowl (#56) moves slightly within the frame, possibly being repositioned for use. Background music plays faintly, but no speech or instructions are audible. This scene appears to emphasize multitasking, with the drink preparation and pasta cooking happening simultaneously, maintaining the calm and instructional tone of the tutorial."
+    },
+    {
+      "scene_index": 46,
+      "start_timecode": "00:04:16.333",
+      "end_timecode": "00:04:19.000",
+      "start_seconds": 256.3333333333333,
+      "end_seconds": 259.0,
+      "duration_seconds": 2.6666666666666856,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0046.mp4",
+      "frame_captions": [
+        "a video frame of a person stirring food into a pot",
+        "a video frame of a person stirring food into a pot",
+        "a video frame of a pot of pasta being stirred with a red spat"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 56,
+          "label": "bowl",
+          "confidence_avg": 0.865,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 12.06,
+          "net_displacement": 3.991,
+          "direction_change_var": 3.7141,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.43)",
+      "audio_speech": "",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the final stages of preparing the pasta dish. The visuals show a person stirring food in a pot, likely pasta, using a red spatula. A stationary bowl (#56) remains in the frame, possibly holding ingredients or serving as a container for the finished dish. Background music is faintly audible but lacks clarity, and no speech or instructions are present. This scene maintains the calm and instructional tone of the tutorial, emphasizing the cooking process as the pasta nears completion."
+    },
+    {
+      "scene_index": 47,
+      "start_timecode": "00:04:19.000",
+      "end_timecode": "00:04:22.500",
+      "start_seconds": 259.0,
+      "end_seconds": 262.5,
+      "duration_seconds": 3.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0047.mp4",
+      "frame_captions": [
+        "a video frame of a plate of food being eaten",
+        "a video frame of a person eating a bowl of food",
+        "a video frame of a bowl of food with a fork in it"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "speech (conf=0.44), music (conf=0.42)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "The current scene appears to depict the conclusion of a cooking tutorial, transitioning from preparation to enjoying the finished dish. The visuals show a plate of food being eaten, followed by a person eating from a bowl, and finally a bowl of food with a fork in it. The audio includes faint music and the phrase \"Thank you,\" which may indicate the speaker expressing gratitude to the audience, likely signaling the end of the tutorial. This scene emphasizes the enjoyment of the completed meal, wrapping up the instructional process."
+    },
+    {
+      "scene_index": 48,
+      "start_timecode": "00:04:22.500",
+      "end_timecode": "00:04:26.333",
+      "start_seconds": 262.5,
+      "end_seconds": 266.3333333333333,
+      "duration_seconds": 3.8333333333333144,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0048.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of pasta with tomato sauce",
+        "a video frame of a bowl of pasta with tomato sauce",
+        "a video frame of a bowl of pasta with tomato sauce"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 56,
+          "label": "bowl",
+          "confidence_avg": 0.867,
+          "start_frame": 0,
+          "end_frame": 14,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 32.216,
+          "net_displacement": 3.263,
+          "direction_change_var": 3.9905,
+          "relations": []
+        }
+      ],
+      "audio_natural": "silence (conf=0.44)",
+      "audio_speech": " Then I just added in some arugula that we needed to use up and a little bit of",
+      "llm_scene_description": "The current scene continues the pasta-making tutorial, focusing on the presentation of the finished dish. The visuals show a stationary bowl of pasta with tomato sauce (#56) centered in the frame, suggesting it is the final plated dish. The audio features the speaker saying, \"Then I just added in some arugula that we needed to use up and a little bit of,\" before cutting off, implying they are describing the final garnishes or additions to the dish. The calm and instructional tone persists, emphasizing the simplicity and resourcefulness of the recipe."
+    },
+    {
+      "scene_index": 49,
+      "start_timecode": "00:04:26.333",
+      "end_timecode": "00:04:29.500",
+      "start_seconds": 266.3333333333333,
+      "end_seconds": 269.5,
+      "duration_seconds": 3.1666666666666856,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0049.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of pasta and a piece of cheese",
+        "a video frame of a person peeling a piece of food",
+        "a video frame of a person peeling a piece of bread"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 56,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 5,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 39.814,
+          "net_displacement": 34.614,
+          "direction_change_var": 6.1284,
+          "relations": []
+        }
+      ],
+      "audio_natural": "silence (conf=0.33)",
+      "audio_speech": " old parmesan that was just chilling in the fridge and then topped it off.",
+      "llm_scene_description": "The current scene appears to continue the cooking tutorial, focusing on the preparation of garnishes or additional elements for the pasta dish. The visuals show a bowl of pasta with cheese, followed by a person (#56) peeling food, which transitions to peeling bread. The audio features the speaker mentioning \"old parmesan that was just chilling in the fridge and then topped it off,\" suggesting they are describing the use of leftover cheese as a garnish for the dish. The calm and instructional tone persists, emphasizing resourcefulness and simplicity in the cooking process."
+    },
+    {
+      "scene_index": 50,
+      "start_timecode": "00:04:29.500",
+      "end_timecode": "00:04:32.167",
+      "start_seconds": 269.5,
+      "end_seconds": 272.1666666666667,
+      "duration_seconds": 2.6666666666666856,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0050.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of food on a wooden table",
+        "a video frame of a bowl of food on a wooden table",
+        "a video frame of a bowl of food on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 59,
+          "label": "bowl",
+          "confidence_avg": 0.932,
+          "start_frame": 1,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.634,
+          "net_displacement": 0.978,
+          "direction_change_var": 3.1407,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " some olive oil. There you go.",
+      "llm_scene_description": "The current scene continues the cooking tutorial, focusing on the presentation of a completed dish. The visuals show a stationary bowl of food (#59) on a wooden table, suggesting it is the finished product. The audio features the sound of olive oil being poured, accompanied by the phrase, \"some olive oil. There you go,\" likely indicating the final garnish or touch being added to the dish. The calm and instructional tone remains consistent, emphasizing the simplicity and care in completing the recipe."
+    },
+    {
+      "scene_index": 51,
+      "start_timecode": "00:04:32.167",
+      "end_timecode": "00:04:36.667",
+      "start_seconds": 272.1666666666667,
+      "end_seconds": 276.6666666666667,
+      "duration_seconds": 4.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0051.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of pasta with parise and cheese",
+        "a video frame of a bowl of pasta",
+        "a video frame of a white bowl filled with pasta and vegetables"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 59,
+          "label": "bowl",
+          "confidence_avg": 0.835,
+          "start_frame": 2,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "top-center",
+          "movement": "moving up, getting farther",
+          "path_length": 46.645,
+          "net_displacement": 44.735,
+          "direction_change_var": 3.1842,
+          "relations": []
+        },
+        {
+          "track_id": 62,
+          "label": "bowl",
+          "confidence_avg": 0.845,
+          "start_frame": 17,
+          "end_frame": 17,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "door (conf=0.61)",
+      "audio_speech": " No need to panic if there isn't pasta at the store. It's super easy to make your own.",
+      "llm_scene_description": "In this scene, the cooking tutorial continues with a focus on the presentation of the completed pasta dish. The visuals show a bowl of pasta, initially described with cheese and parsley, then without, and finally with vegetables. Two bowls are tracked: one (#59) is moving upward, possibly being lifted or repositioned, while the other (#62) remains stationary. The audio includes a statement, \"No need to panic if there isn't pasta at the store. It's super easy to make your own,\" suggesting a reassuring tip from the speaker. A faint door sound is detected, though its relevance is unclear. This scene maintains the calm and instructional tone, emphasizing resourcefulness and the ease of making pasta at home."
+    },
+    {
+      "scene_index": 52,
+      "start_timecode": "00:04:36.667",
+      "end_timecode": "00:04:42.667",
+      "start_seconds": 276.6666666666667,
+      "end_seconds": 282.6666666666667,
+      "duration_seconds": 6.0,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0052.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of food on a table",
+        "a video frame of a bowl of food on a wooden table",
+        "a video frame of a bowl of food on a wooden table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 62,
+          "label": "bowl",
+          "confidence_avg": 0.911,
+          "start_frame": 0,
+          "end_frame": 23,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 15.359,
+          "net_displacement": 6.737,
+          "direction_change_var": 2.2603,
+          "relations": [
+            "left-of fork #63"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "fork",
+          "confidence_avg": 0.881,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "moving down, getting farther",
+          "path_length": 10.666,
+          "net_displacement": 9.889,
+          "direction_change_var": 0.3201,
+          "relations": [
+            "right-of bowl #62"
+          ]
+        }
+      ],
+      "audio_natural": "silence (conf=0.55)",
+      "audio_speech": " it may be a little bit more time consuming, but let's be real, we all have more time on our hands than normal right now, so really.",
+      "llm_scene_description": "The current scene appears to depict a quiet moment at the end of a cooking tutorial, focusing on the finished dish. The visuals show a stationary bowl of food (#62) on a wooden table, positioned left of a fork (#63) that is moving slightly downward. The audio includes a calm voice saying, \"it may be a little bit more time consuming, but let's be real, we all have more time on our hands than normal right now, so really,\" suggesting a reflective or encouraging comment from the speaker. This scene likely emphasizes the satisfaction of completing the meal and the value of taking time to enjoy the cooking process."
+    },
+    {
+      "scene_index": 53,
+      "start_timecode": "00:04:42.667",
+      "end_timecode": "00:04:50.167",
+      "start_seconds": 282.6666666666667,
+      "end_seconds": 290.1666666666667,
+      "duration_seconds": 7.5,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0053.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of food",
+        "a video frame of a bowl of food",
+        "a video frame of a bowl of pasta"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 62,
+          "label": "bowl",
+          "confidence_avg": 0.852,
+          "start_frame": 15,
+          "end_frame": 24,
+          "start_pos": "middle-center",
+          "end_pos": "top-center",
+          "movement": "moving up-right, getting farther",
+          "path_length": 78.748,
+          "net_displacement": 60.004,
+          "direction_change_var": 0.2665,
+          "relations": []
+        }
+      ],
+      "audio_natural": "silence (conf=0.63)",
+      "audio_speech": " No excuse. I'll probably be posting pasta videos every day this week So if you like this video and haven't already consider subscribing",
+      "llm_scene_description": "The current scene continues a cooking tutorial, focusing on the presentation of a completed bowl of pasta. The visuals show a bowl of pasta (#62) being lifted or repositioned, moving from the middle-center to the top-center of the frame. The audio features the speaker saying, \"No excuse. I'll probably be posting pasta videos every day this week. So if you like this video and haven't already, consider subscribing,\" suggesting the speaker is promoting their content while showcasing the dish. The tone remains calm and instructional, with an emphasis on sharing cooking content regularly. This scene likely serves as a conclusion or promotional moment for the tutorial."
+    },
+    {
+      "scene_index": 54,
+      "start_timecode": "00:04:50.167",
+      "end_timecode": "00:05:03.833",
+      "start_seconds": 290.1666666666667,
+      "end_seconds": 303.8333333333333,
+      "duration_seconds": 13.666666666666629,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0054.mp4",
+      "frame_captions": [
+        "a video frame of a bowl of food on a table",
+        "a video frame of a bowl of food on a table",
+        "a video frame of a bowl of food on a table"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 66,
+          "label": "bowl",
+          "confidence_avg": 0.897,
+          "start_frame": 4,
+          "end_frame": 54,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 112.984,
+          "net_displacement": 1.99,
+          "direction_change_var": 2.5749,
+          "relations": [
+            "left-of person #69"
+          ]
+        },
+        {
+          "track_id": 68,
+          "label": "person",
+          "confidence_avg": 0.896,
+          "start_frame": 20,
+          "end_frame": 21,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "moving right, getting farther",
+          "path_length": 15.221,
+          "net_displacement": 15.221,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 69,
+          "label": "person",
+          "confidence_avg": 0.881,
+          "start_frame": 42,
+          "end_frame": 44,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 10.581,
+          "net_displacement": 7.303,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of bowl #66"
+          ]
+        }
+      ],
+      "audio_natural": "music (conf=0.79), silence (conf=0.84)",
+      "audio_speech": " and connect with me on Instagram at chefstudio underscore if you want to reach out to me there. Also, if you have any questions or want to hear my thoughts on literally anything at all, leave them in the comment section below.",
+      "llm_scene_description": "In this scene, the cooking tutorial appears to be concluding with a focus on the finished dish. The visuals show a stationary bowl of food (#66) on a table, positioned left of a mostly stationary person (#69) in the top-right of the frame. Another person (#68) is seen moving farther to the right. The audio features background music and a promotional message from the speaker, encouraging viewers to connect with them on Instagram (@chefstudio_underscore) and leave comments or questions. The calm and instructional tone continues, with an emphasis on engaging with the audience and fostering interaction. This scene likely serves as a closing moment, blending the presentation of the dish with a call to action for the audience."
+    },
+    {
+      "scene_index": 55,
+      "start_timecode": "00:05:03.833",
+      "end_timecode": "00:05:19.500",
+      "start_seconds": 303.8333333333333,
+      "end_seconds": 319.5,
+      "duration_seconds": 15.666666666666686,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0055.mp4",
+      "frame_captions": [
+        "a video frame of a black background with a white border",
+        "a video frame of a red spat being used in a pot of batter",
+        "a video frame of a red spat being used over a pot of white liquid"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 66,
+          "label": "bowl",
+          "confidence_avg": 0.806,
+          "start_frame": 7,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "audio_speech": " because I'm saving a little bit of pasta dough from every video and I'm gonna do like a little chef studio chat slash answer questions slash talk nonsense while I'm learning to shape different kinds of pasta at the end of the week so yeah leave me your questions if you have any",
+      "llm_scene_description": "The current scene appears to be part of a cooking tutorial or vlog where the speaker is preparing pasta dough. The visuals show a red spatula being used in a pot, first with batter and then with white liquid, suggesting the process of mixing or preparing ingredients. A stationary bowl (#66) is visible in the center of the frame. The audio features the speaker explaining their plan to save bits of pasta dough from each video to experiment with shaping different types of pasta later in the week. They invite viewers to leave questions for a future \"chef studio chat\" segment, blending instructional content with audience engagement. The tone remains casual and conversational, with a focus on creativity and interaction."
+    },
+    {
+      "scene_index": 56,
+      "start_timecode": "00:05:19.500",
+      "end_timecode": "00:05:21.833",
+      "start_seconds": 319.5,
+      "end_seconds": 321.8333333333333,
+      "duration_seconds": 2.3333333333333144,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0056.mp4",
+      "frame_captions": [
+        "a video frame of a person stirring food into a pot",
+        "a video frame of a person stirring sugar into a pot",
+        "a video frame of a person stirring sugar into a pot"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "none",
+      "audio_speech": " Until then, yeah, keep safe.",
+      "llm_scene_description": "In this scene, the cooking tutorial continues with a focus on stirring ingredients in a pot. The visuals show a person stirring food, specifically sugar, into the pot. There are no tracked objects or additional audio context beyond a faint voice saying, \"Until then, yeah, keep safe.\" This suggests the speaker may be wrapping up a segment or offering a parting message. The scene maintains the instructional tone of the tutorial, with an emphasis on the cooking process."
+    },
+    {
+      "scene_index": 57,
+      "start_timecode": "00:05:21.833",
+      "end_timecode": "00:05:28.000",
+      "start_seconds": 321.8333333333333,
+      "end_seconds": 328.0,
+      "duration_seconds": 6.166666666666686,
+      "clip_path": ".runs1\\pasta\\clips\\scene_0057.mp4",
+      "audio_natural": "music (conf=0.74)",
+      "audio_speech": " kids at we'll see you tomorrow.",
+      "frame_captions": [
+        "a video frame of a black background with a white border",
+        "a video frame of a black background with the text, ` ` '",
+        "a video frame of a black background with the text, ` ` '"
+      ],
+      "yolo_detections": [],
+      "llm_scene_description": "The current scene appears to be a transition or closing moment, possibly signaling the end of a video or series. The visuals consist of a black background with a white border and no discernible objects or actions. The text is blank, and the audio features faint music alongside the sound of children saying, \"we'll see you tomorrow,\" suggesting a cheerful or anticipatory tone. This scene likely serves as a quiet, reflective conclusion or a teaser for future content, maintaining a light and positive atmosphere."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 3937,
+      "chunk_len": 1,
+      "narrative": "### Detailed Chronological Report of the Cooking Tutorial\n\nThe cooking tutorial begins at **00:00:00.000** with the narrator introducing a recipe for homemade pasta dough, emphasizing its simplicity. A cutting board with pasta is prominently displayed, and a stationary decorative item labeled as \"donut #1\" is visible. The narrator states, \"Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.\"\n\nBetween **00:00:06.500** and **00:00:18.167**, the tutorial demonstrates the initial stages of preparing pasta dough. The narrator acknowledges that the recipe is not luxurious but highlights its ease, reassuring viewers, \"If the pasta aisle at your grocery store is empty, don't panic.\" The video focuses on accessibility, showing a bowl of food (tracked as \"bowl #2\"), cutting pasta, and hygiene tips, such as washing hands and sanitizing work surfaces.\n\nAt **00:00:26.667**, the video transitions back to measuring ingredients for the dough. A measuring cup appears as flour is poured, and the narrator mentions, \"Then you'll need two cups of flour.\" Subsequent scenes depict the step-by-step process of creating the dough, including mixing flour, cracking eggs (\"Dump the flour onto your clean work surface... Then crack in three eggs\"), and optionally adding olive oil and salt to achieve the right consistency.\n\nFrom **00:01:00.167** to **00:01:36.833**, the tutorial guides viewers through kneading the dough, stating, \"Begin to slowly incorporate the flour from around the sides of the well,\" followed by tips for troubleshooting consistency: \"If it's too dry... add a touch of water. If it's too wet, add a little bit more flour.\" The narrator emphasizes patience and technique, instructing viewers to knead for about ten minutes.\n\nAt **00:01:53.500**, the tutorial shifts briefly to woodworking but quickly returns to rolling the dough for pasta. The narrator explains shaping preferences, stating, \"The dough will go from looking shaggy and rough to smooth and taut... you'll know it's done when it springs back.\"\n\nBetween **00:02:04.000** and **00:02:14.833**, the tutorial further details the process, including rolling dough into manageable portions and cutting it into specific shapes such as tagliatelle. Additional tips include lightly flouring the surface to prevent sticking and letting gluten relax if the dough shrinks. At **00:02:29.333**, the narrator introduces the folding technique for dough: \"Fold it in thirds like this, then roll it out.\"\n\nFrom **00:02:40.833** onwards, the focus shifts to preparing the dough for storage and cooking. The narrator advises, \"Wrap it and freeze it or refrigerate it,\" before transitioning to guidance on cooking freshly prepared pasta.\n\nAt **00:03:56.833**, the tutorial outlines cooking specifics: \"Fresh pasta cooks quickly and will probably only need about 2–3 minutes in salted boiling water.\" The visuals emphasize the final preparation, showing pasta on a stove and garnishes like arugula and parmesan cheese. The narrator shares presentation tips, such as drizzling olive oil over the finished dish, accompanied by tomato sauce.\n\nConcluding remarks begin at **00:04:42.667**, where the narrator encourages viewers to subscribe and promises more pasta-related content, stating, \"I'll probably be posting pasta videos every day this week. If you like this video... consider subscribing.\" At **00:04:50.167**, the narrator invites interaction through Instagram and comments, saying, \"Reach out to me there, or leave questions in the comment section below.\"\n\nThe final moments between **00:05:03.833** and **00:05:21.833** shift to a more conversational tone. The narrator shares plans to experiment with saved pasta dough while answering viewer questions in future videos. The tutorial concludes on a pleasant note with faint music and the sound of children saying, \"We'll see you tomorrow,\" signaling the end of the instructional series."
+    }
+  ],
+  "synopsis": "Summary: The video is a detailed cooking tutorial focused on creating homemade pasta dough. It begins with the narrator introducing the recipe and highlights its simplicity and accessibility, especially useful when store shelves are empty. The video progresses methodically, with clear demonstrations of ingredient measuring, dough preparation, kneading, rolling, cutting the pasta into shapes like tagliatelle, and storage options. Cooking tips for freshness and presentation are also provided. The narrator interacts with viewers, sharing advice and encouraging engagement through social media and comments while hinting at upcoming videos. The tutorial ends with a light-hearted moment featuring children and the promise of more pasta-focused content.\n\nWhat is happening in the video? The video is a cooking tutorial explaining how to make homemade pasta dough from scratch, with step-by-step instructions on preparation, finishing, and cooking.\n\nWhat are the key events? Key events include the introduction of the recipe, measuring and mixing ingredients, kneading the dough, troubleshooting dough consistency, rolling and cutting shapes, storing options, cooking advice, and the conclusion inviting viewer engagement.\n\nWhat are the key actions and who performed them? The narrator demonstrates making pasta dough, measuring ingredients like flour, cracking eggs, kneading, shaping portions, cutting pasta, storing it, and cooking it. They also interact with the audience by sharing tips and encouraging engagement.\n\nWhat are the main conflicts and problems encountered? The tutorial addresses common problems in dough preparation, such as achieving proper hydration and consistency. The narrator provides solutions, such as adding water to dry dough or more flour to wet dough.\n\nWho is the main character? Describe their journey. The main character is the unseen narrator, whose journey involves teaching viewers step-by-step how to create homemade pasta dough. They move from introducing the recipe to demonstrating techniques and addressing viewer concerns.\n\nList the characters. For each character, describe their appearance, traits, and role in the story.  \n1. Narrator: Unseen, provides instructions and cooking tips with a friendly, reassuring tone. Their role is to educate viewers and engage them with the video content.  \n2. Children: Briefly heard at the end, they say, \"We'll see you tomorrow,\" adding a lighthearted closure to the tutorial.\n\nWhat are some significant quotes from the video and who said them?  \n1. Narrator: \"Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.\"  \n2. Narrator: \"If the pasta aisle at your grocery store is empty, don't panic.\"  \n3. Narrator: \"Fresh pasta cooks quickly and will probably only need about 2–3 minutes in salted boiling water.\"\n\nWhat is the setting? Did it change? How is it related to the story? The setting is a kitchen. It remains consistent throughout the video as the narrator demonstrates the cooking process. The setting reinforces the tutorial’s focus on home cooking.\n\nHow did the video start? Explain the start. The video begins with the narrator introducing the recipe for homemade pasta dough, emphasizing its simplicity and reassuring viewers about its accessibility.\n\nHow did the video end? Explain the ending. The video ends with the narrator inviting viewers to subscribe and engage with the content. The children saying, \"We'll see you tomorrow,\" provides a light closure with a hint of future videos.\n\nWhat objects are central to the video and when do they appear? Central objects include pasta dough, cutting boards, bowls, a measuring cup, eggs, olive oil, and cooked pasta. These appear throughout the tutorial, aligning with the stages of the recipe.\n\nWhat is the most important thing said or heard? The narrator's reassuring comment, \"If the pasta aisle at your grocery store is empty, don't panic,\" establishes the video’s purpose of providing a simple alternative to store-bought pasta.\n\nWhat is different at the end vs the beginning? At the beginning, viewers are introduced to the recipe and the process. By the end, they are equipped with all the steps necessary to make, store, cook, and serve homemade pasta.\n\nWhat type of video is this? It is a cooking tutorial designed to teach and inform viewers about making homemade pasta dough.\n\nWhat is the goal or intent or theme of the video? The goal is to provide a step-by-step guide to making pasta dough while encouraging viewers to try basic cooking at home. The theme emphasizes simplicity, accessibility, and audience engagement.\n\nList the moods and tones present, explain each one.  \n1. Informative: The narrator provides clear instructions throughout the tutorial.  \n2. Reassuring: The narrator addresses potential concerns like empty grocery store shelves.  \n3. Playful: The concluding moments with the children add lightness and warmth.  \n4. Encouraging: The narrator invites viewers to subscribe and promises more content, fostering a sense of community.\n\nWhat context is missing or assumed? What would require outside knowledge? The video assumes basic knowledge of cooking terms like \"knead\" and \"hydrate dough.\" Specific measurements could require familiarity with kitchen tools like measuring cups.  \n\nWhat tools or kitchen equipment are used in the video? Measuring cups, bowls, cutting boards, and a stove are used throughout the video.\n\nDoes the narrator appear visually or only audibly? The narrator is only heard, not visually depicted.\n\nIs this a standalone tutorial or part of a larger series? It is presented within the context of a larger series, as the narrator mentions posting more pasta-related content every day of the week.\n\nWhat ingredient measurements are mentioned? Two cups of flour and three eggs are stated explicitly as part of the recipe.\n\nWhat troubleshooting tips are provided for dough preparation? The narrator advises adding water for dry dough and more flour for wet dough.\n\nWhat techniques for rolling and shaping pasta are demonstrated? Rolling dough into portions, cutting shapes like tagliatelle, folding into thirds, and flouring surfaces to prevent sticking are demonstrated techniques.\n\nHow long does it take to knead the dough, and how do you know it’s ready? The narrator suggests kneading for about ten minutes and advises recognizing readiness when the dough feels smooth and springs back.\n\nWhat storage options are provided for the pasta dough? The narrator explains wrapping the dough and freezing or refrigerating it for future use.\n\nHow is cooked pasta prepared and presented? The narrator advises cooking pasta for 2–3 minutes in salted boiling water and adding garnishes like olive oil, tomato sauce, parmesan cheese, and arugula for presentation.\n\nDid the narrator provide any call-to-action statements? Yes, the narrator encourages viewers to subscribe and engage through social media and comments.\n\nWhat role does the music play? Faint music towards the end sets a warm and conversational mood.\n\nDoes the video have any decorative or thematic items? A stationary item labeled \"donut #1\" appears but is not relevant to the pasta-making theme.\n\nIs there humor or levity in the video? The lighthearted closing with children provides a touch of levity.\n\nHow long is the video, and is it fast-paced or detailed? The video lasts approximately five minutes and is detailed, offering step-by-step instructions.\n\nWould beginners find this video accessible? Yes, the emphasis on simplicity and the step-by-step nature make it beginner-friendly.\n\nWhat pacing adjustments could improve the video? Not explicitly stated.\n\nWhat are potential follow-up videos indicated in this tutorial? The narrator hints at daily pasta-related content, suggesting additional recipes or techniques.\n\nWhat garnishes or toppings are used to serve the pasta? Olive oil, tomato sauce, parmesan cheese, and arugula are shown as toppings.\n\nWhere can viewers interact with the narrator? Viewers are invited to interact via Instagram or the comment section of the video.\n\nWhat symbolic or thematic connection can pasta have in this video? Pasta symbolizes simplicity, creativity, and adaptability, fitting the theme of accessible cooking.\n\nWhat motivates the narrator to make this tutorial? Likely the desire to help viewers create homemade alternatives given the accessibility challenges of store-bought ingredients.",
+  "rag_embedding": {
+    "rag_path": "_processed\\How to Make Pasta - Without a Machine.mp4/rag_embedding.json",
+    "context_count": 97,
+    "embedding_dim": 3072,
+    "model": "gemini-embedding-001"
+  }
+}

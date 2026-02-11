@@ -1,0 +1,1398 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
+  "video_length": "00:04:33.473",
+  "total_process_sec": 665.61527,
+  "scene_number": 22,
+  "start_process": "2026-02-11 06:10:13",
+  "end_process": "2026-02-11 06:22:19",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 2.5,
+      "used_RAM_GB": 13.34,
+      "RAM_usage_percent": 84.2
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 488.75,
+      "disk_free_GB": 444.23,
+      "disk_usage_percent": 52.4
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "params": {
+    "improve_motion_detection": false,
+    "prioritize_speed": false,
+    "pyscene_threshold": 27,
+    "pyscene_shortest": 2,
+    "frames_per_scene": 3,
+    "frame_resolution": 320,
+    "blip_start_prompt": "a video frame of",
+    "blip_caption_len": 30,
+    "blip_num_beams": 4,
+    "blip_do_sample": false,
+    "yolo_conf_thres": 0.8,
+    "yolo_iou_thres": 0.5,
+    "ast_target_sr": 16000,
+    "asr_model_size": "small",
+    "asr_use_vad": true,
+    "asr_target_sr": 16000,
+    "llm_scene_history": 5,
+    "llm_chunk_len": 50000,
+    "llm_summary_len": 50000,
+    "llm_cooldown_sec": 0,
+    "rag_top_k_context": 10
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 6.62748,
+      "cpu_time_sec": 20.25,
+      "ram_before_MB": 544,
+      "ram_after_MB": 550,
+      "ram_used_MB": 6,
+      "io_read_MB": 386.8367395401001,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 2.29812,
+      "cpu_time_sec": 0.15625,
+      "ram_before_MB": 550,
+      "ram_after_MB": 550,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0735483169555664,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 3.59561,
+      "cpu_time_sec": 24.60938,
+      "ram_before_MB": 527,
+      "ram_after_MB": 537,
+      "ram_used_MB": 10,
+      "io_read_MB": 252.8962860107422,
+      "io_write_MB": 1.261357307434082,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 171.39784,
+      "cpu_time_sec": 170.90625,
+      "ram_before_MB": 537,
+      "ram_after_MB": 1569,
+      "ram_used_MB": 1032,
+      "io_read_MB": 0.03425884246826172,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_fps": {
+      "wall_time_sec": 38.25148,
+      "cpu_time_sec": 409.79688,
+      "ram_before_MB": 1569,
+      "ram_after_MB": 1739,
+      "ram_used_MB": 170,
+      "io_read_MB": 4714.902777671814,
+      "io_write_MB": 15.629913330078125,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 89.06407,
+      "cpu_time_sec": 699.0,
+      "ram_before_MB": 1739,
+      "ram_after_MB": 10316,
+      "ram_used_MB": 8577,
+      "io_read_MB": 22.177271842956543,
+      "io_write_MB": 21.033424377441406,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "wall_time_sec": 29.42942,
+      "cpu_time_sec": 192.20312,
+      "ram_before_MB": 10138,
+      "ram_after_MB": 10574,
+      "ram_used_MB": 436,
+      "io_read_MB": 390.3096742630005,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "wall_time_sec": 212.66261,
+      "cpu_time_sec": 1637.26562,
+      "ram_before_MB": 10574,
+      "ram_after_MB": 10831,
+      "ram_used_MB": 257,
+      "io_read_MB": 1308.295763015747,
+      "io_write_MB": 4.76837158203125e-06,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "wall_time_sec": 56.5229,
+      "cpu_time_sec": 0.28125,
+      "ram_before_MB": 10831,
+      "ram_after_MB": 10831,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0172882080078125,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "summarize_scenes": {
+      "wall_time_sec": 17.43896,
+      "cpu_time_sec": 0.01562,
+      "ram_before_MB": 10831,
+      "ram_after_MB": 10806,
+      "ram_used_MB": -25,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0039272308349609375,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "synthesize_synopsis": {
+      "wall_time_sec": 22.92215,
+      "cpu_time_sec": 0.0,
+      "ram_before_MB": 10806,
+      "ram_after_MB": 10806,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.008916854858398438,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "make_embedding": {
+      "wall_time_sec": 15.40463,
+      "cpu_time_sec": 1.375,
+      "ram_before_MB": 10806,
+      "ram_after_MB": 10809,
+      "ram_used_MB": 3,
+      "io_read_MB": 0.7752056121826172,
+      "io_write_MB": 4.863765716552734,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:15.883",
+      "start_seconds": 0.0,
+      "end_seconds": 15.882533333333333,
+      "duration_seconds": 15.882533333333333,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0000.mp4",
+      "frame_captions": [
+        "a video frame of a woman speaking at a podium",
+        "a video frame of a woman speaking at a podium",
+        "a video frame of malala youzai speaking at a press conference"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.902,
+          "start_frame": 0,
+          "end_frame": 63,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, looping/circling",
+          "path_length": 82.564,
+          "net_displacement": 9.107,
+          "direction_change_var": 1.9058,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " I am proud, but in fact I am very proud to be the first Pashtun, the first Pakistani and the youngest person to receive this award.",
+      "llm_scene_description": "In this scene, Malala Yousafzai is speaking at a press conference, standing at a podium. She expresses her pride in being the first Pashtun, the first Pakistani, and the youngest person to receive an unspecified award. The camera tracks her movement slightly as she speaks, emphasizing her presence and importance in the moment. The tone of the scene is celebratory and significant."
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:15.883",
+      "end_timecode": "00:00:21.755",
+      "start_seconds": 15.882533333333333,
+      "end_seconds": 21.755066666666668,
+      "duration_seconds": 5.872533333333335,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0001.mp4",
+      "frame_captions": [
+        "a video frame of a group of people sitting in a crowd",
+        "a video frame of a crowd of people at a religious event",
+        "a video frame of a group of people sitting in a crowd"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.88,
+          "start_frame": 0,
+          "end_frame": 23,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting farther",
+          "path_length": 19.693,
+          "net_displacement": 14.321,
+          "direction_change_var": 3.5307,
+          "relations": [
+            "left-of person #3",
+            "left-of person #5",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 2,
+          "end_frame": 23,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 29.739,
+          "net_displacement": 0.359,
+          "direction_change_var": 2.1714,
+          "relations": [
+            "left-of person #5",
+            "right-of person #1",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.857,
+          "start_frame": 4,
+          "end_frame": 21,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 18.913,
+          "net_displacement": 3.12,
+          "direction_change_var": 5.6079,
+          "relations": [
+            "left-of person #1",
+            "left-of person #3",
+            "left-of person #5"
+          ]
+        },
+        {
+          "track_id": 5,
+          "label": "person",
+          "confidence_avg": 0.821,
+          "start_frame": 4,
+          "end_frame": 13,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 1.793,
+          "net_displacement": 0.982,
+          "direction_change_var": 0.1065,
+          "relations": [
+            "right-of person #1",
+            "right-of person #3",
+            "right-of person #4"
+          ]
+        }
+      ],
+      "audio_natural": "applause (conf=0.66)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "In this scene, a crowd of people is gathered at what appears to be a religious or celebratory event. The group is seated, with some individuals slightly shifting positions. There is applause, though the confidence level of the audio detection suggests it may not be fully clear or consistent. A voice, likely from a speaker addressing the crowd, says \"Thank you.\" While the speaker is not visually identified, the context from the previous scene suggests this could be a continuation of Malala Yousafzai's event following her press conference, possibly acknowledging the audience's support or celebrating her achievement. The atmosphere remains positive and respectful."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:21.755",
+      "end_timecode": "00:00:25.893",
+      "start_seconds": 21.755066666666668,
+      "end_seconds": 25.892533333333333,
+      "duration_seconds": 4.137466666666665,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0002.mp4",
+      "frame_captions": [
+        "a video frame of a crowd of people",
+        "a video frame of a crowd of people",
+        "a video frame of a crowd of people"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "applause (conf=0.70)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "In this scene, a crowd of people is gathered, continuing the celebratory atmosphere from the previous scenes. The audio includes applause, though it is faint or unclear, and a voice says, \"Thank you,\" suggesting someone is addressing the audience. While no specific individuals are visually identified, the context implies this is part of the ongoing event celebrating Malala Yousafzai's achievement, possibly as she or another speaker acknowledges the crowd's support. The tone remains positive and respectful."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:25.893",
+      "end_timecode": "00:00:28.562",
+      "start_seconds": 25.892533333333333,
+      "end_seconds": 28.561866666666667,
+      "duration_seconds": 2.6693333333333342,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0003.mp4",
+      "frame_captions": [
+        "a video frame of the prince and duchess of wales at the royal wedding",
+        "a video frame of the queen and prince of wales at the royal wedding",
+        "a video frame of queen elizabeth, duchess of cambridge and prince albert of edinburgh"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.847,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 5.127,
+          "net_displacement": 3.225,
+          "direction_change_var": 3.2181,
+          "relations": [
+            "left-of person #3",
+            "left-of person #5",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.892,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 3.247,
+          "net_displacement": 1.603,
+          "direction_change_var": 1.4587,
+          "relations": [
+            "left-of person #5",
+            "right-of person #1",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.93,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 4.337,
+          "net_displacement": 3.448,
+          "direction_change_var": 1.2035,
+          "relations": [
+            "left-of person #1",
+            "left-of person #3",
+            "left-of person #5"
+          ]
+        },
+        {
+          "track_id": 5,
+          "label": "person",
+          "confidence_avg": 0.904,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 4.963,
+          "net_displacement": 4.627,
+          "direction_change_var": 0.4536,
+          "relations": [
+            "right-of person #1",
+            "right-of person #3",
+            "right-of person #4"
+          ]
+        }
+      ],
+      "audio_natural": "applause (conf=0.71)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "This scene takes place at a royal wedding, featuring prominent members of the British royal family. The video frames show the Prince and Duchess of Wales, Queen Elizabeth, the Duchess of Cambridge, and Prince Albert of Edinburgh. The individuals are mostly stationary, positioned in relation to one another, suggesting a formal and ceremonial setting. The audio includes applause and the phrase \"Thank you,\" indicating a moment of acknowledgment or appreciation, possibly directed toward the gathered audience or participants in the event. The atmosphere is celebratory and respectful, consistent with the grandeur of a royal wedding."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:28.562",
+      "end_timecode": "00:00:52.185",
+      "start_seconds": 28.561866666666667,
+      "end_seconds": 52.18546666666667,
+      "duration_seconds": 23.623600000000003,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0004.mp4",
+      "frame_captions": [
+        "a video frame of a woman wearing a pink shawl",
+        "a video frame of a woman speaking at a podium",
+        "a video frame of a woman wearing a pink shawl"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.909,
+          "start_frame": 0,
+          "end_frame": 94,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer, looping/circling",
+          "path_length": 190.486,
+          "net_displacement": 3.589,
+          "direction_change_var": 3.1285,
+          "relations": []
+        }
+      ],
+      "audio_natural": "silence (conf=0.37)",
+      "audio_speech": " Along with that, along with that, I'm pretty certain that I'm also the first recipient of the Nobel Peace Prize, who still fights with her younger brothers. I want there to be peace everywhere, but my brothers and I are still working on that.",
+      "llm_scene_description": "In this scene, Malala Yousafzai is speaking at a podium, wearing a pink shawl. The camera focuses on her as she delivers a lighthearted and personal remark, saying, \"Along with that, I'm pretty certain that I'm also the first recipient of the Nobel Peace Prize, who still fights with her younger brothers. I want there to be peace everywhere, but my brothers and I are still working on that.\" The tone is warm and humorous, blending her significant achievements with a relatable anecdote. This appears to be part of a larger celebratory event honoring her accomplishments, continuing the positive and respectful atmosphere from earlier scenes."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:52.185",
+      "end_timecode": "00:00:56.590",
+      "start_seconds": 52.18546666666667,
+      "end_seconds": 56.589866666666666,
+      "duration_seconds": 4.404399999999995,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0005.mp4",
+      "frame_captions": [
+        "a video frame of a group of people sitting in a crowd",
+        "a video frame of a crowd of people sitting in chairs",
+        "a video frame of a crowd of people sitting in chairs"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.844,
+          "start_frame": 13,
+          "end_frame": 17,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving right",
+          "path_length": 9.199,
+          "net_displacement": 9.048,
+          "direction_change_var": 0.0794,
+          "relations": [
+            "left-of person #15",
+            "left-of person #9",
+            "right-of tie #14"
+          ]
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.911,
+          "start_frame": 1,
+          "end_frame": 17,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.997,
+          "net_displacement": 0.604,
+          "direction_change_var": 1.9383,
+          "relations": [
+            "right-of person #1",
+            "right-of person #10",
+            "right-of person #15",
+            "right-of tie #14"
+          ]
+        },
+        {
+          "track_id": 10,
+          "label": "person",
+          "confidence_avg": 0.837,
+          "start_frame": 1,
+          "end_frame": 11,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 6.462,
+          "net_displacement": 3.214,
+          "direction_change_var": 3.3514,
+          "relations": [
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 14,
+          "label": "tie",
+          "confidence_avg": 0.831,
+          "start_frame": 5,
+          "end_frame": 16,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 1.375,
+          "net_displacement": 0.816,
+          "direction_change_var": 3.0081,
+          "relations": [
+            "left-of person #1",
+            "left-of person #15",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.845,
+          "start_frame": 11,
+          "end_frame": 15,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 1.131,
+          "net_displacement": 0.601,
+          "direction_change_var": 2.8866,
+          "relations": [
+            "left-of person #9",
+            "right-of person #1",
+            "right-of tie #14"
+          ]
+        }
+      ],
+      "audio_natural": "speech (conf=0.68)",
+      "audio_speech": " I'm on-",
+      "llm_scene_description": "In this scene, a crowd of people is seated, likely attending a formal or celebratory event. The individuals are mostly stationary, with minor movements noted among a few attendees. The setting appears to be calm and organized, with no significant disruptions. The audio includes a partially audible phrase, \"I'm on-,\" though its context is unclear. Based on prior scenes, this could be a continuation of an event honoring Malala Yousafzai, though no specific individuals are visually identified here. The atmosphere remains respectful and subdued, consistent with the tone of a formal gathering."
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:56.590",
+      "end_timecode": "00:00:59.526",
+      "start_seconds": 56.589866666666666,
+      "end_seconds": 59.526133333333334,
+      "duration_seconds": 2.9362666666666684,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0006.mp4",
+      "frame_captions": [
+        "a video frame of a crowd of people",
+        "a video frame of a crowd of people",
+        "a video frame of a crowd of people"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "none",
+      "audio_speech": " so honored to receive this award together.",
+      "llm_scene_description": "In this scene, a crowd of people is gathered, continuing the atmosphere of a formal or celebratory event. While no specific individuals are visually identified, the audio includes the phrase, \"so honored to receive this award together,\" suggesting a speaker is addressing the audience and expressing gratitude. Based on prior scenes, this could be part of an event honoring Malala Yousafzai or another significant achievement. The tone remains positive and respectful, consistent with the context of previous scenes."
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:59.526",
+      "end_timecode": "00:01:03.530",
+      "start_seconds": 59.526133333333334,
+      "end_seconds": 63.53013333333333,
+      "duration_seconds": 4.003999999999998,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0007.mp4",
+      "frame_captions": [
+        "a video frame of a woman wearing a pink shawl",
+        "a video frame of a woman wearing a pink hina",
+        "a video frame of a woman wearing a pink hina"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer",
+          "path_length": 67.86,
+          "net_displacement": 29.463,
+          "direction_change_var": 3.9685,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "In this scene, a woman, likely Malala Yousafzai, is seen wearing a pink shawl or hina, moving slightly to the left and appearing closer to the center of the frame. There is no audio in this segment. Based on prior scenes, this continues the context of a formal or celebratory event, possibly related to Malala's achievements or recognition. The focus on her movement and attire suggests a transition or moment of significance within the ongoing event. The atmosphere remains respectful and consistent with the tone of prior scenes."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:01:03.530",
+      "end_timecode": "00:01:11.271",
+      "start_seconds": 63.53013333333333,
+      "end_seconds": 71.27120000000001,
+      "duration_seconds": 7.741066666666676,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0008.mp4",
+      "frame_captions": [
+        "a video frame of two men sitting at a table",
+        "a video frame of pm modi ' s speech in parliament",
+        "a video frame of pm modi and pm naji"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.949,
+          "start_frame": 0,
+          "end_frame": 30,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 9.06,
+          "net_displacement": 3.369,
+          "direction_change_var": 1.143,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " for children's rights for a long time. Twice as long, in fact, than I have been alive.",
+      "llm_scene_description": "In this scene, two men are seated at a table, followed by a shift to footage of Indian Prime Minister Narendra Modi delivering a speech in Parliament. The next frame shows PM Modi alongside another individual, identified as PM Najib Razak of Malaysia. The audio includes a statement about advocating for children's rights, though it is unclear who is speaking. The scene appears to depict a formal or diplomatic interaction, possibly related to discussions on social or political issues, such as children's rights. The atmosphere is professional and focused, consistent with the context of a parliamentary or diplomatic setting."
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:01:11.271",
+      "end_timecode": "00:01:18.478",
+      "start_seconds": 71.27120000000001,
+      "end_seconds": 78.47840000000001,
+      "duration_seconds": 7.2072,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0009.mp4",
+      "frame_captions": [
+        "a video frame of a woman giving a speech",
+        "a video frame of a woman giving a speech",
+        "a video frame of a woman giving a speech"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.925,
+          "start_frame": 0,
+          "end_frame": 28,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left, looping/circling",
+          "path_length": 66.926,
+          "net_displacement": 9.615,
+          "direction_change_var": 2.2008,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " I'm proud that we can work together.",
+      "llm_scene_description": "In this scene, a woman is giving a speech, continuing the formal and respectful tone established in previous scenes. The audio includes the statement, \"I'm proud that we can work together,\" suggesting a message of collaboration or unity. Based on prior context, this could still be part of the event honoring Malala Yousafzai, though her identity is not explicitly confirmed in this scene. The movement of \"person #15\" circling within the frame may indicate minor activity in the background, but it does not disrupt the focus on the speaker. The atmosphere remains positive and celebratory."
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:01:18.478",
+      "end_timecode": "00:01:33.694",
+      "start_seconds": 78.47840000000001,
+      "end_seconds": 93.6936,
+      "duration_seconds": 15.215199999999996,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0010.mp4",
+      "frame_captions": [
+        "a video frame of pm modi ' s speech in parliament",
+        "a video frame of pm modi ' s speech in parliament",
+        "a video frame of pm modi and his wife"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.95,
+          "start_frame": 0,
+          "end_frame": 60,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 26.729,
+          "net_displacement": 6.74,
+          "direction_change_var": 2.4257,
+          "relations": [
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.815,
+          "start_frame": 1,
+          "end_frame": 60,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 7.568,
+          "net_displacement": 1.827,
+          "direction_change_var": 2.1362,
+          "relations": [
+            "left-of person #15"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " اس بہ",
+      "llm_scene_description": "In this scene, Indian Prime Minister Narendra Modi is delivering a speech in Parliament, as indicated by the captions and visual context. The presence of another individual, identified as PM Modi's wife, is noted in the frame. Both individuals remain mostly stationary, with PM Modi positioned to the right of his wife. There is no clear audio transcript, but faint sounds (\"اس بہ\") are heard, which may be unrelated or unclear. This scene appears to depict a formal moment, possibly part of a larger parliamentary or official event. The tone remains professional and respectful, consistent with prior scenes involving formal gatherings and speeches."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:01:33.694",
+      "end_timecode": "00:01:36.363",
+      "start_seconds": 93.6936,
+      "end_seconds": 96.36293333333333,
+      "duration_seconds": 2.669333333333327,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0011.mp4",
+      "frame_captions": [
+        "a video frame of a woman speaking at a podium",
+        "a video frame of a woman wearing a red shawl",
+        "a video frame of a woman wearing a pink hina"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.879,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 17.446,
+          "net_displacement": 15.069,
+          "direction_change_var": 1.075,
+          "relations": []
+        }
+      ],
+      "audio_natural": "applause (conf=0.72)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "In this scene, a woman, likely Malala Yousafzai, is seen speaking at a podium, wearing a red shawl in one frame and a pink hina in another. She appears to be concluding her speech, as the audio includes applause and the phrase \"Thank you.\" The movement of \"person #15\" suggests she is stepping away from the podium, moving slightly to the left. This scene continues the context of a formal or celebratory event, possibly honoring Malala's achievements. The atmosphere remains positive and respectful, consistent with prior scenes."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:01:36.363",
+      "end_timecode": "00:01:38.765",
+      "start_seconds": 96.36293333333333,
+      "end_seconds": 98.76533333333333,
+      "duration_seconds": 2.4024,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0012.mp4",
+      "frame_captions": [
+        "a video frame of a group of people clapping",
+        "a video frame of a group of women clapping in a crowd",
+        "a video frame of a group of people applauding at a church service"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.835,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 69.148,
+          "net_displacement": 69.029,
+          "direction_change_var": 0.0276,
+          "relations": []
+        },
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.83,
+          "start_frame": 2,
+          "end_frame": 9,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 3.985,
+          "net_displacement": 3.004,
+          "direction_change_var": 0.561,
+          "relations": []
+        }
+      ],
+      "audio_natural": "applause (conf=0.69)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "In this scene, a group of people, primarily women, are seen clapping and applauding, suggesting a moment of recognition or celebration. The setting appears to be a church service, reinforcing the formal and respectful tone established in prior scenes. The audio includes applause and the phrase \"Thank you,\" indicating the conclusion of a speech or significant event. Based on previous context, this may be part of an ongoing event honoring Malala Yousafzai, who was seen earlier delivering a speech and receiving recognition. The atmosphere remains positive and celebratory, with the focus on the collective appreciation of the crowd."
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:01:38.765",
+      "end_timecode": "00:01:42.502",
+      "start_seconds": 98.76533333333333,
+      "end_seconds": 102.50240000000001,
+      "duration_seconds": 3.737066666666678,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0013.mp4",
+      "frame_captions": [
+        "a video frame of a crowd of people in a church",
+        "a video frame of a crowd of people in a church",
+        "a video frame of a crowd of people in a church"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "applause (conf=0.70)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "This scene depicts a crowd of people gathered in a church, likely part of a formal or celebratory event. The audio includes applause and the phrase \"Thank you,\" suggesting the conclusion of a speech or significant moment. Based on prior context, this event may be connected to the recognition of Malala Yousafzai, who was previously seen delivering a speech and being honored. The atmosphere remains positive and respectful, with the crowd expressing appreciation."
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:42.502",
+      "end_timecode": "00:02:24.544",
+      "start_seconds": 102.50240000000001,
+      "end_seconds": 144.5444,
+      "duration_seconds": 42.04199999999999,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0014.mp4",
+      "frame_captions": [
+        "a video frame of a woman in a red dress",
+        "a video frame of a woman speaking at a podium",
+        "a video frame of a woman speaking at a podium"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 2,
+          "end_frame": 168,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 315.144,
+          "net_displacement": 54.641,
+          "direction_change_var": 1.0741,
+          "relations": []
+        }
+      ],
+      "audio_natural": "applause (conf=0.73), music (conf=0.42)",
+      "audio_speech": " ఈనిగో బ్త్�<|si|> monitoring ఎద్ియెఒఌరలిప్ల్chan ప్ధైటి. వాసినిమషినివి� Anything my grandfather would always call me Malala, the happiest girl in the world. And today, I'm very happy that we are together fighting for an important cause.",
+      "llm_scene_description": "In this scene, a woman in a red dress is speaking at a podium, continuing the formal and celebratory tone established in previous scenes. The audio includes applause and faint music, alongside a speech where the woman mentions her grandfather calling her \"Malala, the happiest girl in the world,\" and expresses joy about fighting for an important cause together. Based on prior context, this event appears to honor Malala Yousafzai, with the woman likely delivering a speech about unity and advocacy. The atmosphere remains positive and respectful, with the focus on the speaker and her message."
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:02:24.544",
+      "end_timecode": "00:02:28.548",
+      "start_seconds": 144.5444,
+      "end_seconds": 148.54840000000002,
+      "duration_seconds": 4.004000000000019,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0015.mp4",
+      "frame_captions": [
+        "a video frame of a woman wearing a headscar and a man in a suit sitting next to her",
+        "a video frame of a woman wearing a headscar and a man in a suit sitting next to her",
+        "a video frame of a woman wearing a headscar and a man in a suit sitting next to her"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.928,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 19.668,
+          "net_displacement": 3.587,
+          "direction_change_var": 1.4499,
+          "relations": [
+            "below person #22",
+            "left-of person #21",
+            "left-of person #23",
+            "left-of person #24",
+            "right-of person #20"
+          ]
+        },
+        {
+          "track_id": 20,
+          "label": "person",
+          "confidence_avg": 0.852,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 12.141,
+          "net_displacement": 0.989,
+          "direction_change_var": 2.39,
+          "relations": [
+            "below person #22",
+            "left-of person #18",
+            "left-of person #21",
+            "left-of person #23",
+            "left-of person #24"
+          ]
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.918,
+          "start_frame": 1,
+          "end_frame": 16,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 7.92,
+          "net_displacement": 0.856,
+          "direction_change_var": 2.8196,
+          "relations": [
+            "left-of person #24",
+            "right-of person #18",
+            "right-of person #20",
+            "right-of person #22",
+            "right-of person #23"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 2,
+          "end_frame": 16,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 12.764,
+          "net_displacement": 1.091,
+          "direction_change_var": 2.7037,
+          "relations": [
+            "above person #18",
+            "above person #20",
+            "left-of person #21",
+            "left-of person #23",
+            "left-of person #24"
+          ]
+        },
+        {
+          "track_id": 23,
+          "label": "person",
+          "confidence_avg": 0.823,
+          "start_frame": 3,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer",
+          "path_length": 8.981,
+          "net_displacement": 8.084,
+          "direction_change_var": 2.4967,
+          "relations": [
+            "left-of person #21",
+            "right-of person #18",
+            "right-of person #20",
+            "right-of person #22"
+          ]
+        },
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.804,
+          "start_frame": 7,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.687,
+          "net_displacement": 0.687,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #18",
+            "right-of person #20",
+            "right-of person #21",
+            "right-of person #22"
+          ]
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " This award is not",
+      "llm_scene_description": "In this scene, a woman wearing a headscarf and a man in a suit are seated next to each other, remaining mostly stationary. Based on prior context, this could be part of a formal or celebratory event, possibly connected to the recognition of Malala Yousafzai or another significant figure. The lack of clear audio transcript and minimal movement suggests a quiet, reflective moment or a pause in the event. The phrase \"This award is not\" is faintly heard, potentially indicating the beginning of a speech or announcement related to an award or recognition. The atmosphere remains formal and respectful."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:02:28.548",
+      "end_timecode": "00:03:24.337",
+      "start_seconds": 148.54840000000002,
+      "end_seconds": 204.33746666666667,
+      "duration_seconds": 55.789066666666656,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0016.mp4",
+      "frame_captions": [
+        "a video frame of a woman speaking at a rally",
+        "a video frame of a woman giving a speech",
+        "a video frame of a woman giving a speech"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 222,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting farther, moving in a loop",
+          "path_length": 534.042,
+          "net_displacement": 43.312,
+          "direction_change_var": 1.5122,
+          "relations": []
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.893,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.828,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " just for me. It is for those forgotten children who want education. It is for those frightened children who want peace. It is for those voiceless children who want change. I am here to stand up for their rights, to raise their voice. It is not time to pity them. It is not time to pity them. It is time to take action. So it becomes the last time, the last time. So it becomes the last time that we see a child deprived of education.",
+      "llm_scene_description": "In this scene, a woman, likely Malala Yousafzai, is speaking at a rally, delivering a passionate speech advocating for children's rights to education, peace, and change. She emphasizes the need for action rather than pity, urging the audience to ensure this is the last time children are deprived of education. The setting appears to be a formal or public event, with the focus on her message of empowerment and justice. The movement of individuals in the background suggests a dynamic environment, but the attention remains on Malala as the central figure. This scene continues the theme of advocacy and recognition established in previous scenes."
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:03:24.337",
+      "end_timecode": "00:03:27.674",
+      "start_seconds": 204.33746666666667,
+      "end_seconds": 207.67413333333334,
+      "duration_seconds": 3.336666666666673,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0017.mp4",
+      "frame_captions": [
+        "a video frame of a crowd of people clapping",
+        "a video frame of a crowd of people clapping",
+        "a video frame of a crowd of people clapping"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.838,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 6.727,
+          "net_displacement": 6.727,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.843,
+          "start_frame": 8,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.595,
+          "net_displacement": 0.595,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.825,
+          "start_frame": 11,
+          "end_frame": 11,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_natural": "applause (conf=0.73)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "In this scene, a crowd of people is clapping, creating a celebratory and appreciative atmosphere. The individuals in the crowd remain mostly stationary, suggesting they are focused on a central event or speaker. The audio includes applause and the phrase \"Thank you,\" indicating the conclusion of a speech or significant moment. Based on prior context, this scene is likely part of an ongoing formal event honoring Malala Yousafzai, who has been recognized for her advocacy and achievements in previous scenes. The mood remains positive and respectful, with the crowd expressing collective appreciation."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:03:27.674",
+      "end_timecode": "00:03:30.210",
+      "start_seconds": 207.67413333333334,
+      "end_seconds": 210.21,
+      "duration_seconds": 2.5358666666666636,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0018.mp4",
+      "frame_captions": [
+        "a video frame of a man and woman sitting on chairs in front of an audience",
+        "a video frame of the queen ' s speech at the royal wedding",
+        "a video frame of the prince and duchess of wales at the royal wedding"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.863,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 2.859,
+          "net_displacement": 1.131,
+          "direction_change_var": 2.0999,
+          "relations": [
+            "left-of person #31",
+            "left-of person #32",
+            "right-of person #30"
+          ]
+        },
+        {
+          "track_id": 30,
+          "label": "person",
+          "confidence_avg": 0.918,
+          "start_frame": 1,
+          "end_frame": 10,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.723,
+          "net_displacement": 0.318,
+          "direction_change_var": 4.4395,
+          "relations": [
+            "left-of person #18",
+            "left-of person #31",
+            "left-of person #32"
+          ]
+        },
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 1,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.962,
+          "net_displacement": 0.441,
+          "direction_change_var": 3.3749,
+          "relations": [
+            "right-of person #18",
+            "right-of person #30",
+            "right-of person #32"
+          ]
+        },
+        {
+          "track_id": 32,
+          "label": "person",
+          "confidence_avg": 0.894,
+          "start_frame": 1,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 2.389,
+          "net_displacement": 0.74,
+          "direction_change_var": 2.5803,
+          "relations": [
+            "left-of person #31",
+            "right-of person #18",
+            "right-of person #30"
+          ]
+        }
+      ],
+      "audio_natural": "applause (conf=0.66)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "This scene appears to depict a continuation of a formal and celebratory event, transitioning from honoring Malala Yousafzai to a royal wedding. The video frames show a man and woman seated in front of an audience, followed by the Queen delivering a speech, and then the Prince and Duchess of Wales being present at the wedding. The stationary movement of individuals suggests a formal gathering or ceremony. The audio includes applause and the phrase \"Thank you,\" indicating appreciation or the conclusion of a speech. While the focus has shifted from Malala's advocacy to the royal wedding, the atmosphere remains positive and respectful, emphasizing significant moments of recognition and celebration."
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:03:30.210",
+      "end_timecode": "00:03:33.413",
+      "start_seconds": 210.21,
+      "end_seconds": 213.41320000000002,
+      "duration_seconds": 3.2032000000000096,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0019.mp4",
+      "frame_captions": [
+        "a video frame of two men sitting in chairs",
+        "a video frame of a man in a suit and tie",
+        "a video frame of two men sitting in chairs"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.941,
+          "start_frame": 0,
+          "end_frame": 12,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting closer",
+          "path_length": 18.58,
+          "net_displacement": 13.953,
+          "direction_change_var": 0.4512,
+          "relations": [
+            "left-of person #31"
+          ]
+        },
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.955,
+          "start_frame": 0,
+          "end_frame": 12,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer",
+          "path_length": 19.342,
+          "net_displacement": 15.276,
+          "direction_change_var": 2.7934,
+          "relations": [
+            "right-of person #18"
+          ]
+        }
+      ],
+      "audio_natural": "applause (conf=0.70)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "In this scene, two men are seated in chairs, dressed formally, with one wearing a suit and tie. Both individuals are moving slightly closer to the center of the frame, maintaining their positions relative to each other (person #18 on the left, person #31 on the right). The audio includes faint applause and the phrase \"Thank you,\" suggesting the conclusion of a speech or formal acknowledgment. Based on prior context, this scene likely continues the formal and celebratory event, possibly transitioning between speakers or moments of recognition. The atmosphere remains respectful and positive, consistent with the ongoing theme of honoring significant achievements or individuals."
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:03:33.413",
+      "end_timecode": "00:03:36.750",
+      "start_seconds": 213.41320000000002,
+      "end_seconds": 216.74986666666666,
+      "duration_seconds": 3.3366666666666447,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0020.mp4",
+      "frame_captions": [
+        "a video frame of a man giving a speech to a crowd of people",
+        "a video frame of a crowd of people",
+        "a video frame of a crowd of people at an event"
+      ],
+      "yolo_detections": [],
+      "audio_natural": "applause (conf=0.65)",
+      "audio_speech": " Thank you.",
+      "llm_scene_description": "This scene depicts the continuation of a formal event, likely connected to previous moments of recognition and celebration. A man is giving a speech to a crowd, followed by applause and the phrase \"Thank you,\" suggesting the conclusion of his remarks. The crowd remains the focal point in subsequent frames, emphasizing their engagement and appreciation. Based on prior context, this event may be part of a larger gathering honoring significant achievements or individuals, such as Malala Yousafzai or other notable figures. The atmosphere remains positive, respectful, and celebratory."
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:03:36.750",
+      "end_timecode": "00:04:33.473",
+      "start_seconds": 216.74986666666666,
+      "end_seconds": 273.4732,
+      "duration_seconds": 56.72333333333336,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0021.mp4",
+      "frame_captions": [
+        "a video frame of a woman in a red dress",
+        "a video frame of a woman speaking at a podium",
+        "a video frame of a woman in a pink shawr"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.907,
+          "start_frame": 1,
+          "end_frame": 226,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 260.597,
+          "net_displacement": 2.679,
+          "direction_change_var": 1.3156,
+          "relations": []
+        }
+      ],
+      "audio_natural": "none",
+      "audio_speech": " I have found that people describe me in many different ways. Some people called me the girl who was shot by the Taliban and some the girl who fought for her rights. Some people called me a noble laureate now. However, my brother still called me that annoying bossy sister. As far as I know, I'm just a committed and even stubborn person who wants to see every child getting quality education, who wants to see women having equal rights and who wants peace in every corner of the world.",
+      "llm_scene_description": "In this scene, a woman, likely Malala Yousafzai, is seen in various frames: wearing a red dress, speaking at a podium, and in a pink shawl. She delivers a speech, reflecting on how others perceive her, mentioning being called \"the girl who was shot by the Taliban,\" \"the girl who fought for her rights,\" a Nobel laureate, and humorously, \"an annoying bossy sister\" by her brother. She describes herself as a committed and stubborn advocate for quality education for all children, equal rights for women, and global peace. The setting appears to be a formal event, continuing the themes of advocacy and recognition established in prior scenes. The tone remains inspiring and empowering, with Malala as the central figure."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 4077,
+      "chunk_len": 1,
+      "narrative": "### Detailed Chronological Report:\n\nThe sequence begins with Malala Yousafzai standing at a podium during a press conference (00:00:00.000). She delivers a proud and significant speech, stating, \"I am proud, but in fact, I am very proud to be the first Pashtun, the first Pakistani, and the youngest person to receive this award.\" The camera tracks her movement slightly, enhancing her presence as the central figure. The tone is celebratory, marking a monumental moment in her life.\n\nA subsequent scene (00:00:15.883–00:00:21.755) shows a seated crowd, possibly attending the event honoring Malala. Applause can be heard as someone says \"Thank you,\" though the speaker’s identity is not visually clear. The positive and respectful atmosphere continues, suggesting the audience is celebrating her recent achievement.\n\nThe following scene shifts dramatically to a royal wedding (00:00:25.893). Members of the British royal family, including the Prince and Duchess of Wales, Queen Elizabeth, and the Duchess of Cambridge, are present. Positioned formally, their behavior reflects the grandeur of the occasion. Applause and the phrase \"Thank you\" are heard, maintaining the celebratory tone, albeit in an unrelated context.\n\nMalala returns to focus at 00:00:28.562. Wearing a pink shawl, she delivers a warm and humorous remark from the podium: \"I’m pretty certain that I’m also the first recipient of the Nobel Peace Prize who still fights with her younger brothers. I want peace everywhere, but my brothers and I are still working on that.\" The crowd reacts positively, with the atmosphere blending humor and admiration for her accomplishments.\n\nAt 00:00:56.590, a speaker expresses gratitude, saying, \"so honored to receive this award together,\" suggesting Malala or another figure is addressing collaboration or shared recognition. This leads into a softer scene at 00:00:59.526, where Malala, still wearing her pink shawl, subtly adjusts her position at the podium, signaling a moment of transition. The continued focus on her attire reflects her symbolic importance.\n\nLater, Indian Prime Minister Narendra Modi appears in Parliament (00:01:03.530), advocating for children’s rights. In the same scene (00:01:11.271), a woman speaks with optimism: \"I’m proud that we can work together.\" This suggests collaborative efforts toward greater causes, a theme resonant with Malala’s advocacy for education and peace.\n\nThe formal and celebratory tone resumes with Malala in a red shawl (00:01:33.694). She appears to conclude her speech, stepping slightly away from the podium amid applause and saying, \"Thank you.\" Shortly after, at 00:01:42.502, she reflects on her identity: \"My grandfather would always call me Malala, the happiest girl in the world. And today, I’m very happy that we are together fighting for an important cause.\" Her words reiterate her commitment to advocacy, inspiring the crowd.\n\nAt 00:02:28.548, Malala speaks passionately at a rally. She declares, \"This award is not just for me. It is for those forgotten children who want education, those frightened children who want peace, and those voiceless children who want change. It is not time to pity them—it is time to take action.\" Her fervent appeal underscores her mission to improve global education and children’s rights.\n\nThe event transitions to another celebratory moment at 00:03:36.750, where Malala humorously describes perceptions of herself: \"Some people called me the girl who was shot by the Taliban; some the girl who fought for her rights; some a Nobel laureate. However, my brother still calls me that annoying, bossy sister.\" She labels herself as \"a committed and even stubborn person who wants to see every child getting quality education, women having equal rights, and peace in every corner of the world.\" The scene closes with applause, highlighting her enduring influence and significance. \n\nOverall, the sequence weaves between Malala’s speeches, moments of lightheartedness, and her consistent advocacy for education and equality, emphasizing her profound impact on global issues."
+    }
+  ],
+  "synopsis": "Summary: The video showcases a series of events focusing on Malala Yousafzai, starting from a press conference celebrating her Nobel Peace Prize achievement, interwoven with unrelated moments such as a royal wedding and scenes featuring Indian Prime Minister Narendra Modi. Malala delivers inspiring speeches highlighting her commitment to advocacy for global education and children’s rights, mixed with humor about her personal life. She addresses audiences in different settings, emphasizing her resilience, passion, and hope for a better future. The segments also depict moments of applause and celebration, reinforcing her global influence and the importance of her mission.\n\nWhat is happening in the video? The video chronicles events primarily centered on Malala Yousafzai, showcasing her Nobel Peace Prize achievement, her speeches, advocacy for education and children’s rights, and moments of celebration. It also includes unrelated transitional scenes of a royal wedding and political moments involving Indian Prime Minister Narendra Modi.\n\nWhat are the key events? Key events include Malala delivering her speech at a press conference, celebrating her Nobel Peace Prize and her identity, humorous remarks about her family dynamics, passionate advocacy at a rally, and reflections on her mission to ensure education and equal rights. Highlights also include applause and crowd reactions throughout her speeches. There are brief unrelated events such as the royal wedding and a parliamentary session featuring Narendra Modi.\n\nWhat are the key actions and who performed them? Malala Yousafzai delivers multiple speeches at various events, discussing her achievement, personal reflections, and global advocacy for education and peace. The unidentified seated crowd listens and applauds. Narendra Modi speaks in Parliament about children’s rights, and a woman expresses pride in collaboration for noble causes. The royal family attends a wedding as part of the unrelated segment.\n\nWhat are the main conflicts and problems encountered? The primary conflict is societal inequality, as addressed by Malala, including neglected children’s education, the need for peace, and gender inequality. These problems are globally relevant, forming the core of her advocacy.\n\nWho is the main character? Describe their journey. Malala Yousafzai is the main character. Her journey in the video reflects her significant achievement as a Nobel Peace Prize recipient, her passion for advocating education and equal rights, and her personal reflections delivered with warmth, humor, and determination.\n\nList the characters. For each character, describe their appearance, traits, and role in the story.  \n- Malala Yousafzai: She is depicted wearing pink, red, and other shawls, reflecting her cultural identity and presence. Her traits include resilience, humor, advocacy for change, and determination. She is the central figure delivering inspiring speeches and rallying for global education and equality.  \n- Narendra Modi: Indian Prime Minister, seen in parliament, advocating for children’s rights. He is portrayed as collaborative and optimistic regarding shared efforts for greater causes.  \n- The Royal Family: Includes the Prince and Duchess of Wales, Queen Elizabeth, and the Duchess of Cambridge, positioned formally, embodying grandeur during the unrelated royal wedding segment.  \n- Unidentified Woman: Appears during Modi’s parliamentary scene, expressing optimism about teamwork. Her traits reflect collaboration.  \n- Unidentified Crowd: Seated, applauding, and celebrating Malala throughout her speeches.  \n\nWhat are some significant quotes from the video and who said them?  \n- Malala: \"I am proud, but in fact, I am very proud to be the first Pashtun, the first Pakistani, and the youngest person to receive this award.\"  \n- Malala: \"I’m pretty certain that I’m also the first recipient of the Nobel Peace Prize who still fights with her younger brothers. I want peace everywhere, but my brothers and I are still working on that.\"  \n- Malala: \"This award is not just for me. It is for those forgotten children who want education, those frightened children who want peace, and those voiceless children who want change.\"  \n- Malala: \"Some people called me the girl who was shot by the Taliban; some the girl who fought for her rights; some a Nobel laureate. However, my brother still calls me that annoying, bossy sister.\"  \n- Malala: \"My grandfather would always call me Malala, the happiest girl in the world. And today, I’m very happy that we are together fighting for an important cause.\"\n\nWhat is the setting? Did it change? How is it related to the story? The settings include a press conference, a rally, a parliamentary session, and a royal wedding. It shifts from public forums to unrelated ceremonial events. The settings where Malala speaks are central to her story as they showcase her advocacy and recognition.\n\nHow did the video start? Explain the start. The video begins with Malala Yousafzai delivering a proud speech at a press conference, celebrating her identity and achievements as a Nobel Peace Prize recipient with a tone of joy and pride.\n\nHow did the video end? Explain the ending. The video ends with Malala humorously reflecting on how people view her (e.g., Nobel laureate, rights advocate) and how her brother sees her (\"annoying, bossy sister\"). She finishes by emphasizing her commitment to global education, rights, and peace.\n\nWhat objects are central to the video and when do they appear? Central objects include Malala’s podium and shawl. The podium appears at each event where she speaks, emphasizing her role as a leader and speaker. Her shawl symbolizes her cultural identity and presence.\n\nWhat is the most important thing said or heard? Malala’s declaration: \"This award is not just for me. It is for those forgotten children who want education, those frightened children who want peace, and those voiceless children who want change.\" This highlights her mission and advocacy.\n\nWhat is different at the end vs the beginning? The beginning focuses on Malala’s achievement and pride, while the end emphasizes her personal reflections, humor, and commitment to advocacy.\n\nWhat type of video is this? It is an inspirational and celebratory video, with elements of advocacy for global education and equality, mixed with unrelated ceremonial footage.\n\nWhat is the goal or intent or theme of the video? The goal is to celebrate Malala’s achievements, highlight her advocacy for children’s rights, peace, and education, and inspire action towards global change.\n\nList the moods and tones present, explain each one.  \n- Celebratory: Present throughout her speeches and audience applause.  \n- Inspirational: Reflected in Malala’s advocacy for global change.  \n- Humorous: Shown in Malala’s remarks about her family relationships.  \n- Formal: Depicted in the royal wedding scene.  \n- Optimistic: Seen in moments discussing teamwork and collaboration.  \n\nWhat context is missing or assumed? What would require outside knowledge? Specific details connecting the unrelated royal wedding scenes and Modi’s speech to the primary story. The video's full narrative or production reasons for including these segments are unclear.\n\nWhy was Narendra Modi featured in the video? Not explicitly stated.\n\nWhich audience does this video target? Those interested in global advocacy, education rights, followers of Malala's journey, and Nobel Peace Prize significance.\n\nWhy is the royal wedding shown in the video? Not explicitly stated.\n\nWho applauds during Malala's speeches? An unidentified crowd, seated and enthusiastic.\n\nWhat makes Malala proud in this video? Her Nobel Peace Prize achievement, her identity as a Pashtun, Pakistani, and advocate for global causes.\n\nDoes Malala express any personal struggles? Yes, humorously, regarding her younger brothers and family dynamics.\n\nWhat emotions does Malala display in the video? Pride, humor, passion, and optimism.\n\nIs the video entirely focused on Malala's achievements? No, it also includes unrelated ceremonial events like a royal wedding and Modi’s advocacy speech.\n\nWhat cultural elements are shown? Malala’s attire (shawls), her references to Pashtun identity, and Indian parliamentary proceedings.\n\nDoes humor play an important role in the narrative? Yes, humor is used to humanize Malala and highlight her relatable, joyful personality despite her groundbreaking achievements.\n\nDoes collaboration feature in the video? Yes, collaboration is discussed explicitly in Modi’s scenes and indirectly in Malala’s advocacy speeches.\n\nAre there moments unrelated to Malala's journey? Yes, scenes include a royal wedding and Modi’s parliamentary advocacy.\n\nWhat long-term goals does Malala convey? To ensure every child gains quality education, women obtain equal rights, and global peace is achieved.\n\nAre children featured or mentioned? Yes, Malala mentions “forgotten, frightened, and voiceless” children in her call to action.\n\nWhat purpose does the applause serve? It reinforces the celebratory and inspirational tone of Malala's speeches.\n\nHow does Malala’s attire reflect her identity? Her cultural shawls symbolize her heritage and individuality.",
+  "rag_embedding": {
+    "rag_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4/rag_embedding.json",
+    "context_count": 56,
+    "embedding_dim": 3072,
+    "model": "gemini-embedding-001"
+  }
+}
