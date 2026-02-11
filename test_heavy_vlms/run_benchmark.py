@@ -16,7 +16,7 @@ VIDEOS_DIR = PROJECT_ROOT / "Videos"  # Kairos_model/Videos (capital V)
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 BASE_RESULTS_DIR = RESULTS_DIR / "base"
 
-VLMS = ["llava", "phi3v", "llama32"]
+VLMS = ["llava", "phi3v", "instructblip"]
 VIDEO_EXTENSIONS = [".mp4", ".avi", ".mov", ".mkv"]
 
 def get_videos():

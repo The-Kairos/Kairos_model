@@ -1,0 +1,1824 @@
+{
+  "vlm": "instructblip",
+  "video": "How to Make Pasta - Without a Machine",
+  "timestamp": 1770746267.9391947,
+  "metrics": {
+    "start": {
+      "cpu_percent": 0.0,
+      "ram_percent": 2.6,
+      "ram_used_gb": 4.844154357910156,
+      "ram_total_gb": 188.70603561401367,
+      "timestamp": 1770745702.8924687,
+      "gpu_used_gb": 1.75604248046875,
+      "gpu_total_gb": 21.95147705078125,
+      "gpu_percent": 7.999655223229057
+    },
+    "end": {
+      "cpu_percent": 0.0,
+      "ram_percent": 3.2,
+      "ram_used_gb": 6.0139312744140625,
+      "ram_total_gb": 188.70603561401367,
+      "timestamp": 1770746267.9012961,
+      "gpu_used_gb": 1.78143310546875,
+      "gpu_total_gb": 21.95147705078125,
+      "gpu_percent": 8.115322268964807
+    },
+    "total_duration_sec": 565.0088274478912,
+    "avg_sec_per_scene": 9.576420804201547
+  },
+  "captions": [
+    {
+      "scene_index": 0,
+      "start_seconds": 0.0,
+      "end_seconds": 6.5,
+      "caption": "In the video scene, there are two side-by-side images of pasta on a cutting board. The pasta appears to be cooked and ready to be sliced into smaller pieces. The setting is a kitchen, where the pasta preparation is taking place."
+    },
+    {
+      "scene_index": 1,
+      "start_seconds": 6.5,
+      "end_seconds": 11.666666666666666,
+      "caption": "In the video scene, there are two side-by-side images of pasta being cooked on a cutting board. The pasta appears to be spaghetti noodles, and they are being cooked by pouring boiling water over them. The setting is a kitchen, where the cooking process is taking place."
+    },
+    {
+      "scene_index": 2,
+      "start_seconds": 11.666666666666666,
+      "end_seconds": 14.333333333333334,
+      "caption": "In the video scene, a person is preparing a salad by arranging various vegetables and cheese slices on a white plate. The person is using a pair of scissors to cut the vegetables and cheese into smaller pieces, making the salad more manageable and visually appealing. The plate is filled with a variety of vegetables and cheese slices, creating a colorful and appetizing salad."
+    },
+    {
+      "scene_index": 3,
+      "start_seconds": 14.333333333333334,
+      "end_seconds": 18.166666666666668,
+      "caption": "In the video scene, there are two overlapping images of a white bowl filled with a colorful salad. The salad contains a variety of ingredients, including lettuce, carrots, and other vegetables. A pair of scissors is also visible in one of the images. The setting appears to be a kitchen or dining area, where the salad is being prepared or enjoyed."
+    },
+    {
+      "scene_index": 4,
+      "start_seconds": 18.166666666666668,
+      "end_seconds": 22.833333333333332,
+      "caption": "In the video scene, a person is shown washing their hands in a bathroom sink. The sink has a faucet, which the person is using to wash their hands. Additionally, there is a towel hanging on the side of the sink, which the person might use to dry their hands after washing them. The scene takes place in a bathroom with a white tiled background, providing a clean and hygienic environment for the person to wash their hands."
+    },
+    {
+      "scene_index": 5,
+      "start_seconds": 22.833333333333332,
+      "end_seconds": 26.666666666666668,
+      "caption": "In the video scene, a person is seen placing their hand on a wooden table. The table is positioned in front of a window, and the person appears to be placing their hand on it for some reason. There are two images of the same person performing this action, creating a split-screen effect. The wooden table is the main object in the scene, while the window serves as a backdrop for the person's action."
+    },
+    {
+      "scene_index": 6,
+      "start_seconds": 26.666666666666668,
+      "end_seconds": 31.833333333333332,
+      "caption": "In the video scene, there are two close-up shots of a measuring cup filled with water. The first image shows a clear glass measuring cup filled with water, while the second image shows the same measuring cup with an American flag placed on top of it. The measuring cup is placed on a wooden table, adding a rustic touch to the scene."
+    },
+    {
+      "scene_index": 7,
+      "start_seconds": 31.833333333333332,
+      "end_seconds": 36.0,
+      "caption": "In the video scene, a person is seen sprinkling flour onto a wooden table. The person is using their hand to sprinkle the flour onto the table, creating a layer of flour on the surface. The wooden table serves as a background for the flour sprinkling action."
+    },
+    {
+      "scene_index": 8,
+      "start_seconds": 36.0,
+      "end_seconds": 40.666666666666664,
+      "caption": "In the video, a person's hand is shown sprinkling flour onto a wooden cutting board. The wooden cutting board serves as a surface for the flour, and the person's hand is involved in the process of sprinkling the flour onto the board."
+    },
+    {
+      "scene_index": 9,
+      "start_seconds": 40.666666666666664,
+      "end_seconds": 45.0,
+      "caption": "In the video scene, a person is seen scooping flour from a bowl onto a wooden table. The person is wearing a black shirt, and there are two scoops of flour in the bowl. The wooden table serves as a surface for the flour scooping process."
+    },
+    {
+      "scene_index": 10,
+      "start_seconds": 45.0,
+      "end_seconds": 53.833333333333336,
+      "caption": "In the video, a person is cracking an egg into a bowl filled with flour. The person is then scooping the egg out of the bowl with a spoon, creating an egg yolk in the process. The scene takes place in a kitchen, where the person is preparing the egg yolk for use in a recipe or meal preparation."
+    },
+    {
+      "scene_index": 11,
+      "start_seconds": 53.833333333333336,
+      "end_seconds": 56.833333333333336,
+      "caption": "In the video scene, there are two side-by-side images of an egg being cracked into a bowl of flour. The eggs are being cracked and mixed with the flour, creating a bowl of scrambled eggs. The setting appears to be a kitchen or dining area, as there is a wooden table present in the images."
+    },
+    {
+      "scene_index": 12,
+      "start_seconds": 56.833333333333336,
+      "end_seconds": 60.166666666666664,
+      "caption": "In the video scene, a person is cracking eggs into a bowl of flour on a wooden table. The person is using a spoon to crack the eggs into the bowl, creating a mixture of eggs and flour. The wooden table serves as a surface for the preparation of the eggs and flour mixture."
+    },
+    {
+      "scene_index": 13,
+      "start_seconds": 60.166666666666664,
+      "end_seconds": 72.66666666666667,
+      "caption": "In the video, a person is shown cracking eggs into a bowl filled with flour. The person is using a spoon to mix the eggs and flour together, creating a dough-like consistency. The scene takes place on a wooden table, which serves as a workspace for the person preparing the eggs and flour mixture."
+    },
+    {
+      "scene_index": 14,
+      "start_seconds": 72.66666666666667,
+      "end_seconds": 81.0,
+      "caption": "In the video scene, a person is shown preparing a dish on a wooden cutting board. The person is using a spatula to mix the ingredients, which include flour, eggs, and milk. The wooden cutting board serves as a workspace for the preparation of the dish."
+    },
+    {
+      "scene_index": 15,
+      "start_seconds": 81.0,
+      "end_seconds": 85.0,
+      "caption": "In the video scene, a person is shown preparing food on a wooden cutting board. The person is using their hands to mix the ingredients together, creating a dough-like substance. The wooden cutting board serves as a surface for the food preparation. Additionally, there is a potted plant visible in the scene, adding a natural touch to the setting."
+    },
+    {
+      "scene_index": 16,
+      "start_seconds": 85.0,
+      "end_seconds": 91.33333333333333,
+      "caption": "In the video scene, a person is kneading dough on a wooden floor. The person is using their hands to mix and knead the dough, creating a fluffy texture. The dough appears to be made of flour, which is a common ingredient used in baking and cooking. The wooden floor provides a stable surface for the person to knead the dough, making it easier for them to create the desired texture."
+    },
+    {
+      "scene_index": 17,
+      "start_seconds": 91.33333333333333,
+      "end_seconds": 96.83333333333333,
+      "caption": "In the video scene, there are two close-up shots of a person's hands mixing and kneading dough on a wooden table. The person is using their hands to mix and knead the dough, creating a messy and flour-covered environment. The wooden table serves as a surface for the dough-making process."
+    },
+    {
+      "scene_index": 18,
+      "start_seconds": 96.83333333333333,
+      "end_seconds": 104.16666666666667,
+      "caption": "In the video scene, a person is shown kneading dough on a wooden cutting board. The person is using their hands to mix and knead the dough, creating a smooth and elastic texture. The wooden cutting board serves as a surface for the dough preparation. Additionally, there are two close-up shots of the person's hands kneading the dough, emphasizing the hands-on nature of the process."
+    },
+    {
+      "scene_index": 19,
+      "start_seconds": 104.16666666666667,
+      "end_seconds": 108.66666666666667,
+      "caption": "In the video scene, a person is shown kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough-kneading process."
+    },
+    {
+      "scene_index": 20,
+      "start_seconds": 108.66666666666667,
+      "end_seconds": 111.16666666666667,
+      "caption": "In the video, a person is shown kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough-kneading process."
+    },
+    {
+      "scene_index": 21,
+      "start_seconds": 111.16666666666667,
+      "end_seconds": 113.5,
+      "caption": "In the video scene, two people are shown preparing food on a wooden table. One person is holding a knife, while the other person is using their hands to prepare the food. There is also a potted plant present in the scene, adding a natural touch to the setting."
+    },
+    {
+      "scene_index": 22,
+      "start_seconds": 113.5,
+      "end_seconds": 121.0,
+      "caption": "In the video scene, two people are shown preparing dough on a wooden table. One person is kneading the dough, while the other person is cutting the dough into small pieces. There is also a potted plant visible in the scene. The wooden table serves as a workspace for the preparation of the dough."
+    },
+    {
+      "scene_index": 23,
+      "start_seconds": 121.0,
+      "end_seconds": 124.0,
+      "caption": "In the video scene, there are two close-up shots of a person's hand touching an uncooked dough ball on a wooden table. The dough appears to be a type of bread or pastry dough, and the person is likely preparing it for baking or cooking. The wooden table provides a stable surface for the person to work with the dough."
+    },
+    {
+      "scene_index": 24,
+      "start_seconds": 124.0,
+      "end_seconds": 134.83333333333334,
+      "caption": "In the video scene, a person is rolling out dough on a wooden cutting board. The person is using a rolling pin to flatten the dough, creating a smooth surface. The dough is being rolled out on a wooden cutting board, which serves as a workspace for the rolling process. Additionally, there is a knife present in the scene, which could be used for cutting or slicing the rolled-out dough."
+    },
+    {
+      "scene_index": 25,
+      "start_seconds": 134.83333333333334,
+      "end_seconds": 137.0,
+      "caption": "In the video scene, a person is using a knife to slice an apple on a wooden cutting board. The knife is being used to cut the apple into two halves. The wooden cutting board serves as a surface for the knife to slice the apple."
+    },
+    {
+      "scene_index": 26,
+      "start_seconds": 137.0,
+      "end_seconds": 139.33333333333334,
+      "caption": "In the video scene, two people are shown preparing food on a wooden cutting board. One person is kneading bread dough, while the other is slicing an apple. The wooden cutting board serves as a surface for the food preparation."
+    },
+    {
+      "scene_index": 27,
+      "start_seconds": 139.33333333333334,
+      "end_seconds": 144.16666666666666,
+      "caption": "In the video scene, a person is wiping down a wooden table with a damp cloth. The wooden table is positioned in front of a window, which provides natural lighting for the scene. The person is cleaning the table with the damp cloth to remove any dirt or debris that may have accumulated on the surface."
+    },
+    {
+      "scene_index": 28,
+      "start_seconds": 144.16666666666666,
+      "end_seconds": 148.5,
+      "caption": "In the video scene, a person is using a rolling pin to roll out dough on a wooden surface. The person is wearing a black shirt, and the rolling pin is being used to flatten and shape the dough. The wooden surface serves as a workspace for the rolling process."
+    },
+    {
+      "scene_index": 29,
+      "start_seconds": 148.5,
+      "end_seconds": 151.66666666666666,
+      "caption": "In the video scene, two people are shown preparing dough on a wooden table. One person is kneading the dough with their hands, while the other person is cutting the dough into smaller pieces. The wooden table serves as a surface for the dough preparation."
+    },
+    {
+      "scene_index": 30,
+      "start_seconds": 151.66666666666666,
+      "end_seconds": 158.16666666666666,
+      "caption": "In the video scene, a person is kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough preparation."
+    },
+    {
+      "scene_index": 31,
+      "start_seconds": 158.16666666666666,
+      "end_seconds": 162.16666666666666,
+      "caption": "In the video scene, a person is kneading dough on a wooden cutting board. The person is using their hands to knead the dough, which is shaped like a loaf of bread. The wooden cutting board serves as a surface for kneading the dough. Additionally, there are two close-up shots of the person's hands kneading the dough, providing a detailed view of the process."
+    },
+    {
+      "scene_index": 32,
+      "start_seconds": 162.16666666666666,
+      "end_seconds": 180.5,
+      "caption": "In the video scene, a person is rolling out dough on a wooden table. The person is using a rolling pin to shape the dough into a cylindrical shape. The wooden table serves as a surface for the rolling process."
+    },
+    {
+      "scene_index": 33,
+      "start_seconds": 180.5,
+      "end_seconds": 185.16666666666666,
+      "caption": "In the video, a person is shown rolling out a piece of dough on a wooden table. The dough appears to be a type of pastry or bread, and the person is using their hands to flatten and shape the dough into a flat, rectangular shape. The dough is being rolled out on the wooden table, which serves as a workspace for the person to create the pastry or bread."
+    },
+    {
+      "scene_index": 34,
+      "start_seconds": 185.16666666666666,
+      "end_seconds": 191.0,
+      "caption": "In the video scene, a person is cutting a long piece of dough on a wooden cutting board. The person is using a knife to cut the dough into smaller pieces. The wooden cutting board serves as a surface for the dough cutting process. Additionally, there are two hands visible in the scene, one holding the knife and the other cutting the dough."
+    },
+    {
+      "scene_index": 35,
+      "start_seconds": 191.0,
+      "end_seconds": 193.33333333333334,
+      "caption": "In the video scene, a person is seen rolling out dough on a wooden table. The person is using a rolling pin to flatten and shape the dough into a long, rectangular shape. The dough appears to be a type of pastry or pie crust, and the rolling pin is an essential tool for shaping the dough into the desired form. The wooden table provides a stable surface for the person to work on, ensuring that the dough stays in place during the rolling process."
+    },
+    {
+      "scene_index": 36,
+      "start_seconds": 193.33333333333334,
+      "end_seconds": 203.5,
+      "caption": "In the video scene, a person is rolling out a piece of dough on a wooden table. The person is using a rolling pin to flatten the dough into a rectangular shape. Additionally, there are two rolling pins visible in the scene, one on the left side of the table and the other on the right side. The rolling pin on the left side is closer to the camera, while the one on the right side is farther away."
+    },
+    {
+      "scene_index": 37,
+      "start_seconds": 203.5,
+      "end_seconds": 211.66666666666666,
+      "caption": "In the video scene, a person is shown rolling out dough on a wooden table. The person is using a rolling pin to flatten and shape the dough into long, thin strips. The wooden table serves as a surface for the rolling process. Additionally, there are several pieces of dough scattered around the table, indicating that the person has been working with the dough for some time."
+    },
+    {
+      "scene_index": 38,
+      "start_seconds": 211.66666666666666,
+      "end_seconds": 221.5,
+      "caption": "In the video scene, a person is shown preparing food on a wooden cutting board. The person is using a pair of scissors to cut the food into smaller pieces. The food appears to be pasta or noodles, as there are several pieces scattered around the cutting board. The person is focused on the task at hand, carefully cutting the food into bite-sized pieces."
+    },
+    {
+      "scene_index": 39,
+      "start_seconds": 221.5,
+      "end_seconds": 228.16666666666666,
+      "caption": "In the video scene, a person is preparing pasta on a wooden cutting board. The person's hands can be seen reaching into the pile of pasta, which is scattered across the surface of the cutting board. There are several pieces of pasta on the board, and the person is likely preparing them for consumption or cooking. The wooden cutting board serves as an essential tool for cutting and arranging the pasta."
+    },
+    {
+      "scene_index": 40,
+      "start_seconds": 228.16666666666666,
+      "end_seconds": 232.33333333333334,
+      "caption": "In the video scene, a person is preparing food on a cutting board. The person is using their hands to roll and shape the food, which appears to be dough or pasta. There are several pieces of dough or pasta on the cutting board, which the person is manipulating to create the desired shape. The scene takes place in a kitchen or food preparation area."
+    },
+    {
+      "scene_index": 41,
+      "start_seconds": 232.33333333333334,
+      "end_seconds": 236.83333333333334,
+      "caption": "In the video scene, there are two close-up shots of a cutting board filled with noodles or pasta. The noodles or pasta are arranged in a symmetrical pattern on the cutting board. The setting appears to be a kitchen or food preparation area, where the noodles or pasta are being cut and prepared for further use."
+    },
+    {
+      "scene_index": 42,
+      "start_seconds": 236.83333333333334,
+      "end_seconds": 241.33333333333334,
+      "caption": "In the video scene, there are two close-up shots of a stainless steel pot filled with water. The first image shows a close-up view of the pot, while the second image shows a close-up view of the water pouring out of the pot. The setting is a kitchen, where the stainless steel pot is being used for cooking or preparing food."
+    },
+    {
+      "scene_index": 43,
+      "start_seconds": 241.33333333333334,
+      "end_seconds": 244.0,
+      "caption": "In the video scene, a person is using a pair of red tongs to stir a large pot filled with water and other ingredients. The person is shown stirring the contents of the pot with the tongs, creating a bubbly mixture. The setting appears to be a kitchen or cooking area, where the person is preparing a meal or experimenting with various ingredients."
+    },
+    {
+      "scene_index": 44,
+      "start_seconds": 244.0,
+      "end_seconds": 248.33333333333334,
+      "caption": "In the video scene, there are two bowls filled with pasta sauce and noodles. One of the bowls contains tomato sauce, while the other contains a mixture of tomato sauce and noodles. A red plastic spoon is used to mix the sauce and noodles together, creating a delicious pasta dish. The setting is a kitchen, where the cooking process is taking place."
+    },
+    {
+      "scene_index": 45,
+      "start_seconds": 248.33333333333334,
+      "end_seconds": 251.5,
+      "caption": "In the video scene, there are two close-up shots of a person pouring ketchup into a glass bottle. The person is holding the bottle with one hand and pouring the ketchup into it with the other hand. The bottle contains ketchup, which is a condiment commonly used to add flavor to various dishes. The scene takes place on a wooden table, which serves as a surface for the person to pour the ketchup into the bottle."
+    },
+    {
+      "scene_index": 46,
+      "start_seconds": 251.5,
+      "end_seconds": 256.3333333333333,
+      "caption": "In the video scene, there are two images side-by-side, each showing a different stage in the preparation of a pasta dish. The first image displays a bowl filled with pasta, while the second image shows the same pasta being cooked in a saucepan. The saucepan is filled with tomato sauce, indicating that the pasta is being cooked in a tomato-based sauce."
+    },
+    {
+      "scene_index": 47,
+      "start_seconds": 256.3333333333333,
+      "end_seconds": 259.0,
+      "caption": "In the video, a person is cooking spaghetti noodles in a bowl on a stove. The person is stirring the noodles with a pair of chopsticks, ensuring that they are evenly cooked. There are two bowls of spaghetti noodles on the stove, with one bowl containing more noodles than the other. Additionally, there are two pairs of chopsticks visible in the scene, one in each bowl of noodles."
+    },
+    {
+      "scene_index": 48,
+      "start_seconds": 259.0,
+      "end_seconds": 262.5,
+      "caption": "In the video scene, a person is using chopsticks to scoop food from a white plate onto another white plate. The food appears to be spaghetti or noodles, and the person is using the chopsticks to transfer the food from one plate to another. The setting appears to be a kitchen or dining area."
+    },
+    {
+      "scene_index": 49,
+      "start_seconds": 262.5,
+      "end_seconds": 266.3333333333333,
+      "caption": "In the video scene, there are two side-by-side images of a bowl filled with pasta. A person's hand can be seen reaching into the bowl to grab some of the pasta. The pasta appears to be a type of noodle or fettuccine, and the person is likely adding some fresh greens to the dish. The setting appears to be a kitchen or dining area, as there is a wooden table in the background."
+    },
+    {
+      "scene_index": 50,
+      "start_seconds": 266.3333333333333,
+      "end_seconds": 269.5,
+      "caption": "In the video scene, a person is preparing food on a wooden cutting board. The person is using a knife to cut a piece of food, which appears to be a slice of cheese. The wooden cutting board serves as a surface for the preparation of the food. Additionally, there are two bowls of pasta visible in the scene, one containing spaghetti and the other containing macaroni."
+    },
+    {
+      "scene_index": 51,
+      "start_seconds": 269.5,
+      "end_seconds": 272.1666666666667,
+      "caption": "In the video scene, there are two close-up shots of a white bowl filled with a colorful salad. The bowl contains a variety of ingredients, including lettuce, carrots, and other vegetables. The salad is arranged in a visually appealing manner, making it a delicious and nutritious meal. The two close-up shots provide a detailed view of the salad, showcasing its vibrant colors and fresh ingredients."
+    },
+    {
+      "scene_index": 52,
+      "start_seconds": 272.1666666666667,
+      "end_seconds": 276.6666666666667,
+      "caption": "In the video scene, a person is preparing a salad by arranging various vegetables and cheese slices on a plate. The person is using a knife to cut the vegetables and cheese into smaller pieces, making it easier to combine them into the salad. The salad appears to consist of a variety of leafy greens, such as lettuce, spinach, and arugula, as well as other vegetables like carrots and cucumbers. The salad is being prepared on a white plate, which serves as the base for the vegetables and cheese."
+    },
+    {
+      "scene_index": 53,
+      "start_seconds": 276.6666666666667,
+      "end_seconds": 282.6666666666667,
+      "caption": "In the video scene, there are two side-by-side images of a plate of food. The plate contains a variety of vegetables, including broccoli, carrots, and arugula, as well as some pasta. The food is arranged in a bowl-like shape on the plate. There is also a spoon present on the plate, which suggests that the food is ready to be consumed."
+    },
+    {
+      "scene_index": 54,
+      "start_seconds": 282.6666666666667,
+      "end_seconds": 290.1666666666667,
+      "caption": "In the video scene, there are two overlapping images of a white bowl filled with a colorful salad. The salad contains a variety of ingredients, including lettuce, carrots, and other vegetables. A pair of scissors is also visible in one of the images. The setting appears to be a kitchen or dining area, where the salad is being prepared or enjoyed."
+    },
+    {
+      "scene_index": 55,
+      "start_seconds": 290.1666666666667,
+      "end_seconds": 303.8333333333333,
+      "caption": "In the video scene, there are two side-by-side images of a bowl filled with pasta, vegetables, and parsley. The bowl contains a variety of ingredients, including pasta, vegetables, and parsley, which are arranged in a colorful and appetizing manner. A person is also visible in one of the images, using a fork to scoop up some of the pasta and vegetables from the bowl. The setting appears to be a kitchen or dining area, where the person is enjoying the meal."
+    },
+    {
+      "scene_index": 56,
+      "start_seconds": 303.8333333333333,
+      "end_seconds": 319.5,
+      "caption": "In the video scene, a person is cooking or preparing food in a kitchen. The person is using a spatula to scrape the contents of a pot or pan, which is filled with a white substance. The spatula is red, indicating that it is being used to scrape the contents of the pot or pan. Additionally, there is a blender in the scene, which suggests that the person might be preparing a smoothie or some other beverage. The kitchen appears to be well-equipped, with a stove, an oven, a microwave, and a refrigerator."
+    },
+    {
+      "scene_index": 57,
+      "start_seconds": 319.5,
+      "end_seconds": 321.8333333333333,
+      "caption": "In the video scene, there are two side-by-side images of a person cooking in a kitchen. The person is using a pair of red tongs to stir the contents of a pot or pan, which is filled with a mixture of food and water. The kitchen appears to be well-equipped, with a variety of cooking utensils and appliances, such as a stove, an oven, a microwave, and a refrigerator. The overall setting suggests that the person is preparing a meal or cooking a dish in the kitchen."
+    },
+    {
+      "scene_index": 58,
+      "start_seconds": 321.8333333333333,
+      "end_seconds": 328.0,
+      "caption": "In one of the frames, there is a dark background with an iPhone displayed on it. Another frame shows the same iPhone, but this time it's being used to take a selfie. Additionally, there is a text overlay on the iPhone's screen, indicating that the user is taking a selfie. The iPhone is being used to take a selfie, and the text overlay on the screen confirms this action."
+    }
+  ],
+  "fused_results": [
+    {
+      "scene_index": 0,
+      "start_seconds": 0.0,
+      "end_seconds": 6.5,
+      "vlm_caption": "In the video scene, there are two side-by-side images of pasta on a cutting board. The pasta appears to be cooked and ready to be sliced into smaller pieces. The setting is a kitchen, where the pasta preparation is taking place.",
+      "asr": "Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.",
+      "ast": "music (conf=0.74)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "dining table",
+          "confidence_avg": 0.599,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two side-by-side images of pasta on a cutting board. The pasta appears to be cooked and ready to be sliced into smaller pieces. The setting is a kitchen, where the pasta preparation is taking place. | Speech: Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough. | Sounds: music (conf=0.74) | Objects: dining table #1: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 1,
+      "start_seconds": 6.5,
+      "end_seconds": 11.666666666666666,
+      "vlm_caption": "In the video scene, there are two side-by-side images of pasta being cooked on a cutting board. The pasta appears to be spaghetti noodles, and they are being cooked by pouring boiling water over them. The setting is a kitchen, where the cooking process is taking place.",
+      "asr": "I'm not making the fanciest, or the best, or the most luxurious recipe, but it's easy and you-",
+      "ast": "music (conf=0.34)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, there are two side-by-side images of pasta being cooked on a cutting board. The pasta appears to be spaghetti noodles, and they are being cooked by pouring boiling water over them. The setting is a kitchen, where the cooking process is taking place. | Speech: I'm not making the fanciest, or the best, or the most luxurious recipe, but it's easy and you- | Sounds: music (conf=0.34)"
+    },
+    {
+      "scene_index": 2,
+      "start_seconds": 11.666666666666666,
+      "end_seconds": 14.333333333333334,
+      "vlm_caption": "In the video scene, a person is preparing a salad by arranging various vegetables and cheese slices on a white plate. The person is using a pair of scissors to cut the vegetables and cheese into smaller pieces, making the salad more manageable and visually appealing. The plate is filled with a variety of vegetables and cheese slices, creating a colorful and appetizing salad.",
+      "asr": "probably already have all the ingredients in your house.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "bowl",
+          "confidence_avg": 0.564,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is preparing a salad by arranging various vegetables and cheese slices on a white plate. The person is using a pair of scissors to cut the vegetables and cheese into smaller pieces, making the salad more manageable and visually appealing. The plate is filled with a variety of vegetables and cheese slices, creating a colorful and appetizing salad. | Speech: probably already have all the ingredients in your house. | Sounds: none | Objects: bowl #1: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 3,
+      "start_seconds": 14.333333333333334,
+      "end_seconds": 18.166666666666668,
+      "vlm_caption": "In the video scene, there are two overlapping images of a white bowl filled with a colorful salad. The salad contains a variety of ingredients, including lettuce, carrots, and other vegetables. A pair of scissors is also visible in one of the images. The setting appears to be a kitchen or dining area, where the salad is being prepared or enjoyed.",
+      "asr": "So if the pasta aisle at your grocery store is empty, don't panic.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "spoon",
+          "confidence_avg": 0.557,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two overlapping images of a white bowl filled with a colorful salad. The salad contains a variety of ingredients, including lettuce, carrots, and other vegetables. A pair of scissors is also visible in one of the images. The setting appears to be a kitchen or dining area, where the salad is being prepared or enjoyed. | Speech: So if the pasta aisle at your grocery store is empty, don't panic. | Sounds: none | Objects: spoon #1: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 4,
+      "start_seconds": 18.166666666666668,
+      "end_seconds": 22.833333333333332,
+      "vlm_caption": "In the video scene, a person is shown washing their hands in a bathroom sink. The sink has a faucet, which the person is using to wash their hands. Additionally, there is a towel hanging on the side of the sink, which the person might use to dry their hands after washing them. The scene takes place in a bathroom with a white tiled background, providing a clean and hygienic environment for the person to wash their hands.",
+      "asr": "have no fear, this is the reason to make it home. First things first, for God's sake.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "sink",
+          "confidence_avg": 0.565,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 9.127,
+          "net_displacement": 4.509,
+          "direction_change_var": 4.9225,
+          "relations": [
+            "left-of person #3"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.685,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 12.777,
+          "net_displacement": 3.842,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of sink #1"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is shown washing their hands in a bathroom sink. The sink has a faucet, which the person is using to wash their hands. Additionally, there is a towel hanging on the side of the sink, which the person might use to dry their hands after washing them. The scene takes place in a bathroom with a white tiled background, providing a clean and hygienic environment for the person to wash their hands. | Speech: have no fear, this is the reason to make it home. First things first, for God's sake. | Sounds: none | Objects: sink #1: middle-center -> middle-center, mostly stationary; relations: left-of person #3; person #3: middle-right -> middle-right, mostly stationary; relations: right-of sink #1"
+    },
+    {
+      "scene_index": 5,
+      "start_seconds": 22.833333333333332,
+      "end_seconds": 26.666666666666668,
+      "vlm_caption": "In the video scene, a person is seen placing their hand on a wooden table. The table is positioned in front of a window, and the person appears to be placing their hand on it for some reason. There are two images of the same person performing this action, creating a split-screen effect. The wooden table is the main object in the scene, while the window serves as a backdrop for the person's action.",
+      "asr": "Please wash your hands, people, and sanitize your work surface.",
+      "ast": "silence (conf=0.42)",
+      "yolo": [
+        {
+          "track_id": 6,
+          "label": "person",
+          "confidence_avg": 0.689,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "top-center",
+          "end_pos": "top-left",
+          "movement": "moving left",
+          "path_length": 46.735,
+          "net_displacement": 26.607,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is seen placing their hand on a wooden table. The table is positioned in front of a window, and the person appears to be placing their hand on it for some reason. There are two images of the same person performing this action, creating a split-screen effect. The wooden table is the main object in the scene, while the window serves as a backdrop for the person's action. | Speech: Please wash your hands, people, and sanitize your work surface. | Sounds: silence (conf=0.42) | Objects: person #6: top-center -> top-left, moving left"
+    },
+    {
+      "scene_index": 6,
+      "start_seconds": 26.666666666666668,
+      "end_seconds": 31.833333333333332,
+      "vlm_caption": "In the video scene, there are two close-up shots of a measuring cup filled with water. The first image shows a clear glass measuring cup filled with water, while the second image shows the same measuring cup with an American flag placed on top of it. The measuring cup is placed on a wooden table, adding a rustic touch to the scene.",
+      "asr": "Then, you'll need 2 cups of flour.",
+      "ast": "music (conf=0.67)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "cup",
+          "confidence_avg": 0.754,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 10.79,
+          "net_displacement": 4.932,
+          "direction_change_var": 0.6029,
+          "relations": [
+            "below dining table #8"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "dining table",
+          "confidence_avg": 0.53,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.289,
+          "net_displacement": 1.289,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above cup #1"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two close-up shots of a measuring cup filled with water. The first image shows a clear glass measuring cup filled with water, while the second image shows the same measuring cup with an American flag placed on top of it. The measuring cup is placed on a wooden table, adding a rustic touch to the scene. | Speech: Then, you'll need 2 cups of flour. | Sounds: music (conf=0.67) | Objects: cup #1: middle-center -> middle-center, mostly stationary, getting farther; relations: below dining table #8; dining table #8: middle-center -> middle-center, mostly stationary; relations: above cup #1"
+    },
+    {
+      "scene_index": 7,
+      "start_seconds": 31.833333333333332,
+      "end_seconds": 36.0,
+      "vlm_caption": "In the video scene, a person is seen sprinkling flour onto a wooden table. The person is using their hand to sprinkle the flour onto the table, creating a layer of flour on the surface. The wooden table serves as a background for the flour sprinkling action.",
+      "asr": "Dump the flour onto your clean work surface and create a little well.",
+      "ast": "music (conf=0.72)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, a person is seen sprinkling flour onto a wooden table. The person is using their hand to sprinkle the flour onto the table, creating a layer of flour on the surface. The wooden table serves as a background for the flour sprinkling action. | Speech: Dump the flour onto your clean work surface and create a little well. | Sounds: music (conf=0.72)"
+    },
+    {
+      "scene_index": 8,
+      "start_seconds": 36.0,
+      "end_seconds": 40.666666666666664,
+      "vlm_caption": "In the video, a person's hand is shown sprinkling flour onto a wooden cutting board. The wooden cutting board serves as a surface for the flour, and the person's hand is involved in the process of sprinkling the flour onto the board.",
+      "asr": "well in the center.",
+      "ast": "music (conf=0.59)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.797,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving left",
+          "path_length": 20.891,
+          "net_displacement": 16.707,
+          "direction_change_var": 1.0834,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a person's hand is shown sprinkling flour onto a wooden cutting board. The wooden cutting board serves as a surface for the flour, and the person's hand is involved in the process of sprinkling the flour onto the board. | Speech: well in the center. | Sounds: music (conf=0.59) | Objects: person #9: top-center -> top-center, moving left"
+    },
+    {
+      "scene_index": 9,
+      "start_seconds": 40.666666666666664,
+      "end_seconds": 45.0,
+      "vlm_caption": "In the video scene, a person is seen scooping flour from a bowl onto a wooden table. The person is wearing a black shirt, and there are two scoops of flour in the bowl. The wooden table serves as a surface for the flour scooping process.",
+      "asr": "Then crack in three eggs.",
+      "ast": "music (conf=0.73)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "cake",
+          "confidence_avg": 0.703,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.487,
+          "net_displacement": 0.04,
+          "direction_change_var": 0.8431,
+          "relations": []
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.696,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is seen scooping flour from a bowl onto a wooden table. The person is wearing a black shirt, and there are two scoops of flour in the bowl. The wooden table serves as a surface for the flour scooping process. | Speech: Then crack in three eggs. | Sounds: music (conf=0.73) | Objects: cake #1: middle-center -> middle-center, mostly stationary, moving in a loop; person #9: top-center -> top-center, mostly stationary"
+    },
+    {
+      "scene_index": 10,
+      "start_seconds": 45.0,
+      "end_seconds": 53.833333333333336,
+      "vlm_caption": "In the video, a person is cracking an egg into a bowl filled with flour. The person is then scooping the egg out of the bowl with a spoon, creating an egg yolk in the process. The scene takes place in a kitchen, where the person is preparing the egg yolk for use in a recipe or meal preparation.",
+      "asr": "",
+      "ast": "music (conf=0.46)",
+      "yolo": [
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.657,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a person is cracking an egg into a bowl filled with flour. The person is then scooping the egg out of the bowl with a spoon, creating an egg yolk in the process. The scene takes place in a kitchen, where the person is preparing the egg yolk for use in a recipe or meal preparation. | Sounds: music (conf=0.46) | Objects: person #8: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 11,
+      "start_seconds": 53.833333333333336,
+      "end_seconds": 56.833333333333336,
+      "vlm_caption": "In the video scene, there are two side-by-side images of an egg being cracked into a bowl of flour. The eggs are being cracked and mixed with the flour, creating a bowl of scrambled eggs. The setting appears to be a kitchen or dining area, as there is a wooden table present in the images.",
+      "asr": "Add in a tablespoon of olive oil.",
+      "ast": "music (conf=0.71)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, there are two side-by-side images of an egg being cracked into a bowl of flour. The eggs are being cracked and mixed with the flour, creating a bowl of scrambled eggs. The setting appears to be a kitchen or dining area, as there is a wooden table present in the images. | Speech: Add in a tablespoon of olive oil. | Sounds: music (conf=0.71)"
+    },
+    {
+      "scene_index": 12,
+      "start_seconds": 56.833333333333336,
+      "end_seconds": 60.166666666666664,
+      "vlm_caption": "In the video scene, a person is cracking eggs into a bowl of flour on a wooden table. The person is using a spoon to crack the eggs into the bowl, creating a mixture of eggs and flour. The wooden table serves as a surface for the preparation of the eggs and flour mixture.",
+      "asr": "and a teaspoon of salt.",
+      "ast": "music (conf=0.56)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "cake",
+          "confidence_avg": 0.554,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is cracking eggs into a bowl of flour on a wooden table. The person is using a spoon to crack the eggs into the bowl, creating a mixture of eggs and flour. The wooden table serves as a surface for the preparation of the eggs and flour mixture. | Speech: and a teaspoon of salt. | Sounds: music (conf=0.56) | Objects: cake #9: top-center -> top-center, mostly stationary"
+    },
+    {
+      "scene_index": 13,
+      "start_seconds": 60.166666666666664,
+      "end_seconds": 72.66666666666667,
+      "vlm_caption": "In the video, a person is shown cracking eggs into a bowl filled with flour. The person is using a spoon to mix the eggs and flour together, creating a dough-like consistency. The scene takes place on a wooden table, which serves as a workspace for the person preparing the eggs and flour mixture.",
+      "asr": "Then using a fork whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well",
+      "ast": "music (conf=0.66)",
+      "yolo": [
+        {
+          "track_id": 11,
+          "label": "person",
+          "confidence_avg": 0.62,
+          "start_frame": 7,
+          "end_frame": 9,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 8.546,
+          "net_displacement": 6.139,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a person is shown cracking eggs into a bowl filled with flour. The person is using a spoon to mix the eggs and flour together, creating a dough-like consistency. The scene takes place on a wooden table, which serves as a workspace for the person preparing the eggs and flour mixture. | Speech: Then using a fork whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well | Sounds: music (conf=0.66) | Objects: person #11: top-left -> top-left, mostly stationary"
+    },
+    {
+      "scene_index": 14,
+      "start_seconds": 72.66666666666667,
+      "end_seconds": 81.0,
+      "vlm_caption": "In the video scene, a person is shown preparing a dish on a wooden cutting board. The person is using a spatula to mix the ingredients, which include flour, eggs, and milk. The wooden cutting board serves as a workspace for the preparation of the dish.",
+      "asr": "Continue bringing the flower and",
+      "ast": "music (conf=0.72)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, a person is shown preparing a dish on a wooden cutting board. The person is using a spatula to mix the ingredients, which include flour, eggs, and milk. The wooden cutting board serves as a workspace for the preparation of the dish. | Speech: Continue bringing the flower and | Sounds: music (conf=0.72)"
+    },
+    {
+      "scene_index": 15,
+      "start_seconds": 81.0,
+      "end_seconds": 85.0,
+      "vlm_caption": "In the video scene, a person is shown preparing food on a wooden cutting board. The person is using their hands to mix the ingredients together, creating a dough-like substance. The wooden cutting board serves as a surface for the food preparation. Additionally, there is a potted plant visible in the scene, adding a natural touch to the setting.",
+      "asr": "the center like this until the dough has pulled together enough to be worked by hand.",
+      "ast": "silence (conf=0.43)",
+      "yolo": [
+        {
+          "track_id": 8,
+          "label": "dining table",
+          "confidence_avg": 0.732,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 11.2,
+          "net_displacement": 6.45,
+          "direction_change_var": 1.3731,
+          "relations": [
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.888,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 16.104,
+          "net_displacement": 16.024,
+          "direction_change_var": 0.0214,
+          "relations": [
+            "right-of dining table #8"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is shown preparing food on a wooden cutting board. The person is using their hands to mix the ingredients together, creating a dough-like substance. The wooden cutting board serves as a surface for the food preparation. Additionally, there is a potted plant visible in the scene, adding a natural touch to the setting. | Speech: the center like this until the dough has pulled together enough to be worked by hand. | Sounds: silence (conf=0.43) | Objects: dining table #8: middle-center -> middle-center, mostly stationary; relations: left-of person #9; person #9: middle-center -> middle-center, moving right; relations: right-of dining table #8"
+    },
+    {
+      "scene_index": 16,
+      "start_seconds": 85.0,
+      "end_seconds": 91.33333333333333,
+      "vlm_caption": "In the video scene, a person is kneading dough on a wooden floor. The person is using their hands to mix and knead the dough, creating a fluffy texture. The dough appears to be made of flour, which is a common ingredient used in baking and cooking. The wooden floor provides a stable surface for the person to knead the dough, making it easier for them to create the desired texture.",
+      "asr": "From here, you'll want to bring the dough together to form a shaggy ball.",
+      "ast": "music (conf=0.53)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.635,
+          "start_frame": 3,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 11.085,
+          "net_displacement": 11.085,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is kneading dough on a wooden floor. The person is using their hands to mix and knead the dough, creating a fluffy texture. The dough appears to be made of flour, which is a common ingredient used in baking and cooking. The wooden floor provides a stable surface for the person to knead the dough, making it easier for them to create the desired texture. | Speech: From here, you'll want to bring the dough together to form a shaggy ball. | Sounds: music (conf=0.53) | Objects: person #9: middle-center -> middle-center, moving left"
+    },
+    {
+      "scene_index": 17,
+      "start_seconds": 91.33333333333333,
+      "end_seconds": 96.83333333333333,
+      "vlm_caption": "In the video scene, there are two close-up shots of a person's hands mixing and kneading dough on a wooden table. The person is using their hands to mix and knead the dough, creating a messy and flour-covered environment. The wooden table serves as a surface for the dough-making process.",
+      "asr": "If it's too dry, like mine was here, then you can just add a touch of water.",
+      "ast": "music (conf=0.63)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, there are two close-up shots of a person's hands mixing and kneading dough on a wooden table. The person is using their hands to mix and knead the dough, creating a messy and flour-covered environment. The wooden table serves as a surface for the dough-making process. | Speech: If it's too dry, like mine was here, then you can just add a touch of water. | Sounds: music (conf=0.63)"
+    },
+    {
+      "scene_index": 18,
+      "start_seconds": 96.83333333333333,
+      "end_seconds": 104.16666666666667,
+      "vlm_caption": "In the video scene, a person is shown kneading dough on a wooden cutting board. The person is using their hands to mix and knead the dough, creating a smooth and elastic texture. The wooden cutting board serves as a surface for the dough preparation. Additionally, there are two close-up shots of the person's hands kneading the dough, emphasizing the hands-on nature of the process.",
+      "asr": "And if it's too wet, then all you have to do is add in a little bit more flour Once the dough has completely",
+      "ast": "speech (conf=0.45), music (conf=0.94)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "donut",
+          "confidence_avg": 0.701,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is shown kneading dough on a wooden cutting board. The person is using their hands to mix and knead the dough, creating a smooth and elastic texture. The wooden cutting board serves as a surface for the dough preparation. Additionally, there are two close-up shots of the person's hands kneading the dough, emphasizing the hands-on nature of the process. | Speech: And if it's too wet, then all you have to do is add in a little bit more flour Once the dough has completely | Sounds: speech (conf=0.45), music (conf=0.94) | Objects: donut #9: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 19,
+      "start_seconds": 104.16666666666667,
+      "end_seconds": 108.66666666666667,
+      "vlm_caption": "In the video scene, a person is shown kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough-kneading process.",
+      "asr": "together, you'll need to knead the dough for about 10 minutes.",
+      "ast": "silence (conf=0.43)",
+      "yolo": [
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.755,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting farther",
+          "path_length": 32.959,
+          "net_displacement": 32.959,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.64,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 9.905,
+          "net_displacement": 9.905,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is shown kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough-kneading process. | Speech: together, you'll need to knead the dough for about 10 minutes. | Sounds: silence (conf=0.43) | Objects: person #8: middle-left -> middle-left, moving up, getting farther; person #9: middle-center -> middle-center, moving down-left"
+    },
+    {
+      "scene_index": 20,
+      "start_seconds": 108.66666666666667,
+      "end_seconds": 111.16666666666667,
+      "vlm_caption": "In the video, a person is shown kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough-kneading process.",
+      "asr": "",
+      "ast": "music (conf=0.48)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.641,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer",
+          "path_length": 59.884,
+          "net_displacement": 53.025,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a person is shown kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough-kneading process. | Sounds: music (conf=0.48) | Objects: person #9: middle-center -> middle-center, moving right, getting closer"
+    },
+    {
+      "scene_index": 21,
+      "start_seconds": 111.16666666666667,
+      "end_seconds": 113.5,
+      "vlm_caption": "In the video scene, two people are shown preparing food on a wooden table. One person is holding a knife, while the other person is using their hands to prepare the food. There is also a potted plant present in the scene, adding a natural touch to the setting.",
+      "asr": "You",
+      "ast": "music (conf=0.47)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.805,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left, getting closer",
+          "path_length": 17.601,
+          "net_displacement": 14.028,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, two people are shown preparing food on a wooden table. One person is holding a knife, while the other person is using their hands to prepare the food. There is also a potted plant present in the scene, adding a natural touch to the setting. | Speech: You | Sounds: music (conf=0.47) | Objects: person #9: middle-center -> middle-center, moving down-left, getting closer"
+    },
+    {
+      "scene_index": 22,
+      "start_seconds": 113.5,
+      "end_seconds": 121.0,
+      "vlm_caption": "In the video scene, two people are shown preparing dough on a wooden table. One person is kneading the dough, while the other person is cutting the dough into small pieces. There is also a potted plant visible in the scene. The wooden table serves as a workspace for the preparation of the dough.",
+      "asr": "The dough will go from looking shaggy and rough to smooth and taut and you'll know it's done when you push a finger into the dough and the dough springs back up.",
+      "ast": "music (conf=0.74)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.711,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer, moving in a loop",
+          "path_length": 90.944,
+          "net_displacement": 29.368,
+          "direction_change_var": 2.5213,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, two people are shown preparing dough on a wooden table. One person is kneading the dough, while the other person is cutting the dough into small pieces. There is also a potted plant visible in the scene. The wooden table serves as a workspace for the preparation of the dough. | Speech: The dough will go from looking shaggy and rough to smooth and taut and you'll know it's done when you push a finger into the dough and the dough springs back up. | Sounds: music (conf=0.74) | Objects: person #9: middle-right -> middle-center, moving down, getting closer, moving in a loop"
+    },
+    {
+      "scene_index": 23,
+      "start_seconds": 121.0,
+      "end_seconds": 124.0,
+      "vlm_caption": "In the video scene, there are two close-up shots of a person's hand touching an uncooked dough ball on a wooden table. The dough appears to be a type of bread or pastry dough, and the person is likely preparing it for baking or cooking. The wooden table provides a stable surface for the person to work with the dough.",
+      "asr": "back.",
+      "ast": "music (conf=0.74)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "apple",
+          "confidence_avg": 0.649,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving right, getting farther",
+          "path_length": 50.316,
+          "net_displacement": 50.316,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two close-up shots of a person's hand touching an uncooked dough ball on a wooden table. The dough appears to be a type of bread or pastry dough, and the person is likely preparing it for baking or cooking. The wooden table provides a stable surface for the person to work with the dough. | Speech: back. | Sounds: music (conf=0.74) | Objects: apple #9: middle-center -> bottom-center, moving right, getting farther"
+    },
+    {
+      "scene_index": 24,
+      "start_seconds": 124.0,
+      "end_seconds": 134.83333333333334,
+      "vlm_caption": "In the video scene, a person is rolling out dough on a wooden cutting board. The person is using a rolling pin to flatten the dough, creating a smooth surface. The dough is being rolled out on a wooden cutting board, which serves as a workspace for the rolling process. Additionally, there is a knife present in the scene, which could be used for cutting or slicing the rolled-out dough.",
+      "asr": "Wrap up your dough in cling film and then let it rest for a minimum of 30 minutes.",
+      "ast": "music (conf=0.78)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.608,
+          "start_frame": 3,
+          "end_frame": 6,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "moving right, getting farther",
+          "path_length": 12.197,
+          "net_displacement": 12.197,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is rolling out dough on a wooden cutting board. The person is using a rolling pin to flatten the dough, creating a smooth surface. The dough is being rolled out on a wooden cutting board, which serves as a workspace for the rolling process. Additionally, there is a knife present in the scene, which could be used for cutting or slicing the rolled-out dough. | Speech: Wrap up your dough in cling film and then let it rest for a minimum of 30 minutes. | Sounds: music (conf=0.78) | Objects: person #16: top-right -> top-right, moving right, getting farther"
+    },
+    {
+      "scene_index": 25,
+      "start_seconds": 134.83333333333334,
+      "end_seconds": 137.0,
+      "vlm_caption": "In the video scene, a person is using a knife to slice an apple on a wooden cutting board. The knife is being used to cut the apple into two halves. The wooden cutting board serves as a surface for the knife to slice the apple.",
+      "asr": "Once the dough has rested, cut it in half.",
+      "ast": "music (conf=0.71)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.691,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is using a knife to slice an apple on a wooden cutting board. The knife is being used to cut the apple into two halves. The wooden cutting board serves as a surface for the knife to slice the apple. | Speech: Once the dough has rested, cut it in half. | Sounds: music (conf=0.71) | Objects: person #1: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 26,
+      "start_seconds": 137.0,
+      "end_seconds": 139.33333333333334,
+      "vlm_caption": "In the video scene, two people are shown preparing food on a wooden cutting board. One person is kneading bread dough, while the other is slicing an apple. The wooden cutting board serves as a surface for the food preparation.",
+      "asr": "so that you have more manageable portions to work with.",
+      "ast": "none",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, two people are shown preparing food on a wooden cutting board. One person is kneading bread dough, while the other is slicing an apple. The wooden cutting board serves as a surface for the food preparation. | Speech: so that you have more manageable portions to work with. | Sounds: none"
+    },
+    {
+      "scene_index": 27,
+      "start_seconds": 139.33333333333334,
+      "end_seconds": 144.16666666666666,
+      "vlm_caption": "In the video scene, a person is wiping down a wooden table with a damp cloth. The wooden table is positioned in front of a window, which provides natural lighting for the scene. The person is cleaning the table with the damp cloth to remove any dirt or debris that may have accumulated on the surface.",
+      "asr": "Lightly flour your work surface and start rolling out your pasta dough.",
+      "ast": "music (conf=0.67)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.762,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is wiping down a wooden table with a damp cloth. The wooden table is positioned in front of a window, which provides natural lighting for the scene. The person is cleaning the table with the damp cloth to remove any dirt or debris that may have accumulated on the surface. | Speech: Lightly flour your work surface and start rolling out your pasta dough. | Sounds: music (conf=0.67) | Objects: person #16: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 28,
+      "start_seconds": 144.16666666666666,
+      "end_seconds": 148.5,
+      "vlm_caption": "In the video scene, a person is using a rolling pin to roll out dough on a wooden surface. The person is wearing a black shirt, and the rolling pin is being used to flatten and shape the dough. The wooden surface serves as a workspace for the rolling process.",
+      "asr": "",
+      "ast": "music (conf=0.48)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.736,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer",
+          "path_length": 19.837,
+          "net_displacement": 18.057,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is using a rolling pin to roll out dough on a wooden surface. The person is wearing a black shirt, and the rolling pin is being used to flatten and shape the dough. The wooden surface serves as a workspace for the rolling process. | Sounds: music (conf=0.48) | Objects: person #16: middle-center -> middle-center, moving down, getting closer"
+    },
+    {
+      "scene_index": 29,
+      "start_seconds": 148.5,
+      "end_seconds": 151.66666666666666,
+      "vlm_caption": "In the video scene, two people are shown preparing dough on a wooden table. One person is kneading the dough with their hands, while the other person is cutting the dough into smaller pieces. The wooden table serves as a surface for the dough preparation.",
+      "asr": "From here, we're going to laminate the dough three times.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.587,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 12.293,
+          "net_displacement": 12.293,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, two people are shown preparing dough on a wooden table. One person is kneading the dough with their hands, while the other person is cutting the dough into smaller pieces. The wooden table serves as a surface for the dough preparation. | Speech: From here, we're going to laminate the dough three times. | Sounds: none | Objects: person #16: middle-center -> middle-center, moving left"
+    },
+    {
+      "scene_index": 30,
+      "start_seconds": 151.66666666666666,
+      "end_seconds": 158.16666666666666,
+      "vlm_caption": "In the video scene, a person is kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough preparation.",
+      "asr": "So all that means is we're going to fold it in thirds like this, then roll it out.",
+      "ast": "music (conf=0.53)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.58,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 30.008,
+          "net_displacement": 13.77,
+          "direction_change_var": 2.0989,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is kneading dough on a wooden table. The person is using their hands to knead the dough, creating a smooth and elastic texture. The wooden table serves as a surface for the dough preparation. | Speech: So all that means is we're going to fold it in thirds like this, then roll it out. | Sounds: music (conf=0.53) | Objects: person #16: middle-center -> middle-center, moving down-left"
+    },
+    {
+      "scene_index": 31,
+      "start_seconds": 158.16666666666666,
+      "end_seconds": 162.16666666666666,
+      "vlm_caption": "In the video scene, a person is kneading dough on a wooden cutting board. The person is using their hands to knead the dough, which is shaped like a loaf of bread. The wooden cutting board serves as a surface for kneading the dough. Additionally, there are two close-up shots of the person's hands kneading the dough, providing a detailed view of the process.",
+      "asr": "Fold it in thirds again, then roll it out, and then repeat this process.",
+      "ast": "music (conf=0.62)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.656,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving up-right",
+          "path_length": 7.859,
+          "net_displacement": 7.859,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is kneading dough on a wooden cutting board. The person is using their hands to knead the dough, which is shaped like a loaf of bread. The wooden cutting board serves as a surface for kneading the dough. Additionally, there are two close-up shots of the person's hands kneading the dough, providing a detailed view of the process. | Speech: Fold it in thirds again, then roll it out, and then repeat this process. | Sounds: music (conf=0.62) | Objects: person #16: top-center -> top-center, moving up-right"
+    },
+    {
+      "scene_index": 32,
+      "start_seconds": 162.16666666666666,
+      "end_seconds": 180.5,
+      "vlm_caption": "In the video scene, a person is rolling out dough on a wooden table. The person is using a rolling pin to shape the dough into a cylindrical shape. The wooden table serves as a surface for the rolling process.",
+      "asr": "us one more time. From there, we want to roll out our dough into a large rectangle. If you find your dough is shrinking back, leave it for a few minutes to let the gluten relax, then go back in. Once it's completely rolled out, we're going to roll it out again.",
+      "ast": "music (conf=0.47)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.686,
+          "start_frame": 7,
+          "end_frame": 17,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving down, getting closer, moving in a loop",
+          "path_length": 152.713,
+          "net_displacement": 17.593,
+          "direction_change_var": 4.4235,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is rolling out dough on a wooden table. The person is using a rolling pin to shape the dough into a cylindrical shape. The wooden table serves as a surface for the rolling process. | Speech: us one more time. From there, we want to roll out our dough into a large rectangle. If you find your dough is shrinking back, leave it for a few minutes to let the gluten relax, then go back in. Once it's completely rolled out, we're going to roll it out again. | Sounds: music (conf=0.47) | Objects: person #16: middle-center -> middle-left, moving down, getting closer, moving in a loop"
+    },
+    {
+      "scene_index": 33,
+      "start_seconds": 180.5,
+      "end_seconds": 185.16666666666666,
+      "vlm_caption": "In the video, a person is shown rolling out a piece of dough on a wooden table. The dough appears to be a type of pastry or bread, and the person is using their hands to flatten and shape the dough into a flat, rectangular shape. The dough is being rolled out on the wooden table, which serves as a workspace for the person to create the pastry or bread.",
+      "asr": "we want it to be thin enough to see the color of our fingers through it. From here, you can cut.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.654,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 10.865,
+          "net_displacement": 10.734,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a person is shown rolling out a piece of dough on a wooden table. The dough appears to be a type of pastry or bread, and the person is using their hands to flatten and shape the dough into a flat, rectangular shape. The dough is being rolled out on the wooden table, which serves as a workspace for the person to create the pastry or bread. | Speech: we want it to be thin enough to see the color of our fingers through it. From here, you can cut. | Sounds: none | Objects: person #16: middle-center -> middle-center, moving right"
+    },
+    {
+      "scene_index": 34,
+      "start_seconds": 185.16666666666666,
+      "end_seconds": 191.0,
+      "vlm_caption": "In the video scene, a person is cutting a long piece of dough on a wooden cutting board. The person is using a knife to cut the dough into smaller pieces. The wooden cutting board serves as a surface for the dough cutting process. Additionally, there are two hands visible in the scene, one holding the knife and the other cutting the dough.",
+      "asr": "pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.676,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 23.292,
+          "net_displacement": 23.261,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is cutting a long piece of dough on a wooden cutting board. The person is using a knife to cut the dough into smaller pieces. The wooden cutting board serves as a surface for the dough cutting process. Additionally, there are two hands visible in the scene, one holding the knife and the other cutting the dough. | Speech: pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta. | Sounds: none | Objects: person #16: middle-center -> middle-right, moving right, getting farther"
+    },
+    {
+      "scene_index": 35,
+      "start_seconds": 191.0,
+      "end_seconds": 193.33333333333334,
+      "vlm_caption": "In the video scene, a person is seen rolling out dough on a wooden table. The person is using a rolling pin to flatten and shape the dough into a long, rectangular shape. The dough appears to be a type of pastry or pie crust, and the rolling pin is an essential tool for shaping the dough into the desired form. The wooden table provides a stable surface for the person to work on, ensuring that the dough stays in place during the rolling process.",
+      "asr": "to make this style of pasta that I'm making.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.633,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 50.086,
+          "net_displacement": 50.086,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is seen rolling out dough on a wooden table. The person is using a rolling pin to flatten and shape the dough into a long, rectangular shape. The dough appears to be a type of pastry or pie crust, and the rolling pin is an essential tool for shaping the dough into the desired form. The wooden table provides a stable surface for the person to work on, ensuring that the dough stays in place during the rolling process. | Speech: to make this style of pasta that I'm making. | Sounds: none | Objects: person #16: middle-center -> middle-center, moving left, getting farther"
+    },
+    {
+      "scene_index": 36,
+      "start_seconds": 193.33333333333334,
+      "end_seconds": 203.5,
+      "vlm_caption": "In the video scene, a person is rolling out a piece of dough on a wooden table. The person is using a rolling pin to flatten the dough into a rectangular shape. Additionally, there are two rolling pins visible in the scene, one on the left side of the table and the other on the right side. The rolling pin on the left side is closer to the camera, while the one on the right side is farther away.",
+      "asr": "slightly flour the surface of the dough and fold it up into a rectangle.",
+      "ast": "music (conf=0.65)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.591,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving up-left, getting farther",
+          "path_length": 13.59,
+          "net_displacement": 13.59,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is rolling out a piece of dough on a wooden table. The person is using a rolling pin to flatten the dough into a rectangular shape. Additionally, there are two rolling pins visible in the scene, one on the left side of the table and the other on the right side. The rolling pin on the left side is closer to the camera, while the one on the right side is farther away. | Speech: slightly flour the surface of the dough and fold it up into a rectangle. | Sounds: music (conf=0.65) | Objects: person #16: top-center -> top-center, moving up-left, getting farther"
+    },
+    {
+      "scene_index": 37,
+      "start_seconds": 203.5,
+      "end_seconds": 211.66666666666666,
+      "vlm_caption": "In the video scene, a person is shown rolling out dough on a wooden table. The person is using a rolling pin to flatten and shape the dough into long, thin strips. The wooden table serves as a surface for the rolling process. Additionally, there are several pieces of dough scattered around the table, indicating that the person has been working with the dough for some time.",
+      "asr": "Then, gently slice it into strips.",
+      "ast": "music (conf=0.72)",
+      "yolo": [
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.587,
+          "start_frame": 7,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 5.368,
+          "net_displacement": 5.368,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is shown rolling out dough on a wooden table. The person is using a rolling pin to flatten and shape the dough into long, thin strips. The wooden table serves as a surface for the rolling process. Additionally, there are several pieces of dough scattered around the table, indicating that the person has been working with the dough for some time. | Speech: Then, gently slice it into strips. | Sounds: music (conf=0.72) | Objects: person #29: middle-left -> middle-left, mostly stationary"
+    },
+    {
+      "scene_index": 38,
+      "start_seconds": 211.66666666666666,
+      "end_seconds": 221.5,
+      "vlm_caption": "In the video scene, a person is shown preparing food on a wooden cutting board. The person is using a pair of scissors to cut the food into smaller pieces. The food appears to be pasta or noodles, as there are several pieces scattered around the cutting board. The person is focused on the task at hand, carefully cutting the food into bite-sized pieces.",
+      "asr": "Once you've unraveled your pasta, toss it in a dusting of flour to stop it from sticking to itself. And then from here you can portion",
+      "ast": "music (conf=0.81)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.638,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "top-center",
+          "end_pos": "top-right",
+          "movement": "moving down-right, getting closer",
+          "path_length": 27.076,
+          "net_displacement": 27.076,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is shown preparing food on a wooden cutting board. The person is using a pair of scissors to cut the food into smaller pieces. The food appears to be pasta or noodles, as there are several pieces scattered around the cutting board. The person is focused on the task at hand, carefully cutting the food into bite-sized pieces. | Speech: Once you've unraveled your pasta, toss it in a dusting of flour to stop it from sticking to itself. And then from here you can portion | Sounds: music (conf=0.81) | Objects: person #16: top-center -> top-right, moving down-right, getting closer"
+    },
+    {
+      "scene_index": 39,
+      "start_seconds": 221.5,
+      "end_seconds": 228.16666666666666,
+      "vlm_caption": "In the video scene, a person is preparing pasta on a wooden cutting board. The person's hands can be seen reaching into the pile of pasta, which is scattered across the surface of the cutting board. There are several pieces of pasta on the board, and the person is likely preparing them for consumption or cooking. The wooden cutting board serves as an essential tool for cutting and arranging the pasta.",
+      "asr": "portion it, wrap it and freeze it, or refrigerate it.",
+      "ast": "music (conf=0.74)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, a person is preparing pasta on a wooden cutting board. The person's hands can be seen reaching into the pile of pasta, which is scattered across the surface of the cutting board. There are several pieces of pasta on the board, and the person is likely preparing them for consumption or cooking. The wooden cutting board serves as an essential tool for cutting and arranging the pasta. | Speech: portion it, wrap it and freeze it, or refrigerate it. | Sounds: music (conf=0.74)"
+    },
+    {
+      "scene_index": 40,
+      "start_seconds": 228.16666666666666,
+      "end_seconds": 232.33333333333334,
+      "vlm_caption": "In the video scene, a person is preparing food on a cutting board. The person is using their hands to roll and shape the food, which appears to be dough or pasta. There are several pieces of dough or pasta on the cutting board, which the person is manipulating to create the desired shape. The scene takes place in a kitchen or food preparation area.",
+      "asr": "",
+      "ast": "music (conf=0.45)",
+      "yolo": [
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.836,
+          "start_frame": 4,
+          "end_frame": 4,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is preparing food on a cutting board. The person is using their hands to roll and shape the food, which appears to be dough or pasta. There are several pieces of dough or pasta on the cutting board, which the person is manipulating to create the desired shape. The scene takes place in a kitchen or food preparation area. | Sounds: music (conf=0.45) | Objects: person #33: top-left -> top-left, mostly stationary"
+    },
+    {
+      "scene_index": 41,
+      "start_seconds": 232.33333333333334,
+      "end_seconds": 236.83333333333334,
+      "vlm_caption": "In the video scene, there are two close-up shots of a cutting board filled with noodles or pasta. The noodles or pasta are arranged in a symmetrical pattern on the cutting board. The setting appears to be a kitchen or food preparation area, where the noodles or pasta are being cut and prepared for further use.",
+      "asr": "If you're hungry like me, you can cook it straight away just remember that",
+      "ast": "music (conf=0.62)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, there are two close-up shots of a cutting board filled with noodles or pasta. The noodles or pasta are arranged in a symmetrical pattern on the cutting board. The setting appears to be a kitchen or food preparation area, where the noodles or pasta are being cut and prepared for further use. | Speech: If you're hungry like me, you can cook it straight away just remember that | Sounds: music (conf=0.62)"
+    },
+    {
+      "scene_index": 42,
+      "start_seconds": 236.83333333333334,
+      "end_seconds": 241.33333333333334,
+      "vlm_caption": "In the video scene, there are two close-up shots of a stainless steel pot filled with water. The first image shows a close-up view of the pot, while the second image shows a close-up view of the water pouring out of the pot. The setting is a kitchen, where the stainless steel pot is being used for cooking or preparing food.",
+      "asr": "Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water.",
+      "ast": "silence (conf=0.48)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "cup",
+          "confidence_avg": 0.51,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "bowl",
+          "confidence_avg": 0.554,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 12.316,
+          "net_displacement": 12.316,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two close-up shots of a stainless steel pot filled with water. The first image shows a close-up view of the pot, while the second image shows a close-up view of the water pouring out of the pot. The setting is a kitchen, where the stainless steel pot is being used for cooking or preparing food. | Speech: Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water. | Sounds: silence (conf=0.48) | Objects: cup #1: middle-center -> middle-center, mostly stationary; bowl #2: middle-center -> middle-center, moving right"
+    },
+    {
+      "scene_index": 43,
+      "start_seconds": 241.33333333333334,
+      "end_seconds": 244.0,
+      "vlm_caption": "In the video scene, a person is using a pair of red tongs to stir a large pot filled with water and other ingredients. The person is shown stirring the contents of the pot with the tongs, creating a bubbly mixture. The setting appears to be a kitchen or cooking area, where the person is preparing a meal or experimenting with various ingredients.",
+      "asr": "We are out.",
+      "ast": "music (conf=0.43)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, a person is using a pair of red tongs to stir a large pot filled with water and other ingredients. The person is shown stirring the contents of the pot with the tongs, creating a bubbly mixture. The setting appears to be a kitchen or cooking area, where the person is preparing a meal or experimenting with various ingredients. | Speech: We are out. | Sounds: music (conf=0.43)"
+    },
+    {
+      "scene_index": 44,
+      "start_seconds": 244.0,
+      "end_seconds": 248.33333333333334,
+      "vlm_caption": "In the video scene, there are two bowls filled with pasta sauce and noodles. One of the bowls contains tomato sauce, while the other contains a mixture of tomato sauce and noodles. A red plastic spoon is used to mix the sauce and noodles together, creating a delicious pasta dish. The setting is a kitchen, where the cooking process is taking place.",
+      "asr": "I'm serving mine with my simple tomato sauce, which is super easy to make.",
+      "ast": "music (conf=0.81)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, there are two bowls filled with pasta sauce and noodles. One of the bowls contains tomato sauce, while the other contains a mixture of tomato sauce and noodles. A red plastic spoon is used to mix the sauce and noodles together, creating a delicious pasta dish. The setting is a kitchen, where the cooking process is taking place. | Speech: I'm serving mine with my simple tomato sauce, which is super easy to make. | Sounds: music (conf=0.81)"
+    },
+    {
+      "scene_index": 45,
+      "start_seconds": 248.33333333333334,
+      "end_seconds": 251.5,
+      "vlm_caption": "In the video scene, there are two close-up shots of a person pouring ketchup into a glass bottle. The person is holding the bottle with one hand and pouring the ketchup into it with the other hand. The bottle contains ketchup, which is a condiment commonly used to add flavor to various dishes. The scene takes place on a wooden table, which serves as a surface for the person to pour the ketchup into the bottle.",
+      "asr": "I'll leave the link to that on the screen and also in the description box",
+      "ast": "music (conf=0.46)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "cup",
+          "confidence_avg": 0.516,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 38.509,
+          "net_displacement": 38.509,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two close-up shots of a person pouring ketchup into a glass bottle. The person is holding the bottle with one hand and pouring the ketchup into it with the other hand. The bottle contains ketchup, which is a condiment commonly used to add flavor to various dishes. The scene takes place on a wooden table, which serves as a surface for the person to pour the ketchup into the bottle. | Speech: I'll leave the link to that on the screen and also in the description box | Sounds: music (conf=0.46) | Objects: cup #1: middle-center -> middle-center, moving right"
+    },
+    {
+      "scene_index": 46,
+      "start_seconds": 251.5,
+      "end_seconds": 256.3333333333333,
+      "vlm_caption": "In the video scene, there are two images side-by-side, each showing a different stage in the preparation of a pasta dish. The first image displays a bowl filled with pasta, while the second image shows the same pasta being cooked in a saucepan. The saucepan is filled with tomato sauce, indicating that the pasta is being cooked in a tomato-based sauce.",
+      "asr": "below.",
+      "ast": "music (conf=0.68)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.703,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 11.479,
+          "net_displacement": 4.615,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two images side-by-side, each showing a different stage in the preparation of a pasta dish. The first image displays a bowl filled with pasta, while the second image shows the same pasta being cooked in a saucepan. The saucepan is filled with tomato sauce, indicating that the pasta is being cooked in a tomato-based sauce. | Speech: below. | Sounds: music (conf=0.68) | Objects: bowl #40: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 47,
+      "start_seconds": 256.3333333333333,
+      "end_seconds": 259.0,
+      "vlm_caption": "In the video, a person is cooking spaghetti noodles in a bowl on a stove. The person is stirring the noodles with a pair of chopsticks, ensuring that they are evenly cooked. There are two bowls of spaghetti noodles on the stove, with one bowl containing more noodles than the other. Additionally, there are two pairs of chopsticks visible in the scene, one in each bowl of noodles.",
+      "asr": "",
+      "ast": "music (conf=0.43)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.622,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left",
+          "path_length": 8.983,
+          "net_displacement": 7.417,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a person is cooking spaghetti noodles in a bowl on a stove. The person is stirring the noodles with a pair of chopsticks, ensuring that they are evenly cooked. There are two bowls of spaghetti noodles on the stove, with one bowl containing more noodles than the other. Additionally, there are two pairs of chopsticks visible in the scene, one in each bowl of noodles. | Sounds: music (conf=0.43) | Objects: bowl #40: middle-center -> middle-center, moving up-left"
+    },
+    {
+      "scene_index": 48,
+      "start_seconds": 259.0,
+      "end_seconds": 262.5,
+      "vlm_caption": "In the video scene, a person is using chopsticks to scoop food from a white plate onto another white plate. The food appears to be spaghetti or noodles, and the person is using the chopsticks to transfer the food from one plate to another. The setting appears to be a kitchen or dining area.",
+      "asr": "",
+      "ast": "speech (conf=0.44), music (conf=0.42)",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, a person is using chopsticks to scoop food from a white plate onto another white plate. The food appears to be spaghetti or noodles, and the person is using the chopsticks to transfer the food from one plate to another. The setting appears to be a kitchen or dining area. | Sounds: speech (conf=0.44), music (conf=0.42)"
+    },
+    {
+      "scene_index": 49,
+      "start_seconds": 262.5,
+      "end_seconds": 266.3333333333333,
+      "vlm_caption": "In the video scene, there are two side-by-side images of a bowl filled with pasta. A person's hand can be seen reaching into the bowl to grab some of the pasta. The pasta appears to be a type of noodle or fettuccine, and the person is likely adding some fresh greens to the dish. The setting appears to be a kitchen or dining area, as there is a wooden table in the background.",
+      "asr": "And then I just added in some arugula that we needed to use up and a little bit of...",
+      "ast": "silence (conf=0.44)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.808,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 10.759,
+          "net_displacement": 3.523,
+          "direction_change_var": 2.8022,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two side-by-side images of a bowl filled with pasta. A person's hand can be seen reaching into the bowl to grab some of the pasta. The pasta appears to be a type of noodle or fettuccine, and the person is likely adding some fresh greens to the dish. The setting appears to be a kitchen or dining area, as there is a wooden table in the background. | Speech: And then I just added in some arugula that we needed to use up and a little bit of... | Sounds: silence (conf=0.44) | Objects: bowl #40: middle-center -> middle-center, mostly stationary, moving in a loop"
+    },
+    {
+      "scene_index": 50,
+      "start_seconds": 266.3333333333333,
+      "end_seconds": 269.5,
+      "vlm_caption": "In the video scene, a person is preparing food on a wooden cutting board. The person is using a knife to cut a piece of food, which appears to be a slice of cheese. The wooden cutting board serves as a surface for the preparation of the food. Additionally, there are two bowls of pasta visible in the scene, one containing spaghetti and the other containing macaroni.",
+      "asr": "of old parmesan that was just chilling in the fridge, and then topped it off.",
+      "ast": "silence (conf=0.33)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "dining table",
+          "confidence_avg": 0.588,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 93.216,
+          "net_displacement": 17.471,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is preparing food on a wooden cutting board. The person is using a knife to cut a piece of food, which appears to be a slice of cheese. The wooden cutting board serves as a surface for the preparation of the food. Additionally, there are two bowls of pasta visible in the scene, one containing spaghetti and the other containing macaroni. | Speech: of old parmesan that was just chilling in the fridge, and then topped it off. | Sounds: silence (conf=0.33) | Objects: dining table #40: middle-center -> middle-center, moving right"
+    },
+    {
+      "scene_index": 51,
+      "start_seconds": 269.5,
+      "end_seconds": 272.1666666666667,
+      "vlm_caption": "In the video scene, there are two close-up shots of a white bowl filled with a colorful salad. The bowl contains a variety of ingredients, including lettuce, carrots, and other vegetables. The salad is arranged in a visually appealing manner, making it a delicious and nutritious meal. The two close-up shots provide a detailed view of the salad, showcasing its vibrant colors and fresh ingredients.",
+      "asr": "for some olive oil. There you go!",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 10.088,
+          "net_displacement": 10.086,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below dining table #42"
+          ]
+        },
+        {
+          "track_id": 42,
+          "label": "dining table",
+          "confidence_avg": 0.512,
+          "start_frame": 1,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.234,
+          "net_displacement": 0.234,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above bowl #40"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two close-up shots of a white bowl filled with a colorful salad. The bowl contains a variety of ingredients, including lettuce, carrots, and other vegetables. The salad is arranged in a visually appealing manner, making it a delicious and nutritious meal. The two close-up shots provide a detailed view of the salad, showcasing its vibrant colors and fresh ingredients. | Speech: for some olive oil. There you go! | Sounds: none | Objects: bowl #40: middle-center -> middle-center, moving left; relations: below dining table #42; dining table #42: middle-center -> middle-center, mostly stationary; relations: above bowl #40"
+    },
+    {
+      "scene_index": 52,
+      "start_seconds": 272.1666666666667,
+      "end_seconds": 276.6666666666667,
+      "vlm_caption": "In the video scene, a person is preparing a salad by arranging various vegetables and cheese slices on a plate. The person is using a knife to cut the vegetables and cheese into smaller pieces, making it easier to combine them into the salad. The salad appears to consist of a variety of leafy greens, such as lettuce, spinach, and arugula, as well as other vegetables like carrots and cucumbers. The salad is being prepared on a white plate, which serves as the base for the vegetables and cheese.",
+      "asr": "No need to panic if there isn't pasta at the store. It's super easy to make your own.",
+      "ast": "door (conf=0.61)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.558,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.295,
+          "net_displacement": 1.295,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 42,
+          "label": "person",
+          "confidence_avg": 0.693,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is preparing a salad by arranging various vegetables and cheese slices on a plate. The person is using a knife to cut the vegetables and cheese into smaller pieces, making it easier to combine them into the salad. The salad appears to consist of a variety of leafy greens, such as lettuce, spinach, and arugula, as well as other vegetables like carrots and cucumbers. The salad is being prepared on a white plate, which serves as the base for the vegetables and cheese. | Speech: No need to panic if there isn't pasta at the store. It's super easy to make your own. | Sounds: door (conf=0.61) | Objects: bowl #40: middle-center -> middle-center, mostly stationary; person #42: top-center -> top-center, mostly stationary"
+    },
+    {
+      "scene_index": 53,
+      "start_seconds": 276.6666666666667,
+      "end_seconds": 282.6666666666667,
+      "vlm_caption": "In the video scene, there are two side-by-side images of a plate of food. The plate contains a variety of vegetables, including broccoli, carrots, and arugula, as well as some pasta. The food is arranged in a bowl-like shape on the plate. There is also a spoon present on the plate, which suggests that the food is ready to be consumed.",
+      "asr": "It may be a little bit more time consuming, but let's be real. We all have more time on our hands than normal right now. So really.",
+      "ast": "silence (conf=0.55)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.876,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 6.064,
+          "net_displacement": 2.896,
+          "direction_change_var": 1.5876,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two side-by-side images of a plate of food. The plate contains a variety of vegetables, including broccoli, carrots, and arugula, as well as some pasta. The food is arranged in a bowl-like shape on the plate. There is also a spoon present on the plate, which suggests that the food is ready to be consumed. | Speech: It may be a little bit more time consuming, but let's be real. We all have more time on our hands than normal right now. So really. | Sounds: silence (conf=0.55) | Objects: bowl #40: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 54,
+      "start_seconds": 282.6666666666667,
+      "end_seconds": 290.1666666666667,
+      "vlm_caption": "In the video scene, there are two overlapping images of a white bowl filled with a colorful salad. The salad contains a variety of ingredients, including lettuce, carrots, and other vegetables. A pair of scissors is also visible in one of the images. The setting appears to be a kitchen or dining area, where the salad is being prepared or enjoyed.",
+      "asr": "no excuse. I'll probably be posting pasta videos every day this week so if you like this video and haven't already consider subscribing.",
+      "ast": "silence (conf=0.63)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "fork",
+          "confidence_avg": 0.814,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "spoon",
+          "confidence_avg": 0.686,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two overlapping images of a white bowl filled with a colorful salad. The salad contains a variety of ingredients, including lettuce, carrots, and other vegetables. A pair of scissors is also visible in one of the images. The setting appears to be a kitchen or dining area, where the salad is being prepared or enjoyed. | Speech: no excuse. I'll probably be posting pasta videos every day this week so if you like this video and haven't already consider subscribing. | Sounds: silence (conf=0.63) | Objects: fork #1: middle-center -> middle-center, mostly stationary; spoon #2: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 55,
+      "start_seconds": 290.1666666666667,
+      "end_seconds": 303.8333333333333,
+      "vlm_caption": "In the video scene, there are two side-by-side images of a bowl filled with pasta, vegetables, and parsley. The bowl contains a variety of ingredients, including pasta, vegetables, and parsley, which are arranged in a colorful and appetizing manner. A person is also visible in one of the images, using a fork to scoop up some of the pasta and vegetables from the bowl. The setting appears to be a kitchen or dining area, where the person is enjoying the meal.",
+      "asr": "and connect with me on Instagram at chefstudio underscore if you want to reach out to me there. Also if you have any questions or want to hear my thoughts on literally anything at all, leave them in the comment section below.",
+      "ast": "music (conf=0.79), silence (conf=0.84)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.776,
+          "start_frame": 1,
+          "end_frame": 13,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 25.991,
+          "net_displacement": 1.662,
+          "direction_change_var": 4.1575,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two side-by-side images of a bowl filled with pasta, vegetables, and parsley. The bowl contains a variety of ingredients, including pasta, vegetables, and parsley, which are arranged in a colorful and appetizing manner. A person is also visible in one of the images, using a fork to scoop up some of the pasta and vegetables from the bowl. The setting appears to be a kitchen or dining area, where the person is enjoying the meal. | Speech: and connect with me on Instagram at chefstudio underscore if you want to reach out to me there. Also if you have any questions or want to hear my thoughts on literally anything at all, leave them in the comment section below. | Sounds: music (conf=0.79), silence (conf=0.84) | Objects: bowl #40: middle-center -> middle-center, mostly stationary, moving in a loop"
+    },
+    {
+      "scene_index": 56,
+      "start_seconds": 303.8333333333333,
+      "end_seconds": 319.5,
+      "vlm_caption": "In the video scene, a person is cooking or preparing food in a kitchen. The person is using a spatula to scrape the contents of a pot or pan, which is filled with a white substance. The spatula is red, indicating that it is being used to scrape the contents of the pot or pan. Additionally, there is a blender in the scene, which suggests that the person might be preparing a smoothie or some other beverage. The kitchen appears to be well-equipped, with a stove, an oven, a microwave, and a refrigerator.",
+      "asr": "because I'm saving a little bit of pasta dough from every video and I'm going to do like a little chef studio chat slash answer questions slash talk nonsense while I'm learning to shape different kinds of pasta at the end of the week. So yeah leave me your questions if you have any uh and",
+      "ast": "music (conf=0.35), silence (conf=0.44)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.601,
+          "start_frame": 6,
+          "end_frame": 11,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting farther",
+          "path_length": 67.192,
+          "net_displacement": 67.192,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a person is cooking or preparing food in a kitchen. The person is using a spatula to scrape the contents of a pot or pan, which is filled with a white substance. The spatula is red, indicating that it is being used to scrape the contents of the pot or pan. Additionally, there is a blender in the scene, which suggests that the person might be preparing a smoothie or some other beverage. The kitchen appears to be well-equipped, with a stove, an oven, a microwave, and a refrigerator. | Speech: because I'm saving a little bit of pasta dough from every video and I'm going to do like a little chef studio chat slash answer questions slash talk nonsense while I'm learning to shape different kinds of pasta at the end of the week. So yeah leave me your questions if you have any uh and | Sounds: music (conf=0.35), silence (conf=0.44) | Objects: bowl #40: middle-center -> middle-left, moving left, getting farther"
+    },
+    {
+      "scene_index": 57,
+      "start_seconds": 319.5,
+      "end_seconds": 321.8333333333333,
+      "vlm_caption": "In the video scene, there are two side-by-side images of a person cooking in a kitchen. The person is using a pair of red tongs to stir the contents of a pot or pan, which is filled with a mixture of food and water. The kitchen appears to be well-equipped, with a variety of cooking utensils and appliances, such as a stove, an oven, a microwave, and a refrigerator. The overall setting suggests that the person is preparing a meal or cooking a dish in the kitchen.",
+      "asr": "Until then, yeah, keep.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 47,
+          "label": "bowl",
+          "confidence_avg": 0.538,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.912,
+          "net_displacement": 3.912,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two side-by-side images of a person cooking in a kitchen. The person is using a pair of red tongs to stir the contents of a pot or pan, which is filled with a mixture of food and water. The kitchen appears to be well-equipped, with a variety of cooking utensils and appliances, such as a stove, an oven, a microwave, and a refrigerator. The overall setting suggests that the person is preparing a meal or cooking a dish in the kitchen. | Speech: Until then, yeah, keep. | Sounds: none | Objects: bowl #47: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 58,
+      "start_seconds": 321.8333333333333,
+      "end_seconds": 328.0,
+      "vlm_caption": "In one of the frames, there is a dark background with an iPhone displayed on it. Another frame shows the same iPhone, but this time it's being used to take a selfie. Additionally, there is a text overlay on the iPhone's screen, indicating that the user is taking a selfie. The iPhone is being used to take a selfie, and the text overlay on the screen confirms this action.",
+      "asr": "safe kids I will see you tomorrow.",
+      "ast": "music (conf=0.74)",
+      "yolo": [],
+      "scene_description": "Visual: In one of the frames, there is a dark background with an iPhone displayed on it. Another frame shows the same iPhone, but this time it's being used to take a selfie. Additionally, there is a text overlay on the iPhone's screen, indicating that the user is taking a selfie. The iPhone is being used to take a selfie, and the text overlay on the screen confirms this action. | Speech: safe kids I will see you tomorrow. | Sounds: music (conf=0.74)"
+    }
+  ]
+}

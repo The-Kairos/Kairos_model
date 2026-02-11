@@ -42,6 +42,11 @@ def process_base_data(video_path, output_file):
     
     video_path = Path(video_path)
     output_file = Path(output_file)
+    
+    if output_file.exists():
+        print(f"✓ Base data already exists at {output_file}. Skipping.")
+        return
+
     output_file.parent.mkdir(parents=True, exist_ok=True)
     
     audio_dir = output_file.parent / "audio"

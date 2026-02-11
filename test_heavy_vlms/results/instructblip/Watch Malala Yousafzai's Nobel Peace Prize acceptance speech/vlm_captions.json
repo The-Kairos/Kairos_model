@@ -1,0 +1,1434 @@
+{
+  "vlm": "instructblip",
+  "video": "Watch Malala Yousafzai's Nobel Peace Prize acceptance speech",
+  "timestamp": 1770746543.5732646,
+  "metrics": {
+    "start": {
+      "cpu_percent": 0.0,
+      "ram_percent": 3.4,
+      "ram_used_gb": 6.409107208251953,
+      "ram_total_gb": 188.70603561401367,
+      "timestamp": 1770746289.818542,
+      "gpu_used_gb": 1.75604248046875,
+      "gpu_total_gb": 21.95147705078125,
+      "gpu_percent": 7.999655223229057
+    },
+    "end": {
+      "cpu_percent": 0.0,
+      "ram_percent": 3.8,
+      "ram_used_gb": 7.259468078613281,
+      "ram_total_gb": 188.70603561401367,
+      "timestamp": 1770746543.5367768,
+      "gpu_used_gb": 1.78143310546875,
+      "gpu_total_gb": 21.95147705078125,
+      "gpu_percent": 8.115322268964807
+    },
+    "total_duration_sec": 253.71823477745056,
+    "avg_sec_per_scene": 11.532647035338663
+  },
+  "captions": [
+    {
+      "scene_index": 0,
+      "start_seconds": 0.0,
+      "end_seconds": 15.882533333333333,
+      "caption": "In the video scene, a young woman wearing a pink scarf is delivering a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. The woman is wearing a pink scarf around her neck, which adds a vibrant touch to her attire. The setting appears to be a public event, such as a conference or a speech, where the woman is delivering a message to an audience."
+    },
+    {
+      "scene_index": 1,
+      "start_seconds": 15.882533333333333,
+      "end_seconds": 21.755066666666668,
+      "caption": "In the video scene, a large crowd of people is gathered together in a theater or auditorium. They are all wearing ties and suits, suggesting a formal event such as a wedding or a business conference. The video captures the audience's reactions to something happening on stage or in front of them, creating a lively and engaging atmosphere. The setting is likely a theater or auditorium, where people gather to watch a performance or attend a special event."
+    },
+    {
+      "scene_index": 2,
+      "start_seconds": 21.755066666666668,
+      "end_seconds": 25.892533333333333,
+      "caption": "In the video scene, there is a large crowd of people gathered in a room, possibly a convention center or auditorium. The people are standing and watching something, possibly a presentation or a live event. There are several windows visible in the room, providing natural lighting and a sense of spaciousness. Additionally, there is a clock on the wall, indicating that the event is taking place at a specific time."
+    },
+    {
+      "scene_index": 3,
+      "start_seconds": 25.892533333333333,
+      "end_seconds": 28.561866666666667,
+      "caption": "In the video scene, there is a large crowd of people gathered in a room, possibly a theater or auditorium. The people are dressed in formal attire, such as suits and dresses, and are seated in rows of chairs. There is a man standing in front of the crowd, possibly delivering a speech or addressing the attendees. Additionally, there is a clock visible in the scene, suggesting that the event is taking place at a specific time."
+    },
+    {
+      "scene_index": 4,
+      "start_seconds": 28.561866666666667,
+      "end_seconds": 52.18546666666667,
+      "caption": "In the video scene, a woman wearing a red hijab is standing in front of a podium. She is delivering a speech, as indicated by the presence of a microphone on the podium. Additionally, there are two close-up shots of the woman's face, one on the left and one on the right side of the podium. These close-up shots capture the woman's facial expressions as she delivers her speech."
+    },
+    {
+      "scene_index": 5,
+      "start_seconds": 52.18546666666667,
+      "end_seconds": 56.589866666666666,
+      "caption": "In the video scene, a large crowd of people is gathered in a theater or auditorium. They are all wearing ties and dresses, creating a colorful and festive atmosphere. The people are seated and watching something together, possibly a movie or a live performance. The video captures a split-screen view of the theater or auditorium, allowing the viewer to see both sides of the crowd at once. The setting is a theater or auditorium, where people gather to watch a movie or a live performance."
+    },
+    {
+      "scene_index": 6,
+      "start_seconds": 56.589866666666666,
+      "end_seconds": 59.526133333333334,
+      "caption": "In the video scene, there is a large crowd of people gathered together in a building, possibly a convention center or auditorium. The people are standing and watching something happening on stage, possibly a speech or a presentation. There are also several clocks visible in the scene, suggesting that the event is taking place at a specific time. Additionally, there is a window visible in the scene, providing a glimpse of the surroundings outside the building."
+    },
+    {
+      "scene_index": 7,
+      "start_seconds": 59.526133333333334,
+      "end_seconds": 63.53013333333333,
+      "caption": "In the video scene, a woman wearing a red hijab is giving a speech at a podium. She is standing in front of a microphone and gesturing with her hands to emphasize her words. There are two close-up shots of the woman's face, one on the left and one on the right side of the podium. Additionally, there are two microphones visible in the scene, one on the left and one on the right side of the podium."
+    },
+    {
+      "scene_index": 8,
+      "start_seconds": 63.53013333333333,
+      "end_seconds": 71.27120000000001,
+      "caption": "In the video, a man wearing a white shirt and glasses is seated in a chair. There are two close-up shots of the man's face, one on the left side and another on the right side of the frame. The setting appears to be an office or a conference room, as the man is wearing a white shirt and glasses, which are commonly associated with professional attire. Additionally, there are two chairs in the scene, one on the left side and another on the right side of the frame."
+    },
+    {
+      "scene_index": 9,
+      "start_seconds": 71.27120000000001,
+      "end_seconds": 78.47840000000001,
+      "caption": "In the video, a young woman wearing a red hijab is giving a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. There are two close-up shots of the woman's face, one on the left and one on the right side of the podium. Additionally, there are two microphones visible in the scene, one on the left and one on the right side of the podium."
+    },
+    {
+      "scene_index": 10,
+      "start_seconds": 78.47840000000001,
+      "end_seconds": 93.6936,
+      "caption": "In the video scene, a man wearing a white shirt and glasses is seated in a chair. There are two identical images of this man, each showing him from a slightly different angle. The setting appears to be an office or a conference room, as there is a desk visible in one of the images. Additionally, the man is wearing a suit jacket, suggesting that he may be attending a business meeting or conference."
+    },
+    {
+      "scene_index": 11,
+      "start_seconds": 93.6936,
+      "end_seconds": 96.36293333333333,
+      "caption": "In the video scene, a woman wearing a pink hijab is delivering a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. The woman is wearing a hijab, which is a traditional head covering worn by some Muslim women. The setting appears to be a public event, such as a conference or a speech, where the woman is addressing an audience."
+    },
+    {
+      "scene_index": 12,
+      "start_seconds": 96.36293333333333,
+      "end_seconds": 98.76533333333333,
+      "caption": "In the video scene, a group of women are sitting in a theater or auditorium, watching a performance. They are all wearing glasses and appear to be enjoying the show. There are multiple close-up shots of the women's faces, capturing their reactions and emotions as they watch the performance. The theater or auditorium is filled with people, creating a lively and engaging atmosphere."
+    },
+    {
+      "scene_index": 13,
+      "start_seconds": 98.76533333333333,
+      "end_seconds": 102.50240000000001,
+      "caption": "In the video, there is a large crowd of people gathered in a cathedral or church. The scene is captured in a 360-degree view, providing an immersive experience for the viewer. The people in the crowd are gathered for a religious event, such as a wedding or a funeral. The cathedral or church is adorned with colorful flowers, adding to the festive atmosphere of the event. The people in the crowd are dressed in various attire, reflecting the diversity of the event's attendees."
+    },
+    {
+      "scene_index": 14,
+      "start_seconds": 102.50240000000001,
+      "end_seconds": 144.5444,
+      "caption": "In the video, a young girl wearing a red scarf is giving a speech at a podium. She is standing in front of a microphone and addressing an audience. There is also an image of a woman wearing a red scarf, which could be the same girl or a different person. Additionally, there is a microphone in the scene, which is used to amplify the girl's voice during her speech. The setting appears to be a public venue, such as a convention center or auditorium, where the girl is delivering her speech."
+    },
+    {
+      "scene_index": 15,
+      "start_seconds": 144.5444,
+      "end_seconds": 148.54840000000002,
+      "caption": "In the video, a group of people, including a man with a mustache and a woman, are gathered together. They are wearing various clothing items, such as scarves, shirts, and ties. The setting appears to be a public event or gathering, possibly a political or cultural event, where people are coming together to celebrate or participate in a shared experience."
+    },
+    {
+      "scene_index": 16,
+      "start_seconds": 148.54840000000002,
+      "end_seconds": 204.33746666666667,
+      "caption": "In the video, a woman wearing a red scarf is delivering a speech at a podium. She is standing in front of a microphone and addressing a crowd of people, who are listening attentively. The woman is wearing a red scarf, which is visible in multiple frames of the video. Additionally, there is a microphone on the podium, which the woman is using to deliver her speech. The setting appears to be an auditorium or a public venue where the woman is giving a speech."
+    },
+    {
+      "scene_index": 17,
+      "start_seconds": 204.33746666666667,
+      "end_seconds": 207.67413333333334,
+      "caption": "In the video scene, a group of people are seated in a crowded auditorium. They are all wearing glasses, and some of them are raising their hands in applause to show their appreciation for the event. The auditorium is filled with people, creating a lively and energetic atmosphere."
+    },
+    {
+      "scene_index": 18,
+      "start_seconds": 207.67413333333334,
+      "end_seconds": 210.21,
+      "caption": "In the video scene, a large group of people are seated in chairs in front of a podium. Some of the people are wearing suits, while others are wearing ties. The setting appears to be a formal event, such as a speech or a ceremony, where the people are gathered to listen to a speaker or participate in the event."
+    },
+    {
+      "scene_index": 19,
+      "start_seconds": 210.21,
+      "end_seconds": 213.41320000000002,
+      "caption": "In the video scene, there are two men wearing suits sitting next to each other on a couch. They appear to be engaged in a conversation, with one man gesturing with his hands while the other man listens attentively. The setting appears to be a living room or a conference room."
+    },
+    {
+      "scene_index": 20,
+      "start_seconds": 213.41320000000002,
+      "end_seconds": 216.74986666666666,
+      "caption": "In the video scene, there is a large crowd of people gathered in a room, possibly a theater or auditorium. The people are watching a presentation or speech, as indicated by the presence of a podium and a microphone. There is also a clock visible in one of the frames, suggesting that the event is taking place at a specific time. The people in the crowd are engaged and focused on the presentation, creating a lively and energetic atmosphere."
+    },
+    {
+      "scene_index": 21,
+      "start_seconds": 216.74986666666666,
+      "end_seconds": 273.4732,
+      "caption": "In the video, Malala Yousafzai, a Pakistani-British activist for female education, is delivering a speech at a podium. She is wearing a red shawl or scarf, and there is a microphone in front of her. The video also features a large crowd of people attending the event, which is taking place in a large hall or auditorium."
+    }
+  ],
+  "fused_results": [
+    {
+      "scene_index": 0,
+      "start_seconds": 0.0,
+      "end_seconds": 15.882533333333333,
+      "vlm_caption": "In the video scene, a young woman wearing a pink scarf is delivering a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. The woman is wearing a pink scarf around her neck, which adds a vibrant touch to her attire. The setting appears to be a public event, such as a conference or a speech, where the woman is delivering a message to an audience.",
+      "asr": "I'm proud, well in fact I'm very proud, to be the first Pashtun, the first Pakistani and the youngest person to receive this award.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.776,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 88.255,
+          "net_displacement": 2.713,
+          "direction_change_var": 2.7445,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a young woman wearing a pink scarf is delivering a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. The woman is wearing a pink scarf around her neck, which adds a vibrant touch to her attire. The setting appears to be a public event, such as a conference or a speech, where the woman is delivering a message to an audience. | Speech: I'm proud, well in fact I'm very proud, to be the first Pashtun, the first Pakistani and the youngest person to receive this award. | Sounds: none | Objects: person #1: middle-center -> middle-center, mostly stationary, looping/circling"
+    },
+    {
+      "scene_index": 1,
+      "start_seconds": 15.882533333333333,
+      "end_seconds": 21.755066666666668,
+      "vlm_caption": "In the video scene, a large crowd of people is gathered together in a theater or auditorium. They are all wearing ties and suits, suggesting a formal event such as a wedding or a business conference. The video captures the audience's reactions to something happening on stage or in front of them, creating a lively and engaging atmosphere. The setting is likely a theater or auditorium, where people gather to watch a performance or attend a special event.",
+      "asr": "Thank you. ",
+      "ast": "applause (conf=0.66)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.716,
+          "start_frame": 2,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 13.169,
+          "net_displacement": 12.326,
+          "direction_change_var": 1.1063,
+          "relations": [
+            "above tie #5",
+            "below person #4",
+            "left-of person #3",
+            "left-of person #8",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.863,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 7.356,
+          "net_displacement": 1.361,
+          "direction_change_var": 0.8624,
+          "relations": [
+            "left-of person #1",
+            "left-of person #3",
+            "left-of person #4",
+            "left-of person #8",
+            "left-of tie #5"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.617,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 39.644,
+          "net_displacement": 3.289,
+          "direction_change_var": 4.5583,
+          "relations": [
+            "right-of person #1",
+            "right-of person #2",
+            "right-of person #4",
+            "right-of person #8",
+            "right-of tie #5"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.728,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 2.672,
+          "net_displacement": 1.401,
+          "direction_change_var": 5.7698,
+          "relations": [
+            "above person #1",
+            "above tie #5",
+            "left-of person #3",
+            "left-of person #8",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 5,
+          "label": "tie",
+          "confidence_avg": 0.719,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 4.546,
+          "net_displacement": 4.319,
+          "direction_change_var": 0.1301,
+          "relations": [
+            "below person #1",
+            "below person #4",
+            "left-of person #3",
+            "left-of person #8",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.657,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 15.33,
+          "net_displacement": 12.781,
+          "direction_change_var": 0.6361,
+          "relations": [
+            "left-of person #3",
+            "right-of person #1",
+            "right-of person #2",
+            "right-of person #4",
+            "right-of tie #5"
+          ]
+        },
+        {
+          "track_id": 10,
+          "label": "person",
+          "confidence_avg": 0.654,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 14,
+          "label": "person",
+          "confidence_avg": 0.568,
+          "start_frame": 5,
+          "end_frame": 5,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a large crowd of people is gathered together in a theater or auditorium. They are all wearing ties and suits, suggesting a formal event such as a wedding or a business conference. The video captures the audience's reactions to something happening on stage or in front of them, creating a lively and engaging atmosphere. The setting is likely a theater or auditorium, where people gather to watch a performance or attend a special event. | Speech: Thank you.  | Sounds: applause (conf=0.66) | Objects: person #1: middle-center -> middle-center, moving down-left; relations: above tie #5, below person #4, left-of person #3, left-of person #8, right-of person #2; person #2: middle-left -> middle-left, mostly stationary, moving in a loop; relations: left-of person #1, left-of person #3, left-of person #4, left-of person #8, left-of tie #5; person #3: middle-right -> middle-right, mostly stationary, moving in a loop; relations: right-of person #1, right-of person #2, right-of person #4, right-of person #8, right-of tie #5; person #4: top-center -> top-center, mostly stationary; relations: above person #1, above tie #5, left-of person #3, left-of person #8, right-of person #2; tie #5: bottom-center -> bottom-center, mostly stationary, getting closer; relations: below person #1, below person #4, left-of person #3, left-of person #8, right-of person #2"
+    },
+    {
+      "scene_index": 2,
+      "start_seconds": 21.755066666666668,
+      "end_seconds": 25.892533333333333,
+      "vlm_caption": "In the video scene, there is a large crowd of people gathered in a room, possibly a convention center or auditorium. The people are standing and watching something, possibly a presentation or a live event. There are several windows visible in the room, providing natural lighting and a sense of spaciousness. Additionally, there is a clock on the wall, indicating that the event is taking place at a specific time.",
+      "asr": "You",
+      "ast": "applause (conf=0.70)",
+      "yolo": [
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.643,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there is a large crowd of people gathered in a room, possibly a convention center or auditorium. The people are standing and watching something, possibly a presentation or a live event. There are several windows visible in the room, providing natural lighting and a sense of spaciousness. Additionally, there is a clock on the wall, indicating that the event is taking place at a specific time. | Speech: You | Sounds: applause (conf=0.70) | Objects: person #17: bottom-center -> bottom-center, mostly stationary"
+    },
+    {
+      "scene_index": 3,
+      "start_seconds": 25.892533333333333,
+      "end_seconds": 28.561866666666667,
+      "vlm_caption": "In the video scene, there is a large crowd of people gathered in a room, possibly a theater or auditorium. The people are dressed in formal attire, such as suits and dresses, and are seated in rows of chairs. There is a man standing in front of the crowd, possibly delivering a speech or addressing the attendees. Additionally, there is a clock visible in the scene, suggesting that the event is taking place at a specific time.",
+      "asr": "Thank you.",
+      "ast": "applause (conf=0.71)",
+      "yolo": [
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.904,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 1.543,
+          "net_displacement": 1.523,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #22",
+            "left-of person #14",
+            "left-of person #3",
+            "left-of person #8"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.879,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 3.414,
+          "net_displacement": 3.261,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #14",
+            "right-of person #2",
+            "right-of person #22",
+            "right-of person #8"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.869,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.449,
+          "net_displacement": 3.274,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #3",
+            "right-of person #14",
+            "right-of person #2",
+            "right-of person #22"
+          ]
+        },
+        {
+          "track_id": 14,
+          "label": "person",
+          "confidence_avg": 0.831,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 5.923,
+          "net_displacement": 4.976,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #22",
+            "left-of person #3",
+            "left-of person #8",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.548,
+          "start_frame": 1,
+          "end_frame": 2,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.229,
+          "net_displacement": 0.229,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #14",
+            "above person #2",
+            "left-of person #3",
+            "left-of person #8"
+          ]
+        },
+        {
+          "track_id": 23,
+          "label": "tie",
+          "confidence_avg": 0.573,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there is a large crowd of people gathered in a room, possibly a theater or auditorium. The people are dressed in formal attire, such as suits and dresses, and are seated in rows of chairs. There is a man standing in front of the crowd, possibly delivering a speech or addressing the attendees. Additionally, there is a clock visible in the scene, suggesting that the event is taking place at a specific time. | Speech: Thank you. | Sounds: applause (conf=0.71) | Objects: person #2: middle-left -> middle-left, mostly stationary; relations: below person #22, left-of person #14, left-of person #3, left-of person #8; person #3: middle-right -> middle-right, mostly stationary; relations: right-of person #14, right-of person #2, right-of person #22, right-of person #8; person #8: middle-center -> middle-center, mostly stationary; relations: left-of person #3, right-of person #14, right-of person #2, right-of person #22; person #14: middle-center -> middle-center, mostly stationary; relations: below person #22, left-of person #3, left-of person #8, right-of person #2; person #22: top-left -> top-left, mostly stationary; relations: above person #14, above person #2, left-of person #3, left-of person #8"
+    },
+    {
+      "scene_index": 4,
+      "start_seconds": 28.561866666666667,
+      "end_seconds": 52.18546666666667,
+      "vlm_caption": "In the video scene, a woman wearing a red hijab is standing in front of a podium. She is delivering a speech, as indicated by the presence of a microphone on the podium. Additionally, there are two close-up shots of the woman's face, one on the left and one on the right side of the podium. These close-up shots capture the woman's facial expressions as she delivers her speech.",
+      "asr": "Along with that, I'm pretty certain that I'm also the first recipient of the Nobel Peace Prize who still fights with her younger brothers. I want there to be peace everywhere, but my brothers and I are still working on that.",
+      "ast": "silence (conf=0.37)",
+      "yolo": [
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 0,
+          "end_frame": 23,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 54.389,
+          "net_displacement": 28.282,
+          "direction_change_var": 3.317,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a woman wearing a red hijab is standing in front of a podium. She is delivering a speech, as indicated by the presence of a microphone on the podium. Additionally, there are two close-up shots of the woman's face, one on the left and one on the right side of the podium. These close-up shots capture the woman's facial expressions as she delivers her speech. | Speech: Along with that, I'm pretty certain that I'm also the first recipient of the Nobel Peace Prize who still fights with her younger brothers. I want there to be peace everywhere, but my brothers and I are still working on that. | Sounds: silence (conf=0.37) | Objects: person #8: middle-center -> middle-center, moving left"
+    },
+    {
+      "scene_index": 5,
+      "start_seconds": 52.18546666666667,
+      "end_seconds": 56.589866666666666,
+      "vlm_caption": "In the video scene, a large crowd of people is gathered in a theater or auditorium. They are all wearing ties and dresses, creating a colorful and festive atmosphere. The people are seated and watching something together, possibly a movie or a live performance. The video captures a split-screen view of the theater or auditorium, allowing the viewer to see both sides of the crowd at once. The setting is a theater or auditorium, where people gather to watch a movie or a live performance.",
+      "asr": "I'm I'm also",
+      "ast": "speech (conf=0.68)",
+      "yolo": [
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.802,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 9.551,
+          "net_displacement": 0.72,
+          "direction_change_var": 2.2404,
+          "relations": [
+            "above tie #30",
+            "below person #31",
+            "below person #32",
+            "left-of person #26",
+            "left-of person #27",
+            "left-of person #28",
+            "left-of person #8",
+            "left-of tie #33"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.822,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving down",
+          "path_length": 16.697,
+          "net_displacement": 14.166,
+          "direction_change_var": 0.3943,
+          "relations": [
+            "above tie #33",
+            "below person #28",
+            "below person #32",
+            "left-of person #26",
+            "left-of person #27",
+            "right-of person #2",
+            "right-of person #31",
+            "right-of tie #30"
+          ]
+        },
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 1.195,
+          "net_displacement": 1.148,
+          "direction_change_var": 0.0867,
+          "relations": [
+            "right-of person #2",
+            "right-of person #27",
+            "right-of person #28",
+            "right-of person #31",
+            "right-of person #32",
+            "right-of person #8",
+            "right-of tie #30",
+            "right-of tie #33"
+          ]
+        },
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.783,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 2.115,
+          "net_displacement": 0.676,
+          "direction_change_var": 0.7704,
+          "relations": [
+            "left-of person #26",
+            "right-of person #2",
+            "right-of person #28",
+            "right-of person #31",
+            "right-of person #32",
+            "right-of person #8",
+            "right-of tie #30",
+            "right-of tie #33"
+          ]
+        },
+        {
+          "track_id": 28,
+          "label": "person",
+          "confidence_avg": 0.733,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 2.79,
+          "net_displacement": 2.267,
+          "direction_change_var": 0.4127,
+          "relations": [
+            "above person #8",
+            "above tie #30",
+            "above tie #33",
+            "left-of person #26",
+            "left-of person #27",
+            "right-of person #2",
+            "right-of person #31",
+            "right-of person #32"
+          ]
+        },
+        {
+          "track_id": 30,
+          "label": "tie",
+          "confidence_avg": 0.64,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 1.673,
+          "net_displacement": 1.058,
+          "direction_change_var": 2.7774,
+          "relations": [
+            "below person #2",
+            "below person #28",
+            "below person #31",
+            "below person #32",
+            "left-of person #26",
+            "left-of person #27",
+            "left-of person #8",
+            "left-of tie #33"
+          ]
+        },
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.725,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 4.985,
+          "net_displacement": 4.591,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #2",
+            "above tie #30",
+            "above tie #33",
+            "below person #32",
+            "left-of person #26",
+            "left-of person #27",
+            "left-of person #28",
+            "left-of person #8"
+          ]
+        },
+        {
+          "track_id": 32,
+          "label": "person",
+          "confidence_avg": 0.559,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 2.252,
+          "net_displacement": 2.252,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #2",
+            "above person #31",
+            "above person #8",
+            "above tie #30",
+            "left-of person #26",
+            "left-of person #27",
+            "left-of person #28"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "tie",
+          "confidence_avg": 0.521,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.677,
+          "net_displacement": 0.677,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #28",
+            "below person #31",
+            "below person #8",
+            "left-of person #26",
+            "left-of person #27",
+            "right-of person #2",
+            "right-of tie #30"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a large crowd of people is gathered in a theater or auditorium. They are all wearing ties and dresses, creating a colorful and festive atmosphere. The people are seated and watching something together, possibly a movie or a live performance. The video captures a split-screen view of the theater or auditorium, allowing the viewer to see both sides of the crowd at once. The setting is a theater or auditorium, where people gather to watch a movie or a live performance. | Speech: I'm I'm also | Sounds: speech (conf=0.68) | Objects: person #2: middle-left -> middle-left, mostly stationary, moving in a loop; relations: above tie #30, below person #31, below person #32, left-of person #26, left-of person #27, left-of person #28, left-of person #8, left-of tie #33; person #8: middle-center -> bottom-center, moving down; relations: above tie #33, below person #28, below person #32, left-of person #26, left-of person #27, right-of person #2, right-of person #31, right-of tie #30; person #26: middle-right -> middle-right, mostly stationary; relations: right-of person #2, right-of person #27, right-of person #28, right-of person #31, right-of person #32, right-of person #8, right-of tie #30, right-of tie #33; person #27: middle-right -> middle-right, mostly stationary, moving in a loop; relations: left-of person #26, right-of person #2, right-of person #28, right-of person #31, right-of person #32, right-of person #8, right-of tie #30, right-of tie #33; person #28: top-center -> top-center, mostly stationary; relations: above person #8, above tie #30, above tie #33, left-of person #26, left-of person #27, right-of person #2, right-of person #31, right-of person #32"
+    },
+    {
+      "scene_index": 6,
+      "start_seconds": 56.589866666666666,
+      "end_seconds": 59.526133333333334,
+      "vlm_caption": "In the video scene, there is a large crowd of people gathered together in a building, possibly a convention center or auditorium. The people are standing and watching something happening on stage, possibly a speech or a presentation. There are also several clocks visible in the scene, suggesting that the event is taking place at a specific time. Additionally, there is a window visible in the scene, providing a glimpse of the surroundings outside the building.",
+      "asr": "We are also honored to receive this award together.",
+      "ast": "none",
+      "yolo": [],
+      "scene_description": "Visual: In the video scene, there is a large crowd of people gathered together in a building, possibly a convention center or auditorium. The people are standing and watching something happening on stage, possibly a speech or a presentation. There are also several clocks visible in the scene, suggesting that the event is taking place at a specific time. Additionally, there is a window visible in the scene, providing a glimpse of the surroundings outside the building. | Speech: We are also honored to receive this award together. | Sounds: none"
+    },
+    {
+      "scene_index": 7,
+      "start_seconds": 59.526133333333334,
+      "end_seconds": 63.53013333333333,
+      "vlm_caption": "In the video scene, a woman wearing a red hijab is giving a speech at a podium. She is standing in front of a microphone and gesturing with her hands to emphasize her words. There are two close-up shots of the woman's face, one on the left and one on the right side of the podium. Additionally, there are two microphones visible in the scene, one on the left and one on the right side of the podium.",
+      "asr": "with Kailash Satyarthi, who has been a chamber",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer",
+          "path_length": 49.839,
+          "net_displacement": 38.947,
+          "direction_change_var": 0.8817,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a woman wearing a red hijab is giving a speech at a podium. She is standing in front of a microphone and gesturing with her hands to emphasize her words. There are two close-up shots of the woman's face, one on the left and one on the right side of the podium. Additionally, there are two microphones visible in the scene, one on the left and one on the right side of the podium. | Speech: with Kailash Satyarthi, who has been a chamber | Sounds: none | Objects: person #27: middle-center -> middle-center, moving left, getting closer"
+    },
+    {
+      "scene_index": 8,
+      "start_seconds": 63.53013333333333,
+      "end_seconds": 71.27120000000001,
+      "vlm_caption": "In the video, a man wearing a white shirt and glasses is seated in a chair. There are two close-up shots of the man's face, one on the left side and another on the right side of the frame. The setting appears to be an office or a conference room, as the man is wearing a white shirt and glasses, which are commonly associated with professional attire. Additionally, there are two chairs in the scene, one on the left side and another on the right side of the frame.",
+      "asr": "for children's rights for a long time. Twice as long, in fact, than I have been alive.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 5.194,
+          "net_displacement": 3.471,
+          "direction_change_var": 2.3627,
+          "relations": [
+            "right-of chair #35",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 35,
+          "label": "chair",
+          "confidence_avg": 0.677,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 3.007,
+          "net_displacement": 2.193,
+          "direction_change_var": 1.8761,
+          "relations": [
+            "left-of person #27",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 36,
+          "label": "person",
+          "confidence_avg": 0.532,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 5.251,
+          "net_displacement": 5.052,
+          "direction_change_var": 3.0823,
+          "relations": [
+            "left-of chair #35",
+            "left-of person #27"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the video, a man wearing a white shirt and glasses is seated in a chair. There are two close-up shots of the man's face, one on the left side and another on the right side of the frame. The setting appears to be an office or a conference room, as the man is wearing a white shirt and glasses, which are commonly associated with professional attire. Additionally, there are two chairs in the scene, one on the left side and another on the right side of the frame. | Speech: for children's rights for a long time. Twice as long, in fact, than I have been alive. | Sounds: none | Objects: person #27: middle-center -> middle-center, mostly stationary; relations: right-of chair #35, right-of person #36; chair #35: bottom-left -> bottom-left, mostly stationary; relations: left-of person #27, right-of person #36; person #36: bottom-left -> bottom-left, mostly stationary, getting farther; relations: left-of chair #35, left-of person #27"
+    },
+    {
+      "scene_index": 9,
+      "start_seconds": 71.27120000000001,
+      "end_seconds": 78.47840000000001,
+      "vlm_caption": "In the video, a young woman wearing a red hijab is giving a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. There are two close-up shots of the woman's face, one on the left and one on the right side of the podium. Additionally, there are two microphones visible in the scene, one on the left and one on the right side of the podium.",
+      "asr": "I am proud that we can work together.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.895,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left, moving in a loop",
+          "path_length": 40.652,
+          "net_displacement": 8.453,
+          "direction_change_var": 5.3205,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a young woman wearing a red hijab is giving a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. There are two close-up shots of the woman's face, one on the left and one on the right side of the podium. Additionally, there are two microphones visible in the scene, one on the left and one on the right side of the podium. | Speech: I am proud that we can work together. | Sounds: none | Objects: person #27: middle-center -> middle-center, moving up-left, moving in a loop"
+    },
+    {
+      "scene_index": 10,
+      "start_seconds": 78.47840000000001,
+      "end_seconds": 93.6936,
+      "vlm_caption": "In the video scene, a man wearing a white shirt and glasses is seated in a chair. There are two identical images of this man, each showing him from a slightly different angle. The setting appears to be an office or a conference room, as there is a desk visible in one of the images. Additionally, the man is wearing a suit jacket, suggesting that he may be attending a business meeting or conference.",
+      "asr": "We can work together and show the world that an Indian and a Pakistani can work together and achieve their goals of children's rights.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.933,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-right, getting closer",
+          "path_length": 11.856,
+          "net_displacement": 7.628,
+          "direction_change_var": 3.4717,
+          "relations": [
+            "right-of chair #37"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "chair",
+          "confidence_avg": 0.609,
+          "start_frame": 1,
+          "end_frame": 15,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 3.791,
+          "net_displacement": 1.058,
+          "direction_change_var": 2.0079,
+          "relations": [
+            "left-of person #27"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a man wearing a white shirt and glasses is seated in a chair. There are two identical images of this man, each showing him from a slightly different angle. The setting appears to be an office or a conference room, as there is a desk visible in one of the images. Additionally, the man is wearing a suit jacket, suggesting that he may be attending a business meeting or conference. | Speech: We can work together and show the world that an Indian and a Pakistani can work together and achieve their goals of children's rights. | Sounds: none | Objects: person #27: middle-center -> middle-center, moving down-right, getting closer; relations: right-of chair #37; chair #37: bottom-left -> bottom-left, mostly stationary, moving in a loop; relations: left-of person #27"
+    },
+    {
+      "scene_index": 11,
+      "start_seconds": 93.6936,
+      "end_seconds": 96.36293333333333,
+      "vlm_caption": "In the video scene, a woman wearing a pink hijab is delivering a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. The woman is wearing a hijab, which is a traditional head covering worn by some Muslim women. The setting appears to be a public event, such as a conference or a speech, where the woman is addressing an audience.",
+      "asr": "Thank you. Thank you. ",
+      "ast": "applause (conf=0.72)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.85,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 10.353,
+          "net_displacement": 10.011,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a woman wearing a pink hijab is delivering a speech at a podium. She is standing in front of a microphone, which is positioned in front of the podium. The woman is wearing a hijab, which is a traditional head covering worn by some Muslim women. The setting appears to be a public event, such as a conference or a speech, where the woman is addressing an audience. | Speech: Thank you. Thank you.  | Sounds: applause (conf=0.72) | Objects: person #27: middle-center -> middle-center, moving left"
+    },
+    {
+      "scene_index": 12,
+      "start_seconds": 96.36293333333333,
+      "end_seconds": 98.76533333333333,
+      "vlm_caption": "In the video scene, a group of women are sitting in a theater or auditorium, watching a performance. They are all wearing glasses and appear to be enjoying the show. There are multiple close-up shots of the women's faces, capturing their reactions and emotions as they watch the performance. The theater or auditorium is filled with people, creating a lively and engaging atmosphere.",
+      "asr": "Thank you. ",
+      "ast": "applause (conf=0.69)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.567,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 4.529,
+          "net_displacement": 4.529,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 39,
+          "label": "person",
+          "confidence_avg": 0.734,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a group of women are sitting in a theater or auditorium, watching a performance. They are all wearing glasses and appear to be enjoying the show. There are multiple close-up shots of the women's faces, capturing their reactions and emotions as they watch the performance. The theater or auditorium is filled with people, creating a lively and engaging atmosphere. | Speech: Thank you.  | Sounds: applause (conf=0.69) | Objects: person #27: middle-center -> middle-center, mostly stationary; person #39: middle-left -> middle-left, mostly stationary"
+    },
+    {
+      "scene_index": 13,
+      "start_seconds": 98.76533333333333,
+      "end_seconds": 102.50240000000001,
+      "vlm_caption": "In the video, there is a large crowd of people gathered in a cathedral or church. The scene is captured in a 360-degree view, providing an immersive experience for the viewer. The people in the crowd are gathered for a religious event, such as a wedding or a funeral. The cathedral or church is adorned with colorful flowers, adding to the festive atmosphere of the event. The people in the crowd are dressed in various attire, reflecting the diversity of the event's attendees.",
+      "asr": "You",
+      "ast": "applause (conf=0.70)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.514,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, there is a large crowd of people gathered in a cathedral or church. The scene is captured in a 360-degree view, providing an immersive experience for the viewer. The people in the crowd are gathered for a religious event, such as a wedding or a funeral. The cathedral or church is adorned with colorful flowers, adding to the festive atmosphere of the event. The people in the crowd are dressed in various attire, reflecting the diversity of the event's attendees. | Speech: You | Sounds: applause (conf=0.70) | Objects: person #1: bottom-center -> bottom-center, mostly stationary"
+    },
+    {
+      "scene_index": 14,
+      "start_seconds": 102.50240000000001,
+      "end_seconds": 144.5444,
+      "vlm_caption": "In the video, a young girl wearing a red scarf is giving a speech at a podium. She is standing in front of a microphone and addressing an audience. There is also an image of a woman wearing a red scarf, which could be the same girl or a different person. Additionally, there is a microphone in the scene, which is used to amplify the girl's voice during her speech. The setting appears to be a public venue, such as a convention center or auditorium, where the girl is delivering her speech.",
+      "asr": "Dear brothers and sisters, I was named after the inspirational Malalai of Mewand, who is the Pashtun Joan of Arc. The word Malala means grief-stricken, sad, but in order to lend some happiness to it, my grandfather would always call me Malala, the happiest girl in the world. And today, I am very happy that we are together fighting for an important cause.",
+      "ast": "applause (conf=0.73), music (conf=0.42)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.839,
+          "start_frame": 1,
+          "end_frame": 42,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 233.552,
+          "net_displacement": 40.271,
+          "direction_change_var": 2.9587,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a young girl wearing a red scarf is giving a speech at a podium. She is standing in front of a microphone and addressing an audience. There is also an image of a woman wearing a red scarf, which could be the same girl or a different person. Additionally, there is a microphone in the scene, which is used to amplify the girl's voice during her speech. The setting appears to be a public venue, such as a convention center or auditorium, where the girl is delivering her speech. | Speech: Dear brothers and sisters, I was named after the inspirational Malalai of Mewand, who is the Pashtun Joan of Arc. The word Malala means grief-stricken, sad, but in order to lend some happiness to it, my grandfather would always call me Malala, the happiest girl in the world. And today, I am very happy that we are together fighting for an important cause. | Sounds: applause (conf=0.73), music (conf=0.42) | Objects: person #27: middle-center -> middle-center, moving left, moving in a loop"
+    },
+    {
+      "scene_index": 15,
+      "start_seconds": 144.5444,
+      "end_seconds": 148.54840000000002,
+      "vlm_caption": "In the video, a group of people, including a man with a mustache and a woman, are gathered together. They are wearing various clothing items, such as scarves, shirts, and ties. The setting appears to be a public event or gathering, possibly a political or cultural event, where people are coming together to celebrate or participate in a shared experience.",
+      "asr": "This award is not just for me, it is for all of you.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.884,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 25.158,
+          "net_displacement": 3.042,
+          "direction_change_var": 1.7567,
+          "relations": [
+            "below person #45",
+            "left-of person #43",
+            "left-of person #44",
+            "right-of person #46"
+          ]
+        },
+        {
+          "track_id": 43,
+          "label": "person",
+          "confidence_avg": 0.748,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 6.442,
+          "net_displacement": 3.346,
+          "direction_change_var": 1.3368,
+          "relations": [
+            "right-of person #27",
+            "right-of person #44",
+            "right-of person #45",
+            "right-of person #46"
+          ]
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.874,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 7.826,
+          "net_displacement": 7.769,
+          "direction_change_var": 0.0583,
+          "relations": [
+            "left-of person #43",
+            "right-of person #27",
+            "right-of person #45",
+            "right-of person #46"
+          ]
+        },
+        {
+          "track_id": 45,
+          "label": "person",
+          "confidence_avg": 0.799,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 4.494,
+          "net_displacement": 3.941,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #27",
+            "above person #46",
+            "left-of person #43",
+            "left-of person #44"
+          ]
+        },
+        {
+          "track_id": 46,
+          "label": "person",
+          "confidence_avg": 0.706,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting farther",
+          "path_length": 13.001,
+          "net_displacement": 12.997,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #45",
+            "left-of person #27",
+            "left-of person #43",
+            "left-of person #44"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the video, a group of people, including a man with a mustache and a woman, are gathered together. They are wearing various clothing items, such as scarves, shirts, and ties. The setting appears to be a public event or gathering, possibly a political or cultural event, where people are coming together to celebrate or participate in a shared experience. | Speech: This award is not just for me, it is for all of you. | Sounds: none | Objects: person #27: middle-center -> middle-center, mostly stationary, moving in a loop; relations: below person #45, left-of person #43, left-of person #44, right-of person #46; person #43: middle-right -> middle-right, mostly stationary; relations: right-of person #27, right-of person #44, right-of person #45, right-of person #46; person #44: middle-right -> middle-right, moving right; relations: left-of person #43, right-of person #27, right-of person #45, right-of person #46; person #45: top-left -> top-left, mostly stationary; relations: above person #27, above person #46, left-of person #43, left-of person #44; person #46: middle-left -> middle-left, moving up, getting farther; relations: below person #45, left-of person #27, left-of person #43, left-of person #44"
+    },
+    {
+      "scene_index": 16,
+      "start_seconds": 148.54840000000002,
+      "end_seconds": 204.33746666666667,
+      "vlm_caption": "In the video, a woman wearing a red scarf is delivering a speech at a podium. She is standing in front of a microphone and addressing a crowd of people, who are listening attentively. The woman is wearing a red scarf, which is visible in multiple frames of the video. Additionally, there is a microphone on the podium, which the woman is using to deliver her speech. The setting appears to be an auditorium or a public venue where the woman is giving a speech.",
+      "asr": "just for me. It is for those forgotten children who want education. It is for those frightened children who want peace. It is for those voiceless children who want change. I'm here to stand up for their rights, to raise their voice. It is not time to pity them. It is not time to pity them. It is time to take action. So it becomes the last time, the last time. So it becomes the last time that we see a child deprived of education.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.853,
+          "start_frame": 0,
+          "end_frame": 55,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting farther, moving in a loop",
+          "path_length": 376.853,
+          "net_displacement": 37.367,
+          "direction_change_var": 2.1926,
+          "relations": []
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.752,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, a woman wearing a red scarf is delivering a speech at a podium. She is standing in front of a microphone and addressing a crowd of people, who are listening attentively. The woman is wearing a red scarf, which is visible in multiple frames of the video. Additionally, there is a microphone on the podium, which the woman is using to deliver her speech. The setting appears to be an auditorium or a public venue where the woman is giving a speech. | Speech: just for me. It is for those forgotten children who want education. It is for those frightened children who want peace. It is for those voiceless children who want change. I'm here to stand up for their rights, to raise their voice. It is not time to pity them. It is not time to pity them. It is time to take action. So it becomes the last time, the last time. So it becomes the last time that we see a child deprived of education. | Sounds: none | Objects: person #27: middle-center -> middle-center, moving right, getting farther, moving in a loop; person #44: middle-right -> middle-right, mostly stationary"
+    },
+    {
+      "scene_index": 17,
+      "start_seconds": 204.33746666666667,
+      "end_seconds": 207.67413333333334,
+      "vlm_caption": "In the video scene, a group of people are seated in a crowded auditorium. They are all wearing glasses, and some of them are raising their hands in applause to show their appreciation for the event. The auditorium is filled with people, creating a lively and energetic atmosphere.",
+      "asr": "Thank you. ",
+      "ast": "applause (conf=0.73)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.733,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 30.755,
+          "net_displacement": 30.353,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #49"
+          ]
+        },
+        {
+          "track_id": 49,
+          "label": "person",
+          "confidence_avg": 0.735,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 22.229,
+          "net_displacement": 4.269,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #27"
+          ]
+        },
+        {
+          "track_id": 50,
+          "label": "person",
+          "confidence_avg": 0.582,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 51,
+          "label": "person",
+          "confidence_avg": 0.737,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a group of people are seated in a crowded auditorium. They are all wearing glasses, and some of them are raising their hands in applause to show their appreciation for the event. The auditorium is filled with people, creating a lively and energetic atmosphere. | Speech: Thank you.  | Sounds: applause (conf=0.73) | Objects: person #27: middle-center -> middle-left, moving left; relations: left-of person #49; person #49: middle-right -> middle-right, mostly stationary; relations: right-of person #27; person #50: middle-center -> middle-center, mostly stationary; person #51: middle-left -> middle-left, mostly stationary"
+    },
+    {
+      "scene_index": 18,
+      "start_seconds": 207.67413333333334,
+      "end_seconds": 210.21,
+      "vlm_caption": "In the video scene, a large group of people are seated in chairs in front of a podium. Some of the people are wearing suits, while others are wearing ties. The setting appears to be a formal event, such as a speech or a ceremony, where the people are gathered to listen to a speaker or participate in the event.",
+      "asr": "You",
+      "ast": "applause (conf=0.66)",
+      "yolo": [
+        {
+          "track_id": 49,
+          "label": "person",
+          "confidence_avg": 0.91,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 11.849,
+          "net_displacement": 11.849,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #54",
+            "right-of person #50",
+            "right-of person #51"
+          ]
+        },
+        {
+          "track_id": 50,
+          "label": "person",
+          "confidence_avg": 0.853,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 5.752,
+          "net_displacement": 5.738,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #49",
+            "left-of person #54",
+            "right-of person #51"
+          ]
+        },
+        {
+          "track_id": 51,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.678,
+          "net_displacement": 0.64,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #49",
+            "left-of person #50",
+            "left-of person #54"
+          ]
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 1,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.185,
+          "net_displacement": 0.185,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #49",
+            "right-of person #50",
+            "right-of person #51"
+          ]
+        },
+        {
+          "track_id": 55,
+          "label": "person",
+          "confidence_avg": 0.517,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, a large group of people are seated in chairs in front of a podium. Some of the people are wearing suits, while others are wearing ties. The setting appears to be a formal event, such as a speech or a ceremony, where the people are gathered to listen to a speaker or participate in the event. | Speech: You | Sounds: applause (conf=0.66) | Objects: person #49: middle-right -> middle-center, moving left; relations: left-of person #54, right-of person #50, right-of person #51; person #50: middle-center -> middle-center, mostly stationary; relations: left-of person #49, left-of person #54, right-of person #51; person #51: middle-left -> middle-left, mostly stationary; relations: left-of person #49, left-of person #50, left-of person #54; person #54: middle-right -> middle-right, mostly stationary; relations: right-of person #49, right-of person #50, right-of person #51; person #55: top-left -> top-left, mostly stationary"
+    },
+    {
+      "scene_index": 19,
+      "start_seconds": 210.21,
+      "end_seconds": 213.41320000000002,
+      "vlm_caption": "In the video scene, there are two men wearing suits sitting next to each other on a couch. They appear to be engaged in a conversation, with one man gesturing with his hands while the other man listens attentively. The setting appears to be a living room or a conference room.",
+      "asr": "You",
+      "ast": "applause (conf=0.70)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.937,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 3.579,
+          "net_displacement": 2.963,
+          "direction_change_var": 0.0082,
+          "relations": [
+            "left-of person #49"
+          ]
+        },
+        {
+          "track_id": 49,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 12.893,
+          "net_displacement": 12.859,
+          "direction_change_var": 0.0059,
+          "relations": [
+            "right-of person #27"
+          ]
+        },
+        {
+          "track_id": 57,
+          "label": "tie",
+          "confidence_avg": 0.508,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there are two men wearing suits sitting next to each other on a couch. They appear to be engaged in a conversation, with one man gesturing with his hands while the other man listens attentively. The setting appears to be a living room or a conference room. | Speech: You | Sounds: applause (conf=0.70) | Objects: person #27: middle-left -> middle-left, mostly stationary; relations: left-of person #49; person #49: middle-right -> middle-right, moving right; relations: right-of person #27; tie #57: middle-left -> middle-left, mostly stationary"
+    },
+    {
+      "scene_index": 20,
+      "start_seconds": 213.41320000000002,
+      "end_seconds": 216.74986666666666,
+      "vlm_caption": "In the video scene, there is a large crowd of people gathered in a room, possibly a theater or auditorium. The people are watching a presentation or speech, as indicated by the presence of a podium and a microphone. There is also a clock visible in one of the frames, suggesting that the event is taking place at a specific time. The people in the crowd are engaged and focused on the presentation, creating a lively and energetic atmosphere.",
+      "asr": "You",
+      "ast": "applause (conf=0.65)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.517,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video scene, there is a large crowd of people gathered in a room, possibly a theater or auditorium. The people are watching a presentation or speech, as indicated by the presence of a podium and a microphone. There is also a clock visible in one of the frames, suggesting that the event is taking place at a specific time. The people in the crowd are engaged and focused on the presentation, creating a lively and energetic atmosphere. | Speech: You | Sounds: applause (conf=0.65) | Objects: person #1: bottom-center -> bottom-center, mostly stationary"
+    },
+    {
+      "scene_index": 21,
+      "start_seconds": 216.74986666666666,
+      "end_seconds": 273.4732,
+      "vlm_caption": "In the video, Malala Yousafzai, a Pakistani-British activist for female education, is delivering a speech at a podium. She is wearing a red shawl or scarf, and there is a microphone in front of her. The video also features a large crowd of people attending the event, which is taking place in a large hall or auditorium.",
+      "asr": "I have found that people describe me in many different ways. Some people call me the girl who was shot by the Taliban. And some, the girl who fought for her rights. Some people call me a Nobel laureate now. However, my brothers still call me that annoying bossy sister. As far as I know, I'm just a committed and even stubborn person who wants to see every child getting quality education, who wants to see women having equal rights, and who wants peace in every corner of the world.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.836,
+          "start_frame": 1,
+          "end_frame": 56,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 200.481,
+          "net_displacement": 3.864,
+          "direction_change_var": 3.796,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the video, Malala Yousafzai, a Pakistani-British activist for female education, is delivering a speech at a podium. She is wearing a red shawl or scarf, and there is a microphone in front of her. The video also features a large crowd of people attending the event, which is taking place in a large hall or auditorium. | Speech: I have found that people describe me in many different ways. Some people call me the girl who was shot by the Taliban. And some, the girl who fought for her rights. Some people call me a Nobel laureate now. However, my brothers still call me that annoying bossy sister. As far as I know, I'm just a committed and even stubborn person who wants to see every child getting quality education, who wants to see women having equal rights, and who wants peace in every corner of the world. | Sounds: none | Objects: person #27: middle-center -> middle-center, mostly stationary, looping/circling"
+    }
+  ]
+}

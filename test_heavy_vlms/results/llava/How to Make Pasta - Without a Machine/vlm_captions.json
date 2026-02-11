@@ -1,0 +1,1824 @@
+{
+  "vlm": "llava",
+  "video": "How to Make Pasta - Without a Machine",
+  "timestamp": 1770670557.2360382,
+  "metrics": {
+    "start": {
+      "cpu_percent": 0.6,
+      "ram_percent": 2.5,
+      "ram_used_gb": 4.7353515625,
+      "ram_total_gb": 188.70603561401367,
+      "timestamp": 1770669866.221907,
+      "gpu_used_gb": 1.47869873046875,
+      "gpu_total_gb": 21.95147705078125,
+      "gpu_percent": 6.736215185192394
+    },
+    "end": {
+      "cpu_percent": 0.2,
+      "ram_percent": 3.1,
+      "ram_used_gb": 5.850467681884766,
+      "ram_total_gb": 188.70603561401367,
+      "timestamp": 1770670557.1968749,
+      "gpu_used_gb": 1.80487060546875,
+      "gpu_total_gb": 21.95147705078125,
+      "gpu_percent": 8.222091849643963
+    },
+    "total_duration_sec": 690.974967956543,
+    "avg_sec_per_scene": 11.71144013485666
+  },
+  "captions": [
+    {
+      "scene_index": 0,
+      "start_seconds": 0.0,
+      "end_seconds": 6.5,
+      "caption": "The image captures a moment of culinary preparation. On a wooden surface, there's a rectangular tray with a white paper liner. The tray is divided into two sections, each containing a different pasta.\n\nIn the left section, there's a pile of penne pasta. The pasta appears to be in the process of being cooked, as suggested by the presence of a knife and a spoon nearby. The knife is positioned to the right of the penne, and the spoon is to the left.\n\nThe right section of the tray holds a pile of rigatoni pasta. Like the penne, the rigatoni also looks like it's in the process of being cooked. The knife and spoon are also present in this section, indicating that the cooking process is ongoing.\n\nThe background is blurred, but it gives the impression of a kitchen setting. The focus is clearly on the pasta and the cooking process."
+    },
+    {
+      "scene_index": 1,
+      "start_seconds": 6.5,
+      "end_seconds": 11.666666666666666,
+      "caption": "The image captures a moment of culinary creation. A wooden table, bathed in the soft glow of ambient light, serves as the stage for this gastronomic performance.\n\nIn the foreground, a pile of freshly made pasta commands attention. The pasta, a pale yellow hue, is in the process of being rolled out. Its elongated form is a testament to the skill of the hand that guides it.\n\nIn the background, a wooden rolling pin rests on the table. It's a silent participant in the pasta-making process, its surface bearing the marks of its role in shaping the dough.\n\nThe scene is a snapshot of a cooking process, where each object and action has its place and purpose. The pasta, the rolling pin, and the wooden table all play their part in bringing this dish to life."
+    },
+    {
+      "scene_index": 2,
+      "start_seconds": 11.666666666666666,
+      "end_seconds": 14.333333333333334,
+      "caption": "The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, sits on a wooden table. The pasta, a rich shade of red, is generously coated in a creamy white sauce. The dish is garnished with fresh green arugula, adding a pop of color and a hint of peppery flavor. The bowl is not alone; it's accompanied by a hand, reaching out to grab a piece of the pasta. The scene is a snapshot of a meal in progress, with the pasta being the star of the show."
+    },
+    {
+      "scene_index": 3,
+      "start_seconds": 14.333333333333334,
+      "end_seconds": 18.166666666666668,
+      "caption": "The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, takes center stage. The pasta, a rich shade of red, is generously coated in a creamy white sauce. The dish is garnished with a sprinkle of grated cheese, adding a touch of creaminess to the dish.\n\nA silver fork, resting on the pasta, suggests the dish is ready to be enjoyed. The fork's metallic sheen contrasts with the warm tones of the pasta and sauce.\n\nIn the background, a green salad adds a pop of color to the scene. The salad's freshness complements the hearty pasta dish.\n\nThe image also contains text. The handle \"@ChefStudio\" suggests that this image might be from a social media account, possibly belonging to a chef or a food enthusiast. The text \"@ChefStudio\" is visible, indicating the source of the image.\n\nOverall, the image paints a picture of a delicious meal, ready to be savored."
+    },
+    {
+      "scene_index": 4,
+      "start_seconds": 18.166666666666668,
+      "end_seconds": 22.833333333333332,
+      "caption": "The image shows a scene focused on a white porcelain sink. The sink is equipped with a silver faucet and a white soap dispenser. The soap dispenser is positioned to the left of the faucet. The faucet is currently in the \"off\" position.\n\nTwo hands are visible in the image, one on each side of the sink. The hand on the left is holding the soap dispenser, and the hand on the right is reaching towards the faucet. The hands appear to be in the process of turning on the faucet.\n\nThe background is a plain white wall, which provides a neutral backdrop that contrasts with the white sink and soap dispenser. The image is taken from a perspective slightly above the sink, giving a clear view of the objects and actions taking place. The lighting in the image is even, suggesting an indoor setting with artificial lighting."
+    },
+    {
+      "scene_index": 5,
+      "start_seconds": 22.833333333333332,
+      "end_seconds": 26.666666666666668,
+      "caption": "In the image, a person is standing in front of a wooden table. The person is wearing a black shirt and appears to be in the process of reaching out towards the table. The table has a visible grain pattern and is supported by a black metal frame. The background is blurred, but it seems to be an indoor setting with a white door and a window visible. There is no text present in the image. The overall scene suggests an indoor environment, possibly a home or office, with the person interacting with the table."
+    },
+    {
+      "scene_index": 6,
+      "start_seconds": 26.666666666666668,
+      "end_seconds": 31.833333333333332,
+      "caption": "The image shows a clear glass measuring cup with a red label that reads \"2 cups flour\" and \"240 g\". The cup is filled with a light-colored substance, possibly flour or a similar powdery material. A red and white striped cloth is draped over the top of the cup, partially covering it. The cloth appears to be in motion, as suggested by the blurred background, indicating that it is being poured or shaken into the cup. The background is out of focus, emphasizing the action in the foreground. The overall scene suggests a kitchen setting where ingredients are being measured or prepared."
+    },
+    {
+      "scene_index": 7,
+      "start_seconds": 31.833333333333332,
+      "end_seconds": 36.0,
+      "caption": "The image captures a moment of interaction with a material that appears to be a fine, white powder. A hand is seen holding a clear plastic spoon, which is being used to scoop up the powder. The spoon is filled with the powder, and the hand is in the process of lifting it. The background is blurred, but it seems to be a wooden surface, possibly a table or a counter. The focus is on the hand, the spoon, and the powder, with the background being out of focus. The overall scene suggests an activity related to food preparation or a scientific experiment."
+    },
+    {
+      "scene_index": 8,
+      "start_seconds": 36.0,
+      "end_seconds": 40.666666666666664,
+      "caption": "The image captures a moment of someone's hand in the process of sifting flour onto a wooden surface. The hand is positioned over a pile of flour, with the thumb and index finger extended, suggesting the action of sifting. The flour appears to be a light color, possibly white or off-white, and it's being sifted onto a wooden surface that has a visible grain pattern. The background is blurred, but it seems to be an indoor setting with natural lighting, indicating it might be daytime. There are no visible texts or distinctive brands in the image. The focus is on the action of sifting and the interaction between the hand and the flour."
+    },
+    {
+      "scene_index": 9,
+      "start_seconds": 40.666666666666664,
+      "end_seconds": 45.0,
+      "caption": "The image captures a moment of culinary preparation. A person's hand is seen holding an orange, poised to squeeze it. The hand is positioned over a wooden surface, which appears to be a table or counter. The person is wearing a black sleeve, suggesting a casual or home setting.\n\nIn the foreground, there is a pile of white flour. The flour is being squeezed out of the orange, as indicated by the small amount of orange juice that has been squeezed out onto the flour. The flour is being squeezed out onto the wooden surface, which is the main focus of the image.\n\nIn the background, there is a blurred figure of a person, likely the one squeezing the orange. The background figure is partially obscured, with only the upper body and arm visible. The focus is clearly on the action of squeezing the orange and the flour.\n\nThe image also contains text that reads \"3 Eggs,\" which could be a reference to the number of eggs being used in the recipe or a label for the ingredient. The text is superim"
+    },
+    {
+      "scene_index": 10,
+      "start_seconds": 45.0,
+      "end_seconds": 53.833333333333336,
+      "caption": "The image captures a moment in the process of making a fried egg. The egg yolk, a vibrant yellow, is the central focus of the image. It's being carefully placed into a bowl filled with flour. The flour is a light beige color, and it's being used to coat the egg yolk. The action suggests a careful and precise step in the egg-making process. The image does not provide any additional context or actions beyond this single moment."
+    },
+    {
+      "scene_index": 11,
+      "start_seconds": 53.833333333333336,
+      "end_seconds": 56.833333333333336,
+      "caption": "The image captures a moment in the process of making a dish. The main focus is a bowl filled with a yellowish substance, which appears to be a mixture of eggs and olive oil. The bowl is placed on a wooden surface, and the olive oil is being poured into it, creating a stream of liquid that is flowing into the bowl. The bowl itself is white and has a textured surface, suggesting it might be made of ceramic or a similar material. The overall scene suggests a cooking or baking process, with the ingredients being combined in preparation for further cooking or baking."
+    },
+    {
+      "scene_index": 12,
+      "start_seconds": 56.833333333333336,
+      "end_seconds": 60.166666666666664,
+      "caption": "The image captures a moment in a kitchen where a person is engaged in the process of making pasta. The person's hand is visible, holding a small amount of yellow pasta dough. The dough is being sprinkled with a white substance, likely flour, which is being used to shape the dough.\n\nThe dough is being shaped into a circular form, with the person's hand guiding the process. The dough is placed on a wooden surface, which adds a warm, rustic feel to the scene.\n\nIn the background, there is a wooden table with a bowl containing more of the yellow pasta dough. The bowl is partially covered with a white substance, suggesting that the dough is being prepared for further processing.\n\nThe image also contains text that reads \"1 tsp salt\", indicating the amount of salt to be added to the dough during the pasta-making process. The text is clear and legible, providing a useful detail for anyone following the recipe.\n\nOverall, the image provides a glimpse into the process of making pasta, with a focus on the shaping of the dough. The use of flour"
+    },
+    {
+      "scene_index": 13,
+      "start_seconds": 60.166666666666664,
+      "end_seconds": 72.66666666666667,
+      "caption": "In the image, a person is engaged in the process of making a dish. The individual is using a wooden table as their workspace. The person is wearing a black apron, suggesting they might be in the middle of cooking or baking.\n\nThe main focus of the image is a bowl filled with a yellowish substance, which appears to be a mixture of flour and eggs. The person is using a spoon to scoop the mixture into the bowl. The spoon is in motion, indicating that the person is actively mixing the ingredients.\n\nThe wooden table provides a rustic backdrop to the scene. It's a simple, uncluttered surface that allows the viewer to focus on the action of cooking. The table's grain and texture add a sense of warmth and homeliness to the image.\n\nOverall, the image captures a moment of culinary creation, with the person and their ingredients as the main subjects. The scene is a snapshot of everyday life, filled with the simple yet essential act of preparing food."
+    },
+    {
+      "scene_index": 14,
+      "start_seconds": 72.66666666666667,
+      "end_seconds": 81.0,
+      "caption": "The image captures a moment of culinary creation. A hand, adorned with a ring, is seen holding a wooden spoon. The spoon is dipped into a bowl filled with a yellow substance, possibly a mixture of flour and a yellow liquid, suggesting the preparation of dough or batter. The bowl is placed on a wooden surface, which adds a rustic charm to the scene. The background is blurred, drawing focus to the main action of the hand and the bowl. The overall scene suggests a home kitchen setting, with the hand and spoon indicating active participation in the cooking process."
+    },
+    {
+      "scene_index": 15,
+      "start_seconds": 81.0,
+      "end_seconds": 85.0,
+      "caption": "In the image, a person is engaged in the process of making dough. The individual is standing at a wooden table, which is the main focus of the image. The person is using their hands to mix the dough, which is a light yellow color, suggesting it might be made from flour. The dough is being shaped into a circular form, indicating it might be for a specific recipe or dish. The person is wearing a black shirt, and their hands are visible as they work with the dough. The background is blurred, but it appears to be an indoor setting with natural light coming in from the left side of the image. There are no visible texts or distinctive brands in the image. The overall scene suggests a home kitchen environment."
+    },
+    {
+      "scene_index": 16,
+      "start_seconds": 85.0,
+      "end_seconds": 91.33333333333333,
+      "caption": "The image captures a moment of culinary preparation. A person's hands are prominently featured, engaged in the process of making dough. The hands are covered in a light-colored flour, indicating active participation in the dough-making process. The person is wearing a dark-colored shirt, and the background is blurred, suggesting a focus on the activity at hand. The overall scene suggests a home kitchen environment, with the person likely preparing dough for baking or cooking."
+    },
+    {
+      "scene_index": 17,
+      "start_seconds": 91.33333333333333,
+      "end_seconds": 96.83333333333333,
+      "caption": "The image captures a moment of culinary creation. A hand, adorned with a ring, is seen in the process of shaping dough. The dough, a pale yellow color, is being molded on a surface that appears to be a wooden table. The hand is positioned in the center of the image, with the dough being shaped towards the bottom right corner. The background is blurred, drawing focus to the hand and the dough. The overall scene suggests a baking or cooking activity."
+    },
+    {
+      "scene_index": 18,
+      "start_seconds": 96.83333333333333,
+      "end_seconds": 104.16666666666667,
+      "caption": "The image captures a moment of culinary creation. A hand, adorned with a black wristband, is seen in the process of shaping a ball of dough. The dough, a light beige color, is being molded on a wooden surface. The hand is positioned over a wooden board, which is covered in a layer of flour, indicating recent activity. The background is blurred, drawing focus to the main action of the hand and the dough. The overall scene suggests the preparation of dough for baking or cooking."
+    },
+    {
+      "scene_index": 19,
+      "start_seconds": 104.16666666666667,
+      "end_seconds": 108.66666666666667,
+      "caption": "The image captures a moment of culinary creation. A pair of hands, clad in white gloves, are engaged in the process of shaping dough. The dough, a pale yellow color, is being kneaded on a wooden surface. The hands are in motion, with one hand holding the dough while the other hand is pushing it down. The wooden surface beneath them is scattered with flour, indicating the ongoing process of baking. The scene is a snapshot of the art of baking, with the hands and dough as the main focus."
+    },
+    {
+      "scene_index": 20,
+      "start_seconds": 108.66666666666667,
+      "end_seconds": 111.16666666666667,
+      "caption": "The image captures a moment of culinary creation. A pair of hands, clad in black gloves, are actively engaged in shaping a dough. The dough, a pale yellow color, is being kneaded on a wooden surface. The hands are positioned in such a way that the dough is being squeezed and molded, suggesting the process of making dough for bread or pastries. The wooden surface beneath the hands and dough is scattered with flour, indicating the ongoing process of baking or cooking. The image does not provide any text or additional context. The focus is solely on the hands, the dough, and the immediate action of shaping the dough."
+    },
+    {
+      "scene_index": 21,
+      "start_seconds": 111.16666666666667,
+      "end_seconds": 113.5,
+      "caption": "In the image, a person is engaged in the process of making bread. The individual is standing at a wooden table, which is the main focus of the image. The person is wearing a black shirt and appears to be in the middle of shaping the dough.\n\nThe dough is in the process of being shaped into a loaf. The person is using their hands to shape the dough, which is a common technique in bread making. The dough is in the center of the table, indicating that it is the primary focus of the activity.\n\nOn the table, there is a spoon resting on the dough, possibly used for mixing ingredients or for scooping up the dough. The spoon is located to the left of the dough, suggesting it might have been used earlier in the process.\n\nIn the background, there is a plant, adding a touch of greenery to the scene. The plant is located to the right of the dough, providing a contrast to the warm tones of the wooden table and the dough itself.\n\nOverall, the image captures a moment in the process of bread making, with the person actively engaged in shaping the d"
+    },
+    {
+      "scene_index": 22,
+      "start_seconds": 113.5,
+      "end_seconds": 121.0,
+      "caption": "In the image, a person is engaged in the process of making bread. The individual is standing at a wooden table, which is the main focus of the image. The person is wearing a black shirt and appears to be in the middle of shaping the dough.\n\nThe dough is in the process of being shaped into a loaf. The person is using their hands to mold the dough, which is a light brown color, indicating it is made from flour and water. The dough is placed on a wooden surface, which adds a rustic feel to the scene.\n\nThe person is using a rolling pin to shape the dough, which is a common tool in bread making. The rolling pin is not visible in the image, but its presence can be inferred from the person's actions.\n\nThe background is blurred, but it appears to be an indoor setting with natural light coming in, suggesting it might be daytime. The focus is solely on the bread making process, with no other objects or actions visible in the image."
+    },
+    {
+      "scene_index": 23,
+      "start_seconds": 121.0,
+      "end_seconds": 124.0,
+      "caption": "The image captures a moment of interaction between a person and a dough. The dough, which appears to be in the process of being shaped, is resting on a wooden surface. The person's hand is in the process of shaping the dough, with their thumb and index finger pressing down on the dough. The dough itself is a light beige color, suggesting it might be uncooked. The wooden surface beneath the dough has a warm, natural tone that contrasts with the dough's color. The scene suggests a kitchen or baking environment, where the dough is being prepared for baking."
+    },
+    {
+      "scene_index": 24,
+      "start_seconds": 124.0,
+      "end_seconds": 134.83333333333334,
+      "caption": "The image captures a moment of culinary creation. A dough, a pale yellow sphere, is resting on a wooden surface. The dough is covered with a transparent plastic wrap, suggesting it's ready to be shaped or baked.\n\nIn the background, there's a person's hand, indicating that the dough is being handled by a human. The hand is positioned as if it's about to press down on the dough, perhaps to shape it or to press it into a mold.\n\nThe wooden surface on which the dough sits is a rich brown color, with visible grain patterns that suggest it might be a cutting board or a similar kitchen work surface. The grain patterns add a rustic charm to the scene.\n\nThe overall setting appears to be a kitchen or a bakery, as suggested by the presence of the dough and the wooden surface. The image does not provide any additional details about the location or the person handling the dough. The focus is solely on the dough and its immediate surroundings."
+    },
+    {
+      "scene_index": 25,
+      "start_seconds": 134.83333333333334,
+      "end_seconds": 137.0,
+      "caption": "In the image, a person's hand is holding a knife with a serrated edge. The knife is being used to cut into a yellow fruit, which appears to be a squash. The person's hand is positioned over the fruit, and the knife is making contact with the fruit. The background is blurred, but it seems to be an indoor setting with a wooden surface, possibly a table or counter. The focus of the image is on the interaction between the hand and the knife, with the fruit being the object being cut. There is no text visible in the image. The overall scene suggests a preparation process, possibly for cooking or serving the fruit."
+    },
+    {
+      "scene_index": 26,
+      "start_seconds": 137.0,
+      "end_seconds": 139.33333333333334,
+      "caption": "The image captures a moment of interaction with a sports ball. A hand, appearing to be that of a person, is holding the ball. The hand is positioned such that the palm is facing upwards, and the fingers are spread out, suggesting the action of throwing or catching the ball. The ball itself is not clearly visible, but its presence is implied by the hand's grip and the interaction with it. The background is blurred, indicating a focus on the action of the hand and the ball. There is no text or other objects that can be discerned from the provided frames. The overall scene suggests a casual, possibly recreational, activity involving the sports ball."
+    },
+    {
+      "scene_index": 27,
+      "start_seconds": 139.33333333333334,
+      "end_seconds": 144.16666666666666,
+      "caption": "The image captures a moment of someone in the process of sanding a wooden surface. The wooden surface, exhibiting a rich, dark brown hue, is the central focus of the image. The person's hands are actively engaged in the task, with one hand holding a sanding sponge and the other hand applying pressure to the sponge. The sanding sponge is a light beige color, contrasting with the darker surface it's being used on. The background is blurred, drawing attention back to the main action of sanding. The overall scene suggests a workspace, possibly a workshop or a home improvement project."
+    },
+    {
+      "scene_index": 28,
+      "start_seconds": 144.16666666666666,
+      "end_seconds": 148.5,
+      "caption": "The image captures a moment of someone engaged in a baking activity. The person is wearing a black long-sleeved shirt and appears to be in the process of kneading dough. The dough is being shaped on a wooden surface, which is covered with a layer of flour, indicating that the surface is being used for rolling out the dough. The person's hands are visible, with one hand holding a wooden rolling pin and the other hand shaping the dough. The background is blurred, but it seems to be an indoor setting with natural lighting, suggesting a home kitchen environment. There is no visible text in the image. The overall scene suggests a homely and casual baking experience."
+    },
+    {
+      "scene_index": 29,
+      "start_seconds": 148.5,
+      "end_seconds": 151.66666666666666,
+      "caption": "The image captures a moment of culinary creation. A hand, adorned with a ring, is seen in the act of shaping a dough into a round form. The dough, a pale yellow color, is being pressed down with a gentle touch, indicating the careful craftsmanship involved in baking.\n\nThe scene takes place on a wooden surface, which is scattered with flour, hinting at the flurry of activity that has taken place. The flour, a light beige color, is sprinkled around the dough, suggesting the process of kneading and shaping the dough.\n\nThe background is blurred, drawing focus to the main action of shaping the dough. The overall scene suggests a home kitchen setting, where someone is preparing a fresh batch of bread or dough. The image does not contain any text or provide additional context beyond what is visibly observable."
+    },
+    {
+      "scene_index": 30,
+      "start_seconds": 151.66666666666666,
+      "end_seconds": 158.16666666666666,
+      "caption": "The image captures a moment of culinary creation. A pair of hands, appearing to be of a person, are in the process of shaping a dough. The dough is a light beige color, suggesting it might be made from flour and water. The hands are applying pressure to the dough, indicating an action of shaping or molding.\n\nThe dough is placed on a wooden surface, which is covered with a layer of flour, indicating that this is a baking or cooking environment. The flour is a light color, similar to the dough, and it appears to be in a fine powder form.\n\nThe background is blurred, but it seems to be an indoor setting with artificial lighting, suggesting an indoor kitchen or bakery. The focus is on the hands and the dough, with the background being out of focus to emphasize the action of shaping the dough.\n\nThere is no visible text in the image, and the overall scene suggests a moment of preparation in the creation of a dough-based food item, possibly a bread or a pastry. The image does not provide any additional context or details about the specific ingredients"
+    },
+    {
+      "scene_index": 31,
+      "start_seconds": 158.16666666666666,
+      "end_seconds": 162.16666666666666,
+      "caption": "The image captures a moment of someone's hands engaged in the process of shaping a dough. The hands are positioned over a wooden surface, which could be a table or a workbench. The dough appears to be in the process of being rolled out or shaped, as suggested by the fingers pressing down on the dough. The dough is a light beige color, and it's being shaped on a wooden surface that has a darker, more weathered look. The focus is on the hands and the dough, with no other objects or actions visible in the frame. The interaction between the hands and the dough is the main action depicted in the image."
+    },
+    {
+      "scene_index": 32,
+      "start_seconds": 162.16666666666666,
+      "end_seconds": 180.5,
+      "caption": "The image captures a moment of culinary creation. A hand, adorned with a ring, is seen holding a wooden rolling pin. The pin is being used to shape a dough that is resting on a wooden surface. The dough appears to be in the process of being rolled out, suggesting the creation of a dish that might involve dough. The scene is set against a blurred background, indicating that the focus is on the action of rolling out the dough. The image does not provide any additional context or details about the specific dish being prepared."
+    },
+    {
+      "scene_index": 33,
+      "start_seconds": 180.5,
+      "end_seconds": 185.16666666666666,
+      "caption": "The image shows a close-up of a person's hand holding a piece of dough. The dough appears to be in the process of being shaped, with the person's thumb and index finger pressing down on the dough, which is a light beige color. The dough is being stretched and molded, suggesting it is being prepared for baking or cooking. The background is out of focus, but it seems to be an indoor setting with a wooden surface, possibly a table or countertop. There is no visible text or distinctive branding in the image. The style of the image is candid and seems to capture a moment of someone engaged in a culinary activity."
+    },
+    {
+      "scene_index": 34,
+      "start_seconds": 185.16666666666666,
+      "end_seconds": 191.0,
+      "caption": "The image captures a moment of someone's hands in the process of shaping a large piece of dough. The dough, which appears to be of a light color, is being stretched and molded on a wooden surface. The person's hands are visible, with one hand holding the dough and the other hand reaching towards it, possibly to continue shaping the dough. The wooden surface has a visible grain and texture, suggesting it might be a table or a similar piece of furniture. The lighting in the scene is soft and diffused, casting a warm glow on the scene. There are no texts or other objects that can be discerned from the image. The focus is solely on the hands, the dough, and the interaction between them."
+    },
+    {
+      "scene_index": 35,
+      "start_seconds": 191.0,
+      "end_seconds": 193.33333333333334,
+      "caption": "The image captures a moment of culinary creation. A pair of hands, clad in a black sleeve, are actively engaged in shaping a piece of dough. The dough, a pale yellow color, is being rolled out on a wooden surface. The hands are positioned on either side of the dough, with the fingers curled under, indicating the process of stretching and shaping the dough.\n\nTo the side of the dough, there's a wooden rolling pin, its surface rough and textured, hinting at the many doughs it has helped shape. The pin is resting on the wooden surface, ready for the next round of dough shaping.\n\nThe wooden surface itself is a rich, dark brown color, providing a warm and rustic backdrop to the scene. It stretches across the entire frame, its grainy texture adding depth to the image.\n\nThe scene is a snapshot of a cooking process, capturing the skill and care involved in shaping dough. It's a testament to the artistry involved in baking and cooking."
+    },
+    {
+      "scene_index": 36,
+      "start_seconds": 193.33333333333334,
+      "end_seconds": 203.5,
+      "caption": "The image captures a moment of culinary creation. A person's hands are seen in the process of shaping a large piece of dough, which is placed on a wooden surface. The dough appears to be in the initial stages of being rolled out, as suggested by the person's actions.\n\nThe wooden surface, which could be a table or a counter, is the main stage for this activity. On the left side of the image, there's a wooden rolling pin, a common tool used in baking and pastry making. The pin is resting on the surface, ready for use.\n\nThe person's hands are in motion, guiding the dough as they roll it out. The dough is in the process of being rolled out, with the person's fingers visible as they shape the dough.\n\nThe scene is a snapshot of a baking or pastry-making process, with the person's hands and the rolling pin as the main elements. The wooden surface provides a warm, rustic backdrop to this activity."
+    },
+    {
+      "scene_index": 37,
+      "start_seconds": 203.5,
+      "end_seconds": 211.66666666666666,
+      "caption": "The image captures a moment of someone engaged in the process of making dough. The person's hands are visible, with one hand holding a wooden rolling pin and the other hand pressing down on the dough. The dough is a pale yellow color, indicating it might be uncooked. The rolling pin is a darker wood color, contrasting with the dough. The surface underneath appears to be a wooden table, which suggests a home or kitchen setting. The focus is on the hands and the dough, with no other objects or actions described. The interaction is between the person and the dough, with the person's hands actively involved in shaping the dough."
+    },
+    {
+      "scene_index": 38,
+      "start_seconds": 211.66666666666666,
+      "end_seconds": 221.5,
+      "caption": "In the image, a person is engaged in the process of making pasta. The individual is using a rolling pin to shape the pasta dough, which is a light beige color. The rolling pin is in motion, suggesting the action of shaping the dough. The person's hands are visible, holding the dough and guiding it with the rolling pin.\n\nThe setting appears to be a kitchen counter, with a wooden surface that provides a natural and warm backdrop to the scene. The focus is on the pasta-making process, with no other objects or actions described. The image captures a moment of manual craftsmanship, a common sight in traditional pasta-making techniques."
+    },
+    {
+      "scene_index": 39,
+      "start_seconds": 221.5,
+      "end_seconds": 228.16666666666666,
+      "caption": "The image captures a moment of culinary creation. A pair of hands, clad in a black apron, are actively engaged in the process of making pasta. The hands are positioned over a wooden table, which serves as the workspace for this activity.\n\nThe pasta, in the form of thin, pale yellow strands, is being shaped by the hands. The strands are being rolled out on a wooden surface, a common technique in pasta making. The hands are in the process of shaping the pasta, with one hand holding the strands and the other hand pressing down on the strands.\n\nThe background is blurred, drawing focus to the hands and the pasta. The overall scene suggests a home kitchen setting, with the pasta being handmade. The image does not provide any text or additional objects that can be confidently described. The main action is the hands shaping the pasta, with the wooden table serving as the stage for this culinary performance."
+    },
+    {
+      "scene_index": 40,
+      "start_seconds": 228.16666666666666,
+      "end_seconds": 232.33333333333334,
+      "caption": "The image captures a moment of culinary creation. A pair of hands, clad in a black apron, are actively engaged in the process of making pasta. The hands are positioned over a wooden table, which serves as the workspace for this activity.\n\nThe hands are holding a wooden rolling pin, poised to press the dough into the desired shape. The dough itself is a pale yellow color, indicating it's ready to be shaped. It's placed on a black tray, which contrasts with the dough's color.\n\nScattered around the workspace are several pieces of pasta. They are in various stages of preparation, some already shaped and others waiting to be rolled out. The pasta pieces are a light beige color, suggesting they are made from flour.\n\nThe scene is a snapshot of a traditional pasta-making process, with the hands, rolling pin, and pasta pieces being the main elements in this culinary tableau."
+    },
+    {
+      "scene_index": 41,
+      "start_seconds": 232.33333333333334,
+      "end_seconds": 236.83333333333334,
+      "caption": "The image captures a moment of culinary preparation. On a wooden countertop, two sheets of parchment paper are spread out. One sheet is adorned with a pile of freshly made pasta, its golden hue suggesting it's been cooked. The pasta appears to be in the process of being rolled out, as indicated by the thin, elongated shapes scattered across the paper.\n\nThe other sheet of parchment paper is empty, waiting to be used. In the background, there's a glimpse of a kitchen setting with a stove and a knife, hinting at the ongoing cooking process. The overall scene suggests a home kitchen environment where someone is in the midst of preparing a meal."
+    },
+    {
+      "scene_index": 42,
+      "start_seconds": 236.83333333333334,
+      "end_seconds": 241.33333333333334,
+      "caption": "The image captures a moment of culinary preparation. A stainless steel pot, gleaming under the light, sits on a black countertop. The pot is being filled with a liquid, possibly a sauce or soup, as evidenced by the stream of the liquid pouring into it. The liquid is a light yellow color, suggesting it might be a creamy or tomato-based sauce. The pot is positioned on the right side of the image, while the countertop extends across the entire background. The scene is a snapshot of a cooking process, with the pot as the central object and the liquid as the primary action."
+    },
+    {
+      "scene_index": 43,
+      "start_seconds": 241.33333333333334,
+      "end_seconds": 244.0,
+      "caption": "The image captures a moment of culinary preparation. A hand, appearing from the left side of the frame, is holding a red and silver whisk. The whisk is being used to mix a creamy white substance, possibly a batter or a sauce, in a large metal bowl. The bowl is placed on a surface that is not clearly visible due to the focus on the action of the whisk. The hand holding the whisk is in motion, suggesting the act of stirring or mixing. The overall scene suggests a kitchen setting, with the focus on the action of mixing rather than the surroundings."
+    },
+    {
+      "scene_index": 44,
+      "start_seconds": 244.0,
+      "end_seconds": 248.33333333333334,
+      "caption": "The image captures a moment of culinary creation. A hand, clad in a red sleeve, is seen stirring a vibrant red sauce with a white spoon. The sauce is rich and appears to be simmering in a silver pot. The pot is placed on a black stove, which contrasts with the red of the sauce and the silver of the pot. The scene suggests a home kitchen setting, with the focus on the act of cooking. The hand's action of stirring the sauce indicates an ongoing process of preparation. The colors, objects, and actions all contribute to a narrative of a meal being prepared with care."
+    },
+    {
+      "scene_index": 45,
+      "start_seconds": 248.33333333333334,
+      "end_seconds": 251.5,
+      "caption": "The image shows a close-up of a glass jar filled with a red sauce. The jar appears to be made of clear glass, allowing the contents to be seen. There is a metal clasp on the lid, suggesting it is ajar. The jar is placed on a wooden surface, which could be a table or a countertop. The background is blurred, emphasizing the jar and its contents. There is a hand visible in the top left corner of the image, but the action is not clear. The focus is on the jar and its contents, with no other objects or interactions being the main focus of the image."
+    },
+    {
+      "scene_index": 46,
+      "start_seconds": 251.5,
+      "end_seconds": 256.3333333333333,
+      "caption": "The image captures a moment of culinary delight. A vibrant red sauce, rich and inviting, is being poured into a silver pot. The pot, gleaming under the light, is placed on a black countertop. The silver pot is being filled with the red sauce, which is being poured from a clear glass. The glass is filled with the red sauce, and it's being tilted slightly, suggesting the action of pouring. The scene is set against a blurred background, drawing focus to the main action of the sauce being poured. The colors, actions, and objects all contribute to a sense of a meal being prepared."
+    },
+    {
+      "scene_index": 47,
+      "start_seconds": 256.3333333333333,
+      "end_seconds": 259.0,
+      "caption": "The image captures a moment of culinary creation. A person's hand, adorned with a pair of chopsticks, is in the process of stirring a pot of food. The pot, filled with a vibrant red sauce, is the main focus of the image. The sauce is being mixed with a spoon, adding to the dynamic nature of the scene.\n\nThe person's hand is positioned over the pot, indicating an active role in the cooking process. The chopsticks, a common utensil in many cuisines, suggest an Asian influence in the meal being prepared.\n\nThe background is blurred, drawing attention back to the pot and the person's actions. The overall scene suggests a home kitchen setting, with the emphasis on the cooking process. The colors, actions, and objects all contribute to a lively and engaging visual narrative."
+    },
+    {
+      "scene_index": 48,
+      "start_seconds": 259.0,
+      "end_seconds": 262.5,
+      "caption": "The image captures a moment of culinary delight. A hand, adorned with a vibrant red ring, is seen holding a pair of tongs. The tongs are in the process of picking up a piece of pasta from a white plate. The pasta, a rich shade of red, is being served on a white plate. The plate is placed on a wooden table, adding a rustic charm to the scene. The hand, the main focus of the image, is positioned in the center, with the pasta being picked up by the tongs located towards the right side of the image. The overall scene suggests a meal in progress, with the pasta being served and enjoyed."
+    },
+    {
+      "scene_index": 49,
+      "start_seconds": 262.5,
+      "end_seconds": 266.3333333333333,
+      "caption": "The image captures a moment of culinary delight. A hand, poised in the act of serving, is reaching into a white bowl filled with pasta. The pasta, a vibrant shade of red, is generously coated in a rich, red sauce. The bowl is placed on a wooden surface, adding a rustic charm to the scene.\n\nThe pasta is not alone in the bowl. It shares its space with a sprinkling of green leaves, adding a touch of freshness to the dish. The hand, appearing from the right side of the frame, is about to add more of these green leaves to the pasta, suggesting a preference for garnishing.\n\nThe image is a snapshot of a meal in progress, with the hand's action indicating that the pasta is about to be enhanced with more of the green leaves. The scene is simple yet intimate, capturing the essence of a home-cooked meal."
+    },
+    {
+      "scene_index": 50,
+      "start_seconds": 266.3333333333333,
+      "end_seconds": 269.5,
+      "caption": "The image captures a moment of culinary preparation. A wooden table serves as the stage for this scene. On the left side of the table, there's a white plate holding a portion of pasta. The pasta appears to be coated in a red sauce, possibly tomato-based.\n\nIn the center of the table, a person's hand is holding a piece of cheese. The cheese is rectangular in shape and has a pale color, suggesting it might be a type of Swiss or similar cheese.\n\nOn the right side of the table, there's a wooden cutting board. It's not clear what's on the cutting board, but it seems to be part of the ongoing food preparation.\n\nThe overall scene suggests someone is in the process of preparing a meal, possibly a pasta dish with a red sauce and a cheese topping. The precise actions and interactions are not fully visible in the frames provided."
+    },
+    {
+      "scene_index": 51,
+      "start_seconds": 269.5,
+      "end_seconds": 272.1666666666667,
+      "caption": "The image shows a close-up of a bowl of pasta salad on a wooden surface. The pasta appears to be a type of fusilli, which is a type of pasta that is spiral-shaped. The salad includes what looks like a tomato-based sauce, and there are shreds of cheese sprinkled on top. The cheese is white and appears to be grated. The salad is garnished with fresh green arugula leaves, which are scattered on top. The bowl is white and has a simple design. The wooden surface underneath the bowl has a warm, natural tone. There are no visible texts or brands in the image. The style of the image is a realistic photograph with a shallow depth of field, focusing on the food while the background is blurred."
+    },
+    {
+      "scene_index": 52,
+      "start_seconds": 272.1666666666667,
+      "end_seconds": 276.6666666666667,
+      "caption": "The image captures a moment of someone reaching out to a bowl of pasta. The pasta appears to be a type of rigatoni, a tube-shaped pasta with ridges on the outside. It's topped with a generous amount of grated Parmesan cheese, which is a light yellow color. The pasta is mixed with a red sauce, possibly tomato-based, and is garnished with fresh green arugula. The bowl is placed on a wooden surface, and the person's hand is visible, indicating that they are about to pick up a piece of pasta. The overall scene suggests a meal in progress."
+    },
+    {
+      "scene_index": 53,
+      "start_seconds": 276.6666666666667,
+      "end_seconds": 282.6666666666667,
+      "caption": "The image shows a close-up view of a meal served on a white plate. The meal consists of pasta with a red sauce, possibly tomato-based, and a side salad with green leaves and slices of white cheese. The pasta appears to be cooked and has a reddish hue, suggesting it might be tomato-based. The salad is garnished with a sprinkle of cheese on top.\n\nThe plate is placed on a wooden surface, which could be a table or a countertop. There is a fork resting on the plate, indicating that the meal is ready to be eaten. The fork is partially visible, with its handle on the left side of the plate and its tines pointing towards the right side of the plate.\n\nThe focus of the image is on the food, with the background being out of focus, which helps to emphasize the details of the meal. The lighting in the image is soft, suggesting an indoor setting with natural or artificial lighting. There are no visible texts or distinctive brands in the image. The overall style of the image is a realistic photograph with a shallow depth of field, which"
+    },
+    {
+      "scene_index": 54,
+      "start_seconds": 282.6666666666667,
+      "end_seconds": 290.1666666666667,
+      "caption": "The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, takes center stage. The pasta, a rich shade of red, is generously coated in a creamy white sauce, adding a contrast to the dish. The pasta is not alone; it shares the bowl with a fresh green salad. The salad, a mix of various greens, adds a touch of freshness to the dish.\n\nA silver fork rests in the bowl, ready to dive into the delicious meal. The fork's metallic sheen stands out against the warm tones of the pasta and salad.\n\nThe background is blurred, drawing focus to the main subject - the bowl of pasta and salad. The blurred background suggests a cozy and inviting setting, perhaps a home kitchen or a restaurant.\n\nOverall, the image paints a picture of a meal waiting to be enjoyed. The precise arrangement of objects and their relative positions contribute to this narrative. The fork in the bowl suggests someone is about to start eating, while the blurred background hints"
+    },
+    {
+      "scene_index": 55,
+      "start_seconds": 290.1666666666667,
+      "end_seconds": 303.8333333333333,
+      "caption": "The image captures a moment of culinary delight. A white bowl, filled with a vibrant salad, sits on a wooden table. The salad is a medley of colors and textures, with shredded greens forming the base. Scattered throughout the salad are slices of red tomatoes, their bright color contrasting with the greens. Adding a touch of creaminess to the dish are cubes of white cheese.\n\nA silver fork is captured in the act of being dipped into the salad, suggesting that someone is about to enjoy this meal. The fork's reflection on the wooden table adds a subtle detail to the scene. The overall image paints a picture of a fresh, healthy meal being enjoyed."
+    },
+    {
+      "scene_index": 56,
+      "start_seconds": 303.8333333333333,
+      "end_seconds": 319.5,
+      "caption": "The image shows a close-up of a blender filled with a frothy white liquid, which appears to be a milkshake or a similar beverage. A red spatula is being used to mix the contents of the blender. The blender is placed on a surface that is not clearly visible due to the close-up nature of the image. The focus is on the blender and the spatula, with the background being out of focus. There are no visible texts or distinctive brands in the image. The action captured is the blending process, with the spatula stirring the contents of the blender."
+    },
+    {
+      "scene_index": 57,
+      "start_seconds": 319.5,
+      "end_seconds": 321.8333333333333,
+      "caption": "The image captures a moment of culinary creation. A hand, clad in a red glove, is seen stirring a white substance in a silver pot. The hand is positioned on the right side of the image, with the fingers curled around the handle of a red spoon. The spoon, with its red handle and silver head, is being used to mix the white substance, which appears to be a batter or dough. The silver pot, filled with the white substance, is placed on a black surface, providing a stark contrast to the white batter. The image does not provide any text or additional objects. The focus is solely on the action of stirring and the interaction between the hand, spoon, and the pot."
+    },
+    {
+      "scene_index": 58,
+      "start_seconds": 321.8333333333333,
+      "end_seconds": 328.0,
+      "caption": "The image is a black square with a white border. Inside the black square, there is a white text that reads:\n\n\"Consider subscribing\nAnd connect elsewhere\nChief Studio_\n\"\n\nBelow the text, there is a small, colorful Instagram logo with the handle \"@ChiefStudio_\". The logo is placed on the bottom right corner of the black square. The overall style of the image is minimalistic and modern."
+    }
+  ],
+  "fused_results": [
+    {
+      "scene_index": 0,
+      "start_seconds": 0.0,
+      "end_seconds": 6.5,
+      "vlm_caption": "The image captures a moment of culinary preparation. On a wooden surface, there's a rectangular tray with a white paper liner. The tray is divided into two sections, each containing a different pasta.\n\nIn the left section, there's a pile of penne pasta. The pasta appears to be in the process of being cooked, as suggested by the presence of a knife and a spoon nearby. The knife is positioned to the right of the penne, and the spoon is to the left.\n\nThe right section of the tray holds a pile of rigatoni pasta. Like the penne, the rigatoni also looks like it's in the process of being cooked. The knife and spoon are also present in this section, indicating that the cooking process is ongoing.\n\nThe background is blurred, but it gives the impression of a kitchen setting. The focus is clearly on the pasta and the cooking process.",
+      "asr": "Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.",
+      "ast": "music (conf=0.74)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "dining table",
+          "confidence_avg": 0.599,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary preparation. On a wooden surface, there's a rectangular tray with a white paper liner. The tray is divided into two sections, each containing a different pasta.\n\nIn the left section, there's a pile of penne pasta. The pasta appears to be in the process of being cooked, as suggested by the presence of a knife and a spoon nearby. The knife is positioned to the right of the penne, and the spoon is to the left.\n\nThe right section of the tray holds a pile of rigatoni pasta. Like the penne, the rigatoni also looks like it's in the process of being cooked. The knife and spoon are also present in this section, indicating that the cooking process is ongoing.\n\nThe background is blurred, but it gives the impression of a kitchen setting. The focus is clearly on the pasta and the cooking process. | Speech: Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough. | Sounds: music (conf=0.74) | Objects: dining table #1: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 1,
+      "start_seconds": 6.5,
+      "end_seconds": 11.666666666666666,
+      "vlm_caption": "The image captures a moment of culinary creation. A wooden table, bathed in the soft glow of ambient light, serves as the stage for this gastronomic performance.\n\nIn the foreground, a pile of freshly made pasta commands attention. The pasta, a pale yellow hue, is in the process of being rolled out. Its elongated form is a testament to the skill of the hand that guides it.\n\nIn the background, a wooden rolling pin rests on the table. It's a silent participant in the pasta-making process, its surface bearing the marks of its role in shaping the dough.\n\nThe scene is a snapshot of a cooking process, where each object and action has its place and purpose. The pasta, the rolling pin, and the wooden table all play their part in bringing this dish to life.",
+      "asr": "I'm not making the fanciest, or the best, or the most luxurious recipe, but it's easy and you-",
+      "ast": "music (conf=0.34)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A wooden table, bathed in the soft glow of ambient light, serves as the stage for this gastronomic performance.\n\nIn the foreground, a pile of freshly made pasta commands attention. The pasta, a pale yellow hue, is in the process of being rolled out. Its elongated form is a testament to the skill of the hand that guides it.\n\nIn the background, a wooden rolling pin rests on the table. It's a silent participant in the pasta-making process, its surface bearing the marks of its role in shaping the dough.\n\nThe scene is a snapshot of a cooking process, where each object and action has its place and purpose. The pasta, the rolling pin, and the wooden table all play their part in bringing this dish to life. | Speech: I'm not making the fanciest, or the best, or the most luxurious recipe, but it's easy and you- | Sounds: music (conf=0.34)"
+    },
+    {
+      "scene_index": 2,
+      "start_seconds": 11.666666666666666,
+      "end_seconds": 14.333333333333334,
+      "vlm_caption": "The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, sits on a wooden table. The pasta, a rich shade of red, is generously coated in a creamy white sauce. The dish is garnished with fresh green arugula, adding a pop of color and a hint of peppery flavor. The bowl is not alone; it's accompanied by a hand, reaching out to grab a piece of the pasta. The scene is a snapshot of a meal in progress, with the pasta being the star of the show.",
+      "asr": "probably already have all the ingredients in your house.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "bowl",
+          "confidence_avg": 0.564,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, sits on a wooden table. The pasta, a rich shade of red, is generously coated in a creamy white sauce. The dish is garnished with fresh green arugula, adding a pop of color and a hint of peppery flavor. The bowl is not alone; it's accompanied by a hand, reaching out to grab a piece of the pasta. The scene is a snapshot of a meal in progress, with the pasta being the star of the show. | Speech: probably already have all the ingredients in your house. | Sounds: none | Objects: bowl #1: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 3,
+      "start_seconds": 14.333333333333334,
+      "end_seconds": 18.166666666666668,
+      "vlm_caption": "The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, takes center stage. The pasta, a rich shade of red, is generously coated in a creamy white sauce. The dish is garnished with a sprinkle of grated cheese, adding a touch of creaminess to the dish.\n\nA silver fork, resting on the pasta, suggests the dish is ready to be enjoyed. The fork's metallic sheen contrasts with the warm tones of the pasta and sauce.\n\nIn the background, a green salad adds a pop of color to the scene. The salad's freshness complements the hearty pasta dish.\n\nThe image also contains text. The handle \"@ChefStudio\" suggests that this image might be from a social media account, possibly belonging to a chef or a food enthusiast. The text \"@ChefStudio\" is visible, indicating the source of the image.\n\nOverall, the image paints a picture of a delicious meal, ready to be savored.",
+      "asr": "So if the pasta aisle at your grocery store is empty, don't panic.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "spoon",
+          "confidence_avg": 0.557,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, takes center stage. The pasta, a rich shade of red, is generously coated in a creamy white sauce. The dish is garnished with a sprinkle of grated cheese, adding a touch of creaminess to the dish.\n\nA silver fork, resting on the pasta, suggests the dish is ready to be enjoyed. The fork's metallic sheen contrasts with the warm tones of the pasta and sauce.\n\nIn the background, a green salad adds a pop of color to the scene. The salad's freshness complements the hearty pasta dish.\n\nThe image also contains text. The handle \"@ChefStudio\" suggests that this image might be from a social media account, possibly belonging to a chef or a food enthusiast. The text \"@ChefStudio\" is visible, indicating the source of the image.\n\nOverall, the image paints a picture of a delicious meal, ready to be savored. | Speech: So if the pasta aisle at your grocery store is empty, don't panic. | Sounds: none | Objects: spoon #1: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 4,
+      "start_seconds": 18.166666666666668,
+      "end_seconds": 22.833333333333332,
+      "vlm_caption": "The image shows a scene focused on a white porcelain sink. The sink is equipped with a silver faucet and a white soap dispenser. The soap dispenser is positioned to the left of the faucet. The faucet is currently in the \"off\" position.\n\nTwo hands are visible in the image, one on each side of the sink. The hand on the left is holding the soap dispenser, and the hand on the right is reaching towards the faucet. The hands appear to be in the process of turning on the faucet.\n\nThe background is a plain white wall, which provides a neutral backdrop that contrasts with the white sink and soap dispenser. The image is taken from a perspective slightly above the sink, giving a clear view of the objects and actions taking place. The lighting in the image is even, suggesting an indoor setting with artificial lighting.",
+      "asr": "have no fear, this is the reason to make it home. First things first, for God's sake.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "sink",
+          "confidence_avg": 0.565,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 9.127,
+          "net_displacement": 4.509,
+          "direction_change_var": 4.9225,
+          "relations": [
+            "left-of person #3"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.685,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 12.777,
+          "net_displacement": 3.842,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of sink #1"
+          ]
+        }
+      ],
+      "scene_description": "Visual: The image shows a scene focused on a white porcelain sink. The sink is equipped with a silver faucet and a white soap dispenser. The soap dispenser is positioned to the left of the faucet. The faucet is currently in the \"off\" position.\n\nTwo hands are visible in the image, one on each side of the sink. The hand on the left is holding the soap dispenser, and the hand on the right is reaching towards the faucet. The hands appear to be in the process of turning on the faucet.\n\nThe background is a plain white wall, which provides a neutral backdrop that contrasts with the white sink and soap dispenser. The image is taken from a perspective slightly above the sink, giving a clear view of the objects and actions taking place. The lighting in the image is even, suggesting an indoor setting with artificial lighting. | Speech: have no fear, this is the reason to make it home. First things first, for God's sake. | Sounds: none | Objects: sink #1: middle-center -> middle-center, mostly stationary; relations: left-of person #3; person #3: middle-right -> middle-right, mostly stationary; relations: right-of sink #1"
+    },
+    {
+      "scene_index": 5,
+      "start_seconds": 22.833333333333332,
+      "end_seconds": 26.666666666666668,
+      "vlm_caption": "In the image, a person is standing in front of a wooden table. The person is wearing a black shirt and appears to be in the process of reaching out towards the table. The table has a visible grain pattern and is supported by a black metal frame. The background is blurred, but it seems to be an indoor setting with a white door and a window visible. There is no text present in the image. The overall scene suggests an indoor environment, possibly a home or office, with the person interacting with the table.",
+      "asr": "Please wash your hands, people, and sanitize your work surface.",
+      "ast": "silence (conf=0.42)",
+      "yolo": [
+        {
+          "track_id": 6,
+          "label": "person",
+          "confidence_avg": 0.689,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "top-center",
+          "end_pos": "top-left",
+          "movement": "moving left",
+          "path_length": 46.735,
+          "net_displacement": 26.607,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the image, a person is standing in front of a wooden table. The person is wearing a black shirt and appears to be in the process of reaching out towards the table. The table has a visible grain pattern and is supported by a black metal frame. The background is blurred, but it seems to be an indoor setting with a white door and a window visible. There is no text present in the image. The overall scene suggests an indoor environment, possibly a home or office, with the person interacting with the table. | Speech: Please wash your hands, people, and sanitize your work surface. | Sounds: silence (conf=0.42) | Objects: person #6: top-center -> top-left, moving left"
+    },
+    {
+      "scene_index": 6,
+      "start_seconds": 26.666666666666668,
+      "end_seconds": 31.833333333333332,
+      "vlm_caption": "The image shows a clear glass measuring cup with a red label that reads \"2 cups flour\" and \"240 g\". The cup is filled with a light-colored substance, possibly flour or a similar powdery material. A red and white striped cloth is draped over the top of the cup, partially covering it. The cloth appears to be in motion, as suggested by the blurred background, indicating that it is being poured or shaken into the cup. The background is out of focus, emphasizing the action in the foreground. The overall scene suggests a kitchen setting where ingredients are being measured or prepared.",
+      "asr": "Then, you'll need 2 cups of flour.",
+      "ast": "music (conf=0.67)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "cup",
+          "confidence_avg": 0.754,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 10.79,
+          "net_displacement": 4.932,
+          "direction_change_var": 0.6029,
+          "relations": [
+            "below dining table #8"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "dining table",
+          "confidence_avg": 0.53,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.289,
+          "net_displacement": 1.289,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above cup #1"
+          ]
+        }
+      ],
+      "scene_description": "Visual: The image shows a clear glass measuring cup with a red label that reads \"2 cups flour\" and \"240 g\". The cup is filled with a light-colored substance, possibly flour or a similar powdery material. A red and white striped cloth is draped over the top of the cup, partially covering it. The cloth appears to be in motion, as suggested by the blurred background, indicating that it is being poured or shaken into the cup. The background is out of focus, emphasizing the action in the foreground. The overall scene suggests a kitchen setting where ingredients are being measured or prepared. | Speech: Then, you'll need 2 cups of flour. | Sounds: music (conf=0.67) | Objects: cup #1: middle-center -> middle-center, mostly stationary, getting farther; relations: below dining table #8; dining table #8: middle-center -> middle-center, mostly stationary; relations: above cup #1"
+    },
+    {
+      "scene_index": 7,
+      "start_seconds": 31.833333333333332,
+      "end_seconds": 36.0,
+      "vlm_caption": "The image captures a moment of interaction with a material that appears to be a fine, white powder. A hand is seen holding a clear plastic spoon, which is being used to scoop up the powder. The spoon is filled with the powder, and the hand is in the process of lifting it. The background is blurred, but it seems to be a wooden surface, possibly a table or a counter. The focus is on the hand, the spoon, and the powder, with the background being out of focus. The overall scene suggests an activity related to food preparation or a scientific experiment.",
+      "asr": "Dump the flour onto your clean work surface and create a little well.",
+      "ast": "music (conf=0.72)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of interaction with a material that appears to be a fine, white powder. A hand is seen holding a clear plastic spoon, which is being used to scoop up the powder. The spoon is filled with the powder, and the hand is in the process of lifting it. The background is blurred, but it seems to be a wooden surface, possibly a table or a counter. The focus is on the hand, the spoon, and the powder, with the background being out of focus. The overall scene suggests an activity related to food preparation or a scientific experiment. | Speech: Dump the flour onto your clean work surface and create a little well. | Sounds: music (conf=0.72)"
+    },
+    {
+      "scene_index": 8,
+      "start_seconds": 36.0,
+      "end_seconds": 40.666666666666664,
+      "vlm_caption": "The image captures a moment of someone's hand in the process of sifting flour onto a wooden surface. The hand is positioned over a pile of flour, with the thumb and index finger extended, suggesting the action of sifting. The flour appears to be a light color, possibly white or off-white, and it's being sifted onto a wooden surface that has a visible grain pattern. The background is blurred, but it seems to be an indoor setting with natural lighting, indicating it might be daytime. There are no visible texts or distinctive brands in the image. The focus is on the action of sifting and the interaction between the hand and the flour.",
+      "asr": "well in the center.",
+      "ast": "music (conf=0.59)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.797,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving left",
+          "path_length": 20.891,
+          "net_displacement": 16.707,
+          "direction_change_var": 1.0834,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of someone's hand in the process of sifting flour onto a wooden surface. The hand is positioned over a pile of flour, with the thumb and index finger extended, suggesting the action of sifting. The flour appears to be a light color, possibly white or off-white, and it's being sifted onto a wooden surface that has a visible grain pattern. The background is blurred, but it seems to be an indoor setting with natural lighting, indicating it might be daytime. There are no visible texts or distinctive brands in the image. The focus is on the action of sifting and the interaction between the hand and the flour. | Speech: well in the center. | Sounds: music (conf=0.59) | Objects: person #9: top-center -> top-center, moving left"
+    },
+    {
+      "scene_index": 9,
+      "start_seconds": 40.666666666666664,
+      "end_seconds": 45.0,
+      "vlm_caption": "The image captures a moment of culinary preparation. A person's hand is seen holding an orange, poised to squeeze it. The hand is positioned over a wooden surface, which appears to be a table or counter. The person is wearing a black sleeve, suggesting a casual or home setting.\n\nIn the foreground, there is a pile of white flour. The flour is being squeezed out of the orange, as indicated by the small amount of orange juice that has been squeezed out onto the flour. The flour is being squeezed out onto the wooden surface, which is the main focus of the image.\n\nIn the background, there is a blurred figure of a person, likely the one squeezing the orange. The background figure is partially obscured, with only the upper body and arm visible. The focus is clearly on the action of squeezing the orange and the flour.\n\nThe image also contains text that reads \"3 Eggs,\" which could be a reference to the number of eggs being used in the recipe or a label for the ingredient. The text is superim",
+      "asr": "Then crack in three eggs.",
+      "ast": "music (conf=0.73)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "cake",
+          "confidence_avg": 0.703,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.487,
+          "net_displacement": 0.04,
+          "direction_change_var": 0.8431,
+          "relations": []
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.696,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary preparation. A person's hand is seen holding an orange, poised to squeeze it. The hand is positioned over a wooden surface, which appears to be a table or counter. The person is wearing a black sleeve, suggesting a casual or home setting.\n\nIn the foreground, there is a pile of white flour. The flour is being squeezed out of the orange, as indicated by the small amount of orange juice that has been squeezed out onto the flour. The flour is being squeezed out onto the wooden surface, which is the main focus of the image.\n\nIn the background, there is a blurred figure of a person, likely the one squeezing the orange. The background figure is partially obscured, with only the upper body and arm visible. The focus is clearly on the action of squeezing the orange and the flour.\n\nThe image also contains text that reads \"3 Eggs,\" which could be a reference to the number of eggs being used in the recipe or a label for the ingredient. The text is superim | Speech: Then crack in three eggs. | Sounds: music (conf=0.73) | Objects: cake #1: middle-center -> middle-center, mostly stationary, moving in a loop; person #9: top-center -> top-center, mostly stationary"
+    },
+    {
+      "scene_index": 10,
+      "start_seconds": 45.0,
+      "end_seconds": 53.833333333333336,
+      "vlm_caption": "The image captures a moment in the process of making a fried egg. The egg yolk, a vibrant yellow, is the central focus of the image. It's being carefully placed into a bowl filled with flour. The flour is a light beige color, and it's being used to coat the egg yolk. The action suggests a careful and precise step in the egg-making process. The image does not provide any additional context or actions beyond this single moment.",
+      "asr": "",
+      "ast": "music (conf=0.46)",
+      "yolo": [
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.657,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment in the process of making a fried egg. The egg yolk, a vibrant yellow, is the central focus of the image. It's being carefully placed into a bowl filled with flour. The flour is a light beige color, and it's being used to coat the egg yolk. The action suggests a careful and precise step in the egg-making process. The image does not provide any additional context or actions beyond this single moment. | Sounds: music (conf=0.46) | Objects: person #8: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 11,
+      "start_seconds": 53.833333333333336,
+      "end_seconds": 56.833333333333336,
+      "vlm_caption": "The image captures a moment in the process of making a dish. The main focus is a bowl filled with a yellowish substance, which appears to be a mixture of eggs and olive oil. The bowl is placed on a wooden surface, and the olive oil is being poured into it, creating a stream of liquid that is flowing into the bowl. The bowl itself is white and has a textured surface, suggesting it might be made of ceramic or a similar material. The overall scene suggests a cooking or baking process, with the ingredients being combined in preparation for further cooking or baking.",
+      "asr": "Add in a tablespoon of olive oil.",
+      "ast": "music (conf=0.71)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment in the process of making a dish. The main focus is a bowl filled with a yellowish substance, which appears to be a mixture of eggs and olive oil. The bowl is placed on a wooden surface, and the olive oil is being poured into it, creating a stream of liquid that is flowing into the bowl. The bowl itself is white and has a textured surface, suggesting it might be made of ceramic or a similar material. The overall scene suggests a cooking or baking process, with the ingredients being combined in preparation for further cooking or baking. | Speech: Add in a tablespoon of olive oil. | Sounds: music (conf=0.71)"
+    },
+    {
+      "scene_index": 12,
+      "start_seconds": 56.833333333333336,
+      "end_seconds": 60.166666666666664,
+      "vlm_caption": "The image captures a moment in a kitchen where a person is engaged in the process of making pasta. The person's hand is visible, holding a small amount of yellow pasta dough. The dough is being sprinkled with a white substance, likely flour, which is being used to shape the dough.\n\nThe dough is being shaped into a circular form, with the person's hand guiding the process. The dough is placed on a wooden surface, which adds a warm, rustic feel to the scene.\n\nIn the background, there is a wooden table with a bowl containing more of the yellow pasta dough. The bowl is partially covered with a white substance, suggesting that the dough is being prepared for further processing.\n\nThe image also contains text that reads \"1 tsp salt\", indicating the amount of salt to be added to the dough during the pasta-making process. The text is clear and legible, providing a useful detail for anyone following the recipe.\n\nOverall, the image provides a glimpse into the process of making pasta, with a focus on the shaping of the dough. The use of flour",
+      "asr": "and a teaspoon of salt.",
+      "ast": "music (conf=0.56)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "cake",
+          "confidence_avg": 0.554,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment in a kitchen where a person is engaged in the process of making pasta. The person's hand is visible, holding a small amount of yellow pasta dough. The dough is being sprinkled with a white substance, likely flour, which is being used to shape the dough.\n\nThe dough is being shaped into a circular form, with the person's hand guiding the process. The dough is placed on a wooden surface, which adds a warm, rustic feel to the scene.\n\nIn the background, there is a wooden table with a bowl containing more of the yellow pasta dough. The bowl is partially covered with a white substance, suggesting that the dough is being prepared for further processing.\n\nThe image also contains text that reads \"1 tsp salt\", indicating the amount of salt to be added to the dough during the pasta-making process. The text is clear and legible, providing a useful detail for anyone following the recipe.\n\nOverall, the image provides a glimpse into the process of making pasta, with a focus on the shaping of the dough. The use of flour | Speech: and a teaspoon of salt. | Sounds: music (conf=0.56) | Objects: cake #9: top-center -> top-center, mostly stationary"
+    },
+    {
+      "scene_index": 13,
+      "start_seconds": 60.166666666666664,
+      "end_seconds": 72.66666666666667,
+      "vlm_caption": "In the image, a person is engaged in the process of making a dish. The individual is using a wooden table as their workspace. The person is wearing a black apron, suggesting they might be in the middle of cooking or baking.\n\nThe main focus of the image is a bowl filled with a yellowish substance, which appears to be a mixture of flour and eggs. The person is using a spoon to scoop the mixture into the bowl. The spoon is in motion, indicating that the person is actively mixing the ingredients.\n\nThe wooden table provides a rustic backdrop to the scene. It's a simple, uncluttered surface that allows the viewer to focus on the action of cooking. The table's grain and texture add a sense of warmth and homeliness to the image.\n\nOverall, the image captures a moment of culinary creation, with the person and their ingredients as the main subjects. The scene is a snapshot of everyday life, filled with the simple yet essential act of preparing food.",
+      "asr": "Then using a fork whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well",
+      "ast": "music (conf=0.66)",
+      "yolo": [
+        {
+          "track_id": 11,
+          "label": "person",
+          "confidence_avg": 0.62,
+          "start_frame": 7,
+          "end_frame": 9,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 8.546,
+          "net_displacement": 6.139,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the image, a person is engaged in the process of making a dish. The individual is using a wooden table as their workspace. The person is wearing a black apron, suggesting they might be in the middle of cooking or baking.\n\nThe main focus of the image is a bowl filled with a yellowish substance, which appears to be a mixture of flour and eggs. The person is using a spoon to scoop the mixture into the bowl. The spoon is in motion, indicating that the person is actively mixing the ingredients.\n\nThe wooden table provides a rustic backdrop to the scene. It's a simple, uncluttered surface that allows the viewer to focus on the action of cooking. The table's grain and texture add a sense of warmth and homeliness to the image.\n\nOverall, the image captures a moment of culinary creation, with the person and their ingredients as the main subjects. The scene is a snapshot of everyday life, filled with the simple yet essential act of preparing food. | Speech: Then using a fork whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well | Sounds: music (conf=0.66) | Objects: person #11: top-left -> top-left, mostly stationary"
+    },
+    {
+      "scene_index": 14,
+      "start_seconds": 72.66666666666667,
+      "end_seconds": 81.0,
+      "vlm_caption": "The image captures a moment of culinary creation. A hand, adorned with a ring, is seen holding a wooden spoon. The spoon is dipped into a bowl filled with a yellow substance, possibly a mixture of flour and a yellow liquid, suggesting the preparation of dough or batter. The bowl is placed on a wooden surface, which adds a rustic charm to the scene. The background is blurred, drawing focus to the main action of the hand and the bowl. The overall scene suggests a home kitchen setting, with the hand and spoon indicating active participation in the cooking process.",
+      "asr": "Continue bringing the flower and",
+      "ast": "music (conf=0.72)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A hand, adorned with a ring, is seen holding a wooden spoon. The spoon is dipped into a bowl filled with a yellow substance, possibly a mixture of flour and a yellow liquid, suggesting the preparation of dough or batter. The bowl is placed on a wooden surface, which adds a rustic charm to the scene. The background is blurred, drawing focus to the main action of the hand and the bowl. The overall scene suggests a home kitchen setting, with the hand and spoon indicating active participation in the cooking process. | Speech: Continue bringing the flower and | Sounds: music (conf=0.72)"
+    },
+    {
+      "scene_index": 15,
+      "start_seconds": 81.0,
+      "end_seconds": 85.0,
+      "vlm_caption": "In the image, a person is engaged in the process of making dough. The individual is standing at a wooden table, which is the main focus of the image. The person is using their hands to mix the dough, which is a light yellow color, suggesting it might be made from flour. The dough is being shaped into a circular form, indicating it might be for a specific recipe or dish. The person is wearing a black shirt, and their hands are visible as they work with the dough. The background is blurred, but it appears to be an indoor setting with natural light coming in from the left side of the image. There are no visible texts or distinctive brands in the image. The overall scene suggests a home kitchen environment.",
+      "asr": "the center like this until the dough has pulled together enough to be worked by hand.",
+      "ast": "silence (conf=0.43)",
+      "yolo": [
+        {
+          "track_id": 8,
+          "label": "dining table",
+          "confidence_avg": 0.732,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 11.2,
+          "net_displacement": 6.45,
+          "direction_change_var": 1.3731,
+          "relations": [
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.888,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 16.104,
+          "net_displacement": 16.024,
+          "direction_change_var": 0.0214,
+          "relations": [
+            "right-of dining table #8"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the image, a person is engaged in the process of making dough. The individual is standing at a wooden table, which is the main focus of the image. The person is using their hands to mix the dough, which is a light yellow color, suggesting it might be made from flour. The dough is being shaped into a circular form, indicating it might be for a specific recipe or dish. The person is wearing a black shirt, and their hands are visible as they work with the dough. The background is blurred, but it appears to be an indoor setting with natural light coming in from the left side of the image. There are no visible texts or distinctive brands in the image. The overall scene suggests a home kitchen environment. | Speech: the center like this until the dough has pulled together enough to be worked by hand. | Sounds: silence (conf=0.43) | Objects: dining table #8: middle-center -> middle-center, mostly stationary; relations: left-of person #9; person #9: middle-center -> middle-center, moving right; relations: right-of dining table #8"
+    },
+    {
+      "scene_index": 16,
+      "start_seconds": 85.0,
+      "end_seconds": 91.33333333333333,
+      "vlm_caption": "The image captures a moment of culinary preparation. A person's hands are prominently featured, engaged in the process of making dough. The hands are covered in a light-colored flour, indicating active participation in the dough-making process. The person is wearing a dark-colored shirt, and the background is blurred, suggesting a focus on the activity at hand. The overall scene suggests a home kitchen environment, with the person likely preparing dough for baking or cooking.",
+      "asr": "From here, you'll want to bring the dough together to form a shaggy ball.",
+      "ast": "music (conf=0.53)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.635,
+          "start_frame": 3,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 11.085,
+          "net_displacement": 11.085,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary preparation. A person's hands are prominently featured, engaged in the process of making dough. The hands are covered in a light-colored flour, indicating active participation in the dough-making process. The person is wearing a dark-colored shirt, and the background is blurred, suggesting a focus on the activity at hand. The overall scene suggests a home kitchen environment, with the person likely preparing dough for baking or cooking. | Speech: From here, you'll want to bring the dough together to form a shaggy ball. | Sounds: music (conf=0.53) | Objects: person #9: middle-center -> middle-center, moving left"
+    },
+    {
+      "scene_index": 17,
+      "start_seconds": 91.33333333333333,
+      "end_seconds": 96.83333333333333,
+      "vlm_caption": "The image captures a moment of culinary creation. A hand, adorned with a ring, is seen in the process of shaping dough. The dough, a pale yellow color, is being molded on a surface that appears to be a wooden table. The hand is positioned in the center of the image, with the dough being shaped towards the bottom right corner. The background is blurred, drawing focus to the hand and the dough. The overall scene suggests a baking or cooking activity.",
+      "asr": "If it's too dry, like mine was here, then you can just add a touch of water.",
+      "ast": "music (conf=0.63)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A hand, adorned with a ring, is seen in the process of shaping dough. The dough, a pale yellow color, is being molded on a surface that appears to be a wooden table. The hand is positioned in the center of the image, with the dough being shaped towards the bottom right corner. The background is blurred, drawing focus to the hand and the dough. The overall scene suggests a baking or cooking activity. | Speech: If it's too dry, like mine was here, then you can just add a touch of water. | Sounds: music (conf=0.63)"
+    },
+    {
+      "scene_index": 18,
+      "start_seconds": 96.83333333333333,
+      "end_seconds": 104.16666666666667,
+      "vlm_caption": "The image captures a moment of culinary creation. A hand, adorned with a black wristband, is seen in the process of shaping a ball of dough. The dough, a light beige color, is being molded on a wooden surface. The hand is positioned over a wooden board, which is covered in a layer of flour, indicating recent activity. The background is blurred, drawing focus to the main action of the hand and the dough. The overall scene suggests the preparation of dough for baking or cooking.",
+      "asr": "And if it's too wet, then all you have to do is add in a little bit more flour Once the dough has completely",
+      "ast": "speech (conf=0.45), music (conf=0.94)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "donut",
+          "confidence_avg": 0.701,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A hand, adorned with a black wristband, is seen in the process of shaping a ball of dough. The dough, a light beige color, is being molded on a wooden surface. The hand is positioned over a wooden board, which is covered in a layer of flour, indicating recent activity. The background is blurred, drawing focus to the main action of the hand and the dough. The overall scene suggests the preparation of dough for baking or cooking. | Speech: And if it's too wet, then all you have to do is add in a little bit more flour Once the dough has completely | Sounds: speech (conf=0.45), music (conf=0.94) | Objects: donut #9: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 19,
+      "start_seconds": 104.16666666666667,
+      "end_seconds": 108.66666666666667,
+      "vlm_caption": "The image captures a moment of culinary creation. A pair of hands, clad in white gloves, are engaged in the process of shaping dough. The dough, a pale yellow color, is being kneaded on a wooden surface. The hands are in motion, with one hand holding the dough while the other hand is pushing it down. The wooden surface beneath them is scattered with flour, indicating the ongoing process of baking. The scene is a snapshot of the art of baking, with the hands and dough as the main focus.",
+      "asr": "together, you'll need to knead the dough for about 10 minutes.",
+      "ast": "silence (conf=0.43)",
+      "yolo": [
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.755,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting farther",
+          "path_length": 32.959,
+          "net_displacement": 32.959,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.64,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 9.905,
+          "net_displacement": 9.905,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A pair of hands, clad in white gloves, are engaged in the process of shaping dough. The dough, a pale yellow color, is being kneaded on a wooden surface. The hands are in motion, with one hand holding the dough while the other hand is pushing it down. The wooden surface beneath them is scattered with flour, indicating the ongoing process of baking. The scene is a snapshot of the art of baking, with the hands and dough as the main focus. | Speech: together, you'll need to knead the dough for about 10 minutes. | Sounds: silence (conf=0.43) | Objects: person #8: middle-left -> middle-left, moving up, getting farther; person #9: middle-center -> middle-center, moving down-left"
+    },
+    {
+      "scene_index": 20,
+      "start_seconds": 108.66666666666667,
+      "end_seconds": 111.16666666666667,
+      "vlm_caption": "The image captures a moment of culinary creation. A pair of hands, clad in black gloves, are actively engaged in shaping a dough. The dough, a pale yellow color, is being kneaded on a wooden surface. The hands are positioned in such a way that the dough is being squeezed and molded, suggesting the process of making dough for bread or pastries. The wooden surface beneath the hands and dough is scattered with flour, indicating the ongoing process of baking or cooking. The image does not provide any text or additional context. The focus is solely on the hands, the dough, and the immediate action of shaping the dough.",
+      "asr": "",
+      "ast": "music (conf=0.48)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.641,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer",
+          "path_length": 59.884,
+          "net_displacement": 53.025,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A pair of hands, clad in black gloves, are actively engaged in shaping a dough. The dough, a pale yellow color, is being kneaded on a wooden surface. The hands are positioned in such a way that the dough is being squeezed and molded, suggesting the process of making dough for bread or pastries. The wooden surface beneath the hands and dough is scattered with flour, indicating the ongoing process of baking or cooking. The image does not provide any text or additional context. The focus is solely on the hands, the dough, and the immediate action of shaping the dough. | Sounds: music (conf=0.48) | Objects: person #9: middle-center -> middle-center, moving right, getting closer"
+    },
+    {
+      "scene_index": 21,
+      "start_seconds": 111.16666666666667,
+      "end_seconds": 113.5,
+      "vlm_caption": "In the image, a person is engaged in the process of making bread. The individual is standing at a wooden table, which is the main focus of the image. The person is wearing a black shirt and appears to be in the middle of shaping the dough.\n\nThe dough is in the process of being shaped into a loaf. The person is using their hands to shape the dough, which is a common technique in bread making. The dough is in the center of the table, indicating that it is the primary focus of the activity.\n\nOn the table, there is a spoon resting on the dough, possibly used for mixing ingredients or for scooping up the dough. The spoon is located to the left of the dough, suggesting it might have been used earlier in the process.\n\nIn the background, there is a plant, adding a touch of greenery to the scene. The plant is located to the right of the dough, providing a contrast to the warm tones of the wooden table and the dough itself.\n\nOverall, the image captures a moment in the process of bread making, with the person actively engaged in shaping the d",
+      "asr": "You",
+      "ast": "music (conf=0.47)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.805,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left, getting closer",
+          "path_length": 17.601,
+          "net_displacement": 14.028,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the image, a person is engaged in the process of making bread. The individual is standing at a wooden table, which is the main focus of the image. The person is wearing a black shirt and appears to be in the middle of shaping the dough.\n\nThe dough is in the process of being shaped into a loaf. The person is using their hands to shape the dough, which is a common technique in bread making. The dough is in the center of the table, indicating that it is the primary focus of the activity.\n\nOn the table, there is a spoon resting on the dough, possibly used for mixing ingredients or for scooping up the dough. The spoon is located to the left of the dough, suggesting it might have been used earlier in the process.\n\nIn the background, there is a plant, adding a touch of greenery to the scene. The plant is located to the right of the dough, providing a contrast to the warm tones of the wooden table and the dough itself.\n\nOverall, the image captures a moment in the process of bread making, with the person actively engaged in shaping the d | Speech: You | Sounds: music (conf=0.47) | Objects: person #9: middle-center -> middle-center, moving down-left, getting closer"
+    },
+    {
+      "scene_index": 22,
+      "start_seconds": 113.5,
+      "end_seconds": 121.0,
+      "vlm_caption": "In the image, a person is engaged in the process of making bread. The individual is standing at a wooden table, which is the main focus of the image. The person is wearing a black shirt and appears to be in the middle of shaping the dough.\n\nThe dough is in the process of being shaped into a loaf. The person is using their hands to mold the dough, which is a light brown color, indicating it is made from flour and water. The dough is placed on a wooden surface, which adds a rustic feel to the scene.\n\nThe person is using a rolling pin to shape the dough, which is a common tool in bread making. The rolling pin is not visible in the image, but its presence can be inferred from the person's actions.\n\nThe background is blurred, but it appears to be an indoor setting with natural light coming in, suggesting it might be daytime. The focus is solely on the bread making process, with no other objects or actions visible in the image.",
+      "asr": "The dough will go from looking shaggy and rough to smooth and taut and you'll know it's done when you push a finger into the dough and the dough springs back up.",
+      "ast": "music (conf=0.74)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.711,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer, moving in a loop",
+          "path_length": 90.944,
+          "net_displacement": 29.368,
+          "direction_change_var": 2.5213,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the image, a person is engaged in the process of making bread. The individual is standing at a wooden table, which is the main focus of the image. The person is wearing a black shirt and appears to be in the middle of shaping the dough.\n\nThe dough is in the process of being shaped into a loaf. The person is using their hands to mold the dough, which is a light brown color, indicating it is made from flour and water. The dough is placed on a wooden surface, which adds a rustic feel to the scene.\n\nThe person is using a rolling pin to shape the dough, which is a common tool in bread making. The rolling pin is not visible in the image, but its presence can be inferred from the person's actions.\n\nThe background is blurred, but it appears to be an indoor setting with natural light coming in, suggesting it might be daytime. The focus is solely on the bread making process, with no other objects or actions visible in the image. | Speech: The dough will go from looking shaggy and rough to smooth and taut and you'll know it's done when you push a finger into the dough and the dough springs back up. | Sounds: music (conf=0.74) | Objects: person #9: middle-right -> middle-center, moving down, getting closer, moving in a loop"
+    },
+    {
+      "scene_index": 23,
+      "start_seconds": 121.0,
+      "end_seconds": 124.0,
+      "vlm_caption": "The image captures a moment of interaction between a person and a dough. The dough, which appears to be in the process of being shaped, is resting on a wooden surface. The person's hand is in the process of shaping the dough, with their thumb and index finger pressing down on the dough. The dough itself is a light beige color, suggesting it might be uncooked. The wooden surface beneath the dough has a warm, natural tone that contrasts with the dough's color. The scene suggests a kitchen or baking environment, where the dough is being prepared for baking.",
+      "asr": "back.",
+      "ast": "music (conf=0.74)",
+      "yolo": [
+        {
+          "track_id": 9,
+          "label": "apple",
+          "confidence_avg": 0.649,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving right, getting farther",
+          "path_length": 50.316,
+          "net_displacement": 50.316,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of interaction between a person and a dough. The dough, which appears to be in the process of being shaped, is resting on a wooden surface. The person's hand is in the process of shaping the dough, with their thumb and index finger pressing down on the dough. The dough itself is a light beige color, suggesting it might be uncooked. The wooden surface beneath the dough has a warm, natural tone that contrasts with the dough's color. The scene suggests a kitchen or baking environment, where the dough is being prepared for baking. | Speech: back. | Sounds: music (conf=0.74) | Objects: apple #9: middle-center -> bottom-center, moving right, getting farther"
+    },
+    {
+      "scene_index": 24,
+      "start_seconds": 124.0,
+      "end_seconds": 134.83333333333334,
+      "vlm_caption": "The image captures a moment of culinary creation. A dough, a pale yellow sphere, is resting on a wooden surface. The dough is covered with a transparent plastic wrap, suggesting it's ready to be shaped or baked.\n\nIn the background, there's a person's hand, indicating that the dough is being handled by a human. The hand is positioned as if it's about to press down on the dough, perhaps to shape it or to press it into a mold.\n\nThe wooden surface on which the dough sits is a rich brown color, with visible grain patterns that suggest it might be a cutting board or a similar kitchen work surface. The grain patterns add a rustic charm to the scene.\n\nThe overall setting appears to be a kitchen or a bakery, as suggested by the presence of the dough and the wooden surface. The image does not provide any additional details about the location or the person handling the dough. The focus is solely on the dough and its immediate surroundings.",
+      "asr": "Wrap up your dough in cling film and then let it rest for a minimum of 30 minutes.",
+      "ast": "music (conf=0.78)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.608,
+          "start_frame": 3,
+          "end_frame": 6,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "moving right, getting farther",
+          "path_length": 12.197,
+          "net_displacement": 12.197,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A dough, a pale yellow sphere, is resting on a wooden surface. The dough is covered with a transparent plastic wrap, suggesting it's ready to be shaped or baked.\n\nIn the background, there's a person's hand, indicating that the dough is being handled by a human. The hand is positioned as if it's about to press down on the dough, perhaps to shape it or to press it into a mold.\n\nThe wooden surface on which the dough sits is a rich brown color, with visible grain patterns that suggest it might be a cutting board or a similar kitchen work surface. The grain patterns add a rustic charm to the scene.\n\nThe overall setting appears to be a kitchen or a bakery, as suggested by the presence of the dough and the wooden surface. The image does not provide any additional details about the location or the person handling the dough. The focus is solely on the dough and its immediate surroundings. | Speech: Wrap up your dough in cling film and then let it rest for a minimum of 30 minutes. | Sounds: music (conf=0.78) | Objects: person #16: top-right -> top-right, moving right, getting farther"
+    },
+    {
+      "scene_index": 25,
+      "start_seconds": 134.83333333333334,
+      "end_seconds": 137.0,
+      "vlm_caption": "In the image, a person's hand is holding a knife with a serrated edge. The knife is being used to cut into a yellow fruit, which appears to be a squash. The person's hand is positioned over the fruit, and the knife is making contact with the fruit. The background is blurred, but it seems to be an indoor setting with a wooden surface, possibly a table or counter. The focus of the image is on the interaction between the hand and the knife, with the fruit being the object being cut. There is no text visible in the image. The overall scene suggests a preparation process, possibly for cooking or serving the fruit.",
+      "asr": "Once the dough has rested, cut it in half.",
+      "ast": "music (conf=0.71)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.691,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the image, a person's hand is holding a knife with a serrated edge. The knife is being used to cut into a yellow fruit, which appears to be a squash. The person's hand is positioned over the fruit, and the knife is making contact with the fruit. The background is blurred, but it seems to be an indoor setting with a wooden surface, possibly a table or counter. The focus of the image is on the interaction between the hand and the knife, with the fruit being the object being cut. There is no text visible in the image. The overall scene suggests a preparation process, possibly for cooking or serving the fruit. | Speech: Once the dough has rested, cut it in half. | Sounds: music (conf=0.71) | Objects: person #1: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 26,
+      "start_seconds": 137.0,
+      "end_seconds": 139.33333333333334,
+      "vlm_caption": "The image captures a moment of interaction with a sports ball. A hand, appearing to be that of a person, is holding the ball. The hand is positioned such that the palm is facing upwards, and the fingers are spread out, suggesting the action of throwing or catching the ball. The ball itself is not clearly visible, but its presence is implied by the hand's grip and the interaction with it. The background is blurred, indicating a focus on the action of the hand and the ball. There is no text or other objects that can be discerned from the provided frames. The overall scene suggests a casual, possibly recreational, activity involving the sports ball.",
+      "asr": "so that you have more manageable portions to work with.",
+      "ast": "none",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of interaction with a sports ball. A hand, appearing to be that of a person, is holding the ball. The hand is positioned such that the palm is facing upwards, and the fingers are spread out, suggesting the action of throwing or catching the ball. The ball itself is not clearly visible, but its presence is implied by the hand's grip and the interaction with it. The background is blurred, indicating a focus on the action of the hand and the ball. There is no text or other objects that can be discerned from the provided frames. The overall scene suggests a casual, possibly recreational, activity involving the sports ball. | Speech: so that you have more manageable portions to work with. | Sounds: none"
+    },
+    {
+      "scene_index": 27,
+      "start_seconds": 139.33333333333334,
+      "end_seconds": 144.16666666666666,
+      "vlm_caption": "The image captures a moment of someone in the process of sanding a wooden surface. The wooden surface, exhibiting a rich, dark brown hue, is the central focus of the image. The person's hands are actively engaged in the task, with one hand holding a sanding sponge and the other hand applying pressure to the sponge. The sanding sponge is a light beige color, contrasting with the darker surface it's being used on. The background is blurred, drawing attention back to the main action of sanding. The overall scene suggests a workspace, possibly a workshop or a home improvement project.",
+      "asr": "Lightly flour your work surface and start rolling out your pasta dough.",
+      "ast": "music (conf=0.67)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.762,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of someone in the process of sanding a wooden surface. The wooden surface, exhibiting a rich, dark brown hue, is the central focus of the image. The person's hands are actively engaged in the task, with one hand holding a sanding sponge and the other hand applying pressure to the sponge. The sanding sponge is a light beige color, contrasting with the darker surface it's being used on. The background is blurred, drawing attention back to the main action of sanding. The overall scene suggests a workspace, possibly a workshop or a home improvement project. | Speech: Lightly flour your work surface and start rolling out your pasta dough. | Sounds: music (conf=0.67) | Objects: person #16: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 28,
+      "start_seconds": 144.16666666666666,
+      "end_seconds": 148.5,
+      "vlm_caption": "The image captures a moment of someone engaged in a baking activity. The person is wearing a black long-sleeved shirt and appears to be in the process of kneading dough. The dough is being shaped on a wooden surface, which is covered with a layer of flour, indicating that the surface is being used for rolling out the dough. The person's hands are visible, with one hand holding a wooden rolling pin and the other hand shaping the dough. The background is blurred, but it seems to be an indoor setting with natural lighting, suggesting a home kitchen environment. There is no visible text in the image. The overall scene suggests a homely and casual baking experience.",
+      "asr": "",
+      "ast": "music (conf=0.48)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.736,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer",
+          "path_length": 19.837,
+          "net_displacement": 18.057,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of someone engaged in a baking activity. The person is wearing a black long-sleeved shirt and appears to be in the process of kneading dough. The dough is being shaped on a wooden surface, which is covered with a layer of flour, indicating that the surface is being used for rolling out the dough. The person's hands are visible, with one hand holding a wooden rolling pin and the other hand shaping the dough. The background is blurred, but it seems to be an indoor setting with natural lighting, suggesting a home kitchen environment. There is no visible text in the image. The overall scene suggests a homely and casual baking experience. | Sounds: music (conf=0.48) | Objects: person #16: middle-center -> middle-center, moving down, getting closer"
+    },
+    {
+      "scene_index": 29,
+      "start_seconds": 148.5,
+      "end_seconds": 151.66666666666666,
+      "vlm_caption": "The image captures a moment of culinary creation. A hand, adorned with a ring, is seen in the act of shaping a dough into a round form. The dough, a pale yellow color, is being pressed down with a gentle touch, indicating the careful craftsmanship involved in baking.\n\nThe scene takes place on a wooden surface, which is scattered with flour, hinting at the flurry of activity that has taken place. The flour, a light beige color, is sprinkled around the dough, suggesting the process of kneading and shaping the dough.\n\nThe background is blurred, drawing focus to the main action of shaping the dough. The overall scene suggests a home kitchen setting, where someone is preparing a fresh batch of bread or dough. The image does not contain any text or provide additional context beyond what is visibly observable.",
+      "asr": "From here, we're going to laminate the dough three times.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.587,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 12.293,
+          "net_displacement": 12.293,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A hand, adorned with a ring, is seen in the act of shaping a dough into a round form. The dough, a pale yellow color, is being pressed down with a gentle touch, indicating the careful craftsmanship involved in baking.\n\nThe scene takes place on a wooden surface, which is scattered with flour, hinting at the flurry of activity that has taken place. The flour, a light beige color, is sprinkled around the dough, suggesting the process of kneading and shaping the dough.\n\nThe background is blurred, drawing focus to the main action of shaping the dough. The overall scene suggests a home kitchen setting, where someone is preparing a fresh batch of bread or dough. The image does not contain any text or provide additional context beyond what is visibly observable. | Speech: From here, we're going to laminate the dough three times. | Sounds: none | Objects: person #16: middle-center -> middle-center, moving left"
+    },
+    {
+      "scene_index": 30,
+      "start_seconds": 151.66666666666666,
+      "end_seconds": 158.16666666666666,
+      "vlm_caption": "The image captures a moment of culinary creation. A pair of hands, appearing to be of a person, are in the process of shaping a dough. The dough is a light beige color, suggesting it might be made from flour and water. The hands are applying pressure to the dough, indicating an action of shaping or molding.\n\nThe dough is placed on a wooden surface, which is covered with a layer of flour, indicating that this is a baking or cooking environment. The flour is a light color, similar to the dough, and it appears to be in a fine powder form.\n\nThe background is blurred, but it seems to be an indoor setting with artificial lighting, suggesting an indoor kitchen or bakery. The focus is on the hands and the dough, with the background being out of focus to emphasize the action of shaping the dough.\n\nThere is no visible text in the image, and the overall scene suggests a moment of preparation in the creation of a dough-based food item, possibly a bread or a pastry. The image does not provide any additional context or details about the specific ingredients",
+      "asr": "So all that means is we're going to fold it in thirds like this, then roll it out.",
+      "ast": "music (conf=0.53)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.58,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 30.008,
+          "net_displacement": 13.77,
+          "direction_change_var": 2.0989,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A pair of hands, appearing to be of a person, are in the process of shaping a dough. The dough is a light beige color, suggesting it might be made from flour and water. The hands are applying pressure to the dough, indicating an action of shaping or molding.\n\nThe dough is placed on a wooden surface, which is covered with a layer of flour, indicating that this is a baking or cooking environment. The flour is a light color, similar to the dough, and it appears to be in a fine powder form.\n\nThe background is blurred, but it seems to be an indoor setting with artificial lighting, suggesting an indoor kitchen or bakery. The focus is on the hands and the dough, with the background being out of focus to emphasize the action of shaping the dough.\n\nThere is no visible text in the image, and the overall scene suggests a moment of preparation in the creation of a dough-based food item, possibly a bread or a pastry. The image does not provide any additional context or details about the specific ingredients | Speech: So all that means is we're going to fold it in thirds like this, then roll it out. | Sounds: music (conf=0.53) | Objects: person #16: middle-center -> middle-center, moving down-left"
+    },
+    {
+      "scene_index": 31,
+      "start_seconds": 158.16666666666666,
+      "end_seconds": 162.16666666666666,
+      "vlm_caption": "The image captures a moment of someone's hands engaged in the process of shaping a dough. The hands are positioned over a wooden surface, which could be a table or a workbench. The dough appears to be in the process of being rolled out or shaped, as suggested by the fingers pressing down on the dough. The dough is a light beige color, and it's being shaped on a wooden surface that has a darker, more weathered look. The focus is on the hands and the dough, with no other objects or actions visible in the frame. The interaction between the hands and the dough is the main action depicted in the image.",
+      "asr": "Fold it in thirds again, then roll it out, and then repeat this process.",
+      "ast": "music (conf=0.62)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.656,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving up-right",
+          "path_length": 7.859,
+          "net_displacement": 7.859,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of someone's hands engaged in the process of shaping a dough. The hands are positioned over a wooden surface, which could be a table or a workbench. The dough appears to be in the process of being rolled out or shaped, as suggested by the fingers pressing down on the dough. The dough is a light beige color, and it's being shaped on a wooden surface that has a darker, more weathered look. The focus is on the hands and the dough, with no other objects or actions visible in the frame. The interaction between the hands and the dough is the main action depicted in the image. | Speech: Fold it in thirds again, then roll it out, and then repeat this process. | Sounds: music (conf=0.62) | Objects: person #16: top-center -> top-center, moving up-right"
+    },
+    {
+      "scene_index": 32,
+      "start_seconds": 162.16666666666666,
+      "end_seconds": 180.5,
+      "vlm_caption": "The image captures a moment of culinary creation. A hand, adorned with a ring, is seen holding a wooden rolling pin. The pin is being used to shape a dough that is resting on a wooden surface. The dough appears to be in the process of being rolled out, suggesting the creation of a dish that might involve dough. The scene is set against a blurred background, indicating that the focus is on the action of rolling out the dough. The image does not provide any additional context or details about the specific dish being prepared.",
+      "asr": "us one more time. From there, we want to roll out our dough into a large rectangle. If you find your dough is shrinking back, leave it for a few minutes to let the gluten relax, then go back in. Once it's completely rolled out, we're going to roll it out again.",
+      "ast": "music (conf=0.47)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.686,
+          "start_frame": 7,
+          "end_frame": 17,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving down, getting closer, moving in a loop",
+          "path_length": 152.713,
+          "net_displacement": 17.593,
+          "direction_change_var": 4.4235,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A hand, adorned with a ring, is seen holding a wooden rolling pin. The pin is being used to shape a dough that is resting on a wooden surface. The dough appears to be in the process of being rolled out, suggesting the creation of a dish that might involve dough. The scene is set against a blurred background, indicating that the focus is on the action of rolling out the dough. The image does not provide any additional context or details about the specific dish being prepared. | Speech: us one more time. From there, we want to roll out our dough into a large rectangle. If you find your dough is shrinking back, leave it for a few minutes to let the gluten relax, then go back in. Once it's completely rolled out, we're going to roll it out again. | Sounds: music (conf=0.47) | Objects: person #16: middle-center -> middle-left, moving down, getting closer, moving in a loop"
+    },
+    {
+      "scene_index": 33,
+      "start_seconds": 180.5,
+      "end_seconds": 185.16666666666666,
+      "vlm_caption": "The image shows a close-up of a person's hand holding a piece of dough. The dough appears to be in the process of being shaped, with the person's thumb and index finger pressing down on the dough, which is a light beige color. The dough is being stretched and molded, suggesting it is being prepared for baking or cooking. The background is out of focus, but it seems to be an indoor setting with a wooden surface, possibly a table or countertop. There is no visible text or distinctive branding in the image. The style of the image is candid and seems to capture a moment of someone engaged in a culinary activity.",
+      "asr": "we want it to be thin enough to see the color of our fingers through it. From here, you can cut.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.654,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 10.865,
+          "net_displacement": 10.734,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a close-up of a person's hand holding a piece of dough. The dough appears to be in the process of being shaped, with the person's thumb and index finger pressing down on the dough, which is a light beige color. The dough is being stretched and molded, suggesting it is being prepared for baking or cooking. The background is out of focus, but it seems to be an indoor setting with a wooden surface, possibly a table or countertop. There is no visible text or distinctive branding in the image. The style of the image is candid and seems to capture a moment of someone engaged in a culinary activity. | Speech: we want it to be thin enough to see the color of our fingers through it. From here, you can cut. | Sounds: none | Objects: person #16: middle-center -> middle-center, moving right"
+    },
+    {
+      "scene_index": 34,
+      "start_seconds": 185.16666666666666,
+      "end_seconds": 191.0,
+      "vlm_caption": "The image captures a moment of someone's hands in the process of shaping a large piece of dough. The dough, which appears to be of a light color, is being stretched and molded on a wooden surface. The person's hands are visible, with one hand holding the dough and the other hand reaching towards it, possibly to continue shaping the dough. The wooden surface has a visible grain and texture, suggesting it might be a table or a similar piece of furniture. The lighting in the scene is soft and diffused, casting a warm glow on the scene. There are no texts or other objects that can be discerned from the image. The focus is solely on the hands, the dough, and the interaction between them.",
+      "asr": "pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.676,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 23.292,
+          "net_displacement": 23.261,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of someone's hands in the process of shaping a large piece of dough. The dough, which appears to be of a light color, is being stretched and molded on a wooden surface. The person's hands are visible, with one hand holding the dough and the other hand reaching towards it, possibly to continue shaping the dough. The wooden surface has a visible grain and texture, suggesting it might be a table or a similar piece of furniture. The lighting in the scene is soft and diffused, casting a warm glow on the scene. There are no texts or other objects that can be discerned from the image. The focus is solely on the hands, the dough, and the interaction between them. | Speech: pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta. | Sounds: none | Objects: person #16: middle-center -> middle-right, moving right, getting farther"
+    },
+    {
+      "scene_index": 35,
+      "start_seconds": 191.0,
+      "end_seconds": 193.33333333333334,
+      "vlm_caption": "The image captures a moment of culinary creation. A pair of hands, clad in a black sleeve, are actively engaged in shaping a piece of dough. The dough, a pale yellow color, is being rolled out on a wooden surface. The hands are positioned on either side of the dough, with the fingers curled under, indicating the process of stretching and shaping the dough.\n\nTo the side of the dough, there's a wooden rolling pin, its surface rough and textured, hinting at the many doughs it has helped shape. The pin is resting on the wooden surface, ready for the next round of dough shaping.\n\nThe wooden surface itself is a rich, dark brown color, providing a warm and rustic backdrop to the scene. It stretches across the entire frame, its grainy texture adding depth to the image.\n\nThe scene is a snapshot of a cooking process, capturing the skill and care involved in shaping dough. It's a testament to the artistry involved in baking and cooking.",
+      "asr": "to make this style of pasta that I'm making.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.633,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 50.086,
+          "net_displacement": 50.086,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A pair of hands, clad in a black sleeve, are actively engaged in shaping a piece of dough. The dough, a pale yellow color, is being rolled out on a wooden surface. The hands are positioned on either side of the dough, with the fingers curled under, indicating the process of stretching and shaping the dough.\n\nTo the side of the dough, there's a wooden rolling pin, its surface rough and textured, hinting at the many doughs it has helped shape. The pin is resting on the wooden surface, ready for the next round of dough shaping.\n\nThe wooden surface itself is a rich, dark brown color, providing a warm and rustic backdrop to the scene. It stretches across the entire frame, its grainy texture adding depth to the image.\n\nThe scene is a snapshot of a cooking process, capturing the skill and care involved in shaping dough. It's a testament to the artistry involved in baking and cooking. | Speech: to make this style of pasta that I'm making. | Sounds: none | Objects: person #16: middle-center -> middle-center, moving left, getting farther"
+    },
+    {
+      "scene_index": 36,
+      "start_seconds": 193.33333333333334,
+      "end_seconds": 203.5,
+      "vlm_caption": "The image captures a moment of culinary creation. A person's hands are seen in the process of shaping a large piece of dough, which is placed on a wooden surface. The dough appears to be in the initial stages of being rolled out, as suggested by the person's actions.\n\nThe wooden surface, which could be a table or a counter, is the main stage for this activity. On the left side of the image, there's a wooden rolling pin, a common tool used in baking and pastry making. The pin is resting on the surface, ready for use.\n\nThe person's hands are in motion, guiding the dough as they roll it out. The dough is in the process of being rolled out, with the person's fingers visible as they shape the dough.\n\nThe scene is a snapshot of a baking or pastry-making process, with the person's hands and the rolling pin as the main elements. The wooden surface provides a warm, rustic backdrop to this activity.",
+      "asr": "slightly flour the surface of the dough and fold it up into a rectangle.",
+      "ast": "music (conf=0.65)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.591,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving up-left, getting farther",
+          "path_length": 13.59,
+          "net_displacement": 13.59,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A person's hands are seen in the process of shaping a large piece of dough, which is placed on a wooden surface. The dough appears to be in the initial stages of being rolled out, as suggested by the person's actions.\n\nThe wooden surface, which could be a table or a counter, is the main stage for this activity. On the left side of the image, there's a wooden rolling pin, a common tool used in baking and pastry making. The pin is resting on the surface, ready for use.\n\nThe person's hands are in motion, guiding the dough as they roll it out. The dough is in the process of being rolled out, with the person's fingers visible as they shape the dough.\n\nThe scene is a snapshot of a baking or pastry-making process, with the person's hands and the rolling pin as the main elements. The wooden surface provides a warm, rustic backdrop to this activity. | Speech: slightly flour the surface of the dough and fold it up into a rectangle. | Sounds: music (conf=0.65) | Objects: person #16: top-center -> top-center, moving up-left, getting farther"
+    },
+    {
+      "scene_index": 37,
+      "start_seconds": 203.5,
+      "end_seconds": 211.66666666666666,
+      "vlm_caption": "The image captures a moment of someone engaged in the process of making dough. The person's hands are visible, with one hand holding a wooden rolling pin and the other hand pressing down on the dough. The dough is a pale yellow color, indicating it might be uncooked. The rolling pin is a darker wood color, contrasting with the dough. The surface underneath appears to be a wooden table, which suggests a home or kitchen setting. The focus is on the hands and the dough, with no other objects or actions described. The interaction is between the person and the dough, with the person's hands actively involved in shaping the dough.",
+      "asr": "Then, gently slice it into strips.",
+      "ast": "music (conf=0.72)",
+      "yolo": [
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.587,
+          "start_frame": 7,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 5.368,
+          "net_displacement": 5.368,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of someone engaged in the process of making dough. The person's hands are visible, with one hand holding a wooden rolling pin and the other hand pressing down on the dough. The dough is a pale yellow color, indicating it might be uncooked. The rolling pin is a darker wood color, contrasting with the dough. The surface underneath appears to be a wooden table, which suggests a home or kitchen setting. The focus is on the hands and the dough, with no other objects or actions described. The interaction is between the person and the dough, with the person's hands actively involved in shaping the dough. | Speech: Then, gently slice it into strips. | Sounds: music (conf=0.72) | Objects: person #29: middle-left -> middle-left, mostly stationary"
+    },
+    {
+      "scene_index": 38,
+      "start_seconds": 211.66666666666666,
+      "end_seconds": 221.5,
+      "vlm_caption": "In the image, a person is engaged in the process of making pasta. The individual is using a rolling pin to shape the pasta dough, which is a light beige color. The rolling pin is in motion, suggesting the action of shaping the dough. The person's hands are visible, holding the dough and guiding it with the rolling pin.\n\nThe setting appears to be a kitchen counter, with a wooden surface that provides a natural and warm backdrop to the scene. The focus is on the pasta-making process, with no other objects or actions described. The image captures a moment of manual craftsmanship, a common sight in traditional pasta-making techniques.",
+      "asr": "Once you've unraveled your pasta, toss it in a dusting of flour to stop it from sticking to itself. And then from here you can portion",
+      "ast": "music (conf=0.81)",
+      "yolo": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.638,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "top-center",
+          "end_pos": "top-right",
+          "movement": "moving down-right, getting closer",
+          "path_length": 27.076,
+          "net_displacement": 27.076,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: In the image, a person is engaged in the process of making pasta. The individual is using a rolling pin to shape the pasta dough, which is a light beige color. The rolling pin is in motion, suggesting the action of shaping the dough. The person's hands are visible, holding the dough and guiding it with the rolling pin.\n\nThe setting appears to be a kitchen counter, with a wooden surface that provides a natural and warm backdrop to the scene. The focus is on the pasta-making process, with no other objects or actions described. The image captures a moment of manual craftsmanship, a common sight in traditional pasta-making techniques. | Speech: Once you've unraveled your pasta, toss it in a dusting of flour to stop it from sticking to itself. And then from here you can portion | Sounds: music (conf=0.81) | Objects: person #16: top-center -> top-right, moving down-right, getting closer"
+    },
+    {
+      "scene_index": 39,
+      "start_seconds": 221.5,
+      "end_seconds": 228.16666666666666,
+      "vlm_caption": "The image captures a moment of culinary creation. A pair of hands, clad in a black apron, are actively engaged in the process of making pasta. The hands are positioned over a wooden table, which serves as the workspace for this activity.\n\nThe pasta, in the form of thin, pale yellow strands, is being shaped by the hands. The strands are being rolled out on a wooden surface, a common technique in pasta making. The hands are in the process of shaping the pasta, with one hand holding the strands and the other hand pressing down on the strands.\n\nThe background is blurred, drawing focus to the hands and the pasta. The overall scene suggests a home kitchen setting, with the pasta being handmade. The image does not provide any text or additional objects that can be confidently described. The main action is the hands shaping the pasta, with the wooden table serving as the stage for this culinary performance.",
+      "asr": "portion it, wrap it and freeze it, or refrigerate it.",
+      "ast": "music (conf=0.74)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A pair of hands, clad in a black apron, are actively engaged in the process of making pasta. The hands are positioned over a wooden table, which serves as the workspace for this activity.\n\nThe pasta, in the form of thin, pale yellow strands, is being shaped by the hands. The strands are being rolled out on a wooden surface, a common technique in pasta making. The hands are in the process of shaping the pasta, with one hand holding the strands and the other hand pressing down on the strands.\n\nThe background is blurred, drawing focus to the hands and the pasta. The overall scene suggests a home kitchen setting, with the pasta being handmade. The image does not provide any text or additional objects that can be confidently described. The main action is the hands shaping the pasta, with the wooden table serving as the stage for this culinary performance. | Speech: portion it, wrap it and freeze it, or refrigerate it. | Sounds: music (conf=0.74)"
+    },
+    {
+      "scene_index": 40,
+      "start_seconds": 228.16666666666666,
+      "end_seconds": 232.33333333333334,
+      "vlm_caption": "The image captures a moment of culinary creation. A pair of hands, clad in a black apron, are actively engaged in the process of making pasta. The hands are positioned over a wooden table, which serves as the workspace for this activity.\n\nThe hands are holding a wooden rolling pin, poised to press the dough into the desired shape. The dough itself is a pale yellow color, indicating it's ready to be shaped. It's placed on a black tray, which contrasts with the dough's color.\n\nScattered around the workspace are several pieces of pasta. They are in various stages of preparation, some already shaped and others waiting to be rolled out. The pasta pieces are a light beige color, suggesting they are made from flour.\n\nThe scene is a snapshot of a traditional pasta-making process, with the hands, rolling pin, and pasta pieces being the main elements in this culinary tableau.",
+      "asr": "",
+      "ast": "music (conf=0.45)",
+      "yolo": [
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.836,
+          "start_frame": 4,
+          "end_frame": 4,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A pair of hands, clad in a black apron, are actively engaged in the process of making pasta. The hands are positioned over a wooden table, which serves as the workspace for this activity.\n\nThe hands are holding a wooden rolling pin, poised to press the dough into the desired shape. The dough itself is a pale yellow color, indicating it's ready to be shaped. It's placed on a black tray, which contrasts with the dough's color.\n\nScattered around the workspace are several pieces of pasta. They are in various stages of preparation, some already shaped and others waiting to be rolled out. The pasta pieces are a light beige color, suggesting they are made from flour.\n\nThe scene is a snapshot of a traditional pasta-making process, with the hands, rolling pin, and pasta pieces being the main elements in this culinary tableau. | Sounds: music (conf=0.45) | Objects: person #33: top-left -> top-left, mostly stationary"
+    },
+    {
+      "scene_index": 41,
+      "start_seconds": 232.33333333333334,
+      "end_seconds": 236.83333333333334,
+      "vlm_caption": "The image captures a moment of culinary preparation. On a wooden countertop, two sheets of parchment paper are spread out. One sheet is adorned with a pile of freshly made pasta, its golden hue suggesting it's been cooked. The pasta appears to be in the process of being rolled out, as indicated by the thin, elongated shapes scattered across the paper.\n\nThe other sheet of parchment paper is empty, waiting to be used. In the background, there's a glimpse of a kitchen setting with a stove and a knife, hinting at the ongoing cooking process. The overall scene suggests a home kitchen environment where someone is in the midst of preparing a meal.",
+      "asr": "If you're hungry like me, you can cook it straight away just remember that",
+      "ast": "music (conf=0.62)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of culinary preparation. On a wooden countertop, two sheets of parchment paper are spread out. One sheet is adorned with a pile of freshly made pasta, its golden hue suggesting it's been cooked. The pasta appears to be in the process of being rolled out, as indicated by the thin, elongated shapes scattered across the paper.\n\nThe other sheet of parchment paper is empty, waiting to be used. In the background, there's a glimpse of a kitchen setting with a stove and a knife, hinting at the ongoing cooking process. The overall scene suggests a home kitchen environment where someone is in the midst of preparing a meal. | Speech: If you're hungry like me, you can cook it straight away just remember that | Sounds: music (conf=0.62)"
+    },
+    {
+      "scene_index": 42,
+      "start_seconds": 236.83333333333334,
+      "end_seconds": 241.33333333333334,
+      "vlm_caption": "The image captures a moment of culinary preparation. A stainless steel pot, gleaming under the light, sits on a black countertop. The pot is being filled with a liquid, possibly a sauce or soup, as evidenced by the stream of the liquid pouring into it. The liquid is a light yellow color, suggesting it might be a creamy or tomato-based sauce. The pot is positioned on the right side of the image, while the countertop extends across the entire background. The scene is a snapshot of a cooking process, with the pot as the central object and the liquid as the primary action.",
+      "asr": "Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water.",
+      "ast": "silence (conf=0.48)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "cup",
+          "confidence_avg": 0.51,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "bowl",
+          "confidence_avg": 0.554,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 12.316,
+          "net_displacement": 12.316,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary preparation. A stainless steel pot, gleaming under the light, sits on a black countertop. The pot is being filled with a liquid, possibly a sauce or soup, as evidenced by the stream of the liquid pouring into it. The liquid is a light yellow color, suggesting it might be a creamy or tomato-based sauce. The pot is positioned on the right side of the image, while the countertop extends across the entire background. The scene is a snapshot of a cooking process, with the pot as the central object and the liquid as the primary action. | Speech: Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water. | Sounds: silence (conf=0.48) | Objects: cup #1: middle-center -> middle-center, mostly stationary; bowl #2: middle-center -> middle-center, moving right"
+    },
+    {
+      "scene_index": 43,
+      "start_seconds": 241.33333333333334,
+      "end_seconds": 244.0,
+      "vlm_caption": "The image captures a moment of culinary preparation. A hand, appearing from the left side of the frame, is holding a red and silver whisk. The whisk is being used to mix a creamy white substance, possibly a batter or a sauce, in a large metal bowl. The bowl is placed on a surface that is not clearly visible due to the focus on the action of the whisk. The hand holding the whisk is in motion, suggesting the act of stirring or mixing. The overall scene suggests a kitchen setting, with the focus on the action of mixing rather than the surroundings.",
+      "asr": "We are out.",
+      "ast": "music (conf=0.43)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of culinary preparation. A hand, appearing from the left side of the frame, is holding a red and silver whisk. The whisk is being used to mix a creamy white substance, possibly a batter or a sauce, in a large metal bowl. The bowl is placed on a surface that is not clearly visible due to the focus on the action of the whisk. The hand holding the whisk is in motion, suggesting the act of stirring or mixing. The overall scene suggests a kitchen setting, with the focus on the action of mixing rather than the surroundings. | Speech: We are out. | Sounds: music (conf=0.43)"
+    },
+    {
+      "scene_index": 44,
+      "start_seconds": 244.0,
+      "end_seconds": 248.33333333333334,
+      "vlm_caption": "The image captures a moment of culinary creation. A hand, clad in a red sleeve, is seen stirring a vibrant red sauce with a white spoon. The sauce is rich and appears to be simmering in a silver pot. The pot is placed on a black stove, which contrasts with the red of the sauce and the silver of the pot. The scene suggests a home kitchen setting, with the focus on the act of cooking. The hand's action of stirring the sauce indicates an ongoing process of preparation. The colors, objects, and actions all contribute to a narrative of a meal being prepared with care.",
+      "asr": "I'm serving mine with my simple tomato sauce, which is super easy to make.",
+      "ast": "music (conf=0.81)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A hand, clad in a red sleeve, is seen stirring a vibrant red sauce with a white spoon. The sauce is rich and appears to be simmering in a silver pot. The pot is placed on a black stove, which contrasts with the red of the sauce and the silver of the pot. The scene suggests a home kitchen setting, with the focus on the act of cooking. The hand's action of stirring the sauce indicates an ongoing process of preparation. The colors, objects, and actions all contribute to a narrative of a meal being prepared with care. | Speech: I'm serving mine with my simple tomato sauce, which is super easy to make. | Sounds: music (conf=0.81)"
+    },
+    {
+      "scene_index": 45,
+      "start_seconds": 248.33333333333334,
+      "end_seconds": 251.5,
+      "vlm_caption": "The image shows a close-up of a glass jar filled with a red sauce. The jar appears to be made of clear glass, allowing the contents to be seen. There is a metal clasp on the lid, suggesting it is ajar. The jar is placed on a wooden surface, which could be a table or a countertop. The background is blurred, emphasizing the jar and its contents. There is a hand visible in the top left corner of the image, but the action is not clear. The focus is on the jar and its contents, with no other objects or interactions being the main focus of the image.",
+      "asr": "I'll leave the link to that on the screen and also in the description box",
+      "ast": "music (conf=0.46)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "cup",
+          "confidence_avg": 0.516,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 38.509,
+          "net_displacement": 38.509,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a close-up of a glass jar filled with a red sauce. The jar appears to be made of clear glass, allowing the contents to be seen. There is a metal clasp on the lid, suggesting it is ajar. The jar is placed on a wooden surface, which could be a table or a countertop. The background is blurred, emphasizing the jar and its contents. There is a hand visible in the top left corner of the image, but the action is not clear. The focus is on the jar and its contents, with no other objects or interactions being the main focus of the image. | Speech: I'll leave the link to that on the screen and also in the description box | Sounds: music (conf=0.46) | Objects: cup #1: middle-center -> middle-center, moving right"
+    },
+    {
+      "scene_index": 46,
+      "start_seconds": 251.5,
+      "end_seconds": 256.3333333333333,
+      "vlm_caption": "The image captures a moment of culinary delight. A vibrant red sauce, rich and inviting, is being poured into a silver pot. The pot, gleaming under the light, is placed on a black countertop. The silver pot is being filled with the red sauce, which is being poured from a clear glass. The glass is filled with the red sauce, and it's being tilted slightly, suggesting the action of pouring. The scene is set against a blurred background, drawing focus to the main action of the sauce being poured. The colors, actions, and objects all contribute to a sense of a meal being prepared.",
+      "asr": "below.",
+      "ast": "music (conf=0.68)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.703,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 11.479,
+          "net_displacement": 4.615,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary delight. A vibrant red sauce, rich and inviting, is being poured into a silver pot. The pot, gleaming under the light, is placed on a black countertop. The silver pot is being filled with the red sauce, which is being poured from a clear glass. The glass is filled with the red sauce, and it's being tilted slightly, suggesting the action of pouring. The scene is set against a blurred background, drawing focus to the main action of the sauce being poured. The colors, actions, and objects all contribute to a sense of a meal being prepared. | Speech: below. | Sounds: music (conf=0.68) | Objects: bowl #40: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 47,
+      "start_seconds": 256.3333333333333,
+      "end_seconds": 259.0,
+      "vlm_caption": "The image captures a moment of culinary creation. A person's hand, adorned with a pair of chopsticks, is in the process of stirring a pot of food. The pot, filled with a vibrant red sauce, is the main focus of the image. The sauce is being mixed with a spoon, adding to the dynamic nature of the scene.\n\nThe person's hand is positioned over the pot, indicating an active role in the cooking process. The chopsticks, a common utensil in many cuisines, suggest an Asian influence in the meal being prepared.\n\nThe background is blurred, drawing attention back to the pot and the person's actions. The overall scene suggests a home kitchen setting, with the emphasis on the cooking process. The colors, actions, and objects all contribute to a lively and engaging visual narrative.",
+      "asr": "",
+      "ast": "music (conf=0.43)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.622,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left",
+          "path_length": 8.983,
+          "net_displacement": 7.417,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A person's hand, adorned with a pair of chopsticks, is in the process of stirring a pot of food. The pot, filled with a vibrant red sauce, is the main focus of the image. The sauce is being mixed with a spoon, adding to the dynamic nature of the scene.\n\nThe person's hand is positioned over the pot, indicating an active role in the cooking process. The chopsticks, a common utensil in many cuisines, suggest an Asian influence in the meal being prepared.\n\nThe background is blurred, drawing attention back to the pot and the person's actions. The overall scene suggests a home kitchen setting, with the emphasis on the cooking process. The colors, actions, and objects all contribute to a lively and engaging visual narrative. | Sounds: music (conf=0.43) | Objects: bowl #40: middle-center -> middle-center, moving up-left"
+    },
+    {
+      "scene_index": 48,
+      "start_seconds": 259.0,
+      "end_seconds": 262.5,
+      "vlm_caption": "The image captures a moment of culinary delight. A hand, adorned with a vibrant red ring, is seen holding a pair of tongs. The tongs are in the process of picking up a piece of pasta from a white plate. The pasta, a rich shade of red, is being served on a white plate. The plate is placed on a wooden table, adding a rustic charm to the scene. The hand, the main focus of the image, is positioned in the center, with the pasta being picked up by the tongs located towards the right side of the image. The overall scene suggests a meal in progress, with the pasta being served and enjoyed.",
+      "asr": "",
+      "ast": "speech (conf=0.44), music (conf=0.42)",
+      "yolo": [],
+      "scene_description": "Visual: The image captures a moment of culinary delight. A hand, adorned with a vibrant red ring, is seen holding a pair of tongs. The tongs are in the process of picking up a piece of pasta from a white plate. The pasta, a rich shade of red, is being served on a white plate. The plate is placed on a wooden table, adding a rustic charm to the scene. The hand, the main focus of the image, is positioned in the center, with the pasta being picked up by the tongs located towards the right side of the image. The overall scene suggests a meal in progress, with the pasta being served and enjoyed. | Sounds: speech (conf=0.44), music (conf=0.42)"
+    },
+    {
+      "scene_index": 49,
+      "start_seconds": 262.5,
+      "end_seconds": 266.3333333333333,
+      "vlm_caption": "The image captures a moment of culinary delight. A hand, poised in the act of serving, is reaching into a white bowl filled with pasta. The pasta, a vibrant shade of red, is generously coated in a rich, red sauce. The bowl is placed on a wooden surface, adding a rustic charm to the scene.\n\nThe pasta is not alone in the bowl. It shares its space with a sprinkling of green leaves, adding a touch of freshness to the dish. The hand, appearing from the right side of the frame, is about to add more of these green leaves to the pasta, suggesting a preference for garnishing.\n\nThe image is a snapshot of a meal in progress, with the hand's action indicating that the pasta is about to be enhanced with more of the green leaves. The scene is simple yet intimate, capturing the essence of a home-cooked meal.",
+      "asr": "And then I just added in some arugula that we needed to use up and a little bit of...",
+      "ast": "silence (conf=0.44)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.808,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 10.759,
+          "net_displacement": 3.523,
+          "direction_change_var": 2.8022,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary delight. A hand, poised in the act of serving, is reaching into a white bowl filled with pasta. The pasta, a vibrant shade of red, is generously coated in a rich, red sauce. The bowl is placed on a wooden surface, adding a rustic charm to the scene.\n\nThe pasta is not alone in the bowl. It shares its space with a sprinkling of green leaves, adding a touch of freshness to the dish. The hand, appearing from the right side of the frame, is about to add more of these green leaves to the pasta, suggesting a preference for garnishing.\n\nThe image is a snapshot of a meal in progress, with the hand's action indicating that the pasta is about to be enhanced with more of the green leaves. The scene is simple yet intimate, capturing the essence of a home-cooked meal. | Speech: And then I just added in some arugula that we needed to use up and a little bit of... | Sounds: silence (conf=0.44) | Objects: bowl #40: middle-center -> middle-center, mostly stationary, moving in a loop"
+    },
+    {
+      "scene_index": 50,
+      "start_seconds": 266.3333333333333,
+      "end_seconds": 269.5,
+      "vlm_caption": "The image captures a moment of culinary preparation. A wooden table serves as the stage for this scene. On the left side of the table, there's a white plate holding a portion of pasta. The pasta appears to be coated in a red sauce, possibly tomato-based.\n\nIn the center of the table, a person's hand is holding a piece of cheese. The cheese is rectangular in shape and has a pale color, suggesting it might be a type of Swiss or similar cheese.\n\nOn the right side of the table, there's a wooden cutting board. It's not clear what's on the cutting board, but it seems to be part of the ongoing food preparation.\n\nThe overall scene suggests someone is in the process of preparing a meal, possibly a pasta dish with a red sauce and a cheese topping. The precise actions and interactions are not fully visible in the frames provided.",
+      "asr": "of old parmesan that was just chilling in the fridge, and then topped it off.",
+      "ast": "silence (conf=0.33)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "dining table",
+          "confidence_avg": 0.588,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 93.216,
+          "net_displacement": 17.471,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary preparation. A wooden table serves as the stage for this scene. On the left side of the table, there's a white plate holding a portion of pasta. The pasta appears to be coated in a red sauce, possibly tomato-based.\n\nIn the center of the table, a person's hand is holding a piece of cheese. The cheese is rectangular in shape and has a pale color, suggesting it might be a type of Swiss or similar cheese.\n\nOn the right side of the table, there's a wooden cutting board. It's not clear what's on the cutting board, but it seems to be part of the ongoing food preparation.\n\nThe overall scene suggests someone is in the process of preparing a meal, possibly a pasta dish with a red sauce and a cheese topping. The precise actions and interactions are not fully visible in the frames provided. | Speech: of old parmesan that was just chilling in the fridge, and then topped it off. | Sounds: silence (conf=0.33) | Objects: dining table #40: middle-center -> middle-center, moving right"
+    },
+    {
+      "scene_index": 51,
+      "start_seconds": 269.5,
+      "end_seconds": 272.1666666666667,
+      "vlm_caption": "The image shows a close-up of a bowl of pasta salad on a wooden surface. The pasta appears to be a type of fusilli, which is a type of pasta that is spiral-shaped. The salad includes what looks like a tomato-based sauce, and there are shreds of cheese sprinkled on top. The cheese is white and appears to be grated. The salad is garnished with fresh green arugula leaves, which are scattered on top. The bowl is white and has a simple design. The wooden surface underneath the bowl has a warm, natural tone. There are no visible texts or brands in the image. The style of the image is a realistic photograph with a shallow depth of field, focusing on the food while the background is blurred.",
+      "asr": "for some olive oil. There you go!",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 10.088,
+          "net_displacement": 10.086,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below dining table #42"
+          ]
+        },
+        {
+          "track_id": 42,
+          "label": "dining table",
+          "confidence_avg": 0.512,
+          "start_frame": 1,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.234,
+          "net_displacement": 0.234,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above bowl #40"
+          ]
+        }
+      ],
+      "scene_description": "Visual: The image shows a close-up of a bowl of pasta salad on a wooden surface. The pasta appears to be a type of fusilli, which is a type of pasta that is spiral-shaped. The salad includes what looks like a tomato-based sauce, and there are shreds of cheese sprinkled on top. The cheese is white and appears to be grated. The salad is garnished with fresh green arugula leaves, which are scattered on top. The bowl is white and has a simple design. The wooden surface underneath the bowl has a warm, natural tone. There are no visible texts or brands in the image. The style of the image is a realistic photograph with a shallow depth of field, focusing on the food while the background is blurred. | Speech: for some olive oil. There you go! | Sounds: none | Objects: bowl #40: middle-center -> middle-center, moving left; relations: below dining table #42; dining table #42: middle-center -> middle-center, mostly stationary; relations: above bowl #40"
+    },
+    {
+      "scene_index": 52,
+      "start_seconds": 272.1666666666667,
+      "end_seconds": 276.6666666666667,
+      "vlm_caption": "The image captures a moment of someone reaching out to a bowl of pasta. The pasta appears to be a type of rigatoni, a tube-shaped pasta with ridges on the outside. It's topped with a generous amount of grated Parmesan cheese, which is a light yellow color. The pasta is mixed with a red sauce, possibly tomato-based, and is garnished with fresh green arugula. The bowl is placed on a wooden surface, and the person's hand is visible, indicating that they are about to pick up a piece of pasta. The overall scene suggests a meal in progress.",
+      "asr": "No need to panic if there isn't pasta at the store. It's super easy to make your own.",
+      "ast": "door (conf=0.61)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.558,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.295,
+          "net_displacement": 1.295,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 42,
+          "label": "person",
+          "confidence_avg": 0.693,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of someone reaching out to a bowl of pasta. The pasta appears to be a type of rigatoni, a tube-shaped pasta with ridges on the outside. It's topped with a generous amount of grated Parmesan cheese, which is a light yellow color. The pasta is mixed with a red sauce, possibly tomato-based, and is garnished with fresh green arugula. The bowl is placed on a wooden surface, and the person's hand is visible, indicating that they are about to pick up a piece of pasta. The overall scene suggests a meal in progress. | Speech: No need to panic if there isn't pasta at the store. It's super easy to make your own. | Sounds: door (conf=0.61) | Objects: bowl #40: middle-center -> middle-center, mostly stationary; person #42: top-center -> top-center, mostly stationary"
+    },
+    {
+      "scene_index": 53,
+      "start_seconds": 276.6666666666667,
+      "end_seconds": 282.6666666666667,
+      "vlm_caption": "The image shows a close-up view of a meal served on a white plate. The meal consists of pasta with a red sauce, possibly tomato-based, and a side salad with green leaves and slices of white cheese. The pasta appears to be cooked and has a reddish hue, suggesting it might be tomato-based. The salad is garnished with a sprinkle of cheese on top.\n\nThe plate is placed on a wooden surface, which could be a table or a countertop. There is a fork resting on the plate, indicating that the meal is ready to be eaten. The fork is partially visible, with its handle on the left side of the plate and its tines pointing towards the right side of the plate.\n\nThe focus of the image is on the food, with the background being out of focus, which helps to emphasize the details of the meal. The lighting in the image is soft, suggesting an indoor setting with natural or artificial lighting. There are no visible texts or distinctive brands in the image. The overall style of the image is a realistic photograph with a shallow depth of field, which",
+      "asr": "It may be a little bit more time consuming, but let's be real. We all have more time on our hands than normal right now. So really.",
+      "ast": "silence (conf=0.55)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.876,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 6.064,
+          "net_displacement": 2.896,
+          "direction_change_var": 1.5876,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a close-up view of a meal served on a white plate. The meal consists of pasta with a red sauce, possibly tomato-based, and a side salad with green leaves and slices of white cheese. The pasta appears to be cooked and has a reddish hue, suggesting it might be tomato-based. The salad is garnished with a sprinkle of cheese on top.\n\nThe plate is placed on a wooden surface, which could be a table or a countertop. There is a fork resting on the plate, indicating that the meal is ready to be eaten. The fork is partially visible, with its handle on the left side of the plate and its tines pointing towards the right side of the plate.\n\nThe focus of the image is on the food, with the background being out of focus, which helps to emphasize the details of the meal. The lighting in the image is soft, suggesting an indoor setting with natural or artificial lighting. There are no visible texts or distinctive brands in the image. The overall style of the image is a realistic photograph with a shallow depth of field, which | Speech: It may be a little bit more time consuming, but let's be real. We all have more time on our hands than normal right now. So really. | Sounds: silence (conf=0.55) | Objects: bowl #40: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 54,
+      "start_seconds": 282.6666666666667,
+      "end_seconds": 290.1666666666667,
+      "vlm_caption": "The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, takes center stage. The pasta, a rich shade of red, is generously coated in a creamy white sauce, adding a contrast to the dish. The pasta is not alone; it shares the bowl with a fresh green salad. The salad, a mix of various greens, adds a touch of freshness to the dish.\n\nA silver fork rests in the bowl, ready to dive into the delicious meal. The fork's metallic sheen stands out against the warm tones of the pasta and salad.\n\nThe background is blurred, drawing focus to the main subject - the bowl of pasta and salad. The blurred background suggests a cozy and inviting setting, perhaps a home kitchen or a restaurant.\n\nOverall, the image paints a picture of a meal waiting to be enjoyed. The precise arrangement of objects and their relative positions contribute to this narrative. The fork in the bowl suggests someone is about to start eating, while the blurred background hints",
+      "asr": "no excuse. I'll probably be posting pasta videos every day this week so if you like this video and haven't already consider subscribing.",
+      "ast": "silence (conf=0.63)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "fork",
+          "confidence_avg": 0.814,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "spoon",
+          "confidence_avg": 0.686,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary delight. A white bowl, filled with a vibrant pasta dish, takes center stage. The pasta, a rich shade of red, is generously coated in a creamy white sauce, adding a contrast to the dish. The pasta is not alone; it shares the bowl with a fresh green salad. The salad, a mix of various greens, adds a touch of freshness to the dish.\n\nA silver fork rests in the bowl, ready to dive into the delicious meal. The fork's metallic sheen stands out against the warm tones of the pasta and salad.\n\nThe background is blurred, drawing focus to the main subject - the bowl of pasta and salad. The blurred background suggests a cozy and inviting setting, perhaps a home kitchen or a restaurant.\n\nOverall, the image paints a picture of a meal waiting to be enjoyed. The precise arrangement of objects and their relative positions contribute to this narrative. The fork in the bowl suggests someone is about to start eating, while the blurred background hints | Speech: no excuse. I'll probably be posting pasta videos every day this week so if you like this video and haven't already consider subscribing. | Sounds: silence (conf=0.63) | Objects: fork #1: middle-center -> middle-center, mostly stationary; spoon #2: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 55,
+      "start_seconds": 290.1666666666667,
+      "end_seconds": 303.8333333333333,
+      "vlm_caption": "The image captures a moment of culinary delight. A white bowl, filled with a vibrant salad, sits on a wooden table. The salad is a medley of colors and textures, with shredded greens forming the base. Scattered throughout the salad are slices of red tomatoes, their bright color contrasting with the greens. Adding a touch of creaminess to the dish are cubes of white cheese.\n\nA silver fork is captured in the act of being dipped into the salad, suggesting that someone is about to enjoy this meal. The fork's reflection on the wooden table adds a subtle detail to the scene. The overall image paints a picture of a fresh, healthy meal being enjoyed.",
+      "asr": "and connect with me on Instagram at chefstudio underscore if you want to reach out to me there. Also if you have any questions or want to hear my thoughts on literally anything at all, leave them in the comment section below.",
+      "ast": "music (conf=0.79), silence (conf=0.84)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.776,
+          "start_frame": 1,
+          "end_frame": 13,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 25.991,
+          "net_displacement": 1.662,
+          "direction_change_var": 4.1575,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary delight. A white bowl, filled with a vibrant salad, sits on a wooden table. The salad is a medley of colors and textures, with shredded greens forming the base. Scattered throughout the salad are slices of red tomatoes, their bright color contrasting with the greens. Adding a touch of creaminess to the dish are cubes of white cheese.\n\nA silver fork is captured in the act of being dipped into the salad, suggesting that someone is about to enjoy this meal. The fork's reflection on the wooden table adds a subtle detail to the scene. The overall image paints a picture of a fresh, healthy meal being enjoyed. | Speech: and connect with me on Instagram at chefstudio underscore if you want to reach out to me there. Also if you have any questions or want to hear my thoughts on literally anything at all, leave them in the comment section below. | Sounds: music (conf=0.79), silence (conf=0.84) | Objects: bowl #40: middle-center -> middle-center, mostly stationary, moving in a loop"
+    },
+    {
+      "scene_index": 56,
+      "start_seconds": 303.8333333333333,
+      "end_seconds": 319.5,
+      "vlm_caption": "The image shows a close-up of a blender filled with a frothy white liquid, which appears to be a milkshake or a similar beverage. A red spatula is being used to mix the contents of the blender. The blender is placed on a surface that is not clearly visible due to the close-up nature of the image. The focus is on the blender and the spatula, with the background being out of focus. There are no visible texts or distinctive brands in the image. The action captured is the blending process, with the spatula stirring the contents of the blender.",
+      "asr": "because I'm saving a little bit of pasta dough from every video and I'm going to do like a little chef studio chat slash answer questions slash talk nonsense while I'm learning to shape different kinds of pasta at the end of the week. So yeah leave me your questions if you have any uh and",
+      "ast": "music (conf=0.35), silence (conf=0.44)",
+      "yolo": [
+        {
+          "track_id": 40,
+          "label": "bowl",
+          "confidence_avg": 0.601,
+          "start_frame": 6,
+          "end_frame": 11,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting farther",
+          "path_length": 67.192,
+          "net_displacement": 67.192,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a close-up of a blender filled with a frothy white liquid, which appears to be a milkshake or a similar beverage. A red spatula is being used to mix the contents of the blender. The blender is placed on a surface that is not clearly visible due to the close-up nature of the image. The focus is on the blender and the spatula, with the background being out of focus. There are no visible texts or distinctive brands in the image. The action captured is the blending process, with the spatula stirring the contents of the blender. | Speech: because I'm saving a little bit of pasta dough from every video and I'm going to do like a little chef studio chat slash answer questions slash talk nonsense while I'm learning to shape different kinds of pasta at the end of the week. So yeah leave me your questions if you have any uh and | Sounds: music (conf=0.35), silence (conf=0.44) | Objects: bowl #40: middle-center -> middle-left, moving left, getting farther"
+    },
+    {
+      "scene_index": 57,
+      "start_seconds": 319.5,
+      "end_seconds": 321.8333333333333,
+      "vlm_caption": "The image captures a moment of culinary creation. A hand, clad in a red glove, is seen stirring a white substance in a silver pot. The hand is positioned on the right side of the image, with the fingers curled around the handle of a red spoon. The spoon, with its red handle and silver head, is being used to mix the white substance, which appears to be a batter or dough. The silver pot, filled with the white substance, is placed on a black surface, providing a stark contrast to the white batter. The image does not provide any text or additional objects. The focus is solely on the action of stirring and the interaction between the hand, spoon, and the pot.",
+      "asr": "Until then, yeah, keep.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 47,
+          "label": "bowl",
+          "confidence_avg": 0.538,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.912,
+          "net_displacement": 3.912,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image captures a moment of culinary creation. A hand, clad in a red glove, is seen stirring a white substance in a silver pot. The hand is positioned on the right side of the image, with the fingers curled around the handle of a red spoon. The spoon, with its red handle and silver head, is being used to mix the white substance, which appears to be a batter or dough. The silver pot, filled with the white substance, is placed on a black surface, providing a stark contrast to the white batter. The image does not provide any text or additional objects. The focus is solely on the action of stirring and the interaction between the hand, spoon, and the pot. | Speech: Until then, yeah, keep. | Sounds: none | Objects: bowl #47: middle-center -> middle-center, mostly stationary"
+    },
+    {
+      "scene_index": 58,
+      "start_seconds": 321.8333333333333,
+      "end_seconds": 328.0,
+      "vlm_caption": "The image is a black square with a white border. Inside the black square, there is a white text that reads:\n\n\"Consider subscribing\nAnd connect elsewhere\nChief Studio_\n\"\n\nBelow the text, there is a small, colorful Instagram logo with the handle \"@ChiefStudio_\". The logo is placed on the bottom right corner of the black square. The overall style of the image is minimalistic and modern.",
+      "asr": "safe kids I will see you tomorrow.",
+      "ast": "music (conf=0.74)",
+      "yolo": [],
+      "scene_description": "Visual: The image is a black square with a white border. Inside the black square, there is a white text that reads:\n\n\"Consider subscribing\nAnd connect elsewhere\nChief Studio_\n\"\n\nBelow the text, there is a small, colorful Instagram logo with the handle \"@ChiefStudio_\". The logo is placed on the bottom right corner of the black square. The overall style of the image is minimalistic and modern. | Speech: safe kids I will see you tomorrow. | Sounds: music (conf=0.74)"
+    }
+  ]
+}

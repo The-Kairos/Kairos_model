@@ -39,8 +39,16 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
     print(f"\n{'='*80}")
     print(f"ISOLATED VLM RUN: {vlm_name} on {Path(video_path).stem}")
     print(f"{'='*80}\n")
+
+    # Check if final result already exists
+    os.makedirs(output_dir, exist_ok=True)
+    caption_file = Path(output_dir) / "vlm_captions.json"
+    if caption_file.exists():
+        print(f"✓ Final results already exist at {caption_file}. Skipping.")
+        sys.exit(0)
     
     # Load base data (scenes with ASR/AST/YOLO)
+    print(f"[0.5/3] Loading base data from: {base_data_path}")
     with open(base_data_path, 'r') as f:
         base_data = json.load(f)
     scenes = base_data['scenes']
@@ -50,8 +58,10 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
         import test_llava_1_6 as vlm_module
     elif vlm_name == "phi3v":
         import test_phi3v as vlm_module
-    elif vlm_name == "llama32":
-        import test_llama32 as vlm_module
+    elif vlm_name == "instructblip":
+        import test_instructblip as vlm_module
+    elif vlm_name == "llava_video":
+        import test_llava_next_video as vlm_module
     else:
         print(f"ERROR: Unknown VLM {vlm_name}")
         sys.exit(1)
@@ -84,20 +94,46 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
     print(f"    Start Metrics: RAM={start_metrics['ram_used_gb']:.1f}GB, GPU={start_metrics.get('gpu_used_gb', 0):.1f}GB")
     
     captions = []
+    processed_indices = set()
     
-    for i, scene in enumerate(scenes):
+    # Check for partial progress
+    tmp_file = Path(output_dir) / "vlm_captions_partial.json"
+    if tmp_file.exists():
         try:
-            mid = (scene["start_seconds"] + scene["end_seconds"]) / 2
-            frames = sample_from_clip(str(video_path), scene["scene_index"], mid, mid+0.1, num_frames=1, new_size=336)
+            with open(tmp_file, 'r') as f:
+                partial_data = json.load(f)
+                captions = partial_data.get("captions", [])
+                processed_indices = {c["scene_index"] for c in captions}
+                print(f"    Resuming from partial progress: {len(processed_indices)} scenes already processed.")
+        except Exception as e:
+            print(f"    Warning: Could not load partial file ({e}). Starting fresh.")
+
+    for i, scene in enumerate(scenes):
+        scene_idx = scene["scene_index"]
+        if scene_idx in processed_indices:
+            print(f"  Scene {i+1}/{len(scenes)}: [Skipping - already in partial results]")
+            continue
             
-            if frames and len(frames) > 0 and frames[0] is not None:
-                pil_img = Image.fromarray(cv2.cvtColor(frames[0], cv2.COLOR_BGR2RGB))
+        try:
+            # Sample 2 frames per scene for LLaVA to avoid context overflow
+            frames = sample_from_clip(
+                str(video_path), 
+                scene["scene_index"], 
+                scene["start_seconds"], 
+                scene["end_seconds"], 
+                num_frames=2, 
+                new_size=336
+            )
+            
+            if frames and len(frames) > 0:
+                # Convert to PIL images
+                pil_frames = [Image.fromarray(cv2.cvtColor(f, cv2.COLOR_BGR2RGB)) for f in frames if f is not None]
                 
-                # Double-check PIL image is valid
-                if pil_img is None or pil_img.size[0] == 0:
-                    raise ValueError("Invalid PIL image")
+                if not pil_frames:
+                    raise ValueError("No valid frames after conversion")
                 
-                caption = vlm_module.caption_image(model, processor, pil_img)
+                # Use caption_frames instead of caption_image
+                caption = vlm_module.caption_frames(model, processor, pil_frames)
                 
                 # Clean up the caption (remove prompt artifacts)
                 if "ASSISTANT:" in caption:
@@ -110,14 +146,20 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
                     "caption": caption
                 })
                 print(f"  Scene {i+1}/{len(scenes)}: {caption[:80]}...")
+                
+                # --- Intermediate Save ---
+                os.makedirs(output_dir, exist_ok=True)
+                tmp_file = Path(output_dir) / "vlm_captions_partial.json"
+                with open(tmp_file, 'w', encoding='utf-8') as f:
+                    json.dump({"captions": captions}, f, indent=2, cls=CustomJSONEncoder)
             else:
                 captions.append({
                     "scene_index": scene["scene_index"],
                     "start_seconds": scene["start_seconds"],
                     "end_seconds": scene["end_seconds"],
-                    "caption": "[No valid frame extracted]"
+                    "caption": "[No valid frames extracted]"
                 })
-                print(f"  Scene {i+1}/{len(scenes)}: No valid frame")
+                print(f"  Scene {i+1}/{len(scenes)}: No valid frames")
         except Exception as e:
             print(f"  Scene {i+1} FAILED: {e}")
             captions.append({
@@ -128,7 +170,10 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
             })
 
     end_metrics = get_system_usage()
+    total_duration = end_metrics['timestamp'] - start_metrics['timestamp']
+    avg_per_scene = total_duration / len(scenes) if scenes else 0
     print(f"    End Metrics: RAM={end_metrics['ram_used_gb']:.1f}GB, GPU={end_metrics.get('gpu_used_gb', 0):.1f}GB")
+    print(f"    Total Duration: {total_duration:.1f}s ({avg_per_scene:.2f}s per scene)")
     
     # Perform Manual Fusion
     print(f"[3/3] Fusing data and saving results...")
@@ -169,7 +214,8 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
         # Manual Fusion String
         parts = []
         if vlm_text: parts.append(f"Visual: {vlm_text}")
-        if asr_text and not asr_text.startswith("[ASR"): parts.append(f"Speech: {asr_text}")
+        if asr_text and not asr_text.startswith("[ASR") and "Missing credentials" not in asr_text: 
+            parts.append(f"Speech: {asr_text}")
         if ast_text: parts.append(f"Sounds: {ast_text}")
         if yolo_text: parts.append(f"Objects: {yolo_text}")
         
@@ -198,13 +244,20 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
             "timestamp": time.time(),
             "metrics": {
                 "start": start_metrics,
-                "end": end_metrics
+                "end": end_metrics,
+                "total_duration_sec": total_duration,
+                "avg_sec_per_scene": avg_per_scene
             },
             "captions": captions,
             "fused_results": final_results
         }, f, indent=2, cls=CustomJSONEncoder)
     
     print(f"✓ Saved results to {caption_file}")
+    
+    # Remove partial file if it exists
+    tmp_file = Path(output_dir) / "vlm_captions_partial.json"
+    if tmp_file.exists():
+        os.remove(tmp_file)
     
     # Cleanup
     del model, processor
