@@ -130,6 +130,23 @@ def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, s
     until the narrative fits within summary_len.
     """
     scene_chunks = chunk_scenes(scenes, chunk_size, debug=debug,)
+    if scene_chunks:
+        raw_narrative = "\n".join(scene_chunks).strip()
+        if len(raw_narrative) <= summary_len:
+            narratives = [{
+                "narrative_len": len(raw_narrative),
+                "chunk_len": len(scene_chunks),
+                "narrative": raw_narrative
+            }]
+            if output_dir:
+                out_dir = Path(output_dir)
+                out_dir.mkdir(parents=True, exist_ok=True)
+                out_path = out_dir / f"narrative_1_len_{len(raw_narrative)}.txt"
+                out_path.write_text(raw_narrative, encoding="utf-8")
+            return {
+                "scenes": scenes,
+                "narratives": narratives
+            }
     narratives = []
     pre_carryover_context = "None"
 
