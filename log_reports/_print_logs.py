@@ -18,7 +18,7 @@ STEP_KEYS = {
     "save_clips": ("scene_number", "Masked clips saving"),
     "sample_frames": ("scene_number", "Frame sampling"),
     "caption_frames": ("scene_number", "BLIP caption"),
-    "detect_object_yolo": ("scene_number", "YOLO detection"),
+    "detect_object_yolo": ("video_length", "YOLO detection*"),
     "describe_scenes": ("scene_number", "BLIP + YOLO + AST + ASR in GPT4o"),
     "summarize_scenes": ("video_length", "Summarization*"),
     "synthesize_synopsis": ("video_length", "Synopsis + common Q&A*"),
@@ -26,6 +26,7 @@ STEP_KEYS = {
 
 METRIC_COLUMNS = [
     "wall_time_sec",
+    "wall_time_%",
     "cpu_time_sec",
     "ram_used_MB",
     "io_read_MB",
@@ -74,6 +75,7 @@ for file_path in json_files:
     video_title = os.path.basename(video_path)
     scene_count = to_number(document.get("scene_number", 1))
     llm_cooldown_sec = document.get("params", {}).get("llm_cooldown_sec", 5)
+    total_sec = to_number(document.get("total_process_sec", 1))
 
     rows = []
 
@@ -82,8 +84,16 @@ for file_path in json_files:
         row = {"step": friendly_name}  # Use friendly name here
 
         divisor_value = to_number(document.get(divisor_key, 1))
+        raw_wall_time = to_number(step_data.get("wall_time_sec", 0))
 
         for metric in METRIC_COLUMNS:
+            if metric == "wall_time_%":
+                if isinstance(raw_wall_time, (int, float)) and isinstance(total_sec, (int, float)) and total_sec > 0:
+                    row[metric] = safe_div(raw_wall_time, total_sec) * 100
+                else:
+                    row[metric] = raw_wall_time
+                continue
+
             raw_value = to_number(step_data.get(metric, 0))
 
             if isinstance(raw_value, (int, float)) and isinstance(divisor_value, (int, float)):
@@ -96,14 +106,30 @@ for file_path in json_files:
                 if isinstance(row[metric], (int, float)):
                     row[metric] -= llm_cooldown_sec # time.sleep(cooldown) for API
 
-            if step_key in ["get_scene_list", "ast_timings", "asr_timings"]:
+            if step_key in ["get_scene_list", "ast_timings", "asr_timings"] and metric != "wall_time_%":
                 if isinstance(row[metric], (int, float)):
                     row[metric] *= 60 
 
         rows.append(row)
 
 
-    df = pd.DataFrame(rows).applymap(lambda x: f"{x:.3f}" if isinstance(x, (int, float)) else x)
+    df = pd.DataFrame(rows)
+    max_wall_pct = None
+    if "wall_time_%" in df.columns:
+        numeric_wall = [v for v in df["wall_time_%"] if isinstance(v, (int, float))]
+        if numeric_wall:
+            max_wall_pct = max(numeric_wall)
+
+    for col in METRIC_COLUMNS:
+        if col == "wall_time_%":
+            def fmt_wall_pct(x):
+                if isinstance(x, (int, float)):
+                    formatted = f"{x:.1f}%"
+                    return f"**{formatted}**" if max_wall_pct is not None and x == max_wall_pct else formatted
+                return x
+            df[col] = df[col].apply(fmt_wall_pct)
+        else:
+            df[col] = df[col].apply(lambda x: f"{x:.3f}" if isinstance(x, (int, float)) else x)
 
     # CSV name
     base_name = os.path.splitext(video_title)[0].replace(" ", "_")
@@ -121,11 +147,11 @@ for file_path in json_files:
         parts = [p.strip() for p in synopsis.split("\n\n") if p.strip()]
         if parts:
             md += f"{parts[0]}\n\n"
-    md += df.to_markdown(index=False)
+    colalign = ["left"] + ["right"] * (len(df.columns) - 1)
+    md += df.to_markdown(index=False, colalign=colalign)
     md += "\n\n"
 
     video_length = to_number(document.get("video_length", 1))
-    total_sec = to_number(document.get("total_process_sec", 1))
 
     if isinstance(scene_count, (int, float)) and isinstance(total_sec, (int, float)):
         run_without_delay = total_sec - (llm_cooldown_sec * scene_count)
@@ -141,7 +167,7 @@ for file_path in json_files:
         f"**Footnote:**  \n"
         f"`total_process_sec` without LLM cooldown ({format_num(llm_cooldown_sec)}s per scene, {format_num(run_without_delay)}s total) is **{format_num(k)}x longer** than `video_length` of {format_num(video_length)}s.\n"
         f"**{scene_count} scenes** were detected in `{video_path}`\n"
-        f"\\* `get_scene_list`, `ast_timings`,  `asr_timings`, `summarize_scenes`, and `synthesize_synopsis` are measured per minute of video, whereas the remaining processes are measured per scenes. \n"
+        f"\\* measured per minute of video, whereas the remaining processes are measured per scenes.\n"
     )
 
     markdown_sections.append(md)
