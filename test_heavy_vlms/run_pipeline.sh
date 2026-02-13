@@ -7,7 +7,7 @@
 cd "$(dirname "$0")"
 
 VIDEOS_DIR="../Videos"
-VLMS=("llava" "phi3v" "instructblip")
+VLMS=("llava" "llava_mistral" "phi3v" "instructblip")  # ← ADDED llava_mistral
 
 usage() {
     echo "Usage: $0 [base | vlm <vlm_name> | all]"
@@ -15,7 +15,13 @@ usage() {
     echo "  vlm <name>    - Run specific VLM for all videos (skips if exists)"
     echo "  all           - Run full pipeline (base then all VLMs)"
     echo ""
-    echo "Example: ./run_pipeline.sh vlm llava"
+    echo "Available VLMs: llava, llava_mistral, phi3v, instructblip"
+    echo ""
+    echo "Examples:"
+    echo "  ./run_pipeline.sh base"
+    echo "  ./run_pipeline.sh vlm llava"
+    echo "  ./run_pipeline.sh vlm llava_mistral"
+    echo "  ./run_pipeline.sh all"
     exit 1
 }
 

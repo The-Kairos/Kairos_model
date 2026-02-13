@@ -60,8 +60,8 @@ def run_vlm_isolated(vlm_name, video_path, base_data_path, output_dir):
         import test_phi3v as vlm_module
     elif vlm_name == "instructblip":
         import test_instructblip as vlm_module
-    elif vlm_name == "llava_video":
-        import test_llava_next_video as vlm_module
+    elif vlm_name == "llava_mistral":
+        import test_llava_1_6_mistral as vlm_module
     else:
         print(f"ERROR: Unknown VLM {vlm_name}")
         sys.exit(1)
