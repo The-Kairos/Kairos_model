@@ -1,13 +1,30 @@
 #!/bin/bash
 
-# Heavy VLM Benchmark Pipeline Automation
-# This script runs each component in a clean process to ensure GPU memory is released.
-
-# Ensure we are in the script's directory
+# Ensure we are in the script's directory FIRST
 cd "$(dirname "$0")"
 
+# Load environment variables from .env file
+# First check parent directory (main Kairos_model folder)
+if [ -f "../.env" ]; then
+    set -a
+    source ../.env
+    set +a
+    echo "✅ Loaded HF_TOKEN from ../env"
+elif [ -f ".env" ]; then
+    # Fallback: check current directory
+    set -a
+    source .env
+    set +a
+    echo "✅ Loaded HF_TOKEN from .env"
+else
+    echo "⚠️  No .env file found"
+    echo "⚠️  Checked: $(cd .. && pwd)/.env"
+    echo "⚠️  Checked: $(pwd)/.env"
+    echo "⚠️  Running without authentication"
+fi
+
 VIDEOS_DIR="../Videos"
-VLMS=("llava" "llava_mistral" "phi3v" "instructblip")  # ← ADDED llava_mistral
+VLMS=("llava" "llava_mistral" "phi3v" "instructblip")
 
 usage() {
     echo "Usage: $0 [base | vlm <vlm_name> | all]"
@@ -46,7 +63,6 @@ run_vlm() {
         [ -e "$vid" ] || continue
         filename=$(basename "$vid")
         name="${filename%.*}"
-        # run_single_vlm.py internally skips if vlm_captions.json exists
         python3 run_single_vlm.py "$VLM" "$vid" "results/base/$name/base_data.json" "results/$VLM/$name"
     done
 }

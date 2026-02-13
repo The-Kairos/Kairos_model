@@ -1,0 +1,1434 @@
+{
+  "vlm": "llava_mistral",
+  "video": "Watch Malala Yousafzai's Nobel Peace Prize acceptance speech",
+  "timestamp": 1771020870.0158143,
+  "metrics": {
+    "start": {
+      "cpu_percent": 2.1,
+      "ram_percent": 2.8,
+      "ram_used_gb": 5.235816955566406,
+      "ram_total_gb": 188.70603561401367,
+      "timestamp": 1771020663.3648436,
+      "gpu_used_gb": 1.67987060546875,
+      "gpu_total_gb": 21.95147705078125,
+      "gpu_percent": 7.652654086021804
+    },
+    "end": {
+      "cpu_percent": 0.0,
+      "ram_percent": 3.2,
+      "ram_used_gb": 6.119358062744141,
+      "ram_total_gb": 188.70603561401367,
+      "timestamp": 1771020869.9755762,
+      "gpu_used_gb": 1.99822998046875,
+      "gpu_total_gb": 21.95147705078125,
+      "gpu_percent": 9.102940890246987
+    },
+    "total_duration_sec": 206.6107325553894,
+    "avg_sec_per_scene": 9.391396934335882
+  },
+  "captions": [
+    {
+      "scene_index": 0,
+      "start_seconds": 0.0,
+      "end_seconds": 15.882533333333333,
+      "caption": "The image shows a woman standing at a podium, speaking into a microphone. She is wearing a pink headscarf and a matching pink shawl. The background is a blue wall with a pattern of white lines. The woman appears to be in the middle of a speech or presentation. There is no text visible in the image. The style of the image is a standard photograph with a focus on the speaker."
+    },
+    {
+      "scene_index": 1,
+      "start_seconds": 15.882533333333333,
+      "end_seconds": 21.755066666666668,
+      "caption": "The image shows a group of people seated in rows, facing towards the front of the room. The individuals are dressed in a variety of styles, with some wearing traditional attire and others in more contemporary clothing. The audience appears to be engaged in an event, as suggested by the clapping and the focused expressions of the people. The setting seems to be indoors, with the audience seated on chairs. The lighting is bright, illuminating the faces of the individuals and casting shadows on the ground. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of attentiveness and interest."
+    },
+    {
+      "scene_index": 2,
+      "start_seconds": 21.755066666666668,
+      "end_seconds": 25.892533333333333,
+      "caption": "The image depicts a large crowd of people gathered in a room. The crowd is dense, with individuals standing close together. The room has a high ceiling and is illuminated by natural light coming through windows. The windows are adorned with colorful curtains.\n\nIn the foreground, there is a stage with a podium and a microphone, suggesting that a speech or presentation is taking place. The stage is not occupied by any individuals at the moment.\n\nThe crowd appears to be attentive, with many individuals looking towards the stage. The overall atmosphere of the scene is one of anticipation or interest in the event taking place on the stage."
+    },
+    {
+      "scene_index": 3,
+      "start_seconds": 25.892533333333333,
+      "end_seconds": 28.561866666666667,
+      "caption": "The image shows a group of people seated in rows of chairs. The individuals are dressed in formal attire, with men wearing suits and ties, and women in dresses. The audience members are clapping their hands, indicating a positive response to an event or presentation. The setting appears to be an indoor venue, possibly a conference hall or a theater. The lighting is bright, and the audience members are facing towards the front of the room, suggesting that they are attentively watching something happening out of frame. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of formality and engagement."
+    },
+    {
+      "scene_index": 4,
+      "start_seconds": 28.561866666666667,
+      "end_seconds": 52.18546666666667,
+      "caption": "The image shows a woman standing at a podium, speaking into a microphone. She is wearing a red headscarf and a matching red outfit. The background is a blurred blue color, suggesting an indoor setting. The woman appears to be in the middle of a speech or presentation. There are no other people visible in the image. The focus is solely on the woman and her activity."
+    },
+    {
+      "scene_index": 5,
+      "start_seconds": 52.18546666666667,
+      "end_seconds": 56.589866666666666,
+      "caption": "The image shows a group of people seated in rows, facing the same direction. The individuals are dressed in a variety of styles, with some wearing traditional attire and others in more contemporary clothing. The audience appears to be attentive, with some people smiling and looking towards the camera. The setting suggests a formal event, possibly a ceremony or a conference, given the attire of the people and the arrangement of the seating. There are no visible texts or logos in the image. The people are seated on chairs, and the rows are organized in a way that allows for clear visibility of the audience. The lighting in the image is bright, and the focus is on the people in the foreground, with the background slightly blurred."
+    },
+    {
+      "scene_index": 6,
+      "start_seconds": 56.589866666666666,
+      "end_seconds": 59.526133333333334,
+      "caption": "The image is a blurry photograph of a large crowd of people. The crowd is seated in rows, facing towards the front of the image where a speaker is standing. The speaker is wearing a red jacket and appears to be speaking to the audience. The audience members are dressed in a variety of styles, suggesting a diverse group. The setting appears to be an indoor venue with a stage and lighting equipment visible in the background. The lighting in the room is bright, and the atmosphere seems to be one of attentiveness and interest in the speaker."
+    },
+    {
+      "scene_index": 7,
+      "start_seconds": 59.526133333333334,
+      "end_seconds": 63.53013333333333,
+      "caption": "The image shows a woman standing at a podium, speaking at an event. She is wearing a pink hijab and a matching pink shawl. The woman appears to be in the middle of a speech or presentation, as she is gesturing with her right hand. The background is a blue wall with a pattern of white lines. The woman is the central figure in the image, and her position at the podium suggests she is the main speaker or presenter at the event."
+    },
+    {
+      "scene_index": 8,
+      "start_seconds": 63.53013333333333,
+      "end_seconds": 71.27120000000001,
+      "caption": "In the image, there is a man sitting in a chair. He is wearing glasses and a white shirt. The man appears to be looking to the side, and his facial expression suggests that he is focused on something. The background is blurred, but it seems to be an indoor setting with a door visible in the background. There is no text present in the image. The man is the only person visible in the image."
+    },
+    {
+      "scene_index": 9,
+      "start_seconds": 71.27120000000001,
+      "end_seconds": 78.47840000000001,
+      "caption": "The image shows a woman standing at a podium, speaking into a microphone. She is wearing a red hijab and a matching red shawl. The woman appears to be in the middle of a speech or presentation. The background is a plain blue wall with a pattern of white lines. The woman's hands are raised slightly, suggesting she is emphasizing a point or engaging with her audience. The microphone is positioned in front of her, indicating that she is addressing an audience. The overall setting suggests a formal event or conference."
+    },
+    {
+      "scene_index": 10,
+      "start_seconds": 78.47840000000001,
+      "end_seconds": 93.6936,
+      "caption": "In the image, there is a man sitting in a chair. He is wearing glasses and a white shirt. The man appears to be looking to the side, and his facial expression suggests that he is focused on something. The background is blurred, but it seems to be an indoor setting with a door visible in the background. There is no text present in the image. The man is the main subject of the image, and his position in the chair suggests that he is the focal point of the scene."
+    },
+    {
+      "scene_index": 11,
+      "start_seconds": 93.6936,
+      "end_seconds": 96.36293333333333,
+      "caption": "The image shows a woman standing at a podium, speaking at an event. She is wearing a pink hijab and a pink dress. The podium has a blue background and a microphone. The woman appears to be in the middle of a speech or presentation. There are no other people visible in the image. The focus is solely on the woman and her speech."
+    },
+    {
+      "scene_index": 12,
+      "start_seconds": 96.36293333333333,
+      "end_seconds": 98.76533333333333,
+      "caption": "The image shows a group of people sitting in a row, likely at an event. The individuals are facing towards the front of the image, suggesting they are watching something. The people are dressed in a variety of styles, with some wearing traditional clothing and others in more contemporary attire. The expressions on their faces are not clearly visible, but they appear to be engaged in the event. The setting seems to be indoors, and the lighting is bright, illuminating the crowd. There are no visible texts or logos in the image. The people are seated close to each other, indicating a shared experience or event. The image captures a moment of shared attention and interest."
+    },
+    {
+      "scene_index": 13,
+      "start_seconds": 98.76533333333333,
+      "end_seconds": 102.50240000000001,
+      "caption": "The image shows a large crowd of people gathered in a spacious room. The room is filled with rows of chairs, and the people are seated, facing towards the front of the room. The crowd appears to be engaged in an event or ceremony, as suggested by the presence of a podium and a speaker. The room is adorned with colorful decorations, including a large floral arrangement and a mural on the wall. The atmosphere seems to be one of anticipation and attention, as the crowd is focused on the speaker at the podium."
+    },
+    {
+      "scene_index": 14,
+      "start_seconds": 102.50240000000001,
+      "end_seconds": 144.5444,
+      "caption": "The image is blurry and lacks clear details. It appears to be a photograph of a person standing at a podium, speaking to an audience. The person is wearing a red headscarf and a red garment. The audience is out of focus, and the background is indistinct. The lighting suggests an indoor setting."
+    },
+    {
+      "scene_index": 15,
+      "start_seconds": 144.5444,
+      "end_seconds": 148.54840000000002,
+      "caption": "The image shows a group of people, likely at a formal event. In the foreground, there is a man and a woman standing close to each other. The man is wearing a dark suit with a white shirt and a black tie. He has a mustache and is smiling. The woman is wearing a colorful headscarf and a matching outfit. She is also smiling and appears to be looking at the man.\n\nIn the background, there are several other individuals, some of whom are also wearing headscarves. They are seated and standing, and some are looking towards the camera. The setting appears to be indoors, and the lighting suggests it might be evening. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of social interaction and celebration."
+    },
+    {
+      "scene_index": 16,
+      "start_seconds": 148.54840000000002,
+      "end_seconds": 204.33746666666667,
+      "caption": "The image is a still from a video, showing a woman speaking at a podium. The woman is wearing a red headscarf and a red outfit, and she appears to be gesturing with her hands. She is standing in front of a microphone, which is attached to a podium. The background is blurred, but it seems to be an indoor setting with other people present. The focus is on the woman speaking, and the image conveys a sense of a public speaking event."
+    },
+    {
+      "scene_index": 17,
+      "start_seconds": 204.33746666666667,
+      "end_seconds": 207.67413333333334,
+      "caption": "The image shows a group of people sitting in a row, likely at an event or gathering. The individuals are facing towards the front of the image, suggesting they are watching something. The audience members are dressed in a variety of styles, with some wearing headscarves and others wearing glasses. The expressions on their faces are not clearly visible, but their body language indicates that they are engaged in the event. The setting appears to be indoors, and the lighting is bright, illuminating the audience members and the area in front of them. There are no visible texts or logos in the image. The overall atmosphere of the image is one of attentiveness and interest in the event taking place."
+    },
+    {
+      "scene_index": 18,
+      "start_seconds": 207.67413333333334,
+      "end_seconds": 210.21,
+      "caption": "The image shows a group of people seated in rows of chairs. The individuals are dressed in formal attire, with men wearing suits and ties, and women in dresses. The audience appears to be attentive, with some people clapping their hands. The setting suggests a formal event or ceremony, possibly a political or diplomatic gathering. The lighting is bright, and the background is blurred, drawing focus to the people in the foreground."
+    },
+    {
+      "scene_index": 19,
+      "start_seconds": 210.21,
+      "end_seconds": 213.41320000000002,
+      "caption": "The image is a still from a television show or movie. It features two men sitting in chairs. The man on the left is clapping his hands, and the man on the right is holding his hands together, as if in prayer or meditation. Both men are wearing glasses and are dressed in formal attire. The man on the left is wearing a dark suit with a tie, and the man on the right is wearing a white robe. Behind them, there is a colorful backdrop with decorative elements. The lighting in the scene is bright, and the overall atmosphere appears to be calm and serene."
+    },
+    {
+      "scene_index": 20,
+      "start_seconds": 213.41320000000002,
+      "end_seconds": 216.74986666666666,
+      "caption": "The image shows a large gathering of people in an indoor setting. The audience is seated and appears to be attentively watching a speaker at a podium. The speaker is standing and appears to be speaking to the audience. The room has a formal atmosphere, with decorative elements such as banners and lights. The audience is diverse, with people of various ages and genders. The speaker is dressed in formal attire, suggesting the event may be of a formal nature. The room has a high ceiling and large windows, allowing natural light to enter. The overall scene suggests a formal event or ceremony, with the speaker addressing the audience."
+    },
+    {
+      "scene_index": 21,
+      "start_seconds": 216.74986666666666,
+      "end_seconds": 273.4732,
+      "caption": "The image is blurry and lacks clear details. It appears to be a photograph of a woman speaking at a public event. The woman is wearing a red headscarf and a red garment. She is standing behind a microphone, which is mounted on a podium. The background is out of focus, but it seems to be an indoor setting with a crowd of people. The lighting suggests an indoor venue with artificial lighting. The woman's expression is serious, and she appears to be addressing the audience."
+    }
+  ],
+  "fused_results": [
+    {
+      "scene_index": 0,
+      "start_seconds": 0.0,
+      "end_seconds": 15.882533333333333,
+      "vlm_caption": "The image shows a woman standing at a podium, speaking into a microphone. She is wearing a pink headscarf and a matching pink shawl. The background is a blue wall with a pattern of white lines. The woman appears to be in the middle of a speech or presentation. There is no text visible in the image. The style of the image is a standard photograph with a focus on the speaker.",
+      "asr": "I'm proud, well in fact I'm very proud, to be the first Pashtun, the first Pakistani and the youngest person to receive this award.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.776,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 88.255,
+          "net_displacement": 2.713,
+          "direction_change_var": 2.7445,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a woman standing at a podium, speaking into a microphone. She is wearing a pink headscarf and a matching pink shawl. The background is a blue wall with a pattern of white lines. The woman appears to be in the middle of a speech or presentation. There is no text visible in the image. The style of the image is a standard photograph with a focus on the speaker. | Speech: I'm proud, well in fact I'm very proud, to be the first Pashtun, the first Pakistani and the youngest person to receive this award. | Sounds: none | Objects: person #1: middle-center -> middle-center, mostly stationary, looping/circling"
+    },
+    {
+      "scene_index": 1,
+      "start_seconds": 15.882533333333333,
+      "end_seconds": 21.755066666666668,
+      "vlm_caption": "The image shows a group of people seated in rows, facing towards the front of the room. The individuals are dressed in a variety of styles, with some wearing traditional attire and others in more contemporary clothing. The audience appears to be engaged in an event, as suggested by the clapping and the focused expressions of the people. The setting seems to be indoors, with the audience seated on chairs. The lighting is bright, illuminating the faces of the individuals and casting shadows on the ground. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of attentiveness and interest.",
+      "asr": "Thank you. ",
+      "ast": "applause (conf=0.66)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.716,
+          "start_frame": 2,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 13.169,
+          "net_displacement": 12.326,
+          "direction_change_var": 1.1063,
+          "relations": [
+            "above tie #5",
+            "below person #4",
+            "left-of person #3",
+            "left-of person #8",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.863,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 7.356,
+          "net_displacement": 1.361,
+          "direction_change_var": 0.8624,
+          "relations": [
+            "left-of person #1",
+            "left-of person #3",
+            "left-of person #4",
+            "left-of person #8",
+            "left-of tie #5"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.617,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 39.644,
+          "net_displacement": 3.289,
+          "direction_change_var": 4.5583,
+          "relations": [
+            "right-of person #1",
+            "right-of person #2",
+            "right-of person #4",
+            "right-of person #8",
+            "right-of tie #5"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.728,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 2.672,
+          "net_displacement": 1.401,
+          "direction_change_var": 5.7698,
+          "relations": [
+            "above person #1",
+            "above tie #5",
+            "left-of person #3",
+            "left-of person #8",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 5,
+          "label": "tie",
+          "confidence_avg": 0.719,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 4.546,
+          "net_displacement": 4.319,
+          "direction_change_var": 0.1301,
+          "relations": [
+            "below person #1",
+            "below person #4",
+            "left-of person #3",
+            "left-of person #8",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.657,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 15.33,
+          "net_displacement": 12.781,
+          "direction_change_var": 0.6361,
+          "relations": [
+            "left-of person #3",
+            "right-of person #1",
+            "right-of person #2",
+            "right-of person #4",
+            "right-of tie #5"
+          ]
+        },
+        {
+          "track_id": 10,
+          "label": "person",
+          "confidence_avg": 0.654,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 14,
+          "label": "person",
+          "confidence_avg": 0.568,
+          "start_frame": 5,
+          "end_frame": 5,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a group of people seated in rows, facing towards the front of the room. The individuals are dressed in a variety of styles, with some wearing traditional attire and others in more contemporary clothing. The audience appears to be engaged in an event, as suggested by the clapping and the focused expressions of the people. The setting seems to be indoors, with the audience seated on chairs. The lighting is bright, illuminating the faces of the individuals and casting shadows on the ground. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of attentiveness and interest. | Speech: Thank you.  | Sounds: applause (conf=0.66) | Objects: person #1: middle-center -> middle-center, moving down-left; relations: above tie #5, below person #4, left-of person #3, left-of person #8, right-of person #2; person #2: middle-left -> middle-left, mostly stationary, moving in a loop; relations: left-of person #1, left-of person #3, left-of person #4, left-of person #8, left-of tie #5; person #3: middle-right -> middle-right, mostly stationary, moving in a loop; relations: right-of person #1, right-of person #2, right-of person #4, right-of person #8, right-of tie #5; person #4: top-center -> top-center, mostly stationary; relations: above person #1, above tie #5, left-of person #3, left-of person #8, right-of person #2; tie #5: bottom-center -> bottom-center, mostly stationary, getting closer; relations: below person #1, below person #4, left-of person #3, left-of person #8, right-of person #2"
+    },
+    {
+      "scene_index": 2,
+      "start_seconds": 21.755066666666668,
+      "end_seconds": 25.892533333333333,
+      "vlm_caption": "The image depicts a large crowd of people gathered in a room. The crowd is dense, with individuals standing close together. The room has a high ceiling and is illuminated by natural light coming through windows. The windows are adorned with colorful curtains.\n\nIn the foreground, there is a stage with a podium and a microphone, suggesting that a speech or presentation is taking place. The stage is not occupied by any individuals at the moment.\n\nThe crowd appears to be attentive, with many individuals looking towards the stage. The overall atmosphere of the scene is one of anticipation or interest in the event taking place on the stage.",
+      "asr": "You",
+      "ast": "applause (conf=0.70)",
+      "yolo": [
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.643,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image depicts a large crowd of people gathered in a room. The crowd is dense, with individuals standing close together. The room has a high ceiling and is illuminated by natural light coming through windows. The windows are adorned with colorful curtains.\n\nIn the foreground, there is a stage with a podium and a microphone, suggesting that a speech or presentation is taking place. The stage is not occupied by any individuals at the moment.\n\nThe crowd appears to be attentive, with many individuals looking towards the stage. The overall atmosphere of the scene is one of anticipation or interest in the event taking place on the stage. | Speech: You | Sounds: applause (conf=0.70) | Objects: person #17: bottom-center -> bottom-center, mostly stationary"
+    },
+    {
+      "scene_index": 3,
+      "start_seconds": 25.892533333333333,
+      "end_seconds": 28.561866666666667,
+      "vlm_caption": "The image shows a group of people seated in rows of chairs. The individuals are dressed in formal attire, with men wearing suits and ties, and women in dresses. The audience members are clapping their hands, indicating a positive response to an event or presentation. The setting appears to be an indoor venue, possibly a conference hall or a theater. The lighting is bright, and the audience members are facing towards the front of the room, suggesting that they are attentively watching something happening out of frame. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of formality and engagement.",
+      "asr": "Thank you.",
+      "ast": "applause (conf=0.71)",
+      "yolo": [
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.904,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 1.543,
+          "net_displacement": 1.523,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #22",
+            "left-of person #14",
+            "left-of person #3",
+            "left-of person #8"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.879,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 3.414,
+          "net_displacement": 3.261,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #14",
+            "right-of person #2",
+            "right-of person #22",
+            "right-of person #8"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.869,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.449,
+          "net_displacement": 3.274,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #3",
+            "right-of person #14",
+            "right-of person #2",
+            "right-of person #22"
+          ]
+        },
+        {
+          "track_id": 14,
+          "label": "person",
+          "confidence_avg": 0.831,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 5.923,
+          "net_displacement": 4.976,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #22",
+            "left-of person #3",
+            "left-of person #8",
+            "right-of person #2"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.548,
+          "start_frame": 1,
+          "end_frame": 2,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.229,
+          "net_displacement": 0.229,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #14",
+            "above person #2",
+            "left-of person #3",
+            "left-of person #8"
+          ]
+        },
+        {
+          "track_id": 23,
+          "label": "tie",
+          "confidence_avg": 0.573,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a group of people seated in rows of chairs. The individuals are dressed in formal attire, with men wearing suits and ties, and women in dresses. The audience members are clapping their hands, indicating a positive response to an event or presentation. The setting appears to be an indoor venue, possibly a conference hall or a theater. The lighting is bright, and the audience members are facing towards the front of the room, suggesting that they are attentively watching something happening out of frame. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of formality and engagement. | Speech: Thank you. | Sounds: applause (conf=0.71) | Objects: person #2: middle-left -> middle-left, mostly stationary; relations: below person #22, left-of person #14, left-of person #3, left-of person #8; person #3: middle-right -> middle-right, mostly stationary; relations: right-of person #14, right-of person #2, right-of person #22, right-of person #8; person #8: middle-center -> middle-center, mostly stationary; relations: left-of person #3, right-of person #14, right-of person #2, right-of person #22; person #14: middle-center -> middle-center, mostly stationary; relations: below person #22, left-of person #3, left-of person #8, right-of person #2; person #22: top-left -> top-left, mostly stationary; relations: above person #14, above person #2, left-of person #3, left-of person #8"
+    },
+    {
+      "scene_index": 4,
+      "start_seconds": 28.561866666666667,
+      "end_seconds": 52.18546666666667,
+      "vlm_caption": "The image shows a woman standing at a podium, speaking into a microphone. She is wearing a red headscarf and a matching red outfit. The background is a blurred blue color, suggesting an indoor setting. The woman appears to be in the middle of a speech or presentation. There are no other people visible in the image. The focus is solely on the woman and her activity.",
+      "asr": "Along with that, I'm pretty certain that I'm also the first recipient of the Nobel Peace Prize who still fights with her younger brothers. I want there to be peace everywhere, but my brothers and I are still working on that.",
+      "ast": "silence (conf=0.37)",
+      "yolo": [
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 0,
+          "end_frame": 23,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 54.389,
+          "net_displacement": 28.282,
+          "direction_change_var": 3.317,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a woman standing at a podium, speaking into a microphone. She is wearing a red headscarf and a matching red outfit. The background is a blurred blue color, suggesting an indoor setting. The woman appears to be in the middle of a speech or presentation. There are no other people visible in the image. The focus is solely on the woman and her activity. | Speech: Along with that, I'm pretty certain that I'm also the first recipient of the Nobel Peace Prize who still fights with her younger brothers. I want there to be peace everywhere, but my brothers and I are still working on that. | Sounds: silence (conf=0.37) | Objects: person #8: middle-center -> middle-center, moving left"
+    },
+    {
+      "scene_index": 5,
+      "start_seconds": 52.18546666666667,
+      "end_seconds": 56.589866666666666,
+      "vlm_caption": "The image shows a group of people seated in rows, facing the same direction. The individuals are dressed in a variety of styles, with some wearing traditional attire and others in more contemporary clothing. The audience appears to be attentive, with some people smiling and looking towards the camera. The setting suggests a formal event, possibly a ceremony or a conference, given the attire of the people and the arrangement of the seating. There are no visible texts or logos in the image. The people are seated on chairs, and the rows are organized in a way that allows for clear visibility of the audience. The lighting in the image is bright, and the focus is on the people in the foreground, with the background slightly blurred.",
+      "asr": "I'm I'm also",
+      "ast": "speech (conf=0.68)",
+      "yolo": [
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.802,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 9.551,
+          "net_displacement": 0.72,
+          "direction_change_var": 2.2404,
+          "relations": [
+            "above tie #30",
+            "below person #31",
+            "below person #32",
+            "left-of person #26",
+            "left-of person #27",
+            "left-of person #28",
+            "left-of person #8",
+            "left-of tie #33"
+          ]
+        },
+        {
+          "track_id": 8,
+          "label": "person",
+          "confidence_avg": 0.822,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving down",
+          "path_length": 16.697,
+          "net_displacement": 14.166,
+          "direction_change_var": 0.3943,
+          "relations": [
+            "above tie #33",
+            "below person #28",
+            "below person #32",
+            "left-of person #26",
+            "left-of person #27",
+            "right-of person #2",
+            "right-of person #31",
+            "right-of tie #30"
+          ]
+        },
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 1.195,
+          "net_displacement": 1.148,
+          "direction_change_var": 0.0867,
+          "relations": [
+            "right-of person #2",
+            "right-of person #27",
+            "right-of person #28",
+            "right-of person #31",
+            "right-of person #32",
+            "right-of person #8",
+            "right-of tie #30",
+            "right-of tie #33"
+          ]
+        },
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.783,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 2.115,
+          "net_displacement": 0.676,
+          "direction_change_var": 0.7704,
+          "relations": [
+            "left-of person #26",
+            "right-of person #2",
+            "right-of person #28",
+            "right-of person #31",
+            "right-of person #32",
+            "right-of person #8",
+            "right-of tie #30",
+            "right-of tie #33"
+          ]
+        },
+        {
+          "track_id": 28,
+          "label": "person",
+          "confidence_avg": 0.733,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 2.79,
+          "net_displacement": 2.267,
+          "direction_change_var": 0.4127,
+          "relations": [
+            "above person #8",
+            "above tie #30",
+            "above tie #33",
+            "left-of person #26",
+            "left-of person #27",
+            "right-of person #2",
+            "right-of person #31",
+            "right-of person #32"
+          ]
+        },
+        {
+          "track_id": 30,
+          "label": "tie",
+          "confidence_avg": 0.64,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 1.673,
+          "net_displacement": 1.058,
+          "direction_change_var": 2.7774,
+          "relations": [
+            "below person #2",
+            "below person #28",
+            "below person #31",
+            "below person #32",
+            "left-of person #26",
+            "left-of person #27",
+            "left-of person #8",
+            "left-of tie #33"
+          ]
+        },
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.725,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 4.985,
+          "net_displacement": 4.591,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #2",
+            "above tie #30",
+            "above tie #33",
+            "below person #32",
+            "left-of person #26",
+            "left-of person #27",
+            "left-of person #28",
+            "left-of person #8"
+          ]
+        },
+        {
+          "track_id": 32,
+          "label": "person",
+          "confidence_avg": 0.559,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 2.252,
+          "net_displacement": 2.252,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #2",
+            "above person #31",
+            "above person #8",
+            "above tie #30",
+            "left-of person #26",
+            "left-of person #27",
+            "left-of person #28"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "tie",
+          "confidence_avg": 0.521,
+          "start_frame": 3,
+          "end_frame": 4,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.677,
+          "net_displacement": 0.677,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #28",
+            "below person #31",
+            "below person #8",
+            "left-of person #26",
+            "left-of person #27",
+            "right-of person #2",
+            "right-of tie #30"
+          ]
+        }
+      ],
+      "scene_description": "Visual: The image shows a group of people seated in rows, facing the same direction. The individuals are dressed in a variety of styles, with some wearing traditional attire and others in more contemporary clothing. The audience appears to be attentive, with some people smiling and looking towards the camera. The setting suggests a formal event, possibly a ceremony or a conference, given the attire of the people and the arrangement of the seating. There are no visible texts or logos in the image. The people are seated on chairs, and the rows are organized in a way that allows for clear visibility of the audience. The lighting in the image is bright, and the focus is on the people in the foreground, with the background slightly blurred. | Speech: I'm I'm also | Sounds: speech (conf=0.68) | Objects: person #2: middle-left -> middle-left, mostly stationary, moving in a loop; relations: above tie #30, below person #31, below person #32, left-of person #26, left-of person #27, left-of person #28, left-of person #8, left-of tie #33; person #8: middle-center -> bottom-center, moving down; relations: above tie #33, below person #28, below person #32, left-of person #26, left-of person #27, right-of person #2, right-of person #31, right-of tie #30; person #26: middle-right -> middle-right, mostly stationary; relations: right-of person #2, right-of person #27, right-of person #28, right-of person #31, right-of person #32, right-of person #8, right-of tie #30, right-of tie #33; person #27: middle-right -> middle-right, mostly stationary, moving in a loop; relations: left-of person #26, right-of person #2, right-of person #28, right-of person #31, right-of person #32, right-of person #8, right-of tie #30, right-of tie #33; person #28: top-center -> top-center, mostly stationary; relations: above person #8, above tie #30, above tie #33, left-of person #26, left-of person #27, right-of person #2, right-of person #31, right-of person #32"
+    },
+    {
+      "scene_index": 6,
+      "start_seconds": 56.589866666666666,
+      "end_seconds": 59.526133333333334,
+      "vlm_caption": "The image is a blurry photograph of a large crowd of people. The crowd is seated in rows, facing towards the front of the image where a speaker is standing. The speaker is wearing a red jacket and appears to be speaking to the audience. The audience members are dressed in a variety of styles, suggesting a diverse group. The setting appears to be an indoor venue with a stage and lighting equipment visible in the background. The lighting in the room is bright, and the atmosphere seems to be one of attentiveness and interest in the speaker.",
+      "asr": "We are also honored to receive this award together.",
+      "ast": "none",
+      "yolo": [],
+      "scene_description": "Visual: The image is a blurry photograph of a large crowd of people. The crowd is seated in rows, facing towards the front of the image where a speaker is standing. The speaker is wearing a red jacket and appears to be speaking to the audience. The audience members are dressed in a variety of styles, suggesting a diverse group. The setting appears to be an indoor venue with a stage and lighting equipment visible in the background. The lighting in the room is bright, and the atmosphere seems to be one of attentiveness and interest in the speaker. | Speech: We are also honored to receive this award together. | Sounds: none"
+    },
+    {
+      "scene_index": 7,
+      "start_seconds": 59.526133333333334,
+      "end_seconds": 63.53013333333333,
+      "vlm_caption": "The image shows a woman standing at a podium, speaking at an event. She is wearing a pink hijab and a matching pink shawl. The woman appears to be in the middle of a speech or presentation, as she is gesturing with her right hand. The background is a blue wall with a pattern of white lines. The woman is the central figure in the image, and her position at the podium suggests she is the main speaker or presenter at the event.",
+      "asr": "with Kailash Satyarthi, who has been a chamber",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer",
+          "path_length": 49.839,
+          "net_displacement": 38.947,
+          "direction_change_var": 0.8817,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a woman standing at a podium, speaking at an event. She is wearing a pink hijab and a matching pink shawl. The woman appears to be in the middle of a speech or presentation, as she is gesturing with her right hand. The background is a blue wall with a pattern of white lines. The woman is the central figure in the image, and her position at the podium suggests she is the main speaker or presenter at the event. | Speech: with Kailash Satyarthi, who has been a chamber | Sounds: none | Objects: person #27: middle-center -> middle-center, moving left, getting closer"
+    },
+    {
+      "scene_index": 8,
+      "start_seconds": 63.53013333333333,
+      "end_seconds": 71.27120000000001,
+      "vlm_caption": "In the image, there is a man sitting in a chair. He is wearing glasses and a white shirt. The man appears to be looking to the side, and his facial expression suggests that he is focused on something. The background is blurred, but it seems to be an indoor setting with a door visible in the background. There is no text present in the image. The man is the only person visible in the image.",
+      "asr": "for children's rights for a long time. Twice as long, in fact, than I have been alive.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 5.194,
+          "net_displacement": 3.471,
+          "direction_change_var": 2.3627,
+          "relations": [
+            "right-of chair #35",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 35,
+          "label": "chair",
+          "confidence_avg": 0.677,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 3.007,
+          "net_displacement": 2.193,
+          "direction_change_var": 1.8761,
+          "relations": [
+            "left-of person #27",
+            "right-of person #36"
+          ]
+        },
+        {
+          "track_id": 36,
+          "label": "person",
+          "confidence_avg": 0.532,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 5.251,
+          "net_displacement": 5.052,
+          "direction_change_var": 3.0823,
+          "relations": [
+            "left-of chair #35",
+            "left-of person #27"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the image, there is a man sitting in a chair. He is wearing glasses and a white shirt. The man appears to be looking to the side, and his facial expression suggests that he is focused on something. The background is blurred, but it seems to be an indoor setting with a door visible in the background. There is no text present in the image. The man is the only person visible in the image. | Speech: for children's rights for a long time. Twice as long, in fact, than I have been alive. | Sounds: none | Objects: person #27: middle-center -> middle-center, mostly stationary; relations: right-of chair #35, right-of person #36; chair #35: bottom-left -> bottom-left, mostly stationary; relations: left-of person #27, right-of person #36; person #36: bottom-left -> bottom-left, mostly stationary, getting farther; relations: left-of chair #35, left-of person #27"
+    },
+    {
+      "scene_index": 9,
+      "start_seconds": 71.27120000000001,
+      "end_seconds": 78.47840000000001,
+      "vlm_caption": "The image shows a woman standing at a podium, speaking into a microphone. She is wearing a red hijab and a matching red shawl. The woman appears to be in the middle of a speech or presentation. The background is a plain blue wall with a pattern of white lines. The woman's hands are raised slightly, suggesting she is emphasizing a point or engaging with her audience. The microphone is positioned in front of her, indicating that she is addressing an audience. The overall setting suggests a formal event or conference.",
+      "asr": "I am proud that we can work together.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.895,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left, moving in a loop",
+          "path_length": 40.652,
+          "net_displacement": 8.453,
+          "direction_change_var": 5.3205,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a woman standing at a podium, speaking into a microphone. She is wearing a red hijab and a matching red shawl. The woman appears to be in the middle of a speech or presentation. The background is a plain blue wall with a pattern of white lines. The woman's hands are raised slightly, suggesting she is emphasizing a point or engaging with her audience. The microphone is positioned in front of her, indicating that she is addressing an audience. The overall setting suggests a formal event or conference. | Speech: I am proud that we can work together. | Sounds: none | Objects: person #27: middle-center -> middle-center, moving up-left, moving in a loop"
+    },
+    {
+      "scene_index": 10,
+      "start_seconds": 78.47840000000001,
+      "end_seconds": 93.6936,
+      "vlm_caption": "In the image, there is a man sitting in a chair. He is wearing glasses and a white shirt. The man appears to be looking to the side, and his facial expression suggests that he is focused on something. The background is blurred, but it seems to be an indoor setting with a door visible in the background. There is no text present in the image. The man is the main subject of the image, and his position in the chair suggests that he is the focal point of the scene.",
+      "asr": "We can work together and show the world that an Indian and a Pakistani can work together and achieve their goals of children's rights.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.933,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-right, getting closer",
+          "path_length": 11.856,
+          "net_displacement": 7.628,
+          "direction_change_var": 3.4717,
+          "relations": [
+            "right-of chair #37"
+          ]
+        },
+        {
+          "track_id": 37,
+          "label": "chair",
+          "confidence_avg": 0.609,
+          "start_frame": 1,
+          "end_frame": 15,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 3.791,
+          "net_displacement": 1.058,
+          "direction_change_var": 2.0079,
+          "relations": [
+            "left-of person #27"
+          ]
+        }
+      ],
+      "scene_description": "Visual: In the image, there is a man sitting in a chair. He is wearing glasses and a white shirt. The man appears to be looking to the side, and his facial expression suggests that he is focused on something. The background is blurred, but it seems to be an indoor setting with a door visible in the background. There is no text present in the image. The man is the main subject of the image, and his position in the chair suggests that he is the focal point of the scene. | Speech: We can work together and show the world that an Indian and a Pakistani can work together and achieve their goals of children's rights. | Sounds: none | Objects: person #27: middle-center -> middle-center, moving down-right, getting closer; relations: right-of chair #37; chair #37: bottom-left -> bottom-left, mostly stationary, moving in a loop; relations: left-of person #27"
+    },
+    {
+      "scene_index": 11,
+      "start_seconds": 93.6936,
+      "end_seconds": 96.36293333333333,
+      "vlm_caption": "The image shows a woman standing at a podium, speaking at an event. She is wearing a pink hijab and a pink dress. The podium has a blue background and a microphone. The woman appears to be in the middle of a speech or presentation. There are no other people visible in the image. The focus is solely on the woman and her speech.",
+      "asr": "Thank you. Thank you. ",
+      "ast": "applause (conf=0.72)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.85,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 10.353,
+          "net_displacement": 10.011,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a woman standing at a podium, speaking at an event. She is wearing a pink hijab and a pink dress. The podium has a blue background and a microphone. The woman appears to be in the middle of a speech or presentation. There are no other people visible in the image. The focus is solely on the woman and her speech. | Speech: Thank you. Thank you.  | Sounds: applause (conf=0.72) | Objects: person #27: middle-center -> middle-center, moving left"
+    },
+    {
+      "scene_index": 12,
+      "start_seconds": 96.36293333333333,
+      "end_seconds": 98.76533333333333,
+      "vlm_caption": "The image shows a group of people sitting in a row, likely at an event. The individuals are facing towards the front of the image, suggesting they are watching something. The people are dressed in a variety of styles, with some wearing traditional clothing and others in more contemporary attire. The expressions on their faces are not clearly visible, but they appear to be engaged in the event. The setting seems to be indoors, and the lighting is bright, illuminating the crowd. There are no visible texts or logos in the image. The people are seated close to each other, indicating a shared experience or event. The image captures a moment of shared attention and interest.",
+      "asr": "Thank you. ",
+      "ast": "applause (conf=0.69)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.567,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 4.529,
+          "net_displacement": 4.529,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 39,
+          "label": "person",
+          "confidence_avg": 0.734,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a group of people sitting in a row, likely at an event. The individuals are facing towards the front of the image, suggesting they are watching something. The people are dressed in a variety of styles, with some wearing traditional clothing and others in more contemporary attire. The expressions on their faces are not clearly visible, but they appear to be engaged in the event. The setting seems to be indoors, and the lighting is bright, illuminating the crowd. There are no visible texts or logos in the image. The people are seated close to each other, indicating a shared experience or event. The image captures a moment of shared attention and interest. | Speech: Thank you.  | Sounds: applause (conf=0.69) | Objects: person #27: middle-center -> middle-center, mostly stationary; person #39: middle-left -> middle-left, mostly stationary"
+    },
+    {
+      "scene_index": 13,
+      "start_seconds": 98.76533333333333,
+      "end_seconds": 102.50240000000001,
+      "vlm_caption": "The image shows a large crowd of people gathered in a spacious room. The room is filled with rows of chairs, and the people are seated, facing towards the front of the room. The crowd appears to be engaged in an event or ceremony, as suggested by the presence of a podium and a speaker. The room is adorned with colorful decorations, including a large floral arrangement and a mural on the wall. The atmosphere seems to be one of anticipation and attention, as the crowd is focused on the speaker at the podium.",
+      "asr": "You",
+      "ast": "applause (conf=0.70)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.514,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a large crowd of people gathered in a spacious room. The room is filled with rows of chairs, and the people are seated, facing towards the front of the room. The crowd appears to be engaged in an event or ceremony, as suggested by the presence of a podium and a speaker. The room is adorned with colorful decorations, including a large floral arrangement and a mural on the wall. The atmosphere seems to be one of anticipation and attention, as the crowd is focused on the speaker at the podium. | Speech: You | Sounds: applause (conf=0.70) | Objects: person #1: bottom-center -> bottom-center, mostly stationary"
+    },
+    {
+      "scene_index": 14,
+      "start_seconds": 102.50240000000001,
+      "end_seconds": 144.5444,
+      "vlm_caption": "The image is blurry and lacks clear details. It appears to be a photograph of a person standing at a podium, speaking to an audience. The person is wearing a red headscarf and a red garment. The audience is out of focus, and the background is indistinct. The lighting suggests an indoor setting.",
+      "asr": "Dear brothers and sisters, I was named after the inspirational Malalai of Mewand, who is the Pashtun Joan of Arc. The word Malala means grief-stricken, sad, but in order to lend some happiness to it, my grandfather would always call me Malala, the happiest girl in the world. And today, I am very happy that we are together fighting for an important cause.",
+      "ast": "applause (conf=0.73), music (conf=0.42)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.839,
+          "start_frame": 1,
+          "end_frame": 42,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 233.552,
+          "net_displacement": 40.271,
+          "direction_change_var": 2.9587,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image is blurry and lacks clear details. It appears to be a photograph of a person standing at a podium, speaking to an audience. The person is wearing a red headscarf and a red garment. The audience is out of focus, and the background is indistinct. The lighting suggests an indoor setting. | Speech: Dear brothers and sisters, I was named after the inspirational Malalai of Mewand, who is the Pashtun Joan of Arc. The word Malala means grief-stricken, sad, but in order to lend some happiness to it, my grandfather would always call me Malala, the happiest girl in the world. And today, I am very happy that we are together fighting for an important cause. | Sounds: applause (conf=0.73), music (conf=0.42) | Objects: person #27: middle-center -> middle-center, moving left, moving in a loop"
+    },
+    {
+      "scene_index": 15,
+      "start_seconds": 144.5444,
+      "end_seconds": 148.54840000000002,
+      "vlm_caption": "The image shows a group of people, likely at a formal event. In the foreground, there is a man and a woman standing close to each other. The man is wearing a dark suit with a white shirt and a black tie. He has a mustache and is smiling. The woman is wearing a colorful headscarf and a matching outfit. She is also smiling and appears to be looking at the man.\n\nIn the background, there are several other individuals, some of whom are also wearing headscarves. They are seated and standing, and some are looking towards the camera. The setting appears to be indoors, and the lighting suggests it might be evening. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of social interaction and celebration.",
+      "asr": "This award is not just for me, it is for all of you.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.884,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 25.158,
+          "net_displacement": 3.042,
+          "direction_change_var": 1.7567,
+          "relations": [
+            "below person #45",
+            "left-of person #43",
+            "left-of person #44",
+            "right-of person #46"
+          ]
+        },
+        {
+          "track_id": 43,
+          "label": "person",
+          "confidence_avg": 0.748,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 6.442,
+          "net_displacement": 3.346,
+          "direction_change_var": 1.3368,
+          "relations": [
+            "right-of person #27",
+            "right-of person #44",
+            "right-of person #45",
+            "right-of person #46"
+          ]
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.874,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 7.826,
+          "net_displacement": 7.769,
+          "direction_change_var": 0.0583,
+          "relations": [
+            "left-of person #43",
+            "right-of person #27",
+            "right-of person #45",
+            "right-of person #46"
+          ]
+        },
+        {
+          "track_id": 45,
+          "label": "person",
+          "confidence_avg": 0.799,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 4.494,
+          "net_displacement": 3.941,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #27",
+            "above person #46",
+            "left-of person #43",
+            "left-of person #44"
+          ]
+        },
+        {
+          "track_id": 46,
+          "label": "person",
+          "confidence_avg": 0.706,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting farther",
+          "path_length": 13.001,
+          "net_displacement": 12.997,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #45",
+            "left-of person #27",
+            "left-of person #43",
+            "left-of person #44"
+          ]
+        }
+      ],
+      "scene_description": "Visual: The image shows a group of people, likely at a formal event. In the foreground, there is a man and a woman standing close to each other. The man is wearing a dark suit with a white shirt and a black tie. He has a mustache and is smiling. The woman is wearing a colorful headscarf and a matching outfit. She is also smiling and appears to be looking at the man.\n\nIn the background, there are several other individuals, some of whom are also wearing headscarves. They are seated and standing, and some are looking towards the camera. The setting appears to be indoors, and the lighting suggests it might be evening. There are no visible texts or logos in the image. The overall atmosphere of the scene is one of social interaction and celebration. | Speech: This award is not just for me, it is for all of you. | Sounds: none | Objects: person #27: middle-center -> middle-center, mostly stationary, moving in a loop; relations: below person #45, left-of person #43, left-of person #44, right-of person #46; person #43: middle-right -> middle-right, mostly stationary; relations: right-of person #27, right-of person #44, right-of person #45, right-of person #46; person #44: middle-right -> middle-right, moving right; relations: left-of person #43, right-of person #27, right-of person #45, right-of person #46; person #45: top-left -> top-left, mostly stationary; relations: above person #27, above person #46, left-of person #43, left-of person #44; person #46: middle-left -> middle-left, moving up, getting farther; relations: below person #45, left-of person #27, left-of person #43, left-of person #44"
+    },
+    {
+      "scene_index": 16,
+      "start_seconds": 148.54840000000002,
+      "end_seconds": 204.33746666666667,
+      "vlm_caption": "The image is a still from a video, showing a woman speaking at a podium. The woman is wearing a red headscarf and a red outfit, and she appears to be gesturing with her hands. She is standing in front of a microphone, which is attached to a podium. The background is blurred, but it seems to be an indoor setting with other people present. The focus is on the woman speaking, and the image conveys a sense of a public speaking event.",
+      "asr": "just for me. It is for those forgotten children who want education. It is for those frightened children who want peace. It is for those voiceless children who want change. I'm here to stand up for their rights, to raise their voice. It is not time to pity them. It is not time to pity them. It is time to take action. So it becomes the last time, the last time. So it becomes the last time that we see a child deprived of education.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.853,
+          "start_frame": 0,
+          "end_frame": 55,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting farther, moving in a loop",
+          "path_length": 376.853,
+          "net_displacement": 37.367,
+          "direction_change_var": 2.1926,
+          "relations": []
+        },
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.752,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image is a still from a video, showing a woman speaking at a podium. The woman is wearing a red headscarf and a red outfit, and she appears to be gesturing with her hands. She is standing in front of a microphone, which is attached to a podium. The background is blurred, but it seems to be an indoor setting with other people present. The focus is on the woman speaking, and the image conveys a sense of a public speaking event. | Speech: just for me. It is for those forgotten children who want education. It is for those frightened children who want peace. It is for those voiceless children who want change. I'm here to stand up for their rights, to raise their voice. It is not time to pity them. It is not time to pity them. It is time to take action. So it becomes the last time, the last time. So it becomes the last time that we see a child deprived of education. | Sounds: none | Objects: person #27: middle-center -> middle-center, moving right, getting farther, moving in a loop; person #44: middle-right -> middle-right, mostly stationary"
+    },
+    {
+      "scene_index": 17,
+      "start_seconds": 204.33746666666667,
+      "end_seconds": 207.67413333333334,
+      "vlm_caption": "The image shows a group of people sitting in a row, likely at an event or gathering. The individuals are facing towards the front of the image, suggesting they are watching something. The audience members are dressed in a variety of styles, with some wearing headscarves and others wearing glasses. The expressions on their faces are not clearly visible, but their body language indicates that they are engaged in the event. The setting appears to be indoors, and the lighting is bright, illuminating the audience members and the area in front of them. There are no visible texts or logos in the image. The overall atmosphere of the image is one of attentiveness and interest in the event taking place.",
+      "asr": "Thank you. ",
+      "ast": "applause (conf=0.73)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.733,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 30.755,
+          "net_displacement": 30.353,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #49"
+          ]
+        },
+        {
+          "track_id": 49,
+          "label": "person",
+          "confidence_avg": 0.735,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 22.229,
+          "net_displacement": 4.269,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #27"
+          ]
+        },
+        {
+          "track_id": 50,
+          "label": "person",
+          "confidence_avg": 0.582,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 51,
+          "label": "person",
+          "confidence_avg": 0.737,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a group of people sitting in a row, likely at an event or gathering. The individuals are facing towards the front of the image, suggesting they are watching something. The audience members are dressed in a variety of styles, with some wearing headscarves and others wearing glasses. The expressions on their faces are not clearly visible, but their body language indicates that they are engaged in the event. The setting appears to be indoors, and the lighting is bright, illuminating the audience members and the area in front of them. There are no visible texts or logos in the image. The overall atmosphere of the image is one of attentiveness and interest in the event taking place. | Speech: Thank you.  | Sounds: applause (conf=0.73) | Objects: person #27: middle-center -> middle-left, moving left; relations: left-of person #49; person #49: middle-right -> middle-right, mostly stationary; relations: right-of person #27; person #50: middle-center -> middle-center, mostly stationary; person #51: middle-left -> middle-left, mostly stationary"
+    },
+    {
+      "scene_index": 18,
+      "start_seconds": 207.67413333333334,
+      "end_seconds": 210.21,
+      "vlm_caption": "The image shows a group of people seated in rows of chairs. The individuals are dressed in formal attire, with men wearing suits and ties, and women in dresses. The audience appears to be attentive, with some people clapping their hands. The setting suggests a formal event or ceremony, possibly a political or diplomatic gathering. The lighting is bright, and the background is blurred, drawing focus to the people in the foreground.",
+      "asr": "You",
+      "ast": "applause (conf=0.66)",
+      "yolo": [
+        {
+          "track_id": 49,
+          "label": "person",
+          "confidence_avg": 0.91,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 11.849,
+          "net_displacement": 11.849,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #54",
+            "right-of person #50",
+            "right-of person #51"
+          ]
+        },
+        {
+          "track_id": 50,
+          "label": "person",
+          "confidence_avg": 0.853,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 5.752,
+          "net_displacement": 5.738,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #49",
+            "left-of person #54",
+            "right-of person #51"
+          ]
+        },
+        {
+          "track_id": 51,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.678,
+          "net_displacement": 0.64,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #49",
+            "left-of person #50",
+            "left-of person #54"
+          ]
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 1,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.185,
+          "net_displacement": 0.185,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #49",
+            "right-of person #50",
+            "right-of person #51"
+          ]
+        },
+        {
+          "track_id": 55,
+          "label": "person",
+          "confidence_avg": 0.517,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a group of people seated in rows of chairs. The individuals are dressed in formal attire, with men wearing suits and ties, and women in dresses. The audience appears to be attentive, with some people clapping their hands. The setting suggests a formal event or ceremony, possibly a political or diplomatic gathering. The lighting is bright, and the background is blurred, drawing focus to the people in the foreground. | Speech: You | Sounds: applause (conf=0.66) | Objects: person #49: middle-right -> middle-center, moving left; relations: left-of person #54, right-of person #50, right-of person #51; person #50: middle-center -> middle-center, mostly stationary; relations: left-of person #49, left-of person #54, right-of person #51; person #51: middle-left -> middle-left, mostly stationary; relations: left-of person #49, left-of person #50, left-of person #54; person #54: middle-right -> middle-right, mostly stationary; relations: right-of person #49, right-of person #50, right-of person #51; person #55: top-left -> top-left, mostly stationary"
+    },
+    {
+      "scene_index": 19,
+      "start_seconds": 210.21,
+      "end_seconds": 213.41320000000002,
+      "vlm_caption": "The image is a still from a television show or movie. It features two men sitting in chairs. The man on the left is clapping his hands, and the man on the right is holding his hands together, as if in prayer or meditation. Both men are wearing glasses and are dressed in formal attire. The man on the left is wearing a dark suit with a tie, and the man on the right is wearing a white robe. Behind them, there is a colorful backdrop with decorative elements. The lighting in the scene is bright, and the overall atmosphere appears to be calm and serene.",
+      "asr": "You",
+      "ast": "applause (conf=0.70)",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.937,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 3.579,
+          "net_displacement": 2.963,
+          "direction_change_var": 0.0082,
+          "relations": [
+            "left-of person #49"
+          ]
+        },
+        {
+          "track_id": 49,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 12.893,
+          "net_displacement": 12.859,
+          "direction_change_var": 0.0059,
+          "relations": [
+            "right-of person #27"
+          ]
+        },
+        {
+          "track_id": 57,
+          "label": "tie",
+          "confidence_avg": 0.508,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image is a still from a television show or movie. It features two men sitting in chairs. The man on the left is clapping his hands, and the man on the right is holding his hands together, as if in prayer or meditation. Both men are wearing glasses and are dressed in formal attire. The man on the left is wearing a dark suit with a tie, and the man on the right is wearing a white robe. Behind them, there is a colorful backdrop with decorative elements. The lighting in the scene is bright, and the overall atmosphere appears to be calm and serene. | Speech: You | Sounds: applause (conf=0.70) | Objects: person #27: middle-left -> middle-left, mostly stationary; relations: left-of person #49; person #49: middle-right -> middle-right, moving right; relations: right-of person #27; tie #57: middle-left -> middle-left, mostly stationary"
+    },
+    {
+      "scene_index": 20,
+      "start_seconds": 213.41320000000002,
+      "end_seconds": 216.74986666666666,
+      "vlm_caption": "The image shows a large gathering of people in an indoor setting. The audience is seated and appears to be attentively watching a speaker at a podium. The speaker is standing and appears to be speaking to the audience. The room has a formal atmosphere, with decorative elements such as banners and lights. The audience is diverse, with people of various ages and genders. The speaker is dressed in formal attire, suggesting the event may be of a formal nature. The room has a high ceiling and large windows, allowing natural light to enter. The overall scene suggests a formal event or ceremony, with the speaker addressing the audience.",
+      "asr": "You",
+      "ast": "applause (conf=0.65)",
+      "yolo": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.517,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image shows a large gathering of people in an indoor setting. The audience is seated and appears to be attentively watching a speaker at a podium. The speaker is standing and appears to be speaking to the audience. The room has a formal atmosphere, with decorative elements such as banners and lights. The audience is diverse, with people of various ages and genders. The speaker is dressed in formal attire, suggesting the event may be of a formal nature. The room has a high ceiling and large windows, allowing natural light to enter. The overall scene suggests a formal event or ceremony, with the speaker addressing the audience. | Speech: You | Sounds: applause (conf=0.65) | Objects: person #1: bottom-center -> bottom-center, mostly stationary"
+    },
+    {
+      "scene_index": 21,
+      "start_seconds": 216.74986666666666,
+      "end_seconds": 273.4732,
+      "vlm_caption": "The image is blurry and lacks clear details. It appears to be a photograph of a woman speaking at a public event. The woman is wearing a red headscarf and a red garment. She is standing behind a microphone, which is mounted on a podium. The background is out of focus, but it seems to be an indoor setting with a crowd of people. The lighting suggests an indoor venue with artificial lighting. The woman's expression is serious, and she appears to be addressing the audience.",
+      "asr": "I have found that people describe me in many different ways. Some people call me the girl who was shot by the Taliban. And some, the girl who fought for her rights. Some people call me a Nobel laureate now. However, my brothers still call me that annoying bossy sister. As far as I know, I'm just a committed and even stubborn person who wants to see every child getting quality education, who wants to see women having equal rights, and who wants peace in every corner of the world.",
+      "ast": "none",
+      "yolo": [
+        {
+          "track_id": 27,
+          "label": "person",
+          "confidence_avg": 0.836,
+          "start_frame": 1,
+          "end_frame": 56,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 200.481,
+          "net_displacement": 3.864,
+          "direction_change_var": 3.796,
+          "relations": []
+        }
+      ],
+      "scene_description": "Visual: The image is blurry and lacks clear details. It appears to be a photograph of a woman speaking at a public event. The woman is wearing a red headscarf and a red garment. She is standing behind a microphone, which is mounted on a podium. The background is out of focus, but it seems to be an indoor setting with a crowd of people. The lighting suggests an indoor venue with artificial lighting. The woman's expression is serious, and she appears to be addressing the audience. | Speech: I have found that people describe me in many different ways. Some people call me the girl who was shot by the Taliban. And some, the girl who fought for her rights. Some people call me a Nobel laureate now. However, my brothers still call me that annoying bossy sister. As far as I know, I'm just a committed and even stubborn person who wants to see every child getting quality education, who wants to see women having equal rights, and who wants peace in every corner of the world. | Sounds: none | Objects: person #27: middle-center -> middle-center, mostly stationary, looping/circling"
+    }
+  ]
+}
