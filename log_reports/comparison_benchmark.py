@@ -28,7 +28,7 @@ import numpy as np
 # CONFIGURATION (MODIFY THESE VARIABLES)
 # =====================================================================
 
-VIDEO_LOG_PATH = "logs/pasta_20260206_121638"  # Change this to your video log
+VIDEO_LOG_PATH = "logs/.action/messi_20260210_190050"  # Change this to your video log
 NUM_QUERIES = 5  # Number of test queries to run
 TEST_QUERIES = [
     "the scene where the person washes their hands",
