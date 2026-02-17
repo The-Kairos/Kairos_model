@@ -67,6 +67,7 @@ def describe_scenes(
     SUMMARY_key: str = "llm_scene_description",
     model= "gemini-2.5-flash",
     prompt_path = "prompts/describe_scene.txt",
+    fallback_prompt_path = "prompts/fallback_describe_scene.txt",
     cooldown_sec: float = 5,
     debug= False,
 ):
@@ -99,12 +100,31 @@ def describe_scenes(
                 context += f"Scene -{len(previous_summaries) - i + 1}:\n{s}\n"
             formatted_text += "\n" + context
 
-        summary = describe_flash_scene(
-            formatted_text,
-            client,
-            prompt_path=prompt_path,
-            model=model,
-        )
+        summary = None
+        try:
+            summary = describe_flash_scene(
+                formatted_text,
+                client,
+                prompt_path=prompt_path,
+                model=model,
+            )
+        except Exception as exc:
+            if debug:
+                print_prefixed("(WARN)", f"Scene {idx} primary prompt failed: {exc}")
+
+            try:
+                summary = describe_flash_scene(
+                    formatted_text,
+                    client,
+                    prompt_path=fallback_prompt_path,
+                    model=model,
+                )
+            except Exception as exc2:
+                if debug:
+                    print_prefixed("(WARN)", f"Scene {idx} fallback prompt failed: {exc2}")
+                if cooldown_sec and cooldown_sec > 0:
+                    time.sleep(cooldown_sec)
+                continue
 
         new_scene = dict(scene)
         new_scene[SUMMARY_key] = summary
