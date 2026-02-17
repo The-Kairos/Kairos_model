@@ -213,6 +213,15 @@ def _bash_escape(value: str) -> str:
 def write_run_cheatsheet(videos: list[dict], path: Path) -> None:
     blobs = [v.get("blob") for v in videos if isinstance(v, dict) and v.get("blob")]
 
+    def _format_duration(seconds: float | int | None) -> str:
+        if not isinstance(seconds, (int, float)) or seconds <= 0:
+            return "unknown"
+        total = int(round(seconds))
+        hours = total // 3600
+        minutes = (total % 3600) // 60
+        secs = total % 60
+        return f"{hours}h:{minutes}m:{secs}s"
+
     lines: list[str] = []
     lines.append("# Cheatsheet")
     lines.append("")
@@ -226,15 +235,19 @@ def write_run_cheatsheet(videos: list[dict], path: Path) -> None:
     lines.append("python main.py process --filter short     (<10 min videos)")
     lines.append("python main.py process --filter medium    (<30 min videos)")
     lines.append("python main.py process --filter long      (<90 min videos)")
-    lines.append("python main.py process --filter extra     (all video lenghts)")
+    lines.append("python main.py process --filter extra     (all video lengths)")
     lines.append("python main.py process --filter long --include-unknown")
     lines.append("```")
     lines.append("")
     lines.append("## Process a single video (blob name or path)")
     lines.append("```bash")
-    for blob in blobs:
-        safe_blob = _bash_escape(blob)
-        lines.append(f"python main.py process --video {safe_blob}")
+    for video in videos:
+        if not isinstance(video, dict) or not video.get("blob"):
+            continue
+        safe_blob = _bash_escape(video["blob"])
+        duration = _format_duration(video.get("video_length"))
+        lines.append(f"python main.py process --video {safe_blob}  # {duration}")
+
     lines.append("```")
     lines.append("")
     lines.append("## Run RAG on a single video (requires prior processing)")
@@ -256,38 +269,45 @@ def get_video_length_seconds(video: dict) -> float | None:
 
 def categorize_length(seconds: float) -> str:
     minutes = seconds / 60
-    if minutes < 15:
+    if minutes < 10:
         return "short"
     if minutes < 30:
         return "medium"
     if minutes < 90:
         return "long"
-    return "extra_long"
+    return "extra"
 
 
 print("")
 print("====== Choose which videos to download: ======")
-print("1) Short: under 15 minutes")
+print("1) Short: under 10 minutes")
 print("2) Medium: up to 30 minutes")
 print("3) Long: up to 90 minutes")
-print("4) Extra long: all lenghts even 90+ mins")
+print("4) Extra: all video lengths")
+print("5) Cheatsheet only (no downloads)")
 print("==============================================")
+# there should also be another option here to only create the cheaTsheet without downloading any video. 
 choice = ""
-while choice not in {"1", "2", "3", "4"}:
-    choice = input("Option (1-4): ").strip()
+while choice not in {"1", "2", "3", "4", "5"}:
+    choice = input("Option (1-5): ").strip()
+
+if choice == "5":
+    write_run_cheatsheet(data, cheatsheet_path)
+    print(f"Cheatsheet : {cheatsheet_path}")
+    raise SystemExit(0)
 
 category_map = {
     "1": "short",
     "2": "medium",
     "3": "long",
-    "4": "extra_long",
+    "4": "extra",
 }
 selected_category = category_map[choice]
 category_rank = {
     "short": 1,
     "medium": 2,
     "long": 3,
-    "extra_long": 4,
+    "extra": 4,
 }
 selected_rank = category_rank[selected_category]
 
