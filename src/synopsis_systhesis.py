@@ -73,6 +73,7 @@ def load_prompt(filename: str) -> str:
     return (PROMPTS_DIR / filename).read_text(encoding="utf-8")
 
 SEGMENT_PROMPT = load_prompt("chunk_summary.txt")
+FALLBACK_SEGMENT_PROMPT = load_prompt("fallback_chunk_summary.txt")
 CARRYOVER_PROMPT = load_prompt("chunk_summary_carryover.txt")
 SYSTHESIS_PROMPT = load_prompt("synposis_rag.txt")
 
@@ -87,12 +88,30 @@ def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: s
         carryover_context=pre_carryover_context,
         scene_chunk=chunk_text
     )
-    summary = call_gpt(client, deployment, segment_prompt)
+    summary = None
+    try:
+        summary = call_gpt(client, deployment, segment_prompt)
+    except Exception as exc:
+        _debug_print(debug, f"condense_chunk: primary prompt failed: {exc}")
+        try:
+            fallback_prompt = FALLBACK_SEGMENT_PROMPT.format(
+                carryover_context=pre_carryover_context,
+                scene_chunk=chunk_text
+            )
+            summary = call_gpt(client, deployment, fallback_prompt)
+        except Exception as exc2:
+            _debug_print(debug, f"condense_chunk: fallback prompt failed: {exc2}")
+            # Last-resort: preserve input so downstream isn't broken
+            summary = chunk_text
 
     carryover_prompt = CARRYOVER_PROMPT.format(
         segment_narrative=summary
     )
-    new_carryover_context = call_gpt(client, deployment, carryover_prompt)
+    try:
+        new_carryover_context = call_gpt(client, deployment, carryover_prompt)
+    except Exception as exc:
+        _debug_print(debug, f"condense_chunk: carryover prompt failed: {exc}")
+        new_carryover_context = pre_carryover_context
     _debug_print(debug, f"    condense_chunk: chunk_len={len(chunk_text)} condensed into len={len(summary)}")
     return summary, new_carryover_context
 
