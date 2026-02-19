@@ -1,15 +1,25 @@
-import json
-import pandas as pd
+import argparse
 import glob
+import json
 import os
 
-LOG_DIR = "./logs"
-OUTPUT_DIR = "./log_reports"
-OUTPUT_MD = os.path.join(OUTPUT_DIR, f"new_report.md")
-SAVE_CSV = False
+import pandas as pd
 
-# Ensure output directory exists
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+# =======================================================================================
+
+# [-i], [--input-dir]  folder with JSON logs        (default ./logs/_processed)
+# [-o], [--output-dir] output folder                (default ./log_reports)
+# [-m], [--output-md]  output markdown filename     (default new_report.md)
+# [--save-csv]         write CSVs too               (default to none)
+
+# Example: 
+# python log_reports/_print_logs.py -i ./logs/_processed -m new_report_with_titanic.md 
+# =======================================================================================
+
+DEFAULT_LOG_DIR = "./logs"
+DEFAULT_OUTPUT_DIR = "./log_reports"
+DEFAULT_OUTPUT_MD = "new_report.md"
+DEFAULT_SAVE_CSV = False
 
 STEP_KEYS = {
     "get_scene_list": ("video_length", "PySceneDetect*"),
@@ -62,14 +72,54 @@ def format_num(value, precision=2, fallback="n/a"):
         return f"{value:.{precision}f}"
     return fallback
 
-markdown_sections = []
+def parse_args():
+    parser = argparse.ArgumentParser(description="Generate markdown summary from log JSON files.")
+    parser.add_argument(
+        "-i",
+        "--input-dir",
+        default=DEFAULT_LOG_DIR,
+        help="Folder containing log JSON files.",
+    )
+    parser.add_argument(
+        "-o",
+        "--output-dir",
+        default=DEFAULT_OUTPUT_DIR,
+        help="Output folder for markdown (and optional CSVs).",
+    )
+    parser.add_argument(
+        "-m",
+        "--output-md",
+        default=DEFAULT_OUTPUT_MD,
+        help="Output markdown filename.",
+    )
+    parser.add_argument(
+        "--save-csv",
+        action="store_true",
+        default=DEFAULT_SAVE_CSV,
+        help="Also write per-video CSVs.",
+    )
+    return parser.parse_args()
 
-json_files = glob.glob(os.path.join(LOG_DIR, "*.json"))
 
-for file_path in json_files:
-    # Fix for UnicodeDecodeError:
-    with open(file_path, "r", encoding="utf-8", errors="replace") as f:
-        document = json.load(f)
+def main():
+    args = parse_args()
+
+    log_dir = args.input_dir
+    output_dir = args.output_dir
+    output_md = os.path.join(output_dir, args.output_md)
+    save_csv = args.save_csv
+
+    # Ensure output directory exists
+    os.makedirs(output_dir, exist_ok=True)
+
+    markdown_sections = []
+
+    json_files = glob.glob(os.path.join(log_dir, "*.json"))
+
+    for file_path in json_files:
+        # Fix for UnicodeDecodeError:
+        with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+            document = json.load(f)
 
     video_path = document.get("video_path", "unknown")
     video_title = os.path.basename(video_path)
@@ -131,11 +181,16 @@ for file_path in json_files:
         else:
             df[col] = df[col].apply(lambda x: f"{x:.3f}" if isinstance(x, (int, float)) else x)
 
+    # Ensure wall time % is the first column, followed by step
+    if "wall_time_%" in df.columns:
+        ordered_cols = ["wall_time_%", "step"] + [c for c in df.columns if c not in ["wall_time_%", "step"]]
+        df = df[ordered_cols]
+
     # CSV name
     base_name = os.path.splitext(video_title)[0].replace(" ", "_")
-    csv_path = os.path.join(OUTPUT_DIR, f"{base_name}.csv")
+    csv_path = os.path.join(output_dir, f"{base_name}.csv")
 
-    if SAVE_CSV:
+    if save_csv:
         df.to_csv(csv_path, index=False)
 
     synopsis = document.get("synopsis")
@@ -147,7 +202,7 @@ for file_path in json_files:
         parts = [p.strip() for p in synopsis.split("\n\n") if p.strip()]
         if parts:
             md += f"{parts[0]}\n\n"
-    colalign = ["left"] + ["right"] * (len(df.columns) - 1)
+    colalign = ["center", "left"] + ["right"] * (len(df.columns) - 2)
     md += df.to_markdown(index=False, colalign=colalign)
     md += "\n\n"
 
@@ -172,13 +227,17 @@ for file_path in json_files:
 
     markdown_sections.append(md)
 
-# Write all markdown tables
-with open(OUTPUT_MD, "w", encoding="utf-8") as f:
-    f.write("# Processing Logs Summary\n\n")
-    for section in markdown_sections:
-        f.write(section)
+    # Write all markdown tables
+    with open(output_md, "w", encoding="utf-8") as f:
+        f.write("# Processing Logs Summary\n\n")
+        for section in markdown_sections:
+            f.write(section)
 
-if SAVE_CSV:
-    print(f"Done! CSVs + Markdown generated in {OUTPUT_MD}")
-else:
-    print(f"Done! Markdown generated in {OUTPUT_MD}")
+    if save_csv:
+        print(f"Done! CSVs + Markdown generated in {output_md}")
+    else:
+        print(f"Done! Markdown generated in {output_md}")
+
+
+if __name__ == "__main__":
+    main()
