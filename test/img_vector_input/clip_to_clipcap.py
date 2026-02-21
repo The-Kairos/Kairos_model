@@ -1,4 +1,6 @@
+import json
 import sys
+import time
 from pathlib import Path
 
 import torch
@@ -7,7 +9,8 @@ from huggingface_hub import hf_hub_download
 from transformers import CLIPModel, CLIPProcessor, GPT2Tokenizer
 
 # Add project root and src to sys.path so local imports work if needed
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = BASE_DIR.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
@@ -16,6 +19,7 @@ def load_image(path: Path) -> Image.Image:
     if not path.exists():
         raise FileNotFoundError(f"Image not found: {path}")
     return Image.open(path).convert("RGB")
+
 
 class MLP(torch.nn.Module):
     def __init__(self, prefix_size: int, intermediate_size: int, out_size: int) -> None:
@@ -50,7 +54,6 @@ def generate_greedy(
     max_length: int = 30,
 ) -> str:
     model.eval()
-    device = prefix_embed.device
     tokens = None
     generated = prefix_embed
     eos = tokenizer.eos_token_id or 50256
@@ -71,24 +74,43 @@ def generate_greedy(
     return tokenizer.decode(tokens.squeeze().tolist(), skip_special_tokens=True).strip()
 
 
+def encode_image(
+    clip_model: CLIPModel,
+    clip_processor: CLIPProcessor,
+    image: Image.Image,
+    device: str,
+) -> torch.Tensor:
+    pixel_values = clip_processor(images=image, return_tensors="pt").pixel_values.to(device)
+    with torch.no_grad():
+        clip_features = clip_model.get_image_features(pixel_values=pixel_values).float()
+    return clip_features.detach()
+
+
+def decode_caption(
+    model: ClipCapModel,
+    tokenizer: GPT2Tokenizer,
+    clip_features: torch.Tensor,
+    max_length: int = 30,
+) -> str:
+    prefix_embed = model.mapping(clip_features).view(
+        -1, model.prefix_length, model.gpt_embedding_size
+    )
+    return generate_greedy(model, tokenizer, prefix_embed, max_length=max_length)
+
+
 def main() -> None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    # Default image path (override by passing a path as CLI arg)
-    image_path = PROJECT_ROOT / "test" / "woman_driving.jpg"
+    image_path = BASE_DIR / "woman_driving.jpg"
     if len(sys.argv) > 1:
         image_path = Path(sys.argv[1])
 
     image = load_image(image_path)
-    print(f"Device: {device}")
-    print(f"Image: {image_path}")
 
-    # Public ClipCap checkpoint (prefix-tuned)
     repo_id = "saad1926q/clipcap-image-captioning"
     ckpt_name = "coco_prefix_best_200k.pt"
     prefix_length = 10
 
-    print("Loading CLIP and ClipCap model...")
     clip_id = "openai/clip-vit-base-patch32"
     clip_model = CLIPModel.from_pretrained(clip_id).to(device)
     clip_processor = CLIPProcessor.from_pretrained(clip_id)
@@ -99,22 +121,26 @@ def main() -> None:
     state = torch.load(ckpt_path, map_location="cpu")
     if isinstance(state, dict) and "state_dict" in state:
         state = state["state_dict"]
-    missing, unexpected = model.load_state_dict(state, strict=False)
-    if missing:
-        print(f"Missing keys: {len(missing)}")
-    if unexpected:
-        print(f"Unexpected keys: {len(unexpected)}")
+    model.load_state_dict(state, strict=False)
 
-    pixel_values = clip_processor(images=image, return_tensors="pt").pixel_values.to(device)
-    with torch.no_grad():
-        clip_features = clip_model.get_image_features(pixel_values=pixel_values).float()
+    clip_model.eval()
+    model.eval()
 
-    prefix_embed = model.mapping(clip_features).view(
-        -1, model.prefix_length, model.gpt_embedding_size
-    )
+    start = time.perf_counter()
+    embedding = encode_image(clip_model, clip_processor, image, device)
+    embedding_time = time.perf_counter() - start
 
-    caption = generate_greedy(model, tokenizer, prefix_embed, max_length=30)
-    print("CLIPCap =>", caption)
+    start = time.perf_counter()
+    caption = decode_caption(model, tokenizer, embedding, max_length=30)
+    caption_time = time.perf_counter() - start
+
+    result = {
+        "vector": embedding.detach().cpu().float().tolist(),
+        "caption": caption,
+        "embedding_time": embedding_time,
+        "caption_time": caption_time,
+    }
+    print(json.dumps(result, indent=2))
 
 
 if __name__ == "__main__":
