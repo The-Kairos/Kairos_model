@@ -12,12 +12,16 @@ SCRIPTS = [
 ]
 
 
-def run_script(label: str, path: Path) -> dict:
+def run_script(label: str, path: Path, image_path: Path | None) -> dict:
     if not path.exists():
         raise FileNotFoundError(f"Missing script: {path}")
 
+    cmd = [sys.executable, str(path)]
+    if image_path is not None:
+        cmd.append(str(image_path))
+
     result = subprocess.run(
-        [sys.executable, str(path)],
+        cmd,
         cwd=str(BASE_DIR),
         capture_output=True,
         text=True,
@@ -67,9 +71,16 @@ def write_table(rows: list[dict], output_path: Path) -> None:
 
 
 def main() -> None:
+    image_path = None
+    if len(sys.argv) > 1:
+        raw_path = Path(sys.argv[1]).expanduser()
+        if raw_path.is_absolute():
+            image_path = raw_path.resolve()
+        else:
+            image_path = (Path.cwd() / raw_path).resolve()
     rows = []
     for label, path in SCRIPTS:
-        data = run_script(label, path)
+        data = run_script(label, path, image_path)
         rows.append(
             {
                 "decoder": label,
