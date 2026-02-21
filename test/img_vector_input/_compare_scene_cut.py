@@ -192,6 +192,12 @@ def run_clip(
 
 def main() -> None:
     frames_dir = BASE_DIR / "video_fps"
+    if len(sys.argv) > 1:
+        raw_path = Path(sys.argv[1]).expanduser()
+        if raw_path.is_absolute():
+            frames_dir = raw_path.resolve()
+        else:
+            frames_dir = (Path.cwd() / raw_path).resolve()
     threshold = 0.9
 
     frames, frame_numbers = list_frames(frames_dir)
