@@ -6,6 +6,8 @@ import numpy as np
 from src.debug_utils import load_prompt
 from dotenv import load_dotenv
 from google import genai
+import re
+from pathlib import Path
 
 load_dotenv("././.env")
 
@@ -222,6 +224,79 @@ def _write_conversation(path, items):
     _ensure_parent_dir(path)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(items, f, indent=2, ensure_ascii=False)
+        
+        
+# --- Preview link helpers (Azure SAS + timestamps) ---
+FROM_TO = re.compile(
+    r"From\s+(?P<start>\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?)\s+to\s+(?P<end>\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?)",
+    re.I
+)
+
+def tc_to_seconds(tc: str) -> float:
+    hh, mm, rest = tc.split(":")
+    if "." in rest:
+        ss, ms = rest.split(".")
+        frac = int(ms) / (10 ** len(ms))
+    else:
+        ss = rest
+        frac = 0.0
+    return int(hh) * 3600 + int(mm) * 60 + int(ss) + frac
+
+def resolve_sas_url(log_source: str | None, rag_path: str) -> str | None:
+    """
+    Best-effort: infer which video we're running from the _processed folder name,
+    then match against Videos/_all_videos.json.
+    If it fails, returns None and preview printing is skipped.
+    """
+    # figure out the processed folder name (_processed/<something>/...)
+    processed_dir = None
+    if log_source:
+        processed_dir = Path(log_source).resolve().parent  # _processed/<video_folder>
+    else:
+        processed_dir = Path(rag_path).resolve().parent
+
+    folder_name = processed_dir.name
+    hint = f"{rag_path} {log_source or ''}".lower()
+
+    catalog_path = Path("Videos") / "_all_videos.json"
+    if not catalog_path.exists():
+        return None
+
+    try:
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+    # match folder name against blob names
+    for item in catalog:
+        blob = item.get("blob", "")
+        sas = item.get("sas")
+        if not blob or not sas:
+            continue
+        if blob in folder_name or folder_name in blob:
+            return sas
+
+    # fallback: match by loose stem
+    folder_norm = folder_name.replace("_", " ").lower()
+    for item in catalog:
+        blob = item.get("blob", "")
+        sas = item.get("sas")
+        if not blob or not sas:
+            continue
+        blob_norm = Path(blob).stem.replace("_", " ").lower()
+        if blob_norm in folder_norm or folder_norm in blob_norm:
+            return sas
+        
+    # fallback: substring match anywhere in paths
+    for item in catalog:
+        blob = item.get("blob", "")
+        sas = item.get("sas")
+        if not blob or not sas:
+            continue
+        if blob.lower() in hint:
+            return sas
+
+    return None
 
 
 def ask_rag(
@@ -242,6 +317,11 @@ def ask_rag(
 
     client = _get_gemini_client()
     print("RAG ready. Ask questions (type 'exit' to quit).")
+    
+    sas_url = resolve_sas_url(log_source=log_source, rag_path=rag_path) 
+    
+    if show_k_context and not sas_url:
+        print("NOTE: Could not resolve SAS URL from Videos/_all_videos.json, no preview links :(")
 
     conversation = None
     if conv_path:
@@ -283,6 +363,15 @@ def ask_rag(
                 wrapped = textwrap.fill(snippet, width=96, subsequent_indent="   ")
                 print(f"{idx}. score={score:.4f}")
                 print(f"   {wrapped}")
+                # --- Preview link (NEW, output-only) ---
+                if sas_url:
+                    m = FROM_TO.search(text)
+                    if m:
+                        start = tc_to_seconds(m.group("start"))
+                        end = tc_to_seconds(m.group("end"))
+                        preview_url = f"{sas_url}#t={start:.2f},{end:.2f}"
+                        print("   Preview:")
+                        print(f"     {preview_url}")
 
         if show_timings:
             print("-" * 80)
