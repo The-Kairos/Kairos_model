@@ -46,3 +46,27 @@
 | py_clip | 22 | 12.43 | 2.34 | 56.72 | 11.46 | ok |
 | py_blip | 22 | 12.43 | 2.34 | 56.72 | 12.44 | ok |
 
+## CCTV Dogs.mp4
+
+| Test | Scenes | Avg Len (s) | Min Len (s) | Max Len (s) | Elapsed (s) | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| pyscene_base | 0 | 0.00 | 0.00 | 0.00 | 1.89 | ok |
+| vit_scene | 1 | 300.04 | 300.04 | 300.04 | 16.04 | ok |
+| clip_scene | 1 | 300.04 | 300.04 | 300.04 | 11.26 | ok |
+| blip_scene | 1 | 300.04 | 300.04 | 300.04 | 34.68 | ok |
+| py_vit | 0 | 0.00 | 0.00 | 0.00 | 2.73 | error |
+| py_clip | 0 | 0.00 | 0.00 | 0.00 | 2.63 | error |
+| py_blip | 0 | 0.00 | 0.00 | 0.00 | 2.69 | error |
+
+## Cartastrophy.mp4
+
+| Test | Scenes | Avg Len (s) | Min Len (s) | Max Len (s) | Elapsed (s) | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| pyscene_base | 32 | 7.99 | 2.00 | 28.13 | 4.27 | ok |
+| vit_scene | 142 | 1.80 | 0.27 | 30.00 | 23.62 | ok |
+| clip_scene | 63 | 4.06 | 0.27 | 30.00 | 14.71 | ok |
+| blip_scene | 111 | 2.30 | 0.50 | 17.50 | 37.94 | ok |
+| py_vit | 56 | 4.57 | 0.47 | 41.27 | 12.56 | ok |
+| py_clip | 52 | 4.92 | 0.47 | 29.93 | 12.60 | ok |
+| py_blip | 59 | 4.34 | 0.47 | 25.40 | 16.70 | ok |
+
