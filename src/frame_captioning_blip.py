@@ -33,9 +33,15 @@ def blip_frame(
     model: BlipForConditionalGeneration,
     processor: BlipProcessor,
     prompt: Optional[str] = None,
-    max_length: int = 30,
-    num_beams: int = 3,
-    do_sample: bool = False,
+    max_length: int = 50,
+    min_length: int = 20,
+    num_beams: int = 1,
+    do_sample: bool = True,
+    top_p: float = 0.9,
+    temperature: float = 0.8,
+    length_penalty: float = 0.8,
+    no_repeat_ngram_size: int = 2,
+    repetition_penalty: float = 1.2,
 ) -> str:
     """
     Generate a BLIP caption for a single frame.
@@ -53,10 +59,22 @@ def blip_frame(
         If None, uses unconditional captioning.
     max_length : int
         Maximum length of the generated caption (tokens).
+    min_length : int
+        Minimum length of the generated caption (tokens).
     num_beams : int
         Beam search width (higher = better but slower).
     do_sample : bool
         Whether to sample (True) or keep decoding deterministic (False).
+    top_p : float
+        Nucleus sampling probability mass (used when sampling).
+    temperature : float
+        Sampling temperature (used when sampling).
+    length_penalty : float
+        Exponential penalty to the length (values < 1.0 favor shorter).
+    no_repeat_ngram_size : int
+        Prevent repetition of n-grams of this size.
+    repetition_penalty : float
+        Penalty for repeated tokens (> 1.0 discourages repetition).
 
     Returns
     -------
@@ -100,10 +118,14 @@ def blip_frame(
         output_ids = model.generate(
             **inputs,
             max_length=max_length,
+            min_length=min_length,
             num_beams=num_beams,
             do_sample=do_sample,
-            no_repeat_ngram_size=2,
-            repetition_penalty=1.2,
+            top_p=top_p,
+            temperature=temperature,
+            length_penalty=length_penalty,
+            no_repeat_ngram_size=no_repeat_ngram_size,
+            repetition_penalty=repetition_penalty,
         )
 
     caption = processor.decode(output_ids[0], skip_special_tokens=True)
@@ -115,9 +137,15 @@ def caption_frames(
     model: BlipForConditionalGeneration = model,
     processor: BlipProcessor = processor,
     prompt: Optional[str] = None,
-    max_length: int = 30,
-    num_beams: int = 3,
-    do_sample: bool = False,
+    max_length: int = 50,
+    min_length: int = 20,
+    num_beams: int = 1,
+    do_sample: bool = True,
+    top_p: float = 0.9,
+    temperature: float = 0.8,
+    length_penalty: float = 0.8,
+    no_repeat_ngram_size: int = 2,
+    repetition_penalty: float = 1.2,
     debug: bool = False,
 ) -> List[Dict]:
     """
@@ -136,10 +164,22 @@ def caption_frames(
         Optional conditioning text for all captions (e.g. "a cartoon frame of").
     max_length : int
         Max caption length (tokens).
+    min_length : int
+        Min caption length (tokens).
     num_beams : int
         Beam search width.
     do_sample : bool
         Whether to sample or keep it deterministic.
+    top_p : float
+        Nucleus sampling probability mass (used when sampling).
+    temperature : float
+        Sampling temperature (used when sampling).
+    length_penalty : float
+        Exponential penalty to the length (values < 1.0 favor shorter).
+    no_repeat_ngram_size : int
+        Prevent repetition of n-grams of this size.
+    repetition_penalty : float
+        Penalty for repeated tokens (> 1.0 discourages repetition).
 
     Returns
     -------
@@ -164,8 +204,14 @@ def caption_frames(
                 processor=processor,
                 prompt=prompt,
                 max_length=max_length,
+                min_length=min_length,
                 num_beams=num_beams,
                 do_sample=do_sample,
+                top_p=top_p,
+                temperature=temperature,
+                length_penalty=length_penalty,
+                no_repeat_ngram_size=no_repeat_ngram_size,
+                repetition_penalty=repetition_penalty,
             )
             captions.append(caption)
             if debug:
@@ -181,9 +227,15 @@ def caption_frames(
 '''
 captioned_scenes = caption_frames(
     scenes=scenes_with_frames,
-    max_length=30,
-    num_beams=4,
-    do_sample=False,
+    max_length=50,
+    min_length=20,
+    num_beams=1,
+    do_sample=True,
+    top_p=0.9,
+    temperature=0.8,
+    length_penalty=0.8,
+    no_repeat_ngram_size=2,
+    repetition_penalty=1.2,
     debug=True,
     prompt="a video frame of"
 )

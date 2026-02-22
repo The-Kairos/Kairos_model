@@ -38,9 +38,15 @@ pyscene_shortest    = 2         # minimum scene length
 frames_per_scene    = 3         # number of frames sampled in each scene
 frame_resolution    = 320       # resolution on the longest axis
 blip_start_prompt   = "a video frame of"
-blip_caption_len    = 30        # max blip caption length
-blip_num_beams      = 4         # beam search width (whatever that means)
-blip_do_sample      = False     # sampling vs deterministic decoding
+blip_caption_len    = 50        # max blip caption length
+blip_min_length     = 15        # min blip caption length
+blip_num_beams      = 1         # small beam for structure
+blip_do_sample      = True      # allow variation
+blip_top_p          = 0.85       # nucleus sampling
+blip_temperature    = 0.65       # mild randomness
+blip_length_penalty = 1.0
+blip_no_repeat_ngram_size = 3
+blip_repetition_penalty = 1.1
 yolo_action_fps     = 4
 yolo_conf_thres     = 0.8       # YOLO confidence threshold
 yolo_iou_thres      = 0.5       # YOLO IoU threshold for NMS
@@ -85,8 +91,14 @@ params = {
     "frame_resolution": frame_resolution,
     "blip_start_prompt": blip_start_prompt,
     "blip_caption_len": blip_caption_len,
+    "blip_min_length": blip_min_length,
     "blip_num_beams": blip_num_beams,
     "blip_do_sample": blip_do_sample,
+    "blip_top_p": blip_top_p,
+    "blip_temperature": blip_temperature,
+    "blip_length_penalty": blip_length_penalty,
+    "blip_no_repeat_ngram_size": blip_no_repeat_ngram_size,
+    "blip_repetition_penalty": blip_repetition_penalty,
     "yolo_conf_thres": yolo_conf_thres,
     "yolo_iou_thres": yolo_iou_thres,
     "ast_target_sr": ast_target_sr,
@@ -208,8 +220,14 @@ for output_dir, test_video in test_videos.items():
             scenes=checkpoint["scenes"],
             prompt= blip_start_prompt,
             max_length=blip_caption_len,
+            min_length=blip_min_length,
             num_beams=blip_num_beams,
             do_sample=blip_do_sample,
+            top_p=blip_top_p,
+            temperature=blip_temperature,
+            length_penalty=blip_length_penalty,
+            no_repeat_ngram_size=blip_no_repeat_ngram_size,
+            repetition_penalty=blip_repetition_penalty,
             debug=True,
         )
         time.sleep(10)
@@ -312,7 +330,7 @@ for output_dir, test_video in test_videos.items():
             narrative_path = Path(output_dir) / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
             print(f"Saving narrative in: {narrative_path}")
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-    #todo: if narrative is < final summary_len then go directly to synopsis
+
     if "synopsis" not in checkpoint:
         print("")
         print_section("Running GPT4o Synopsis generation...")
@@ -323,6 +341,7 @@ for output_dir, test_video in test_videos.items():
             debug=True,
             output_dir=output_dir,
         )
+        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     rag_path = f"{output_dir}/rag_embedding.json"
     if not os.path.exists(rag_path):

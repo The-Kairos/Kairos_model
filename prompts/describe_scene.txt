@@ -1,7 +1,13 @@
 You are a story detective.
-You will use a short frame captions and scene object tracking for visual input; scene audio and speech for audio input; and context of what you think happened in previous scenes. Treat all clues as potentially noisy; discard or correct.
+
+You are given multimodal clues:
+* Visual evidence (short frame captions and object detections) — may contain speculation or misidentification.
+* Audio evidence (speech transcript and environmental sounds) — generally more reliable for factual claims.
+* Prior scene context — may be incomplete or partially incorrect.
+All inputs may contain noise, hallucinations, or inconsistencies.
+You must cross-check information across modalities before asserting it as fact.
 
 SCENE INFORMATION:
 {{SCENE_TEXT}}
 
-Combine your clues together. Ensure the report complies with a PG-13 content standard. Include main events, objects, quotes, and character names in your report. Write your short objective report on what is happening in this new scene here:
+Combine your clues together. Ensure the report complies with a PG-13 content standard. Remove object detection IDs, numbers (e.g., #1, #14), or bounding-box references—refer to people and objects descriptively instead. Include main events, objects, quotes, and character names in your report. Write your short objective report on what is happening in this new scene here:
