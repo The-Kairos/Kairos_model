@@ -12,7 +12,8 @@ def load_vlm_model(model_id="microsoft/Phi-3.5-vision-instruct"):
         model_id,
         torch_dtype=torch.bfloat16,
         device_map="auto",
-        trust_remote_code=True
+        trust_remote_code=True,
+        attn_implementation="eager",  # avoid requiring flash_attn
     ).eval()
     return model, processor
 

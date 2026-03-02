@@ -22,7 +22,8 @@ def load_vlm_model(model_id="llava-hf/llava-v1.6-mistral-7b-hf"):
 def caption_image(model, processor, image, prompt=None):
     if prompt is None:
         prompt = "[INST] <image>\nDescribe the scene in detail. Focus only on what is visually observable. Do not assume intentions or unseen events. Mention actions, objects, and interactions. [/INST]"
-    inputs = processor(prompt, image, return_tensors="pt").to("cuda")
+    # New LlavaNextProcessor API expects text/images kwargs, not (prompt, image)
+    inputs = processor(text=prompt, images=image, return_tensors="pt").to(model.device)
     output = model.generate(**inputs, max_new_tokens=256)
     return processor.decode(output[0], skip_special_tokens=True)
 
