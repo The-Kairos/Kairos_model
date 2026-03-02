@@ -1,0 +1,31 @@
+{
+    "video": "Argentina v France Full Penalty Shoot-out",
+    "video_duration_sec": 459.0585625,
+    "num_scenes": 74,
+    "scene_detection_sec": 3.05,
+    "audio_prescan_sec": 8.63,
+    "whisper_sec": 227.66,
+    "ast_sec": 158.97,
+    "total_sec": 398.35,
+    "whisper_method": "singlecall",
+    "ast_method": "parallel_per_scene",
+    "ast_scenes_processed": 73,
+    "ast_scenes_skipped": 1,
+    "whisper_segments": 33,
+    "scenes_with_speech": 67,
+    "thresholds": {
+        "SILENCE_THRESHOLD_DBFS": -77.61386283243971,
+        "SCENE_SILENCE_DBFS": -64.6782190270331,
+        "VAD_THRESHOLD": 0.2319173320732681,
+        "MIN_SPEECH_DURATION_MS": 193,
+        "MIN_SILENCE_DURATION_MS": 300,
+        "SPEECH_PAD_MS": 64,
+        "SPECTRAL_FLATNESS_THRESHOLD": 0.95,
+        "sensitivity_multiplier": 1.2936
+    },
+    "detection": {
+        "has_any_audio": true,
+        "has_speech": true,
+        "has_background_audio": true
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "video": "Young Sheldon - First Day of High School",
+    "video_duration_sec": 168.5536875,
+    "num_scenes": 34,
+    "scene_detection_sec": 5.13,
+    "audio_prescan_sec": 2.27,
+    "whisper_sec": 74.24,
+    "ast_sec": 71.19,
+    "total_sec": 152.84,
+    "whisper_method": "singlecall",
+    "ast_method": "parallel_per_scene",
+    "ast_scenes_processed": 34,
+    "ast_scenes_skipped": 0,
+    "whisper_segments": 57,
+    "scenes_with_speech": 30,
+    "thresholds": {
+        "SILENCE_THRESHOLD_DBFS": -68.941042704656,
+        "SCENE_SILENCE_DBFS": -57.45086892054666,
+        "VAD_THRESHOLD": 0.26109265676633514,
+        "MIN_SPEECH_DURATION_MS": 217,
+        "MIN_SILENCE_DURATION_MS": 300,
+        "SPEECH_PAD_MS": 57,
+        "SPECTRAL_FLATNESS_THRESHOLD": 0.95,
+        "sensitivity_multiplier": 1.149
+    },
+    "detection": {
+        "has_any_audio": true,
+        "has_speech": true,
+        "has_background_audio": true
+    }
+}
