@@ -29,6 +29,7 @@ from src.audio_speech import extract_speech_asr_api
 from src.audio_natural import extract_sounds
 from src.frame_obj_d_yolo import detect_object_yolo
 from src.scene_description import describe_scenes
+from src.debug_utils import clear_frames
 try:
     from src.system_metrics import get_system_usage
 except ImportError:
@@ -70,27 +71,44 @@ def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
     pipeline_metrics = {}
     t_start = time.time()
 
-    # 1. Scene Detection
-    print("  [Step 1/6] Scene Detection...")
-    scenes = get_scene_list(str(video_path))
-    pipeline_metrics["scene_count"] = len(scenes)
+    # Shared pre-processing cache (scene cuts, audio, AST, YOLO) per video.
+    cache_dir = Path(__file__).parent / "cache"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    cache_path = cache_dir / f"{video_name}_preproc.json"
 
-    # 2. Audio (ASR & AST)
-    print("  [Step 2/6] Audio Processing (ASR + Local AST)...")
-    for scene in scenes:
-        idx = scene["scene_index"]
-        start, end = scene["start_seconds"], scene["end_seconds"]
-        wav_path = audio_dir / f"scene_{idx:02d}.wav"
-        extract_scene_audio_ffmpeg(str(video_path), str(wav_path), start, end)
-        speech, _ = extract_speech_asr_api(str(wav_path), enable_logs=False)
-        scene["audio_speech"] = speech
-    extract_sounds(str(video_path), scenes, debug=False)
+    if cache_path.exists():
+        print("  [Shared] Loading cached scenes + audio + YOLO...")
+        with open(cache_path, "r", encoding="utf-8") as f:
+            scenes = json.load(f)
+        pipeline_metrics["scene_count"] = len(scenes)
+    else:
+        # 1. Scene Detection
+        print("  [Step 1/6] Scene Detection...")
+        scenes = get_scene_list(str(video_path))
+        pipeline_metrics["scene_count"] = len(scenes)
 
-    # 3. YOLO
-    print("  [Step 3/6] YOLO Object Detection...")
-    from src.frame_sampling import sample_fps
-    scenes = sample_fps(str(video_path), scenes, fps=1.0, new_size=320, store_meta=True)
-    scenes = detect_object_yolo(scenes, model_size="model/yolov8s.pt", summary_key="yolo_detections")
+        # 2. Audio (ASR & AST)
+        print("  [Step 2/6] Audio Processing (ASR + Local AST)...")
+        for scene in scenes:
+            idx = scene["scene_index"]
+            start, end = scene["start_seconds"], scene["end_seconds"]
+            wav_path = audio_dir / f"scene_{idx:02d}.wav"
+            extract_scene_audio_ffmpeg(str(video_path), str(wav_path), start, end)
+            speech, _ = extract_speech_asr_api(str(wav_path), enable_logs=False)
+            scene["audio_speech"] = speech
+        extract_sounds(str(video_path), scenes, debug=False)
+
+        # 3. YOLO
+        print("  [Step 3/6] YOLO Object Detection...")
+        from src.frame_sampling import sample_fps
+        scenes = sample_fps(str(video_path), scenes, fps=1.0, new_size=320, store_meta=True)
+        scenes = detect_object_yolo(scenes, model_size="model/yolov8s.pt", summary_key="yolo_detections")
+
+        # Save a lightweight, JSON-serializable version of scenes for reuse.
+        cached_scenes = clear_frames(scenes)
+        with open(cache_path, "w", encoding="utf-8") as f:
+            json.dump(cached_scenes, f, indent=2)
+
 
     # 4. Light VLM Captioning
     print(f"  [Step 4/6] Light VLM Captioning ({vlm_name})...")

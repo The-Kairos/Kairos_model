@@ -1,19 +1,30 @@
 """
 Light VLM: Phi-3.5 Vision (OCR-oriented). Use with OCR-focused prompt for document/scene text.
 """
-import torch
-from transformers import AutoProcessor, AutoModelForCausalLM
 import os
+import torch
+from transformers import AutoProcessor, AutoModelForCausalLM, AutoConfig
+
 
 def load_vlm_model(model_id="microsoft/Phi-3.5-vision-instruct"):
     print(f"Loading {model_id}...")
-    processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True, num_crops=4)
+    # Make sure any flash-attn toggles are off at env level as well.
+    os.environ.setdefault("FLASH_ATTENTION_2_ENABLED", "0")
+    os.environ.setdefault("USE_FLASH_ATTENTION", "0")
+
+    processor = AutoProcessor.from_pretrained(
+        model_id, trust_remote_code=True, num_crops=4
+    )
+    config = AutoConfig.from_pretrained(model_id, trust_remote_code=True)
+    # Force standard attention implementation so flash_attn is not required.
+    setattr(config, "attn_implementation", "eager")
+
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
+        config=config,
         torch_dtype=torch.bfloat16,
         device_map="auto",
         trust_remote_code=True,
-        attn_implementation="eager",  # avoid requiring flash_attn
     ).eval()
     return model, processor
 
