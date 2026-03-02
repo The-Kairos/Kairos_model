@@ -186,17 +186,45 @@ if __name__ == "__main__":
 
     VLMS = ["blip2", "instructblip", "llava_mistral", "phi3_vision", "siglip"]
     GCLOUD_JSON = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
+    # If a previous metrics file exists, load it so we can reuse metrics
+    # for already-processed (vlm, video) pairs that we skip.
+    existing_metrics = {}
+    if SUMMARY_PATH.exists():
+        try:
+            with open(SUMMARY_PATH, "r", encoding="utf-8") as f:
+                existing_metrics = json.load(f)
+        except Exception:
+            existing_metrics = {}
+
     all_metrics = {}
 
     for vlm in VLMS:
         all_metrics[vlm] = {}
         for video in videos:
+            video_name = video.name
+            video_stem = video.stem
+            result_dir = RESULTS_DIR / vlm / video_stem
+            result_json = result_dir / "pipeline_results.json"
+
+            # If results already exist for this (vlm, video), reuse them instead of recomputing.
+            if result_json.exists():
+                print(f"SKIP: {vlm} on {video_name} (results already exist)")
+                try:
+                    with open(result_json, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    metrics = data.get("metrics", {})
+                except Exception:
+                    metrics = (existing_metrics.get(vlm, {}) or {}).get(video_name, {})
+                all_metrics[vlm][video_name] = metrics
+                continue
+
             try:
                 metrics = run_pipeline_with_vlm(video, vlm, RESULTS_DIR, GCLOUD_JSON)
-                all_metrics[vlm][video.name] = metrics
+                all_metrics[vlm][video_name] = metrics
             except Exception as e:
-                print(f"FAILED: {vlm} on {video.name} | Error: {e}")
-                all_metrics[vlm][video.name] = {"error": str(e)}
+                print(f"FAILED: {vlm} on {video_name} | Error: {e}")
+                all_metrics[vlm][video_name] = {"error": str(e)}
 
     with open(SUMMARY_PATH, "w", encoding="utf-8") as f:
         json.dump(all_metrics, f, indent=2)
