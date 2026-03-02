@@ -21,12 +21,22 @@ Videos are read from the **same folder** as heavy VLMs:
 
 ## Setup
 
-1. Activate venv and install deps:
+**One-time install (all modules):**
 
-   ```powershell
-   .\venv\Scripts\Activate.ps1
-   pip install -r test_light_vlms/requirements.txt
-   ```
+```bash
+# From project root
+pip install -r test_light_vlms/requirements_full.txt
+```
+
+Or use the install script:
+- **Windows:** `test_light_vlms\install_deps.bat`
+- **Linux/Mac:** `bash test_light_vlms/install_deps.sh`
+
+If you use a venv, activate it first:
+```powershell
+.\venv\Scripts\Activate.ps1
+pip install -r test_light_vlms/requirements_full.txt
+```
 
 2. Ensure `.env` has `AZURE_OPENAI_*`, `GOOGLE_APPLICATION_CREDENTIALS`, and `GEMINI_API_KEY` (same as heavy pipeline).
 
