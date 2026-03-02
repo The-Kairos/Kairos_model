@@ -7,6 +7,7 @@ import os
 import sys
 import time
 import json
+import argparse
 import torch
 import cv2
 from pathlib import Path
@@ -177,14 +178,49 @@ def build_summary_table(metrics_path, table_path):
         f.write("\n*Same videos and pipeline as test_heavy_vlms for comparison.*\n")
 
 
+def parse_args():
+    """CLI options to select which VLMs and videos to run."""
+    parser = argparse.ArgumentParser(description="Run light VLM benchmarks.")
+    parser.add_argument(
+        "--vlms",
+        type=str,
+        default="",
+        help=(
+            "Comma-separated VLM names to run (default: all). "
+            "Available: blip2,instructblip,llava_mistral,phi3_vision,siglip"
+        ),
+    )
+    parser.add_argument(
+        "--videos",
+        type=str,
+        default="",
+        help="Comma-separated video stems or filenames to include (default: all).",
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    args = parse_args()
+
     videos = [v for v in VIDEOS_DIR.glob("*.mp4") if not v.name.startswith("_")]
+    if args.videos:
+        allowed = {x.strip() for x in args.videos.split(",") if x.strip()}
+        videos = [v for v in videos if v.stem in allowed or v.name in allowed]
+
     if not videos:
         print("No videos in Videos/. Add .mp4 files to run benchmarks.")
         sys.exit(0)
 
     VLMS = ["blip2", "instructblip", "llava_mistral", "phi3_vision", "siglip"]
+    if args.vlms:
+        requested = [x.strip() for x in args.vlms.split(",") if x.strip()]
+        VLMS = [v for v in VLMS if v in requested]
+
+    if not VLMS:
+        print("No VLMs selected. Use --vlms to choose from: blip2,instructblip,llava_mistral,phi3_vision,siglip")
+        sys.exit(0)
+
     GCLOUD_JSON = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 
     # If a previous metrics file exists, load it so we can reuse metrics
