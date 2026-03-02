@@ -164,6 +164,34 @@ def extract_speech(video_path, scenes, model, use_vad=True, target_sr=16000, deb
     return scenes
 
 # =========================================================
+# ASR API-style: single WAV file -> transcription (for test_*_vlms pipelines)
+# =========================================================
+def extract_speech_asr_api(wav_path, model_size="small", enable_logs=False):
+    """
+    Transcribe a single WAV file using Whisper. Used by test_heavy_vlms / test_light_vlms
+    when each scene's audio is extracted to a separate WAV.
+
+    Returns:
+        tuple: (transcription_text, timings_dict). timings_dict can be empty.
+    """
+    import time
+    model = whisper.load_model(model_size)
+    try:
+        import librosa
+        audio, sr = librosa.load(wav_path, sr=16000, mono=True)
+    except Exception:
+        audio, sr = load_audio_av(wav_path, target_sr=16000)
+    t0 = time.time()
+    result = model.transcribe(audio, fp16=False)
+    elapsed = time.time() - t0
+    text = (result.get("text") or "").strip()
+    timings = {"duration_sec": elapsed}
+    if enable_logs:
+        print_prefixed("(ASR)", f"WAV {wav_path}: {text[:80]}...")
+    return text, timings
+
+
+# =========================================================
 # Example usage
 # =========================================================
 def test():
