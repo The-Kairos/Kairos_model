@@ -33,6 +33,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.scene_cutting import get_scene_list
+from src.debug_utils import read_json, save_checkpoint
 from audio_singlecall.audio_detector import scan_audio
 from audio_singlecall.whisper_singlecall import extract_speech_singlecall
 from audio_singlecall.ast_processor import extract_sounds_optimized
@@ -67,23 +68,41 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
             # Re-check or force torch to use CPU
             pass 
     video_name = Path(video_path).stem
+    output_dir = RESULTS_DIR / video_name
+    output_dir.mkdir(parents=True, exist_ok=True)
+    checkpoint_path = output_dir / "audio_checkpoint.json"
+
     print(f"\n{'='*70}")
     print(f"  AUDIO PIPELINE (High Parallelism Enabled: {parallel})")
     print(f"  VIDEO: {video_name}")
     print(f"{'='*70}\n")
 
+    # Load checkpoint
+    checkpoint = read_json(checkpoint_path)
+    if "scenes" not in checkpoint:
+        checkpoint["scenes"] = []
+    if "timing" not in checkpoint:
+        checkpoint["timing"] = {}
+
     total_start = time.time()
 
     # ----- Step 1: Scene Detection -----
-    print("[1/4] Scene Detection...")
-    t = time.time()
-    scenes = get_scene_list(
-        input_video_path=video_path,
-        threshold=PYSCENE_THRESHOLD,
-        min_scene_sec=PYSCENE_SHORTEST,
-    )
-    scene_time = time.time() - t
-    print(f"       Found {len(scenes)} scenes in {scene_time:.2f}s\n")
+    if not checkpoint["scenes"]:
+        print("[1/4] Scene Detection...")
+        t = time.time()
+        scenes = get_scene_list(
+            input_video_path=video_path,
+            threshold=PYSCENE_THRESHOLD,
+            min_scene_sec=PYSCENE_SHORTEST,
+        )
+        scene_time = time.time() - t
+        print(f"       Found {len(scenes)} scenes in {scene_time:.2f}s\n")
+        checkpoint["scenes"] = scenes
+        checkpoint["timing"]["scene_detection_sec"] = round(scene_time, 2)
+        save_checkpoint(checkpoint, checkpoint_path)
+    else:
+        scenes = checkpoint["scenes"]
+        print(f"[1/4] Scene Detection: SKIPPED (loaded {len(scenes)} scenes from checkpoint)")
 
     # Clear memory after scene detection
     gc.collect()
@@ -91,6 +110,8 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
         torch.cuda.empty_cache()
 
     # ----- Step 2: Audio Pre-Scan -----
+    # We always run pre-scan to get the audio buffer, but we can skip logic if we want.
+    # Actually, scan_audio is relatively fast and we need the 'audio' buffer in memory anyway.
     print("[2/4] Audio Pre-Scan (RMS + Silero VAD)...")
     scan_result = scan_audio(
         video_path=video_path,
@@ -99,6 +120,9 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
         debug=debug,
     )
     print(f"       Pre-scan completed in {scan_result['scan_time_sec']:.2f}s\n")
+    checkpoint["timing"]["audio_prescan_sec"] = round(scan_result['scan_time_sec'], 2)
+    checkpoint["video_duration_sec"] = scan_result["duration_sec"]
+    checkpoint["thresholds"] = scan_result["thresholds_used"]
 
     # Clear memory after audio load/scan
     gc.collect()
@@ -106,16 +130,25 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
         torch.cuda.empty_cache()
 
     # ----- Step 3: Whisper Transcription -----
-    print("[3/4] Whisper Transcription...")
-    scenes, whisper_timing = extract_speech_singlecall(
-        scenes=scenes,
-        scan_result=scan_result,
-        model_size=ASR_MODEL_SIZE,
-        use_vad=ASR_USE_VAD,
-        parallel=parallel,
-        debug=debug,
-    )
-    print(f"       Whisper completed in {whisper_timing['total_time_sec']:.2f}s\n")
+    if not any("audio_speech" in s for s in scenes):
+        print("[3/4] Whisper Transcription...")
+        scenes, whisper_timing = extract_speech_singlecall(
+            scenes=scenes,
+            scan_result=scan_result,
+            model_size=ASR_MODEL_SIZE,
+            use_vad=ASR_USE_VAD,
+            parallel=parallel,
+            debug=debug,
+        )
+        print(f"       Whisper completed in {whisper_timing['total_time_sec']:.2f}s\n")
+        checkpoint["scenes"] = scenes
+        checkpoint["timing"]["whisper_sec"] = round(whisper_timing["total_time_sec"], 2)
+        checkpoint["timing"]["whisper_method"] = whisper_timing["method"]
+        checkpoint["timing"]["whisper_segments"] = whisper_timing.get("segments_found", 0)
+        checkpoint["timing"]["scenes_with_speech"] = whisper_timing.get("scenes_with_speech", 0)
+        save_checkpoint(checkpoint, checkpoint_path)
+    else:
+        print("[3/4] Whisper Transcription: SKIPPED (already in checkpoint)")
 
     # CRITICAL: Clear Whisper model from memory
     gc.collect()
@@ -123,36 +156,40 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
         torch.cuda.empty_cache()
 
     # ----- Step 4: AST Parallelized -----
-    print("[4/4] AST Parallelized Per-Scene...")
-    
-    # Only mask if not too large to avoid memory issues
-    ast_audio = scan_result["audio"]
-    sr = scan_result["sr"]
-    
-    # If video is extremely long (>30 min), we don't copy the whole buffer for masking
-    # unless we are in parallel mode (where we need the masked buffer).
-    if len(ast_audio) / sr < 1800: # 30 min
-        ast_audio = ast_audio.copy()
-        for seg in scan_result["speech_regions"]:
-            i0 = int(seg["start_sec"] * sr)
-            i1 = int(seg["end_sec"] * sr)
-            ast_audio[i0:i1] = 0.0
-        scan_result["audio_masked"] = ast_audio
-    else:
-        # For huge videos, we might skip full-track masking or do it lazily
-        # In High Parallel mode, we'll just pass the raw audio and hope for the best,
-        # or we could mask segments in the worker.
-        scan_result["audio_masked"] = ast_audio 
+    if not any("audio_natural" in s for s in scenes):
+        print("[4/4] AST Parallelized Per-Scene...")
+        
+        # Only mask if not too large to avoid memory issues
+        ast_audio = scan_result["audio"]
+        sr = scan_result["sr"]
+        
+        if len(ast_audio) / sr < 1800: # 30 min
+            ast_audio = ast_audio.copy()
+            for seg in scan_result["speech_regions"]:
+                i0 = int(seg["start_sec"] * sr)
+                i1 = int(seg["end_sec"] * sr)
+                ast_audio[i0:i1] = 0.0
+            scan_result["audio_masked"] = ast_audio
+        else:
+            scan_result["audio_masked"] = ast_audio 
 
-    scenes, ast_timing = extract_sounds_optimized(
-        scenes=scenes,
-        scan_result=scan_result,
-        target_sr=AST_TARGET_SR,
-        max_workers=max_workers,
-        use_processes=parallel,
-        debug=debug,
-    )
-    print(f"       AST completed in {ast_timing['total_time_sec']:.2f}s\n")
+        scenes, ast_timing = extract_sounds_optimized(
+            scenes=scenes,
+            scan_result=scan_result,
+            target_sr=AST_TARGET_SR,
+            max_workers=max_workers,
+            use_processes=parallel,
+            debug=debug,
+        )
+        print(f"       AST completed in {ast_timing['total_time_sec']:.2f}s\n")
+        checkpoint["scenes"] = scenes
+        checkpoint["timing"]["ast_sec"] = round(ast_timing["total_time_sec"], 2)
+        checkpoint["timing"]["ast_method"] = ast_timing["method"]
+        checkpoint["timing"]["ast_scenes_processed"] = ast_timing.get("scenes_processed", 0)
+        checkpoint["timing"]["ast_scenes_skipped"] = ast_timing.get("scenes_skipped", 0)
+        save_checkpoint(checkpoint, checkpoint_path)
+    else:
+        print("[4/4] AST Parallelized: SKIPPED (already in checkpoint)")
 
     # Final cleanup for this video
     gc.collect()
@@ -162,22 +199,23 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
     total_time = time.time() - total_start
 
     # ----- Timing Report -----
+    t_stats = checkpoint["timing"]
     timing = {
         "video": video_name,
-        "video_duration_sec": scan_result["duration_sec"],
+        "video_duration_sec": checkpoint.get("video_duration_sec", scan_result["duration_sec"]),
         "num_scenes": len(scenes),
-        "scene_detection_sec": round(scene_time, 2),
-        "audio_prescan_sec": round(scan_result["scan_time_sec"], 2),
-        "whisper_sec": round(whisper_timing["total_time_sec"], 2),
-        "ast_sec": round(ast_timing["total_time_sec"], 2),
+        "scene_detection_sec": t_stats.get("scene_detection_sec", 0),
+        "audio_prescan_sec": t_stats.get("audio_prescan_sec", 0),
+        "whisper_sec": t_stats.get("whisper_sec", 0),
+        "ast_sec": t_stats.get("ast_sec", 0),
         "total_sec": round(total_time, 2),
-        "whisper_method": whisper_timing["method"],
-        "ast_method": ast_timing["method"],
-        "ast_scenes_processed": ast_timing.get("scenes_processed", 0),
-        "ast_scenes_skipped": ast_timing.get("scenes_skipped", 0),
-        "whisper_segments": whisper_timing.get("segments_found", 0),
-        "scenes_with_speech": whisper_timing.get("scenes_with_speech", 0),
-        "thresholds": scan_result["thresholds_used"],
+        "whisper_method": t_stats.get("whisper_method", "unknown"),
+        "ast_method": t_stats.get("ast_method", "unknown"),
+        "ast_scenes_processed": t_stats.get("ast_scenes_processed", 0),
+        "ast_scenes_skipped": t_stats.get("ast_scenes_skipped", 0),
+        "whisper_segments": t_stats.get("whisper_segments", 0),
+        "scenes_with_speech": t_stats.get("scenes_with_speech", 0),
+        "thresholds": checkpoint.get("thresholds", scan_result["thresholds_used"]),
     }
 
     return scenes, timing
@@ -207,6 +245,11 @@ def save_results(video_path: str, scenes: list, timing: dict):
     timing_path = output_dir / "timing.json"
     with open(timing_path, "w", encoding="utf-8") as f:
         json.dump(timing, f, indent=4)
+
+    # Clean up checkpoint on success
+    checkpoint_path = output_dir / "audio_checkpoint.json"
+    if checkpoint_path.exists():
+        checkpoint_path.unlink()
 
     return output_dir
 

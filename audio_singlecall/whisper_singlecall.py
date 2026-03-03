@@ -11,6 +11,7 @@ import whisper
 import numpy as np
 import noisereduce as nr
 import torch
+import gc
 
 
 # =========================================================
@@ -121,7 +122,6 @@ def _transcribe_chunk_worker(args):
         
     # Explicit cleanup
     del model
-    import gc
     gc.collect()
     try:
         import torch
