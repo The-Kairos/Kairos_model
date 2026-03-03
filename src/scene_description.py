@@ -1,5 +1,6 @@
 import json
 import time
+from pathlib import Path
 from src.debug_utils import apply_gpt_normalization
 from src.debug_utils import print_prefixed
 
@@ -10,7 +11,8 @@ def describe_flash_scene(
                         prompt_path="prompts/describe_scene.txt",
                         model = "gemini-2.5-flash",
                         gpt_deployment = "gpt-4o-kairos",
-                        gpt_temperature = 0.3
+                        gpt_temperature = 0.3,
+                        video_path: str | None = None
                          ) -> str:
     """
     Takes ONE raw scene description (string) and returns
@@ -27,7 +29,9 @@ def describe_flash_scene(
 
     # Insert scene text into {{SCENE_TEXT}} placeholder
     normalized_text = apply_gpt_normalization(scene_text)
+    video_name = Path(video_path).name if video_path else ""
     prompt = template.replace("{{SCENE_TEXT}}", normalized_text)
+    prompt = prompt.replace("{{VIDEO_NAME}}", video_name)
 
     # Asking LLM
     if "gemini" in model.lower():
@@ -68,6 +72,7 @@ def describe_scenes(
     model= "gemini-2.5-flash",
     prompt_path = "prompts/describe_scene.txt",
     fallback_prompt_path = "prompts/fallback_describe_scene.txt",
+    video_path: str | None = None,
     cooldown_sec: float = 5,
     debug= False,
 ):
@@ -107,6 +112,7 @@ def describe_scenes(
                 client,
                 prompt_path=prompt_path,
                 model=model,
+                video_path=video_path,
             )
         except Exception as exc:
             if debug:
@@ -118,6 +124,7 @@ def describe_scenes(
                     client,
                     prompt_path=fallback_prompt_path,
                     model=model,
+                    video_path=video_path,
                 )
             except Exception as exc2:
                 if debug:
