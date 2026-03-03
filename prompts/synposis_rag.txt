@@ -3,54 +3,68 @@ You are given multiple narrative segments describing a video in chronological or
 
 TASK:
 1. Produce a complete factual summary of the entire video.
-2. Elaborate on answering ALL of the questions listed below. Write paragraphs for each point.
+2. Answer ALL of the Required Questions below.
 3. Base answers ONLY on the provided text. Do not infer or invent details.
 4. If information is missing, say "Not explicitly stated."
 5. Ensure the report complies with a PG-13 content standard.
 
 OUTPUT FORMAT (follow exactly):
+Return ONE valid JSON object only. No markdown, no extra text.
 
-Summary: <single coherent paragraph> <answer>
+Use this exact schema and key names:
+{{
+  "chat_name": "3-5 word title",
+  "summary": "Single coherent paragraph.",
+  "video_highlights": [
+    "One sentence highlight."
+  ],
+  "video_timeline": [
+    {{ "timestamp": "00:00:00", "event": "3-5 word event" }}
+  ],
+  "suggested_clips": [
+    {{ "timestamp": "00:00:00", "description": "Two sentences about significance of the clip" }}
+  ],
+  "questions": [
+    {{ "question": "Question text", "answer": "Answer text" }}
+  ]
+}}
 
-What is happening in the video? <answer>
+Rules:
+- "chat_name" must be 3-5 words.
+- "chat_name" must be a concrete description of what the video is about (not a creative title).
+- "summary" must be one paragraph.
+- "video_highlights" must contain exactly {highlights_count} items; each item is one sentence.
+- "video_timeline" must contain exactly {timeline_count} items; chronological order by timestamp. Each "event" is 3-5 words.
+- "suggested_clips" must contain exactly {clips_count} items; each "description" is exactly 2 sentences.
+- "questions" must include all Required Questions (in the order listed) plus exactly {extra_questions_count} additional predicted questions.
+- Add the additional questions after the Required Questions within the same "questions" list.
+- Use only the narrative. If a detail is missing, set the answer to "Not explicitly stated."
+- If a timestamp is not explicitly stated, set "timestamp" to "Not explicitly stated" and keep the narrative order.
+- Do not add any headers like "Additional Questions". Do not include duplicates.
 
-What are the key events? <answer>
-
-What are the key actions and who performed them? <answer>
-
-What are the main conflicts and problems encountered? <answer>
-
-Who is the main character? Describe their journey. <answer>
-
-List the characters. For each character, describe their apperance, traits, and role in the story. <answer> 
-
-What are some significant quotes from the video and who said them? <answer>
-
-What is the setting? Did it change? How is it related to the story? <answer>
-
-How did the video start? Explain the start. <answer>
-
-How did the video end? Explain the ending. <answer>
-
-What objects are central to the video and when do they appear? <answer>
-
-What is the most important thing said or heard? <answer>
-
-What is different at the end vs the beginning? <answer>
-
-What type of video is this? <answer>
-
-What is the goal or intent or theme of the video? <answer>
-
-List the moods and tones present, explain each one. <answer>
-
-What context is missing or assumed? What would require outside knowledge? <answer>
-
-Add 15 more questions you think someone will ask about this video. Ask and answer in the exact same format as above:
-- Use the exact format as the previous questions with a single blank line between each Q&A.
-- Do not add any headers like "Additional Questions".
-- Make the questions blend seamlessly with the existing list as if they were added by you
-- Avoid adding questions you do not know the answers to
+Required Questions:
+1. What is happening in the video?
+2. What are the key events?
+3. What are the key actions and who performed them?
+4. What are the main conflicts and problems encountered?
+5. Who is the main character? Describe their journey.
+6. List the characters. For each character, describe their appearance, traits, and role in the story.
+7. What are some significant quotes from the video and who said them?
+8. What is the setting? Did it change? How is it related to the story?
+9. How did the video start? Explain the start.
+10. How did the video end? Explain the ending.
+11. What objects are central to the video and when do they appear?
+12. What is the most important thing said or heard?
+13. What is different at the end vs the beginning?
+14. What type of video is this?
+15. What is the goal or intent or theme of the video?
+16. List the moods and tones present, explain each one.
+17. What context is missing or assumed? What would require outside knowledge?
+18. What are key visual descriptions?
+19. What are key audio descriptions?
+20. Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?
+21. What are prominent visual cues and audio cues noticed throughout the video?
+22. Does the video contain any live action, animation, or special effects?
 
 INPUT NARRATIVE:
 {text}

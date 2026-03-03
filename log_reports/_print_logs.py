@@ -198,10 +198,15 @@ def main():
     # Markdown section
     md = f"## {video_title}\n\n"
     if synopsis:
-        # Use only the first paragraph (summary) from the synopsis text.
-        parts = [p.strip() for p in synopsis.split("\n\n") if p.strip()]
-        if parts:
-            md += f"{parts[0]}\n\n"
+        summary_text = None
+        if isinstance(synopsis, dict):
+            summary_text = synopsis.get("summary")
+        elif isinstance(synopsis, str):
+            parts = [p.strip() for p in synopsis.split("\n\n") if p.strip()]
+            if parts:
+                summary_text = parts[0]
+        if isinstance(summary_text, str) and summary_text.strip():
+            md += f"{summary_text.strip()}\n\n"
     colalign = ["center", "left"] + ["right"] * (len(df.columns) - 2)
     md += df.to_markdown(index=False, colalign=colalign)
     md += "\n\n"

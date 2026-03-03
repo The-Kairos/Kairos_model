@@ -1,6 +1,7 @@
 import os
 import json
 from pathlib import Path
+from urllib.parse import quote
 from openai import AzureOpenAI
 from dotenv import load_dotenv
 
@@ -8,6 +9,29 @@ load_dotenv()
 
 CHUNK_SIZE = 7000
 FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
+HIGHLIGHTS_COUNT = 4
+TIMELINE_COUNT = 10
+CLIPS_COUNT = 5
+EXTRA_QUESTIONS_COUNT = 15
+REQUIRED_QUESTIONS = [
+    "What is happening in the video?",
+    "What are the key events?",
+    "What are the key actions and who performed them?",
+    "What are the main conflicts and problems encountered?",
+    "Who is the main character? Describe their journey.",
+    "List the characters. For each character, describe their appearance, traits, and role in the story.",
+    "What are some significant quotes from the video and who said them?",
+    "What is the setting? Did it change? How is it related to the story?",
+    "How did the video start? Explain the start.",
+    "How did the video end? Explain the ending.",
+    "What objects are central to the video and when do they appear?",
+    "What is the most important thing said or heard?",
+    "What is different at the end vs the beginning?",
+    "What type of video is this?",
+    "What is the goal or intent or theme of the video?",
+    "List the moods and tones present, explain each one.",
+    "What context is missing or assumed? What would require outside knowledge?",
+]
 
 # ----------------------
 # 1. Debug helper
@@ -15,6 +39,236 @@ FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
 def _debug_print(enabled: bool, message: str):
     if enabled:
         print(f"(GPT4o) {message}")
+
+
+def _parse_synopsis_json(text: str, debug: bool = False) -> dict:
+    if not isinstance(text, str):
+        return {
+            "chat_name": "Not explicitly stated",
+            "summary": "",
+            "video_highlights": [],
+            "video_timeline": [],
+            "suggested_clips": [],
+            "questions": [],
+            "parse_error": "Synopsis output was not a string",
+        }
+    try:
+        obj = json.loads(text)
+    except json.JSONDecodeError as exc:
+        start = text.find("{")
+        end = text.rfind("}")
+        if start != -1 and end != -1 and end > start:
+            try:
+                obj = json.loads(text[start:end + 1])
+            except json.JSONDecodeError:
+                obj = None
+        else:
+            obj = None
+        if obj is None:
+            _debug_print(debug, f"synopsis JSON parse failed: {exc}")
+            return {
+                "chat_name": "Not explicitly stated",
+                "summary": text.strip(),
+                "video_highlights": [],
+                "video_timeline": [],
+                "suggested_clips": [],
+                "questions": [],
+                "parse_error": "Invalid JSON from model",
+            }
+    if not isinstance(obj, dict):
+        return {
+            "chat_name": "Not explicitly stated",
+            "summary": text.strip(),
+            "video_highlights": [],
+            "video_timeline": [],
+            "suggested_clips": [],
+            "questions": [],
+            "parse_error": "JSON root was not an object",
+        }
+    return obj
+
+
+def _timecode_to_seconds(timecode: str | None):
+    if not timecode or not isinstance(timecode, str):
+        return None
+    tc = timecode.strip()
+    if not tc or tc.lower() == "not explicitly stated":
+        return None
+    parts = tc.split(":")
+    try:
+        if len(parts) == 3:
+            hours, minutes, seconds = parts
+        elif len(parts) == 2:
+            hours, minutes, seconds = "0", parts[0], parts[1]
+        elif len(parts) == 1:
+            hours, minutes, seconds = "0", "0", parts[0]
+        else:
+            return None
+        h = int(float(hours))
+        m = int(float(minutes))
+        s = float(seconds)
+        total = (h * 3600) + (m * 60) + s
+        return int(round(total))
+    except ValueError:
+        return None
+
+
+def _encode_url_path(path: str) -> str:
+    return "/".join(quote(part) for part in path.split("/"))
+
+
+def _build_video_link_base(video_path: str | None, output_dir: str | None) -> str | None:
+    if not video_path or not isinstance(video_path, str):
+        return None
+    base = video_path
+    if output_dir:
+        try:
+            base = os.path.relpath(video_path, start=output_dir)
+        except ValueError:
+            base = video_path
+    base = base.replace("\\", "/")
+    return _encode_url_path(base)
+
+
+def _format_timestamp_markdown(timestamp: str | None, video_link_base: str | None) -> str:
+    label = timestamp.strip() if isinstance(timestamp, str) and timestamp.strip() else "Not explicitly stated"
+    seconds = _timecode_to_seconds(timestamp)
+    if seconds is None:
+        return label
+    link = f"{video_link_base}#t={seconds}" if video_link_base else f"#t={seconds}"
+    return f"[{label}]({link})"
+
+
+def _extract_timed_entry(item, text_key: str):
+    if not isinstance(item, dict):
+        return None, None
+    if "timestamp" in item:
+        return item.get("timestamp"), item.get(text_key)
+    if len(item) == 1:
+        timestamp, value = next(iter(item.items()))
+        return timestamp, value
+    return item.get("timestamp"), item.get(text_key)
+
+
+def render_synopsis_markdown(synopsis: dict, video_path: str | None = None, output_dir: str | None = None) -> str:
+    title = "Video Synopsis"
+    if isinstance(synopsis, dict):
+        chat_name = synopsis.get("chat_name")
+        if isinstance(chat_name, str) and chat_name.strip():
+            title = chat_name.strip()
+
+    video_link_base = _build_video_link_base(video_path, output_dir)
+    lines = [f"# {title}"]
+
+    summary = synopsis.get("summary") if isinstance(synopsis, dict) else ""
+    if isinstance(summary, str) and summary.strip():
+        lines.extend(["", "## Summary", summary.strip()])
+
+    highlights = synopsis.get("video_highlights") if isinstance(synopsis, dict) else []
+    if isinstance(highlights, list) and highlights:
+        lines.extend(["", "## Highlights"])
+        for item in highlights:
+            if isinstance(item, str) and item.strip():
+                lines.append(f"- {item.strip()}")
+
+    timeline = synopsis.get("video_timeline") if isinstance(synopsis, dict) else []
+    if isinstance(timeline, list) and timeline:
+        lines.extend(["", "## Timeline"])
+        for entry in timeline:
+            ts, event = _extract_timed_entry(entry, "event")
+            ts_md = _format_timestamp_markdown(ts, video_link_base)
+            if isinstance(event, str) and event.strip():
+                lines.append(f"- {ts_md} — {event.strip()}")
+            else:
+                lines.append(f"- {ts_md}")
+
+    clips = synopsis.get("suggested_clips") if isinstance(synopsis, dict) else []
+    if isinstance(clips, list) and clips:
+        lines.extend(["", "## Suggested Clips"])
+        for entry in clips:
+            ts, desc = _extract_timed_entry(entry, "description")
+            ts_md = _format_timestamp_markdown(ts, video_link_base)
+            if isinstance(desc, str) and desc.strip():
+                lines.append(f"- {ts_md}: {desc.strip()}")
+            else:
+                lines.append(f"- {ts_md}")
+
+    questions = synopsis.get("questions") if isinstance(synopsis, dict) else []
+    if isinstance(questions, list) and questions:
+        lines.extend(["", "## Questions"])
+        for qa in questions:
+            if not isinstance(qa, dict):
+                continue
+            question = qa.get("question")
+            answer = qa.get("answer")
+            if isinstance(question, str) and question.strip():
+                lines.append(f"**Q:** {question.strip()}")
+                if isinstance(answer, str) and answer.strip():
+                    lines.append(f"**A:** {answer.strip()}")
+                else:
+                    lines.append("**A:** Not explicitly stated.")
+                lines.append("")
+
+    while lines and lines[-1] == "":
+        lines.pop()
+
+    return "\n".join(lines).strip() + "\n"
+
+
+def _count_questions(synopsis: dict) -> int:
+    if not isinstance(synopsis, dict):
+        return 0
+    questions = synopsis.get("questions", [])
+    if not isinstance(questions, list):
+        return 0
+    count = 0
+    for qa in questions:
+        if not isinstance(qa, dict):
+            continue
+        q = qa.get("question")
+        if isinstance(q, str) and q.strip():
+            count += 1
+    return count
+
+
+def _build_questions_repair_prompt(
+    narrative_text: str,
+    required_questions: list,
+    extra_questions_count: int,
+    highlights_count: int,
+    timeline_count: int,
+    clips_count: int,
+):
+    required_block = "\n".join(
+        [f"{idx + 1}. {q}" for idx, q in enumerate(required_questions)]
+    )
+    total_questions = len(required_questions) + extra_questions_count
+    return (
+        "Return ONE valid JSON object only. No markdown, no extra text.\n"
+        "Use this exact schema and key names:\n"
+        "{\n"
+        '  "chat_name": "3-5 word title",\n'
+        '  "summary": "Single coherent paragraph.",\n'
+        '  "video_highlights": ["One sentence highlight."],\n'
+        '  "video_timeline": [{"timestamp": "00:00:00", "event": "3-5 word event"}],\n'
+        '  "suggested_clips": [{"timestamp": "00:00:00", "description": "Two sentences. Second sentence explains significance."}],\n'
+        '  "questions": [{"question": "Question text", "answer": "Answer text"}]\n'
+        "}\n"
+        "Rules:\n"
+        '- "chat_name" must be 3-5 words and a concrete description of what the video is about.\n'
+        '- "summary" must be one paragraph.\n'
+        f'- "video_highlights" must contain exactly {highlights_count} items; each item is one sentence.\n'
+        f'- "video_timeline" must contain exactly {timeline_count} items; chronological order by timestamp. Each "event" is 3-5 words.\n'
+        f'- "suggested_clips" must contain exactly {clips_count} items; each "description" is exactly 2 sentences.\n'
+        f'- "questions" must contain exactly {total_questions} items.\n'
+        "- The first questions must be the Required Questions in the exact order listed below.\n"
+        f"- After that, add exactly {extra_questions_count} new, predicted questions.\n"
+        '- Use only the narrative. If a detail is missing, set the answer to "Not explicitly stated."\n'
+        'Required Questions:\n'
+        f"{required_block}\n"
+        "INPUT NARRATIVE:\n"
+        f"{narrative_text}\n"
+    )
 
 # ----------------------
 # 2. Chunk scenes
@@ -223,26 +477,77 @@ def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, s
 # ----------------------
 # 6. Full narrative synthesis
 # ----------------------
-def synthesize_synopsis(client, deployment, data: dict, debug: bool = False, output_dir: str | None = None, synopsis_ext: str = "md"):
+def synthesize_synopsis(
+    client,
+    deployment,
+    data: dict,
+    debug: bool = False,
+    output_dir: str | None = None,
+    synopsis_ext: str = "md",
+    highlights_count: int = HIGHLIGHTS_COUNT,
+    timeline_count: int = TIMELINE_COUNT,
+    clips_count: int = CLIPS_COUNT,
+    extra_questions_count: int = EXTRA_QUESTIONS_COUNT,
+):
     """
     Produce a final synopsis + Q&A from the narrative.
     """
     narratives = data.get("narratives", [])
     narrative_text = narratives[-1]["narrative"] if narratives else ""
-    synopsis = call_gpt(client, deployment, SYSTHESIS_PROMPT.format(text=narrative_text))
+    synopsis_text = call_gpt(
+        client,
+        deployment,
+        SYSTHESIS_PROMPT.format(
+            text=narrative_text,
+            highlights_count=highlights_count,
+            timeline_count=timeline_count,
+            clips_count=clips_count,
+            extra_questions_count=extra_questions_count,
+        ),
+    )
+    synopsis_json = _parse_synopsis_json(synopsis_text, debug=debug)
+    required_total = len(REQUIRED_QUESTIONS) + extra_questions_count
+    if _count_questions(synopsis_json) < required_total:
+        _debug_print(
+            debug,
+            "synopsis questions incomplete; retrying with strict questions prompt",
+        )
+        repair_prompt = _build_questions_repair_prompt(
+            narrative_text=narrative_text,
+            required_questions=REQUIRED_QUESTIONS,
+            extra_questions_count=extra_questions_count,
+            highlights_count=highlights_count,
+            timeline_count=timeline_count,
+            clips_count=clips_count,
+        )
+        synopsis_text = call_gpt(client, deployment, repair_prompt)
+        synopsis_json = _parse_synopsis_json(synopsis_text, debug=debug)
+    synopsis_md = render_synopsis_markdown(
+        synopsis_json,
+        video_path=data.get("video_path"),
+        output_dir=output_dir,
+    )
 
     if output_dir:
         out_dir = Path(output_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
         ext = synopsis_ext.lstrip(".") if synopsis_ext else "md"
         synopsis_path = out_dir / f"synopsis.{ext}"
-        synopsis_path.write_text(synopsis, encoding="utf-8")
+        if ext.lower() == "md":
+            synopsis_path.write_text(synopsis_md, encoding="utf-8")
+        elif ext.lower() == "json":
+            synopsis_path.write_text(
+                json.dumps(synopsis_json, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+        else:
+            synopsis_path.write_text(synopsis_text, encoding="utf-8")
         _debug_print(debug, f"synopsis is saved in {synopsis_path}")
 
     return {
         "scenes": data.get("scenes", []),
         "narratives": narratives,
-        "synopsis": synopsis
+        "synopsis": synopsis_json
     }
 
 # ----------------------

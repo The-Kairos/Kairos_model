@@ -69,13 +69,83 @@ def format_paragraph_embedding(paragraphs):
     return [p.strip() for p in paragraphs.split("\n\n") if p.strip()]
 
 
+def _extract_timed_entry(item, text_key: str):
+    if not isinstance(item, dict):
+        return None, None
+    if "timestamp" in item:
+        return item.get("timestamp"), item.get(text_key)
+    if len(item) == 1:
+        timestamp, value = next(iter(item.items()))
+        return timestamp, value
+    return item.get("timestamp"), item.get(text_key)
+
+
+def format_synopsis_embedding(synopsis):
+    if not synopsis:
+        return []
+    if isinstance(synopsis, dict):
+        contexts = []
+
+        summary = synopsis.get("summary")
+        if isinstance(summary, str) and summary.strip():
+            contexts.append(f"summary: {summary.strip()}")
+
+        highlights = synopsis.get("video_highlights", [])
+        if isinstance(highlights, list):
+            items = [h.strip() for h in highlights if isinstance(h, str) and h.strip()]
+            if items:
+                contexts.append("highlights: " + " | ".join(items))
+
+        timeline = synopsis.get("video_timeline", [])
+        if isinstance(timeline, list):
+            items = []
+            for entry in timeline:
+                ts, event = _extract_timed_entry(entry, "event")
+                if isinstance(event, str) and event.strip():
+                    if isinstance(ts, str) and ts.strip():
+                        items.append(f"{ts.strip()} - {event.strip()}")
+                    else:
+                        items.append(event.strip())
+            if items:
+                contexts.append("timeline: " + " | ".join(items))
+
+        clips = synopsis.get("suggested_clips", [])
+        if isinstance(clips, list):
+            items = []
+            for entry in clips:
+                ts, desc = _extract_timed_entry(entry, "description")
+                if isinstance(desc, str) and desc.strip():
+                    if isinstance(ts, str) and ts.strip():
+                        items.append(f"{ts.strip()} - {desc.strip()}")
+                    else:
+                        items.append(desc.strip())
+            if items:
+                contexts.append("suggested_clips: " + " | ".join(items))
+
+        questions = synopsis.get("questions", [])
+        if isinstance(questions, list):
+            items = []
+            for qa in questions:
+                if not isinstance(qa, dict):
+                    continue
+                question = qa.get("question")
+                answer = qa.get("answer")
+                if isinstance(question, str) and question.strip():
+                    if isinstance(answer, str) and answer.strip():
+                        items.append(f"Q: {question.strip()} A: {answer.strip()}")
+                    else:
+                        items.append(f"Q: {question.strip()}")
+            if items:
+                contexts.append("questions: " + " | ".join(items))
+
+        return contexts
+
+    return format_paragraph_embedding(synopsis)
+
 
 def build_contexts(checkpoint: dict):
     scenes = format_scene_embedding(checkpoint.get("scenes", []))
-
-    synopsis_text = checkpoint.get("synopsis", "")
-    synopsis = format_paragraph_embedding(synopsis_text)
-
+    synopsis = format_synopsis_embedding(checkpoint.get("synopsis", ""))
     return [c for c in (scenes + synopsis) if c and c.strip()]
 
 
