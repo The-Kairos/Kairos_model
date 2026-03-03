@@ -13,6 +13,6 @@ Write-Host "Processing all videos..." -ForegroundColor Gray
 
 # 2. Run Evaluation
 Write-Host "`nGenerating Evaluation Metrics..." -ForegroundColor Gray
-& "..\venv\Scripts\python.exe" -m audio_singlecall.evaluation
+& "..\venv\Scripts\python.exe" -m audio_singlecall.evaluation --all
 
 Write-Host "`nDone! Check results in: audio_singlecall/results/" -ForegroundColor Green

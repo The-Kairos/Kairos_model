@@ -2,16 +2,16 @@
     "video": "How to Make Pasta - Without a Machine",
     "video_duration_sec": 328.0515625,
     "num_scenes": 58,
-    "scene_detection_sec": 11.39,
-    "audio_prescan_sec": 5.12,
-    "whisper_sec": 161.24,
-    "ast_sec": 135.22,
-    "total_sec": 312.98,
-    "whisper_method": "singlecall",
-    "ast_method": "parallel_per_scene",
+    "scene_detection_sec": 9.7,
+    "audio_prescan_sec": 4.35,
+    "whisper_sec": 141.02,
+    "ast_sec": 118.73,
+    "total_sec": 273.8,
+    "whisper_method": "parallel_1_chunks",
+    "ast_method": "parallel_processes",
     "ast_scenes_processed": 58,
     "ast_scenes_skipped": 0,
-    "whisper_segments": 62,
+    "whisper_segments": 61,
     "scenes_with_speech": 58,
     "thresholds": {
         "SILENCE_THRESHOLD_DBFS": -74.70532912082417,
@@ -22,10 +22,5 @@
         "SPEECH_PAD_MS": 62,
         "SPECTRAL_FLATNESS_THRESHOLD": 0.95,
         "sensitivity_multiplier": 1.2451
-    },
-    "detection": {
-        "has_any_audio": true,
-        "has_speech": true,
-        "has_background_audio": true
     }
 }

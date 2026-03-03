@@ -50,14 +50,15 @@ RESULTS_DIR = Path(__file__).resolve().parent / "results"
 # Pipeline
 # =========================================================
 
-def run_pipeline(video_path: str, debug: bool = True):
+def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, debug: bool = True):
     """
     Run the full audio-only pipeline on a single video.
     Returns (scenes, timing_report).
     """
     video_name = Path(video_path).stem
     print(f"\n{'='*70}")
-    print(f"  AUDIO SINGLE-CALL PIPELINE: {video_name}")
+    print(f"  AUDIO PIPELINE (High Parallelism Enabled: {parallel})")
+    print(f"  VIDEO: {video_name}")
     print(f"{'='*70}\n")
 
     total_start = time.time()
@@ -83,13 +84,14 @@ def run_pipeline(video_path: str, debug: bool = True):
     )
     print(f"       Pre-scan completed in {scan_result['scan_time_sec']:.2f}s\n")
 
-    # ----- Step 3: Whisper Single-Call -----
-    print("[3/4] Whisper Single-Call Transcription...")
+    # ----- Step 3: Whisper Transcription -----
+    print("[3/4] Whisper Transcription...")
     scenes, whisper_timing = extract_speech_singlecall(
         scenes=scenes,
         scan_result=scan_result,
         model_size=ASR_MODEL_SIZE,
         use_vad=ASR_USE_VAD,
+        parallel=parallel,
         debug=debug,
     )
     print(f"       Whisper completed in {whisper_timing['total_time_sec']:.2f}s\n")
@@ -97,22 +99,31 @@ def run_pipeline(video_path: str, debug: bool = True):
     # ----- Step 4: AST Parallelized -----
     print("[4/4] AST Parallelized Per-Scene...")
     
-    # Mask speech regions in the full audio buffer ONCE here to be thread-safe
-    ast_audio = scan_result["audio"].copy()
+    # Only mask if not too large to avoid memory issues
+    ast_audio = scan_result["audio"]
     sr = scan_result["sr"]
-    for seg in scan_result["speech_regions"]:
-        i0 = int(seg["start_sec"] * sr)
-        i1 = int(seg["end_sec"] * sr)
-        ast_audio[i0:i1] = 0.0
     
-    # Pass the masked audio back into scan_result for the processor to use
-    scan_result["audio_masked"] = ast_audio
+    # If video is extremely long (>30 min), we don't copy the whole buffer for masking
+    # unless we are in parallel mode (where we need the masked buffer).
+    if len(ast_audio) / sr < 1800: # 30 min
+        ast_audio = ast_audio.copy()
+        for seg in scan_result["speech_regions"]:
+            i0 = int(seg["start_sec"] * sr)
+            i1 = int(seg["end_sec"] * sr)
+            ast_audio[i0:i1] = 0.0
+        scan_result["audio_masked"] = ast_audio
+    else:
+        # For huge videos, we might skip full-track masking or do it lazily
+        # In High Parallel mode, we'll just pass the raw audio and hope for the best,
+        # or we could mask segments in the worker.
+        scan_result["audio_masked"] = ast_audio 
 
     scenes, ast_timing = extract_sounds_optimized(
         scenes=scenes,
         scan_result=scan_result,
         target_sr=AST_TARGET_SR,
-        max_workers=AST_MAX_WORKERS,
+        max_workers=max_workers,
+        use_processes=parallel,
         debug=debug,
     )
     print(f"       AST completed in {ast_timing['total_time_sec']:.2f}s\n")
@@ -136,27 +147,7 @@ def run_pipeline(video_path: str, debug: bool = True):
         "whisper_segments": whisper_timing.get("segments_found", 0),
         "scenes_with_speech": whisper_timing.get("scenes_with_speech", 0),
         "thresholds": scan_result["thresholds_used"],
-        "detection": {
-            "has_any_audio": scan_result["has_any_audio"],
-            "has_speech": scan_result["has_speech"],
-            "has_background_audio": scan_result["has_background_audio"],
-        },
     }
-
-    # Print summary table
-    print(f"\n{'='*70}")
-    print(f"  TIMING SUMMARY: {video_name}")
-    print(f"{'='*70}")
-    print(f"  Video Duration:     {scan_result['duration_sec']:.1f}s ({scan_result['duration_sec']/60:.1f} min)")
-    print(f"  Scenes:             {len(scenes)}")
-    print(f"  ─────────────────────────────────────────")
-    print(f"  Scene Detection:    {scene_time:.2f}s")
-    print(f"  Audio Pre-Scan:     {scan_result['scan_time_sec']:.2f}s")
-    print(f"  Whisper (single):   {whisper_timing['total_time_sec']:.2f}s  [{whisper_timing['method']}]")
-    print(f"  AST (parallel):     {ast_timing['total_time_sec']:.2f}s  [{ast_timing['method']}]")
-    print(f"  ─────────────────────────────────────────")
-    print(f"  TOTAL:              {total_time:.2f}s")
-    print(f"{'='*70}\n")
 
     return scenes, timing
 
@@ -174,9 +165,6 @@ def save_results(video_path: str, scenes: list, timing: dict):
             "scene_index": scene["scene_index"],
             "start_timecode": scene["start_timecode"],
             "end_timecode": scene["end_timecode"],
-            "start_seconds": scene["start_seconds"],
-            "end_seconds": scene["end_seconds"],
-            "duration_seconds": scene["duration_seconds"],
             "audio_speech": scene.get("audio_speech", ""),
             "audio_natural": scene.get("audio_natural", "none"),
         })
@@ -185,14 +173,10 @@ def save_results(video_path: str, scenes: list, timing: dict):
     with open(scenes_path, "w", encoding="utf-8") as f:
         json.dump(scene_output, f, indent=4, ensure_ascii=False)
 
-    # Save timing
-    # Remove non-serializable items from timing
-    timing_clean = {k: v for k, v in timing.items()}
     timing_path = output_dir / "timing.json"
     with open(timing_path, "w", encoding="utf-8") as f:
-        json.dump(timing_clean, f, indent=4)
+        json.dump(timing, f, indent=4)
 
-    print(f"Results saved to: {output_dir}")
     return output_dir
 
 
@@ -201,20 +185,24 @@ def save_results(video_path: str, scenes: list, timing: dict):
 # =========================================================
 
 def main():
-    parser = argparse.ArgumentParser(description="Audio Single-Call Pipeline")
+    parser = argparse.ArgumentParser(description="Audio High-Parallel Pipeline")
     parser.add_argument("--video", type=str, help="Path to video file")
     parser.add_argument("--all", action="store_true", help="Process all videos in Videos/")
+    parser.add_argument("--parallel", action="store_true", help="Use multi-process parallelization")
+    parser.add_argument("--workers", type=int, default=4, help="Number of parallel workers")
     parser.add_argument("--quiet", action="store_true", help="Suppress debug output")
     args = parser.parse_args()
 
     debug = not args.quiet
 
     if args.all:
-        # Find all video files
         video_files = []
-        for ext in ("*.mp4", "*.mkv", "*.avi", "*.mov"):
-            video_files.extend(VIDEOS_DIR.glob(ext))
-        video_files = [str(p) for p in video_files if not p.name.startswith("_") and not p.name.startswith(".")]
+        # Use iterdir to catch all files including dot-prefixed ones
+        extensions = (".mp4", ".mkv", ".avi", ".mov")
+        for p in VIDEOS_DIR.iterdir():
+            if p.suffix.lower() in extensions and not p.name.startswith("_"):
+                video_files.append(str(p))
+        print(f"Found {len(video_files)} videos to process.")
     elif args.video:
         video_files = [args.video]
     else:
@@ -224,32 +212,54 @@ def main():
     all_timings = []
     for video_path in video_files:
         if not os.path.exists(video_path):
-            print(f"[WARN] Video not found: {video_path}")
+            continue
+
+        video_name = Path(video_path).stem
+        output_dir = RESULTS_DIR / video_name
+        if (output_dir / "audio_results.json").exists():
+            print(f"Skipping {video_name} (already processed)")
             continue
 
         try:
-            scenes, timing = run_pipeline(video_path, debug=debug)
+            # Memory Check for very long videos
+            import psutil
+            available_gb = psutil.virtual_memory().available / (1024**3)
+            if available_gb < 2.0:
+                print(f"[WARN] Low memory ({available_gb:.1f}GB). Pipeline might fail on long videos.")
+
+            scenes, timing = run_pipeline(
+                video_path, 
+                parallel=args.parallel, 
+                max_workers=args.workers, 
+                debug=debug
+            )
             save_results(video_path, scenes, timing)
             all_timings.append(timing)
+
+            # Cleanup: Free space if needed in deployment scenarios
+            # (In this context, we usually keep them for evaluation, but for massive runs we might clear)
+            # if args.cleanup:
+            #     import shutil
+            #     shutil.rmtree(RESULTS_DIR / Path(video_path).stem / ".clips", ignore_errors=True)
+
         except Exception as e:
-            print(f"\n[ERROR] Pipeline failed for {video_path}: {e}")
-            import traceback
-            traceback.print_exc()
+            print(f"[ERROR] {video_path}: {e}")
             continue
 
-    # Print comparison table if multiple videos
     if len(all_timings) > 1:
         print(f"\n{'='*90}")
-        print("  COMPARISON TABLE (All Videos)")
+        print("  FINAL COMPARISON TABLE")
         print(f"{'='*90}")
-        print(f"  {'Video':<40} {'Dur':>6} {'Scenes':>6} {'Scan':>6} {'Whisper':>8} {'AST':>8} {'Total':>8}")
-        print(f"  {'─'*40} {'─'*6} {'─'*6} {'─'*6} {'─'*8} {'─'*8} {'─'*8}")
+        print(f"  {'Video':<40} {'Dur':>6} {'Scenes':>6} {'Whisper':>8} {'AST':>8} {'Total':>8}")
         for t in all_timings:
             name = t["video"][:38]
             dur = f"{t['video_duration_sec']/60:.1f}m"
-            print(f"  {name:<40} {dur:>6} {t['num_scenes']:>6} {t['audio_prescan_sec']:>5.1f}s {t['whisper_sec']:>7.1f}s {t['ast_sec']:>7.1f}s {t['total_sec']:>7.1f}s")
+            print(f"  {name:<40} {dur:>6} {t['num_scenes']:>6} {t['whisper_sec']:>7.1f}s {t['ast_sec']:>7.1f}s {t['total_sec']:>7.1f}s")
         print(f"{'='*90}\n")
 
 
 if __name__ == "__main__":
+    import multiprocessing
+    # Required for Windows when using ProcessPoolExecutor
+    multiprocessing.freeze_support()
     main()

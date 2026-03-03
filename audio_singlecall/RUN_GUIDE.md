@@ -51,7 +51,25 @@ set PYTHONPATH=..
 
 ---
 
-## 3. Frequently Asked Questions
+## 3. High Parallelism Mode (CPU Optimized)
+
+For very long videos (>15 minutes) or to speed up processing on multi-core systems, use the `--parallel` flag.
+
+### Features:
+- **Dynamic Chunking**: Automatically splits long audio into 10-minute parallel chunks.
+- **Deduplication**: Merges overlapping segments seamlessly.
+- **ProcessPool AST**: Runs environmental sound classification on multiple cores.
+
+### Command Example:
+```cmd
+set PYTHONPATH=..
+..\venv\Scripts\python.exe -m audio_singlecall.main --all --parallel --workers 6
+```
+*(Replace `6` with the number of CPU cores you wish to allocate)*
+
+---
+
+## 4. Frequently Asked Questions
 
 ### Do I need to activate the `venv`?
 No. The scripts and commands above use the absolute path (`..\venv\Scripts\python.exe`), which automatically uses the virtual environment's packages without needing to run `activate`. 

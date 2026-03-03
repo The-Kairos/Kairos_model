@@ -10,18 +10,23 @@ Runs MIT AST (Audio Spectrogram Transformer) per scene, but:
 import time
 import numpy as np
 import torch
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
 from transformers import AutoFeatureExtractor, AutoModelForAudioClassification
 
 
-# AST model is loaded once at module level
+# =========================================================
+# AST Model Helper (for ProcessPool)
+# =========================================================
+_AST_MODEL = None
+_AST_FE = None
 
-# =========================================================
-# Load AST model (once)
-# =========================================================
-AST_MODEL_NAME = "MIT/ast-finetuned-audioset-10-10-0.4593"
-AST_FE = AutoFeatureExtractor.from_pretrained(AST_MODEL_NAME)
-AST_MODEL = AutoModelForAudioClassification.from_pretrained(AST_MODEL_NAME)
+def _get_ast_model():
+    global _AST_MODEL, _AST_FE
+    if _AST_MODEL is None:
+        AST_MODEL_NAME = "MIT/ast-finetuned-audioset-10-10-0.4593"
+        _AST_FE = AutoFeatureExtractor.from_pretrained(AST_MODEL_NAME)
+        _AST_MODEL = AutoModelForAudioClassification.from_pretrained(AST_MODEL_NAME)
+    return _AST_FE, _AST_MODEL
 
 
 # =========================================================
@@ -32,26 +37,21 @@ def classify_scene_audio(audio_slice: np.ndarray, sr: int,
                          threshold: float = 0.3, device: str = "cpu") -> str:
     """
     Classify a single scene's audio using AST.
-    Removes speech regions first, then classifies environmental sounds.
-
-    Returns a string like "music (conf=0.85), crowd (conf=0.72)" or "none".
     """
     if audio_slice.size == 0:
         return "none"
 
-    # Speech is now masked externally before calling this, or passed in.
-    # We'll assume the audio_slice passed here is already masked for speech.
-    masked = audio_slice
+    fe, model = _get_ast_model()
 
     # AST inference
-    inputs = AST_FE(masked, sampling_rate=sr, return_tensors="pt", padding=True).to(device)
+    inputs = fe(audio_slice, sampling_rate=sr, return_tensors="pt", padding=True).to(device)
 
     with torch.no_grad():
-        outputs = AST_MODEL(**inputs)
+        outputs = model(**inputs)
         probs = torch.sigmoid(outputs.logits)[0].cpu().numpy()
 
     labels = [
-        AST_MODEL.config.id2label[i]
+        model.config.id2label[i]
         for i, p in enumerate(probs)
         if p >= threshold
     ]
@@ -68,27 +68,25 @@ def classify_scene_audio(audio_slice: np.ndarray, sr: int,
 
 
 # =========================================================
-# 2. Process a Single Scene (for thread pool)
+# 2. Process a Single Scene (for pool)
 # =========================================================
 
 def _process_one_scene(args):
-    """Worker function for ThreadPoolExecutor."""
-    idx, audio, sr, t0, t1, scene_rms_dbfs, scene_silence_threshold = args
+    """Worker function for Pooled Execution."""
+    idx, audio_slice, sr, scene_rms_dbfs, scene_silence_threshold = args
 
     # Skip if scene is below silence threshold
     if scene_rms_dbfs < scene_silence_threshold:
         return idx, "none", True  # True = skipped
 
-    # Slice audio
-    i0 = max(0, int(t0 * sr))
-    i1 = min(len(audio), int(t1 * sr))
-    audio_slice = audio[i0:i1]
+    if audio_slice is None or audio_slice.size == 0:
+        return idx, "none", True
 
     if len(audio_slice) == 0:
         return idx, "none", True
 
     label = classify_scene_audio(audio_slice, sr)
-    return idx, label, False  # False = not skipped
+    return idx, label, False
 
 
 # =========================================================
@@ -98,24 +96,18 @@ def _process_one_scene(args):
 def extract_sounds_optimized(scenes: list, scan_result: dict,
                              target_sr: int = 16000,
                              max_workers: int = 4,
+                             use_processes: bool = False,
                              debug: bool = False) -> tuple:
     """
     Run AST per scene with parallel execution and skip logic.
 
     Args:
-        scenes: list of scene dicts with start_seconds/end_seconds
-        scan_result: output from audio_detector.scan_audio()
-        target_sr: sample rate
         max_workers: number of parallel workers
-        debug: print progress
-
-    Returns:
-        (scenes, timing_info) where each scene gains "audio_natural" key
+        use_processes: If True, uses ProcessPoolExecutor (better for CPU)
     """
     t_start = time.time()
 
     if not scan_result["has_any_audio"] or not scan_result["has_background_audio"]:
-        # No meaningful audio — fill all scenes with "none"
         if debug:
             reason = "no audio" if not scan_result["has_any_audio"] else "no background audio"
             print(f"[AST] Skipping all {len(scenes)} scenes ({reason})")
@@ -134,28 +126,39 @@ def extract_sounds_optimized(scenes: list, scan_result: dict,
     per_scene_rms = scan_result["per_scene_rms"]
     scene_silence_threshold = scan_result["thresholds_used"]["SCENE_SILENCE_DBFS"]
 
-    # Prepare args for parallel execution
     task_args = []
     for idx, scene in enumerate(scenes):
         t0 = float(scene["start_seconds"])
         t1 = float(scene["end_seconds"])
         rms_dbfs = per_scene_rms[idx] if idx < len(per_scene_rms) else -200.0
-        task_args.append((idx, audio, sr, t0, t1, rms_dbfs, scene_silence_threshold))
+        
+        # SLICE BEFORE PARALLEL: This is the OOM fix.
+        # Passing the full 'audio' buffer to N workers in ProcessPoolExecutor
+        # causes N copies of the full audio to be pickled/unpickled.
+        if rms_dbfs >= scene_silence_threshold:
+            i0 = max(0, int(t0 * sr))
+            i1 = min(len(audio), int(t1 * sr))
+            audio_slice = audio[i0:i1].copy() # copy to ensure we don't carry the full buffer's data
+        else:
+            audio_slice = None
 
-    # Execute in parallel
+        task_args.append((idx, audio_slice, sr, rms_dbfs, scene_silence_threshold))
+
     results = [None] * len(scenes)
     skipped_count = 0
     processed_count = 0
 
     if debug:
         pre_skip = sum(1 for a in task_args if a[5] < scene_silence_threshold)
+        mode = "ProcessPool" if use_processes else "ThreadPool"
+        print(f"[AST] Using {mode} with {max_workers} workers")
         print(f"[AST] Processing {len(scenes)} scenes ({pre_skip} will be skipped by RMS)")
 
-    # Note: AST model is not thread-safe for GPU; use workers=1 for GPU
-    # For CPU inference, parallel is safe
-    actual_workers = min(max_workers, len(scenes))
+    # Execute
+    ExecutorClass = ProcessPoolExecutor if use_processes else ThreadPoolExecutor
+    actual_workers = min(max_workers, len(scenes) or 1)
 
-    with ThreadPoolExecutor(max_workers=actual_workers) as executor:
+    with ExecutorClass(max_workers=actual_workers) as executor:
         futures = {executor.submit(_process_one_scene, args): args[0] for args in task_args}
 
         for future in as_completed(futures):
@@ -166,33 +169,22 @@ def extract_sounds_optimized(scenes: list, scan_result: dict,
                     skipped_count += 1
                 else:
                     processed_count += 1
-                    if debug:
-                        print(f"[AST] Finished Scene {idx:03d}")
             except Exception as e:
                 print(f"[AST] [ERROR] Scene processing failed: {e}")
-                # Fallback label
                 idx = futures[future]
                 results[idx] = "error"
                 skipped_count += 1
 
-    # Assign results to scenes
+    # Assign results
     for idx, scene in enumerate(scenes):
         scene["audio_natural"] = results[idx] if results[idx] is not None else "none"
 
-        if debug:
-            t0 = scene.get("start_timecode", f"{scene['start_seconds']:.1f}s")
-            t1 = scene.get("end_timecode", f"{scene['end_seconds']:.1f}s")
-            label = scene["audio_natural"]
-            prefix = "(skip)" if label == "none" and per_scene_rms[idx] < scene_silence_threshold else "(AST)"
-            print(f"[AST] {prefix} Scene {idx:03d} [{t0} → {t1}]: {label}")
-
     elapsed = time.time() - t_start
-
     if debug:
         print(f"[AST] Done: {processed_count} processed, {skipped_count} skipped, {elapsed:.2f}s total")
 
     return scenes, {
-        "method": "parallel_per_scene",
+        "method": "parallel_processes" if use_processes else "parallel_threads",
         "total_time_sec": elapsed,
         "scenes_processed": processed_count,
         "scenes_skipped": skipped_count,

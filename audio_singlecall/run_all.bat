@@ -1,20 +1,18 @@
 @echo off
-REM Kairos Optimized Audio Pipeline - Process All Videos
-REM This script is designed to be run from WITHIN the 'audio_singlecall' folder.
+echo Starting High-Parallel Audio Pipeline (CPU Optimized)...
 
-echo.
-echo Starting Optimized Audio Pipeline...
-
-REM Set PYTHONPATH to parent directory
+REM Set PYTHONPATH to parent directory so we can run as a module from inside this folder
 set PYTHONPATH=..
 
-echo Processing all videos...
-"..\venv\Scripts\python.exe" -m audio_singlecall.main --all
+REM Run the pipeline with --parallel and --all
+REM Using ..\venv to reach the virtual environment in the root directory
+..\venv\Scripts\python.exe -m audio_singlecall.main --all --parallel --workers 4
 
 echo.
 echo Generating Evaluation Metrics...
-"..\venv\Scripts\python.exe" -m audio_singlecall.evaluation
+..\venv\Scripts\python.exe -m audio_singlecall.evaluation --all
 
 echo.
 echo Done! Check results in: audio_singlecall/results/
+echo Summary report: audio_singlecall/BENCHMARK_COMPARISON.md
 pause
