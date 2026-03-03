@@ -3,6 +3,7 @@ load_dotenv()
 
 from src.debug_utils import *
 from src.log_utils import *
+from src.redo_utils import apply_redo, REDO_CHOICES
 import argparse
 import os
 import time
@@ -130,6 +131,17 @@ def parse_args():
         action="store_true",
         help="Include videos with unknown length when filtering",
     )
+    process.add_argument(
+        "--redo",
+        action="append",
+        choices=REDO_CHOICES,
+        help="Redo a processing step; dependents are redone by default (repeatable).",
+    )
+    process.add_argument(
+        "--redo-only",
+        action="store_true",
+        help="Redo only the specified steps and stop afterward (no dependents). Requires --redo.",
+    )
 
     rag = subparsers.add_parser("rag", help="Run RAG for a single video")
     rag.add_argument("--video", required=True, help="Blob name or path")
@@ -140,6 +152,8 @@ VIDEOS_DIR = Path("Videos")
 CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
 PROCESSED_ROOT = Path("_processed")
 args = parse_args()
+if getattr(args, "redo_only", False) and not getattr(args, "redo", None):
+    raise SystemExit("--redo-only requires --redo")
 catalog = load_video_catalog(CATALOG_PATH)
 selected_paths = select_videos(args, catalog, VIDEOS_DIR)
 
@@ -150,6 +164,8 @@ if args.command == "rag" and len(selected_paths) != 1:
 
 test_videos = {make_output_dir(p, PROCESSED_ROOT): str(p) for p in selected_paths}
 rag_only = args.command == "rag"
+redo_steps = getattr(args, "redo", None) or []
+redo_only = bool(getattr(args, "redo_only", False))
 
 for output_dir, test_video in test_videos.items():
     Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -182,6 +198,15 @@ for output_dir, test_video in test_videos.items():
     checkpoint = read_json(json_path=checkpoint_path) # if deleted it will return a {}
     checkpoint.setdefault("steps", {})
     step = checkpoint["steps"]
+    if redo_steps:
+        checkpoint, redo_info = apply_redo(
+            checkpoint=checkpoint,
+            output_dir=output_dir,
+            redo_steps=redo_steps,
+            redo_only=redo_only,
+        )
+        if redo_info.get("changed") and "scenes" in checkpoint:
+            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     if not checkpoint.get("scenes"):
         print("")
