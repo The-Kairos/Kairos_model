@@ -33,7 +33,45 @@ Deployment environments often have limited RAM per container.
 - **Azure DevOps**: Your CI/CD pipeline should build the Docker image and push it to **Azure Container Registry (ACR)**. ACA will then pull the latest image automatically.
 - **Communication**: Use **Azure Service Bus** or **Azure Storage Queues**. Node.js pushes the message, and the Python worker reads it.
 
-## 5. Handling Long Videos (The 3-Hour Case)
-- **Timeouts**: Ensure the task runner has a high enough timeout (e.g., 2 hours for AST/Whisper on a 3-hour movie).
-- **Heartbeats**: The worker should send "progress updates" to the backend (e.g., "AST 40% complete") so the UI doesn't time out.
-- **Resume Capability**: Our `checkpoint.json` logic is crucial here. If a worker crashes or gets preempted (Spot instances), the new worker can resume from the last successful step instead of restarting from minute 0.
+## 7. Resource Calculation: Your Setup
+Based on our analysis, your laptop has **16GB Total RAM** with approximately **2.3GB Available** during runs.
+
+| Component | RAM Estimate (MB) |
+| --- | --- |
+| Whisper (small) | ~500 MB |
+| AST Model | ~300 MB |
+| Audio Buffers (per worker) | ~170 MB |
+| Overhead (Tensors, Python) | ~200 MB |
+| **Total Per Worker** | **~1.2 GB** |
+
+### Safe Worker Recommendation:
+- **On Laptop (Available 2.3GB)**: Use **`--workers 2`**. Even with 16GB total, your background apps (Chrome, OS) are consuming ~13GB. 
+- **On Azure (Standard D4s_v5 - 16GB)**: Use **`--workers 4`**. Since the VM will be "clean" (no background apps), you'll have ~14GB available, making 4 workers very safe.
+
+### Key Rule for Titanic (3-hours):
+For massive videos, always stick to **`--workers 2`** or fewer to avoid the multiplication of the 170MB+ audio buffers across processes during the AST phase.
+
+## 8. Transition to VM (Google Cloud)
+To run benchmarks on your Google VM while keeping results compatible with production:
+
+### SSH & Setup
+1. **Connect**: `ssh <user>@<vm-ip>`
+2. **Environment**: Use the provided `Dockerfile` to ensure the exact same libraries.
+   ```bash
+   docker build -t kairos-audio .
+   docker run -v $(pwd)/Videos:/app/Videos kairos-audio
+   ```
+3. **CPU Benchmarking**: To simulate a CPU-only server on a GPU machine, use the `--cpu` flag:
+   ```bash
+   python -m audio_singlecall.main --all --parallel --workers 4 --cpu
+   ```
+
+## 9. Transition to Production (Azure)
+### Azure Blob Storage Integration
+In deployment, you won't use a local `Videos/` folder.
+- **Node.js**: Receives video -> Uploads to Azure Blob.
+- **Python Worker**: 
+    1. Downloads video from Blob to `/tmp`.
+    2. Runs the pipeline.
+    3. Uploads `audio_results.json` back to Azure Blob.
+- **Scaling**: Use **Azure Container Apps** to spin up one container per message in the queue.

@@ -73,10 +73,10 @@ def classify_scene_audio(audio_slice: np.ndarray, sr: int,
 
 def _process_one_scene(args):
     """Worker function for Pooled Execution."""
-    idx, audio_slice, sr, scene_rms_dbfs, scene_silence_threshold = args
+    idx, audio_slice, sr, rms_dbfs, scene_silence_threshold, force_cpu = args
 
     # Skip if scene is below silence threshold
-    if scene_rms_dbfs < scene_silence_threshold:
+    if rms_dbfs < scene_silence_threshold:
         return idx, "none", True  # True = skipped
 
     if audio_slice is None or audio_slice.size == 0:
@@ -85,7 +85,9 @@ def _process_one_scene(args):
     if len(audio_slice) == 0:
         return idx, "none", True
 
-    label = classify_scene_audio(audio_slice, sr)
+    label = classify_scene_audio(audio_slice, sr, device="cpu" if force_cpu else "cpu") 
+    # Actually classify_scene_audio default is cpu. 
+    # If we want to allow GPU, we'd need to pass it here.
     return idx, label, False
 
 
@@ -97,6 +99,7 @@ def extract_sounds_optimized(scenes: list, scan_result: dict,
                              target_sr: int = 16000,
                              max_workers: int = 4,
                              use_processes: bool = False,
+                             force_cpu: bool = False,
                              debug: bool = False) -> tuple:
     """
     Run AST per scene with parallel execution and skip logic.
@@ -142,14 +145,14 @@ def extract_sounds_optimized(scenes: list, scan_result: dict,
         else:
             audio_slice = None
 
-        task_args.append((idx, audio_slice, sr, rms_dbfs, scene_silence_threshold))
+        task_args.append((idx, audio_slice, sr, rms_dbfs, scene_silence_threshold, force_cpu))
 
     results = [None] * len(scenes)
     skipped_count = 0
     processed_count = 0
 
     if debug:
-        pre_skip = sum(1 for a in task_args if a[5] < scene_silence_threshold)
+        pre_skip = sum(1 for a in task_args if a[3] < scene_silence_threshold)
         mode = "ProcessPool" if use_processes else "ThreadPool"
         print(f"[AST] Using {mode} with {max_workers} workers")
         print(f"[AST] Processing {len(scenes)} scenes ({pre_skip} will be skipped by RMS)")

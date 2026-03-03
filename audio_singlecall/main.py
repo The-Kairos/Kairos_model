@@ -22,6 +22,12 @@ import sys
 import time
 from pathlib import Path
 
+import gc
+try:
+    import torch
+except ImportError:
+    torch = None
+
 # Add project root to path so we can import src modules
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -50,11 +56,16 @@ RESULTS_DIR = Path(__file__).resolve().parent / "results"
 # Pipeline
 # =========================================================
 
-def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, debug: bool = True):
+def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, force_cpu: bool = False, debug: bool = True):
     """
     Run the full audio-only pipeline on a single video.
     Returns (scenes, timing_report).
     """
+    if force_cpu:
+        os.environ["CUDA_VISIBLE_DEVICES"] = ""
+        if torch:
+            # Re-check or force torch to use CPU
+            pass 
     video_name = Path(video_path).stem
     print(f"\n{'='*70}")
     print(f"  AUDIO PIPELINE (High Parallelism Enabled: {parallel})")
@@ -74,6 +85,11 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
     scene_time = time.time() - t
     print(f"       Found {len(scenes)} scenes in {scene_time:.2f}s\n")
 
+    # Clear memory after scene detection
+    gc.collect()
+    if torch and torch.cuda.is_available():
+        torch.cuda.empty_cache()
+
     # ----- Step 2: Audio Pre-Scan -----
     print("[2/4] Audio Pre-Scan (RMS + Silero VAD)...")
     scan_result = scan_audio(
@@ -83,6 +99,11 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
         debug=debug,
     )
     print(f"       Pre-scan completed in {scan_result['scan_time_sec']:.2f}s\n")
+
+    # Clear memory after audio load/scan
+    gc.collect()
+    if torch and torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     # ----- Step 3: Whisper Transcription -----
     print("[3/4] Whisper Transcription...")
@@ -95,6 +116,11 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
         debug=debug,
     )
     print(f"       Whisper completed in {whisper_timing['total_time_sec']:.2f}s\n")
+
+    # CRITICAL: Clear Whisper model from memory
+    gc.collect()
+    if torch and torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     # ----- Step 4: AST Parallelized -----
     print("[4/4] AST Parallelized Per-Scene...")
@@ -127,6 +153,11 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
         debug=debug,
     )
     print(f"       AST completed in {ast_timing['total_time_sec']:.2f}s\n")
+
+    # Final cleanup for this video
+    gc.collect()
+    if torch and torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     total_time = time.time() - total_start
 
@@ -189,11 +220,12 @@ def main():
     parser.add_argument("--video", type=str, help="Path to video file")
     parser.add_argument("--all", action="store_true", help="Process all videos in Videos/")
     parser.add_argument("--parallel", action="store_true", help="Use multi-process parallelization")
-    parser.add_argument("--workers", type=int, default=4, help="Number of parallel workers")
-    parser.add_argument("--quiet", action="store_true", help="Suppress debug output")
+    parser.add_argument("--workers", type=int, default=4, help="Max workers for parallel AST")
+    parser.add_argument("--cpu", action="store_true", help="Force CPU usage even if GPU is available")
+    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
 
-    debug = not args.quiet
+    debug = args.debug
 
     if args.all:
         video_files = []
@@ -231,6 +263,7 @@ def main():
                 video_path, 
                 parallel=args.parallel, 
                 max_workers=args.workers, 
+                force_cpu=args.cpu,
                 debug=debug
             )
             save_results(video_path, scenes, timing)

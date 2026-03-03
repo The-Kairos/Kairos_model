@@ -97,11 +97,11 @@ def _transcribe_chunk_worker(args):
     Worker function for ProcessPoolExecutor.
     Transcribes a single chunk of audio.
     """
-    chunk_audio, sr, model_size, chunk_start_time, use_vad, debug = args
+    chunk_audio, sr, model_size, chunk_start_time, use_vad, force_cpu, debug = args
     
-    # Reload model in each process if using ProcessPoolExecutor
-    # (standard Whisper model isn't easily shared across processes without IPC)
-    model = whisper.load_model(model_size)
+    # Reload model in each process
+    device = "cpu" if force_cpu else None
+    model = whisper.load_model(model_size, device=device)
     
     # Optional VAD cleaning per chunk
     if use_vad:
@@ -119,12 +119,23 @@ def _transcribe_chunk_worker(args):
         seg["start"] += chunk_start_time
         seg["end"] += chunk_start_time
         
+    # Explicit cleanup
+    del model
+    import gc
+    gc.collect()
+    try:
+        import torch
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+    except ImportError:
+        pass
+        
     return segments
 
 
 def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "small",
                        chunk_size_sec: int = 600, overlap_sec: int = 30,
-                       use_vad: bool = True, debug: bool = False) -> dict:
+                       use_vad: bool = True, force_cpu: bool = False, debug: bool = False) -> dict:
     """
     Split audio into chunks and transcribe in parallel using ProcessPoolExecutor.
     """
@@ -139,8 +150,8 @@ def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "small",
     start = 0
     while start < duration:
         end = min(start + chunk_size_sec + overlap_sec, duration)
-        chunk_samples = audio[int(start * sr) : int(end * sr)]
-        chunks_args.append((chunk_samples, sr, model_size, start, use_vad, debug))
+        chunk_samples = audio[int(start * sr) : int(end * sr)].copy()
+        chunks_args.append((chunk_samples, sr, model_size, start, use_vad, force_cpu, debug))
         
         if end >= duration:
             break
@@ -150,7 +161,8 @@ def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "small",
         print(f"[WhisperParallel] Split {duration:.1f}s audio into {len(chunks_args)} chunks ({chunk_size_sec}s each)")
 
     # 2. Run in parallel
-    num_workers = min(len(chunks_args), os.cpu_count() or 4)
+    # LIMIT: Use at most 2 workers for Whisper on 16GB RAM machines to avoid OOM stalls
+    num_workers = min(len(chunks_args), os.cpu_count() or 4, 2)
     all_segments = []
     
     with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
@@ -160,6 +172,8 @@ def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "small",
             all_segments.extend(segments)
             if debug:
                 print(f"[WhisperParallel] Chunk {i+1}/{len(chunks_args)} completed")
+            # Clear memory after each future completes
+            gc.collect()
 
     # 3. Deduplicate segments in overlaps
     # Rule: Each chunk "owns" a specific time range (chunk_size_sec).
@@ -212,7 +226,7 @@ def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "small",
 # =========================================================
 
 def transcribe_full_video(audio: np.ndarray, sr: int, model_size: str = "small",
-                          use_vad: bool = True, debug: bool = False,
+                          use_vad: bool = True, force_cpu: bool = False, debug: bool = False,
                           silero_model=None, get_speech_ts_fn=None) -> dict:
     """
     Run Whisper ONCE on the entire video audio.
@@ -226,7 +240,8 @@ def transcribe_full_video(audio: np.ndarray, sr: int, model_size: str = "small",
     if debug:
         print(f"[WhisperSingle] Loading Whisper model: {model_size}")
 
-    model = whisper.load_model(model_size)
+    device = "cpu" if force_cpu else None
+    model = whisper.load_model(model_size, device=device)
 
     if debug:
         print(f"[WhisperSingle] Cleaning audio ({len(audio)} samples)...")
@@ -279,7 +294,7 @@ def transcribe_full_video(audio: np.ndarray, sr: int, model_size: str = "small",
 
 def extract_speech_singlecall(scenes: list, scan_result: dict,
                                model_size: str = "small", use_vad: bool = True,
-                               parallel: bool = False, debug: bool = False) -> tuple:
+                               parallel: bool = False, force_cpu: bool = False, debug: bool = False) -> tuple:
     """
     Main entry point. Checks scan_result, runs single-call or parallel Whisper.
     
@@ -315,7 +330,8 @@ def extract_speech_singlecall(scenes: list, scan_result: dict,
         # In parallel mode, we don't pass the pre-loaded Silero model because 
         # it can't be easily shared across processes. Each process handles its own NR.
         whisper_result = transcribe_parallel(
-            audio, sr, model_size=model_size, debug=debug, use_vad=use_vad
+            audio, sr, model_size=model_size, 
+            use_vad=use_vad, force_cpu=force_cpu, debug=debug
         )
     else:
         if debug: print(f"[WhisperSingle] Using Single-Call Transcription (Duration: {duration:.1f}s)")
@@ -323,8 +339,10 @@ def extract_speech_singlecall(scenes: list, scan_result: dict,
         _get_ts = _silero_utils[0] if _silero_utils else None
 
         whisper_result = transcribe_full_video(
-            audio, sr, model_size=model_size, use_vad=use_vad, debug=debug,
-            silero_model=_silero_model, get_speech_ts_fn=_get_ts,
+            audio, sr, model_size=model_size, 
+            use_vad=use_vad, force_cpu=force_cpu, debug=debug,
+            silero_model=scan_result.get("silero_model"),
+            get_speech_ts_fn=scan_result.get("get_speech_ts")
         )
 
     # Map segments to scenes
