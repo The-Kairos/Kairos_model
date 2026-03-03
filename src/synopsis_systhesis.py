@@ -31,6 +31,11 @@ REQUIRED_QUESTIONS = [
     "What is the goal or intent or theme of the video?",
     "List the moods and tones present, explain each one.",
     "What context is missing or assumed? What would require outside knowledge?",
+    "What are key visual descriptions?",
+    "What are key audio descriptions?",
+    "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
+    "What are prominent visual cues and audio cues noticed throughout the video?",
+    "Does the video contain any live action, animation, or special effects?",
 ]
 
 # ----------------------
@@ -170,6 +175,13 @@ def render_synopsis_markdown(synopsis: dict, video_path: str | None = None, outp
         for item in highlights:
             if isinstance(item, str) and item.strip():
                 lines.append(f"- {item.strip()}")
+                continue
+            ts, highlight = _extract_timed_entry(item, "highlight")
+            ts_md = _format_timestamp_markdown(ts, video_link_base)
+            if isinstance(highlight, str) and highlight.strip():
+                lines.append(f"- {ts_md}: {highlight.strip()}")
+            else:
+                lines.append(f"- {ts_md}")
 
     timeline = synopsis.get("video_timeline") if isinstance(synopsis, dict) else []
     if isinstance(timeline, list) and timeline:
@@ -215,10 +227,13 @@ def render_synopsis_markdown(synopsis: dict, video_path: str | None = None, outp
     return "\n".join(lines).strip() + "\n"
 
 
-def _count_questions(synopsis: dict) -> int:
-    if not isinstance(synopsis, dict):
+def _count_questions(synopsis) -> int:
+    if isinstance(synopsis, dict):
+        questions = synopsis.get("questions", [])
+    elif isinstance(synopsis, list):
+        questions = synopsis
+    else:
         return 0
-    questions = synopsis.get("questions", [])
     if not isinstance(questions, list):
         return 0
     count = 0
@@ -231,44 +246,67 @@ def _count_questions(synopsis: dict) -> int:
     return count
 
 
-def _build_questions_repair_prompt(
+def _build_questions_prompt(
     narrative_text: str,
     required_questions: list,
     extra_questions_count: int,
-    highlights_count: int,
-    timeline_count: int,
-    clips_count: int,
+    strict: bool = False,
 ):
     required_block = "\n".join(
         [f"{idx + 1}. {q}" for idx, q in enumerate(required_questions)]
     )
     total_questions = len(required_questions) + extra_questions_count
+    strict_block = (
+        "Your response MUST contain only the JSON object described below. "
+        "Do not include any other keys or text.\n"
+        if strict
+        else ""
+    )
     return (
+        strict_block
+        +
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
         "Use this exact schema and key names:\n"
         "{\n"
-        '  "chat_name": "3-5 word title",\n'
-        '  "summary": "Single coherent paragraph.",\n'
-        '  "video_highlights": ["One sentence highlight."],\n'
-        '  "video_timeline": [{"timestamp": "00:00:00", "event": "3-5 word event"}],\n'
-        '  "suggested_clips": [{"timestamp": "00:00:00", "description": "Two sentences. Second sentence explains significance."}],\n'
         '  "questions": [{"question": "Question text", "answer": "Answer text"}]\n'
         "}\n"
         "Rules:\n"
-        '- "chat_name" must be 3-5 words and a concrete description of what the video is about.\n'
-        '- "summary" must be one paragraph.\n'
-        f'- "video_highlights" must contain exactly {highlights_count} items; each item is one sentence.\n'
-        f'- "video_timeline" must contain exactly {timeline_count} items; chronological order by timestamp. Each "event" is 3-5 words.\n'
-        f'- "suggested_clips" must contain exactly {clips_count} items; each "description" is exactly 2 sentences.\n'
         f'- "questions" must contain exactly {total_questions} items.\n'
         "- The first questions must be the Required Questions in the exact order listed below.\n"
         f"- After that, add exactly {extra_questions_count} new, predicted questions.\n"
         '- Use only the narrative. If a detail is missing, set the answer to "Not explicitly stated."\n'
+        "- Do not include any other keys besides questions.\n"
         'Required Questions:\n'
         f"{required_block}\n"
         "INPUT NARRATIVE:\n"
         f"{narrative_text}\n"
     )
+
+
+def _extract_questions(payload) -> list:
+    if isinstance(payload, dict):
+        questions = payload.get("questions", [])
+    elif isinstance(payload, list):
+        questions = payload
+    else:
+        return []
+    if not isinstance(questions, list):
+        return []
+    cleaned = []
+    for qa in questions:
+        if not isinstance(qa, dict):
+            continue
+        question = qa.get("question")
+        answer = qa.get("answer")
+        if not isinstance(question, str) or not question.strip():
+            continue
+        question_text = question.strip()
+        if isinstance(answer, str) and answer.strip():
+            answer_text = answer.strip()
+        else:
+            answer_text = "Not explicitly stated."
+        cleaned.append({"question": question_text, "answer": answer_text})
+    return cleaned
 
 # ----------------------
 # 2. Chunk scenes
@@ -502,26 +540,36 @@ def synthesize_synopsis(
             highlights_count=highlights_count,
             timeline_count=timeline_count,
             clips_count=clips_count,
-            extra_questions_count=extra_questions_count,
         ),
     )
     synopsis_json = _parse_synopsis_json(synopsis_text, debug=debug)
+
     required_total = len(REQUIRED_QUESTIONS) + extra_questions_count
-    if _count_questions(synopsis_json) < required_total:
+    questions_prompt = _build_questions_prompt(
+        narrative_text=narrative_text,
+        required_questions=REQUIRED_QUESTIONS,
+        extra_questions_count=extra_questions_count,
+        strict=False,
+    )
+    questions_text = call_gpt(client, deployment, questions_prompt)
+    questions_payload = _parse_synopsis_json(questions_text, debug=debug)
+    questions = _extract_questions(questions_payload)
+    if _count_questions(questions) < required_total:
         _debug_print(
             debug,
             "synopsis questions incomplete; retrying with strict questions prompt",
         )
-        repair_prompt = _build_questions_repair_prompt(
+        questions_prompt = _build_questions_prompt(
             narrative_text=narrative_text,
             required_questions=REQUIRED_QUESTIONS,
             extra_questions_count=extra_questions_count,
-            highlights_count=highlights_count,
-            timeline_count=timeline_count,
-            clips_count=clips_count,
+            strict=True,
         )
-        synopsis_text = call_gpt(client, deployment, repair_prompt)
-        synopsis_json = _parse_synopsis_json(synopsis_text, debug=debug)
+        questions_text = call_gpt(client, deployment, questions_prompt)
+        questions_payload = _parse_synopsis_json(questions_text, debug=debug)
+        questions = _extract_questions(questions_payload)
+
+    synopsis_json["questions"] = questions
     synopsis_md = render_synopsis_markdown(
         synopsis_json,
         video_path=data.get("video_path"),

@@ -92,7 +92,17 @@ def format_synopsis_embedding(synopsis):
 
         highlights = synopsis.get("video_highlights", [])
         if isinstance(highlights, list):
-            items = [h.strip() for h in highlights if isinstance(h, str) and h.strip()]
+            items = []
+            for entry in highlights:
+                if isinstance(entry, str) and entry.strip():
+                    items.append(entry.strip())
+                    continue
+                ts, highlight = _extract_timed_entry(entry, "highlight")
+                if isinstance(highlight, str) and highlight.strip():
+                    if isinstance(ts, str) and ts.strip():
+                        items.append(f"{ts.strip()} - {highlight.strip()}")
+                    else:
+                        items.append(highlight.strip())
             if items:
                 contexts.append("highlights: " + " | ".join(items))
 
