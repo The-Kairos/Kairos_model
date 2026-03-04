@@ -133,14 +133,19 @@ def parse_args():
     )
     process.add_argument(
         "--redo",
+        nargs="+",
         action="append",
         choices=REDO_CHOICES,
         help="Redo a processing step; dependents are redone by default (repeatable).",
     )
     process.add_argument(
         "--redo-only",
-        action="store_true",
-        help="Redo only the specified steps and stop afterward (no dependents). Requires --redo.",
+        nargs="*",
+        choices=REDO_CHOICES,
+        help=(
+            "Redo only the specified steps and stop afterward (no dependents). "
+            "Provide steps here or use with --redo."
+        ),
     )
 
     rag = subparsers.add_parser("rag", help="Run RAG for a single video")
@@ -153,8 +158,27 @@ def main():
     CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
     PROCESSED_ROOT = Path("_processed")
     args = parse_args()
-    if getattr(args, "redo_only", False) and not getattr(args, "redo", None):
-        raise SystemExit("--redo-only requires --redo")
+    redo_only_flag = args.redo_only is not None
+    redo_only_steps = args.redo_only or []
+    redo_steps = []
+
+    def _flatten(values):
+        flat = []
+        if not values:
+            return flat
+        for value in values:
+            if isinstance(value, (list, tuple)):
+                flat.extend(value)
+            else:
+                flat.append(value)
+        return flat
+
+    if redo_only_steps:
+        redo_steps = redo_only_steps
+    elif getattr(args, "redo", None):
+        redo_steps = _flatten(args.redo)
+    if redo_only_flag and not redo_steps:
+        raise SystemExit("--redo-only requires at least one step (via --redo-only or --redo)")
     catalog = load_video_catalog(CATALOG_PATH)
     selected_paths = select_videos(args, catalog, VIDEOS_DIR)
 
@@ -165,8 +189,9 @@ def main():
 
     test_videos = {make_output_dir(p, PROCESSED_ROOT): str(p) for p in selected_paths}
     rag_only = args.command == "rag"
-    redo_steps = getattr(args, "redo", None) or []
-    redo_only = bool(getattr(args, "redo_only", False))
+    if redo_only_steps and getattr(args, "redo", None):
+        redo_steps = list(dict.fromkeys(redo_steps + _flatten(args.redo)))
+    redo_only = redo_only_flag
 
     for output_dir, test_video in test_videos.items():
         Path(output_dir).mkdir(parents=True, exist_ok=True)
