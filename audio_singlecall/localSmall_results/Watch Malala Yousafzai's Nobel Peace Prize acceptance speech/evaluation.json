@@ -1,0 +1,27 @@
+{
+    "video": "Watch Malala Yousafzai's Nobel Peace Prize acceptance speech",
+    "scenes_compared": 22,
+    "speech_confusion_matrix": {
+        "TP": 21,
+        "TN": 0,
+        "FP": 1,
+        "FN": 0,
+        "precision": 0.9545,
+        "recall": 1.0,
+        "f1": 0.9767,
+        "accuracy": 0.9545,
+        "total_scenes": 22
+    },
+    "transcription_word_overlap_mean": 0.2218,
+    "natural_audio_confusion_matrix": {
+        "TP": 12,
+        "TN": 7,
+        "FP": 2,
+        "FN": 1,
+        "precision": 0.8571,
+        "recall": 0.9231,
+        "f1": 0.8889,
+        "accuracy": 0.8636,
+        "total_scenes": 22
+    }
+}
