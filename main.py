@@ -377,6 +377,7 @@ def main():
                 prompt_path="prompts/describe_scene.txt",
                 cooldown_sec=llm_cooldown_sec,
                 debug=True,
+                video_path=test_video,
             )
             time.sleep(10)
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
