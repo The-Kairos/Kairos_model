@@ -266,7 +266,7 @@ def detect_languages(audio: np.ndarray, sr: int, speech_regions: list, debug: bo
 def scan_audio(video_path: str, scenes: list, target_sr: int = 16000, debug: bool = False) -> dict:
     """
     Full 2-stage audio pre-scan with dynamic thresholds.
-    Returns a decision dict usable by whisper_parallel and ast_parallel.
+    Returns a decision dict usable by audio_whisper_parallel and audio_MIT_ast_parallel.
     """
     t_start = time.time()
 

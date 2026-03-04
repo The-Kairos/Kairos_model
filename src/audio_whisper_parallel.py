@@ -1,5 +1,5 @@
 """
-whisper_parallel.py - Single-call and parallel Whisper transcription with scene mapping.
+audio_whisper_parallel.py - Single-call and parallel Whisper transcription with scene mapping.
 
 Calls Whisper once on the full audio or in parallel chunks, then maps segments to scenes
 using timestamp overlap. Includes optional Azure OpenAI Whisper API usage with local

@@ -268,8 +268,8 @@ from src.frame_captioning_blip import caption_frames
 from src.frame_obj_d_yolo import detect_object_yolo
 from src.scene_description import describe_scenes
 from src.audio_detector import scan_audio
-from src.ast_parallel import extract_sounds_optimized
-from src.whisper_parallel import extract_speech_singlecall
+from src.audio_MIT_ast_parallel import extract_sounds_optimized
+from src.audio_whisper_parallel import extract_speech_singlecall
 from src.debug_utils import save_clips
 from src.synopsis_systhesis import summarize_scenes, synthesize_synopsis
 from src.rag_convo import make_embedding, ask_rag

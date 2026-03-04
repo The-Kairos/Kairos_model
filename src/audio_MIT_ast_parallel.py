@@ -1,5 +1,5 @@
 """
-ast_parallel.py - Parallelized per-scene AST with skip logic.
+audio_MIT_ast_parallel.py - Parallelized per-scene AST with skip logic.
 
 Runs MIT AST per scene, but:
   1. Skips scenes where per-scene RMS is below the dynamic threshold
