@@ -17,6 +17,7 @@ Ensure the summary complies with a PG-13 content standard. Remove object detecti
 Produce a clear scene report optimized for retrieval.
 
 Rules:
+Use video name as context
 Remove object detection IDs and bounding box references.
 Use consistent character names.
 Avoid vague language.
@@ -25,7 +26,7 @@ Ensure PG-13 content.
 
 Output format (plain text, no markdown):
 
-<short scene paragraph>
+This scene... <short scene paragraph>
 
 Characters:
 Name: 
