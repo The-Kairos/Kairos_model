@@ -20,6 +20,10 @@ This folder contains all the technical guides for the Kairos Video Processing Pi
 *   [**12_MULTILINGUAL_STRATEGY.md**](file:///home/usr_60302531_udst_edu_qa/Kairos_model/audio_singlecall/markdown%20instructions/12_MULTILINGUAL_TRANSCRIPTION_STRATEGY.md) - **Pros/Cons of Multilingual vs Translated Audio.**
 *   [**13_CODEBASE_FEATURES.md**](file:///home/usr_60302531_udst_edu_qa/Kairos_model/audio_singlecall/markdown%20instructions/13_CODEBASE_FEATURES_OVERVIEW.md) - **Overview of Pipeline Python Script Architecture.**
 *   [**14_PIPELINE_FLOW.md**](file:///home/usr_60302531_udst_edu_qa/Kairos_model/audio_singlecall/markdown%20instructions/14_PIPELINE_FLOW_EXPLAINED.md) - **Plain-English Step-by-Step Pipeline Walkthrough.**
+*   [**15_API_VS_LOCAL.md**](file:///home/usr_60302531_udst_edu_qa/Kairos_model/audio_singlecall/markdown%20instructions/15_API_VS_LOCAL_WHISPER.md) - **Azure API vs Local Whisper Fallback Strategy.**
+*   [**16_HALLUCINATION_FILTERING.md**](file:///home/usr_60302531_udst_edu_qa/Kairos_model/audio_singlecall/markdown%20instructions/16_HALLUCINATION_FILTERING.md) - **All 6 Layers of Emoji & Noise Hallucination Filtering.**
+*   [**17_NATIVE_LANGUAGE.md**](file:///home/usr_60302531_udst_edu_qa/Kairos_model/audio_singlecall/markdown%20instructions/17_NATIVE_LANGUAGE_TRANSCRIPTION.md) - **Native Language Transcription: Arabic, Chinese, Tagalog, Mixed.**
+*   [**18_TIMESTAMP_MATH.md**](file:///home/usr_60302531_udst_edu_qa/Kairos_model/audio_singlecall/markdown%20instructions/18_TIMESTAMP_MAPPING_MATH.md) - **The Mathematical Formulas for Chunking and Scene Mapping.**
 
 
 ---

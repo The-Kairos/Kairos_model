@@ -175,11 +175,14 @@ def _transcribe_chunk_worker(args):
         chunk_audio = nr.reduce_noise(y=chunk_audio, sr=sr, prop_decrease=0.9)
     
     if use_api:
-        # Use Azure OpenAI API
+        # Use Azure OpenAI API with automatic local fallback
+        segments = []
+        api_success = False
         max_retries = 3
         for attempt in range(max_retries):
             try:
                 segments = transcribe_via_api(chunk_audio, sr, language=language)
+                api_success = True
                 break
             except Exception as e:
                 error_str = str(e)
@@ -189,7 +192,22 @@ def _transcribe_chunk_worker(args):
                         time.sleep(65)
                         continue
                 if debug: print(f"[WhisperWorker] API Error: {e}")
+                break  # exit retry loop, fall through to local fallback
+
+        if not api_success:
+            # Fallback to local Whisper model (cached on disk after first use)
+            if debug: print(f"[WhisperWorker] API exhausted. Falling back to local Whisper ({model_size})...")
+            try:
+                device = "cpu" if force_cpu else None
+                model = whisper.load_model(model_size, device=device)
+                result = model.transcribe(chunk_audio, fp16=False, verbose=None, language=language)
+                segments = result.get("segments", [])
+                del model
+                gc.collect()
+            except Exception as e2:
+                if debug: print(f"[WhisperWorker] Local fallback also failed: {e2}")
                 return []
+
     else:
         # Use Local Whisper
         device = "cpu" if force_cpu else None
@@ -358,13 +376,19 @@ def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "medium",
     t_start = time.time()
     
     # 1. Decide Language Strategy
-    # If the scan found the video is single-language, we lock it to prevent hallucinations
+    # For the Azure API, we ALWAYS pass language=None so Whisper auto-detects the language
+    # natively per chunk. Locking to a language (e.g., 'en') forces Whisper to TRANSLATE,
+    # which is wrong for bilingual videos like mixed Arabic/English content.
+    # The downstream LLM (GPT-4o) handles multilingual text just fine.
+    #
+    # For local Whisper only, we use the language lock as a lightweight hallucination guard.
     force_lang = None
-    if lang_info and not lang_info.get("is_multilingual", False):
+    if not use_api and lang_info and not lang_info.get("is_multilingual", False):
         force_lang = lang_info.get("primary_language")
-        if debug: print(f"[WhisperParallel] Locking language to: {force_lang}")
-    else:
-        if debug: print("[WhisperParallel] Multilingual video detected. Enabling flexible detection.")
+        if debug: print(f"[WhisperParallel] (Local mode) Locking language to: {force_lang}")
+    elif debug:
+        print("[WhisperParallel] Auto-detecting language per chunk (no global lock).")
+
 
     # 2. Create chunks
     chunks_args = []

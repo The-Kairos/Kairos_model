@@ -3,7 +3,7 @@
 
 **Author:** Kairos Engineering Team  
 **Date:** March 2026  
-**Status:** Proposed — Ready for Implementation
+**Status:** ✅ Phase 1 (Audio Parallelization) — COMPLETE | 🟡 Phase 2 (BLIP Parallelization) — Proposed
 
 ---
 
@@ -82,23 +82,72 @@ We can fire **4–8 calls simultaneously** using Python's `asyncio` with the Ope
 
 **Estimated time saved for a 1-hour video: ~10–20 minutes**
 
-### Change 3 — Scale via Azure API Workers ⚡
-By moving from Local Whisper to **Azure OpenAI Whisper API**, we are no longer limited by the VM's hardware for transcription. We use parallel API calls to process chunks, allowing the VM to focus its 188GB RAM and CPU purely on Vision (BLIP) and Sound (AST) classification.
+### Change 3 — Scale via Azure API Workers ✅ COMPLETE
+Audio transcription has been moved to the **Azure OpenAI Whisper API** with parallel dynamic chunking. The VM's resources are no longer consumed by Whisper. Rate limiting is handled automatically with retry backoff and local Whisper fallback.
 
-**Estimated time saved: ~10–12 min for long videos (due to cloud speed)**
+**Result:** Titanic (3h15m) transcribed in ~7 min. Young Sheldon (2.8m) in ~10s. **~12x faster than local model.**
 
 ---
 
-## Projected Timings: 1-Hour Video (Azure API)
+## Current Status: What's Done vs What's Next
 
-| Stage | Current (Sequential) | Proposed (Parallel + API) |
+| Stage | Status | Notes |
 |---|---|---|
-| PySceneDetect | 1 min | 1 min |
-| BLIP + YOLO | 5 min | ↘ |
-| Azure Whisper + AST | 15 min | **8–10 min** (API handles heavy lifting) |
-| GPT-4o scenes (~100 scenes) | 20 min | **5–8 min** (async batching) |
-| Narrative + Synopsis | 3 min | 3 min |
-| **Total** | **~44 min** | **~18–22 min** |
+| Parallel Audio (Whisper + AST) | ✅ DONE | Azure API + 4 workers, auto-language, local fallback |
+| Whisper hallucination filtering | ✅ DONE | 6-layer filter: logprob, emoji, loops, dedup, VAD, chars |
+| Parallel Audio vs Visual (Thread-level) | 🟡 Proposed | Root `main.py` needs ThreadPoolExecutor |
+| Async GPT-4o Scene Descriptions | 🟡 Proposed | asyncio semaphore, 4–8 concurrent calls |
+| BLIP Parallelization (Per-Scene) | 🟡 Proposed — See below | ThreadPoolExecutor across scenes |
+
+---
+
+## 🆕 Phase 2 Proposal: Parallel BLIP Captioning
+
+BLIP is currently the dominant bottleneck for long videos. It runs **sequentially*** — one scene at a time, loading the same TorchVision model for each frame.
+
+### Why BLIP is different from AST
+AST is CPU-bound, so `ProcessPoolExecutor` works perfectly (each worker gets its own CPU core and memory). BLIP is **vision-model-bound** — it needs a GPU or large chunks of CPU RAM to load the model.
+
+On the **188GB RAM Azure VM**, the ideal approach is **ThreadPoolExecutor** (not ProcessPool):
+- Load the BLIP model **once** in the main process (~2–3 GB RAM)
+- Pass frame images to worker threads — threads share the model in memory
+- Worker threads process frames concurrently with Python's GIL released during model inference
+
+### Proposed Code Change in `src/frame_captioning_blip.py`
+```python
+from concurrent.futures import ThreadPoolExecutor
+
+def caption_scenes_parallel(scenes: list, model, processor, max_workers: int = 4) -> list:
+    """Run BLIP captioning in parallel across scenes using shared model."""
+    def caption_one(scene):
+        frame_path = scene.get("frame_path")
+        if not frame_path:
+            return scene
+        caption = run_blip_on_frame(frame_path, model, processor)
+        scene["frame_caption"] = caption
+        return scene
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        results = list(executor.map(caption_one, scenes))
+    return results
+```
+
+### RAM Impact on 188GB VM
+| Setup | RAM per Worker | Total RAM (4 workers) |
+|---|---|---|
+| BLIP model shared (Thread) | ~0 extra | ~2–3 GB total |
+| BLIP model per process (Process) | ~2–3 GB | ~8–12 GB total |
+
+With threads, 4 workers use essentially the same memory as 1. **Recommended: ThreadPool with 4–8 workers.**
+
+### Estimated Speedup
+| Video | Sequential BLIP | Parallel BLIP (4 threads) | Saved |
+|---|---|---|---|
+| Paul Liang (47 scenes) | ~3 min | ~1 min | ~2 min |
+| SVM (111 scenes) | ~6 min | ~2 min | ~4 min |
+| Titanic (1857 scenes) | ~90 min | ~25 min | ~65 min |
+
+> **Result: A 3-hour video that took 90 minutes for BLIP alone could finish in ~25 minutes.**
 
 > **Result: Over 50% faster. A 1-hour video finishes in ~20 minutes.**
 
@@ -144,12 +193,14 @@ scenes = await run_gpt4o_async(scenes, max_concurrent=6)  # async batch
 
 ## Recommended Action Plan
 
-| Priority | Change | Effort | Speed Gain |
-|---|---|---|---|
-| 🔴 High | Parallel BLIP+YOLO vs Whisper+AST | 1–2 days | ~15 min per 1-hr video |
-| 🔴 High | Async GPT-4o scene descriptions | 1 day | ~15 min per 1-hr video |
-| 🟡 Medium | Increase Whisper workers on VM (4–6) | 1 hour | ~5–8 min per 1-hr video |
-| 🟢 Low | Per-scene BLIP parallelization | 2 days | ~2–3 min |
+| Priority | Change | Status | Effort | Speed Gain |
+|---|---|---|---|---|
+| ✅ Done | Azure Whisper API (Parallel Chunks) | Complete | — | ~12x ASR speedup |
+| ✅ Done | Parallel AST (ProcessPool) | Complete | — | ~1.5x AST speedup |
+| 🔴 High | Parallel BLIP (ThreadPool) | Proposed | 1–2 days | ~60 min for Titanic |
+| 🔴 High | Async GPT-4o scene descriptions | Proposed | 1 day | ~15 min per 1-hr video |
+| 🟡 Medium | Parallel Audio vs Visual (Thread-level in `main.py`) | Proposed | 0.5 days | ~8–15 min per 1-hr video |
+| 🟢 Low | Increase Whisper workers (4 → 6) | Optional | 1 hour | ~3–5 min per long video |
 
 **Total effort: ~3–4 days of engineering for a ~40% speed improvement.**
 

@@ -57,13 +57,17 @@ Node.js uses `BullMQ` to push a JSON job to Redis:
 
 ### Step 3: Python Execution
 A small **bridge script** (e.g., `worker_bridge.py`) in the Python container listens to the Redis queue. When a job arrives:
-1. It calls `python -m audio_singlecall.main --video /data/Videos/original.mp4 ...`.
-2. As stages finish, it updates the job status in Redis so the frontend can show a progress bar.
+1. It calls `python main.py --video /data/Videos/original.mp4` (the root production pipeline).
+2. This triggers the full Kairos pipeline: Scene Detection → BLIP → YOLO → ASR (Whisper API) → AST → LLM Scene Description → RAG Storage.
+3. As stages finish, it updates the job status in Redis so the frontend can show a progress bar.
+
+> **Note:** `audio_singlecall/` is the **testing harness only**. After migration to the main branch, the Python worker calls the root `main.py` directly. The `./run_pipeline.sh` shell script is a developer tool, not used in production.
 
 ### Step 4: Collect Results
-1. The pipeline saves `audio_results.json` to the video's output folder.
+1. The pipeline saves results to the `_processed/` folder and the Vector DB.
 2. The Python worker notifies Node.js via Redis that the job is "Complete".
-3. Node.js reads the JSON and returns it to the user.
+3. Node.js reads the results and returns scene descriptions + query-ready data to the user.
+
 
 ---
 

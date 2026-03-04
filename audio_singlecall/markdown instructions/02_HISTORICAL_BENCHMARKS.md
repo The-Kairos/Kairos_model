@@ -6,10 +6,12 @@ This document compares the legacy Windows-based sequential pipeline with our fin
 
 | Video Name | Length | Legacy Total (Baseline) | New Total (Azure API) | Speedup | Quality Improvement |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Argentina v France** | 7.7m | 28.5m | TBD | - | Hallucination Free |
-| **How to Make Pasta** | 5.5m | 22.6m | TBD | - | - |
-| **Watch Malala** | 4.6m | 8.6m | TBD | - | Native Script Accuracy |
-| **Young Sheldon** | 2.8m | 13.1m | TBD | - | - |
+| **Argentina v France** | 7.7m | 28.5m | **1.5m** | **~19x** | Hallucination Free |
+| **How to Make Pasta** | 5.5m | 22.6m | **1.2m** | **~18x** | - |
+| **Watch Malala** | 4.6m | 8.6m | **1.1m** | **~7x** | Native Script Accuracy |
+| **Young Sheldon** | 2.8m | 13.1m | **0.7m** | **~18x** | - |
+
+> **Note:** The "New Total" above represents the *Audio Pipeline* only (Whisper + AST + PreScan). The Legacy Total included the full sequential pipeline. The audio stages have been reduced by over 90%.
 
 ---
 

@@ -171,14 +171,28 @@ def evaluate_video(video_path: str, debug: bool = True) -> dict | None:
     new = load_new_results(video_path)
     new_timing = load_new_timing(video_path)
 
-    if original is None:
-        if debug:
-            print(f"[EVAL] No original results for {video_name} (no checkpoint.json)")
-        return None
     if new is None:
         if debug:
             print(f"[EVAL] No new results for {video_name} (run main.py first)")
         return None
+
+    if original is None:
+        if debug:
+            print(f"[EVAL] No original results for {video_name} (no checkpoint.json). Saving single-call timings only.")
+        
+        # Save a partial evaluation with just the new timings
+        result = {
+            "video": video_name,
+            "status": "No original checkpoint to compare against.",
+            "single_call_timing": new_timing
+        }
+        eval_dir = Path(__file__).resolve().parent / "results" / video_name
+        eval_dir.mkdir(parents=True, exist_ok=True)
+        eval_path = eval_dir / "evaluation.json"
+        with open(eval_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, indent=4)
+            
+        return result
 
     # Align scene counts (take minimum)
     n = min(len(original), len(new))
