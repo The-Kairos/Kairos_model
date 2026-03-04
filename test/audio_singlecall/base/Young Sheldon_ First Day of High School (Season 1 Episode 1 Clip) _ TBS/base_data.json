@@ -1,0 +1,3625 @@
+{
+  "video": "Young Sheldon_ First Day of High School (Season 1 Episode 1 Clip) _ TBS.mp4",
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:02.836",
+      "start_seconds": 0.0,
+      "end_seconds": 2.8361666666666663,
+      "duration_seconds": 2.8361666666666663,
+      "audio_speech": "\ud83c\udfb6 Outro Music \ud83c\udfb6",
+      "audio_natural": "music (conf=0.69)",
+      "frame_indices": [
+        0,
+        24,
+        48
+      ],
+      "frame_timestamps": [
+        0.0,
+        1.001,
+        2.002
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 1,
+          "label": "truck",
+          "confidence_avg": 0.663,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:02.836",
+      "end_timecode": "00:00:06.340",
+      "start_seconds": 2.8361666666666663,
+      "end_seconds": 6.339666666666666,
+      "duration_seconds": 3.5035,
+      "audio_speech": "\u266a Down the road, down the road \u266a",
+      "audio_natural": "music (conf=0.41), explosion (conf=0.41)",
+      "frame_indices": [
+        68,
+        92,
+        116,
+        140
+      ],
+      "frame_timestamps": [
+        2.8361666666666663,
+        3.8371666666666666,
+        4.838166666666666,
+        5.839166666666666
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.888,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:06.340",
+      "end_timecode": "00:00:09.009",
+      "start_seconds": 6.339666666666666,
+      "end_seconds": 9.008999999999999,
+      "duration_seconds": 2.6693333333333324,
+      "audio_speech": "\u266a Oh, baby, you're the star of my life \u266a",
+      "audio_natural": "music (conf=0.59)",
+      "frame_indices": [
+        152,
+        176,
+        200
+      ],
+      "frame_timestamps": [
+        6.339666666666666,
+        7.3406666666666665,
+        8.341666666666667
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 5.47,
+          "net_displacement": 5.434,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:09.009",
+      "end_timecode": "00:00:11.678",
+      "start_seconds": 9.008999999999999,
+      "end_seconds": 11.678333333333333,
+      "duration_seconds": 2.6693333333333342,
+      "audio_speech": "Would you like to play a driving game?",
+      "audio_natural": "music (conf=0.66)",
+      "frame_indices": [
+        216,
+        240,
+        264
+      ],
+      "frame_timestamps": [
+        9.008999999999999,
+        10.01,
+        11.011
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.7,
+          "net_displacement": 3.696,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:11.678",
+      "end_timecode": "00:00:13.680",
+      "start_seconds": 11.678333333333333,
+      "end_seconds": 13.680333333333332,
+      "duration_seconds": 2.001999999999999,
+      "audio_speech": "Not really, I always lose.",
+      "audio_natural": "none",
+      "frame_indices": [
+        280,
+        304,
+        328
+      ],
+      "frame_timestamps": [
+        11.678333333333333,
+        12.679333333333332,
+        13.680333333333332
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.842,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 59.996,
+          "net_displacement": 15.561,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.817,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:13.680",
+      "end_timecode": "00:00:18.352",
+      "start_seconds": 13.680333333333332,
+      "end_seconds": 18.351666666666667,
+      "duration_seconds": 4.671333333333335,
+      "audio_speech": "I know that's why it's fun. How about licensed plates with prime numbers?",
+      "audio_natural": "speech (conf=0.33), quack (conf=0.30)",
+      "frame_indices": [
+        328,
+        352,
+        376,
+        400,
+        424
+      ],
+      "frame_timestamps": [
+        13.680333333333332,
+        14.681333333333333,
+        15.682333333333332,
+        16.683333333333334,
+        17.68433333333333
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 10.317,
+          "net_displacement": 9.715,
+          "direction_change_var": 0.8288,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:18.352",
+      "end_timecode": "00:00:20.520",
+      "start_seconds": 18.351666666666667,
+      "end_seconds": 20.5205,
+      "duration_seconds": 2.168833333333332,
+      "audio_speech": "Why don't we just talk?",
+      "audio_natural": "none",
+      "frame_indices": [
+        440,
+        464,
+        488
+      ],
+      "frame_timestamps": [
+        18.351666666666667,
+        19.352666666666664,
+        20.353666666666665
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.732,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.592,
+          "net_displacement": 1.16,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:20.520",
+      "end_timecode": "00:00:27.861",
+      "start_seconds": 20.5205,
+      "end_seconds": 27.861166666666666,
+      "duration_seconds": 7.340666666666667,
+      "audio_speech": "Very well. You understand that some people are going to be intimidated by you because of how smart you are?",
+      "audio_natural": "music (conf=0.88)",
+      "frame_indices": [
+        492,
+        516,
+        540,
+        564,
+        588,
+        612,
+        636,
+        660
+      ],
+      "frame_timestamps": [
+        20.5205,
+        21.5215,
+        22.522499999999997,
+        23.5235,
+        24.5245,
+        25.525499999999997,
+        26.5265,
+        27.527499999999996
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.825,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 32.438,
+          "net_displacement": 18.432,
+          "direction_change_var": 1.6852,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:00:27.861",
+      "end_timecode": "00:00:32.199",
+      "start_seconds": 27.861166666666666,
+      "end_seconds": 32.19883333333333,
+      "duration_seconds": 4.337666666666667,
+      "audio_speech": "Or maybe they'll recognize my intellect and make me their leader.",
+      "audio_natural": "music (conf=0.48)",
+      "frame_indices": [
+        668,
+        692,
+        716,
+        740,
+        764
+      ],
+      "frame_timestamps": [
+        27.861166666666666,
+        28.862166666666663,
+        29.863166666666665,
+        30.864166666666666,
+        31.865166666666664
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.86,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 20.09,
+          "net_displacement": 20.086,
+          "direction_change_var": 0.0019,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:00:32.199",
+      "end_timecode": "00:00:39.373",
+      "start_seconds": 32.19883333333333,
+      "end_seconds": 39.37266666666667,
+      "duration_seconds": 7.173833333333334,
+      "audio_speech": "Or look after my son, don't let him get stuffed in a gym bag.",
+      "audio_natural": "music (conf=0.72)",
+      "frame_indices": [
+        772,
+        796,
+        820,
+        844,
+        868,
+        892,
+        916,
+        940
+      ],
+      "frame_timestamps": [
+        32.19883333333333,
+        33.19983333333333,
+        34.20083333333333,
+        35.20183333333333,
+        36.20283333333333,
+        37.20383333333333,
+        38.20483333333333,
+        39.20583333333333
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.67,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 36.012,
+          "net_displacement": 32.297,
+          "direction_change_var": 2.738,
+          "relations": [
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.792,
+          "start_frame": 0,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 12.464,
+          "net_displacement": 5.906,
+          "direction_change_var": 3.3237,
+          "relations": [
+            "left-of person #3"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:00:39.373",
+      "end_timecode": "00:00:41.541",
+      "start_seconds": 39.37266666666667,
+      "end_seconds": 41.5415,
+      "duration_seconds": 2.168833333333332,
+      "audio_speech": "\u266a That's all I want \u266a",
+      "audio_natural": "music (conf=0.48)",
+      "frame_indices": [
+        944,
+        968,
+        992
+      ],
+      "frame_timestamps": [
+        39.37266666666667,
+        40.373666666666665,
+        41.37466666666666
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 1,
+          "label": "car",
+          "confidence_avg": 0.801,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "car",
+          "confidence_avg": 0.771,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 3,
+          "label": "car",
+          "confidence_avg": 0.814,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 4,
+          "label": "car",
+          "confidence_avg": 0.899,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:00:41.541",
+      "end_timecode": "00:00:50.384",
+      "start_seconds": 41.5415,
+      "end_seconds": 50.38366666666666,
+      "duration_seconds": 8.842166666666664,
+      "audio_speech": "\u266a Bring me a gun \u266a",
+      "audio_natural": "speech (conf=0.42), music (conf=0.56)",
+      "frame_indices": [
+        996,
+        1020,
+        1044,
+        1068,
+        1092,
+        1116,
+        1140,
+        1164,
+        1188
+      ],
+      "frame_timestamps": [
+        41.5415,
+        42.5425,
+        43.543499999999995,
+        44.5445,
+        45.5455,
+        46.546499999999995,
+        47.5475,
+        48.5485,
+        49.549499999999995
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.841,
+          "start_frame": 3,
+          "end_frame": 8,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving down, getting farther",
+          "path_length": 22.496,
+          "net_displacement": 18.631,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #29",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.83,
+          "start_frame": 5,
+          "end_frame": 8,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up-left, getting closer, moving in a loop",
+          "path_length": 45.508,
+          "net_displacement": 8.57,
+          "direction_change_var": 7.6482,
+          "relations": [
+            "left-of person #29",
+            "left-of person #3",
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 10,
+          "label": "car",
+          "confidence_avg": 0.816,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "bottom-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting closer",
+          "path_length": 122.996,
+          "net_displacement": 98.015,
+          "direction_change_var": 0.1697,
+          "relations": [
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.762,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.528,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.792,
+          "start_frame": 2,
+          "end_frame": 6,
+          "start_pos": "bottom-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting closer",
+          "path_length": 48.444,
+          "net_displacement": 21.873,
+          "direction_change_var": 2.0114,
+          "relations": [
+            "left-of car #10",
+            "left-of person #19",
+            "left-of person #4"
+          ]
+        },
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.554,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 19,
+          "label": "person",
+          "confidence_avg": 0.84,
+          "start_frame": 2,
+          "end_frame": 6,
+          "start_pos": "bottom-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting closer",
+          "path_length": 20.85,
+          "net_displacement": 20.85,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.862,
+          "start_frame": 6,
+          "end_frame": 8,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down-left",
+          "path_length": 36.85,
+          "net_displacement": 33.649,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #3",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.8,
+          "start_frame": 6,
+          "end_frame": 6,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:00:50.384",
+      "end_timecode": "00:00:55.389",
+      "start_seconds": 50.38366666666666,
+      "end_seconds": 55.388666666666666,
+      "duration_seconds": 5.005000000000003,
+      "audio_speech": "Oh dear, yeah, that boy has an explosive",
+      "audio_natural": "speech (conf=0.75)",
+      "frame_indices": [
+        1208,
+        1232,
+        1256,
+        1280,
+        1304,
+        1328
+      ],
+      "frame_timestamps": [
+        50.38366666666666,
+        51.38466666666666,
+        52.385666666666665,
+        53.38666666666666,
+        54.38766666666666,
+        55.388666666666666
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.737,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 10.697,
+          "net_displacement": 9.745,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #16",
+            "right-of person #19",
+            "right-of person #29",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-right, moving in a loop",
+          "path_length": 46.998,
+          "net_displacement": 15.342,
+          "direction_change_var": 1.246,
+          "relations": [
+            "left-of person #19",
+            "left-of person #29",
+            "left-of person #3",
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.846,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting closer",
+          "path_length": 22.773,
+          "net_displacement": 18.703,
+          "direction_change_var": 0.4253,
+          "relations": [
+            "left-of person #19",
+            "left-of person #29",
+            "left-of person #3",
+            "left-of person #4"
+          ]
+        },
+        {
+          "track_id": 19,
+          "label": "person",
+          "confidence_avg": 0.756,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up",
+          "path_length": 51.895,
+          "net_displacement": 27.053,
+          "direction_change_var": 2.8215,
+          "relations": [
+            "left-of person #3",
+            "right-of person #16",
+            "right-of person #29",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.851,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 15.517,
+          "net_displacement": 7.204,
+          "direction_change_var": 5.1749,
+          "relations": [
+            "left-of person #19",
+            "left-of person #3",
+            "right-of person #16",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 4,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:00:55.389",
+      "end_timecode": "00:01:02.562",
+      "start_seconds": 55.388666666666666,
+      "end_seconds": 62.56249999999999,
+      "duration_seconds": 7.173833333333327,
+      "audio_speech": "He does. I wonder if he knows that's in violation of the dress code. Speaking of which...",
+      "audio_natural": "speech (conf=0.76)",
+      "frame_indices": [
+        1328,
+        1352,
+        1376,
+        1400,
+        1424,
+        1448,
+        1472,
+        1496
+      ],
+      "frame_timestamps": [
+        55.388666666666666,
+        56.38966666666666,
+        57.39066666666666,
+        58.391666666666666,
+        59.39266666666666,
+        60.39366666666666,
+        61.394666666666666,
+        62.39566666666666
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.834,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer",
+          "path_length": 27.445,
+          "net_displacement": 17.95,
+          "direction_change_var": 5.3512,
+          "relations": [
+            "left-of person #19",
+            "left-of person #29",
+            "left-of person #52",
+            "left-of person #55",
+            "left-of person #56",
+            "left-of person #63",
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.649,
+          "start_frame": 7,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.765,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-right, getting farther",
+          "path_length": 39.268,
+          "net_displacement": 20.057,
+          "direction_change_var": 0.2624,
+          "relations": [
+            "left-of person #19",
+            "left-of person #29",
+            "left-of person #4",
+            "left-of person #52",
+            "left-of person #55",
+            "left-of person #56",
+            "left-of person #63",
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 19,
+          "label": "person",
+          "confidence_avg": 0.661,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up",
+          "path_length": 8.511,
+          "net_displacement": 8.511,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #52",
+            "left-of person #56",
+            "right-of person #16",
+            "right-of person #29",
+            "right-of person #4",
+            "right-of person #55"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.779,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 22.049,
+          "net_displacement": 19.857,
+          "direction_change_var": 1.6585,
+          "relations": [
+            "left-of person #19",
+            "left-of person #52",
+            "left-of person #56",
+            "left-of person #63",
+            "right-of person #16",
+            "right-of person #4",
+            "right-of person #55"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.807,
+          "start_frame": 3,
+          "end_frame": 6,
+          "start_pos": "bottom-left",
+          "end_pos": "middle-left",
+          "movement": "moving up-left, getting closer",
+          "path_length": 10.721,
+          "net_displacement": 10.721,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #16",
+            "left-of person #63"
+          ]
+        },
+        {
+          "track_id": 52,
+          "label": "person",
+          "confidence_avg": 0.744,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "top-right",
+          "end_pos": "middle-right",
+          "movement": "moving down-right",
+          "path_length": 9.152,
+          "net_displacement": 9.152,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #56",
+            "right-of person #16",
+            "right-of person #19",
+            "right-of person #29",
+            "right-of person #4",
+            "right-of person #55"
+          ]
+        },
+        {
+          "track_id": 53,
+          "label": "person",
+          "confidence_avg": 0.716,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.645,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 55,
+          "label": "person",
+          "confidence_avg": 0.642,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 5.818,
+          "net_displacement": 5.818,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #19",
+            "left-of person #29",
+            "left-of person #52",
+            "left-of person #56",
+            "right-of person #16",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 56,
+          "label": "person",
+          "confidence_avg": 0.573,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "moving down",
+          "path_length": 11.33,
+          "net_displacement": 11.33,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #16",
+            "right-of person #19",
+            "right-of person #29",
+            "right-of person #4",
+            "right-of person #52",
+            "right-of person #55"
+          ]
+        },
+        {
+          "track_id": 57,
+          "label": "backpack",
+          "confidence_avg": 0.565,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 58,
+          "label": "person",
+          "confidence_avg": 0.51,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.905,
+          "start_frame": 3,
+          "end_frame": 7,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer",
+          "path_length": 75.437,
+          "net_displacement": 51.486,
+          "direction_change_var": 3.4135,
+          "relations": [
+            "right-of person #16",
+            "right-of person #29",
+            "right-of person #33",
+            "right-of person #4",
+            "right-of person #66"
+          ]
+        },
+        {
+          "track_id": 66,
+          "label": "person",
+          "confidence_avg": 0.846,
+          "start_frame": 6,
+          "end_frame": 7,
+          "start_pos": "bottom-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting closer",
+          "path_length": 21.713,
+          "net_displacement": 21.713,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #63"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:02.562",
+      "end_timecode": "00:01:04.731",
+      "start_seconds": 62.56249999999999,
+      "end_seconds": 64.73133333333332,
+      "duration_seconds": 2.168833333333332,
+      "audio_speech": "How about we lose the boat tower?",
+      "audio_natural": "none",
+      "frame_indices": [
+        1500,
+        1524,
+        1548
+      ],
+      "frame_timestamps": [
+        62.56249999999999,
+        63.5635,
+        64.5645
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.825,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 4.146,
+          "net_displacement": 3.899,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #63",
+            "right-of person #33",
+            "right-of person #66"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.701,
+          "start_frame": 1,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up-right",
+          "path_length": 13.599,
+          "net_displacement": 13.599,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #63",
+            "left-of person #66"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.94,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 7.221,
+          "net_displacement": 5.763,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #13",
+            "right-of person #33",
+            "right-of person #66"
+          ]
+        },
+        {
+          "track_id": 66,
+          "label": "person",
+          "confidence_avg": 0.891,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving up",
+          "path_length": 10.392,
+          "net_displacement": 10.243,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #63",
+            "right-of person #33"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:01:04.731",
+      "end_timecode": "00:01:09.069",
+      "start_seconds": 64.73133333333332,
+      "end_seconds": 69.06899999999999,
+      "duration_seconds": 4.337666666666664,
+      "audio_speech": "Why? Look around, honey. None of the other kids are wearing them.",
+      "audio_natural": "none",
+      "frame_indices": [
+        1552,
+        1576,
+        1600,
+        1624,
+        1648
+      ],
+      "frame_timestamps": [
+        64.73133333333332,
+        65.73233333333333,
+        66.73333333333333,
+        67.73433333333332,
+        68.73533333333333
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.633,
+          "start_frame": 2,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "top-center",
+          "movement": "moving up, getting farther",
+          "path_length": 18.203,
+          "net_displacement": 18.203,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #63",
+            "left-of person #73"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.9,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up, getting closer",
+          "path_length": 12.363,
+          "net_displacement": 8.479,
+          "direction_change_var": 1.0571,
+          "relations": [
+            "left-of bicycle #56",
+            "left-of person #53",
+            "left-of person #63",
+            "left-of person #73",
+            "left-of person #74",
+            "right-of person #16",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.769,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting closer",
+          "path_length": 12.242,
+          "net_displacement": 9.614,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #53",
+            "left-of person #63",
+            "left-of person #73",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.762,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 53,
+          "label": "person",
+          "confidence_avg": 0.723,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting farther",
+          "path_length": 19.886,
+          "net_displacement": 19.886,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #13",
+            "right-of person #16",
+            "right-of person #63",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.814,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 56,
+          "label": "bicycle",
+          "confidence_avg": 0.561,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "mostly stationary",
+          "path_length": 6.238,
+          "net_displacement": 6.238,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #73",
+            "below person #74",
+            "right-of person #13",
+            "right-of person #63",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 13.772,
+          "net_displacement": 7.776,
+          "direction_change_var": 1.8929,
+          "relations": [
+            "left-of bicycle #56",
+            "left-of person #53",
+            "left-of person #73",
+            "left-of person #74",
+            "right-of person #13",
+            "right-of person #16",
+            "right-of person #4",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.823,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting closer",
+          "path_length": 23.498,
+          "net_displacement": 7.976,
+          "direction_change_var": 3.8888,
+          "relations": [
+            "left-of bicycle #56",
+            "left-of person #13",
+            "left-of person #16",
+            "left-of person #53",
+            "left-of person #63",
+            "left-of person #73",
+            "left-of person #74"
+          ]
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.806,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 6.919,
+          "net_displacement": 0.633,
+          "direction_change_var": 0.9612,
+          "relations": [
+            "above bicycle #56",
+            "below person #74",
+            "right-of person #13",
+            "right-of person #16",
+            "right-of person #4",
+            "right-of person #63",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 74,
+          "label": "person",
+          "confidence_avg": 0.789,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer",
+          "path_length": 9.921,
+          "net_displacement": 9.921,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above bicycle #56",
+            "above person #73",
+            "right-of person #13",
+            "right-of person #63",
+            "right-of person #72"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:01:09.069",
+      "end_timecode": "00:01:11.238",
+      "start_seconds": 69.06899999999999,
+      "end_seconds": 71.23783333333333,
+      "duration_seconds": 2.168833333333339,
+      "audio_speech": "Well, perhaps I'll start a fad.",
+      "audio_natural": "speech (conf=0.80)",
+      "frame_indices": [
+        1656,
+        1680,
+        1704
+      ],
+      "frame_timestamps": [
+        69.06899999999999,
+        70.07,
+        71.071
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.936,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 3.39,
+          "net_displacement": 2.671,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #63",
+            "right-of person #16",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.818,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 10.802,
+          "net_displacement": 10.75,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #63",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.855,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.912,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 14.279,
+          "net_displacement": 14.22,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #13",
+            "right-of person #16",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.845,
+          "start_frame": 1,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down",
+          "path_length": 9.11,
+          "net_displacement": 9.11,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #16",
+            "left-of person #63"
+          ]
+        },
+        {
+          "track_id": 78,
+          "label": "person",
+          "confidence_avg": 0.538,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:01:11.238",
+      "end_timecode": "00:01:13.240",
+      "start_seconds": 71.23783333333333,
+      "end_seconds": 73.23983333333332,
+      "duration_seconds": 2.0019999999999953,
+      "audio_speech": "or you won't, please trust mommy.",
+      "audio_natural": "none",
+      "frame_indices": [
+        1708,
+        1732,
+        1756
+      ],
+      "frame_timestamps": [
+        71.23783333333333,
+        72.23883333333333,
+        73.23983333333332
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.69,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 1.902,
+          "net_displacement": 1.902,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #63",
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.935,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 9.078,
+          "net_displacement": 9.078,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #4",
+            "left-of person #63"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.855,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.929,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 33.892,
+          "net_displacement": 14.71,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #16",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.822,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:01:13.240",
+      "end_timecode": "00:01:15.742",
+      "start_seconds": 73.23983333333332,
+      "end_seconds": 75.74233333333333,
+      "duration_seconds": 2.502500000000012,
+      "audio_speech": "All right, tell you what.",
+      "audio_natural": "speech (conf=0.81), run (conf=0.39)",
+      "frame_indices": [
+        1756,
+        1780,
+        1804
+      ],
+      "frame_timestamps": [
+        73.23983333333332,
+        74.24083333333333,
+        75.24183333333333
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.931,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 2.588,
+          "net_displacement": 2.476,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #63",
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.866,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 3.225,
+          "net_displacement": 2.352,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #63"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.898,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 9.034,
+          "net_displacement": 4.872,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #13",
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 78,
+          "label": "person",
+          "confidence_avg": 0.614,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:01:15.742",
+      "end_timecode": "00:01:20.747",
+      "start_seconds": 75.74233333333333,
+      "end_seconds": 80.74733333333333,
+      "duration_seconds": 5.0049999999999955,
+      "audio_speech": "You take it off, and this weekend I'll take you to Radio Shack.",
+      "audio_natural": "none",
+      "frame_indices": [
+        1816,
+        1840,
+        1864,
+        1888,
+        1912,
+        1936
+      ],
+      "frame_timestamps": [
+        75.74233333333333,
+        76.74333333333333,
+        77.74433333333333,
+        78.74533333333333,
+        79.74633333333333,
+        80.74733333333333
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.713,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 13.081,
+          "net_displacement": 4.4,
+          "direction_change_var": 3.9193,
+          "relations": [
+            "left-of person #63",
+            "right-of person #16",
+            "right-of person #33",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.929,
+          "start_frame": 5,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.877,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, getting closer, moving in a loop",
+          "path_length": 13.398,
+          "net_displacement": 2.55,
+          "direction_change_var": 1.8073,
+          "relations": [
+            "left-of person #4",
+            "left-of person #63",
+            "right-of person #33",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.737,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 22.663,
+          "net_displacement": 8.274,
+          "direction_change_var": 4.2765,
+          "relations": [
+            "left-of person #16",
+            "left-of person #4",
+            "left-of person #63",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.907,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting closer",
+          "path_length": 36.689,
+          "net_displacement": 13.89,
+          "direction_change_var": 1.6281,
+          "relations": [
+            "right-of person #16",
+            "right-of person #33",
+            "right-of person #4",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.793,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.802,
+          "net_displacement": 0.802,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #16",
+            "left-of person #33",
+            "left-of person #4",
+            "left-of person #63"
+          ]
+        },
+        {
+          "track_id": 78,
+          "label": "person",
+          "confidence_avg": 0.535,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:01:20.747",
+      "end_timecode": "00:01:24.418",
+      "start_seconds": 80.74733333333333,
+      "end_seconds": 84.41766666666666,
+      "duration_seconds": 3.670333333333332,
+      "audio_speech": "Huh?",
+      "audio_natural": "music (conf=0.54)",
+      "frame_indices": [
+        1936,
+        1960,
+        1984,
+        2008
+      ],
+      "frame_timestamps": [
+        80.74733333333333,
+        81.74833333333332,
+        82.74933333333333,
+        83.75033333333333
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.932,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 3.413,
+          "net_displacement": 3.383,
+          "direction_change_var": 0.0049,
+          "relations": [
+            "left-of person #63"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.89,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 4.683,
+          "net_displacement": 4.051,
+          "direction_change_var": 0.0377,
+          "relations": [
+            "right-of person #13"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:01:24.418",
+      "end_timecode": "00:01:34.928",
+      "start_seconds": 84.41766666666666,
+      "end_seconds": 94.92816666666666,
+      "duration_seconds": 10.510499999999993,
+      "audio_speech": "Come on, Randy! You doing okay? I guess.",
+      "audio_natural": "speech (conf=0.74), music (conf=0.72)",
+      "frame_indices": [
+        2024,
+        2048,
+        2072,
+        2096,
+        2120,
+        2144,
+        2168,
+        2192,
+        2216,
+        2240,
+        2264
+      ],
+      "frame_timestamps": [
+        84.41766666666666,
+        85.41866666666667,
+        86.41966666666666,
+        87.42066666666666,
+        88.42166666666667,
+        89.42266666666666,
+        90.42366666666666,
+        91.42466666666667,
+        92.42566666666666,
+        93.42666666666666,
+        94.42766666666665
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "dog",
+          "confidence_avg": 0.771,
+          "start_frame": 4,
+          "end_frame": 7,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer",
+          "path_length": 40.761,
+          "net_displacement": 39.439,
+          "direction_change_var": 0.0105,
+          "relations": [
+            "left-of person #13"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.859,
+          "start_frame": 0,
+          "end_frame": 9,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 106.051,
+          "net_displacement": 84.629,
+          "direction_change_var": 2.9843,
+          "relations": [
+            "right-of dog #4",
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.776,
+          "start_frame": 3,
+          "end_frame": 10,
+          "start_pos": "middle-left",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer",
+          "path_length": 69.118,
+          "net_displacement": 68.698,
+          "direction_change_var": 0.0062,
+          "relations": [
+            "left-of person #13"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "bottom-right",
+          "movement": "moving down, getting farther",
+          "path_length": 17.741,
+          "net_displacement": 17.741,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.661,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-left, getting closer",
+          "path_length": 24.596,
+          "net_displacement": 24.452,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 63,
+          "label": "person",
+          "confidence_avg": 0.902,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.689,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 6.325,
+          "net_displacement": 1.363,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #29",
+            "left-of person #33"
+          ]
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.747,
+          "start_frame": 1,
+          "end_frame": 8,
+          "start_pos": "bottom-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting closer",
+          "path_length": 14.561,
+          "net_displacement": 14.561,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 99,
+          "label": "person",
+          "confidence_avg": 0.805,
+          "start_frame": 7,
+          "end_frame": 7,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:01:34.928",
+      "end_timecode": "00:01:40.934",
+      "start_seconds": 94.92816666666666,
+      "end_seconds": 100.93416666666666,
+      "duration_seconds": 6.006,
+      "audio_speech": "I smell ammonia. They must have done a thorough cleaning recently. I like that.",
+      "audio_natural": "speech (conf=0.50)",
+      "frame_indices": [
+        2276,
+        2300,
+        2324,
+        2348,
+        2372,
+        2396,
+        2420
+      ],
+      "frame_timestamps": [
+        94.92816666666666,
+        95.92916666666666,
+        96.93016666666666,
+        97.93116666666666,
+        98.93216666666666,
+        99.93316666666666,
+        100.93416666666666
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.863,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "bottom-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer",
+          "path_length": 64.937,
+          "net_displacement": 35.708,
+          "direction_change_var": 1.3003,
+          "relations": [
+            "below person #102",
+            "left-of person #13",
+            "left-of person #29",
+            "left-of person #73",
+            "moving-with person #13",
+            "right-of person #33",
+            "right-of person #54"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.828,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 65.907,
+          "net_displacement": 22.175,
+          "direction_change_var": 5.1979,
+          "relations": [
+            "left-of person #29",
+            "left-of person #73",
+            "moving-with person #4",
+            "right-of person #102",
+            "right-of person #33",
+            "right-of person #4",
+            "right-of person #54"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.831,
+          "start_frame": 2,
+          "end_frame": 6,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer",
+          "path_length": 25.639,
+          "net_displacement": 9.719,
+          "direction_change_var": 0.1149,
+          "relations": [
+            "right-of person #13",
+            "right-of person #4",
+            "right-of person #54"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.834,
+          "start_frame": 5,
+          "end_frame": 6,
+          "start_pos": "middle-left",
+          "end_pos": "bottom-left",
+          "movement": "moving down, getting farther",
+          "path_length": 27.95,
+          "net_displacement": 27.95,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #4",
+            "left-of person #54"
+          ]
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.846,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-left",
+          "movement": "moving down-left",
+          "path_length": 63.84,
+          "net_displacement": 38.65,
+          "direction_change_var": 1.1776,
+          "relations": [
+            "left-of person #102",
+            "left-of person #13",
+            "left-of person #29",
+            "left-of person #4",
+            "left-of person #73",
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting closer",
+          "path_length": 27.025,
+          "net_displacement": 25.972,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #13",
+            "right-of person #4",
+            "right-of person #54"
+          ]
+        },
+        {
+          "track_id": 102,
+          "label": "person",
+          "confidence_avg": 0.617,
+          "start_frame": 1,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting farther",
+          "path_length": 20.984,
+          "net_displacement": 20.984,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #4",
+            "left-of person #13",
+            "right-of person #54"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:01:40.934",
+      "end_timecode": "00:01:46.440",
+      "start_seconds": 100.93416666666666,
+      "end_seconds": 106.43966666666665,
+      "duration_seconds": 5.505499999999998,
+      "audio_speech": "And remember, if anybody bothers you, what do you say? My dad's a football coach.",
+      "audio_natural": "speech (conf=0.63)",
+      "frame_indices": [
+        2420,
+        2444,
+        2468,
+        2492,
+        2516,
+        2540
+      ],
+      "frame_timestamps": [
+        100.93416666666666,
+        101.93516666666666,
+        102.93616666666667,
+        103.93716666666666,
+        104.93816666666666,
+        105.93916666666667
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.847,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "bottom-center",
+          "end_pos": "middle-center",
+          "movement": "moving up, getting closer",
+          "path_length": 65.931,
+          "net_displacement": 28.451,
+          "direction_change_var": 0.6742,
+          "relations": [
+            "left-of person #13",
+            "left-of person #16",
+            "left-of person #73",
+            "right-of chair #33"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.872,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-right, getting closer",
+          "path_length": 24.521,
+          "net_displacement": 14.264,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #29",
+            "right-of chair #33",
+            "right-of person #102",
+            "right-of person #4",
+            "right-of person #54"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 1,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 49.502,
+          "net_displacement": 49.439,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #73",
+            "right-of chair #33",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.832,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right",
+          "path_length": 16.154,
+          "net_displacement": 16.154,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of chair #33",
+            "right-of person #102",
+            "right-of person #13",
+            "right-of person #54"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "chair",
+          "confidence_avg": 0.771,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "bottom-left",
+          "end_pos": "middle-left",
+          "movement": "moving up, getting closer",
+          "path_length": 58.008,
+          "net_displacement": 51.758,
+          "direction_change_var": 0.4877,
+          "relations": [
+            "left-of person #102",
+            "left-of person #13",
+            "left-of person #16",
+            "left-of person #29",
+            "left-of person #4",
+            "left-of person #54",
+            "left-of person #73"
+          ]
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.809,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 25.001,
+          "net_displacement": 17.612,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #102",
+            "left-of person #13",
+            "left-of person #29",
+            "right-of chair #33"
+          ]
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.843,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.799,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting farther",
+          "path_length": 25.262,
+          "net_displacement": 25.154,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of chair #33",
+            "right-of person #16",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 102,
+          "label": "person",
+          "confidence_avg": 0.615,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving down, getting farther",
+          "path_length": 45.701,
+          "net_displacement": 44.58,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #29",
+            "right-of chair #33",
+            "right-of person #54"
+          ]
+        },
+        {
+          "track_id": 111,
+          "label": "person",
+          "confidence_avg": 0.64,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 112,
+          "label": "person",
+          "confidence_avg": 0.571,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:01:46.440",
+      "end_timecode": "00:01:51.945",
+      "start_seconds": 106.43966666666665,
+      "end_seconds": 111.94516666666667,
+      "duration_seconds": 5.505500000000012,
+      "audio_speech": "And? My brother's a football player. Good. Hey, Mom, look! That girl's...",
+      "audio_natural": "speech (conf=0.47)",
+      "frame_indices": [
+        2552,
+        2576,
+        2600,
+        2624,
+        2648,
+        2672
+      ],
+      "frame_timestamps": [
+        106.43966666666665,
+        107.44066666666666,
+        108.44166666666666,
+        109.44266666666665,
+        110.44366666666666,
+        111.44466666666666
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.869,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving down-left, getting farther",
+          "path_length": 38.778,
+          "net_displacement": 21.922,
+          "direction_change_var": 1.9365,
+          "relations": [
+            "below person #54",
+            "left-of person #13",
+            "left-of person #29",
+            "left-of person #73",
+            "right-of person #33",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.88,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer",
+          "path_length": 28.921,
+          "net_displacement": 13.969,
+          "direction_change_var": 2.74,
+          "relations": [
+            "left-of person #29",
+            "left-of person #73",
+            "right-of person #33",
+            "right-of person #4",
+            "right-of person #54",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.754,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 20.983,
+          "net_displacement": 4.508,
+          "direction_change_var": 0.1187,
+          "relations": [
+            "right-of person #13",
+            "right-of person #33",
+            "right-of person #4",
+            "right-of person #54",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.844,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting farther, moving in a loop",
+          "path_length": 49.241,
+          "net_displacement": 16.108,
+          "direction_change_var": 4.2475,
+          "relations": [
+            "left-of person #13",
+            "left-of person #29",
+            "left-of person #4",
+            "left-of person #54",
+            "left-of person #73",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.761,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting farther, moving in a loop",
+          "path_length": 43.057,
+          "net_displacement": 11.261,
+          "direction_change_var": 3.6247,
+          "relations": [
+            "above person #4",
+            "left-of person #13",
+            "left-of person #29",
+            "left-of person #73",
+            "right-of person #33",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.787,
+          "start_frame": 2,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, getting closer",
+          "path_length": 25.931,
+          "net_displacement": 24.915,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #29",
+            "left-of person #33",
+            "left-of person #4",
+            "left-of person #54"
+          ]
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.817,
+          "start_frame": 1,
+          "end_frame": 4,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left",
+          "path_length": 12.099,
+          "net_displacement": 12.099,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #13",
+            "right-of person #33",
+            "right-of person #4",
+            "right-of person #54"
+          ]
+        },
+        {
+          "track_id": 121,
+          "label": "person",
+          "confidence_avg": 0.687,
+          "start_frame": 1,
+          "end_frame": 1,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:01:51.945",
+      "end_timecode": "00:01:55.782",
+      "start_seconds": 111.94516666666667,
+      "end_seconds": 115.78233333333333,
+      "duration_seconds": 3.8371666666666613,
+      "audio_speech": "She's pregnant. Congratulations.",
+      "audio_natural": "speech (conf=0.76)",
+      "frame_indices": [
+        2684,
+        2708,
+        2732,
+        2756
+      ],
+      "frame_timestamps": [
+        111.94516666666667,
+        112.94616666666666,
+        113.94716666666666,
+        114.94816666666667
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.806,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "bottom-center",
+          "end_pos": "middle-center",
+          "movement": "moving up, getting closer",
+          "path_length": 27.246,
+          "net_displacement": 26.633,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #73",
+            "right-of person #33",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 21.451,
+          "net_displacement": 11.207,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #33",
+            "right-of person #4",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.863,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.845,
+          "start_frame": 0,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down-left, getting farther",
+          "path_length": 40.512,
+          "net_displacement": 27.555,
+          "direction_change_var": 3.7159,
+          "relations": [
+            "left-of person #128",
+            "left-of person #13",
+            "left-of person #4",
+            "left-of person #73",
+            "right-of person #72"
+          ]
+        },
+        {
+          "track_id": 54,
+          "label": "person",
+          "confidence_avg": 0.786,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.795,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 5.876,
+          "net_displacement": 5.876,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13",
+            "left-of person #33",
+            "left-of person #4"
+          ]
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer",
+          "path_length": 11.717,
+          "net_displacement": 11.717,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #33",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 128,
+          "label": "person",
+          "confidence_avg": 0.643,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, getting closer",
+          "path_length": 15.39,
+          "net_displacement": 15.39,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 132,
+          "label": "person",
+          "confidence_avg": 0.753,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:01:55.782",
+      "end_timecode": "00:01:58.285",
+      "start_seconds": 115.78233333333333,
+      "end_seconds": 118.28483333333332,
+      "duration_seconds": 2.5024999999999977,
+      "audio_speech": "The End",
+      "audio_natural": "speech (conf=0.49)",
+      "frame_indices": [
+        2776,
+        2800,
+        2824
+      ],
+      "frame_timestamps": [
+        115.78233333333333,
+        116.78333333333333,
+        117.78433333333332
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.907,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 72,
+          "label": "person",
+          "confidence_avg": 0.72,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 121,
+          "label": "person",
+          "confidence_avg": 0.59,
+          "start_frame": 2,
+          "end_frame": 2,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:01:58.285",
+      "end_timecode": "00:02:04.958",
+      "start_seconds": 118.28483333333332,
+      "end_seconds": 124.95816666666666,
+      "duration_seconds": 6.673333333333332,
+      "audio_speech": "Well, that was revolting. Right. This is your homeroom. Do you want me to go in with you?",
+      "audio_natural": "speech (conf=0.69), door (conf=0.37)",
+      "frame_indices": [
+        2836,
+        2860,
+        2884,
+        2908,
+        2932,
+        2956,
+        2980
+      ],
+      "frame_timestamps": [
+        118.28483333333332,
+        119.28583333333333,
+        120.28683333333332,
+        121.28783333333332,
+        122.28883333333333,
+        123.28983333333332,
+        124.29083333333332
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.897,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "moving down",
+          "path_length": 30.005,
+          "net_displacement": 8.103,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below person #121",
+            "left-of person #13",
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 1,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving down, getting closer",
+          "path_length": 39.674,
+          "net_displacement": 30.701,
+          "direction_change_var": 1.5814,
+          "relations": [
+            "right-of person #121",
+            "right-of person #33",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.915,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right, getting closer",
+          "path_length": 94.079,
+          "net_displacement": 50.09,
+          "direction_change_var": 1.4764,
+          "relations": [
+            "left-of person #121",
+            "left-of person #13",
+            "left-of person #4"
+          ]
+        },
+        {
+          "track_id": 121,
+          "label": "person",
+          "confidence_avg": 0.755,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "top-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting farther",
+          "path_length": 16.139,
+          "net_displacement": 13.826,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above person #4",
+            "left-of person #13",
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 132,
+          "label": "person",
+          "confidence_avg": 0.809,
+          "start_frame": 3,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 5.105,
+          "net_displacement": 5.105,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 141,
+          "label": "person",
+          "confidence_avg": 0.838,
+          "start_frame": 2,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting farther",
+          "path_length": 7.481,
+          "net_displacement": 7.481,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 142,
+          "label": "person",
+          "confidence_avg": 0.875,
+          "start_frame": 3,
+          "end_frame": 3,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:02:04.958",
+      "end_timecode": "00:02:07.794",
+      "start_seconds": 124.95816666666666,
+      "end_seconds": 127.79433333333333,
+      "duration_seconds": 2.8361666666666707,
+      "audio_speech": "No, although I could have used you in the restroom.",
+      "audio_natural": "speech (conf=0.61)",
+      "frame_indices": [
+        2996,
+        3020,
+        3044
+      ],
+      "frame_timestamps": [
+        124.95816666666666,
+        125.95916666666666,
+        126.96016666666665
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, getting closer",
+          "path_length": 6.565,
+          "net_displacement": 5.727,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.901,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 13.854,
+          "net_displacement": 13.843,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:02:07.794",
+      "end_timecode": "00:02:14.468",
+      "start_seconds": 127.79433333333333,
+      "end_seconds": 134.46766666666664,
+      "duration_seconds": 6.673333333333318,
+      "audio_speech": "Okay, well, you have a good day and I'll pick you up after school. Same door we came in.",
+      "audio_natural": "speech (conf=0.89), gasp (conf=0.60)",
+      "frame_indices": [
+        3064,
+        3088,
+        3112,
+        3136,
+        3160,
+        3184,
+        3208
+      ],
+      "frame_timestamps": [
+        127.79433333333333,
+        128.79533333333333,
+        129.79633333333334,
+        130.7973333333333,
+        131.79833333333332,
+        132.79933333333332,
+        133.80033333333333
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.83,
+          "start_frame": 2,
+          "end_frame": 6,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 17.292,
+          "net_displacement": 4.448,
+          "direction_change_var": 1.5263,
+          "relations": [
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.898,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving down, moving in a loop",
+          "path_length": 34.931,
+          "net_displacement": 10.205,
+          "direction_change_var": 1.712,
+          "relations": [
+            "left-of person #13",
+            "left-of person #73"
+          ]
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.877,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left",
+          "path_length": 12.902,
+          "net_displacement": 12.902,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #33"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:02:14.468",
+      "end_timecode": "00:02:17.137",
+      "start_seconds": 134.46766666666664,
+      "end_seconds": 137.137,
+      "duration_seconds": 2.6693333333333555,
+      "audio_speech": "Are you crying or having an allergy attack?",
+      "audio_natural": "speech (conf=0.79)",
+      "frame_indices": [
+        3224,
+        3248,
+        3272
+      ],
+      "frame_timestamps": [
+        134.46766666666664,
+        135.46866666666665,
+        136.46966666666665
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.939,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 3.609,
+          "net_displacement": 0.227,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.944,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left",
+          "path_length": 8.467,
+          "net_displacement": 8.389,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:02:17.137",
+      "end_timecode": "00:02:19.473",
+      "start_seconds": 137.137,
+      "end_seconds": 139.47266666666667,
+      "duration_seconds": 2.3356666666666683,
+      "audio_speech": "Allergies.",
+      "audio_natural": "speech (conf=0.72)",
+      "frame_indices": [
+        3288,
+        3312,
+        3336
+      ],
+      "frame_timestamps": [
+        137.137,
+        138.13799999999998,
+        139.13899999999998
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.915,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 4.785,
+          "net_displacement": 4.78,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.932,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving right",
+          "path_length": 10.916,
+          "net_displacement": 10.903,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:02:19.473",
+      "end_timecode": "00:02:25.979",
+      "start_seconds": 139.47266666666667,
+      "end_seconds": 145.97916666666666,
+      "duration_seconds": 6.506499999999988,
+      "audio_speech": "It's probably the ammonia. Probably. Okay. Let the learning begin.",
+      "audio_natural": "none",
+      "frame_indices": [
+        3344,
+        3368,
+        3392,
+        3416,
+        3440,
+        3464,
+        3488
+      ],
+      "frame_timestamps": [
+        139.47266666666667,
+        140.47366666666665,
+        141.47466666666665,
+        142.47566666666665,
+        143.47666666666666,
+        144.47766666666666,
+        145.47866666666667
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.925,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving right, moving in a loop",
+          "path_length": 50.298,
+          "net_displacement": 11.019,
+          "direction_change_var": 5.2078,
+          "relations": [
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.934,
+          "start_frame": 0,
+          "end_frame": 5,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 58.274,
+          "net_displacement": 0.542,
+          "direction_change_var": 2.2794,
+          "relations": [
+            "left-of person #13"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_index": 33,
+      "start_timecode": "00:02:25.979",
+      "end_timecode": "00:02:35.322",
+      "start_seconds": 145.97916666666666,
+      "end_seconds": 155.32183333333333,
+      "duration_seconds": 9.342666666666673,
+      "audio_speech": "Bye.",
+      "audio_natural": "speech (conf=0.45), door (conf=0.58)",
+      "frame_indices": [
+        3500,
+        3524,
+        3548,
+        3572,
+        3596,
+        3620,
+        3644,
+        3668,
+        3692,
+        3716
+      ],
+      "frame_timestamps": [
+        145.97916666666666,
+        146.98016666666666,
+        147.98116666666667,
+        148.98216666666664,
+        149.98316666666665,
+        150.98416666666665,
+        151.98516666666666,
+        152.98616666666666,
+        153.98716666666667,
+        154.98816666666664
+      ],
+      "sample_fps": 1.0,
+      "objects": [
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.902,
+          "start_frame": 1,
+          "end_frame": 3,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 6.891,
+          "net_displacement": 6.891,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 13,
+          "label": "person",
+          "confidence_avg": 0.896,
+          "start_frame": 2,
+          "end_frame": 9,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting farther",
+          "path_length": 27.161,
+          "net_displacement": 9.684,
+          "direction_change_var": 3.0362,
+          "relations": [
+            "right-of person #33"
+          ]
+        },
+        {
+          "track_id": 33,
+          "label": "person",
+          "confidence_avg": 0.922,
+          "start_frame": 0,
+          "end_frame": 4,
+          "start_pos": "middle-left",
+          "end_pos": "bottom-left",
+          "movement": "moving down, getting farther",
+          "path_length": 44.378,
+          "net_displacement": 37.536,
+          "direction_change_var": 0.0,
+          "relations": [
+            "left-of person #13"
+          ]
+        },
+        {
+          "track_id": 73,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 1,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left",
+          "path_length": 33.468,
+          "net_displacement": 33.468,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ]
+    },
+    {
+      "scene_index": 34,
+      "start_timecode": "00:02:35.322",
+      "end_timecode": "00:02:48.502",
+      "start_seconds": 155.32183333333333,
+      "end_seconds": 168.50166666666667,
+      "duration_seconds": 13.179833333333335,
+      "audio_speech": "\u266a\u266a\u266a",
+      "audio_natural": "music (conf=0.79)",
+      "frame_indices": [
+        3724,
+        3748,
+        3772,
+        3796,
+        3820,
+        3844,
+        3868,
+        3892,
+        3916,
+        3940,
+        3964,
+        3988,
+        4012,
+        4036
+      ],
+      "frame_timestamps": [
+        155.32183333333333,
+        156.32283333333334,
+        157.3238333333333,
+        158.32483333333332,
+        159.32583333333332,
+        160.32683333333333,
+        161.32783333333333,
+        162.32883333333334,
+        163.3298333333333,
+        164.33083333333332,
+        165.33183333333332,
+        166.33283333333333,
+        167.33383333333333,
+        168.3348333333333
+      ],
+      "sample_fps": 1.0,
+      "objects": []
+    }
+  ],
+  "metrics": {
+    "scene_detection": 1.3674609661102295,
+    "asr": 687.9768671989441,
+    "ast": 90.59087443351746,
+    "yolo": 8.713767290115356,
+    "total": 788.6491885185242
+  },
+  "timestamp": 1770650921.3538427
+}
