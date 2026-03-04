@@ -16,10 +16,10 @@ import numpy as np
 import torch
 import librosa
 import av
+import whisper
+import gc
 
-# =========================================================
-# Load Silero VAD (once, at import time)
-# =========================================================
+
 _silero_model, _utils = torch.hub.load(
     repo_or_dir="snakers4/silero-vad",
     model="silero_vad",
@@ -201,6 +201,80 @@ def compute_spectral_flatness_mean(audio: np.ndarray, sr: int) -> float:
 
 
 # =========================================================
+# 5b. Language Detection (Whisper-powered)
+# =========================================================
+
+def detect_languages(audio: np.ndarray, sr: int, speech_regions: list, debug: bool = False) -> dict:
+    """
+    Sample speech regions and detect languages using Whisper.
+    Returns:
+        {
+            "primary_language": str,
+            "detected_languages": dict, # {lang: count}
+            "is_multilingual": bool
+        }
+    """
+    if not speech_regions:
+        return {"primary_language": None, "detected_languages": {}, "is_multilingual": False}
+
+    # Load a small model just for detection (very fast)
+    model = whisper.load_model("tiny", device="cpu")
+    
+    # Sample up to 5 diverse speech regions
+    sample_indices = np.linspace(0, len(speech_regions) - 1, min(5, len(speech_regions)), dtype=int)
+    detected_counts = {}
+
+    for idx in sample_indices:
+        region = speech_regions[idx]
+        # Get up to 30s of the region
+        start = int(region["start_sec"] * sr)
+        end = min(start + 30 * sr, int(region["end_sec"] * sr))
+        
+        if end - start < 1 * sr: # Skip tiny regions
+            continue
+            
+        chunk = whisper.pad_or_trim(audio[start:end])
+        mel = whisper.log_mel_spectrogram(chunk).to("cpu")
+        _, probs = model.detect_language(mel)
+        lang = max(probs, key=probs.get)
+        detected_counts[lang] = detected_counts.get(lang, 0) + 1
+
+    # Cleanup
+    del model
+    gc.collect()
+
+    if not detected_counts:
+        return {"primary_language": None, "detected_languages": {}, "is_multilingual": False}
+
+    # Decide primary and multilingual status
+    sorted_langs = sorted(detected_counts.items(), key=lambda x: x[1], reverse=True)
+    primary = sorted_langs[0][0]
+    
+    # We require a secondary language to be detected at least twice (across the 5 sampled regions)
+    # before we flag the video as Multilingual. This prevents a single hallucinated chunk 
+    # of background noise from mistakenly unlocking the API and causing Whisper to hallucinate languages.
+    is_multilingual = False
+    if len(sorted_langs) > 1:
+        # Check if the second-most common language (or any other) was detected >= 2 times
+        for lang, count in sorted_langs[1:]:
+            if count >= 2:
+                is_multilingual = True
+                break
+
+
+
+    if debug:
+        print(f"[AudioDetector] Languages detected: {detected_counts}")
+        print(f"[AudioDetector] Primary: {primary}, Multilingual: {is_multilingual}")
+
+    return {
+        "primary_language": primary,
+        "detected_languages": detected_counts,
+        "is_multilingual": is_multilingual
+    }
+
+
+# =========================================================
 # 6. Main Entry Point
 # =========================================================
 
@@ -259,16 +333,24 @@ def scan_audio(video_path: str, scenes: list, target_sr: int = 16000, debug: boo
     # --- Stage 2: Silero VAD ---
     speech_regions = detect_speech_regions(audio, sr, thresholds)
     has_speech = len(speech_regions) > 0
-
-    if debug:
-        total_speech_sec = sum(r["end_sec"] - r["start_sec"] for r in speech_regions)
-        print(f"[AudioDetector] Speech regions: {len(speech_regions)}, total speech: {total_speech_sec:.1f}s")
-
     # --- Spectral Flatness (for background audio decision) ---
     flatness_mean = compute_spectral_flatness_mean(audio, sr)
     has_background_audio = flatness_mean <= thresholds["SPECTRAL_FLATNESS_THRESHOLD"]
 
+    # --- Language Detection ---
+    lang_info = detect_languages(audio, sr, speech_regions, debug=debug)
+
+    # --- Speech Masking (for AST purity) ---
+    # Create a copy where speech is silenced so AST only hears background
+    audio_masked = audio.copy()
+    for region in speech_regions:
+        s_idx = int(region["start_sec"] * sr)
+        e_idx = int(region["end_sec"] * sr)
+        audio_masked[s_idx:e_idx] = 0.0
+
     if debug:
+        total_speech_sec = sum(r["end_sec"] - r["start_sec"] for r in speech_regions)
+        print(f"[AudioDetector] Speech regions: {len(speech_regions)}, total speech: {total_speech_sec:.1f}s")
         print(f"[AudioDetector] Spectral flatness: {flatness_mean:.3f} (threshold: {thresholds['SPECTRAL_FLATNESS_THRESHOLD']:.3f})")
         print(f"[AudioDetector] has_speech={has_speech}, has_background_audio={has_background_audio}")
 
@@ -284,12 +366,14 @@ def scan_audio(video_path: str, scenes: list, target_sr: int = 16000, debug: boo
 
     return {
         "audio": audio,
+        "audio_masked": audio_masked, # New: used by AST
         "sr": sr,
         "duration_sec": duration_sec,
         "has_any_audio": True,
         "has_speech": has_speech,
         "has_background_audio": has_background_audio,
         "speech_regions": speech_regions,
+        "lang_info": lang_info,
         "rms_profile": rms,
         "per_scene_rms": per_scene_rms,
         "spectral_flatness_mean": flatness_mean,

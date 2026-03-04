@@ -82,25 +82,25 @@ We can fire **4–8 calls simultaneously** using Python's `asyncio` with the Ope
 
 **Estimated time saved for a 1-hour video: ~10–20 minutes**
 
-### Change 3 — Scale Whisper Workers on the VM ⚡
-We currently use `--workers 2` for safety on a 16 GB laptop. On the 188 GB VM, we can use `--workers 6` or more. Each additional worker pair cuts Whisper time proportionally.
+### Change 3 — Scale via Azure API Workers ⚡
+By moving from Local Whisper to **Azure OpenAI Whisper API**, we are no longer limited by the VM's hardware for transcription. We use parallel API calls to process chunks, allowing the VM to focus its 188GB RAM and CPU purely on Vision (BLIP) and Sound (AST) classification.
 
-**Estimated time saved: ~4–8 min for long videos**
+**Estimated time saved: ~10–12 min for long videos (due to cloud speed)**
 
 ---
 
-## Projected Timings: 1-Hour Video
+## Projected Timings: 1-Hour Video (Azure API)
 
-| Stage | Current (Sequential) | Proposed (Parallel) |
+| Stage | Current (Sequential) | Proposed (Parallel + API) |
 |---|---|---|
 | PySceneDetect | 1 min | 1 min |
 | BLIP + YOLO | 5 min | ↘ |
-| Whisper + AST | 15 min | **15 min** (runs at same time as BLIP+YOLO) |
+| Azure Whisper + AST | 15 min | **8–10 min** (API handles heavy lifting) |
 | GPT-4o scenes (~100 scenes) | 20 min | **5–8 min** (async batching) |
 | Narrative + Synopsis | 3 min | 3 min |
-| **Total** | **~44 min** | **~25–28 min** |
+| **Total** | **~44 min** | **~18–22 min** |
 
-> **Result: ~40–45% faster. A 1-hour video finishes in ~25 minutes.**
+> **Result: Over 50% faster. A 1-hour video finishes in ~20 minutes.**
 
 ---
 

@@ -33,10 +33,17 @@ graph TD
 
 ## 2. The Integration Workflow (Node.js ↔ Python)
 
+### Step 0: Environment Setup
+Ensure your `.env` file in the root directory contains the following Azure Whisper credentials:
+```bash
+AZURE_OPENAI_KEY=your_key
+AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_OPENAI_DEPLOYMENT=whisper-karios
+AZURE_OPENAI_API_VERSION=2024-12-01-preview
+```
+
 ### Step 1: Upload & Store
-1. User uploads a video.
-2. Node.js backend saves it to the shared volume `/data/Videos/original.mp4`.
-3. Node.js periodically syncs this folder to **Azure Blob Storage** for backup.
+...
 
 ### Step 2: Queue the Job
 Node.js uses `BullMQ` to push a JSON job to Redis:

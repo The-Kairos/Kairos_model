@@ -21,6 +21,10 @@ import os
 import sys
 import time
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load credentials from .env in project root
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 import gc
 try:
@@ -57,7 +61,8 @@ RESULTS_DIR = Path(__file__).resolve().parent / "results"
 # Pipeline
 # =========================================================
 
-def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, force_cpu: bool = False, debug: bool = True):
+def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
+                 force_cpu: bool = False, debug: bool = True, language: str = None, use_api: bool = True):
     """
     Run the full audio-only pipeline on a single video.
     Returns (scenes, timing_report).
@@ -138,6 +143,8 @@ def run_pipeline(video_path: str, parallel: bool = False, max_workers: int = 4, 
             model_size=ASR_MODEL_SIZE,
             use_vad=ASR_USE_VAD,
             parallel=parallel,
+            language=language,
+            use_api=use_api,
             debug=debug,
         )
         print(f"       Whisper completed in {whisper_timing['total_time_sec']:.2f}s\n")
@@ -265,6 +272,8 @@ def main():
     parser.add_argument("--parallel", action="store_true", help="Use multi-process parallelization")
     parser.add_argument("--workers", type=int, default=4, help="Max workers for parallel AST")
     parser.add_argument("--cpu", action="store_true", help="Force CPU usage even if GPU is available")
+    parser.add_argument("--language", type=str, default=None, help="Force language (e.g. 'en', 'ar')")
+    parser.add_argument("--use-api", action="store_true", default=True, help="Use Azure OpenAI Whisper API (default: True)")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
 
@@ -307,6 +316,8 @@ def main():
                 parallel=args.parallel, 
                 max_workers=args.workers, 
                 force_cpu=args.cpu,
+                language=args.language,
+                use_api=args.use_api,
                 debug=debug
             )
             save_results(video_path, scenes, timing)

@@ -12,6 +12,17 @@ import numpy as np
 import noisereduce as nr
 import torch
 import gc
+import os
+import re
+
+import tempfile
+import scipy.io.wavfile as wav
+from openai import AzureOpenAI
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Load credentials from .env in project root
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 
 # =========================================================
@@ -88,6 +99,65 @@ def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
 
     return scene_texts
 
+# =========================================================
+# 2b. Azure OpenAI Client (New)
+# =========================================================
+
+AZURE_KEY = os.environ.get("AZURE_OPENAI_KEY")
+AZURE_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
+AZURE_DEPLOYMENT = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
+AZURE_API_VERSION = os.environ.get("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
+
+if AZURE_KEY and AZURE_ENDPOINT:
+    # Handle the case where the user provided the full deployment URL instead of base endpoint
+    # AzureOpenAI client expects the base endpoint (https://xxx.openai.azure.com/)
+    base_endpoint = AZURE_ENDPOINT.split("/openai")[0]
+    
+    _azure_client = AzureOpenAI(
+        api_key=AZURE_KEY,
+        azure_endpoint=base_endpoint,
+        api_version=AZURE_API_VERSION
+    )
+else:
+    _azure_client = None
+
+def transcribe_via_api(audio_np: np.ndarray, sr: int, language: str = None) -> list:
+    """
+    Save chunk to temp wav and call Azure Whisper API.
+    Returns list of segments.
+    """
+    if _azure_client is None:
+        raise ValueError("Azure OpenAI credentials not found in environment.")
+
+    # Save to temporary WAV file (Whisper API requirement)
+    # Use a high-quality format (16kHz, mono)
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=True) as tmp:
+        wav.write(tmp.name, sr, (audio_np * 32767).astype(np.int16))
+        
+        with open(tmp.name, "rb") as audio_file:
+            # Azure OpenAI audio transcriptions call
+            response = _azure_client.audio.transcriptions.create(
+                model=AZURE_DEPLOYMENT,
+                file=audio_file,
+                language=language,
+                response_format="verbose_json"
+            )
+            
+    # The API returns a 'segments' field in verbose_json mode
+    segments = getattr(response, "segments", [])
+    # Convert to list of dicts if it's a list of objects
+    if segments and not isinstance(segments[0], dict):
+        segments = [
+            {
+                "start": float(s.start),
+                "end": float(s.end),
+                "text": str(s.text),
+                "avg_logprob": getattr(s, "avg_logprob", 0),
+                "no_speech_prob": getattr(s, "no_speech_prob", 0)
+            }
+            for s in segments
+        ]
+    return segments
 
 # =========================================================
 # 3. Parallel Dynamic Chunking (New)
@@ -96,48 +166,190 @@ def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
 def _transcribe_chunk_worker(args):
     """
     Worker function for ProcessPoolExecutor.
-    Transcribes a single chunk of audio.
+    Transcribes a single chunk of audio (Local or API).
     """
-    chunk_audio, sr, model_size, chunk_start_time, use_vad, force_cpu, debug = args
-    
-    # Reload model in each process
-    device = "cpu" if force_cpu else None
-    model = whisper.load_model(model_size, device=device)
+    chunk_audio, sr, model_size, chunk_start_time, use_vad, force_cpu, debug, language, use_api = args
     
     # Optional VAD cleaning per chunk
     if use_vad:
-        # We don't want to reload Silero in every worker if possible, 
-        # but for simplicity in CPU-parallel mode, we load it or skip 
-        # the soft-VAD and just do noise reduction.
-        # Let's do just noise reduction here to save memory/load time.
         chunk_audio = nr.reduce_noise(y=chunk_audio, sr=sr, prop_decrease=0.9)
     
-    result = model.transcribe(chunk_audio, fp16=False, verbose=None)
-    
-    # Offset segments by chunk start time
-    segments = result.get("segments", [])
+    if use_api:
+        # Use Azure OpenAI API
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                segments = transcribe_via_api(chunk_audio, sr, language=language)
+                break
+            except Exception as e:
+                error_str = str(e)
+                if "429" in error_str or "RateLimitReached" in error_str:
+                    if attempt < max_retries - 1:
+                        if debug: print(f"[WhisperWorker] Rate limit hit. Retrying in 65s... (Attempt {attempt+1}/{max_retries})")
+                        time.sleep(65)
+                        continue
+                if debug: print(f"[WhisperWorker] API Error: {e}")
+                return []
+    else:
+        # Use Local Whisper
+        device = "cpu" if force_cpu else None
+        model = whisper.load_model(model_size, device=device)
+        
+        result = model.transcribe(chunk_audio, fp16=False, verbose=None, language=language)
+        segments = result.get("segments", [])
+        
+        # Explicit cleanup
+        del model
+        gc.collect()
+        try:
+            import torch
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except ImportError:
+            pass
     for seg in segments:
         seg["start"] += chunk_start_time
         seg["end"] += chunk_start_time
         
-    # Explicit cleanup
-    del model
-    gc.collect()
-    try:
-        import torch
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-    except ImportError:
-        pass
+    if not use_api:
+        # Explicit cleanup for local model
+        try:
+            del model
+        except:
+            pass
+        gc.collect()
+        try:
+            import torch
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except ImportError:
+            pass
         
     return segments
 
 
-def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "small",
-                       chunk_size_sec: int = 600, overlap_sec: int = 30,
-                       use_vad: bool = True, force_cpu: bool = False, debug: bool = False) -> dict:
+# =========================================================
+# 3b. Hallucination & Noise Filtering (New)
+# =========================================================
+
+def clean_repetitive_text(text: str) -> str:
+    """Removes back-to-back repetitions of words or phrases, common in Whisper hallucinations."""
+    if not text:
+        return text
+        
+    text = re.sub(r'\s+', ' ', text).strip()
+    
+    # 1. Phrase level deduplication (e.g. "Bye. Bye. Bye.")
+    phrases = re.split(r'([.?!,]+)', text)
+    cleaned_phrases = []
+    last_p = None
+    
+    i = 0
+    while i < len(phrases):
+        p = phrases[i]
+        punct = phrases[i+1] if i+1 < len(phrases) else ""
+        p_norm = p.strip().lower()
+        
+        if p_norm:
+            if p_norm == last_p:
+                if punct and cleaned_phrases and not re.search(r'[.?!,]$', cleaned_phrases[-1]):
+                     cleaned_phrases[-1] = cleaned_phrases[-1].rstrip() + punct
+            else:
+                cleaned_phrases.append(p.strip() + punct)
+                last_p = p_norm
+        i += 2
+        
+    text = " ".join(cleaned_phrases).strip()
+    
+    # 2. Word level deduplication (e.g. "Bye bye bye")
+    words = text.split()
+    if not words: 
+        return text
+    
+    cleaned_words = [words[0]]
+    for w in words[1:]:
+        w_norm = w.lower().strip(".,!?")
+        last_norm = cleaned_words[-1].lower().strip(".,!?")
+        
+        if w_norm == last_norm and len(w_norm) > 0:
+            if re.search(r'[.,!?]$', w):
+                punct = re.search(r'[.,!?]+$', w).group()
+                cleaned_words[-1] = cleaned_words[-1].rstrip(".,!?") + punct
+        else:
+            cleaned_words.append(w)
+            
+    return " ".join(cleaned_words)
+
+
+def filter_hallucinations(segments: list, primary_lang: str = None) -> list:
     """
-    Split audio into chunks and transcribe in parallel using ProcessPoolExecutor.
+    Remove common Whisper hallucinations:
+    - Melodic/Noise patterns (e.g. "Ə Ɓ Ɵ ƙ", "Ơ Ơ Ơ")
+    - Extremely low logprobs
+    - Repeated identical phrases (loops)
+    """
+    final = []
+    seen_texts = set()
+    
+    # Common "noise characters" when Whisper trips over music
+    NOISE_CHARS = set("ƏƁƟƙƒƠƣƜơ")
+
+    for seg in segments:
+        text = seg["text"].strip()
+        
+        # Strip out emojis, musical notes, and symbols Whisper injects during background noise
+        import emoji
+        text = emoji.replace_emoji(text, replace="")
+        # Also strip specifically common symbols missed by some emoji libraries
+        text = re.sub(r'[♪♫♥️✿❀❁]+', '', text).strip()
+        
+        if not text:
+            continue
+            
+        # 1. Filter out music/noise "garbage" characters
+        # If > 15% of characters are noise-weirdness, it's a hallucination
+        special_count = sum(1 for c in text if c in NOISE_CHARS)
+        if len(text) > 0 and special_count / len(text) > 0.15:
+            continue
+
+        # 2. Logprob check (Whisper confidence)
+        # avg_logprob: Closer to 0 is better. -0.9 is stricter for noisy environments.
+        if seg.get("avg_logprob", 0) < -0.9:
+            continue
+            
+        # 3. No speech probability (Silero VAD handles most, but API adds safety)
+        if seg.get("no_speech_prob", 0) > 0.6:
+             continue
+
+        # 4. Clean intra-segment repetitions ("Bye. Bye. Bye.")
+        text = clean_repetitive_text(text)
+        text_lower = text.lower().strip(".,!? ")
+
+        if not text_lower:
+            continue
+
+        # 5. Filter Loop hallucinations (same sentence over and over across multiple segments)
+        if text_lower in seen_texts:
+            continue
+        
+        if len(text_lower) > 2: # Don't track single letters or blank space
+            seen_texts.add(text_lower)
+            
+        seg["text"] = text # Keep the cleaned version
+        final.append(seg)
+
+        
+    return final
+
+
+def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "medium",
+                       chunk_size_sec: int = 600, overlap_sec: int = 30,
+                       lang_info: dict = None, 
+                       use_vad: bool = True, force_cpu: bool = False, 
+                       debug: bool = False, use_api: bool = True) -> dict:
+    """
+    Split audio into chunks and transcribe in parallel.
+    Handles Single-Language Lock vs Multi-Language Flexibility.
     """
     import concurrent.futures
     import os
@@ -145,24 +357,36 @@ def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "small",
     duration = len(audio) / sr
     t_start = time.time()
     
-    # 1. Create chunks
+    # 1. Decide Language Strategy
+    # If the scan found the video is single-language, we lock it to prevent hallucinations
+    force_lang = None
+    if lang_info and not lang_info.get("is_multilingual", False):
+        force_lang = lang_info.get("primary_language")
+        if debug: print(f"[WhisperParallel] Locking language to: {force_lang}")
+    else:
+        if debug: print("[WhisperParallel] Multilingual video detected. Enabling flexible detection.")
+
+    # 2. Create chunks
     chunks_args = []
     start = 0
     while start < duration:
         end = min(start + chunk_size_sec + overlap_sec, duration)
         chunk_samples = audio[int(start * sr) : int(end * sr)].copy()
-        chunks_args.append((chunk_samples, sr, model_size, start, use_vad, force_cpu, debug))
+        # Pass the locked language to all workers
+        chunks_args.append((chunk_samples, sr, model_size, start, use_vad, force_cpu, debug, force_lang, use_api))
         
         if end >= duration:
             break
-        start += chunk_size_sec # Move forward by chunk size, keeping the overlap
+        start += chunk_size_sec
         
     if debug:
         print(f"[WhisperParallel] Split {duration:.1f}s audio into {len(chunks_args)} chunks ({chunk_size_sec}s each)")
 
     # 2. Run in parallel
-    # LIMIT: Use at most 2 workers for Whisper on 16GB RAM machines to avoid OOM stalls
-    num_workers = min(len(chunks_args), os.cpu_count() or 4, 2)
+    # If using API, we can use more workers as it's not bound by local VRAM/CPU
+    # But Azure usually has RPM/TPM limits. Let's stick to 4 workers for API.
+    max_rec_workers = 4 if use_api else 2
+    num_workers = min(len(chunks_args), os.cpu_count() or 4, max_rec_workers)
     all_segments = []
     
     with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
@@ -211,11 +435,20 @@ def transcribe_parallel(audio: np.ndarray, sr: int, model_size: str = "small",
 
             deduped.append(curr)
             
+    # 3. Apply Hallucination & Noise Filtering
+    primary_lang = lang_info.get("primary_language") if lang_info else None
+    final_segments = filter_hallucinations(deduped, primary_lang)
+    
+    if debug:
+        removed = len(deduped) - len(final_segments)
+        if removed > 0:
+            print(f"[WhisperParallel] Filtered out {removed} hallucinations/low-quality segments")
+
     t_end = time.time()
     
     return {
-        "segments": deduped,
-        "full_text": " ".join([s["text"] for s in deduped]),
+        "segments": final_segments,
+        "full_text": " ".join([s["text"] for s in final_segments]),
         "total_time_sec": t_end - t_start,
         "method": f"parallel_{len(chunks_args)}_chunks"
     }
@@ -261,7 +494,11 @@ def transcribe_full_video(audio: np.ndarray, sr: int, model_size: str = "small",
             if debug: print(f"[WARN] Silero VAD load failed: {e}. Skipping soft-VAD.")
             silero_model = None
 
-    cleaned = clean_audio(audio, sr, silero_model, get_speech_ts_fn)
+    # Multi-pass noise reduction for ASR clarity
+    cleaned = nr.reduce_noise(y=audio, sr=sr, prop_decrease=0.95) # High reduction
+    
+    if use_vad:
+        cleaned = clean_audio(cleaned, sr, silero_model, get_speech_ts_fn)
 
     t_clean = time.time()
     if debug:
@@ -293,12 +530,15 @@ def transcribe_full_video(audio: np.ndarray, sr: int, model_size: str = "small",
 # =========================================================
 
 def extract_speech_singlecall(scenes: list, scan_result: dict,
-                               model_size: str = "small", use_vad: bool = True,
-                               parallel: bool = False, force_cpu: bool = False, debug: bool = False) -> tuple:
+                                model_size: str = "small", use_vad: bool = True,
+                                language: str = None, # Added language override
+                                parallel: bool = False, use_api: bool = True,
+                                force_cpu: bool = False, debug: bool = False) -> tuple:
     """
     Main entry point. Checks scan_result, runs single-call or parallel Whisper.
     
     Args:
+        language: ISO code (e.g. 'en', 'ar'). If None, performs one-time Global Detection.
         parallel: If True, uses chunked parallel transcription regardless of length.
                  If False, only uses parallel if video > 15 minutes.
     """
@@ -327,11 +567,14 @@ def extract_speech_singlecall(scenes: list, scan_result: dict,
 
     if should_parallel:
         if debug: print(f"[WhisperSingle] Using Parallel Dynamic Chunking (Duration: {duration:.1f}s)")
-        # In parallel mode, we don't pass the pre-loaded Silero model because 
-        # it can't be easily shared across processes. Each process handles its own NR.
+        # If manual language is provided, use it. Otherwise use the smart lang_info from the scan.
+        lang_data = {"primary_language": language, "is_multilingual": False} if language else scan_result.get("lang_info")
+        
         whisper_result = transcribe_parallel(
             audio, sr, model_size=model_size, 
-            use_vad=use_vad, force_cpu=force_cpu, debug=debug
+            lang_info=lang_data, 
+            use_vad=use_vad, force_cpu=force_cpu, debug=debug,
+            use_api=use_api
         )
     else:
         if debug: print(f"[WhisperSingle] Using Single-Call Transcription (Duration: {duration:.1f}s)")
