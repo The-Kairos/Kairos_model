@@ -64,7 +64,51 @@ def resolve_rag_path(checkpoint_path: str, doc: Dict[str, Any]) -> Optional[str]
     return None
 
 
-def compute_kmeans_clusters(embeddings: List[List[float]], num_clusters: int = 8, random_state: int = 42) -> Dict[str, Any]:
+def find_optimal_k_elbow(embeddings: List[List[float]], max_k: int = 20, random_state: int = 42) -> int:
+    """Find optimal number of clusters using the elbow method.
+    
+    Computes KMeans inertia for K in [2, min(len(embeddings)//2, max_k)].
+    Returns K with highest elbow (steepest drop in derivative).
+    """
+    try:
+        from sklearn.cluster import KMeans
+    except Exception as e:
+        raise RuntimeError("scikit-learn required for KMeans clustering") from e
+
+    X = np.array(embeddings, dtype=np.float32)
+    n = X.shape[0]
+    if n < 3:
+        return 1  # too few points
+    
+    # test range of K values
+    max_test = min(n // 2, max_k)
+    if max_test < 2:
+        return 1
+    
+    inertias = []
+    k_values = list(range(2, max_test + 1))
+    
+    for k in k_values:
+        km = KMeans(n_clusters=k, n_init=10, random_state=random_state)
+        km.fit(X)
+        inertias.append(km.inertia_)
+    
+    # compute differences (how much each K reduces inertia)
+    diffs = np.diff(inertias)
+    # compute second derivative (acceleration of inertia drop)
+    accel = np.diff(diffs)
+    
+    # elbow is where acceleration is maximal (steepest change in slope)
+    if len(accel) > 0:
+        elbow_idx = np.argmax(accel) + 1  # +1 because we lost one value in diff
+        optimal_k = k_values[elbow_idx]
+    else:
+        optimal_k = k_values[0]
+    
+    return max(2, optimal_k)
+
+
+def compute_kmeans_clusters(embeddings: List[List[float]], num_clusters: Optional[int] = None, random_state: int = 42) -> Dict[str, Any]:
     try:
         from sklearn.cluster import KMeans
     except Exception as e:
@@ -73,6 +117,11 @@ def compute_kmeans_clusters(embeddings: List[List[float]], num_clusters: int = 8
     X = np.array(embeddings, dtype=np.float32)
     if X.shape[0] == 0:
         return {}
+    
+    # if num_clusters not specified, find optimal K using elbow method
+    if num_clusters is None:
+        num_clusters = find_optimal_k_elbow(embeddings, max_k=20, random_state=random_state)
+    
     k = min(num_clusters, X.shape[0])
     km = KMeans(n_clusters=k, n_init=10, random_state=random_state)
     labels = km.fit_predict(X)
@@ -149,7 +198,10 @@ def merge_retrieval(
     if cluster_metadata:
         centroids = np.array(cluster_metadata.get("centroids", []), dtype=np.float32)
         assignments = np.array(cluster_metadata.get("cluster_assignments", [-1] * N))
-        if centroids.size:
+        if assignments.shape[0] != N:
+            print(f"Warning: cluster_assignments length ({assignments.shape[0]}) != contexts length ({N}), skipping cluster boost")
+            cluster_metadata = None  # disable boosting
+        elif centroids.size:
             cluster_sims = centroids.dot(query_vec)
             C = centroids.shape[0]
             top_c = min(top_c, C)
@@ -164,6 +216,16 @@ def merge_retrieval(
 
     final = base_sims + cluster_boost
     top_idx = np.argsort(final)[-k:][::-1]
+    # Clip indices to valid range and warn if any were invalid
+    valid_top_idx = []
+    for idx in top_idx:
+        if 0 <= idx < N:
+            valid_top_idx.append(idx)
+        else:
+            print(f"Warning: Invalid scene index {idx} (valid range: 0-{N-1}), clipping to valid indices")
+    if len(valid_top_idx) < k:
+        print(f"Warning: Only {len(valid_top_idx)} valid indices found out of {k} requested")
+    top_idx = valid_top_idx[:k]  # Take up to k valid indices
     return [(contexts[int(i)], float(final[int(i)])) for i in top_idx]
 
 
@@ -185,7 +247,7 @@ def save_json(path: str, payload: Dict[str, Any]):
         json.dump(payload, f, indent=2, ensure_ascii=False)
 
 
-def write_md_report(md_path: str, video_title: str, results: Dict[str, Any], config: Dict[str, Any]):
+def write_md_report(md_path: str, video_title: str, results: Dict[str, Any], config: Dict[str, Any], checkpoint: Optional[Dict[str, Any]] = None):
     lines = []
     lines.append(f"# Retrieval Comparison: {video_title}\n")
     lines.append("## Config\n")
@@ -212,6 +274,26 @@ def write_md_report(md_path: str, video_title: str, results: Dict[str, Any], con
         for method, out in qrec["results"].items():
             lines.append(f"- **{method}**: time={out['time']:.6f}s, top_indices={out['top_indices']}, scores={[round(s,3) for s in out['scores']]}\n")
         lines.append("\n")
+
+        # Add scene details table for this query
+        if checkpoint and "scenes" in checkpoint:
+            scene_list = checkpoint["scenes"]
+            scene_info = {s["scene_index"]: {"timestamp": s["start_timecode"], "description": s.get("llm_scene_description", "")[:150]} for s in scene_list}
+            
+            # Collect unique scene indices from all methods
+            unique_indices = set()
+            for method, out in qrec["results"].items():
+                unique_indices.update(out["top_indices"])
+            
+            if unique_indices:
+                lines.append("#### Scene Details\n")
+                lines.append("| Scene Index | Timestamp | Description |\n")
+                lines.append("|---|---|---|\n")
+                for idx in sorted(unique_indices):
+                    if idx in scene_info:
+                        desc = scene_info[idx]["description"].replace("\n", " ").strip()
+                        lines.append(f"| {idx} | {scene_info[idx]['timestamp']} | {desc} |\n")
+                lines.append("\n")
 
     save_json(md_path.replace('.md', '.json'), results)
     folder = os.path.dirname(md_path)

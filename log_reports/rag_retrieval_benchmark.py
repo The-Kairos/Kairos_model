@@ -37,7 +37,6 @@ def parse_args():
     p.add_argument("--k", type=int, default=10)
     p.add_argument("--top-c", type=int, default=3)
     p.add_argument("--alpha", type=float, default=0.3)
-    p.add_argument("--cluster-k", type=int, default=8)
     return p.parse_args()
 
 
@@ -98,12 +97,12 @@ def run_benchmark(args):
         kmeans_meta_path = os.path.join(video_folder_path, "rag_embedding_kmeans_clusters.json")
         hdbscan_meta_path = os.path.join(video_folder_path, "rag_embedding_hdbscan_clusters.json")
 
-        # compute/load kmeans clusters
+        # compute/load kmeans clusters (using automatic elbow method for optimal K)
         if os.path.exists(kmeans_meta_path):
             with open(kmeans_meta_path, "r", encoding="utf-8") as f:
                 kmeans_meta = json.load(f)
         else:
-            kmeans_meta = compute_kmeans_clusters(embeddings, num_clusters=args.cluster_k)
+            kmeans_meta = compute_kmeans_clusters(embeddings, num_clusters=None)  # auto-detect K
             if kmeans_meta:
                 save_json(kmeans_meta_path, kmeans_meta)
         # determine number of clusters (use explicit key or deduce from assignments)
@@ -173,9 +172,11 @@ def run_benchmark(args):
             ctx_to_idx = {c: i for i, c in enumerate(contexts)}
             for ctx, score in merged:
                 idx = ctx_to_idx.get(ctx, None)
-                if idx is not None:
+                if idx is not None and 0 <= idx < len(contexts):
                     k_idx.append(int(idx))
                     k_scores.append(float(score))
+                else:
+                    print(f"Warning: Context '{ctx[:50]}...' not found in contexts or invalid index {idx}")
             qrec["results"]["kmeans"] = {"time": t_end - t_start, "top_indices": k_idx, "scores": k_scores}
             summary["kmeans"]["times"].append(t_end - t_start)
             summary["kmeans"]["jaccard"].append(jaccard(top_indices, k_idx))
@@ -189,9 +190,11 @@ def run_benchmark(args):
                 h_scores = []
                 for ctx, score in merged_h:
                     idx = ctx_to_idx.get(ctx, None)
-                    if idx is not None:
+                    if idx is not None and 0 <= idx < len(contexts):
                         h_idx.append(int(idx))
                         h_scores.append(float(score))
+                    else:
+                        print(f"Warning: Context '{ctx[:50]}...' not found in contexts or invalid index {idx}")
                 qrec["results"]["hdbscan"] = {"time": t_end - t_start, "top_indices": h_idx, "scores": h_scores}
                 summary["hdbscan"]["times"].append(t_end - t_start)
                 summary["hdbscan"]["jaccard"].append(jaccard(top_indices, h_idx))
@@ -216,7 +219,7 @@ def run_benchmark(args):
         # Use video name (with extension removed) as safe name
         safe_name = os.path.splitext(video_name)[0].replace(' ', '_')
         md_path = os.path.join(args.output_dir, f"{safe_name}_comparison.md")
-        write_md_report(md_path, video_name, results, config={"k": args.k, "top_c": args.top_c, "alpha": args.alpha, "cluster_k": args.cluster_k})
+        write_md_report(md_path, video_name, results, config={"k": args.k, "top_c": args.top_c, "alpha": args.alpha}, checkpoint=doc)
         print(f"Wrote results for {video_name} -> {md_path}")
 
 
