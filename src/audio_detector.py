@@ -10,6 +10,7 @@ Scans the full video audio once to determine:
 import math
 import time
 import gc
+import subprocess
 import numpy as np
 import torch
 import librosa
@@ -60,7 +61,38 @@ def get_dynamic_thresholds(duration_minutes: float) -> dict:
 # 2. Audio Extraction
 # =========================================================
 
-def load_audio_av(video_path: str, target_sr: int = 16000):
+def _load_audio_ffmpeg(video_path: str, target_sr: int = 16000):
+    """
+    Fallback extractor using ffmpeg CLI -> raw float32 mono PCM.
+    """
+    cmd = [
+        "ffmpeg",
+        "-v", "error",
+        "-i", video_path,
+        "-vn",
+        "-ac", "1",
+        "-ar", str(target_sr),
+        "-f", "f32le",
+        "-",
+    ]
+    proc = subprocess.run(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if proc.returncode != 0:
+        err = proc.stderr.decode("utf-8", errors="ignore").strip()
+        raise RuntimeError(f"ffmpeg failed (code {proc.returncode}): {err}")
+
+    # `frombuffer` can return a read-only view; make it writable for torch ops.
+    audio = np.frombuffer(proc.stdout, dtype=np.float32).copy()
+    if audio.size == 0:
+        return np.zeros(1, dtype=np.float32), target_sr
+    return audio, target_sr
+
+
+def load_audio_av(video_path: str, target_sr: int = 16000, debug: bool = False):
     """
     Extract full audio from video using PyAV. Returns (audio_np, sr).
     """
@@ -73,7 +105,9 @@ def load_audio_av(video_path: str, target_sr: int = 16000):
             (s for s in container.streams if s.type == "audio"), None
         )
         if audio_stream is None:
-            return np.zeros(1, dtype=np.float32), target_sr
+            if debug:
+                print("[AudioDetector] PyAV found no audio stream; trying ffmpeg fallback.")
+            return _load_audio_ffmpeg(video_path, target_sr)
 
         audio_stream.thread_type = "AUTO"
         samples = []
@@ -83,7 +117,9 @@ def load_audio_av(video_path: str, target_sr: int = 16000):
             samples.append(pcm)
 
         if not samples:
-            return np.zeros(1, dtype=np.float32), target_sr
+            if debug:
+                print("[AudioDetector] PyAV decoded no audio frames; trying ffmpeg fallback.")
+            return _load_audio_ffmpeg(video_path, target_sr)
 
         audio = np.concatenate(samples).astype(np.float32)
         orig_sr = audio_stream.rate
@@ -94,8 +130,16 @@ def load_audio_av(video_path: str, target_sr: int = 16000):
 
         return audio, target_sr
 
-    except Exception:
-        return np.zeros(1, dtype=np.float32), target_sr
+    except Exception as e:
+        if debug:
+            print(f"[AudioDetector] PyAV audio extraction failed: {e!r}")
+            print("[AudioDetector] Trying ffmpeg fallback.")
+        try:
+            return _load_audio_ffmpeg(video_path, target_sr)
+        except Exception as ffmpeg_e:
+            if debug:
+                print(f"[AudioDetector] ffmpeg fallback failed: {ffmpeg_e!r}")
+            return np.zeros(1, dtype=np.float32), target_sr
 
 
 # =========================================================
@@ -161,6 +205,8 @@ def detect_speech_regions(audio: np.ndarray, sr: int, thresholds: dict) -> list:
     Run Silero VAD on full audio. Returns list of
     {"start_sec": float, "end_sec": float} dicts.
     """
+    if not audio.flags.writeable:
+        audio = audio.copy()
     audio_tensor = torch.from_numpy(audio).float()
 
     speech_ts = _get_speech_ts(
@@ -186,14 +232,42 @@ def detect_speech_regions(audio: np.ndarray, sr: int, thresholds: dict) -> list:
 # 5. Spectral Flatness
 # =========================================================
 
-def compute_spectral_flatness_mean(audio: np.ndarray, sr: int) -> float:
+def _spectral_flatness_numpy(audio: np.ndarray, sr: int) -> float:
+    """
+    Minimal spectral flatness fallback when librosa dependencies are unavailable.
+    """
+    n_fft = min(2048, max(256, 2 ** int(np.floor(np.log2(len(audio))))))
+    hop = max(1, n_fft // 4)
+    if len(audio) < n_fft:
+        return 0.0
+
+    window = np.hanning(n_fft).astype(np.float32)
+    eps = 1e-12
+    vals = []
+    for i in range(0, len(audio) - n_fft + 1, hop):
+        frame = audio[i:i + n_fft] * window
+        power = np.abs(np.fft.rfft(frame)) ** 2 + eps
+        geo = np.exp(np.mean(np.log(power)))
+        arith = np.mean(power)
+        vals.append(float(geo / arith))
+    if not vals:
+        return 0.0
+    return float(np.mean(vals))
+
+
+def compute_spectral_flatness_mean(audio: np.ndarray, sr: int, debug: bool = False) -> float:
     """
     Compute mean spectral flatness (0 -> tonal, 1 -> noise).
     """
     if len(audio) < sr:  # less than 1 second
         return 0.0
-    flatness = librosa.feature.spectral_flatness(y=audio)
-    return float(np.mean(flatness))
+    try:
+        flatness = librosa.feature.spectral_flatness(y=audio)
+        return float(np.mean(flatness))
+    except ModuleNotFoundError as e:
+        if debug:
+            print(f"[AudioDetector] librosa spectral flatness unavailable ({e!r}); using NumPy fallback.")
+        return _spectral_flatness_numpy(audio, sr)
 
 
 # =========================================================
@@ -270,7 +344,7 @@ def scan_audio(video_path: str, scenes: list, target_sr: int = 16000, debug: boo
     """
     t_start = time.time()
 
-    audio, sr = load_audio_av(video_path, target_sr)
+    audio, sr = load_audio_av(video_path, target_sr, debug=debug)
     duration_sec = len(audio) / sr
     duration_min = duration_sec / 60.0
 
@@ -314,7 +388,7 @@ def scan_audio(video_path: str, scenes: list, target_sr: int = 16000, debug: boo
     speech_regions = detect_speech_regions(audio, sr, thresholds)
     has_speech = len(speech_regions) > 0
 
-    flatness_mean = compute_spectral_flatness_mean(audio, sr)
+    flatness_mean = compute_spectral_flatness_mean(audio, sr, debug=debug)
     has_background_audio = flatness_mean <= thresholds["SPECTRAL_FLATNESS_THRESHOLD"]
 
     lang_info = detect_languages(audio, sr, speech_regions, debug=debug)
