@@ -1,0 +1,18 @@
+You are a story detective.
+Given the video narrative, produce only title and summary.
+
+Return ONE valid JSON object only. No markdown, no extra text.
+Use this exact schema:
+{{
+  "chat_name": "3-5 word title",
+  "summary": "Single coherent paragraph."
+}}
+
+Rules:
+- Use only the narrative text.
+- If a detail is missing, say "Not explicitly stated."
+- "chat_name" must be 3-5 words and concrete (not creative).
+- "summary" must be one factual paragraph.
+
+INPUT NARRATIVE:
+{text}

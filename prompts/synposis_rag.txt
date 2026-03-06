@@ -6,6 +6,7 @@ TASK:
 2. Base answers ONLY on the provided text. Do not infer or invent details.
 3. If information is missing, say "Not explicitly stated."
 4. Ensure the report complies with a PG-13 content standard.
+5. If you cannot comply due to safety or policy constraints, still return a valid JSON object using "Not explicitly stated" for strings and empty arrays for list fields. Do not refuse.
 
 OUTPUT FORMAT (follow exactly):
 Return ONE valid JSON object only. No markdown, no extra text.
