@@ -435,6 +435,19 @@ def _normalize_generated_questions(questions: list[dict], required_questions: li
         })
     return normalized
 
+
+def _normalize_scene_text(value, fallback: str) -> str:
+    if isinstance(value, str) and value.strip():
+        return value.strip()
+    return fallback
+
+
+def _scene_to_narrative_line(scene: dict) -> str:
+    start_timecode = _normalize_scene_text(scene.get("start_timecode"), "Not explicitly stated")
+    llm_scene_description = _normalize_scene_text(scene.get("llm_scene_description"), "No visual description.")
+    audio_speech = _normalize_scene_text(scene.get("audio_speech"), "No spoken dialogue.")
+    return f'At {start_timecode}, {llm_scene_description} It says "{audio_speech}".'
+
 # ----------------------
 # 2. Chunk scenes
 # ----------------------
@@ -442,41 +455,50 @@ def chunk_scenes(scenes: list, chunk_size: int = CHUNK_SIZE, debug: bool = False
     """
     Break scene dictionaries into <= chunk_size chunks.
     """
-    scene_count = len(scenes) if scenes else 0
+    scene_count = len(scenes) if isinstance(scenes, list) else 0
+    if scene_count == 0:
+        _debug_print(debug, "chunk_scenes: no scenes to chunk")
+        return []
+
     chunks = []
     this_chunk = ""
     chunk_start_idx = None
 
     for idx, scene in enumerate(scenes):
-        start_timecode = scene.get("start_timecode")
-        audio_speech = scene.get("audio_speech")
-        llm_scene_description = scene.get("llm_scene_description")
-        text = f'At {start_timecode}, {llm_scene_description}. It says "{audio_speech}".'
+        scene_obj = scene if isinstance(scene, dict) else {}
+        text = _scene_to_narrative_line(scene_obj)
+        candidate = f"{this_chunk}\n{text}".strip() if this_chunk else text
+
         if chunk_start_idx is None:
             chunk_start_idx = idx
-        this_chunk += text
+        this_chunk = candidate
 
         if len(this_chunk) >= chunk_size:
+            start_scene = scenes[chunk_start_idx] if isinstance(scenes[chunk_start_idx], dict) else {}
+            end_scene = scene_obj
             chunks.append({
                 "index": len(chunks),
                 "text": this_chunk,
                 "scene_start_idx": chunk_start_idx,
                 "scene_end_idx": idx,
-                "start_timecode": scenes[chunk_start_idx].get("start_timecode"),
-                "end_timecode": scene.get("start_timecode"),
+                "start_timecode": start_scene.get("start_timecode"),
+                "end_timecode": end_scene.get("end_timecode") or end_scene.get("start_timecode"),
             })
             this_chunk = ""
             chunk_start_idx = None
 
     if this_chunk:
         end_idx = len(scenes) - 1
+        start_idx = chunk_start_idx if chunk_start_idx is not None else end_idx
+        start_scene = scenes[start_idx] if isinstance(scenes[start_idx], dict) else {}
+        end_scene = scenes[end_idx] if isinstance(scenes[end_idx], dict) else {}
         chunks.append({
             "index": len(chunks),
             "text": this_chunk,
-            "scene_start_idx": chunk_start_idx if chunk_start_idx is not None else end_idx,
+            "scene_start_idx": start_idx,
             "scene_end_idx": end_idx,
-            "start_timecode": scenes[chunk_start_idx].get("start_timecode") if chunk_start_idx is not None else scenes[end_idx].get("start_timecode"),
-            "end_timecode": scenes[end_idx].get("start_timecode"),
+            "start_timecode": start_scene.get("start_timecode"),
+            "end_timecode": end_scene.get("end_timecode") or end_scene.get("start_timecode"),
         })
 
     _debug_print(
@@ -517,11 +539,26 @@ def call_gpt(client, deployment, prompt, retries: int = GPT_MAX_RETRIES, retry_b
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=16384,  # apparently the max for gpt4o
-                temperature=1.0,
+                temperature=0.2,
                 top_p=1.0,
                 model=deployment
             )
-            text = response.choices[0].message.content.strip()
+            message = response.choices[0].message
+            content = message.content
+            if isinstance(content, str):
+                text = content.strip()
+            elif isinstance(content, list):
+                parts = []
+                for item in content:
+                    if isinstance(item, dict):
+                        value = item.get("text")
+                        if isinstance(value, str):
+                            parts.append(value)
+                text = "".join(parts).strip()
+            else:
+                text = ""
+            if not text:
+                raise RuntimeError("Model returned empty content")
             return text
         except Exception as exc:
             last_exc = exc
@@ -788,7 +825,7 @@ def _parallel_map_summaries(client, deployment, scene_chunks: list[dict], max_wo
         except Exception as exc:
             _debug_print(debug, f"_parallel_map_summaries: chunk {chunk['index']} failed after retries, fallback to raw chunk: {exc}")
             summary = chunk["text"]
-        _debug_print(debug, f"    condense_chunk: len={len(chunk['text'])} -> len={len(summary.strip())}")
+        _debug_print(debug, f"    map_summary: len={len(chunk['text'])} -> len={len(summary.strip())}")
         return {
             "index": chunk["index"],
             "text": summary.strip(),
@@ -893,23 +930,12 @@ def summarize_scenes(
     until the narrative fits within summary_len.
     """
     scene_chunks = chunk_scenes(scenes, chunk_size, debug=debug)
-    if scene_chunks:
-        raw_narrative = "\n".join(item["text"] for item in scene_chunks).strip()
-        if len(raw_narrative) <= summary_len:
-            narratives = [{
-                "narrative_len": len(raw_narrative),
-                "chunk_len": len(scene_chunks),
-                "narrative": raw_narrative
-            }]
-            if output_dir:
-                out_dir = Path(output_dir)
-                out_dir.mkdir(parents=True, exist_ok=True)
-                out_path = out_dir / f"narrative_1_len_{len(raw_narrative)}.txt"
-                out_path.write_text(raw_narrative, encoding="utf-8")
-            return {
-                "scenes": scenes,
-                "narratives": narratives
-            }
+    if not scene_chunks:
+        return {
+            "scenes": scenes,
+            "narratives": [],
+        }
+
     narratives = []
     if max_workers is None:
         cpu = os.cpu_count() or 4
@@ -1003,6 +1029,14 @@ def synthesize_synopsis(
     """
     narratives = data.get("narratives", [])
     narrative_text = narratives[-1]["narrative"] if narratives else ""
+    if not isinstance(narrative_text, str):
+        narrative_text = ""
+
+    required_split_idx = len(REQUIRED_QUESTIONS) // 2
+    required_questions_a = REQUIRED_QUESTIONS[:required_split_idx]
+    required_questions_b = REQUIRED_QUESTIONS[required_split_idx:]
+    required_block_a = _required_questions_block(required_questions_a)
+    required_block_b = _required_questions_block(required_questions_b)
     required_block = _required_questions_block(REQUIRED_QUESTIONS)
 
     prompts = {
@@ -1021,10 +1055,15 @@ def synthesize_synopsis(
             text=narrative_text,
             clips_count=clips_count,
         ),
-        "qna_predefined": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
+        "qna_predefined_a": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
             text=narrative_text,
-            required_questions_count=len(REQUIRED_QUESTIONS),
-            required_questions_block=required_block,
+            required_questions_count=len(required_questions_a),
+            required_questions_block=required_block_a,
+        ),
+        "qna_predefined_b": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
+            text=narrative_text,
+            required_questions_count=len(required_questions_b),
+            required_questions_block=required_block_b,
         ),
         "qna_generated": SYNOPSIS_QNA_GENERATED_PROMPT.format(
             text=narrative_text,
@@ -1041,16 +1080,19 @@ def synthesize_synopsis(
             "highlights": '{"video_highlights":[]}',
             "timeline": '{"video_timeline":[]}',
             "clips": '{"suggested_clips":[]}',
-            "qna_predefined": '{"questions":[]}',
+            "qna_predefined_a": '{"questions":[]}',
+            "qna_predefined_b": '{"questions":[]}',
             "qna_generated": '{"questions":[]}',
         }
+        safe_section_name = "qna_predefined" if name.startswith("qna_predefined_") else name
+        safe_required_block = required_block_a if name == "qna_predefined_a" else required_block_b if name == "qna_predefined_b" else required_block
         safe_prompt = _build_safe_section_prompt(
-            section=name,
+            section=safe_section_name,
             narrative_text=narrative_text,
             highlights_count=highlights_count,
             timeline_count=timeline_count,
             clips_count=clips_count,
-            required_questions_block=required_block,
+            required_questions_block=safe_required_block,
             extra_questions_count=extra_questions_count,
         )
         def _log_ok(text: str):
@@ -1074,11 +1116,11 @@ def synthesize_synopsis(
             except Exception as exc2:
                 _log_err(exc2)
 
-        text = narrative_text if isinstance(narrative_text, str) else fallback_by_name.get(name, "{}")
+        text = fallback_by_name.get(name, "{}")
         _log_ok(text)
         return name, text
 
-    with ThreadPoolExecutor(max_workers=min(6, len(prompts))) as executor:
+    with ThreadPoolExecutor(max_workers=min(8, len(prompts))) as executor:
         future_to_name = {executor.submit(_call_named, name, prompt): name for name, prompt in prompts.items()}
         for future in as_completed(future_to_name):
             name = future_to_name[future]
@@ -1092,15 +1134,24 @@ def synthesize_synopsis(
     highlights_payload = _parse_json_object(raw_outputs.get("highlights"), debug=debug, context="highlights")
     timeline_payload = _parse_json_object(raw_outputs.get("timeline"), debug=debug, context="timeline")
     clips_payload = _parse_json_object(raw_outputs.get("clips"), debug=debug, context="clips")
-    qna_predefined_payload = _parse_json_object(raw_outputs.get("qna_predefined"), debug=debug, context="qna_predefined")
+    qna_predefined_a_payload = _parse_json_object(raw_outputs.get("qna_predefined_a"), debug=debug, context="qna_predefined_a")
+    qna_predefined_b_payload = _parse_json_object(raw_outputs.get("qna_predefined_b"), debug=debug, context="qna_predefined_b")
     qna_generated_payload = _parse_json_object(raw_outputs.get("qna_generated"), debug=debug, context="qna_generated")
 
     missing_base_sections = any(
         not isinstance(raw_outputs.get(key), str) or not raw_outputs.get(key, "").strip()
         for key in ("summary", "highlights", "timeline", "clips")
     )
+    base_payload_invalid = (
+        not isinstance(summary_payload.get("summary"), str)
+        or not isinstance(highlights_payload.get("video_highlights"), list)
+        or not isinstance(timeline_payload.get("video_timeline"), list)
+        or not isinstance(clips_payload.get("suggested_clips"), list)
+    )
+    missing_base_sections = missing_base_sections or base_payload_invalid
     if missing_base_sections:
         _debug_print(debug, "synthesize_synopsis: falling back to monolithic synopsis for base sections")
+        monolith_fallback = '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated.","video_highlights":[],"video_timeline":[],"suggested_clips":[]}'
         synopsis_text = call_gpt_safe(
             client,
             deployment,
@@ -1110,7 +1161,7 @@ def synthesize_synopsis(
                 timeline_count=timeline_count,
                 clips_count=clips_count,
             ),
-            fallback_text='{"chat_name":"Not explicitly stated","summary":"Not explicitly stated.","video_highlights":[],"video_timeline":[],"suggested_clips":[]}',
+            fallback_text=monolith_fallback,
             debug=debug,
             context="synthesize_synopsis:monolith_fallback",
             safe_prompt=_build_safe_section_prompt(
@@ -1122,7 +1173,7 @@ def synthesize_synopsis(
                 required_questions_block=required_block,
                 extra_questions_count=extra_questions_count,
             ),
-            raw_fallback=narrative_text,
+            raw_fallback=monolith_fallback,
         )
         monolith = _parse_synopsis_json(synopsis_text, debug=debug)
         summary_payload = {"chat_name": monolith.get("chat_name"), "summary": monolith.get("summary")}
@@ -1136,8 +1187,11 @@ def synthesize_synopsis(
     suggested_clips = _normalize_section_items(clips_payload, "suggested_clips", "description", clips_count)
 
     predefined_questions = _normalize_predefined_questions(
-        _extract_questions(qna_predefined_payload),
-        REQUIRED_QUESTIONS,
+        _extract_questions(qna_predefined_a_payload),
+        required_questions_a,
+    ) + _normalize_predefined_questions(
+        _extract_questions(qna_predefined_b_payload),
+        required_questions_b,
     )
     generated_questions = _normalize_generated_questions(
         _extract_questions(qna_generated_payload),
@@ -1148,6 +1202,7 @@ def synthesize_synopsis(
     required_total = len(REQUIRED_QUESTIONS) + extra_questions_count
     if _count_questions(questions) < required_total:
         _debug_print(debug, "synthesize_synopsis: retrying legacy questions prompt")
+        questions_fallback = '{"questions":[]}'
         questions_prompt = _build_questions_prompt(
             narrative_text=narrative_text,
             required_questions=REQUIRED_QUESTIONS,
@@ -1158,7 +1213,7 @@ def synthesize_synopsis(
             client,
             deployment,
             questions_prompt,
-            fallback_text='{"questions":[]}',
+            fallback_text=questions_fallback,
             debug=debug,
             context="synthesize_synopsis:legacy_questions",
             safe_prompt=_build_safe_section_prompt(
@@ -1170,7 +1225,7 @@ def synthesize_synopsis(
                 required_questions_block=required_block,
                 extra_questions_count=extra_questions_count,
             ),
-            raw_fallback=narrative_text,
+            raw_fallback=questions_fallback,
         )
         questions_payload = _parse_synopsis_json(questions_text, debug=debug)
         fallback_questions = _extract_questions(questions_payload)
