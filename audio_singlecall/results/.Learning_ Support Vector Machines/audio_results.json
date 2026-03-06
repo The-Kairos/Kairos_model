@@ -1,0 +1,779 @@
+[
+    {
+        "scene_index": 0,
+        "start_timecode": "00:00:00.000",
+        "end_timecode": "00:02:30.283",
+        "audio_speech": "So, where are we? We started off with simple methods for learning stuff, then we talked a little bit about learning approaches to learning that were vaguely inspired by the fact that our heads are stuffed with neurons and that we seem to evolve from primates. Then we talked about looking at the problem and addressed the issue of phonology and how it's possible to learn concepts. But now we're coming full circle back to the beginning and thinking about how to divide up a space with decision boundaries, but whereas you do it with a neural net or a nearest neighbor's or an ID tree, those are very simple ideas that work very often. Today we're going to talk about a very sophisticated idea that still has a simple implementation. So this needs to be in the tool bag of every civilized person. This is about support vector machines, an idea that was developed, well I want to talk to you today about how ideas develop, actually, because you look at stuff like this in a book and you think, well, Vladimir Vapnik just figured this out one Saturday afternoon when the weather was too bad to go outside, and that's not how it happens, it happens very differently. I want to talk to you a little bit about that. The nice thing about things that were, great things that were done by people are still alive because you can ask them how they did it. You can't do that with Fourier, you can't say to Fourier, how did you do it, did you dream it up on a Saturday afternoon, but you can call Vapnik on the phone and ask him questions. That's the stuff I'm going to talk about toward the end of the hour. Well it's all about decision boundaries and now we have several techniques that we can use to draw some decision boundaries, and here's the same problem, and if we drew decision boundaries in here, we might get something that would look like maybe this, if we were doing a nearest neighbor approach, and if we're doing ID trees, we just draw in a line",
+        "audio_natural": "speech (conf=0.51), silence (conf=0.63)"
+    },
+    {
+        "scene_index": 1,
+        "start_timecode": "00:02:30.283",
+        "end_timecode": "00:02:37.624",
+        "audio_speech": "like that, and if we're doing neural nets, well you know you can put in a lot of straight lines wherever you like with a neural net depending on how it's trained up, or if you",
+        "audio_natural": "speech (conf=0.70)"
+    },
+    {
+        "scene_index": 2,
+        "start_timecode": "00:02:37.624",
+        "end_timecode": "00:02:48.168",
+        "audio_speech": "lines wherever you like with a neural net depending on how it's trained up, or if you just simply go in there and design it so you could do that if you wanted. And you would think that after people have been working on this sort of stuff for 50",
+        "audio_natural": "speech (conf=0.67), drawer open or close (conf=0.80)"
+    },
+    {
+        "scene_index": 3,
+        "start_timecode": "00:02:48.168",
+        "end_timecode": "00:02:59.913",
+        "audio_speech": "And you would think that after people have been working on this sort of stuff for 50 or 75 years that there wouldn't be any tricks in the bag left, and that's when everybody got surprised because around the early 90s Vladimir Vapnik introduced the ideas I'm about",
+        "audio_natural": "speech (conf=0.76)"
+    },
+    {
+        "scene_index": 4,
+        "start_timecode": "00:02:59.913",
+        "end_timecode": "00:03:05.385",
+        "audio_speech": "got surprised because around the early 90s Vladimir Vapnik introduced the ideas I'm about to talk to you about.",
+        "audio_natural": "speech (conf=0.69)"
+    },
+    {
+        "scene_index": 5,
+        "start_timecode": "00:03:05.385",
+        "end_timecode": "00:03:12.726",
+        "audio_speech": "to talk to you about. So what Vapnik says is something like this, here you have a space and you have some negative",
+        "audio_natural": "speech (conf=0.73), snort (conf=0.54)"
+    },
+    {
+        "scene_index": 6,
+        "start_timecode": "00:03:12.726",
+        "end_timecode": "00:03:27.407",
+        "audio_speech": "So what Vapnik says is something like this, here you have a space and you have some negative examples and you have some positive examples, how do you divide the positive examples from the negative examples, and what he says we want to do is we want to draw a straight line,",
+        "audio_natural": "speech (conf=0.79)"
+    },
+    {
+        "scene_index": 7,
+        "start_timecode": "00:03:27.407",
+        "end_timecode": "00:03:39.152",
+        "audio_speech": "the negative examples, and what he says we want to do is we want to draw a straight line, but which straight line is the question? Well we want to draw a straight line, well would this be a good straight line?",
+        "audio_natural": "speech (conf=0.83)"
+    },
+    {
+        "scene_index": 8,
+        "start_timecode": "00:03:39.152",
+        "end_timecode": "00:04:18.391",
+        "audio_speech": "One that went up like that, probably not so hot, how about one that's just right here? Well that might separate them but seems awfully close to the negative examples. So maybe what we ought to do is we ought to draw our straight line in here sort of like this, and that line is drawn with a view toward putting in the widest street that separates the positive samples from the negative samples. That's why I call it the widest street approach. So Vapnik's way of putting in the decision boundary is to put in a straight line, but",
+        "audio_natural": "speech (conf=0.83)"
+    },
+    {
+        "scene_index": 9,
+        "start_timecode": "00:04:18.391",
+        "end_timecode": "00:04:53.493",
+        "audio_speech": "So Vapnik's way of putting in the decision boundary is to put in a straight line, but in contrast with the way IDTree puts in a straight line, it tries to put the line in in such a way as the separation between the positive and negative examples, that street is as wide as possible. So you might think to do that in the UROP project and then let it go with that, what's the big deal? So what we've got to do is we've got to kind of go through why it's a big deal. So first of all we kind of like to think about how you would make a decision rule that would",
+        "audio_natural": "speech (conf=0.83)"
+    },
+    {
+        "scene_index": 10,
+        "start_timecode": "00:04:53.493",
+        "end_timecode": "00:05:14.047",
+        "audio_speech": "So first of all we kind of like to think about how you would make a decision rule that would use that decision boundary. So what I'm going to ask you to imagine is that we've got a vector of any length you like constrained to be perpendicular to the median, or if you like perpendicular to the",
+        "audio_natural": "speech (conf=0.91)"
+    },
+    {
+        "scene_index": 11,
+        "start_timecode": "00:05:14.047",
+        "end_timecode": "00:05:25.525",
+        "audio_speech": "gutters. It's perpendicular to the median line of the street. It's drawn in such a way that that's true. We don't know anything about its length yet. Then we also have some unknown, say right here, and we have a vector that points to",
+        "audio_natural": "speech (conf=0.88)"
+    },
+    {
+        "scene_index": 12,
+        "start_timecode": "00:05:25.525",
+        "end_timecode": "00:05:45.145",
+        "audio_speech": "Then we also have some unknown, say right here, and we have a vector that points to it like so. So now what we're really interested in is whether or not that unknown is on the right side of the street or on the left side of the street.",
+        "audio_natural": "speech (conf=0.85)"
+    },
+    {
+        "scene_index": 13,
+        "start_timecode": "00:05:45.145",
+        "end_timecode": "00:06:37.464",
+        "audio_speech": "So what we want to do is we want to project that vector U down on the one that's perpendicular to the street, because then we'll have the distance in this direction, or a number that's proportional to the distance in this direction, and the further out we go, the closer we'll get to being on the right side of the street, where the right side of the street is not the correct side, but actually the right side of the street. So what we can do is we can say, let's take W and dot it with U and measure whether or not that number is equal to or greater than some constant C. So remember that the dot product is taking the projection onto W, and the bigger that projection is, the further out along this line the projection will lie, and eventually be so big that projection crosses the median line of the street, and we'll say it",
+        "audio_natural": "speech (conf=0.90)"
+    },
+    {
+        "scene_index": 14,
+        "start_timecode": "00:06:37.464",
+        "end_timecode": "00:06:45.338",
+        "audio_speech": "be so big that projection crosses the median line of the street, and we'll say it must be a positive sample.",
+        "audio_natural": "speech (conf=0.75), snort (conf=0.37)"
+    },
+    {
+        "scene_index": 15,
+        "start_timecode": "00:06:45.338",
+        "end_timecode": "00:07:31.785",
+        "audio_speech": "must be a positive sample. Or we could say, without loss of generality, that the dot product plus some constant B is equal to or greater than zero. If that's true, then it's a positive sample. So that's our decision rule. And this is the first in several elements that we're going to have to line up to understand what this idea called support vector machines. So that's the decision rule, and the trouble is we don't know what constant to use, and we don't know which W to use either.",
+        "audio_natural": "speech (conf=0.88)"
+    },
+    {
+        "scene_index": 16,
+        "start_timecode": "00:07:31.785",
+        "end_timecode": "00:08:05.819",
+        "audio_speech": "we don't know which W to use either. We know the W has to be perpendicular to the median line of the street, but there are lots of Ws that are perpendicular to the median line of the street because it can be of any length. So we don't have enough constraint here to fix a particular B or a particular W. Are you with me so far? Yeah. All right, so what we're going to do next, and this, by the way, we get just by saying that C equals minus B. What we're going to do next is we're going to lay on some additional constraints with",
+        "audio_natural": "speech (conf=0.92)"
+    },
+    {
+        "scene_index": 17,
+        "start_timecode": "00:08:05.819",
+        "end_timecode": "00:08:29.576",
+        "audio_speech": "What we're going to do next is we're going to lay on some additional constraints with a view toward putting enough constraint on the situation that we can actually calculate a B and a W. So what we're going to say is this, that if we look at this quantity that we're checking out to be greater than or less than zero to make our decision, then what we're going to do is we're going to say that if we take that vector W and we take the dot product of that",
+        "audio_natural": "speech (conf=0.89), snort (conf=0.34)"
+    },
+    {
+        "scene_index": 18,
+        "start_timecode": "00:08:29.576",
+        "end_timecode": "00:08:37.317",
+        "audio_speech": "do is we're going to say that if we take that vector W and we take the dot product of that with some X plus, some positive sample now, this is not an unknown, this is a positive",
+        "audio_natural": "speech (conf=0.78)"
+    },
+    {
+        "scene_index": 19,
+        "start_timecode": "00:08:37.317",
+        "end_timecode": "00:08:56.269",
+        "audio_speech": "with some X plus, some positive sample now, this is not an unknown, this is a positive sample. If we take those, the dot product of those two vectors and we add B just like in our decision rule, we're going to want that to be equal to or greater than one. So in other words, you can be an unknown anywhere in this street and be just a little bit greater",
+        "audio_natural": "speech (conf=0.33)"
+    },
+    {
+        "scene_index": 20,
+        "start_timecode": "00:08:56.269",
+        "end_timecode": "00:08:59.606",
+        "audio_speech": "So in other words, you can be an unknown anywhere in this street and be just a little bit greater",
+        "audio_natural": "speech (conf=0.63)"
+    },
+    {
+        "scene_index": 21,
+        "start_timecode": "00:08:59.606",
+        "end_timecode": "00:09:09.616",
+        "audio_speech": "So in other words, you can be an unknown anywhere in this street and be just a little bit greater or just a little bit less than zero, but if you're a positive sample, we're going to insist that this decision function gives a value of one or greater.",
+        "audio_natural": "speech (conf=0.89)"
+    },
+    {
+        "scene_index": 22,
+        "start_timecode": "00:09:09.616",
+        "end_timecode": "00:09:15.622",
+        "audio_speech": "that this decision function gives a value of one or greater. Likewise, if W dotted with some negative sample is provided to us, then we're going to say",
+        "audio_natural": "speech (conf=0.88), gasp (conf=0.45)"
+    },
+    {
+        "scene_index": 23,
+        "start_timecode": "00:09:15.622",
+        "end_timecode": "00:09:27.901",
+        "audio_speech": "Likewise, if W dotted with some negative sample is provided to us, then we're going to say that has to be equal to or less than minus one. All right?",
+        "audio_natural": "speech (conf=0.70)"
+    },
+    {
+        "scene_index": 24,
+        "start_timecode": "00:09:27.901",
+        "end_timecode": "00:09:32.572",
+        "audio_speech": "All right? So if you're a minus sample, like one of these two guys or any minus sample that may lie",
+        "audio_natural": "speech (conf=0.83)"
+    },
+    {
+        "scene_index": 25,
+        "start_timecode": "00:09:32.572",
+        "end_timecode": "00:09:40.847",
+        "audio_speech": "So if you're a minus sample, like one of these two guys or any minus sample that may lie down here, this function that gives us the decision rule must return minus one or less.",
+        "audio_natural": "speech (conf=0.52)"
+    },
+    {
+        "scene_index": 26,
+        "start_timecode": "00:09:40.847",
+        "end_timecode": "00:09:53.793",
+        "audio_speech": "down here, this function that gives us the decision rule must return minus one or less. So there's a separation of distance here of minus one to plus one for all of the samples. So that's cool, but we're not quite done because, I don't know, carrying around two equations",
+        "audio_natural": "speech (conf=0.76)"
+    },
+    {
+        "scene_index": 27,
+        "start_timecode": "00:09:53.793",
+        "end_timecode": "00:10:00.200",
+        "audio_speech": "So that's cool, but we're not quite done because, I don't know, carrying around two equations like this is kind of a pain.",
+        "audio_natural": "speech (conf=0.82), snort (conf=0.31)"
+    },
+    {
+        "scene_index": 28,
+        "start_timecode": "00:10:00.200",
+        "end_timecode": "00:10:39.973",
+        "audio_speech": "like this is kind of a pain. It's kind of a pain. So what we're going to do is we're going to introduce another variable to make life a another variable to make life a little easier. little easier. Like many things we do, and when we develop this kind of stuff, introducing this variable stuff, introducing this variable is not something that is not something that God says has to be done. It's just a, we introduce this additional stuff to do what? It's just a minus, what is it, it's a, we introduce this additional stuff to do what? To make the mathematics more convenient. It's a mathematical convenience. So what we're going to do is we're going to introduce a variable y sub i such that y sub i is equal to plus 1 for",
+        "audio_natural": "speech (conf=0.86)"
+    },
+    {
+        "scene_index": 29,
+        "start_timecode": "00:10:39.973",
+        "end_timecode": "00:11:16.142",
+        "audio_speech": "variable y sub i such that y sub i is equal to plus 1 for plus samples and minus 1 for negative samples. So for each sample, we're going to have a value for this new quantity we've introduced, y.",
+        "audio_natural": "speech (conf=0.37), writing (conf=0.77)"
+    },
+    {
+        "scene_index": 30,
+        "start_timecode": "00:11:16.142",
+        "end_timecode": "00:12:40.226",
+        "audio_speech": "new quantity we've introduced, y. And the value of y is going to be determined by whether it's a positive sample or a negative sample. If it's a positive sample, it's going to be plus 1 for this situation up here, and it's going to be minus 1 for this situation down here. So what we're going to do with this first equation is we're going to multiply it by y sub i. That is now x sub i plus b is equal to or greater than 1. And then you know what we're going to do? We're going to multiply the left side of this equation by, y sub i as well. So the second equation becomes y sub i times x sub i plus b. And now what does that do over here? We multiply this guy times minus 1. So it used to be the case that was less than minus 1. So if we multiply it by minus 1, then it has to be greater than plus 1. Oh, oops, the two equations are the same, because I introduced this little mathematical convenience. So now we can say that y sub i times x sub i plus b, well, what we're going to do, right?",
+        "audio_natural": "speech (conf=0.96)"
+    },
+    {
+        "scene_index": 31,
+        "start_timecode": "00:12:40.226",
+        "end_timecode": "00:12:47.834",
+        "audio_speech": "what we're going to do, right? Oh, did I leave out a w? I'm sorry. Thank you.",
+        "audio_natural": "speech (conf=0.83)"
+    },
+    {
+        "scene_index": 32,
+        "start_timecode": "00:12:47.834",
+        "end_timecode": "00:13:15.461",
+        "audio_speech": "Yeah, I wouldn't have gotten very far with that. So that's dotted with w, dotted with w. Those are all vectors. I'll pretty soon forget to put the little vector marks on there, but you know what I mean. So that's w plus b. And now let me bring that 1 over to the left side. And that's equal to or greater than 0. All right, with best correction, I",
+        "audio_natural": "speech (conf=0.66)"
+    },
+    {
+        "scene_index": 33,
+        "start_timecode": "00:13:15.461",
+        "end_timecode": "00:13:21.734",
+        "audio_speech": "All right, with best correction, I think everything's OK. But we're going to take one more step, and we're going to say that y sub i times x sub i times w plus b minus 1.",
+        "audio_natural": "speech (conf=0.67)"
+    },
+    {
+        "scene_index": 34,
+        "start_timecode": "00:13:21.734",
+        "end_timecode": "00:13:59.238",
+        "audio_speech": "say that y sub i times x sub i times w plus b minus 1. You know, it's always got to be equal to or greater than 0. But what I'm going to say is that for x sub i in a gutter. So it's always got to be greater than 0. But we're going to say, we're going to add the additional constraint that it's going to be exactly 0 for all of the samples that end up in the gutters here of the street.",
+        "audio_natural": "speech (conf=0.77)"
+    },
+    {
+        "scene_index": 35,
+        "start_timecode": "00:13:59.238",
+        "end_timecode": "00:14:15.655",
+        "audio_speech": "samples that end up in the gutters here of the street. So the value of that expression is going to be exactly 0 for that sample. Exactly, sorry, 0 for this sample and this sample. Not 0 for that sample. It's going to be greater than 1. So that's step number two.",
+        "audio_natural": "speech (conf=0.88)"
+    },
+    {
+        "scene_index": 36,
+        "start_timecode": "00:14:15.655",
+        "end_timecode": "00:14:19.659",
+        "audio_speech": "So that's step number two.",
+        "audio_natural": "speech (conf=0.84), snort (conf=0.40)"
+    },
+    {
+        "scene_index": 37,
+        "start_timecode": "00:14:19.659",
+        "end_timecode": "00:14:29.402",
+        "audio_speech": "And this is step number one.",
+        "audio_natural": "speech (conf=0.98), snort (conf=0.63)"
+    },
+    {
+        "scene_index": 38,
+        "start_timecode": "00:14:29.402",
+        "end_timecode": "00:14:33.539",
+        "audio_speech": "OK, so now we've just got some expressions that talk about",
+        "audio_natural": "speech (conf=0.72), snort (conf=0.48)"
+    },
+    {
+        "scene_index": 39,
+        "start_timecode": "00:14:33.539",
+        "end_timecode": "00:14:56.229",
+        "audio_speech": "OK, so now we've just got some expressions that talk about some constraints. Now what are we trying to do here? I forgot. I remember now, we're trying to figure out how to arrange for the line to be such that the street separating the pluses from the minuses is as wide as possible. So maybe we'd better figure out how we can express the distance between the two gutters.",
+        "audio_natural": "speech (conf=0.83)"
+    },
+    {
+        "scene_index": 40,
+        "start_timecode": "00:14:56.229",
+        "end_timecode": "00:15:36.135",
+        "audio_speech": "Let's just repeat our drawing. We've got some minuses here, got pluses out here, and we got gutters that are going down here. Now we've got a vector here to a minus, and we've got a vector here to a plus. So we'll call that x plus and this x minus. So what's the width of the street?",
+        "audio_natural": "speech (conf=0.59)"
+    },
+    {
+        "scene_index": 41,
+        "start_timecode": "00:15:36.135",
+        "end_timecode": "00:15:42.542",
+        "audio_speech": "So what's the width of the street? I don't know yet, but what we can do is we can take the difference of those two vectors, and that will be a",
+        "audio_natural": "speech (conf=0.63), snort (conf=0.34)"
+    },
+    {
+        "scene_index": 42,
+        "start_timecode": "00:15:42.542",
+        "end_timecode": "00:16:10.837",
+        "audio_speech": "difference of those two vectors, and that will be a vector that looks like this, right? So that's x plus minus x minus. So now if I only had a unit normal that's normal to the median line of the street, if it's a unit normal, then I could just take the dot product of that unit normal and this difference vector, and that would be the width of the street, right? So in other words, if I had a unit vector in that direction,",
+        "audio_natural": "speech (conf=0.71)"
+    },
+    {
+        "scene_index": 43,
+        "start_timecode": "00:16:10.837",
+        "end_timecode": "00:16:35.261",
+        "audio_speech": "So in other words, if I had a unit vector in that direction, then I could just dot the two together, and that would be the width of the street. So let me write that down before I forget. So the width is equal to x plus minus x minus.",
+        "audio_natural": "speech (conf=0.91)"
+    },
+    {
+        "scene_index": 44,
+        "start_timecode": "00:16:35.261",
+        "end_timecode": "00:16:48.875",
+        "audio_speech": "That's the difference vector. And now I've got to multiply it by a unit vector. But wait a minute, I said that w is a normal, right? w is a normal. So what I can do is I can multiply this times w, and",
+        "audio_natural": "speech (conf=0.75)"
+    },
+    {
+        "scene_index": 45,
+        "start_timecode": "00:16:48.875",
+        "end_timecode": "00:16:56.215",
+        "audio_speech": "So what I can do is I can multiply this times w, and then we'll divide by the magnitude of w, and that will make it a unit vector.",
+        "audio_natural": "speech (conf=0.33), chopping (food) (conf=0.31)"
+    },
+    {
+        "scene_index": 46,
+        "start_timecode": "00:16:56.215",
+        "end_timecode": "00:17:00.086",
+        "audio_speech": "make it a unit vector. So that dot product is, in fact, a scalar, and it's the",
+        "audio_natural": "speech (conf=0.80)"
+    },
+    {
+        "scene_index": 47,
+        "start_timecode": "00:17:00.086",
+        "end_timecode": "00:17:27.046",
+        "audio_speech": "So that dot product is, in fact, a scalar, and it's the width of the street. Doesn't do us much good, because it doesn't look like we can get much out of it. Oh, but I don't know. Let's see, what can we get out of it? Oh, gee, you know, we've got this equation over here. This equation constrains the samples that lie in the gutter.",
+        "audio_natural": "speech (conf=0.86), writing (conf=0.31)"
+    },
+    {
+        "scene_index": 48,
+        "start_timecode": "00:17:27.046",
+        "end_timecode": "00:17:44.797",
+        "audio_speech": "This equation constrains the samples that lie in the gutter. So if we have a positive sample, for example, then this is plus 1, and we have this equation. So it says that x plus times w is equal to 1 minus b.",
+        "audio_natural": "speech (conf=0.83), writing (conf=0.67)"
+    },
+    {
+        "scene_index": 49,
+        "start_timecode": "00:17:44.797",
+        "end_timecode": "00:17:48.534",
+        "audio_speech": "So it says that x plus times w is equal to 1 minus b.",
+        "audio_natural": "speech (conf=0.54)"
+    },
+    {
+        "scene_index": 50,
+        "start_timecode": "00:17:48.534",
+        "end_timecode": "00:18:15.494",
+        "audio_speech": "So it says that x plus times w is equal to 1 minus b. See, I'm just taking this part here, this vector here, and I'm dotting it with x plus. So that's this piece right here. y is 1 for this kind of sample, so I'll just take the 1 and the b back over to the other side, and I've got 1 minus b.",
+        "audio_natural": "speech (conf=0.81), writing (conf=0.67)"
+    },
+    {
+        "scene_index": 51,
+        "start_timecode": "00:18:15.494",
+        "end_timecode": "00:18:21.100",
+        "audio_speech": "Well, we can do the same trick with x minus.",
+        "audio_natural": "speech (conf=0.55)"
+    },
+    {
+        "scene_index": 52,
+        "start_timecode": "00:18:21.100",
+        "end_timecode": "00:18:25.104",
+        "audio_speech": "Well, we can do the same trick with x minus. If we've got a negative sample, then y sub i is",
+        "audio_natural": "speech (conf=0.61)"
+    },
+    {
+        "scene_index": 53,
+        "start_timecode": "00:18:25.104",
+        "end_timecode": "00:18:39.251",
+        "audio_speech": "If we've got a negative sample, then y sub i is negative, that gives us our negative w times dotted with x sub i. Now we take this stuff back over to the right side, and we get 1 minus b, 1 plus b.",
+        "audio_natural": "speech (conf=0.91), male speech, man speaking (conf=0.55), narration, monologue (conf=0.72)"
+    },
+    {
+        "scene_index": 54,
+        "start_timecode": "00:18:39.251",
+        "end_timecode": "00:18:42.722",
+        "audio_speech": "get 1 minus b, 1 plus b.",
+        "audio_natural": "speech (conf=0.79)"
+    },
+    {
+        "scene_index": 55,
+        "start_timecode": "00:18:42.722",
+        "end_timecode": "00:18:55.668",
+        "audio_speech": "So that all licenses to rewrite this thing as 2 over the magnitude of w. How did I get there? Well, I decided I was going to enforce this constraint.",
+        "audio_natural": "speech (conf=0.83), writing (conf=0.36)"
+    },
+    {
+        "scene_index": 56,
+        "start_timecode": "00:18:55.668",
+        "end_timecode": "00:19:13.419",
+        "audio_speech": "Well, I decided I was going to enforce this constraint. I noted that the width of the street has got to be this difference vector times the unit vector. Then I used the constraint to plug back some values here, and I discovered to my delight and amazement that the width of the street is 2 over the magnitude of w.",
+        "audio_natural": "speech (conf=0.94)"
+    },
+    {
+        "scene_index": 57,
+        "start_timecode": "00:19:13.419",
+        "end_timecode": "00:19:28.367",
+        "audio_speech": "of the street is 2 over the magnitude of w. Yes, Brett? So x plus is 1 plus b, and x minus is 1 plus b? Let's see. If I've got a minus here, then that makes that minus, and",
+        "audio_natural": "speech (conf=0.88)"
+    },
+    {
+        "scene_index": 58,
+        "start_timecode": "00:19:28.367",
+        "end_timecode": "00:19:53.993",
+        "audio_speech": "If I've got a minus here, then that makes that minus, and then the b is minus. And when I take the b over to the other side, it becomes plus. So if you subtract the left and the right. No, sorry. This expression here is 1 plus b. Trust me, it works. I haven't got my legs all tangled up like last Friday. Not yet, anyway.",
+        "audio_natural": "speech (conf=0.90)"
+    },
+    {
+        "scene_index": 59,
+        "start_timecode": "00:19:53.993",
+        "end_timecode": "00:20:02.001",
+        "audio_speech": "It's possible. There's going to be a lot of algebra here eventually. So this quantity here, this is miracle number three. This quantity here, this is miracle number three.",
+        "audio_natural": "speech (conf=0.94), gasp (conf=0.36), snort (conf=0.33)"
+    },
+    {
+        "scene_index": 60,
+        "start_timecode": "00:20:02.001",
+        "end_timecode": "00:20:13.079",
+        "audio_speech": "So this quantity here, this is miracle number three. This quantity here, this is miracle number three. This quantity here is the width of the street. And what we're trying to do is we're trying to",
+        "audio_natural": "speech (conf=0.91)"
+    },
+    {
+        "scene_index": 61,
+        "start_timecode": "00:20:13.079",
+        "end_timecode": "00:20:22.021",
+        "audio_speech": "And what we're trying to do is we're trying to maximize that. maximize that, right? Right? So we want to maximize 2 over the magnitude of w if we're to",
+        "audio_natural": "speech (conf=0.70), writing (conf=0.90)"
+    },
+    {
+        "scene_index": 62,
+        "start_timecode": "00:20:22.021",
+        "end_timecode": "00:21:14.340",
+        "audio_speech": "So we want to maximize 2 over the magnitude of w if we're to get the width of the street under the constraints that get the widest street under the constraints that we've we've decided we want. decided we're going to work with, all right? So that means that it's OK to maximize 1 over w instead. We just drop the constant. And that means that it's OK to minimize the magnitude of w, right? And that means that it's OK to minimize 1 half times the magnitude of w squared. Right, Brett?",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 63,
+        "start_timecode": "00:21:14.340",
+        "end_timecode": "00:21:27.419",
+        "audio_speech": "Why did I do that? Why did I multiply by half and square? Oh, it's mathematically convenient. So this is point number three in the development.",
+        "audio_natural": "speech (conf=0.94), male speech, man speaking (conf=0.32)"
+    },
+    {
+        "scene_index": 64,
+        "start_timecode": "00:21:27.419",
+        "end_timecode": "00:21:33.159",
+        "audio_speech": "So this is point number three in the development. So where do we go? We decided that was going to be our decision rule. We're going to see which side of the line we're on.",
+        "audio_natural": "speech (conf=0.68)"
+    },
+    {
+        "scene_index": 65,
+        "start_timecode": "00:21:33.159",
+        "end_timecode": "00:21:35.561",
+        "audio_speech": "We're going to see which side of the line we're on. We decided to constrain the situation so that the value of",
+        "audio_natural": "speech (conf=0.59)"
+    },
+    {
+        "scene_index": 66,
+        "start_timecode": "00:21:35.561",
+        "end_timecode": "00:21:40.232",
+        "audio_speech": "We decided to constrain the situation so that the value of the decision rule is plus 1 in the gutters for the positive",
+        "audio_natural": "speech (conf=0.85)"
+    },
+    {
+        "scene_index": 67,
+        "start_timecode": "00:21:40.232",
+        "end_timecode": "00:21:43.569",
+        "audio_speech": "the decision rule is plus 1 in the gutters for the positive samples and minus 1 in the gutters for the negative samples.",
+        "audio_natural": "speech (conf=0.57)"
+    },
+    {
+        "scene_index": 68,
+        "start_timecode": "00:21:43.569",
+        "end_timecode": "00:22:36.288",
+        "audio_speech": "the negative samples. And then we discovered that maximizing the width of the street led us to an expression like that, which we wish to maximize. Should we take a break? Should we get coffee? Too bad, we can't do that in this kind of situation, but we would if we could. And I'm sure when Vapnik got to this point, he went out for coffee. So now we back up and we say, well, let's let these expressions start developing into a song. Not like that, that's vapid, speaking of Vapnik. What song is it going to sing? We've got an expression here that we'd like to find the minimum of, the extremum of. And we've got some constraints here that we would like to honor. What are we going to do?",
+        "audio_natural": "speech (conf=0.93)"
+    },
+    {
+        "scene_index": 69,
+        "start_timecode": "00:22:36.288",
+        "end_timecode": "00:22:38.290",
+        "audio_speech": "What are we going to do? Let me put what we're going to do here in front of us.",
+        "audio_natural": "speech (conf=0.65)"
+    },
+    {
+        "scene_index": 70,
+        "start_timecode": "00:22:38.290",
+        "end_timecode": "00:22:40.826",
+        "audio_speech": "Let me put what we're going to do here in front of us. We're going to put the minimum of, the extremum of, and",
+        "audio_natural": "speech (conf=0.60)"
+    },
+    {
+        "scene_index": 71,
+        "start_timecode": "00:22:40.826",
+        "end_timecode": "00:22:46.565",
+        "audio_speech": "We're going to put the minimum of, the extremum of, and",
+        "audio_natural": "speech (conf=0.88)"
+    },
+    {
+        "scene_index": 72,
+        "start_timecode": "00:22:46.565",
+        "end_timecode": "00:23:09.388",
+        "audio_speech": "Let me put what we're going to do to you in the form of a puzzle. Is it got something to do with Legendre? Has it got something to do with Laplace? Or does it have something to do with Lagrange? She says Lagrange.",
+        "audio_natural": "speech (conf=0.93)"
+    },
+    {
+        "scene_index": 73,
+        "start_timecode": "00:23:09.388",
+        "end_timecode": "00:23:19.798",
+        "audio_speech": "Actually, all three were said to be on Fourier's doctoral defense committee. Must have been quite an exam. But we want to talk about Lagrange, because we've got a situation here, this 18. 01, 18. 02, 18. 02.",
+        "audio_natural": "speech (conf=0.93)"
+    },
+    {
+        "scene_index": 74,
+        "start_timecode": "00:23:19.798",
+        "end_timecode": "00:23:58.637",
+        "audio_speech": "situation here, this 18. 01, 18. 02, 18. 02. We learned in 18. 02 that if we're going to find the extremum of a function with constraints, then we're going to have to use the Lagrange multipliers. That will give us a new expression, which we can maximize or minimize without thinking about the constraints anymore. That's how Lagrange multipliers work. So this brings us to miracle number four, developmental piece number four. And it sort of works like this. We're going to say that L, the thing we're going to try to",
+        "audio_natural": "speech (conf=0.94)"
+    },
+    {
+        "scene_index": 75,
+        "start_timecode": "00:23:58.637",
+        "end_timecode": "00:24:25.331",
+        "audio_speech": "We're going to say that L, the thing we're going to try to maximize, in order to maximize the width of the street, is equal to 1 half times the magnitude of that vector w squared minus, and now we've got to have a summation over all the constraints. And each of those constraints is going to have a multiplier, alpha sub i. And then we write down the constraint.",
+        "audio_natural": "chopping (food) (conf=0.53)"
+    },
+    {
+        "scene_index": 76,
+        "start_timecode": "00:24:25.331",
+        "end_timecode": "00:24:27.466",
+        "audio_speech": "And then we write down the constraint. And when we write down the constraint,",
+        "audio_natural": "speech (conf=0.64)"
+    },
+    {
+        "scene_index": 77,
+        "start_timecode": "00:24:27.466",
+        "end_timecode": "00:25:14.046",
+        "audio_speech": "there it is up there. But I've got to be hyper careful here, because otherwise I'll get lost in the algebra. So the constraint is y sub i times vector w dotted with vector x sub i plus b. And now I've got a closing parenthesis, a minus 1. That's the end of my constraint, like so. I sure hope I've got that right, because I'll be in deep trouble if that's wrong. Anybody see any bugs in that? That looks right, doesn't it? We've got the original thing we're trying to work with. Now we've got Lagrange multipliers all multiplied",
+        "audio_natural": "speech (conf=0.56)"
+    },
+    {
+        "scene_index": 78,
+        "start_timecode": "00:25:14.046",
+        "end_timecode": "00:25:17.649",
+        "audio_speech": "Now we've got Lagrange multipliers all multiplied with respect to that constraint up there, where each constraint is constrained to be 0.",
+        "audio_natural": "speech (conf=0.55)"
+    },
+    {
+        "scene_index": 79,
+        "start_timecode": "00:25:17.649",
+        "end_timecode": "00:25:30.729",
+        "audio_speech": "constraint is constrained to be 0. Well, there's a little bit of mathematical sleight of hand here, because in the end, the ones that are going to be 0, the Lagrange multipliers here, the ones that are going to be",
+        "audio_natural": "speech (conf=0.93)"
+    },
+    {
+        "scene_index": 80,
+        "start_timecode": "00:25:30.729",
+        "end_timecode": "00:26:11.837",
+        "audio_speech": "the Lagrange multipliers here, the ones that are going to be non-0 are going to be the ones connected with vectors that lie on the gutter. The rest are going to be 0. But in any event, we can pretend that this is what we're doing. And then we've got to find the max. I don't care whether it's a maximum or a minimum. I've lost track. But what we're going to do is we're going to try to find the extreme of that. So what do we do? What does 18. 01 teach us about finding the maximum? Well, we've got to find the derivatives and set them to 0. And then after we've done a little bit of that manipulation, we're going to see a wonderful song start to emerge.",
+        "audio_natural": "speech (conf=0.94), snort (conf=0.37)"
+    },
+    {
+        "scene_index": 81,
+        "start_timecode": "00:26:11.837",
+        "end_timecode": "00:26:25.184",
+        "audio_speech": "So let's see if we can do it. Let's take the partial of L, the Lagrangian, with respect to the vector w. Oh my god, how do you differentiate with respect to a vector?",
+        "audio_natural": "speech (conf=0.89)"
+    },
+    {
+        "scene_index": 82,
+        "start_timecode": "00:26:25.184",
+        "end_timecode": "00:26:44.937",
+        "audio_speech": "Turns out that it has a form that looks exactly like differentiating with respect to a scalar. And the way you prove that to yourself is you just expand everything in terms of all the vector's components. You differentiate those with respect to what you're differentiating with respect to. And everything turns out the same. So what you get when you differentiate this with",
+        "audio_natural": "speech (conf=0.80)"
+    },
+    {
+        "scene_index": 83,
+        "start_timecode": "00:26:44.937",
+        "end_timecode": "00:27:33.252",
+        "audio_speech": "respect to the vector w is 2 comes down. And we have just the magnitude of w. Is it the magnitude of w? Like so. Well, in any event, we've got to. It's not the magnitude of w, it's just w. No magnitude involved. Then we've got a w over here. So we've got to differentiate this part with respect to w as well, but that part's a lot easier because all we have there is a w. There's no magnitude, it's not raised to any power. So what's w multiplied by? Well, it's multiplied by x and y sub i and alpha sub i.",
+        "audio_natural": "speech (conf=0.80)"
+    },
+    {
+        "scene_index": 84,
+        "start_timecode": "00:27:33.252",
+        "end_timecode": "00:28:14.760",
+        "audio_speech": "So that means that this expression, this derivative of the Lagrangian with respect to w is going to be equal to w minus the sum of alpha sub i, y sub i, x sub i. And that's got to be set to 0. That implies that w is equal to the sum of some alpha i, some scalars, times this minus 1 or plus 1 variable times x sub i over i. And now the math is beginning to sing because it tells us",
+        "audio_natural": "speech (conf=0.62)"
+    },
+    {
+        "scene_index": 85,
+        "start_timecode": "00:28:14.760",
+        "end_timecode": "00:28:37.449",
+        "audio_speech": "And now the math is beginning to sing because it tells us that the vector w is a linear sum of the samples. All the samples are sum of the samples. It didn't have to be that way. It could have been raised to a power, there could have been a logarithm, all sorts of horrible things could have happened when we did this. But when we did this, we discovered that w is going to",
+        "audio_natural": "speech (conf=0.87)"
+    },
+    {
+        "scene_index": 86,
+        "start_timecode": "00:28:37.449",
+        "end_timecode": "00:30:12.611",
+        "audio_speech": "But when we did this, we discovered that w is going to be equal to a linear sum of these vectors here, sum of the vectors in the sample set. And I say sum because for sum, alpha will be 0. So this is something that we want to take note of as something important. Now, of course, we've got to differentiate L with respect to anything else that might vary. So we've got to differentiate L with respect to B as well. So what's that going to be equal to? Well, there's no B in here, so that makes no contribution. This part here doesn't have a B in it, so that makes no contribution. There's no B over here, so that makes no contribution. So we get alpha i times y sub i times B. That has a contribution. So that's going to be the sum of alpha i times y sub i. We're differentiating with respect to B, so that disappears. There's a minus sign here, and that's equal to 0. Or that implies that the sum of the alpha i times y sub i is is equal to 0. It looks like that might be helpful somewhere. That looks like that might be helpful somewhere. Now it's time for more coffee.",
+        "audio_natural": "speech (conf=0.91)"
+    },
+    {
+        "scene_index": 87,
+        "start_timecode": "00:30:12.611",
+        "end_timecode": "00:30:45.043",
+        "audio_speech": "By the way, these coffee periods take months. You stare at it, you work on something else, you've got to worry about your finals, you think about it some more, and worry about your finals, and you think about it some more, and eventually you come back from coffee eventually you come back from coffee and do the next thing. and do the next thing. What is the next thing? Well, we've still got this expression that we're trying to find the minimum for. And you know, you say to yourself, this is really a job for the numerical analyst.",
+        "audio_natural": "speech (conf=0.90), snort (conf=0.31)"
+    },
+    {
+        "scene_index": 88,
+        "start_timecode": "00:30:45.043",
+        "end_timecode": "00:31:49.775",
+        "audio_speech": "Those guys know about this sort of stuff. Because of that little power in there, that square, this is a so-called quadratic optimization problem. So at this point, you'd be inclined to hand this problem over to a numerical analyst. They'll come back in a few weeks with an algorithm, you implement the algorithm, and maybe things work, maybe they don't converge. But in any case, you don't worry about it. But we're not going to do that, because we want to do a little bit more math, because we're interested in stuff like this. We're interested in the fact that the decision vector is a linear sum of the samples. So we're going to work a little harder on this stuff. And in particular, now that we've got an expression for w, this one right here, we're going to plug it back in there, and we're going to plug it back in here, and see what happens to that thing we're trying to find the extremum of. Is everybody kind of relaxed, taking a deep breath?",
+        "audio_natural": "speech (conf=0.92), gasp (conf=0.34), snort (conf=0.35)"
+    },
+    {
+        "scene_index": 89,
+        "start_timecode": "00:31:49.775",
+        "end_timecode": "00:31:57.382",
+        "audio_speech": "Is everybody kind of relaxed, taking a deep breath? Actually, this is the easiest part. This is just doing a little bit of the algebra. So the thing we're trying to maximize or minimize is equal",
+        "audio_natural": "speech (conf=0.76)"
+    },
+    {
+        "scene_index": 90,
+        "start_timecode": "00:31:57.382",
+        "end_timecode": "00:32:47.566",
+        "audio_speech": "So the thing we're trying to maximize or minimize is equal to 1 half, and now we've got to have this vector here in there twice, because we're multiplying it together. So let's see. We've got, from that expression up there, one of those w's will just be the sum of the alpha i times y sub i times the vector x sub i. And then we've got the other one too, so that's just going to be the sum of alpha. Now I want to keep things, I'm going to actually eventually squish those two sums together into a double summation, so I",
+        "audio_natural": "speech (conf=0.67)"
+    },
+    {
+        "scene_index": 91,
+        "start_timecode": "00:32:47.566",
+        "end_timecode": "00:32:51.703",
+        "audio_speech": "have to keep the indexes straight. So I'm just going to write that as alpha sub j, y sub j,",
+        "audio_natural": "speech (conf=0.74)"
+    },
+    {
+        "scene_index": 92,
+        "start_timecode": "00:32:51.703",
+        "end_timecode": "00:34:42.614",
+        "audio_speech": "So I'm just going to write that as alpha sub j, y sub j, x sub j. So those are my two vectors, and I'm going to take the dot product for those. That's the first piece, right? Boy, this is hard. So minus, and now the next term looks like alpha i, y sub i, x sub i times w. So we've got a whole bunch of these. We've got a sum of alpha i times y sub i times x sub i, and then that gets multiplied times w. So we'll put this like this. I have a sum of alpha j, y sub j, x sub j, and they're like that. And then that's a dot product of that. That wasn't as bad as I thought. Now I've got to deal with the next term, the alpha i times y sub i times b. So that's a minus sum of alpha i times y sub i times b. And then to finish it off, we have plus the sum of alpha sub i, that's that minus 1 up there, minus 1 in front of the summation, because that's just the sum of the alphas. Just a little algebra. It looks good. I think I haven't left it yet. Alpha i times y sub i times b. is a constant. So we'll pull that out there, and then I've just got the sum of alpha sub i times y sub i. Oh, that's good.",
+        "audio_natural": "speech (conf=0.41)"
+    },
+    {
+        "scene_index": 93,
+        "start_timecode": "00:34:42.614",
+        "end_timecode": "00:36:45.537",
+        "audio_speech": "That's 0. And now so for every one of these terms, we dot it with this whole expression. So that's just like taking this thing here and dotting those two things together, right? Oh, but that's just the same thing we've got here, right? So now what we can do is we can say that we can rewrite this Lagrangian as we've got that sum of alpha i. That's the positive element. And then we've got one of these and half of these. So that's minus 1 half. And now I'll just convert that whole works into a double sum over both i and j of alpha i times alpha j times y sub i times y sub j times x sub i dotted with x sub j. We sure went through a lot of trouble to get there, but now we've got it. And we know that what we're trying to do is we're trying to find a maximum of that expression. And that's the one we're going to hand off to the numerical analyst. So if we're going to hand this off to the numerical analyst anyway, why did I go to all this trouble? Good question. Wanda, do you have any idea why I went to all this trouble? Because I wanted to find out the dependence of this expression, as Wanda is telling me as I'm translating as I go, she's telling me in Romanian. I want to find what this maximization depends on with respect to these vectors, the sample vectors. And what I've discovered is that the optimization depends",
+        "audio_natural": "speech (conf=0.88), writing (conf=0.33)"
+    },
+    {
+        "scene_index": 94,
+        "start_timecode": "00:36:45.537",
+        "end_timecode": "00:36:55.547",
+        "audio_speech": "And what I've discovered is that the optimization depends only on the dot product of pairs of samples. And that's something we want to keep in mind.",
+        "audio_natural": "speech (conf=0.93)"
+    },
+    {
+        "scene_index": 95,
+        "start_timecode": "00:36:55.547",
+        "end_timecode": "00:37:04.756",
+        "audio_speech": "That's why I put it in royal purple. Now up here, so let's see, what do we call that one up there?",
+        "audio_natural": "speech (conf=0.91), snort (conf=0.50)"
+    },
+    {
+        "scene_index": 96,
+        "start_timecode": "00:37:04.756",
+        "end_timecode": "00:38:07.352",
+        "audio_speech": "That's 2. I guess we'll call this piece here 3. This piece here is 4. And now there's one more piece. Because I want to take that W and not only stick it back into that Lagrangian, I want to stick it back into the decision rule. So now my decision rule with this expression for W is going to be W plugged into that thing. So the decision rule is going to look like the sum of alpha i times y sub i times x sub i dotted with the unknown vector And we're going to subtract, I guess, add b. And we're going to say if that's greater than or equal to 0, then plus. So you see why the math is beginning to seem to us now? Because now we discover that the decision rule also",
+        "audio_natural": "speech (conf=0.76)"
+    },
+    {
+        "scene_index": 97,
+        "start_timecode": "00:38:07.352",
+        "end_timecode": "00:38:15.627",
+        "audio_speech": "Because now we discover that the decision rule also depends only on the dot product of those sample vectors and the unknown.",
+        "audio_natural": "speech (conf=0.91), gasp (conf=0.37), snort (conf=0.36)"
+    },
+    {
+        "scene_index": 98,
+        "start_timecode": "00:38:15.627",
+        "end_timecode": "00:38:46.858",
+        "audio_speech": "So there's a total dependence of all of the math on the dot products. And now I hear a whisper. Someone is saying, I don't believe the mathematicians can do it. I don't think those numerical analysts can find the optimization. I want to be sure of it. Give me ocular proof. So I'd like to run a demonstration of it.",
+        "audio_natural": "speech (conf=0.94)"
+    },
+    {
+        "scene_index": 99,
+        "start_timecode": "00:38:46.858",
+        "end_timecode": "00:38:58.336",
+        "audio_speech": "OK, there's our sample problem, the one I started the hour out with.",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 100,
+        "start_timecode": "00:38:58.336",
+        "end_timecode": "00:39:53.725",
+        "audio_speech": "Now, if the optimization algorithm doesn't get stuck in a local maximum or something, it should find a nice, straight line separating those two guys, defining the widest street between the minuses and the pluses. So in just a couple of steps, you can see down there at step 11, it's decided that it's done as much as it can on the optimization. And it's got three alphas in it. And it's got three alphas. And you can see that the two negative samples both figure into the solution. The weights on the Lagrangian multipliers are given by those little yellow bars. So the two negatives participate in the solution as one of the positives, but the other positive doesn't. So it has a zero weight. So everything worked out well. Now, I said as long as it doesn't get stuck in a local maximum, guess what? Those mathematical friends of ours can tell us and prove to",
+        "audio_natural": "speech (conf=0.96)"
+    },
+    {
+        "scene_index": 101,
+        "start_timecode": "00:39:53.725",
+        "end_timecode": "00:40:16.414",
+        "audio_speech": "Those mathematical friends of ours can tell us and prove to us that this thing is a convex space. that means it can never get stuck in a local maximum. So in contrast with things like neural nets where So in contrast with things like neural nets, where you you have a plague of local maxima, have a plague of local maxima, this guy never gets stuck in a this guy never gets stuck in a local maximum. local maximum. Let's try some other examples. Here's two vertical points.",
+        "audio_natural": "speech (conf=0.95), male speech, man speaking (conf=0.51), narration, monologue (conf=0.77)"
+    },
+    {
+        "scene_index": 102,
+        "start_timecode": "00:40:16.414",
+        "end_timecode": "00:41:16.341",
+        "audio_speech": "Here's two vertical points. No surprises there, right? You say, well maybe it can't deal with diagonal points. You say, well, maybe it can't deal with diagonal points. Sure it can. How about this thing? How about this thing here? Yeah, it only needed two of the points since any two of those pluses, any two plus and minus will define the street. Let's try this guy. Oh, what do you think will happen here? Well, we're screwed, right? Because it's linearly inseparable. Bad news. So in situations where it's linearly inseparable, the mechanism struggles and eventually will just slow down and you truncate it because it's not making any progress and you see the red dots there are ones that it got wrong. So you say, well too bad for our side,",
+        "audio_natural": "speech (conf=0.94), male speech, man speaking (conf=0.56), narration, monologue (conf=0.56)"
+    },
+    {
+        "scene_index": 103,
+        "start_timecode": "00:41:16.341",
+        "end_timecode": "00:44:21.993",
+        "audio_speech": "So you say, well too bad for our side, doesn't look like it's all that good anyway. But then a powerful idea comes to the rescue. When stuck, switch to another perspective. So if we don't like the space that we're in because it gives us samples that are not linearly separable, then we can say, shoot, here's our space. Here are two points. Here are two other points. We can't separate them, but if we can somehow get them into another space, maybe we can separate them because they look like this in the other space and they're easy to separate. So what we need then is a transformation that will take us from the space we're in into a space where things are more convenient, and so we're going to call that transformation phi of the vector x. That's the transformation. And now here's the reason for all the magic. I said that the maximization only depends on dot products. So all I need to do the maximization is the transformation of one vector dotted with the transformation of another vector, like so. That's what I need to maximize, to find the maximum one. Then, in order to recognize, where do they go? Underneath the chalkboard. Oh yes, here it is. To recognize, all I need is dot products, too. So for that one, I need phi of x dotted with phi of u. And just to make this a little bit more consistent in notation, I'll call that xj and this x of i. And that's x of i. Those are the quantities I need in order to do it. So that means that if I have a function, let's call it k of x of i and x of j, that's equal to phi of x of i dotted with phi of x of j, then I'm done. This is what I need. I don't actually need this. All I need is that function k, which happens to be called a kernel function, which provides me with the dot product of those two vectors in another space. I don't have to know the transformation into the other space. And that's the reason that this stuff is a miracle. So what are some of the kernels that are popular? One is the linear kernel. It says that u dotted with v plus 1 to the nth",
+        "audio_natural": "speech (conf=0.86)"
+    },
+    {
+        "scene_index": 104,
+        "start_timecode": "00:44:21.993",
+        "end_timecode": "00:45:00.831",
+        "audio_speech": "It says that u dotted with v plus 1 to the nth is such a kernel because it's got u in it and v in it, the two vectors. And this is what the dot product is in the other space. So that's one choice. Another choice is a kernel that looks like this, e to the minus. Let's take the dot product of the difference of those two guys. Let's take the magnitude of that and divide it by some sigma. That's a second kind of kernel that we can use.",
+        "audio_natural": "speech (conf=0.52)"
+    },
+    {
+        "scene_index": 105,
+        "start_timecode": "00:45:00.831",
+        "end_timecode": "00:45:14.979",
+        "audio_speech": "So let's go back and see if we can solve this problem by transforming it into another space where we have another perspective. So that's it.",
+        "audio_natural": "speech (conf=0.89)"
+    },
+    {
+        "scene_index": 106,
+        "start_timecode": "00:45:14.979",
+        "end_timecode": "00:45:37.802",
+        "audio_speech": "That's another kernel. And so sure we can. And that's the answer when transformed back into the original space. We can also try doing that with the so-called radial basis kernel. That's the one with the exponential in it. We can learn on that one. Boom. No problem. So we've got a general method that's convex and guaranteed to produce a global solution.",
+        "audio_natural": "speech (conf=0.95)"
+    },
+    {
+        "scene_index": 107,
+        "start_timecode": "00:45:37.802",
+        "end_timecode": "00:45:55.152",
+        "audio_speech": "and guaranteed to produce a global solution. We've got a mechanism that easily allows us to transform this into another space. So it works like a charm. Of course, it doesn't remove all possible problems. Look at that exponential thing here. If we choose a sigma that is small enough,",
+        "audio_natural": "speech (conf=0.90), gasp (conf=0.38)"
+    },
+    {
+        "scene_index": 108,
+        "start_timecode": "00:45:55.152",
+        "end_timecode": "00:46:03.027",
+        "audio_speech": "If we choose a sigma that is small enough, those sigmas are essentially shrunk right around the sample points,",
+        "audio_natural": "speech (conf=0.91), gasp (conf=0.46), snort (conf=0.36)"
+    },
+    {
+        "scene_index": 109,
+        "start_timecode": "00:46:03.027",
+        "end_timecode": "00:49:22.159",
+        "audio_speech": "those sigmas are essentially shrunk right around the sample points, and we can get overfitting. So it doesn't immunize us against overfitting. But it does immunize us against local maxima and does provide us with a general mechanism for doing a transformation into another space with a better perspective. Now the history lesson. All this stuff feels fairly new. It feels like it's younger than you are. Here's the history of it. Vapnik emigrated from the Soviet Union to the United States in about 1991. Nobody ever heard of this stuff before he emigrated. He actually had done this work on the basic support vector idea in his Ph. D. thesis at Moscow University in the early 60s. But it wasn't possible for him to do anything with it because they didn't have any computers that he could try anything out with. So he spent the next 25 years at some oncology institute in the Soviet Union doing applications. Somebody from Bell Labs discovers him, invites him over to the United States where he subsequently decides to emigrate. In 1992 or thereabouts, Vapnik submits three papers to NIPS, the Neural Information Processing Systems Journal. All of them were rejected. He's still sore about it. But it's motivating. So around 1992, 1993, Bell Labs was interested in handwritten character recognition and in neural nets. Vapnik thinks that neural nets, what would be a good word to use? I can think of the vernacular, but he thinks that they're not very good. So he bets a colleague a good dinner that support vector machines will eventually do better at handwriting recognition than neural nets. And it's a dinner bet, right? It's not that big a deal. But as Napoleon said, it's amazing what a soldier will do for a bit of ribbon. So Vapnik's colleague, who's working on this problem of handwritten recognition, decides to try a support vector machine with a kernel in which n equals 2. Just slightly nonlinear. Works like a charm. Was this the first time anybody tried a kernel? Vapnik actually had the idea in his thesis but never thought it was very important. As soon as it was shown to work in the early 90s on the problem of handwriting recognition, Vapnik resuscitated the idea of the kernel, began to develop it, and became an essential part of the whole approach of using support vector machines. So the main point about this is that it was 30 years in between the concept and anybody ever hearing about it. It was 30 years between Vapnik's understanding of kernels and his appreciation of their importance. And that's the way things often go. Great ideas followed by long periods of nothing happening, followed by an epiphanous moment when the original idea is seen to have great power with just a little bit of a twist, and then the world never looks back. And Vapnik, who nobody ever heard of until the early 90s, becomes famous for something that everybody knows about today who does machine learning.",
+        "audio_natural": "speech (conf=0.88)"
+    },
+    {
+        "scene_index": 110,
+        "start_timecode": "00:49:22.159",
+        "end_timecode": "00:49:33.804",
+        "audio_speech": "",
+        "audio_natural": "none"
+    }
+]

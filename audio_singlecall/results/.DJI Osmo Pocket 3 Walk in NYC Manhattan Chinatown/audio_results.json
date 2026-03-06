@@ -1,0 +1,1801 @@
+[
+    {
+        "scene_index": 0,
+        "start_timecode": "00:00:00.000",
+        "end_timecode": "00:00:05.072",
+        "audio_speech": "What's up everyone?",
+        "audio_natural": "silence (conf=0.55)"
+    },
+    {
+        "scene_index": 1,
+        "start_timecode": "00:00:05.072",
+        "end_timecode": "00:00:20.020",
+        "audio_speech": "What's up everyone? Today I'm going to be walking New York City's Chinatown. Today's date is Friday, October 27th, 2023. The time is about 2 o'clock PM, temperature 71 Fahrenheit, 22 Celsius.",
+        "audio_natural": "speech (conf=0.92)"
+    },
+    {
+        "scene_index": 2,
+        "start_timecode": "00:00:20.020",
+        "end_timecode": "00:00:52.986",
+        "audio_speech": "The time is about 2 o'clock PM, temperature 71 Fahrenheit, 22 Celsius. I'm recording this on the brand new DJI Osmo Pocket 3. My first time using 3840 by 2160p resolution. This video will be straight from the camera directly, as well as the audio, no external",
+        "audio_natural": "speech (conf=0.77)"
+    },
+    {
+        "scene_index": 3,
+        "start_timecode": "00:00:52.986",
+        "end_timecode": "00:01:02.863",
+        "audio_speech": "This video will be straight from the camera directly, as well as the audio, no external mic used in this video. You can test out the zoom here.",
+        "audio_natural": "speech (conf=0.80)"
+    },
+    {
+        "scene_index": 4,
+        "start_timecode": "00:01:02.863",
+        "end_timecode": "00:01:12.206",
+        "audio_speech": "You can test out the zoom here.",
+        "audio_natural": "speech (conf=0.63), vehicle (conf=0.57), traffic noise, roadway noise (conf=0.70)"
+    },
+    {
+        "scene_index": 5,
+        "start_timecode": "00:01:12.206",
+        "end_timecode": "00:01:15.809",
+        "audio_speech": "You can test out the zoom here. And re-center the gimbal.",
+        "audio_natural": "speech (conf=0.49), emergency vehicle (conf=0.39), siren (conf=0.32)"
+    },
+    {
+        "scene_index": 6,
+        "start_timecode": "00:01:15.809",
+        "end_timecode": "00:01:26.086",
+        "audio_speech": "And re-center the gimbal. Controls work pretty fluid. Can also rotate this camera quite easily with a tap of a button.",
+        "audio_natural": "speech (conf=0.89), vehicle (conf=0.68), car (conf=0.51), toot (conf=0.67)"
+    },
+    {
+        "scene_index": 7,
+        "start_timecode": "00:01:26.086",
+        "end_timecode": "00:01:31.024",
+        "audio_speech": "Can also rotate this camera quite easily with a tap of a button. So you can see me pretty easily.",
+        "audio_natural": "speech (conf=0.64), vehicle (conf=0.43)"
+    },
+    {
+        "scene_index": 8,
+        "start_timecode": "00:01:31.024",
+        "end_timecode": "00:01:35.162",
+        "audio_speech": "So you can see me pretty easily.",
+        "audio_natural": "speech (conf=0.41), vehicle (conf=0.36)"
+    },
+    {
+        "scene_index": 9,
+        "start_timecode": "00:01:35.162",
+        "end_timecode": "00:01:37.698",
+        "audio_speech": "So you can see me pretty easily. It's quite busy in Chinatown right in the middle of lunch time.",
+        "audio_natural": "speech (conf=0.67)"
+    },
+    {
+        "scene_index": 10,
+        "start_timecode": "00:01:37.698",
+        "end_timecode": "00:01:40.100",
+        "audio_speech": "It's quite busy in Chinatown right in the middle of lunch time.",
+        "audio_natural": "speech (conf=0.55)"
+    },
+    {
+        "scene_index": 11,
+        "start_timecode": "00:01:40.100",
+        "end_timecode": "00:01:50.110",
+        "audio_speech": "It's quite busy in Chinatown right in the middle of lunch time.",
+        "audio_natural": "speech (conf=0.87), horse (conf=0.42), clip-clop (conf=0.56)"
+    },
+    {
+        "scene_index": 12,
+        "start_timecode": "00:01:50.110",
+        "end_timecode": "00:02:02.122",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.69), vehicle (conf=0.31)"
+    },
+    {
+        "scene_index": 13,
+        "start_timecode": "00:02:02.122",
+        "end_timecode": "00:02:12.132",
+        "audio_speech": "There are so many amazing restaurants here.",
+        "audio_natural": "speech (conf=0.54)"
+    },
+    {
+        "scene_index": 14,
+        "start_timecode": "00:02:12.132",
+        "end_timecode": "00:02:15.736",
+        "audio_speech": "There are so many amazing restaurants here.",
+        "audio_natural": "speech (conf=0.44)"
+    },
+    {
+        "scene_index": 15,
+        "start_timecode": "00:02:15.736",
+        "end_timecode": "00:02:19.339",
+        "audio_speech": "There are so many amazing restaurants here.",
+        "audio_natural": "speech (conf=0.44)"
+    },
+    {
+        "scene_index": 16,
+        "start_timecode": "00:02:19.339",
+        "end_timecode": "00:02:25.212",
+        "audio_speech": "There are so many amazing restaurants here.",
+        "audio_natural": "speech (conf=0.65), music (conf=0.37)"
+    },
+    {
+        "scene_index": 17,
+        "start_timecode": "00:02:25.212",
+        "end_timecode": "00:02:30.150",
+        "audio_speech": "There are so many amazing restaurants here.",
+        "audio_natural": "speech (conf=0.36)"
+    },
+    {
+        "scene_index": 18,
+        "start_timecode": "00:02:30.150",
+        "end_timecode": "00:02:40.160",
+        "audio_speech": "There are so many amazing restaurants here. When I'm noticing with this camera, it tends to overexpose the sky here.",
+        "audio_natural": "speech (conf=0.66)"
+    },
+    {
+        "scene_index": 19,
+        "start_timecode": "00:02:40.160",
+        "end_timecode": "00:02:50.170",
+        "audio_speech": "When I'm noticing with this camera, it tends to overexpose the sky here.",
+        "audio_natural": "speech (conf=0.71)"
+    },
+    {
+        "scene_index": 20,
+        "start_timecode": "00:02:50.170",
+        "end_timecode": "00:03:00.180",
+        "audio_speech": "When I'm noticing with this camera, it tends to overexpose the sky here.",
+        "audio_natural": "speech (conf=0.76)"
+    },
+    {
+        "scene_index": 21,
+        "start_timecode": "00:03:00.180",
+        "end_timecode": "00:03:11.658",
+        "audio_speech": "It's way too bright. But then when I focus on the sky, the colors start to return.",
+        "audio_natural": "speech (conf=0.81)"
+    },
+    {
+        "scene_index": 22,
+        "start_timecode": "00:03:11.658",
+        "end_timecode": "00:03:40.220",
+        "audio_speech": "But then when I focus on the sky, the colors start to return.",
+        "audio_natural": "speech (conf=0.63)"
+    },
+    {
+        "scene_index": 23,
+        "start_timecode": "00:03:40.220",
+        "end_timecode": "00:03:44.758",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.48)"
+    },
+    {
+        "scene_index": 24,
+        "start_timecode": "00:03:44.758",
+        "end_timecode": "00:03:53.166",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.51)"
+    },
+    {
+        "scene_index": 25,
+        "start_timecode": "00:03:53.166",
+        "end_timecode": "00:03:55.969",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.50), vehicle (conf=0.31)"
+    },
+    {
+        "scene_index": 26,
+        "start_timecode": "00:03:55.969",
+        "end_timecode": "00:04:05.979",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.72), vehicle (conf=0.52), car (conf=0.35)"
+    },
+    {
+        "scene_index": 27,
+        "start_timecode": "00:04:05.979",
+        "end_timecode": "00:04:10.250",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.53)"
+    },
+    {
+        "scene_index": 28,
+        "start_timecode": "00:04:10.250",
+        "end_timecode": "00:04:12.252",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.38)"
+    },
+    {
+        "scene_index": 29,
+        "start_timecode": "00:04:12.252",
+        "end_timecode": "00:04:15.322",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.48)"
+    },
+    {
+        "scene_index": 30,
+        "start_timecode": "00:04:15.322",
+        "end_timecode": "00:04:20.260",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.45), sliding door (conf=0.50)"
+    },
+    {
+        "scene_index": 31,
+        "start_timecode": "00:04:20.260",
+        "end_timecode": "00:04:30.270",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.67)"
+    },
+    {
+        "scene_index": 32,
+        "start_timecode": "00:04:30.270",
+        "end_timecode": "00:04:41.748",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.67)"
+    },
+    {
+        "scene_index": 33,
+        "start_timecode": "00:04:41.748",
+        "end_timecode": "00:04:45.352",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.51)"
+    },
+    {
+        "scene_index": 34,
+        "start_timecode": "00:04:45.352",
+        "end_timecode": "00:04:55.362",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.73)"
+    },
+    {
+        "scene_index": 35,
+        "start_timecode": "00:04:55.362",
+        "end_timecode": "00:05:00.300",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.60)"
+    },
+    {
+        "scene_index": 36,
+        "start_timecode": "00:05:00.300",
+        "end_timecode": "00:05:06.173",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.72)"
+    },
+    {
+        "scene_index": 37,
+        "start_timecode": "00:05:06.173",
+        "end_timecode": "00:05:18.051",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.80)"
+    },
+    {
+        "scene_index": 38,
+        "start_timecode": "00:05:18.051",
+        "end_timecode": "00:05:20.320",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.53)"
+    },
+    {
+        "scene_index": 39,
+        "start_timecode": "00:05:20.320",
+        "end_timecode": "00:05:22.589",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.54)"
+    },
+    {
+        "scene_index": 40,
+        "start_timecode": "00:05:22.589",
+        "end_timecode": "00:05:24.858",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.60)"
+    },
+    {
+        "scene_index": 41,
+        "start_timecode": "00:05:24.858",
+        "end_timecode": "00:05:32.065",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.68)"
+    },
+    {
+        "scene_index": 42,
+        "start_timecode": "00:05:32.065",
+        "end_timecode": "00:05:35.402",
+        "audio_speech": "This Chinatown is very popular with tourists.",
+        "audio_natural": "speech (conf=0.48)"
+    },
+    {
+        "scene_index": 43,
+        "start_timecode": "00:05:35.402",
+        "end_timecode": "00:05:45.145",
+        "audio_speech": "This Chinatown is very popular with tourists. Yo, look who it is.",
+        "audio_natural": "speech (conf=0.86), vehicle (conf=0.32)"
+    },
+    {
+        "scene_index": 44,
+        "start_timecode": "00:05:45.145",
+        "end_timecode": "00:05:55.155",
+        "audio_speech": "Yo, look who it is. Hey, giving a tour right now or look at this long time no see.",
+        "audio_natural": "speech (conf=0.95)"
+    },
+    {
+        "scene_index": 45,
+        "start_timecode": "00:05:55.155",
+        "end_timecode": "00:05:58.892",
+        "audio_speech": "And we didn't plan this at all. Yeah, I'm doing a.",
+        "audio_natural": "speech (conf=0.80)"
+    },
+    {
+        "scene_index": 46,
+        "start_timecode": "00:05:58.892",
+        "end_timecode": "00:06:03.564",
+        "audio_speech": "Yeah, I'm doing a. Yeah, I stopped the car in New York City style. What's up, dude?",
+        "audio_natural": "speech (conf=0.79)"
+    },
+    {
+        "scene_index": 47,
+        "start_timecode": "00:06:03.564",
+        "end_timecode": "00:06:05.832",
+        "audio_speech": "Good, man. Hey, everybody.",
+        "audio_natural": "speech (conf=0.78), vehicle (conf=0.34)"
+    },
+    {
+        "scene_index": 48,
+        "start_timecode": "00:06:05.832",
+        "end_timecode": "00:06:10.103",
+        "audio_speech": "How are you? Yeah, I'm using my brand new camera here. This is TomDNYC on YouTube.",
+        "audio_natural": "speech (conf=0.80)"
+    },
+    {
+        "scene_index": 49,
+        "start_timecode": "00:06:10.103",
+        "end_timecode": "00:06:23.317",
+        "audio_speech": "This is TomDNYC on YouTube. If you don't know Tom Delgado. How you doing, man? How's New York treating you? Yeah. When you're not doing a video. I'll text you when I'm finished. Yes. Text me when you're done.",
+        "audio_natural": "speech (conf=0.67), vehicle (conf=0.30)"
+    },
+    {
+        "scene_index": 50,
+        "start_timecode": "00:06:23.317",
+        "end_timecode": "00:06:36.263",
+        "audio_speech": "OK, guys. Have fun.",
+        "audio_natural": "speech (conf=0.55), emergency vehicle (conf=0.49), police car (siren) (conf=0.37), siren (conf=0.34)"
+    },
+    {
+        "scene_index": 51,
+        "start_timecode": "00:06:36.263",
+        "end_timecode": "00:06:39.333",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 52,
+        "start_timecode": "00:06:39.333",
+        "end_timecode": "00:06:44.538",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.58), emergency vehicle (conf=0.43), police car (siren) (conf=0.35)"
+    },
+    {
+        "scene_index": 53,
+        "start_timecode": "00:06:44.538",
+        "end_timecode": "00:06:51.478",
+        "audio_speech": "After the human rights activist and Chinese-American photographer who recently passed away.",
+        "audio_natural": "speech (conf=0.62)"
+    },
+    {
+        "scene_index": 54,
+        "start_timecode": "00:06:51.478",
+        "end_timecode": "00:06:57.885",
+        "audio_speech": "After the human rights activist and Chinese-American photographer who recently passed away.",
+        "audio_natural": "speech (conf=0.55)"
+    },
+    {
+        "scene_index": 55,
+        "start_timecode": "00:06:57.885",
+        "end_timecode": "00:07:02.422",
+        "audio_speech": "After the human rights activist and Chinese-American photographer who recently passed away.",
+        "audio_natural": "emergency vehicle (conf=0.44)"
+    },
+    {
+        "scene_index": 56,
+        "start_timecode": "00:07:02.422",
+        "end_timecode": "00:07:05.626",
+        "audio_speech": "After the human rights activist and Chinese-American photographer who recently passed away.",
+        "audio_natural": "emergency vehicle (conf=0.46), police car (siren) (conf=0.49), siren (conf=0.35)"
+    },
+    {
+        "scene_index": 57,
+        "start_timecode": "00:07:05.626",
+        "end_timecode": "00:07:09.096",
+        "audio_speech": "After the human rights activist and Chinese-American photographer who recently passed away. It's really a shame. It was really influential in making the Chinese-American voice heard.",
+        "audio_natural": "speech (conf=0.62), emergency vehicle (conf=0.53), police car (siren) (conf=0.62), siren (conf=0.35)"
+    },
+    {
+        "scene_index": 58,
+        "start_timecode": "00:07:09.096",
+        "end_timecode": "00:07:15.502",
+        "audio_speech": "It was really influential in making the Chinese-American voice heard. Especially for important events such as the construction of the transcontinental railroad.",
+        "audio_natural": "speech (conf=0.60), emergency vehicle (conf=0.32)"
+    },
+    {
+        "scene_index": 59,
+        "start_timecode": "00:07:15.502",
+        "end_timecode": "00:07:20.440",
+        "audio_speech": "Especially for important events such as the construction of the transcontinental railroad. He noticed in those pictures published by the railroad companies.",
+        "audio_natural": "speech (conf=0.59)"
+    },
+    {
+        "scene_index": 60,
+        "start_timecode": "00:07:20.440",
+        "end_timecode": "00:07:28.315",
+        "audio_speech": "He noticed in those pictures published by the railroad companies. That there were no Chinese-Americans in the photos.",
+        "audio_natural": "speech (conf=0.54)"
+    },
+    {
+        "scene_index": 61,
+        "start_timecode": "00:07:28.315",
+        "end_timecode": "00:07:30.450",
+        "audio_speech": "That there were no Chinese-Americans in the photos.",
+        "audio_natural": "speech (conf=0.57)"
+    },
+    {
+        "scene_index": 62,
+        "start_timecode": "00:07:30.450",
+        "end_timecode": "00:07:32.719",
+        "audio_speech": "And he wanted to correct that.",
+        "audio_natural": "speech (conf=0.59)"
+    },
+    {
+        "scene_index": 63,
+        "start_timecode": "00:07:32.719",
+        "end_timecode": "00:07:50.470",
+        "audio_speech": "So he got a bunch of Chinese-Americans to pose together. And correct the omission there from the railroad companies. That Chinese-American workers were responsible for the construction of the railroad. That's just one of the many things that he did.",
+        "audio_natural": "speech (conf=0.64)"
+    },
+    {
+        "scene_index": 64,
+        "start_timecode": "00:07:50.470",
+        "end_timecode": "00:07:55.542",
+        "audio_speech": "That's just one of the many things that he did.",
+        "audio_natural": "speech (conf=0.78)"
+    },
+    {
+        "scene_index": 65,
+        "start_timecode": "00:07:55.542",
+        "end_timecode": "00:08:15.562",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 66,
+        "start_timecode": "00:08:15.562",
+        "end_timecode": "00:08:30.511",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.49)"
+    },
+    {
+        "scene_index": 67,
+        "start_timecode": "00:08:30.511",
+        "end_timecode": "00:08:34.515",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.42)"
+    },
+    {
+        "scene_index": 68,
+        "start_timecode": "00:08:34.515",
+        "end_timecode": "00:08:38.519",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.42)"
+    },
+    {
+        "scene_index": 69,
+        "start_timecode": "00:08:38.519",
+        "end_timecode": "00:09:46.987",
+        "audio_speech": "One of the coolest streets coming up right here. Lawyers. There's a unique curve on the street. They recently painted this street too.",
+        "audio_natural": "vehicle (conf=0.60), traffic noise, roadway noise (conf=0.55)"
+    },
+    {
+        "scene_index": 70,
+        "start_timecode": "00:09:46.987",
+        "end_timecode": "00:09:50.591",
+        "audio_speech": "They recently painted this street too.",
+        "audio_natural": "speech (conf=0.48)"
+    },
+    {
+        "scene_index": 71,
+        "start_timecode": "00:09:50.591",
+        "end_timecode": "00:09:53.660",
+        "audio_speech": "They recently painted this street too.",
+        "audio_natural": "speech (conf=0.52)"
+    },
+    {
+        "scene_index": 72,
+        "start_timecode": "00:09:53.660",
+        "end_timecode": "00:10:03.670",
+        "audio_speech": "They recently painted this street too. And made it more colorful. And while we're also on Corky Lee. Corky Lee. There's a beautiful mural of him all the way to the right here. You can There's a beautiful mural of him. Over to the right here.",
+        "audio_natural": "speech (conf=0.90)"
+    },
+    {
+        "scene_index": 73,
+        "start_timecode": "00:10:03.670",
+        "end_timecode": "00:10:16.350",
+        "audio_speech": "Corky Lee. There's a beautiful mural of him all the way to the right here. You can Over to the right here. You can even see the mural incorporates the transcontinental railroad. even see the mural incorporates the Transcontinental Railroad which I talked",
+        "audio_natural": "speech (conf=0.94)"
+    },
+    {
+        "scene_index": 74,
+        "start_timecode": "00:10:16.350",
+        "end_timecode": "00:10:20.621",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.56)"
+    },
+    {
+        "scene_index": 75,
+        "start_timecode": "00:10:20.621",
+        "end_timecode": "00:10:25.692",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.54)"
+    },
+    {
+        "scene_index": 76,
+        "start_timecode": "00:10:25.692",
+        "end_timecode": "00:10:30.631",
+        "audio_speech": "Here's Nam Wah Tea Parlor, the first dim sum parlor in Chinatown. Normally has a",
+        "audio_natural": "speech (conf=0.55)"
+    },
+    {
+        "scene_index": 77,
+        "start_timecode": "00:10:30.631",
+        "end_timecode": "00:10:48.649",
+        "audio_speech": "Here's Nam Wah Tea Parlor, the first dim sum parlor in Chinatown. Normally has a",
+        "audio_natural": "speech (conf=0.66)"
+    },
+    {
+        "scene_index": 78,
+        "start_timecode": "00:10:48.649",
+        "end_timecode": "00:10:59.193",
+        "audio_speech": "Here's Nam Wah Tea Parlor, the first dim sum parlor in Chinatown. Normally has a",
+        "audio_natural": "speech (conf=0.92)"
+    },
+    {
+        "scene_index": 79,
+        "start_timecode": "00:10:59.193",
+        "end_timecode": "00:11:02.396",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.75)"
+    },
+    {
+        "scene_index": 80,
+        "start_timecode": "00:11:02.396",
+        "end_timecode": "00:11:10.137",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.85)"
+    },
+    {
+        "scene_index": 81,
+        "start_timecode": "00:11:10.137",
+        "end_timecode": "00:11:16.543",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.63)"
+    },
+    {
+        "scene_index": 82,
+        "start_timecode": "00:11:16.543",
+        "end_timecode": "00:11:25.485",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.73)"
+    },
+    {
+        "scene_index": 83,
+        "start_timecode": "00:11:25.485",
+        "end_timecode": "00:11:31.892",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.61)"
+    },
+    {
+        "scene_index": 84,
+        "start_timecode": "00:11:31.892",
+        "end_timecode": "00:11:35.762",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.58)"
+    },
+    {
+        "scene_index": 85,
+        "start_timecode": "00:11:35.762",
+        "end_timecode": "00:11:37.898",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.52)"
+    },
+    {
+        "scene_index": 86,
+        "start_timecode": "00:11:37.898",
+        "end_timecode": "00:11:42.169",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.48)"
+    },
+    {
+        "scene_index": 87,
+        "start_timecode": "00:11:42.169",
+        "end_timecode": "00:11:47.374",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.44)"
+    },
+    {
+        "scene_index": 88,
+        "start_timecode": "00:11:47.374",
+        "end_timecode": "00:11:50.978",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.73)"
+    },
+    {
+        "scene_index": 89,
+        "start_timecode": "00:11:50.978",
+        "end_timecode": "00:11:54.448",
+        "audio_speech": "It's a unicorn made from noodles.",
+        "audio_natural": "speech (conf=0.68), slam (conf=0.52)"
+    },
+    {
+        "scene_index": 90,
+        "start_timecode": "00:11:54.448",
+        "end_timecode": "00:11:57.384",
+        "audio_speech": "It's a unicorn made from noodles.",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 91,
+        "start_timecode": "00:11:57.384",
+        "end_timecode": "00:12:15.802",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.39)"
+    },
+    {
+        "scene_index": 92,
+        "start_timecode": "00:12:15.802",
+        "end_timecode": "00:12:20.741",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 93,
+        "start_timecode": "00:12:20.741",
+        "end_timecode": "00:12:55.843",
+        "audio_speech": "Across the street is Confucius Plaza, the largest residential complex in",
+        "audio_natural": "speech (conf=0.74)"
+    },
+    {
+        "scene_index": 94,
+        "start_timecode": "00:12:55.843",
+        "end_timecode": "00:13:10.791",
+        "audio_speech": "Across the street is Confucius Plaza, the largest residential complex in Chinatown.",
+        "audio_natural": "speech (conf=0.76), vehicle (conf=0.37), traffic noise, roadway noise (conf=0.58)"
+    },
+    {
+        "scene_index": 95,
+        "start_timecode": "00:13:10.791",
+        "end_timecode": "00:14:08.048",
+        "audio_speech": "I know there's a lot of medical offices inside Confucius Plaza as well as",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 96,
+        "start_timecode": "00:14:08.048",
+        "end_timecode": "00:14:15.923",
+        "audio_speech": "I know there's a lot of medical offices inside Confucius Plaza as well as everything related to medical supplies and therapy and products.",
+        "audio_natural": "speech (conf=0.85)"
+    },
+    {
+        "scene_index": 97,
+        "start_timecode": "00:14:15.923",
+        "end_timecode": "00:14:18.058",
+        "audio_speech": "everything related to medical supplies and therapy and products.",
+        "audio_natural": "speech (conf=0.72)"
+    },
+    {
+        "scene_index": 98,
+        "start_timecode": "00:14:18.058",
+        "end_timecode": "00:14:23.397",
+        "audio_speech": "everything related to medical supplies and therapy and products.",
+        "audio_natural": "speech (conf=0.67)"
+    },
+    {
+        "scene_index": 99,
+        "start_timecode": "00:14:23.397",
+        "end_timecode": "00:14:25.933",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.51)"
+    },
+    {
+        "scene_index": 100,
+        "start_timecode": "00:14:25.933",
+        "end_timecode": "00:14:47.554",
+        "audio_speech": "Here's a statue of Confucius, the great Chinese philosopher.",
+        "audio_natural": "speech (conf=0.55)"
+    },
+    {
+        "scene_index": 101,
+        "start_timecode": "00:14:47.554",
+        "end_timecode": "00:14:53.560",
+        "audio_speech": "Here's a statue of Confucius, the great Chinese philosopher.",
+        "audio_natural": "speech (conf=0.73)"
+    },
+    {
+        "scene_index": 102,
+        "start_timecode": "00:14:53.560",
+        "end_timecode": "00:14:57.297",
+        "audio_speech": "Here's a statue of Confucius, the great Chinese philosopher.",
+        "audio_natural": "speech (conf=0.60)"
+    },
+    {
+        "scene_index": 103,
+        "start_timecode": "00:14:57.297",
+        "end_timecode": "00:15:04.238",
+        "audio_speech": "Here's a statue of Confucius, the great Chinese philosopher.",
+        "audio_natural": "vehicle (conf=0.58)"
+    },
+    {
+        "scene_index": 104,
+        "start_timecode": "00:15:04.238",
+        "end_timecode": "00:15:20.387",
+        "audio_speech": "What's really a shame is how some of these buildings here, they really ruined them by putting up all this graffiti on the side. And even over here too.",
+        "audio_natural": "vehicle (conf=0.72), car (conf=0.67), toot (conf=0.77)"
+    },
+    {
+        "scene_index": 105,
+        "start_timecode": "00:15:20.387",
+        "end_timecode": "00:15:29.863",
+        "audio_speech": "them by putting up all this graffiti on the side. And even over here too.",
+        "audio_natural": "speech (conf=0.73)"
+    },
+    {
+        "scene_index": 106,
+        "start_timecode": "00:15:29.863",
+        "end_timecode": "00:15:32.132",
+        "audio_speech": "them by putting up all this graffiti on the side. And even over here too.",
+        "audio_natural": "speech (conf=0.36)"
+    },
+    {
+        "scene_index": 107,
+        "start_timecode": "00:15:32.132",
+        "end_timecode": "00:15:54.021",
+        "audio_speech": "",
+        "audio_natural": "vehicle (conf=0.38), traffic noise, roadway noise (conf=0.59)"
+    },
+    {
+        "scene_index": 108,
+        "start_timecode": "00:15:54.021",
+        "end_timecode": "00:16:30.591",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.52), vehicle (conf=0.37), traffic noise, roadway noise (conf=0.32)"
+    },
+    {
+        "scene_index": 109,
+        "start_timecode": "00:16:30.591",
+        "end_timecode": "00:16:36.063",
+        "audio_speech": "",
+        "audio_natural": "vehicle (conf=0.43)"
+    },
+    {
+        "scene_index": 110,
+        "start_timecode": "00:16:36.063",
+        "end_timecode": "00:16:38.332",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.47), vehicle (conf=0.30)"
+    },
+    {
+        "scene_index": 111,
+        "start_timecode": "00:16:38.332",
+        "end_timecode": "00:16:47.808",
+        "audio_speech": "In the distance you can see the Financial District as well as the Civic",
+        "audio_natural": "speech (conf=0.63), vehicle (conf=0.42), toot (conf=0.34)"
+    },
+    {
+        "scene_index": 112,
+        "start_timecode": "00:16:47.808",
+        "end_timecode": "00:16:50.611",
+        "audio_speech": "In the distance you can see the Financial District as well as the Civic",
+        "audio_natural": "speech (conf=0.46)"
+    },
+    {
+        "scene_index": 113,
+        "start_timecode": "00:16:50.611",
+        "end_timecode": "00:17:07.027",
+        "audio_speech": "In the distance you can see the Financial District as well as the Civic Center. This here is the start of East Broadway.",
+        "audio_natural": "speech (conf=0.80), vehicle (conf=0.36), traffic noise, roadway noise (conf=0.44)"
+    },
+    {
+        "scene_index": 114,
+        "start_timecode": "00:17:07.027",
+        "end_timecode": "00:17:15.169",
+        "audio_speech": "This here is the start of East Broadway.",
+        "audio_natural": "speech (conf=0.71), vehicle (conf=0.37)"
+    },
+    {
+        "scene_index": 115,
+        "start_timecode": "00:17:15.169",
+        "end_timecode": "00:17:26.113",
+        "audio_speech": "This is the less touristy side of Chinatown.",
+        "audio_natural": "speech (conf=0.69), vehicle (conf=0.37)"
+    },
+    {
+        "scene_index": 116,
+        "start_timecode": "00:17:26.113",
+        "end_timecode": "00:18:00.547",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.54)"
+    },
+    {
+        "scene_index": 117,
+        "start_timecode": "00:18:00.547",
+        "end_timecode": "00:18:08.555",
+        "audio_speech": "Cafe Bank Branch closed.",
+        "audio_natural": "speech (conf=0.84)"
+    },
+    {
+        "scene_index": 118,
+        "start_timecode": "00:18:08.555",
+        "end_timecode": "00:18:11.091",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 119,
+        "start_timecode": "00:18:11.091",
+        "end_timecode": "00:18:21.101",
+        "audio_speech": "This side of Chinatown has always struggled to get as much business as where I was before, Mott Street and Doyer Street.",
+        "audio_natural": "speech (conf=0.83)"
+    },
+    {
+        "scene_index": 120,
+        "start_timecode": "00:18:21.101",
+        "end_timecode": "00:18:31.778",
+        "audio_speech": "where I was before, Mott Street and Doyer Street.",
+        "audio_natural": "speech (conf=0.71)"
+    },
+    {
+        "scene_index": 121,
+        "start_timecode": "00:18:31.778",
+        "end_timecode": "00:18:42.189",
+        "audio_speech": "There's a space for rent there.",
+        "audio_natural": "speech (conf=0.81)"
+    },
+    {
+        "scene_index": 122,
+        "start_timecode": "00:18:42.189",
+        "end_timecode": "00:18:51.131",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.38)"
+    },
+    {
+        "scene_index": 123,
+        "start_timecode": "00:18:51.131",
+        "end_timecode": "00:18:56.203",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 124,
+        "start_timecode": "00:18:56.203",
+        "end_timecode": "00:19:01.141",
+        "audio_speech": "",
+        "audio_natural": "vehicle (conf=0.34)"
+    },
+    {
+        "scene_index": 125,
+        "start_timecode": "00:19:01.141",
+        "end_timecode": "00:19:11.151",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.32), vehicle (conf=0.35)"
+    },
+    {
+        "scene_index": 126,
+        "start_timecode": "00:19:11.151",
+        "end_timecode": "00:19:25.832",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 127,
+        "start_timecode": "00:19:25.832",
+        "end_timecode": "00:19:35.309",
+        "audio_speech": "This place is actually a Michelin rated restaurant since 1968. Recommended by",
+        "audio_natural": "vehicle (conf=0.42)"
+    },
+    {
+        "scene_index": 128,
+        "start_timecode": "00:19:35.309",
+        "end_timecode": "00:19:37.578",
+        "audio_speech": "This place is actually a Michelin rated restaurant since 1968. Recommended by",
+        "audio_natural": "speech (conf=0.60)"
+    },
+    {
+        "scene_index": 129,
+        "start_timecode": "00:19:37.578",
+        "end_timecode": "00:19:50.123",
+        "audio_speech": "This place is actually a Michelin rated restaurant since 1968. Recommended by Time Out and where the locals eat. I don't know how popular it is though.",
+        "audio_natural": "speech (conf=0.73)"
+    },
+    {
+        "scene_index": 130,
+        "start_timecode": "00:19:50.123",
+        "end_timecode": "00:19:52.793",
+        "audio_speech": "Time Out and where the locals eat. I don't know how popular it is though.",
+        "audio_natural": "speech (conf=0.69)"
+    },
+    {
+        "scene_index": 131,
+        "start_timecode": "00:19:52.793",
+        "end_timecode": "00:19:56.263",
+        "audio_speech": "Time Out and where the locals eat. I don't know how popular it is though.",
+        "audio_natural": "speech (conf=0.59)"
+    },
+    {
+        "scene_index": 132,
+        "start_timecode": "00:19:56.263",
+        "end_timecode": "00:20:05.739",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 133,
+        "start_timecode": "00:20:05.739",
+        "end_timecode": "00:20:08.942",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.35)"
+    },
+    {
+        "scene_index": 134,
+        "start_timecode": "00:20:08.942",
+        "end_timecode": "00:20:16.283",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.42)"
+    },
+    {
+        "scene_index": 135,
+        "start_timecode": "00:20:16.283",
+        "end_timecode": "00:20:21.221",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.51)"
+    },
+    {
+        "scene_index": 136,
+        "start_timecode": "00:20:21.221",
+        "end_timecode": "00:20:44.978",
+        "audio_speech": "",
+        "audio_natural": "vehicle (conf=0.31), rail transport (conf=0.41), train (conf=0.55), railroad car, train wagon (conf=0.41)"
+    },
+    {
+        "scene_index": 137,
+        "start_timecode": "00:20:44.978",
+        "end_timecode": "00:20:51.251",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.35), vehicle (conf=0.31)"
+    },
+    {
+        "scene_index": 138,
+        "start_timecode": "00:20:51.251",
+        "end_timecode": "00:20:55.522",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.41)"
+    },
+    {
+        "scene_index": 139,
+        "start_timecode": "00:20:55.522",
+        "end_timecode": "00:20:58.192",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.49)"
+    },
+    {
+        "scene_index": 140,
+        "start_timecode": "00:20:58.192",
+        "end_timecode": "00:21:01.261",
+        "audio_speech": "I'm also going to take a walk inside the East Broadway Mall here.",
+        "audio_natural": "speech (conf=0.66)"
+    },
+    {
+        "scene_index": 141,
+        "start_timecode": "00:21:01.261",
+        "end_timecode": "00:21:05.933",
+        "audio_speech": "I'm also going to take a walk inside the East Broadway Mall here.",
+        "audio_natural": "speech (conf=0.85)"
+    },
+    {
+        "scene_index": 142,
+        "start_timecode": "00:21:05.933",
+        "end_timecode": "00:21:31.291",
+        "audio_speech": "I'm also going to take a walk inside the East Broadway Mall here. For a while, there was a risk of this place closing up, but the city let the management",
+        "audio_natural": "speech (conf=0.80), vehicle (conf=0.47), traffic noise, roadway noise (conf=0.49)"
+    },
+    {
+        "scene_index": 143,
+        "start_timecode": "00:21:31.291",
+        "end_timecode": "00:21:36.363",
+        "audio_speech": "",
+        "audio_natural": "rail transport (conf=0.42), train (conf=0.75), railroad car, train wagon (conf=0.46)"
+    },
+    {
+        "scene_index": 144,
+        "start_timecode": "00:21:36.363",
+        "end_timecode": "00:21:42.636",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.45), vehicle (conf=0.36), train (conf=0.40)"
+    },
+    {
+        "scene_index": 145,
+        "start_timecode": "00:21:42.636",
+        "end_timecode": "00:21:51.178",
+        "audio_speech": "",
+        "audio_natural": "train (conf=0.40)"
+    },
+    {
+        "scene_index": 146,
+        "start_timecode": "00:21:51.178",
+        "end_timecode": "00:21:54.248",
+        "audio_speech": "Let's go in here.",
+        "audio_natural": "speech (conf=0.61)"
+    },
+    {
+        "scene_index": 147,
+        "start_timecode": "00:21:54.248",
+        "end_timecode": "00:22:09.329",
+        "audio_speech": "Looks really grim though. It's a lot of graffiti.",
+        "audio_natural": "speech (conf=0.47)"
+    },
+    {
+        "scene_index": 148,
+        "start_timecode": "00:22:09.329",
+        "end_timecode": "00:22:14.401",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.52)"
+    },
+    {
+        "scene_index": 149,
+        "start_timecode": "00:22:14.401",
+        "end_timecode": "00:22:19.206",
+        "audio_speech": "You can say this is like a dead mall.",
+        "audio_natural": "speech (conf=0.70)"
+    },
+    {
+        "scene_index": 150,
+        "start_timecode": "00:22:19.206",
+        "end_timecode": "00:22:26.146",
+        "audio_speech": "The escalator isn't even operating, but yet there's still vendors downstairs.",
+        "audio_natural": "speech (conf=0.69)"
+    },
+    {
+        "scene_index": 151,
+        "start_timecode": "00:22:26.146",
+        "end_timecode": "00:22:36.557",
+        "audio_speech": "The escalator isn't even operating, but yet there's still vendors downstairs.",
+        "audio_natural": "speech (conf=0.89)"
+    },
+    {
+        "scene_index": 152,
+        "start_timecode": "00:22:36.557",
+        "end_timecode": "00:22:40.961",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.58)"
+    },
+    {
+        "scene_index": 153,
+        "start_timecode": "00:22:40.961",
+        "end_timecode": "00:22:47.901",
+        "audio_speech": "Oh, they're filming downstairs. So that's all a sham there.",
+        "audio_natural": "speech (conf=0.71)"
+    },
+    {
+        "scene_index": 154,
+        "start_timecode": "00:22:47.901",
+        "end_timecode": "00:22:58.312",
+        "audio_speech": "So that's all a sham there.",
+        "audio_natural": "speech (conf=0.78)"
+    },
+    {
+        "scene_index": 155,
+        "start_timecode": "00:22:58.312",
+        "end_timecode": "00:23:00.714",
+        "audio_speech": "I really hope they can get new tenants in here soon.",
+        "audio_natural": "speech (conf=0.62)"
+    },
+    {
+        "scene_index": 156,
+        "start_timecode": "00:23:00.714",
+        "end_timecode": "00:23:04.585",
+        "audio_speech": "I really hope they can get new tenants in here soon.",
+        "audio_natural": "speech (conf=0.77)"
+    },
+    {
+        "scene_index": 157,
+        "start_timecode": "00:23:04.585",
+        "end_timecode": "00:23:09.656",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.43)"
+    },
+    {
+        "scene_index": 158,
+        "start_timecode": "00:23:09.656",
+        "end_timecode": "00:23:16.463",
+        "audio_speech": "I know there's a restaurant upstairs that's often used for special events now, but I don't",
+        "audio_natural": "speech (conf=0.57)"
+    },
+    {
+        "scene_index": 159,
+        "start_timecode": "00:23:16.463",
+        "end_timecode": "00:23:30.477",
+        "audio_speech": "I know there's a restaurant upstairs that's often used for special events now, but I don't",
+        "audio_natural": "speech (conf=0.58), traffic noise, roadway noise (conf=0.36)"
+    },
+    {
+        "scene_index": 160,
+        "start_timecode": "00:23:30.477",
+        "end_timecode": "00:23:33.280",
+        "audio_speech": "I know there's a restaurant upstairs that's often used for special events now, but I don't",
+        "audio_natural": "speech (conf=0.68)"
+    },
+    {
+        "scene_index": 161,
+        "start_timecode": "00:23:33.280",
+        "end_timecode": "00:23:45.425",
+        "audio_speech": "I know there's a restaurant upstairs that's often used for special events now, but I don't think it's open to the public anymore.",
+        "audio_natural": "speech (conf=0.81)"
+    },
+    {
+        "scene_index": 162,
+        "start_timecode": "00:23:45.425",
+        "end_timecode": "00:23:49.429",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.49)"
+    },
+    {
+        "scene_index": 163,
+        "start_timecode": "00:23:49.429",
+        "end_timecode": "00:23:56.904",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.62)"
+    },
+    {
+        "scene_index": 164,
+        "start_timecode": "00:23:56.904",
+        "end_timecode": "00:23:59.173",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.52)"
+    },
+    {
+        "scene_index": 165,
+        "start_timecode": "00:23:59.173",
+        "end_timecode": "00:24:02.910",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.70)"
+    },
+    {
+        "scene_index": 166,
+        "start_timecode": "00:24:02.910",
+        "end_timecode": "00:24:11.451",
+        "audio_speech": "Kind of strange, we just came right in here when there's a crew filming something.",
+        "audio_natural": "speech (conf=0.59)"
+    },
+    {
+        "scene_index": 167,
+        "start_timecode": "00:24:11.451",
+        "end_timecode": "00:24:20.394",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 168,
+        "start_timecode": "00:24:20.394",
+        "end_timecode": "00:24:22.663",
+        "audio_speech": "",
+        "audio_natural": "eruption (conf=0.43)"
+    },
+    {
+        "scene_index": 169,
+        "start_timecode": "00:24:22.663",
+        "end_timecode": "00:24:35.609",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.63), vehicle (conf=0.34), field recording (conf=0.39)"
+    },
+    {
+        "scene_index": 170,
+        "start_timecode": "00:24:35.609",
+        "end_timecode": "00:24:57.231",
+        "audio_speech": "Now with the sky blue in this direction, this camera is working really well.",
+        "audio_natural": "vehicle (conf=0.40), outside, urban or manmade (conf=0.31)"
+    },
+    {
+        "scene_index": 171,
+        "start_timecode": "00:24:57.231",
+        "end_timecode": "00:24:59.900",
+        "audio_speech": "Now with the sky blue in this direction, this camera is working really well.",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 172,
+        "start_timecode": "00:24:59.900",
+        "end_timecode": "00:25:02.569",
+        "audio_speech": "Now with the sky blue in this direction, this camera is working really well.",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 173,
+        "start_timecode": "00:25:02.569",
+        "end_timecode": "00:25:36.603",
+        "audio_speech": "Now with the sky blue in this direction, this camera is working really well. But when it's a little bit gray or white, the camera tends to overexpose it.",
+        "audio_natural": "speech (conf=0.74)"
+    },
+    {
+        "scene_index": 174,
+        "start_timecode": "00:25:36.603",
+        "end_timecode": "00:25:41.542",
+        "audio_speech": "This place has great food at great prices.",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 175,
+        "start_timecode": "00:25:41.542",
+        "end_timecode": "00:25:44.344",
+        "audio_speech": "This place has great food at great prices.",
+        "audio_natural": "speech (conf=0.70)"
+    },
+    {
+        "scene_index": 176,
+        "start_timecode": "00:25:44.344",
+        "end_timecode": "00:25:48.482",
+        "audio_speech": "This place has great food at great prices. Duck noodle soup and fishball soup are $5. 99.",
+        "audio_natural": "speech (conf=0.71)"
+    },
+    {
+        "scene_index": 177,
+        "start_timecode": "00:25:48.482",
+        "end_timecode": "00:25:54.354",
+        "audio_speech": "There's also the well-known tofu shop Fong An across the street.",
+        "audio_natural": "speech (conf=0.80), vehicle (conf=0.37)"
+    },
+    {
+        "scene_index": 178,
+        "start_timecode": "00:25:54.354",
+        "end_timecode": "00:25:57.024",
+        "audio_speech": "There's also the well-known tofu shop Fong An across the street. I'd like to take a walk on Forza Street now and see all these street vendors.",
+        "audio_natural": "speech (conf=0.63)"
+    },
+    {
+        "scene_index": 179,
+        "start_timecode": "00:25:57.024",
+        "end_timecode": "00:26:03.564",
+        "audio_speech": "I'd like to take a walk on Forza Street now and see all these street vendors.",
+        "audio_natural": "speech (conf=0.32), vehicle (conf=0.33)"
+    },
+    {
+        "scene_index": 180,
+        "start_timecode": "00:26:03.564",
+        "end_timecode": "00:26:11.572",
+        "audio_speech": "I'd like to take a walk on Forza Street now and see all these street vendors.",
+        "audio_natural": "speech (conf=0.62), rail transport (conf=0.32), train (conf=0.51), railroad car, train wagon (conf=0.37)"
+    },
+    {
+        "scene_index": 181,
+        "start_timecode": "00:26:11.572",
+        "end_timecode": "00:26:16.643",
+        "audio_speech": "I'd like to take a walk on Forza Street now and see all these street vendors.",
+        "audio_natural": "speech (conf=0.75)"
+    },
+    {
+        "scene_index": 182,
+        "start_timecode": "00:26:16.643",
+        "end_timecode": "00:26:48.408",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.61)"
+    },
+    {
+        "scene_index": 183,
+        "start_timecode": "00:26:48.408",
+        "end_timecode": "00:26:54.414",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.41), vehicle (conf=0.34), train (conf=0.33)"
+    },
+    {
+        "scene_index": 184,
+        "start_timecode": "00:26:54.414",
+        "end_timecode": "00:27:01.488",
+        "audio_speech": "Live crabs.",
+        "audio_natural": "speech (conf=0.69), vehicle (conf=0.39)"
+    },
+    {
+        "scene_index": 185,
+        "start_timecode": "00:27:01.488",
+        "end_timecode": "00:27:07.895",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.68)"
+    },
+    {
+        "scene_index": 186,
+        "start_timecode": "00:27:07.895",
+        "end_timecode": "00:27:11.632",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.56)"
+    },
+    {
+        "scene_index": 187,
+        "start_timecode": "00:27:11.632",
+        "end_timecode": "00:27:16.436",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.59)"
+    },
+    {
+        "scene_index": 188,
+        "start_timecode": "00:27:16.436",
+        "end_timecode": "00:27:22.709",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.66), clip-clop (conf=0.35)"
+    },
+    {
+        "scene_index": 189,
+        "start_timecode": "00:27:22.709",
+        "end_timecode": "00:27:25.112",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.37)"
+    },
+    {
+        "scene_index": 190,
+        "start_timecode": "00:27:25.112",
+        "end_timecode": "00:27:28.448",
+        "audio_speech": "If you want inexpensive produce, this is where you can come.",
+        "audio_natural": "speech (conf=0.46)"
+    },
+    {
+        "scene_index": 191,
+        "start_timecode": "00:27:28.448",
+        "end_timecode": "00:27:31.652",
+        "audio_speech": "If you want inexpensive produce, this is where you can come.",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 192,
+        "start_timecode": "00:27:31.652",
+        "end_timecode": "00:27:36.723",
+        "audio_speech": "If you want inexpensive produce, this is where you can come.",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 193,
+        "start_timecode": "00:27:36.723",
+        "end_timecode": "00:27:54.074",
+        "audio_speech": "If you want inexpensive produce, this is where you can come. Three pounds for $3 for sweet potatoes.",
+        "audio_natural": "speech (conf=0.73)"
+    },
+    {
+        "scene_index": 194,
+        "start_timecode": "00:27:54.074",
+        "end_timecode": "00:27:58.879",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.81)"
+    },
+    {
+        "scene_index": 195,
+        "start_timecode": "00:27:58.879",
+        "end_timecode": "00:28:01.682",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.53)"
+    },
+    {
+        "scene_index": 196,
+        "start_timecode": "00:28:01.682",
+        "end_timecode": "00:28:21.702",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.66)"
+    },
+    {
+        "scene_index": 197,
+        "start_timecode": "00:28:21.702",
+        "end_timecode": "00:28:29.710",
+        "audio_speech": "Two dollars a pound for cauliflower.",
+        "audio_natural": "speech (conf=0.71)"
+    },
+    {
+        "scene_index": 198,
+        "start_timecode": "00:28:29.710",
+        "end_timecode": "00:28:35.449",
+        "audio_speech": "Two dollars a pound for cauliflower.",
+        "audio_natural": "speech (conf=0.61)"
+    },
+    {
+        "scene_index": 199,
+        "start_timecode": "00:28:35.449",
+        "end_timecode": "00:28:40.254",
+        "audio_speech": "Two pounds for $2. 50 for broccoli. That's a really good price.",
+        "audio_natural": "speech (conf=0.60)"
+    },
+    {
+        "scene_index": 200,
+        "start_timecode": "00:28:40.254",
+        "end_timecode": "00:28:42.389",
+        "audio_speech": "That's a really good price. Normally I see broccoli now, it's $2. 99 a pound.",
+        "audio_natural": "speech (conf=0.78)"
+    },
+    {
+        "scene_index": 201,
+        "start_timecode": "00:28:42.389",
+        "end_timecode": "00:28:54.535",
+        "audio_speech": "Normally I see broccoli now, it's $2. 99 a pound.",
+        "audio_natural": "speech (conf=0.84)"
+    },
+    {
+        "scene_index": 202,
+        "start_timecode": "00:28:54.535",
+        "end_timecode": "00:29:02.809",
+        "audio_speech": "And Wegmans, which just opened up and I made a video of, they have broccoli for $1. 99 a pound.",
+        "audio_natural": "speech (conf=0.89)"
+    },
+    {
+        "scene_index": 203,
+        "start_timecode": "00:29:02.809",
+        "end_timecode": "00:29:11.752",
+        "audio_speech": "And Wegmans, which just opened up and I made a video of, they have broccoli for $1. 99 a pound.",
+        "audio_natural": "speech (conf=0.72)"
+    },
+    {
+        "scene_index": 204,
+        "start_timecode": "00:29:11.752",
+        "end_timecode": "00:29:44.451",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.54)"
+    },
+    {
+        "scene_index": 205,
+        "start_timecode": "00:29:44.451",
+        "end_timecode": "00:30:19.553",
+        "audio_speech": "This",
+        "audio_natural": "speech (conf=0.60), vehicle (conf=0.61)"
+    },
+    {
+        "scene_index": 206,
+        "start_timecode": "00:30:19.553",
+        "end_timecode": "00:30:21.822",
+        "audio_speech": "This",
+        "audio_natural": "vehicle (conf=0.31)"
+    },
+    {
+        "scene_index": 207,
+        "start_timecode": "00:30:21.822",
+        "end_timecode": "00:30:24.224",
+        "audio_speech": "This",
+        "audio_natural": "speech (conf=0.35), vehicle (conf=0.31)"
+    },
+    {
+        "scene_index": 208,
+        "start_timecode": "00:30:24.224",
+        "end_timecode": "00:30:37.971",
+        "audio_speech": "This over here is the entrance ramp for the Manhattan Bridge Bicycle Path. It's actually kind of",
+        "audio_natural": "speech (conf=0.78)"
+    },
+    {
+        "scene_index": 209,
+        "start_timecode": "00:30:37.971",
+        "end_timecode": "00:31:36.964",
+        "audio_speech": "over here is the entrance ramp for the Manhattan Bridge Bicycle Path. It's actually kind of There's a very scary pedestrian crossing. There's a two-way bike path as well as the",
+        "audio_natural": "speech (conf=0.69)"
+    },
+    {
+        "scene_index": 210,
+        "start_timecode": "00:31:36.964",
+        "end_timecode": "00:32:09.663",
+        "audio_speech": "There's a very scary pedestrian crossing. There's a two-way bike path as well as the",
+        "audio_natural": "speech (conf=0.79)"
+    },
+    {
+        "scene_index": 211,
+        "start_timecode": "00:32:09.663",
+        "end_timecode": "00:32:27.681",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.72), vehicle (conf=0.47)"
+    },
+    {
+        "scene_index": 212,
+        "start_timecode": "00:32:27.681",
+        "end_timecode": "00:32:41.962",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.61), vehicle (conf=0.47), car (conf=0.38)"
+    },
+    {
+        "scene_index": 213,
+        "start_timecode": "00:32:41.962",
+        "end_timecode": "00:33:17.598",
+        "audio_speech": "the Boston South Station bus terminal, but it's close enough to Chinatown. You can see",
+        "audio_natural": "speech (conf=0.80), vehicle (conf=0.51), traffic noise, roadway noise (conf=0.37)"
+    },
+    {
+        "scene_index": 214,
+        "start_timecode": "00:33:17.598",
+        "end_timecode": "00:33:19.867",
+        "audio_speech": "the Boston South Station bus terminal, but it's close enough to Chinatown. You can see",
+        "audio_natural": "speech (conf=0.41)"
+    },
+    {
+        "scene_index": 215,
+        "start_timecode": "00:33:19.867",
+        "end_timecode": "00:33:22.002",
+        "audio_speech": "the Boston South Station bus terminal, but it's close enough to Chinatown. You can see",
+        "audio_natural": "speech (conf=0.30)"
+    },
+    {
+        "scene_index": 216,
+        "start_timecode": "00:33:22.002",
+        "end_timecode": "00:33:35.215",
+        "audio_speech": "the Boston South Station bus terminal, but it's close enough to Chinatown. You can see the daily departure schedule. I just saw the ticket window. Today's tickets are $60 each if you want to go to Boston one-way at 145 Canal Street. It's getting pricey now to go",
+        "audio_natural": "speech (conf=0.72)"
+    },
+    {
+        "scene_index": 217,
+        "start_timecode": "00:33:35.215",
+        "end_timecode": "00:33:40.954",
+        "audio_speech": "if you want to go to Boston one-way at 145 Canal Street. It's getting pricey now to go",
+        "audio_natural": "speech (conf=0.75)"
+    },
+    {
+        "scene_index": 218,
+        "start_timecode": "00:33:40.954",
+        "end_timecode": "00:34:27.134",
+        "audio_speech": "if you want to go to Boston one-way at 145 Canal Street. It's getting pricey now to go to Boston. You might be able to get a less expensive price online, but you're going to",
+        "audio_natural": "speech (conf=0.84)"
+    },
+    {
+        "scene_index": 219,
+        "start_timecode": "00:34:27.134",
+        "end_timecode": "00:34:33.140",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.52), vehicle (conf=0.45)"
+    },
+    {
+        "scene_index": 220,
+        "start_timecode": "00:34:33.140",
+        "end_timecode": "00:35:52.152",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.83)"
+    },
+    {
+        "scene_index": 221,
+        "start_timecode": "00:35:52.152",
+        "end_timecode": "00:35:57.224",
+        "audio_speech": "Wah Fung Foods should be on the next block. Across the street is Sarah Roosevelt Park.",
+        "audio_natural": "vehicle (conf=0.54)"
+    },
+    {
+        "scene_index": 222,
+        "start_timecode": "00:35:57.224",
+        "end_timecode": "00:36:23.383",
+        "audio_speech": "Wah Fung Foods should be on the next block. Across the street is Sarah Roosevelt Park.",
+        "audio_natural": "speech (conf=0.74), vehicle (conf=0.52), toot (conf=0.37), traffic noise, roadway noise (conf=0.39)"
+    },
+    {
+        "scene_index": 223,
+        "start_timecode": "00:36:23.383",
+        "end_timecode": "00:36:27.254",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 224,
+        "start_timecode": "00:36:27.254",
+        "end_timecode": "00:36:31.391",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.85), vehicle (conf=0.35)"
+    },
+    {
+        "scene_index": 225,
+        "start_timecode": "00:36:31.391",
+        "end_timecode": "00:36:37.798",
+        "audio_speech": "problem with their gas line like a few months ago. 79 Christie Street, still no gas. Well,",
+        "audio_natural": "speech (conf=0.69), vehicle (conf=0.38)"
+    },
+    {
+        "scene_index": 226,
+        "start_timecode": "00:36:37.798",
+        "end_timecode": "00:36:45.405",
+        "audio_speech": "problem with their gas line like a few months ago. 79 Christie Street, still no gas. Well,",
+        "audio_natural": "speech (conf=0.39), vehicle (conf=0.50), air brake (conf=0.31)"
+    },
+    {
+        "scene_index": 227,
+        "start_timecode": "00:36:45.405",
+        "end_timecode": "00:36:49.142",
+        "audio_speech": "problem with their gas line like a few months ago. 79 Christie Street, still no gas. Well,",
+        "audio_natural": "vehicle (conf=0.51), air brake (conf=0.38)"
+    },
+    {
+        "scene_index": 228,
+        "start_timecode": "00:36:49.142",
+        "end_timecode": "00:36:52.346",
+        "audio_speech": "problem with their gas line like a few months ago. 79 Christie Street, still no gas. Well,",
+        "audio_natural": "speech (conf=0.78)"
+    },
+    {
+        "scene_index": 229,
+        "start_timecode": "00:36:52.346",
+        "end_timecode": "00:37:03.690",
+        "audio_speech": "problem with their gas line like a few months ago. 79 Christie Street, still no gas. Well,",
+        "audio_natural": "speech (conf=0.84), vehicle (conf=0.39)"
+    },
+    {
+        "scene_index": 230,
+        "start_timecode": "00:37:03.690",
+        "end_timecode": "00:37:52.272",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.52), vehicle (conf=0.66)"
+    },
+    {
+        "scene_index": 231,
+        "start_timecode": "00:37:52.272",
+        "end_timecode": "00:38:39.786",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.60)"
+    },
+    {
+        "scene_index": 232,
+        "start_timecode": "00:38:39.786",
+        "end_timecode": "00:38:44.324",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.56)"
+    },
+    {
+        "scene_index": 233,
+        "start_timecode": "00:38:44.324",
+        "end_timecode": "00:38:55.002",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.35), vehicle (conf=0.31)"
+    },
+    {
+        "scene_index": 234,
+        "start_timecode": "00:38:55.002",
+        "end_timecode": "00:39:00.207",
+        "audio_speech": "Let's check out Grand Street for a little bit. For many, this will be considered the",
+        "audio_natural": "speech (conf=0.39)"
+    },
+    {
+        "scene_index": 235,
+        "start_timecode": "00:39:00.207",
+        "end_timecode": "00:39:02.876",
+        "audio_speech": "Let's check out Grand Street for a little bit. For many, this will be considered the",
+        "audio_natural": "speech (conf=0.58)"
+    },
+    {
+        "scene_index": 236,
+        "start_timecode": "00:39:02.876",
+        "end_timecode": "00:39:10.083",
+        "audio_speech": "Let's check out Grand Street for a little bit. For many, this will be considered the",
+        "audio_natural": "speech (conf=0.74)"
+    },
+    {
+        "scene_index": 237,
+        "start_timecode": "00:39:10.083",
+        "end_timecode": "00:39:12.352",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.33)"
+    },
+    {
+        "scene_index": 238,
+        "start_timecode": "00:39:12.352",
+        "end_timecode": "00:39:15.289",
+        "audio_speech": "",
+        "audio_natural": "none"
+    },
+    {
+        "scene_index": 239,
+        "start_timecode": "00:39:15.289",
+        "end_timecode": "00:39:17.424",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.40)"
+    },
+    {
+        "scene_index": 240,
+        "start_timecode": "00:39:17.424",
+        "end_timecode": "00:39:27.434",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.42), vehicle (conf=0.38)"
+    },
+    {
+        "scene_index": 241,
+        "start_timecode": "00:39:27.434",
+        "end_timecode": "00:39:51.592",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.76), vehicle (conf=0.67), bus (conf=0.32)"
+    },
+    {
+        "scene_index": 242,
+        "start_timecode": "00:39:51.592",
+        "end_timecode": "00:39:54.528",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.55), vehicle (conf=0.42)"
+    },
+    {
+        "scene_index": 243,
+        "start_timecode": "00:39:54.528",
+        "end_timecode": "00:40:07.474",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.70), vehicle (conf=0.71), truck (conf=0.52), air brake (conf=0.37)"
+    },
+    {
+        "scene_index": 244,
+        "start_timecode": "00:40:07.474",
+        "end_timecode": "00:40:59.660",
+        "audio_speech": "",
+        "audio_natural": "vehicle (conf=0.35)"
+    },
+    {
+        "scene_index": 245,
+        "start_timecode": "00:40:59.660",
+        "end_timecode": "00:42:07.594",
+        "audio_speech": "",
+        "audio_natural": "vehicle (conf=0.60), bus (conf=0.34)"
+    },
+    {
+        "scene_index": 246,
+        "start_timecode": "00:42:07.594",
+        "end_timecode": "00:42:15.869",
+        "audio_speech": "And what is this?",
+        "audio_natural": "speech (conf=0.52)"
+    },
+    {
+        "scene_index": 247,
+        "start_timecode": "00:42:15.869",
+        "end_timecode": "00:42:38.959",
+        "audio_speech": "And what is this?",
+        "audio_natural": "speech (conf=0.55)"
+    },
+    {
+        "scene_index": 248,
+        "start_timecode": "00:42:38.959",
+        "end_timecode": "00:42:41.361",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.32), music (conf=0.39)"
+    },
+    {
+        "scene_index": 249,
+        "start_timecode": "00:42:41.361",
+        "end_timecode": "00:43:12.593",
+        "audio_speech": "",
+        "audio_natural": "speech (conf=0.44), vehicle (conf=0.34)"
+    },
+    {
+        "scene_index": 250,
+        "start_timecode": "00:43:12.593",
+        "end_timecode": "00:43:39.686",
+        "audio_speech": "All right, everyone. I think there's a good place for me to end this video. Hope you enjoy this walk of New York City's Manhattan Chinatown.",
+        "audio_natural": "speech (conf=0.55)"
+    },
+    {
+        "scene_index": 251,
+        "start_timecode": "00:43:39.686",
+        "end_timecode": "00:43:48.762",
+        "audio_speech": "Hope you enjoy this walk of New York City's Manhattan Chinatown. Hit that like button, subscribe, and I'll see you next time. Bye, everyone. Take care.",
+        "audio_natural": "speech (conf=0.47)"
+    },
+    {
+        "scene_index": 252,
+        "start_timecode": "00:43:48.762",
+        "end_timecode": "00:43:51.832",
+        "audio_speech": "",
+        "audio_natural": "music (conf=0.53)"
+    },
+    {
+        "scene_index": 253,
+        "start_timecode": "00:43:51.832",
+        "end_timecode": "00:43:55.035",
+        "audio_speech": "",
+        "audio_natural": "music (conf=0.54)"
+    },
+    {
+        "scene_index": 254,
+        "start_timecode": "00:43:55.035",
+        "end_timecode": "00:44:01.175",
+        "audio_speech": "",
+        "audio_natural": "music (conf=0.59)"
+    },
+    {
+        "scene_index": 255,
+        "start_timecode": "00:44:01.175",
+        "end_timecode": "00:44:04.378",
+        "audio_speech": "",
+        "audio_natural": "music (conf=0.52)"
+    },
+    {
+        "scene_index": 256,
+        "start_timecode": "00:44:04.378",
+        "end_timecode": "00:44:13.020",
+        "audio_speech": "",
+        "audio_natural": "music (conf=0.86)"
+    }
+]

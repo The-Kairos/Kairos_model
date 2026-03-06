@@ -1,0 +1,26 @@
+{
+    "video": ".DJI Osmo Pocket 3 Walk in NYC Manhattan Chinatown",
+    "video_duration_sec": 2653.0191875,
+    "num_scenes": 257,
+    "scene_detection_sec": 16.11,
+    "audio_prescan_sec": 66.11,
+    "whisper_sec": 92.19,
+    "ast_sec": 170.18,
+    "total_sec": 345.36,
+    "whisper_method": "parallel_5_chunks",
+    "ast_method": "parallel_processes",
+    "ast_scenes_processed": 257,
+    "ast_scenes_skipped": 0,
+    "whisper_segments": 124,
+    "scenes_with_speech": 147,
+    "thresholds": {
+        "SILENCE_THRESHOLD_DBFS": -90.0,
+        "SCENE_SILENCE_DBFS": -75.0,
+        "VAD_THRESHOLD": 0.19999999999999998,
+        "MIN_SPEECH_DURATION_MS": 166,
+        "MIN_SILENCE_DURATION_MS": 300,
+        "SPEECH_PAD_MS": 75,
+        "SPECTRAL_FLATNESS_THRESHOLD": 0.95,
+        "sensitivity_multiplier": 1.5
+    }
+}

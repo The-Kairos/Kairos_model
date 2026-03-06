@@ -1,0 +1,30 @@
+{
+    "video": ".NEW YORK TIMES SQUARE 2024 _ 4K WALK TOUR MORNING",
+    "status": "No original checkpoint to compare against.",
+    "single_call_timing": {
+        "video": ".NEW YORK TIMES SQUARE 2024 _ 4K WALK TOUR MORNING",
+        "video_duration_sec": 679.92675,
+        "num_scenes": 57,
+        "scene_detection_sec": 3.5,
+        "audio_prescan_sec": 18.65,
+        "whisper_sec": 26.87,
+        "ast_sec": 42.05,
+        "total_sec": 91.86,
+        "whisper_method": "parallel_2_chunks",
+        "ast_method": "parallel_processes",
+        "ast_scenes_processed": 57,
+        "ast_scenes_skipped": 0,
+        "whisper_segments": 1,
+        "scenes_with_speech": 2,
+        "thresholds": {
+            "SILENCE_THRESHOLD_DBFS": -81.0140695451989,
+            "SCENE_SILENCE_DBFS": -67.51172462099908,
+            "VAD_THRESHOLD": 0.22218362935042468,
+            "MIN_SPEECH_DURATION_MS": 185,
+            "MIN_SILENCE_DURATION_MS": 300,
+            "SPEECH_PAD_MS": 67,
+            "SPECTRAL_FLATNESS_THRESHOLD": 0.95,
+            "sensitivity_multiplier": 1.3502
+        }
+    }
+}

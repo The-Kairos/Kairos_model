@@ -1,0 +1,30 @@
+{
+    "video": ".CCTV Dogs",
+    "status": "No original checkpoint to compare against.",
+    "single_call_timing": {
+        "video": ".CCTV Dogs",
+        "video_duration_sec": 299.7,
+        "num_scenes": 0,
+        "scene_detection_sec": 1.33,
+        "audio_prescan_sec": 7.26,
+        "whisper_sec": 0.0,
+        "ast_sec": 0.0,
+        "total_sec": 9.28,
+        "whisper_method": "singlecall_skipped",
+        "ast_method": "parallel_processes",
+        "ast_scenes_processed": 0,
+        "ast_scenes_skipped": 0,
+        "whisper_segments": 0,
+        "scenes_with_speech": 0,
+        "thresholds": {
+            "SILENCE_THRESHOLD_DBFS": -73.92290806810617,
+            "SCENE_SILENCE_DBFS": -61.60242339008847,
+            "VAD_THRESHOLD": 0.2434969141557088,
+            "MIN_SPEECH_DURATION_MS": 202,
+            "MIN_SILENCE_DURATION_MS": 300,
+            "SPEECH_PAD_MS": 61,
+            "SPECTRAL_FLATNESS_THRESHOLD": 0.95,
+            "sensitivity_multiplier": 1.232
+        }
+    }
+}

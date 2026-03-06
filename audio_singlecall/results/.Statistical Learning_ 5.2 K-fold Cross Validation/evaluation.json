@@ -1,0 +1,30 @@
+{
+    "video": ".Statistical Learning_ 5.2 K-fold Cross Validation",
+    "status": "No original checkpoint to compare against.",
+    "single_call_timing": {
+        "video": ".Statistical Learning_ 5.2 K-fold Cross Validation",
+        "video_duration_sec": 813.2093125,
+        "num_scenes": 0,
+        "scene_detection_sec": 4.64,
+        "audio_prescan_sec": 21.4,
+        "whisper_sec": 37.37,
+        "ast_sec": 0.0,
+        "total_sec": 64.13,
+        "whisper_method": "parallel_2_chunks",
+        "ast_method": "parallel_processes",
+        "ast_scenes_processed": 0,
+        "ast_scenes_skipped": 0,
+        "whisper_segments": 224,
+        "scenes_with_speech": 0,
+        "thresholds": {
+            "SILENCE_THRESHOLD_DBFS": -82.56355398315146,
+            "SCENE_SILENCE_DBFS": -68.80296165262621,
+            "VAD_THRESHOLD": 0.218013870910562,
+            "MIN_SPEECH_DURATION_MS": 181,
+            "MIN_SILENCE_DURATION_MS": 300,
+            "SPEECH_PAD_MS": 68,
+            "SPECTRAL_FLATNESS_THRESHOLD": 0.95,
+            "sensitivity_multiplier": 1.3761
+        }
+    }
+}
