@@ -1,5 +1,7 @@
 import os
 import json
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import quote
 from openai import AzureOpenAI
@@ -9,6 +11,10 @@ load_dotenv()
 
 CHUNK_SIZE = 7000
 FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
+SUMMARY_MAX_WORKERS = 6
+SUMMARY_REDUCE_GROUP_SIZE = 4
+GPT_MAX_RETRIES = 6
+GPT_RETRY_BASE_SEC = 2.0
 HIGHLIGHTS_COUNT = 4
 TIMELINE_COUNT = 10
 CLIPS_COUNT = 5
@@ -44,6 +50,23 @@ REQUIRED_QUESTIONS = [
 def _debug_print(enabled: bool, message: str):
     if enabled:
         print(f"(GPT4o) {message}")
+
+def _format_scene_ranges(items: list[dict], limit: int = 4) -> str:
+    if not items:
+        return "none"
+    ranges = []
+    for item in items:
+        start_idx = item.get("scene_start_idx")
+        end_idx = item.get("scene_end_idx")
+        if start_idx is None or end_idx is None:
+            continue
+        ranges.append(f"{start_idx}->{end_idx}")
+    if not ranges:
+        return "none"
+    if len(ranges) <= limit:
+        return ", ".join(ranges)
+    head = ", ".join(ranges[:limit])
+    return f"{head}, ... (+{len(ranges) - limit} more)"
 
 
 def _parse_synopsis_json(text: str, debug: bool = False) -> dict:
@@ -318,43 +341,83 @@ def chunk_scenes(scenes: list, chunk_size: int = CHUNK_SIZE, debug: bool = False
     scene_count = len(scenes) if scenes else 0
     chunks = []
     this_chunk = ""
+    chunk_start_idx = None
 
-    for scene in scenes:
+    for idx, scene in enumerate(scenes):
         start_timecode = scene.get("start_timecode")
         audio_speech = scene.get("audio_speech")
         llm_scene_description = scene.get("llm_scene_description")
-
-        this_chunk += f'At {start_timecode}, {llm_scene_description}. It says "{audio_speech}".'
+        text = f'At {start_timecode}, {llm_scene_description}. It says "{audio_speech}".'
+        if chunk_start_idx is None:
+            chunk_start_idx = idx
+        this_chunk += text
 
         if len(this_chunk) >= chunk_size:
-            chunks.append(this_chunk)
+            chunks.append({
+                "index": len(chunks),
+                "text": this_chunk,
+                "scene_start_idx": chunk_start_idx,
+                "scene_end_idx": idx,
+                "start_timecode": scenes[chunk_start_idx].get("start_timecode"),
+                "end_timecode": scene.get("start_timecode"),
+            })
             this_chunk = ""
+            chunk_start_idx = None
 
     if this_chunk:
-        chunks.append(this_chunk)
+        end_idx = len(scenes) - 1
+        chunks.append({
+            "index": len(chunks),
+            "text": this_chunk,
+            "scene_start_idx": chunk_start_idx if chunk_start_idx is not None else end_idx,
+            "scene_end_idx": end_idx,
+            "start_timecode": scenes[chunk_start_idx].get("start_timecode") if chunk_start_idx is not None else scenes[end_idx].get("start_timecode"),
+            "end_timecode": scenes[end_idx].get("start_timecode"),
+        })
 
-    _debug_print(debug, f"chunk_scenes: {scene_count} scenes turned into {len(chunks)} chunk_scenes")
+    _debug_print(
+        debug,
+        f"chunk_scenes: {scene_count} scenes turned into {len(chunks)} chunk_scenes "
+        f"(scene_ranges: {_format_scene_ranges(chunks)})"
+    )
     return chunks
 
 # ----------------------
 # 3. GPT call helper
 # ----------------------
-def call_gpt(client, deployment, prompt):
+def _is_rate_limit_error(exc: Exception) -> bool:
+    msg = str(exc).lower()
+    return "429" in msg or "rate limit" in msg or "too many requests" in msg
+
+
+def call_gpt(client, deployment, prompt, retries: int = GPT_MAX_RETRIES, retry_base_sec: float = GPT_RETRY_BASE_SEC):
     """
     Minimal GPT call using AzureOpenAI client
     """
-    response = client.chat.completions.create(
-        messages=[
-            {"role": "system", "content": "You are a precise and reliable assistant."},
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=16384,  # apparently the max for gpt4o
-        temperature=1.0,
-        top_p=1.0,
-        model=deployment
-    )
-    text = response.choices[0].message.content.strip()
-    return text
+    last_exc = None
+    for attempt in range(retries):
+        try:
+            response = client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": "You are a precise and reliable assistant."},
+                    {"role": "user", "content": prompt}
+                ],
+                max_tokens=16384,  # apparently the max for gpt4o
+                temperature=1.0,
+                top_p=1.0,
+                model=deployment
+            )
+            text = response.choices[0].message.content.strip()
+            return text
+        except Exception as exc:
+            last_exc = exc
+            if attempt >= retries - 1:
+                break
+            sleep_sec = retry_base_sec * (2 ** attempt)
+            if _is_rate_limit_error(exc):
+                sleep_sec = max(sleep_sec, 5.0)
+            time.sleep(sleep_sec)
+    raise last_exc
 
 # ----------------------
 # 4. Segment synthesis prompts (loaded from prompts folder)
@@ -407,6 +470,135 @@ def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: s
     _debug_print(debug, f"    condense_chunk: chunk_len={len(chunk_text)} condensed into len={len(summary)}")
     return summary, new_carryover_context
 
+
+def _build_scene_chunk_summary_prompt(chunk: dict) -> str:
+    return (
+        "You are a story detective.\n"
+        "Summarize the scene chunk chronologically and factually.\n"
+        "Rules:\n"
+        "- Use only the provided chunk text.\n"
+        "- Keep names, objects, and quotes precise.\n"
+        "- Include key timestamps when present.\n"
+        "- Keep it concise while preserving important events.\n"
+        f"Chunk metadata: scenes {chunk['scene_start_idx']} to {chunk['scene_end_idx']}, "
+        f"time {chunk.get('start_timecode')} to {chunk.get('end_timecode')}.\n\n"
+        f"SCENE CHUNK:\n{chunk['text']}\n"
+    )
+
+
+def _build_reduce_prompt(items: list[dict], round_idx: int) -> str:
+    blocks = []
+    for item in items:
+        blocks.append(
+            f"[Range scenes {item['scene_start_idx']}-{item['scene_end_idx']}, "
+            f"time {item.get('start_timecode')} to {item.get('end_timecode')}]\n"
+            f"{item['text']}"
+        )
+    joined = "\n\n".join(blocks)
+    return (
+        "You are a story detective.\n"
+        "Merge the following adjacent chronological summaries into one coherent summary.\n"
+        "Rules:\n"
+        "- Keep chronological order.\n"
+        "- Remove duplicates only when meaning is preserved.\n"
+        "- Do not invent details.\n"
+        "- Preserve key entities, objects, and events.\n"
+        f"- This is reduce round {round_idx}.\n\n"
+        f"INPUT SUMMARIES:\n{joined}\n"
+    )
+
+
+def _build_narrative_consistency_prompt(narrative: str) -> str:
+    return (
+        "You are a consistency editor for a chronological video narrative.\n"
+        "Revise the narrative only to improve consistency and flow.\n"
+        "Rules:\n"
+        "- Keep chronology intact.\n"
+        "- Do not add facts not present in the narrative.\n"
+        "- Keep names and object references consistent.\n"
+        "- Remove obvious contradictions or duplicates.\n"
+        "- Keep output concise.\n\n"
+        f"NARRATIVE:\n{narrative}\n"
+    )
+
+
+def _parallel_map_summaries(client, deployment, scene_chunks: list[dict], max_workers: int, debug: bool = False):
+    if not scene_chunks:
+        return []
+    results = [None] * len(scene_chunks)
+
+    def _task(chunk: dict):
+        prompt = _build_scene_chunk_summary_prompt(chunk)
+        try:
+            summary = call_gpt(client, deployment, prompt)
+        except Exception as exc:
+            _debug_print(debug, f"_parallel_map_summaries: chunk {chunk['index']} failed after retries, fallback to raw chunk: {exc}")
+            summary = chunk["text"]
+        return {
+            "index": chunk["index"],
+            "text": summary.strip(),
+            "scene_start_idx": chunk["scene_start_idx"],
+            "scene_end_idx": chunk["scene_end_idx"],
+            "start_timecode": chunk.get("start_timecode"),
+            "end_timecode": chunk.get("end_timecode"),
+        }
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(_task, chunk) for chunk in scene_chunks]
+        for future in as_completed(futures):
+            item = future.result()
+            results[item["index"]] = item
+
+    mapped = [r for r in results if r is not None]
+    _debug_print(
+        debug,
+        f"_parallel_map_summaries: summarized {len(mapped)} chunks in parallel "
+        f"(scene_ranges: {_format_scene_ranges(mapped)})"
+    )
+    return mapped
+
+
+def _parallel_reduce_summaries(
+    client,
+    deployment,
+    summaries: list[dict],
+    reduce_group_size: int = SUMMARY_REDUCE_GROUP_SIZE,
+    max_workers: int = SUMMARY_MAX_WORKERS,
+    debug: bool = False,
+):
+    current = summaries
+    round_idx = 0
+    while len(current) > 1:
+        round_idx += 1
+        groups = [current[i:i + reduce_group_size] for i in range(0, len(current), reduce_group_size)]
+        reduced = [None] * len(groups)
+
+        def _task(group_idx: int, group_items: list[dict]):
+            prompt = _build_reduce_prompt(group_items, round_idx)
+            try:
+                merged = call_gpt(client, deployment, prompt).strip()
+            except Exception as exc:
+                _debug_print(debug, f"_parallel_reduce_summaries: group {group_idx} failed after retries, fallback concatenate: {exc}")
+                merged = "\n".join(item["text"] for item in group_items)
+            return group_idx, {
+                "index": group_idx,
+                "text": merged,
+                "scene_start_idx": group_items[0]["scene_start_idx"],
+                "scene_end_idx": group_items[-1]["scene_end_idx"],
+                "start_timecode": group_items[0].get("start_timecode"),
+                "end_timecode": group_items[-1].get("end_timecode"),
+            }
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = [executor.submit(_task, idx, grp) for idx, grp in enumerate(groups)]
+            for future in as_completed(futures):
+                group_idx, result = future.result()
+                reduced[group_idx] = result
+        current = [item for item in reduced if item is not None]
+        _debug_print(debug, f"_parallel_reduce_summaries: round={round_idx}, groups={len(groups)}, next={len(current)}")
+
+    return current[0] if current else None
+
 def chunk_narrative(narrative: str, chunk_size: int = CHUNK_SIZE, debug: bool = False):
     """
     Chunk narrative into <= chunk_size blocks, preferring paragraph breaks.
@@ -435,14 +627,24 @@ def chunk_narrative(narrative: str, chunk_size: int = CHUNK_SIZE, debug: bool = 
     _debug_print(debug, f"chunk_narrative: splitting narrative len={len(narrative)} to {len(chunks)} chunks")
     return chunks
 
-def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, summary_len: int = FINAL_CHUNK_SIZE, debug: bool = False, output_dir: str | None = None):
+def summarize_scenes(
+    client,
+    deployment,
+    scenes,
+    chunk_size: int = CHUNK_SIZE,
+    summary_len: int = FINAL_CHUNK_SIZE,
+    debug: bool = False,
+    output_dir: str | None = None,
+    max_workers: int | None = None,
+    reduce_group_size: int = SUMMARY_REDUCE_GROUP_SIZE,
+):
     """
     Summarize scenes into a narrative, then recursively compress
     until the narrative fits within summary_len.
     """
-    scene_chunks = chunk_scenes(scenes, chunk_size, debug=debug,)
+    scene_chunks = chunk_scenes(scenes, chunk_size, debug=debug)
     if scene_chunks:
-        raw_narrative = "\n".join(scene_chunks).strip()
+        raw_narrative = "\n".join(item["text"] for item in scene_chunks).strip()
         if len(raw_narrative) <= summary_len:
             narratives = [{
                 "narrative_len": len(raw_narrative),
@@ -459,46 +661,66 @@ def summarize_scenes(client, deployment, scenes, chunk_size: int = CHUNK_SIZE, s
                 "narratives": narratives
             }
     narratives = []
-    pre_carryover_context = "None"
+    if max_workers is None:
+        cpu = os.cpu_count() or 4
+        max_workers = min(SUMMARY_MAX_WORKERS, max(2, cpu * 2))
+    max_workers = max(1, int(max_workers))
+    max_workers = min(max_workers, max(1, len(scene_chunks)))
+    reduce_group_size = max(2, int(reduce_group_size))
 
-    narrative = ""
-    for scene in scene_chunks:
-        summary, pre_carryover_context = condense_chunk(client, deployment, scene, pre_carryover_context, debug=debug)
-        narrative += summary + "\n"
-
+    mapped_summaries = _parallel_map_summaries(
+        client=client,
+        deployment=deployment,
+        scene_chunks=scene_chunks,
+        max_workers=max_workers,
+        debug=debug,
+    )
+    narrative = "\n".join(item["text"] for item in mapped_summaries).strip()
     narratives.append({
         "narrative_len": len(narrative),
-        "chunk_len": len(scene_chunks),
-        "narrative": narrative.strip()
+        "chunk_len": len(mapped_summaries),
+        "narrative": narrative
     })
-
     if debug:
         _debug_print(debug, "summarize_scenes:")
         _debug_print(
             debug,
-            f"    narrative_size 1: {len(narrative)} char ({len(scene_chunks)} chunks)"
+            f"    narrative_size 1: {len(narrative)} char ({len(mapped_summaries)} mapped chunks, "
+            f"scene_ranges: {_format_scene_ranges(mapped_summaries)})"
         )
 
-    round_index = 1
-    while len(narrative) > summary_len:
-        round_index += 1
-        narrative_chunks = chunk_narrative(narrative, chunk_size, debug=debug)
-        narrative = ""
-        for chunk in narrative_chunks:
-            summary, pre_carryover_context = condense_chunk(client, deployment, chunk, pre_carryover_context, debug=debug)
-            narrative += summary + "\n"
+    if len(narrative) > summary_len and mapped_summaries:
+        reduced = _parallel_reduce_summaries(
+            client=client,
+            deployment=deployment,
+            summaries=mapped_summaries,
+            reduce_group_size=reduce_group_size,
+            max_workers=max_workers,
+            debug=debug,
+        )
+        if reduced and isinstance(reduced.get("text"), str):
+            narrative = reduced["text"].strip()
+            narratives.append({
+                "narrative_len": len(narrative),
+                "chunk_len": 1,
+                "narrative": narrative
+            })
+            if debug:
+                _debug_print(debug, f"    narrative_size 2: {len(narrative)} char (tree reduced)")
 
-        narratives.append({
-            "narrative_len": len(narrative),
-            "chunk_len": len(narrative_chunks),
-            "narrative": narrative.strip()
-        })
-
-        if debug:
-            _debug_print(
-                debug,
-                f"    narrative_size {round_index}: {len(narrative)} char ({len(narrative_chunks)} chunks)"
-            )
+    if len(narrative) > summary_len:
+        final_prompt = _build_narrative_consistency_prompt(narrative)
+        try:
+            narrative = call_gpt(client, deployment, final_prompt).strip()
+            narratives.append({
+                "narrative_len": len(narrative),
+                "chunk_len": 1,
+                "narrative": narrative
+            })
+            if debug:
+                _debug_print(debug, f"    narrative_size 3: {len(narrative)} char (final consistency pass)")
+        except Exception as exc:
+            _debug_print(debug, f"summarize_scenes: final consistency pass failed: {exc}")
 
     if output_dir:
         out_dir = Path(output_dir)
