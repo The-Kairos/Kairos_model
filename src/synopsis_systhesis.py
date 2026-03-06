@@ -481,8 +481,7 @@ def chunk_scenes(scenes: list, chunk_size: int = CHUNK_SIZE, debug: bool = False
 
     _debug_print(
         debug,
-        f"chunk_scenes: {scene_count} scenes turned into {len(chunks)} chunk_scenes "
-        f"(scene_ranges: {_format_scene_ranges(chunks)})"
+        f"chunk_scenes: {scene_count} scenes -> {len(chunks)} chunk_scenes"
     )
     return chunks
 
@@ -722,7 +721,7 @@ def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: s
     except Exception as exc:
         _debug_print(debug, f"condense_chunk: carryover prompt failed: {exc}")
         new_carryover_context = pre_carryover_context
-    _debug_print(debug, f"    condense_chunk: chunk_len={len(chunk_text)} condensed into len={len(summary)}")
+    _debug_print(debug, f"    condense_chunk: len={len(chunk_text)} -> len={len(summary)}")
     return summary, new_carryover_context
 
 
@@ -789,6 +788,7 @@ def _parallel_map_summaries(client, deployment, scene_chunks: list[dict], max_wo
         except Exception as exc:
             _debug_print(debug, f"_parallel_map_summaries: chunk {chunk['index']} failed after retries, fallback to raw chunk: {exc}")
             summary = chunk["text"]
+        _debug_print(debug, f"    condense_chunk: len={len(chunk['text'])} -> len={len(summary.strip())}")
         return {
             "index": chunk["index"],
             "text": summary.strip(),
@@ -805,11 +805,6 @@ def _parallel_map_summaries(client, deployment, scene_chunks: list[dict], max_wo
             results[item["index"]] = item
 
     mapped = [r for r in results if r is not None]
-    _debug_print(
-        debug,
-        f"_parallel_map_summaries: summarized {len(mapped)} chunks in parallel "
-        f"(scene_ranges: {_format_scene_ranges(mapped)})"
-    )
     return mapped
 
 
@@ -940,8 +935,7 @@ def summarize_scenes(
         _debug_print(debug, "summarize_scenes:")
         _debug_print(
             debug,
-            f"    narrative_size 1: {len(narrative)} char ({len(mapped_summaries)} mapped chunks, "
-            f"scene_ranges: {_format_scene_ranges(mapped_summaries)})"
+            f"    narrative_size 1: {len(narrative)} char ({len(mapped_summaries)} chunks)"
         )
 
     if len(narrative) > summary_len and mapped_summaries:
@@ -1059,16 +1053,29 @@ def synthesize_synopsis(
             required_questions_block=required_block,
             extra_questions_count=extra_questions_count,
         )
-        text = call_gpt_safe(
-            client,
-            deployment,
-            prompt,
-            fallback_text=fallback_by_name.get(name, "{}"),
-            debug=debug,
-            context=f"synthesize_synopsis:{name}",
-            safe_prompt=safe_prompt,
-            raw_fallback=narrative_text,
-        )
+        def _log_ok(text: str):
+            _debug_print(debug, f"synopsis {name} [ok] len={len(text)}")
+
+        def _log_err(exc: Exception):
+            _debug_print(debug, f"synopsis {name} [error] {exc}")
+
+        try:
+            text = call_gpt(client, deployment, prompt)
+            _log_ok(text)
+            return name, text
+        except Exception as exc:
+            _log_err(exc)
+
+        if safe_prompt:
+            try:
+                text = call_gpt(client, deployment, safe_prompt)
+                _log_ok(text)
+                return name, text
+            except Exception as exc2:
+                _log_err(exc2)
+
+        text = narrative_text if isinstance(narrative_text, str) else fallback_by_name.get(name, "{}")
+        _log_ok(text)
         return name, text
 
     with ThreadPoolExecutor(max_workers=min(6, len(prompts))) as executor:
