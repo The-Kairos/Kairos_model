@@ -4,6 +4,7 @@ load_dotenv()
 from src.debug_utils import *
 from src.log_utils import *
 from src.redo_utils import apply_redo, REDO_CHOICES
+from src.retrieval_comparison_utils import run_comparison_for_test_queries
 import argparse
 import os
 import time
@@ -146,6 +147,14 @@ def parse_args():
     rag = subparsers.add_parser("rag", help="Run RAG for a single video")
     rag.add_argument("--video", required=True, help="Blob name or path")
 
+    compare = subparsers.add_parser("compare-retrieval", help="Run retrieval comparison for videos in TEST_QUERIES_MAP")
+    compare.add_argument("--video", action="append", help="Video folder name(s) to compare (repeatable)")
+    compare.add_argument("--all", action="store_true", help="Compare all videos in TEST_QUERIES_MAP")
+    compare.add_argument("--k", type=int, default=10, help="Number of top chunks to retrieve")
+    compare.add_argument("--top-c", type=int, default=3, help="Number of top clusters for hierarchical retrieval")
+    compare.add_argument("--alpha", type=float, default=0.3, help="Cluster boost weight")
+    compare.add_argument("--n", type=int, default=0, help="Max queries per video (0 = all)")
+
     return parser.parse_args()
 
 VIDEOS_DIR = Path("Videos")
@@ -161,6 +170,19 @@ if not selected_paths:
     raise SystemExit("No videos selected.")
 if args.command == "rag" and len(selected_paths) != 1:
     raise SystemExit("RAG supports exactly one video. Use --video to pick one.")
+
+# Handle comparison command separately (not per-video like others)
+compare_retrieval = args.command == "compare-retrieval"
+if compare_retrieval:
+    run_comparison_for_test_queries(
+        input_dir=str(PROCESSED_ROOT),
+        output_dir="./log_reports/comparison_results",
+        k=getattr(args, "k", 10),
+        top_c=getattr(args, "top_c", 3),
+        alpha=getattr(args, "alpha", 0.3),
+        n_queries=getattr(args, "n", 0),
+    )
+    exit(0)
 
 test_videos = {make_output_dir(p, PROCESSED_ROOT): str(p) for p in selected_paths}
 rag_only = args.command == "rag"
