@@ -126,7 +126,7 @@ def save_checkpoint(checkpoint, path):
         raise TypeError("checkpoint must be a dict or list")
         
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(checkpoint, f, indent=4)
+        json.dump(checkpoint, f, indent=4, ensure_ascii=False)
 
     return checkpoint
 

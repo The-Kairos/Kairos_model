@@ -287,9 +287,9 @@ def detect_languages(audio: np.ndarray, sr: int, speech_regions: list, debug: bo
     if not speech_regions:
         return {"primary_language": None, "detected_languages": {}, "is_multilingual": False}
 
-    model = whisper.load_model("tiny", device="cpu")
+    model = whisper.load_model("base", device="cpu")
 
-    sample_indices = np.linspace(0, len(speech_regions) - 1, min(5, len(speech_regions)), dtype=int)
+    sample_indices = np.linspace(0, len(speech_regions) - 1, min(10, len(speech_regions)), dtype=int)
     detected_counts = {}
 
     for idx in sample_indices:

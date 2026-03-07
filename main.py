@@ -432,5 +432,6 @@ def main():
             logpath = save_log(data=log, path=f"logs/{output_dir}.json")
             save_checkpoint(checkpoint=log, path=checkpoint_path)
 
+
 if __name__ == '__main__':
     main()

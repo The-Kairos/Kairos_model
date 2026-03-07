@@ -86,7 +86,7 @@ def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
             seg_duration = max(seg_end - seg_start, 1e-6)
             overlap_ratio = overlap / seg_duration
 
-            if overlap_ratio >= 0.5 or overlap >= 0.5:
+            if overlap_ratio >= 0.2 or overlap >= 0.5:
                 parts.append(seg["text"])
 
         scene_texts.append(" ".join(parts).strip())
@@ -326,10 +326,10 @@ def filter_hallucinations(segments: list, primary_lang: str = None) -> list:
         if len(text) > 0 and special_count / len(text) > 0.15:
             continue
 
-        if seg.get("avg_logprob", 0) < -0.9:
+        if seg.get("avg_logprob", 0) < -1.2:
             continue
 
-        if seg.get("no_speech_prob", 0) > 0.6:
+        if seg.get("no_speech_prob", 0) > 0.8:
             continue
 
         text = clean_repetitive_text(text)
@@ -376,10 +376,10 @@ def transcribe_parallel(
     t_start = time.time()
 
     force_lang = None
-    if not use_api and lang_info and not lang_info.get("is_multilingual", False):
+    if lang_info and not lang_info.get("is_multilingual", False):
         force_lang = lang_info.get("primary_language")
         if debug:
-            print(f"[WhisperParallel] (Local mode) Locking language to: {force_lang}")
+            print(f"[WhisperParallel] Locking language to: {force_lang}")
     elif debug:
         print("[WhisperParallel] Auto-detecting language per chunk (no global lock).")
 
@@ -388,6 +388,8 @@ def transcribe_parallel(
     while start < duration:
         end = min(start + chunk_size_sec + overlap_sec, duration)
         chunk_samples = audio[int(start * sr): int(end * sr)].copy()
+
+        # PASS THE FORCE_LANG TO WORKER FOR API CALLS TOO
         chunks_args.append((chunk_samples, sr, model_size, start, use_vad, force_cpu, debug, force_lang, use_api))
 
         if end >= duration:
