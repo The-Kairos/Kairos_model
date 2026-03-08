@@ -80,7 +80,10 @@ def save_clips(video_path, scenes, output_dir):
             str(clip_path)
         ]
 
-        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if clip_path.exists():
+            print_prefixed("(save_clips)", f"Skipping existing clip: {clip_filename}", indent=4)
+        else:
+            subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         scene_new = dict(scene)
         scene_new["clip_path"] = str(clip_path)
