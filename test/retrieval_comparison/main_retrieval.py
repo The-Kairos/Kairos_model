@@ -1,14 +1,21 @@
+from pathlib import Path
+import os
+import sys
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 from dotenv import load_dotenv
 load_dotenv()
 
 from src.debug_utils import *
 from src.log_utils import *
 from src.redo_utils import apply_redo, REDO_CHOICES
-from src.retrieval_comparison_utils import run_comparison_for_test_queries
+from retrieval_comparison_utils import run_comparison_for_test_queries
 import argparse
-import os
 import time
-from pathlib import Path
 
 use_gemini = False
 if use_gemini:

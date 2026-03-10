@@ -6,30 +6,45 @@ import numpy as np
 from typing import Dict, List, Any, Optional, Tuple
 from pathlib import Path
 
-# Add parent directory to path for imports
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PARENT_DIR = os.path.dirname(SCRIPT_DIR)
-sys.path.insert(0, PARENT_DIR)
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 # Minimal load_prompt to avoid dependency issues
 def load_prompt(filename: str) -> str:
     """Load a prompt file from the prompts directory."""
-    prompts_dir = Path(SCRIPT_DIR).parent / "prompts"
+    prompts_dir = REPO_ROOT / "prompts"
     prompt_path = prompts_dir / filename
     with open(prompt_path, "r", encoding="utf-8") as f:
         return f.read()
 
-from log_reports.comparison_utils import (
-    load_rag_embeddings,
-    embed_question_via_gemini,
-    compute_kmeans_clusters,
-    compute_hdbscan_clusters,
-    merge_retrieval,
-    save_json,
-    jaccard,
-)
 from src.rag_convo import create_answer, _get_gemini_client
-from log_reports.TEST_QUERIES_MAP import TEST_QUERIES_MAP
+from TEST_QUERIES_MAP import TEST_QUERIES_MAP
+
+
+def load_rag_embeddings(path: str) -> Dict[str, Any]:
+    """Lightweight loader for RAG embedding JSON files."""
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"RAG embedding file not found: {path}")
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def embed_question_via_gemini(question: str):
+    """Embed a question using Gemini API. Requires GEMINI_API_KEY env var."""
+    try:
+        from src.rag_convo import embed_question
+        res = embed_question(question)
+    except ImportError as e:
+        raise RuntimeError(f"Could not import embed_question from src.rag_convo: {e}")
+
+    emb = res[0] if isinstance(res, list) and res else res
+    if hasattr(emb, "values"):
+        return np.array(emb.values, dtype=np.float32)
+    if isinstance(emb, dict) and "values" in emb:
+        return np.array(emb["values"], dtype=np.float32)
+    return np.array(emb, dtype=np.float32)
 
 
 def normalize_name(name: str) -> str:
@@ -38,6 +53,170 @@ def normalize_name(name: str) -> str:
     s = s.replace("_", " ")
     s = " ".join(s.split())
     return s
+
+
+def find_optimal_k_elbow(embeddings: List[List[float]], max_k: int = 20, random_state: int = 42) -> int:
+    """Find optimal number of clusters using the elbow method."""
+    try:
+        from sklearn.cluster import KMeans
+    except Exception as e:
+        raise RuntimeError("scikit-learn required for KMeans clustering") from e
+
+    X = np.array(embeddings, dtype=np.float32)
+    n = X.shape[0]
+    if n < 3:
+        return 1
+
+    max_test = min(n // 2, max_k)
+    if max_test < 2:
+        return 1
+
+    inertias = []
+    k_values = list(range(2, max_test + 1))
+    for k in k_values:
+        km = KMeans(n_clusters=k, n_init=10, random_state=random_state)
+        km.fit(X)
+        inertias.append(km.inertia_)
+
+    diffs = np.diff(inertias)
+    accel = np.diff(diffs)
+    if len(accel) > 0:
+        elbow_idx = np.argmax(accel) + 1
+        optimal_k = k_values[elbow_idx]
+    else:
+        optimal_k = k_values[0]
+
+    return max(2, optimal_k)
+
+
+def compute_kmeans_clusters(embeddings: List[List[float]], num_clusters: Optional[int] = None, random_state: int = 42) -> Dict[str, Any]:
+    try:
+        from sklearn.cluster import KMeans
+    except Exception as e:
+        raise RuntimeError("scikit-learn required for KMeans clustering") from e
+
+    X = np.array(embeddings, dtype=np.float32)
+    if X.shape[0] == 0:
+        return {}
+
+    if num_clusters is None:
+        num_clusters = find_optimal_k_elbow(embeddings, max_k=20, random_state=random_state)
+
+    k = min(num_clusters, X.shape[0])
+    km = KMeans(n_clusters=k, n_init=10, random_state=random_state)
+    labels = km.fit_predict(X)
+    centroids = km.cluster_centers_.tolist()
+
+    return {
+        "algorithm": "kmeans",
+        "num_clusters": int(k),
+        "cluster_assignments": labels.tolist(),
+        "centroids": centroids,
+    }
+
+
+def compute_hdbscan_clusters(embeddings: List[List[float]], min_cluster_size: int = 3) -> Dict[str, Any]:
+    try:
+        import hdbscan
+    except Exception:
+        return {}
+
+    X = np.array(embeddings, dtype=np.float32)
+    if X.shape[0] == 0:
+        return {}
+
+    clusterer = hdbscan.HDBSCAN(min_cluster_size=min_cluster_size)
+    labels = clusterer.fit_predict(X)
+
+    centroids = []
+    unique = sorted(set([int(l) for l in labels if l >= 0]))
+    for l in unique:
+        members = X[labels == l]
+        centroids.append(np.mean(members, axis=0).tolist())
+
+    return {
+        "algorithm": "hdbscan",
+        "num_clusters": len(unique),
+        "cluster_assignments": [int(x) for x in labels],
+        "centroids": centroids,
+        "cluster_id_map": {i: cid for i, cid in enumerate(unique)},
+    }
+
+
+def _to_vector(e) -> np.ndarray:
+    if hasattr(e, "values"):
+        try:
+            return np.array(e.values, dtype=np.float32)
+        except Exception:
+            pass
+    if isinstance(e, dict) and "values" in e:
+        return np.array(e["values"], dtype=np.float32)
+    return np.array(e, dtype=np.float32)
+
+
+def merge_retrieval(
+    query_vec: np.ndarray,
+    scene_embeddings: List[Any],
+    contexts: List[str],
+    cluster_metadata: Optional[Dict[str, Any]] = None,
+    k: int = 10,
+    top_c: int = 3,
+    alpha: float = 0.3,
+) -> List[Tuple[str, float]]:
+    s_vecs = np.array([_to_vector(e) for e in scene_embeddings], dtype=np.float32)
+    base_sims = s_vecs.dot(query_vec)
+
+    N = len(contexts)
+    cluster_boost = np.zeros(N, dtype=np.float32)
+
+    if cluster_metadata:
+        centroids = np.array(cluster_metadata.get("centroids", []), dtype=np.float32)
+        assignments = np.array(cluster_metadata.get("cluster_assignments", [-1] * N))
+        if assignments.shape[0] != N:
+            print(f"Warning: cluster_assignments length ({assignments.shape[0]}) != contexts length ({N}), skipping cluster boost")
+            cluster_metadata = None
+        elif centroids.size:
+            cluster_sims = centroids.dot(query_vec)
+            C = centroids.shape[0]
+            top_c = min(top_c, C)
+            top_ids = np.argsort(cluster_sims)[-top_c:]
+            for cid in top_ids:
+                mask = (assignments == int(cid))
+                cluster_boost[mask] = np.maximum(cluster_boost[mask], cluster_sims[cid])
+
+            maxb = cluster_boost.max() if cluster_boost.max() > 0 else 1.0
+            cluster_boost = (cluster_boost / maxb) * alpha
+
+    final = base_sims + cluster_boost
+    top_idx = np.argsort(final)[-k:][::-1]
+    valid_top_idx = []
+    for idx in top_idx:
+        if 0 <= idx < N:
+            valid_top_idx.append(idx)
+        else:
+            print(f"Warning: Invalid scene index {idx} (valid range: 0-{N-1}), clipping to valid indices")
+    if len(valid_top_idx) < k:
+        print(f"Warning: Only {len(valid_top_idx)} valid indices found out of {k} requested")
+    top_idx = valid_top_idx[:k]
+    return [(contexts[int(i)], float(final[int(i)])) for i in top_idx]
+
+
+def jaccard(a: List[int], b: List[int]) -> float:
+    sa = set(a)
+    sb = set(b)
+    if not sa and not sb:
+        return 1.0
+    inter = sa.intersection(sb)
+    uni = sa.union(sb)
+    return float(len(inter)) / float(len(uni)) if uni else 0.0
+
+
+def save_json(path: str, payload: Dict[str, Any]):
+    folder = os.path.dirname(path)
+    if folder:
+        os.makedirs(folder, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
 
 
 def perform_flat_retrieval(
