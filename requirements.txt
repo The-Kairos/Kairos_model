@@ -75,3 +75,8 @@ openai-whisper
 pandas==2.3.3
 noisereduce==3.0.3
 emoji
+
+
+# RAG chunking methods
+umap-learn
+hdbscan

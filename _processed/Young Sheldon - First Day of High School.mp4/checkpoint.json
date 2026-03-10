@@ -1063,7 +1063,19 @@
                     "mem_util_percent": 0
                 }
             ],
-            "gpu_after": [
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
+        },
+        "describe_scenes": {
+            "wall_time_sec": 271.89121,
+            "cpu_time_sec": 0.35938,
+            "ram_before_MB": 522,
+            "ram_after_MB": 529,
+            "ram_used_MB": 7,
+            "io_read_MB": 1.2409543991088867,
+            "io_write_MB": 0.0002193450927734375,
+            "gpu_before": [
                 {
                     "id": 0,
                     "name": "NVIDIA L4",

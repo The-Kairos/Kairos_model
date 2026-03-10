@@ -198,15 +198,131 @@ def _embedding_values(embedding):
     return embedding
 
 
-def get_top_k_similar(question_embedding, embeddings, contexts, k=5, debug=False):
+def _to_vector(e) -> np.ndarray:
+    if hasattr(e, "values"):
+        try:
+            return np.array(e.values, dtype=np.float32)
+        except Exception:
+            pass
+    if isinstance(e, dict) and "values" in e:
+        return np.array(e["values"], dtype=np.float32)
+    return np.array(e, dtype=np.float32)
+
+
+def find_optimal_k_elbow(embeddings: list, max_k: int = 20, random_state: int = 42) -> int:
+    try:
+        from sklearn.cluster import KMeans
+    except Exception as e:
+        raise RuntimeError("scikit-learn required for KMeans clustering") from e
+
+    X = np.array([_to_vector(e) for e in embeddings], dtype=np.float32)
+    n = X.shape[0]
+    if n < 3:
+        return 1
+
+    max_test = min(n // 2, max_k)
+    if max_test < 2:
+        return 1
+
+    inertias = []
+    k_values = list(range(2, max_test + 1))
+    for k in k_values:
+        km = KMeans(n_clusters=k, n_init=10, random_state=random_state)
+        km.fit(X)
+        inertias.append(km.inertia_)
+
+    diffs = np.diff(inertias)
+    accel = np.diff(diffs)
+    if len(accel) > 0:
+        elbow_idx = np.argmax(accel) + 1
+        optimal_k = k_values[elbow_idx]
+    else:
+        optimal_k = k_values[0]
+
+    return max(2, optimal_k)
+
+
+def compute_kmeans_clusters(embeddings: list, num_clusters: int = None, random_state: int = 42):
+    try:
+        from sklearn.cluster import KMeans
+    except Exception as e:
+        raise RuntimeError("scikit-learn required for KMeans clustering") from e
+
+    X = np.array([_to_vector(e) for e in embeddings], dtype=np.float32)
+    if X.shape[0] == 0:
+        return {}
+
+    if num_clusters is None:
+        num_clusters = find_optimal_k_elbow(embeddings, max_k=20, random_state=random_state)
+
+    k = min(num_clusters, X.shape[0])
+    km = KMeans(n_clusters=k, n_init=10, random_state=random_state)
+    labels = km.fit_predict(X)
+    centroids = km.cluster_centers_.tolist()
+
+    return {
+        "algorithm": "kmeans",
+        "num_clusters": int(k),
+        "cluster_assignments": labels.tolist(),
+        "centroids": centroids,
+    }
+
+
+def merge_retrieval(
+    query_vec: np.ndarray,
+    scene_embeddings: list,
+    contexts: list,
+    cluster_metadata: dict = None,
+    k: int = 10,
+    top_c: int = 3,
+    alpha: float = 0.3,
+):
+    s_vecs = np.array([_to_vector(e) for e in scene_embeddings], dtype=np.float32)
+    base_sims = s_vecs.dot(query_vec)
+
+    N = len(contexts)
+    cluster_boost = np.zeros(N, dtype=np.float32)
+
+    if cluster_metadata:
+        centroids = np.array(cluster_metadata.get("centroids", []), dtype=np.float32)
+        assignments = np.array(cluster_metadata.get("cluster_assignments", [-1] * N))
+        if assignments.shape[0] != N:
+            print(f"Warning: cluster_assignments length ({assignments.shape[0]}) != contexts length ({N}), skipping cluster boost")
+            cluster_metadata = None
+        elif centroids.size:
+            cluster_sims = centroids.dot(query_vec)
+            C = centroids.shape[0]
+            top_c = min(top_c, C)
+            top_ids = np.argsort(cluster_sims)[-top_c:]
+            for cid in top_ids:
+                mask = (assignments == int(cid))
+                cluster_boost[mask] = np.maximum(cluster_boost[mask], cluster_sims[cid])
+
+            maxb = cluster_boost.max() if cluster_boost.max() > 0 else 1.0
+            cluster_boost = (cluster_boost / maxb) * alpha
+
+    final = base_sims + cluster_boost
+    top_idx = np.argsort(final)[-k:][::-1]
+    return [(contexts[int(i)], float(final[int(i)])) for i in top_idx]
+
+
+def get_top_k_similar(question_embedding, embeddings, contexts, k=5, debug=False, cluster_metadata=None, top_c=3, alpha=0.3):
     if isinstance(question_embedding, list):
         question_embedding = question_embedding[0]
     q_vec = np.array(_embedding_values(question_embedding), dtype=np.float32)
-    s_vecs = np.array([_embedding_values(s) for s in embeddings], dtype=np.float32)
-    similarities = np.dot(s_vecs, q_vec)
 
-    top_indices = np.argsort(similarities)[::-1][:k]
-    top_matches = [(contexts[i], similarities[i]) for i in top_indices]
+    if cluster_metadata is None:
+        cluster_metadata = compute_kmeans_clusters(embeddings, num_clusters=None)
+
+    top_matches = merge_retrieval(
+        q_vec,
+        embeddings,
+        contexts,
+        cluster_metadata=cluster_metadata,
+        k=k,
+        top_c=top_c,
+        alpha=alpha,
+    )
 
     if debug:
         for text, score in top_matches:
@@ -231,7 +347,7 @@ def create_answer(question, top_matches, client=None, model=GENERATION_MODEL):
     return response.text
 
 
-def save_rag_embeddings(path, contexts, embeddings, model=EMBEDDING_MODEL):
+def save_rag_embeddings(path, contexts, embeddings, model=EMBEDDING_MODEL, kmeans_clusters=None):
     payload = {
         "model": model,
         "context_count": len(contexts),
@@ -239,6 +355,8 @@ def save_rag_embeddings(path, contexts, embeddings, model=EMBEDDING_MODEL):
         "contexts": contexts,
         "embeddings": embeddings,
     }
+    if kmeans_clusters:
+        payload["kmeans_clusters"] = kmeans_clusters
 
     folder = os.path.dirname(path)
     if folder:
@@ -264,7 +382,8 @@ def make_embedding(checkpoint: dict, output_path: str, model=EMBEDDING_MODEL):
 
     client = _get_gemini_client()
     embeddings = embed_contexts(contexts, client=client, model=model)
-    payload = save_rag_embeddings(output_path, contexts, embeddings, model=model)
+    kmeans_clusters = compute_kmeans_clusters(embeddings, num_clusters=None)
+    payload = save_rag_embeddings(output_path, contexts, embeddings, model=model, kmeans_clusters=kmeans_clusters)
 
     return {
         "rag_path": output_path,
@@ -316,6 +435,9 @@ def ask_rag(
     data = load_rag_embeddings(rag_path)
     contexts = data.get("contexts", [])
     embeddings = data.get("embeddings", [])
+    kmeans_clusters = data.get("kmeans_clusters")
+    if kmeans_clusters is None:
+        kmeans_clusters = compute_kmeans_clusters(embeddings, num_clusters=None)
 
     if not contexts or not embeddings:
         raise ValueError("RAG embedding file is missing contexts or embeddings.")
@@ -342,7 +464,14 @@ def ask_rag(
         t1 = time.perf_counter()
 
         top_matches = get_top_k_similar(
-            question_embedding, embeddings, contexts, k=k, debug=False
+            question_embedding,
+            embeddings,
+            contexts,
+            k=k,
+            debug=False,
+            cluster_metadata=kmeans_clusters,
+            top_c=3,
+            alpha=0.3,
         )
         t2 = time.perf_counter()
 

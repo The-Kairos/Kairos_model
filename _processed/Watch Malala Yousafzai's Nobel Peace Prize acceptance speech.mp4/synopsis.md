@@ -1,15 +1,18 @@
 # Malala Nobel Speech Highlights
 
 ## Summary
+
 Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, expressing pride in being the youngest recipient and the first Pashtun and Pakistani to receive the award. She humorously mentions her family dynamics and emphasizes collaboration with Kailash Satyarthi, highlighting unity between India and Pakistan in advocating for children's rights. Malala shares personal anecdotes, reflects on her identity, and passionately calls for global action to end educational deprivation and promote equality and peace. The audience responds positively throughout, showcasing their admiration and support for her message.
 
 ## Highlights
+
 - [00:00:00](#t=0): Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, expressing pride in being the youngest recipient and the first Pashtun and Pakistani to receive the award.
 - [00:00:28](#t=28): Malala humorously mentions her family, noting she still fights with her younger brothers despite advocating for global peace.
 - [00:01:18](#t=78): Malala discusses unity between India and Pakistan, emphasizing collaboration to achieve children's rights.
 - [00:03:24](#t=204): Malala delivers a powerful statement, urging global action to ensure no child is deprived of education again.
 
 ## Timeline
+
 - [00:00:00](#t=0) — Malala begins speech
 - [00:00:15](#t=15) — Audience applauds achievement
 - [00:00:28](#t=28) — Mentions family humorously
@@ -22,6 +25,7 @@ Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, expressing pr
 - [00:03:36](#t=216) — Reflects on public perception
 
 ## Suggested Clips
+
 - [00:00:00](#t=0): Malala begins her Nobel Peace Prize acceptance speech, expressing pride as the youngest recipient and the first Pashtun and Pakistani to win the award.
 - [00:00:28.562](#t=29): Malala humorously mentions her brothers, contrasting her global message of peace with relatable family dynamics.
 - [00:01:18.478](#t=78): Malala discusses unity between India and Pakistan, highlighting collaboration for children's rights and inspiring the audience.
@@ -29,6 +33,7 @@ Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, expressing pr
 - [00:03:24.337](#t=204): Malala delivers a powerful statement about ensuring no child is deprived of education, resonating deeply with the audience.
 
 ## Questions
+
 **Q:** What is happening in the video?
 **A:** Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, emphasizing children's rights, global unity, and education advocacy while sharing personal anecdotes and expressing gratitude.
 
