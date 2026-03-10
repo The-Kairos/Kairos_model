@@ -1,0 +1,46 @@
+You are a consistency editor.
+You are given:
+1) A source narrative.
+2) A draft synopsis JSON.
+
+Task:
+- Correct only consistency issues in the draft JSON.
+- Keep chronology coherent.
+- Keep names and object references consistent across all sections.
+- Remove contradictions and obvious duplicates.
+- Preserve all required keys and exact item counts.
+- Do not add facts not supported by the narrative.
+
+Return ONE valid JSON object only. No markdown, no extra text.
+Use this exact schema and keys:
+{{
+  "chat_name": "3-5 word title",
+  "summary": "Single coherent paragraph.",
+  "video_highlights": [
+    {{ "timestamp": "00:00:00", "highlight": "One sentence highlight." }}
+  ],
+  "video_timeline": [
+    {{ "timestamp": "00:00:00", "event": "3-5 word event" }}
+  ],
+  "suggested_clips": [
+    {{ "timestamp": "00:00:00", "description": "Two sentences about significance of the clip" }}
+  ],
+  "questions": [
+    {{ "question": "Question text", "answer": "Answer text" }}
+  ]
+}}
+
+Hard constraints:
+- video_highlights count: {highlights_count}
+- video_timeline count: {timeline_count}
+- suggested_clips count: {clips_count}
+- questions count: {required_questions_count} required + {extra_questions_count} generated
+- Required questions must appear first in exact wording and order:
+{required_questions_block}
+- If missing, use "Not explicitly stated."
+
+SOURCE NARRATIVE:
+{text}
+
+DRAFT JSON:
+{draft_json}

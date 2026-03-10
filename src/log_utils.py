@@ -267,8 +267,9 @@ from src.frame_sampling import sample_frames, sample_fps
 from src.frame_captioning_blip import caption_frames
 from src.frame_obj_d_yolo import detect_object_yolo
 from src.scene_description import describe_scenes
-from src.audio_natural import extract_sounds
-from src.audio_speech import extract_speech
+from src.audio_detector import scan_audio
+from src.audio_MIT_ast_parallel import extract_sounds_optimized
+from src.audio_whisper_parallel import extract_speech_singlecall
 from src.debug_utils import save_clips
 from src.synopsis_systhesis import summarize_scenes, synthesize_synopsis
 from src.rag_convo import make_embedding, ask_rag
@@ -304,11 +305,17 @@ def describe_scenes_log(*args, **kwargs):
 
 @log_step()
 def extract_sounds_log(*args, **kwargs):
-    return extract_sounds(*args, **kwargs)
+    scenes, _stats = extract_sounds_optimized(*args, **kwargs)
+    return scenes
 
 @log_step()
 def extract_speech_log(*args, **kwargs):
-    return extract_speech(*args, **kwargs)
+    scenes, _stats = extract_speech_singlecall(*args, **kwargs)
+    return scenes
+
+@log_step()
+def scan_audio_log(*args, **kwargs):
+    return scan_audio(*args, **kwargs)
 
 @log_step()
 def summarize_scenes_log(*args, **kwargs):

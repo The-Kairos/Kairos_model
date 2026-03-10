@@ -1,5 +1,7 @@
 import json
+import random
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from src.debug_utils import apply_gpt_normalization
 from src.debug_utils import print_prefixed
@@ -71,20 +73,28 @@ def describe_scenes(
     SUMMARY_key: str = "llm_scene_description",
     model= "gemini-2.5-flash",
     prompt_path = "prompts/describe_scene.txt",
+    short_prompt_path = "prompts/describe_scene_short.txt",
     fallback_prompt_path = "prompts/fallback_describe_scene.txt",
+    short_fallback_prompt_path: str | None = None,
+    max_workers: int | None = None,
+    rate_limit_cooldown_sec: float = 20.0,
+    max_rate_limit_retries: int = 4,
     video_path: str | None = None,
     cooldown_sec: float = 5,
     debug= False,
 ):
     """
-    Takes a list of scene dictionaries.
-    Adds a new key to each: llm_scene_description
+    Two-stage scene description pipeline:
+      1) Stage-1 (map): make short per-scene summaries in parallel.
+      2) Stage-2 (reduce): generate final scene reports using raw scene text
+         plus previous Stage-1 short summaries (instead of previous long reports).
 
-    Uses the previously built `format_all_scenes()` to generate
-    raw scene descriptions.
+    Returns updated scenes that include `SUMMARY_key`.
     """
+    if short_fallback_prompt_path is None:
+        short_fallback_prompt_path = fallback_prompt_path
 
-    # First format all scenes using your existing system
+    # First format all scenes using your existing system.
     formatted_scenes = raw_descriptions(
         scenes,
         YOLO_key=YOLO_key,
@@ -93,58 +103,137 @@ def describe_scenes(
         AST_key=AST_key,
     )
 
-    updated = []
-    previous_summaries = []  # store generated summaries
+    if max_workers is None:
+        max_workers = min(8, max(1, len(formatted_scenes)))
+    else:
+        max_workers = max(1, int(max_workers))
+    max_rate_limit_retries = max(0, int(max_rate_limit_retries))
+    rate_limit_cooldown_sec = max(0.0, float(rate_limit_cooldown_sec))
 
-    for idx, (scene, formatted_text) in enumerate(zip(scenes, formatted_scenes)):
+    def _is_rate_limit_error(exc: Exception) -> bool:
+        err_text = f"{type(exc).__name__}: {exc}".lower()
+        rate_limit_markers = (
+            "rate limit",
+            "ratelimit",
+            "too many requests",
+            "429",
+            "quota exceeded",
+            "resource exhausted",
+            "request rate",
+        )
+        return any(marker in err_text for marker in rate_limit_markers)
 
-        # ---- build context from last K summaries ----
-        if previous_summaries:
-            context = "\n\nPrevious scenes:\n"
-            for i, s in enumerate(previous_summaries[-hist_size:], start=1):
-                context += f"Scene -{len(previous_summaries) - i + 1}:\n{s}\n"
-            formatted_text += "\n" + context
-
-        summary = None
-        try:
-            summary = describe_flash_scene(
-                formatted_text,
-                client,
-                prompt_path=prompt_path,
-                model=model,
-                video_path=video_path,
-            )
-        except Exception as exc:
-            if debug:
-                print_prefixed("(WARN)", f"Scene {idx} primary prompt failed: {exc}")
-
+    def _call_with_rate_limit_retry(scene_idx: int, scene_text: str, prompt_used: str):
+        attempt = 0
+        while True:
             try:
-                summary = describe_flash_scene(
-                    formatted_text,
+                return describe_flash_scene(
+                    scene_text,
                     client,
-                    prompt_path=fallback_prompt_path,
+                    prompt_path=prompt_used,
                     model=model,
                     video_path=video_path,
                 )
-            except Exception as exc2:
-                if debug:
-                    print_prefixed("(WARN)", f"Scene {idx} fallback prompt failed: {exc2}")
-                if cooldown_sec and cooldown_sec > 0:
-                    time.sleep(cooldown_sec)
-                continue
+            except Exception as exc:
+                if _is_rate_limit_error(exc) and attempt < max_rate_limit_retries:
+                    backoff = rate_limit_cooldown_sec * (2 ** attempt)
+                    jitter = random.uniform(0.0, 1.0)
+                    wait_sec = backoff + jitter
+                    if debug:
+                        print_prefixed(
+                            "(RATE)",
+                            f"Scene {scene_idx} rate-limited on attempt {attempt + 1}; "
+                            f"cooling down {wait_sec:.1f}s before retry."
+                        )
+                    time.sleep(wait_sec)
+                    attempt += 1
+                    continue
+                raise
 
+    def _generate_with_fallback(scene_idx: int, scene_text: str, primary_prompt: str, fallback_prompt: str | None):
+        result = None
+        try:
+            result = _call_with_rate_limit_retry(scene_idx, scene_text, primary_prompt)
+        except Exception as exc:
+            if debug:
+                print_prefixed("(WARN)", f"Scene {scene_idx} primary prompt failed: {exc}")
+            if fallback_prompt:
+                try:
+                    result = _call_with_rate_limit_retry(scene_idx, scene_text, fallback_prompt)
+                except Exception as exc2:
+                    if debug:
+                        print_prefixed("(WARN)", f"Scene {scene_idx} fallback prompt failed: {exc2}")
+        finally:
+            if cooldown_sec and cooldown_sec > 0:
+                time.sleep(cooldown_sec)
+        return result
+
+    def _parallel_map(inputs: list[str], primary_prompt: str, fallback_prompt: str | None):
+        outputs = [None] * len(inputs)
+        if max_workers <= 1 or len(inputs) <= 1:
+            for i, input_text in enumerate(inputs):
+                outputs[i] = _generate_with_fallback(i, input_text, primary_prompt, fallback_prompt)
+            return outputs
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_idx = {
+                executor.submit(_generate_with_fallback, i, input_text, primary_prompt, fallback_prompt): i
+                for i, input_text in enumerate(inputs)
+            }
+            for future in as_completed(future_to_idx):
+                i = future_to_idx[future]
+                try:
+                    outputs[i] = future.result()
+                except Exception as exc:
+                    if debug:
+                        print_prefixed("(WARN)", f"Scene {i} worker failed: {exc}")
+        return outputs
+
+    def _build_short_context(short_summaries: list[str | None], idx: int) -> str:
+        if hist_size <= 0 or idx <= 0:
+            return ""
+        start_idx = max(0, idx - hist_size)
+        context_lines = ["Previous scenes (short summaries):"]
+        for j in range(start_idx, idx):
+            prev_summary = (short_summaries[j] or "").strip()
+            if not prev_summary:
+                continue
+            distance = idx - j
+            context_lines.append(f"Scene -{distance}:\n{prev_summary}")
+        if len(context_lines) == 1:
+            return ""
+        return "\n\n" + "\n\n".join(context_lines)
+
+    # Stage-1 (map): short scene summaries in parallel.
+    short_summaries = _parallel_map(
+        formatted_scenes,
+        primary_prompt=short_prompt_path,
+        fallback_prompt=short_fallback_prompt_path,
+    )
+
+    # Stage-2 (reduce): full reports using raw scene + Stage-1 context.
+    stage2_inputs = []
+    for i, raw_text in enumerate(formatted_scenes):
+        stage2_inputs.append(raw_text + _build_short_context(short_summaries, i))
+
+    final_summaries = _parallel_map(
+        stage2_inputs,
+        primary_prompt=prompt_path,
+        fallback_prompt=fallback_prompt_path,
+    )
+
+    updated = []
+    for idx, (scene, summary) in enumerate(zip(scenes, final_summaries)):
+        if not summary:
+            continue
         new_scene = dict(scene)
         new_scene[SUMMARY_key] = summary
         updated.append(new_scene)
-
-        previous_summaries.append(summary)  # save summary
 
         if debug:
             print_prefixed("(GPT4o)", f"----- Scene {idx} -----")
             print(summary.strip())
             print("")
-        if cooldown_sec and cooldown_sec > 0:
-            time.sleep(cooldown_sec)
 
     return updated
 

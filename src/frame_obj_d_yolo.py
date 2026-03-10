@@ -35,6 +35,7 @@ def run_yolo_on_frame(
         frame,
         conf=conf,
         iou=iou,
+        stream=True,
         verbose=False
     )
 
@@ -77,9 +78,10 @@ def run_yolo_track_on_frames(
             iou=iou,
             tracker=tracker,
             persist=True,
+            stream=True,
             verbose=False,
         )
-        return list(results)
+        return results
     except Exception:
         return None
 

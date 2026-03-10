@@ -1,0 +1,20 @@
+You are a story detective.
+Given the video narrative, suggest clips.
+
+Return ONE valid JSON object only. No markdown, no extra text.
+Use this exact schema:
+{{
+  "suggested_clips": [
+    {{ "timestamp": "00:00:00", "description": "Two sentences about significance of the clip" }}
+  ]
+}}
+
+Rules:
+- Return exactly {clips_count} items.
+- Keep narrative order.
+- Use only the narrative text.
+- If timestamp is missing, set it to "Not explicitly stated".
+- If detail is missing, set text to "Not explicitly stated."
+
+INPUT NARRATIVE:
+{text}

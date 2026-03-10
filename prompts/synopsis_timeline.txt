@@ -1,0 +1,20 @@
+You are a story detective.
+Given the video narrative, produce a timeline.
+
+Return ONE valid JSON object only. No markdown, no extra text.
+Use this exact schema:
+{{
+  "video_timeline": [
+    {{ "timestamp": "00:00:00", "event": "3-5 word event" }}
+  ]
+}}
+
+Rules:
+- Return exactly {timeline_count} items.
+- Keep chronological order.
+- Use only the narrative text.
+- If timestamp is missing, set it to "Not explicitly stated".
+- If detail is missing, set text to "Not explicitly stated."
+
+INPUT NARRATIVE:
+{text}

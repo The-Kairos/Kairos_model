@@ -52,11 +52,11 @@ yolo_action_fps     = 4
 yolo_conf_thres     = 0.8       # YOLO confidence threshold
 yolo_iou_thres      = 0.5       # YOLO IoU threshold for NMS
 ast_target_sr       = 16000     # audio target sample rate for AST
-asr_model_size      = 'small'
+asr_model_size      = 'medium'
 asr_use_vad         = True      # enable VAD for ASR (whatever that means)
 asr_target_sr       = 16000     # audio target sample rate for ASR
 llm_scene_history   = 5         # number of prior scenes in LLM context
-llm_chunk_len       = 50000     # max char len of combined scenes for one chunk
+llm_chunk_len       = 20000     # max char len of combined scenes for one chunk
 llm_summary_len     = 50000     # max char len of final context for synopsis
 llm_cooldown_sec    = 0         # LLM cooldown between scene calls
 rag_top_k_context   = 10        # top-k RAG scenes to include
@@ -133,14 +133,19 @@ def parse_args():
     )
     process.add_argument(
         "--redo",
+        nargs="+",
         action="append",
         choices=REDO_CHOICES,
         help="Redo a processing step; dependents are redone by default (repeatable).",
     )
     process.add_argument(
         "--redo-only",
-        action="store_true",
-        help="Redo only the specified steps and stop afterward (no dependents). Requires --redo.",
+        nargs="*",
+        choices=REDO_CHOICES,
+        help=(
+            "Redo only the specified steps and stop afterward (no dependents). "
+            "Provide steps here or use with --redo."
+        ),
     )
 
     rag = subparsers.add_parser("rag", help="Run RAG for a single video")
@@ -148,244 +153,285 @@ def parse_args():
 
     return parser.parse_args()
 
-VIDEOS_DIR = Path("Videos")
-CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
-PROCESSED_ROOT = Path("_processed")
-args = parse_args()
-if getattr(args, "redo_only", False) and not getattr(args, "redo", None):
-    raise SystemExit("--redo-only requires --redo")
-catalog = load_video_catalog(CATALOG_PATH)
-selected_paths = select_videos(args, catalog, VIDEOS_DIR)
+def main():
+    VIDEOS_DIR = Path("Videos")
+    CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
+    PROCESSED_ROOT = Path("_processed")
+    args = parse_args()
+    redo_only_flag = args.redo_only is not None
+    redo_only_steps = args.redo_only or []
+    redo_steps = []
 
-if not selected_paths:
-    raise SystemExit("No videos selected.")
-if args.command == "rag" and len(selected_paths) != 1:
-    raise SystemExit("RAG supports exactly one video. Use --video to pick one.")
+    def _flatten(values):
+        flat = []
+        if not values:
+            return flat
+        for value in values:
+            if isinstance(value, (list, tuple)):
+                flat.extend(value)
+            else:
+                flat.append(value)
+        return flat
 
-test_videos = {make_output_dir(p, PROCESSED_ROOT): str(p) for p in selected_paths}
-rag_only = args.command == "rag"
-redo_steps = getattr(args, "redo", None) or []
-redo_only = bool(getattr(args, "redo_only", False))
+    if redo_only_steps:
+        redo_steps = redo_only_steps
+    elif getattr(args, "redo", None):
+        redo_steps = _flatten(args.redo)
+    if redo_only_flag and not redo_steps:
+        raise SystemExit("--redo-only requires at least one step (via --redo-only or --redo)")
+    catalog = load_video_catalog(CATALOG_PATH)
+    selected_paths = select_videos(args, catalog, VIDEOS_DIR)
 
-for output_dir, test_video in test_videos.items():
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    if not selected_paths:
+        raise SystemExit("No videos selected.")
+    if args.command == "rag" and len(selected_paths) != 1:
+        raise SystemExit("RAG supports exactly one video. Use --video to pick one.")
 
-    if rag_only:
-        rag_path = f"{output_dir}/rag_embedding.json"
-        checkpoint_path = f"{output_dir}/checkpoint.json"
-        if not os.path.exists(rag_path):
-            print(f"RAG embedding not found: {rag_path}. Run process first.")
+    test_videos = {make_output_dir(p, PROCESSED_ROOT): str(p) for p in selected_paths}
+    rag_only = args.command == "rag"
+    if redo_only_steps and getattr(args, "redo", None):
+        redo_steps = list(dict.fromkeys(redo_steps + _flatten(args.redo)))
+    redo_only = redo_only_flag
+
+    for output_dir, test_video in test_videos.items():
+        Path(output_dir).mkdir(parents=True, exist_ok=True)
+
+        if rag_only:
+            rag_path = f"{output_dir}/rag_embedding.json"
+            checkpoint_path = f"{output_dir}/checkpoint.json"
+            if not os.path.exists(rag_path):
+                print(f"RAG embedding not found: {rag_path}. Run process first.")
+                continue
+            ask_rag(
+                rag_path=rag_path,
+                show_k_context=True,
+                k=rag_top_k_context,
+                conv_path=f"{output_dir}/conversation_history.json",
+                log_source=checkpoint_path,
+                show_timings=False,
+            )
             continue
-        ask_rag(
-            rag_path=rag_path,
-            show_k_context=True,
-            k=rag_top_k_context,
-            conv_path=f"{output_dir}/conversation_history.json",
-            log_source=checkpoint_path,
-            show_timings=False,
-        )
-        continue
 
-    log = initiate_log(
-        video_path=test_video,
-        run_description="Test run for video processing pipeline.",
-        params=params,
-    )
-
-    # I added checkpoints so if you wanna redo the whole process,
-    # youd have to delete the checkpoint json in the path below
-    checkpoint_path = f"{output_dir}/checkpoint.json"
-    checkpoint = read_json(json_path=checkpoint_path) # if deleted it will return a {}
-    checkpoint.setdefault("steps", {})
-    step = checkpoint["steps"]
-    if redo_steps:
-        checkpoint, redo_info = apply_redo(
-            checkpoint=checkpoint,
-            output_dir=output_dir,
-            redo_steps=redo_steps,
-            redo_only=redo_only,
+        log = initiate_log(
+            video_path=test_video,
+            run_description="Test run for video processing pipeline.",
+            params=params,
         )
-        if redo_info.get("changed") and "scenes" in checkpoint:
+
+        # I added checkpoints so if you wanna redo the whole process,
+        # youd have to delete the checkpoint json in the path below
+        checkpoint_path = f"{output_dir}/checkpoint.json"
+        checkpoint = read_json(json_path=checkpoint_path) # if deleted it will return a {}
+        checkpoint.setdefault("steps", {})
+        step = checkpoint["steps"]
+        if redo_steps:
+            checkpoint, redo_info = apply_redo(
+                checkpoint=checkpoint,
+                output_dir=output_dir,
+                redo_steps=redo_steps,
+                redo_only=redo_only,
+            )
+            if redo_info.get("changed") and "scenes" in checkpoint:
+                save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+
+        if not checkpoint.get("scenes"):
+            print("")
+            print_section("Running PysceneDetect...")
+            checkpoint["scenes"], step['get_scene_list'] = get_scene_list_log(
+                input_video_path=test_video,
+                threshold = pyscene_threshold,
+                min_scene_sec= pyscene_shortest,
+            )
+            see_scenes_cuts(df=checkpoint["scenes"])
+            time.sleep(10)
+
+            print("")
+            print(f"Saving clips in: {output_dir}/.clips")
+            checkpoint["scenes"], step['save_clips'] = save_clips_log(
+                video_path=test_video,
+                scenes=checkpoint["scenes"],
+                output_dir=f"{output_dir}/.clips",
+            )
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
-    if not checkpoint.get("scenes"):
-        print("")
-        print_section("Running PysceneDetect...")
-        checkpoint["scenes"], step['get_scene_list'] = get_scene_list_log(
-            input_video_path=test_video,
-            threshold = pyscene_threshold,
-            min_scene_sec= pyscene_shortest,
-        )
-        see_scenes_cuts(df=checkpoint["scenes"])
-        time.sleep(10)
-
-        print("")
-        print(f"Saving clips in: {output_dir}/.clips")
-        checkpoint["scenes"], step['save_clips'] = save_clips_log(
-            video_path=test_video,
-            scenes=checkpoint["scenes"],
-            output_dir=f"{output_dir}/.clips",
-        )
-        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-
-    if "frame_captions" not in checkpoint["scenes"][-1].keys():
-        print(f"Saving sampled frames in: {output_dir}/.frames")
-        checkpoint["scenes"], step['sample_frames'] = sample_frames_log(
-            input_video_path=test_video,
-            scenes=checkpoint["scenes"],
-            num_frames = frames_per_scene,
-            new_size = frame_resolution,
-            output_dir=f"{output_dir}/.frames",
-        )
-        time.sleep(10)
-
-        print("")
-        print_section("Running BLIP...")
-        checkpoint["scenes"], step['caption_frames'] = caption_frames_log(
-            scenes=checkpoint["scenes"],
-            prompt= blip_start_prompt,
-            max_length=blip_caption_len,
-            min_length=blip_min_length,
-            num_beams=blip_num_beams,
-            do_sample=blip_do_sample,
-            top_p=blip_top_p,
-            temperature=blip_temperature,
-            length_penalty=blip_length_penalty,
-            no_repeat_ngram_size=blip_no_repeat_ngram_size,
-            repetition_penalty=blip_repetition_penalty,
-            debug=True,
-        )
-        time.sleep(10)
-        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-    
-
-    if "yolo_detections" not in checkpoint["scenes"][-1].keys():
-        if "yolo_frames" not in checkpoint["scenes"][-1].keys():
-            print("")
-            print(f"Saving sampled fps in: {output_dir}/.fps")
-            checkpoint["scenes"], step['sample_fps'] = sample_fps_log(
+        if "frame_captions" not in checkpoint["scenes"][-1].keys():
+            print(f"Saving sampled frames in: {output_dir}/.frames")
+            checkpoint["scenes"], step['sample_frames'] = sample_frames_log(
                 input_video_path=test_video,
                 scenes=checkpoint["scenes"],
-                fps=yolo_action_fps,
-                new_size=frame_resolution,
-                output_dir=f"{output_dir}/.fps",
-                frames_key="yolo_frames",
-                frame_paths_key="yolo_frame_paths",
+                num_frames = frames_per_scene,
+                new_size = frame_resolution,
+                output_dir=f"{output_dir}/.frames",
             )
-        time.sleep(10)
+            time.sleep(10)
 
-        print("")
-        print_section("Running YOLOv8...")
-        checkpoint["scenes"], step['detect_object_yolo'] = detect_object_yolo_log(
-            scenes=checkpoint["scenes"],
-            model_size="model/yolov8s.pt",
-            conf=yolo_conf_thres,
-            iou=yolo_iou_thres,
-            output_dir=f"{output_dir}/.yolo",
-            frame_key="yolo_frames",
-            summary_key="yolo_detections",
-            debug=True,
-        )
-        time.sleep(10)
-        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-
-    if "audio_natural" not in checkpoint["scenes"][-1].keys():
-        print("")
-        print_section("Running MIT AST...")
-        checkpoint["scenes"], step['ast_timings'] = extract_sounds_log(
-            video_path=test_video,
-            scenes=checkpoint["scenes"],
-            target_sr=ast_target_sr,
-            debug=True,
-        )
-        time.sleep(10)
-        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-
-
-    if "audio_speech" not in checkpoint["scenes"][-1].keys():
-        print("")
-        print_section("Running Whisper...")
-        checkpoint["scenes"], step['asr_timings'] = extract_speech_log(
-            video_path=test_video,
-            scenes=checkpoint["scenes"],
-            model=asr_model_size,
-            use_vad=asr_use_vad,
-            target_sr=asr_target_sr,
-            debug=True,
-        )
-        time.sleep(10)
-        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-
-    if "llm_scene_description" not in checkpoint["scenes"][-1].keys():
-        print("")
-        print_section("Running GPT4o Scene Descriptions...")
-        checkpoint["scenes"], step['describe_scenes'] = describe_scenes_log(
-            scenes=checkpoint["scenes"],
-            client=client,
-            hist_size= llm_scene_history,
-            YOLO_key="yolo_detections",
-            FLIP_key="frame_captions",
-            ASR_key="audio_natural",
-            AST_key="audio_speech",
-            SUMMARY_key="llm_scene_description",
-            model=model_name,
-            prompt_path="prompts/describe_scene.txt",
-            cooldown_sec=llm_cooldown_sec,
-            debug=True,
-            video_path=test_video,
-        )
-        time.sleep(10)
-        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-    #todo: if GPT4o responsibleAI error gets triggered, change prompt?
-
-    if "narratives" not in checkpoint:
-        print("")
-        print_section("Running GPT4o Summary narrative...")
-        checkpoint, step['summarize_scenes'] = summarize_scenes_log(
-            client=client,
-            deployment=deployment,
-            scenes=checkpoint["scenes"],
-            chunk_size = llm_chunk_len,
-            summary_len = llm_summary_len,
-            debug=True,
-            output_dir=output_dir,
-        )
-        narratives = checkpoint.get("narratives", [])
-        if narratives:
-            last = narratives[-1]
-            narrative_path = Path(output_dir) / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
-            print(f"Saving narrative in: {narrative_path}")
-        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-
-    if "synopsis" not in checkpoint:
-        print("")
-        print_section("Running GPT4o Synopsis generation...")
-        checkpoint, step['synthesize_synopsis'] = synthesize_synopsis_log(
-            client=client,
-            deployment=deployment,
-            data=checkpoint,
-            debug=True,
-            output_dir=output_dir,
-        )
-        save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-
-    rag_path = f"{output_dir}/rag_embedding.json"
-    if not os.path.exists(rag_path):
-        checkpoint["rag_embedding"], step['make_embedding'] = make_embedding_log(
-            checkpoint=checkpoint,
-            output_path=rag_path,
-        )
+            print("")
+            print_section("Running BLIP...")
+            checkpoint["scenes"], step['caption_frames'] = caption_frames_log(
+                scenes=checkpoint["scenes"],
+                prompt= blip_start_prompt,
+                max_length=blip_caption_len,
+                min_length=blip_min_length,
+                num_beams=blip_num_beams,
+                do_sample=blip_do_sample,
+                top_p=blip_top_p,
+                temperature=blip_temperature,
+                length_penalty=blip_length_penalty,
+                no_repeat_ngram_size=blip_no_repeat_ngram_size,
+                repetition_penalty=blip_repetition_penalty,
+                debug=True,
+            )
+            time.sleep(10)
+            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
         
-        cleared_checkpoint = save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-        log = complete_log(
-            log=log,
-            steps=step,
-            vid_len=checkpoint["scenes"][-1]["end_timecode"],
-            scene_num=len(checkpoint["scenes"]),
-            vid_df=cleared_checkpoint,
-        )
-        
-        logpath = save_log(data=log, path=f"logs/{output_dir}.json")
-        save_checkpoint(checkpoint=log, path=checkpoint_path)
 
-    # todo: the RAG should be able to answer questions like "how long is the video"
+        if "yolo_detections" not in checkpoint["scenes"][-1].keys():
+            if "yolo_frames" not in checkpoint["scenes"][-1].keys():
+                print("")
+                print(f"Saving sampled fps in: {output_dir}/.fps")
+                checkpoint["scenes"], step['sample_fps'] = sample_fps_log(
+                    input_video_path=test_video,
+                    scenes=checkpoint["scenes"],
+                    fps=yolo_action_fps,
+                    new_size=frame_resolution,
+                    output_dir=f"{output_dir}/.fps",
+                    frames_key="yolo_frames",
+                    frame_paths_key="yolo_frame_paths",
+                )
+            time.sleep(10)
+
+            print("")
+            print_section("Running YOLOv8...")
+            checkpoint["scenes"], step['detect_object_yolo'] = detect_object_yolo_log(
+                scenes=checkpoint["scenes"],
+                model_size="model/yolov8s.pt",
+                conf=yolo_conf_thres,
+                iou=yolo_iou_thres,
+                output_dir=f"{output_dir}/.yolo",
+                frame_key="yolo_frames",
+                summary_key="yolo_detections",
+                debug=True,
+            )
+            time.sleep(10)
+            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+
+        scan_result = None
+        def get_scan_result():
+            print("")
+            print_section("Running Audio Pre-Scan...")
+            scan_result, step['audio_scan'] = scan_audio_log(
+                video_path=test_video,
+                scenes=checkpoint["scenes"],
+                target_sr=asr_target_sr,
+                debug=True,
+            )
+            time.sleep(10)
+            return scan_result
+
+        if "audio_speech" not in checkpoint["scenes"][-1].keys():
+            if scan_result is None: scan_result = get_scan_result()
+            print("")
+            print_section("Running Whisper (Parallel)...")
+            checkpoint["scenes"], step['asr_timings'] = extract_speech_log(
+                scenes=checkpoint["scenes"],
+                scan_result=scan_result,
+                model_size=asr_model_size,
+                use_vad=asr_use_vad,
+                language=None,
+                parallel=True,
+                use_api=True,
+                force_cpu=False,
+                debug=True,
+            )
+            time.sleep(10)
+            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+
+        if "audio_natural" not in checkpoint["scenes"][-1].keys():
+            if scan_result is None: scan_result = get_scan_result()
+            print("")
+            print_section("Running MIT AST (Parallel)...")
+            checkpoint["scenes"], step['ast_timings'] = extract_sounds_log(
+                scenes=checkpoint["scenes"],
+                scan_result=scan_result,
+                max_workers=4,
+                use_processes=True,
+                force_cpu=False,
+                debug=True,
+            )
+            time.sleep(10)
+            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+
+        if "llm_scene_description" not in checkpoint["scenes"][-1].keys():
+            print("")
+            print_section("Running GPT4o Scene Descriptions...")
+            checkpoint["scenes"], step['describe_scenes'] = describe_scenes_log(
+                scenes=checkpoint["scenes"],
+                client=client,
+                hist_size= llm_scene_history,
+                YOLO_key="yolo_detections",
+                FLIP_key="frame_captions",
+                ASR_key="audio_speech",
+                AST_key="audio_natural",
+                SUMMARY_key="llm_scene_description",
+                model=model_name,
+                prompt_path="prompts/describe_scene.txt",
+                cooldown_sec=llm_cooldown_sec,
+                debug=True,
+                video_path=test_video,
+            )
+            time.sleep(10)
+            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+
+        if "narratives" not in checkpoint:
+            print("")
+            print_section("Running GPT4o Summary narrative...")
+            checkpoint, step['summarize_scenes'] = summarize_scenes_log(
+                client=client,
+                deployment=deployment,
+                scenes=checkpoint["scenes"],
+                chunk_size = llm_chunk_len,
+                summary_len = llm_summary_len,
+                debug=True,
+                output_dir=output_dir,
+            )
+            narratives = checkpoint.get("narratives", [])
+            if narratives:
+                last = narratives[-1]
+                narrative_path = Path(output_dir) / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
+                print(f"Saving narrative in: {narrative_path}")
+            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+
+        if "synopsis" not in checkpoint:
+            print("")
+            print_section("Running GPT4o Synopsis generation...")
+            checkpoint, step['synthesize_synopsis'] = synthesize_synopsis_log(
+                client=client,
+                deployment=deployment,
+                data=checkpoint,
+                debug=True,
+                output_dir=output_dir,
+            )
+            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+
+        rag_path = f"{output_dir}/rag_embedding.json"
+        if not os.path.exists(rag_path):
+            checkpoint["rag_embedding"], step['make_embedding'] = make_embedding_log(
+                checkpoint=checkpoint,
+                output_path=rag_path,
+            )
+
+            cleared_checkpoint = save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            log = complete_log(
+                log=log,
+                steps=step,
+                vid_len=checkpoint["scenes"][-1]["end_timecode"],
+                scene_num=len(checkpoint["scenes"]),
+                vid_df=cleared_checkpoint,
+            )
+
+            logpath = save_log(data=log, path=f"logs/{output_dir}.json")
+            save_checkpoint(checkpoint=log, path=checkpoint_path)
+
+
+if __name__ == '__main__':
+    main()

@@ -9,9 +9,11 @@ python-dotenv>=1.1.0
 
 # General Utils
 numpy>=1.26,<2
+setuptools>=70.0.0,<82
 # pynvml==13.0.1 # logging GPU usage - (FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead)
 nvidia-ml-py==12.560.30  # logging GPU usage (NVML official bindings)
 psutil==7.1.3  # logging CPU and RAM usage
+tabulate==0.10.0
 
 # General Video Processing
 opencv-python>=4.7 #OpenCV for video processing
@@ -70,6 +72,10 @@ torchaudio>=2.5.0
 tqdm>=4.66.1
 
 openai-whisper
+pandas==2.3.3
+noisereduce==3.0.3
+emoji
+
 
 # RAG chunking methods
 umap-learn
