@@ -1,43 +1,46 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/Young Sheldon - First Day of High School.mp4",
+    "video_path": "Videos\\Young Sheldon - First Day of High School.mp4",
     "video_length": "00:02:48.502",
-    "total_process_sec": 219.39132999999998,
+    "total_process_sec": 465.29322,
     "scene_number": 35,
-    "start_process": "2026-03-06 21:56:24",
-    "end_process": "2026-03-06 21:59:22",
+    "start_process": "2026-03-12 00:43:39",
+    "end_process": "2026-03-12 00:44:25",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
-            "python_version": "3.10.19"
+            "os": "Windows 11",
+            "os_version": "10.0.26200",
+            "machine_type": "AMD64",
+            "hostname": "the-Kewl-Laptop",
+            "python_version": "3.12.1"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 16,
             "cpu_frequency_MHz": {
-                "current": 2200.186000000001,
+                "current": 2208.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2208.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 182.43,
-            "used_RAM_GB": 6.27,
-            "RAM_usage_percent": 3.3
+            "total_RAM_GB": 15.84,
+            "available_RAM_GB": 2.4,
+            "used_RAM_GB": 13.44,
+            "RAM_usage_percent": 84.9
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 74.9,
-            "disk_free_GB": 66.39,
-            "disk_usage_percent": 53.0
+            "disk_total_GB": 932.98,
+            "disk_used_GB": 533.29,
+            "disk_free_GB": 399.68,
+            "disk_usage_percent": 57.2
         },
         "gpu_info": {
-            "gpu_model": null
+            "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+            "gpu_memory_total_MB": 6144,
+            "gpu_memory_used_MB": 0,
+            "gpu_driver_version": "572.16"
         }
     },
     "params": {
@@ -927,48 +930,14 @@
             ]
         },
         "describe_scenes": {
-            "wall_time_sec": 48.02243,
-            "cpu_time_sec": 0.37488,
-            "ram_before_MB": 1680,
-            "ram_after_MB": 1680,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.0,
-            "io_write_MB": 0.0,
+            "wall_time_sec": 271.89121,
+            "cpu_time_sec": 0.35938,
+            "ram_before_MB": 522,
+            "ram_after_MB": 529,
+            "ram_used_MB": 7,
+            "io_read_MB": 1.2409543991088867,
+            "io_write_MB": 0.0002193450927734375,
             "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
                 {
                     "id": 0,
                     "name": "NVIDIA L4",
@@ -1067,256 +1036,42 @@
             "cuda_after_MB": null,
             "cuda_peak_MB": null
         },
-        "describe_scenes": {
-            "wall_time_sec": 271.89121,
-            "cpu_time_sec": 0.35938,
-            "ram_before_MB": 522,
-            "ram_after_MB": 529,
-            "ram_used_MB": 7,
-            "io_read_MB": 1.2409543991088867,
-            "io_write_MB": 0.0002193450927734375,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
-        },
         "synthesize_synopsis": {
-            "wall_time_sec": 22.42597,
-            "cpu_time_sec": 0.07232,
-            "ram_before_MB": 1680,
-            "ram_after_MB": 1680,
-            "ram_used_MB": 0,
+            "wall_time_sec": 28.24126,
+            "cpu_time_sec": 0.03125,
+            "ram_before_MB": 564,
+            "ram_after_MB": 559,
+            "ram_used_MB": -5,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.01171875,
+            "io_write_MB": 0.009150505065917969,
             "gpu_before": [
                 {
                     "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
+                    "name": "NVIDIA GeForce GTX 1660 Ti",
+                    "memory_used_MB": 178,
+                    "memory_total_MB": 6144,
                     "gpu_util_percent": 0,
                     "mem_util_percent": 0
                 }
             ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 1.48367,
-            "cpu_time_sec": 0.36246,
-            "ram_before_MB": 1680,
-            "ram_after_MB": 1680,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.0,
-            "io_write_MB": 3.4140625,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 17.70149,
+            "cpu_time_sec": 26.51562,
+            "ram_before_MB": 559,
+            "ram_after_MB": 567,
+            "ram_used_MB": 8,
+            "io_read_MB": 0.7752056121826172,
+            "io_write_MB": 3.7174549102783203,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -4868,243 +4623,219 @@
     ],
     "synopsis": {
         "chat_name": "Sheldon’s First Day",
-        "summary": "The narrative follows Sheldon Cooper, a young boy, and his mother, Mary, as they prepare for his first day of high school. Scenes depict their journey in the car, highlighting Sheldon's confidence in his intellect and Mary's protective concerns about his social adjustment. Upon arriving at school, Sheldon faces challenges with social conformity, such as comments about his bow tie, and interacts with peers and his sister. Mary provides reassurance and support throughout, while Sheldon displays his observational nature and scientific curiosity. The story captures the contrast between Sheldon's optimism and Mary's worry as he transitions into a new academic environment.",
+        "summary": "Sheldon, a young boy starting high school, navigates social challenges with his protective mother Mary, showcasing his intellectual curiosity, blunt observations, and optimism despite his nervousness and her concerns.",
         "video_highlights": [
             {
-                "timestamp": "00:00:00",
-                "highlight": "The scene transitions between a park, a street with a bus, and a countryside road with a car, setting a playful tone."
+                "start": "00:00:00.000",
+                "end": "00:00:02.836",
+                "highlight": "A playful tone is set with a driving game suggestion as scenes transition between a park, a street, and a countryside road."
             },
             {
-                "timestamp": "00:00:11",
-                "highlight": "Sheldon expresses mild frustration about losing a driving game, hinting at his competitive nature."
+                "start": "00:00:11.678",
+                "end": "00:00:13.680",
+                "highlight": "Sheldon expresses frustration with a driving game, saying, \"Not really. I always lose,\" reflecting his resignation."
             },
             {
-                "timestamp": "00:00:27",
-                "highlight": "Sheldon optimistically wonders if others will recognize his intellect and make him their leader."
+                "start": "00:00:27.861",
+                "end": "00:00:32.199",
+                "highlight": "Sheldon wonders if others will recognize his intellect and make him their leader, contrasting with Mary’s prayer for his protection."
             },
             {
-                "timestamp": "00:01:46",
-                "highlight": "Sheldon bluntly points out a pregnant girl in the hallway, showcasing his observational nature and lack of social awareness."
+                "start": "00:00:50.384",
+                "end": "00:00:55.389",
+                "highlight": "Mary expresses concern about Sheldon fitting in as he stands near a school bus on his first day of high school."
+            },
+            {
+                "start": "00:01:34.928",
+                "end": "00:01:40.934",
+                "highlight": "Sheldon comments on the smell of ammonia in the hallway, appreciating the cleanliness and showcasing his observational nature."
+            },
+            {
+                "start": "00:02:17.137",
+                "end": "00:02:19.473",
+                "highlight": "In a classroom, Sheldon remarks, \"Okay, let the learning begin,\" highlighting his excitement for academics."
             }
         ],
         "video_timeline": [
             {
                 "timestamp": "00:00:00",
-                "event": "Park, street, countryside transition"
+                "event": "Driving Game"
             },
             {
                 "timestamp": "00:00:02",
-                "event": "Sheldon ties bow tie in car"
-            },
-            {
-                "timestamp": "00:00:09",
-                "event": "Sheldon calm in backseat"
+                "event": "Tie Preparation"
             },
             {
                 "timestamp": "00:00:11",
-                "event": "Sheldon frustrated with game"
+                "event": "Game Frustration"
             },
             {
-                "timestamp": "00:00:18",
-                "event": "Mary suggests talking instead"
-            },
-            {
-                "timestamp": "00:00:27",
-                "event": "Sheldon optimistic about leadership"
+                "timestamp": "00:00:20",
+                "event": "Social Advice"
             },
             {
                 "timestamp": "00:00:32",
-                "event": "Mary prays about bullying"
+                "event": "Bullying Concern"
             },
             {
                 "timestamp": "00:00:39",
-                "event": "Car passes cow on highway"
-            },
-            {
-                "timestamp": "00:00:50",
-                "event": "Sheldon near school bus"
-            },
-            {
-                "timestamp": "00:01:46",
-                "event": "Sheldon observes pregnant girl"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "The scene transitions between a park, a street with a bus, and a countryside road, setting a playful tone with audio suggesting a driving game."
-            },
-            {
-                "timestamp": "00:00:11.678",
-                "description": "Sheldon expresses mild frustration about losing a driving game, hinting at his struggles with certain activities."
-            },
-            {
-                "timestamp": "00:00:27.861",
-                "description": "Sheldon optimistically wonders if others will recognize his intellect and make him their leader, contrasting with his mother's concerns."
-            },
-            {
-                "timestamp": "00:01:02.562",
-                "description": "A boy and girl comment on Sheldon's bow tie, highlighting social conformity and his potential challenges fitting in."
-            },
-            {
-                "timestamp": "00:02:19.473",
-                "description": "Sheldon transitions to a classroom, showcasing his excitement for learning and scientific curiosity."
+                "event": "Rural Drive"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "The video depicts Sheldon Cooper's journey to his first day of high school, focusing on his interactions with his mother, Mary, and other students, as well as his observations and challenges in adapting socially."
+                "answer": "Sheldon Cooper is preparing for his first day of high school, navigating social challenges, and interacting with his mother, Mary, who is protective and supportive."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Key events include Sheldon tying his bow tie in the car, discussing games and prime numbers with his mother, arriving at the school, facing comments about his bow tie, negotiating with his sister, observing a pregnant girl, and entering his homeroom."
+                "answer": "Sheldon ties his bow tie, discusses games with Mary, arrives at school, faces dress code issues, and enters his homeroom with curiosity and slight apprehension."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Sheldon ties his bow tie, expresses frustration with games, optimistically suggests starting a bow tie trend, bluntly comments on a pregnant girl, and prepares for his first day of high school. Mary drives him to school, reassures him, and expresses concern about his social adjustment."
+                "answer": "Sheldon ties his bow tie, discusses prime numbers, and observes his surroundings. Mary drives, advises him on social norms, and reassures him."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "Sheldon struggles with social conformity, particularly regarding his bow tie, and faces comments from peers. Mary is concerned about Sheldon being bullied and his ability to fit in socially."
+                "answer": "Sheldon struggles with fitting in socially, adhering to the dress code, and understanding social cues, while Mary worries about his adjustment."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "The main character is Sheldon Cooper, a highly intelligent but socially awkward boy. His journey involves preparing for his first day of high school, navigating social challenges, and expressing confidence in his intellect despite his mother's concerns."
+                "answer": "Sheldon Cooper is a highly intelligent but socially awkward boy starting high school. He is optimistic about his intellect but faces challenges fitting in."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Characters include Sheldon Cooper (young boy, wears a bow tie, intelligent, socially awkward, main character), Mary Cooper (Sheldon's mother, protective, supportive, concerned about his social adjustment), Missy Cooper (Sheldon's sister, negotiates with him, playful), and other unnamed students (comment on Sheldon's bow tie, represent social challenges)."
+                "answer": "Sheldon: young, wears a bow tie, intelligent, curious, socially awkward. Mary: motherly, protective, conservative, supportive. Other students: varied, represent social norms and challenges."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "Significant quotes include: 'Not really. I always lose.' (Sheldon), 'How about license plates with prime numbers followed by a constant?' (Mary), 'Are you crying or having an allergy attack?' (Sheldon), 'No, you won't.' (Unnamed girl)."
+                "answer": "\"Would you like to play a driving game?\" - Audio. \"I always lose.\" - Sheldon. \"How about license plates with prime numbers?\" - Mary. \"Are you crying or having an allergy attack?\" - Sheldon."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting includes a car, a rural highway, a school bus stop, and a high school hallway and classroom. The setting transitions from the car ride to the school, emphasizing Sheldon's journey and the challenges of adapting to a new environment."
+                "answer": "The setting transitions from a car to a school. The car symbolizes preparation and support, while the school represents new challenges and opportunities."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with scenes of a park, a street, and a countryside road, transitioning to Sheldon tying his bow tie in the car while his mother drives him to school. The tone is playful, with audio suggesting a driving game."
+                "answer": "The video begins with scenes of movement—park, street, countryside—accompanied by playful audio, setting a lighthearted tone as Sheldon prepares for school."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with Sheldon entering his homeroom, expressing excitement for learning, and abstract visuals featuring colors and shapes, suggesting a thematic or branding interlude."
+                "answer": "The video ends with Sheldon entering his homeroom, expressing excitement for learning, and a thematic interlude with abstract visuals."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include Sheldon's bow tie (appears in the car and throughout his interactions at school), the car (used for transportation), the school bus (at the bus stop), and a brown bag (likely Sheldon's lunch, seen in the hallway)."
+                "answer": "The bow tie symbolizes Sheldon's individuality and social challenges, appearing throughout his journey to school."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "Mary advises Sheldon that his intelligence might intimidate others, expressing concern about his social adjustment."
+                "answer": "\"Would you like to play a driving game?\""
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "Sheldon transitions from being in a car with his mother to walking through the school hallway and entering his homeroom, marking the start of his high school experience."
+                "answer": "Sheldon transitions from a car ride to entering his high school."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "A narrative-driven television show or series episode."
+                "answer": "A narrative scene about a young boy's first day of high school."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "The video explores Sheldon's transition to high school, highlighting his intellectual confidence, social challenges, and his mother's protective nature."
+                "answer": "To depict Sheldon's transition to high school and his social and intellectual challenges."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Playful (audio suggesting a driving game), Concerned (Mary's protective advice), Optimistic (Sheldon's confidence in his intellect), Awkward (Sheldon's blunt observations), Supportive (Mary's reassurance)."
+                "answer": "Playful (driving game audio), apprehensive (Sheldon's social concerns), supportive (Mary's reassurances), humorous (Sheldon's blunt comments)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "The relationship dynamics between Sheldon and Mary, Sheldon's background, and the significance of his intellectual abilities are assumed and would require knowledge of the show's premise."
+                "answer": "The significance of Sheldon's intellect and his relationship with his family."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Scenes include a rural road, a school bus, students in uniforms, Sheldon’s bow tie, Mary’s concerned expressions, and a pregnant girl in the hallway."
+                "answer": "A rural road, a school bus, Sheldon's bow tie, a pregnant girl, and abstract visuals with a \"subbie\" logo."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Audio includes playful driving game suggestions, music with explosion sounds, dialogue reflecting concern and humor, and Sheldon's scientific remarks."
+                "answer": "Driving game audio, music with explosion sounds, conversational tones, and Mary's prayer."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Yes, they are aligned. The visuals of Sheldon’s journey and interactions complement the audio themes of concern, humor, and optimism."
+                "answer": "They are mostly aligned, though the abstract visuals and \"subbie\" logo lack direct narrative connection."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visual cues include Sheldon's bow tie, the rural road, and the school hallway. Prominent audio cues include Mary’s advice, Sheldon's scientific remarks, and playful driving game suggestions."
+                "answer": "Visual: Sheldon's bow tie, rural settings, school hallway. Audio: Driving game suggestion, Mary's prayer, Sheldon's comments."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "The video contains live action with a brief abstract visual interlude featuring colors and shapes."
+                "answer": "Live action with abstract visuals and thematic interludes."
             },
             {
-                "question": "Additional predicted question 1?",
-                "answer": "Not explicitly stated."
+                "question": "What is the significance of the driving game audio?",
+                "answer": "It sets a playful and lighthearted tone, contrasting with Sheldon's serious demeanor."
             },
             {
-                "question": "Additional predicted question 2?",
-                "answer": "Not explicitly stated."
+                "question": "Why does Sheldon express frustration about the driving game?",
+                "answer": "He says, \"Not really. I always lose,\" indicating repeated failures and resignation."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
+                "question": "What does Mary suggest after discussing prime numbers?",
+                "answer": "She suggests they \"just talk,\" showing her desire for simpler, personal interaction."
             },
             {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
+                "question": "How does Sheldon view his intelligence in relation to others?",
+                "answer": "He optimistically wonders if others will recognize his intellect and make him their leader."
             },
             {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
+                "question": "What does Mary pray for regarding Sheldon?",
+                "answer": "She prays for him to be protected from bullying, specifically mentioning her fear of him being \"stuffed in a gym bag.\""
             },
             {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
+                "question": "What does Mary say about the boy with the tattoo?",
+                "answer": "She comments, \"Oh, dear. Yeah. That boy has an exposed tattoo,\" reflecting mild disapproval."
             },
             {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
+                "question": "How do students react to Sheldon's bow tie?",
+                "answer": "They note it violates the dress code and suggest he remove it."
             },
             {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
+                "question": "What advice does Mary give Sheldon about his bow tie?",
+                "answer": "She advises him to observe that other children are not wearing bow ties and encourages him to remove his."
             },
             {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
+                "question": "How does Sheldon respond to the suggestion of starting a bow tie trend?",
+                "answer": "He optimistically suggests it, but a girl dismisses the idea, saying, \"No, you won't.\""
             },
             {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
+                "question": "What does Sheldon negotiate with Missy about?",
+                "answer": "He offers to take her to Radio Shack if she agrees to \"take it off,\" likely referring to his bow tie."
             },
             {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
+                "question": "What does Sheldon say about the smell of ammonia in the hallway?",
+                "answer": "He comments on it, appreciating the cleanliness, showcasing his observational skills."
             },
             {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
+                "question": "What does Sheldon say upon seeing a pregnant girl?",
+                "answer": "He bluntly points her out to his mother, saying, \"Hey, Mom, look, that girl's pregnant. Congratulations.\""
             },
             {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
+                "question": "How does Sheldon humorously respond to Mary’s offer to accompany him into homeroom?",
+                "answer": "He says, \"No, although I could have used you in the restroom.\""
             },
             {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
+                "question": "What does Sheldon ask Mary about her emotional state?",
+                "answer": "He asks, \"Are you crying or having an allergy attack?\""
             },
             {
-                "question": "Additional predicted question 15?",
-                "answer": "Not explicitly stated."
+                "question": "What does Sheldon say as he transitions to the classroom?",
+                "answer": "He remarks, \"It's probably the ammonia. Probably. Okay, let the learning begin,\" reflecting his excitement for academics."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/Young Sheldon - First Day of High School.mp4/rag_embedding.json",
-        "context_count": 40,
+        "rag_path": "_processed\\Young Sheldon - First Day of High School.mp4/rag_embedding.json",
+        "context_count": 39,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }

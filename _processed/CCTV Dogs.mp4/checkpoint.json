@@ -1,43 +1,46 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/.CCTV Dogs.mp4",
+    "video_path": "Videos\\.CCTV Dogs.mp4",
     "video_length": "00:05:00.037",
-    "total_process_sec": 130.61512,
+    "total_process_sec": 126.91844,
     "scene_number": 16,
-    "start_process": "2026-03-06 21:44:07",
-    "end_process": "2026-03-06 21:46:08",
+    "start_process": "2026-03-12 00:41:39",
+    "end_process": "2026-03-12 00:42:04",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
-            "python_version": "3.10.19"
+            "os": "Windows 11",
+            "os_version": "10.0.26200",
+            "machine_type": "AMD64",
+            "hostname": "the-Kewl-Laptop",
+            "python_version": "3.12.1"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 16,
             "cpu_frequency_MHz": {
-                "current": 2200.186000000001,
+                "current": 2208.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2208.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 182.33,
-            "used_RAM_GB": 6.37,
-            "RAM_usage_percent": 3.4
+            "total_RAM_GB": 15.84,
+            "available_RAM_GB": 2.18,
+            "used_RAM_GB": 13.66,
+            "RAM_usage_percent": 86.3
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 74.9,
-            "disk_free_GB": 66.39,
-            "disk_usage_percent": 53.0
+            "disk_total_GB": 932.98,
+            "disk_used_GB": 533.27,
+            "disk_free_GB": 399.71,
+            "disk_usage_percent": 57.2
         },
         "gpu_info": {
-            "gpu_model": null
+            "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+            "gpu_memory_total_MB": 6144,
+            "gpu_memory_used_MB": 0,
+            "gpu_driver_version": "572.16"
         }
     },
     "params": {
@@ -1117,194 +1120,41 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 27.35318,
-            "cpu_time_sec": 0.06958,
-            "ram_before_MB": 1489,
-            "ram_after_MB": 1489,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.0,
-            "io_write_MB": 0.0078125,
+            "wall_time_sec": 8.90934,
+            "cpu_time_sec": 0.35938,
+            "ram_before_MB": 518,
+            "ram_after_MB": 526,
+            "ram_used_MB": 8,
+            "io_read_MB": 1.1889457702636719,
+            "io_write_MB": 0.008403778076171875,
             "gpu_before": [
                 {
                     "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
+                    "name": "NVIDIA GeForce GTX 1660 Ti",
+                    "memory_used_MB": 178,
+                    "memory_total_MB": 6144,
                     "gpu_util_percent": 0,
                     "mem_util_percent": 0
                 }
             ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 0.78291,
-            "cpu_time_sec": 0.20749,
-            "ram_before_MB": 1489,
-            "ram_after_MB": 1490,
-            "ram_used_MB": 1,
-            "io_read_MB": 0.0,
-            "io_write_MB": 1.78125,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 15.53007,
+            "cpu_time_sec": 10.48438,
+            "ram_before_MB": 526,
+            "ram_after_MB": 547,
+            "ram_used_MB": 21,
+            "io_read_MB": 3.4280128479003906,
+            "io_write_MB": 2.032107353210449,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -1603,102 +1453,73 @@
         }
     ],
     "synopsis": {
-        "chat_name": "Residential Scene Observations",
-        "summary": "The video depicts a quiet residential area with a house, backyard, and driveway, featuring sporadic appearances of a dog, a cat, and a man. The environment remains largely calm and uneventful, with minimal audio such as faint humming and occasional captions suggesting events that are not visually confirmed. The scenes include static views of parked cars, an open car door, and a small pond, with no significant interactions or activities taking place.",
+        "chat_name": "Quiet Residential Area",
+        "summary": "A calm and uneventful sequence unfolds in a residential setting featuring sporadic appearances of animals, a man, and parked cars, with faint audio hints and captions suggesting activity or tragedy, though no explicit evidence is shown.",
         "video_highlights": [
             {
-                "timestamp": "00:00:20",
-                "highlight": "A dog appears in the yard, introducing life to the setting with faint helicopter sounds in the background."
+                "start": "00:00:00.000",
+                "end": "00:00:20.000",
+                "highlight": "A quiet residential area transitions to life as a dog appears in the yard with faint helicopter sounds in the background."
             },
             {
-                "timestamp": "00:02:40",
-                "highlight": "A caption mentions a cat running through the yard with a camera on its head, but no visual or audio evidence supports this."
+                "start": "00:00:40.000",
+                "end": "00:01:20.000",
+                "highlight": "The car door opens, suggesting activity, while the dog briefly reappears in the yard amidst faint humming sounds and a caption hinting at tragedy."
             },
             {
-                "timestamp": "00:03:40",
-                "highlight": "A man appears in the foreground near a parked car, but there is no discernible activity."
+                "start": "00:02:40.000",
+                "end": "00:03:00.000",
+                "highlight": "A caption mentions a cat with a camera, followed by brief appearances of a cat and a dog in the backyard, with minimal audio and activity."
             },
             {
-                "timestamp": "00:04:20",
-                "highlight": "A man is standing with a small dog in the backyard, looking at the camera, with a parked car and another dog near a camera on the ground."
+                "start": "00:03:40.000",
+                "end": "00:04:20.000",
+                "highlight": "A man appears near a parked car, later seen standing with a dog in the backyard alongside a camera and another dog nearby."
+            },
+            {
+                "start": "00:04:40.000",
+                "end": "00:05:00.000",
+                "highlight": "A backyard with a pond and trees transitions to a driveway with two parked cars, maintaining a calm and uneventful atmosphere."
             }
         ],
         "video_timeline": [
             {
                 "timestamp": "00:00:00",
-                "event": "Quiet residential area"
+                "event": "Calm scene starts"
             },
             {
                 "timestamp": "00:00:20",
-                "event": "Dog appears in yard"
+                "event": "Dog appears briefly"
             },
             {
                 "timestamp": "00:00:40",
-                "event": "Car door is open"
+                "event": "Car drives by"
             },
             {
                 "timestamp": "00:01:20",
-                "event": "Caption mentions tragedy"
-            },
-            {
-                "timestamp": "00:02:00",
-                "event": "Dog near backyard fence"
-            },
-            {
-                "timestamp": "00:02:40",
-                "event": "Caption mentions cat running"
+                "event": "Tragedy unfolds"
             },
             {
                 "timestamp": "00:03:00",
-                "event": "Cat and dog briefly seen"
-            },
-            {
-                "timestamp": "00:03:40",
-                "event": "Man near parked car"
+                "event": "Cat enters frame"
             },
             {
                 "timestamp": "00:04:20",
-                "event": "Man with dog in yard"
-            },
-            {
-                "timestamp": "00:05:00",
-                "event": "Two parked cars visible"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "The opening scene establishes a calm residential area with no activity, setting the tone for the narrative."
-            },
-            {
-                "timestamp": "00:00:20",
-                "description": "A dog appears in the yard, introducing life to the setting, accompanied by faint helicopter sounds."
-            },
-            {
-                "timestamp": "00:01:20",
-                "description": "The backyard and driveway are shown again, with a caption hinting at a tragic event involving the dog, adding mystery to the narrative."
-            },
-            {
-                "timestamp": "00:03:00",
-                "description": "A cat briefly appears in the backyard, followed by a dog in front of the house, introducing subtle activity to the scene."
-            },
-            {
-                "timestamp": "00:04:20",
-                "description": "A man is seen with a dog in the backyard, transitioning to a house and parked car with cameras, suggesting a shift in focus."
+                "event": "Man walks in"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "The video depicts a quiet residential area with intermittent appearances of animals, a man, and parked cars. The environment remains calm and uneventful throughout."
+                "answer": "A quiet residential area is shown with occasional appearances of a dog, a cat, and a man, but no significant activity or interaction occurs."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Key events include the appearance of a dog in the yard, a caption mentioning a tragic event involving the dog, a caption about a cat running with a camera on its head, and a man standing with a dog near a camera."
+                "answer": "A dog and a cat briefly appear, a car door is seen open, and a man is shown standing with a dog. Captions suggest events, but they are not visually confirmed."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Key actions include the dog appearing in the yard, the cat briefly seen in the backyard, and the man standing with a dog near a camera. Specific actions are minimal and lack interaction."
+                "answer": "A dog and a cat move through the yard, a man stands with a dog, and a car door is left open, but no explicit actions are shown."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
@@ -1706,39 +1527,39 @@
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "The main character is not explicitly stated, but the dog appears most frequently, suggesting it might be central to the narrative. Its journey involves appearing in the yard and being near the house and driveway."
+                "answer": "Not explicitly stated."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Characters include a dog (small, frequently seen in the yard and driveway, possibly central to the story), a cat (briefly seen, mentioned with a camera on its head), and a man (seen standing near a dog and camera, role unclear)."
+                "answer": "A dog (small, active, appears multiple times), a cat (briefly seen, possibly with a camera), and a man (stands with a dog, no further details)."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "Significant quotes include captions: 'A tragic event involving the dog' and 'A cat running through the yard with a camera on its head.' The speaker is not explicitly stated."
+                "answer": "Not explicitly stated."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is a quiet residential area with a house, backyard, driveway, and parked cars. It remains static and calm throughout, serving as the backdrop for the minimal events involving the dog, cat, and man."
+                "answer": "A quiet residential area with a house, backyard, driveway, and parked cars. The setting remains static and calm, providing a backdrop for minimal activity."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts by showing a quiet residential area with no characters, animals, or sounds, establishing a calm and inactive environment."
+                "answer": "The video begins with a quiet residential area, showing a house, backyard, driveway, and a parked car with no characters or sounds."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with two parked cars visible in the driveway, no characters or animals present, and the environment remaining static and quiet."
+                "answer": "The video ends with two parked cars in a driveway, no characters or animals present, and the setting remaining static and quiet."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include parked cars (visible throughout the video), a camera (mentioned in captions and seen near a dog), and trash cans (visible at 00:01:40.000). These objects appear intermittently in the residential setting."
+                "answer": "A parked car with an open door (appears multiple times), a camera (mentioned in captions but not clearly shown), and trash cans (visible briefly)."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "A caption suggests a tragic event involving the dog, but no visual or audio evidence confirms this."
+                "answer": "A caption suggests a tragic event involving the dog, though no visual or audio evidence confirms this."
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "At the end, two parked cars are visible in the driveway, and no characters or animals are present, whereas at the beginning, the area was quiet and inactive with no cars or animals visible."
+                "answer": "The presence of a man, a small pond, and two parked cars in the driveway."
             },
             {
                 "question": "What type of video is this?",
@@ -1750,97 +1571,97 @@
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Calm: The environment is consistently quiet and uneventful. Mysterious: Captions hint at events (e.g., tragic event, cat with a camera) that are not visually or audibly confirmed."
+                "answer": "Calm: The environment remains quiet and uneventful throughout. Ambiguous: Captions hint at events without confirmation."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "The significance of the captions, the relevance of the faint helicopter sound, and the purpose of the camera on the cat or dog are missing and would require outside knowledge."
+                "answer": "The significance of the captions and the relevance of the faint sounds."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Quiet residential area, backyard garden, parked cars, open car doors, trash cans, trees, bushes, small pond, dog, cat, man standing near a car."
+                "answer": "A quiet residential area, a backyard, parked cars, a dog, a cat, a man, and a small pond."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Faint helicopter sound, faint humming sounds, faint mains hum, and periods of silence."
+                "answer": "Faint helicopter sound, mains hum, and otherwise minimal or silent audio."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "They are not fully aligned; captions suggest events (e.g., tragic event, cat with a camera) that are not visually or audibly confirmed."
+                "answer": "They are mostly aligned, though captions hint at events not visually or audibly confirmed."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visual cues: parked cars, open car doors, backyard, dog, cat, man. Prominent audio cues: faint humming sounds, faint mains hum, silence."
+                "answer": "Visual: Open car doors, animals, and a man. Audio: Faint hums and silence."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
+                "answer": "Live action."
+            },
+            {
+                "question": "What is the first sign of life in the narrative?",
+                "answer": "A dog appears in the yard at 00:00:20.000."
+            },
+            {
+                "question": "What suggests recent activity around the car?",
+                "answer": "The car in the driveway has an open door at 00:00:40.000."
+            },
+            {
+                "question": "What is mentioned about the dog in the caption at 00:01:20.000?",
+                "answer": "A caption suggests a tragic event involving the dog, but no visual or audio evidence confirms this."
+            },
+            {
+                "question": "What faint sound is heard in multiple scenes?",
+                "answer": "A faint mains hum is heard in several scenes."
+            },
+            {
+                "question": "Is there any visual evidence of the cat running with a camera on its head?",
+                "answer": "No, there is no visual or audio evidence of this."
+            },
+            {
+                "question": "What is the first appearance of a man in the narrative?",
+                "answer": "A man appears near a parked car at 00:03:40.000."
+            },
+            {
+                "question": "What is the significance of the camera mentioned at 00:04:20.000?",
+                "answer": "A parked car has a camera attached, and another camera is on the ground near a dog."
+            },
+            {
+                "question": "What is the environment like throughout the narrative?",
+                "answer": "The environment is consistently calm and uneventful."
+            },
+            {
+                "question": "What is shown in the final scene at 00:05:00.000?",
+                "answer": "Two parked cars are visible in a driveway, with no characters or animals present."
+            },
+            {
+                "question": "What is the first mention of a caption in the narrative?",
+                "answer": "A caption at 00:01:20.000 suggests a tragic event involving the dog."
+            },
+            {
+                "question": "Are there any interactions between the animals and the man?",
                 "answer": "Not explicitly stated."
             },
             {
-                "question": "Additional predicted question 1?",
+                "question": "What is the role of the faint helicopter sound?",
+                "answer": "Its relevance is unclear."
+            },
+            {
+                "question": "What is the significance of the small pond shown at 00:04:40.000?",
                 "answer": "Not explicitly stated."
             },
             {
-                "question": "Additional predicted question 2?",
-                "answer": "Not explicitly stated."
+                "question": "What is the first appearance of a cat in the narrative?",
+                "answer": "A cat is briefly seen in the backyard at 00:03:00.000."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 15?",
-                "answer": "Not explicitly stated."
+                "question": "What is the state of the audio in most scenes?",
+                "answer": "The audio is minimal or silent in most scenes."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/CCTV Dogs.mp4/rag_embedding.json",
-        "context_count": 21,
+        "rag_path": "_processed\\CCTV Dogs.mp4/rag_embedding.json",
+        "context_count": 20,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }

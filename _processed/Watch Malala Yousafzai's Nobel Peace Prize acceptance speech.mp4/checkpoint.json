@@ -1,43 +1,46 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
+    "video_path": "Videos\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
     "video_length": "00:04:33.473",
-    "total_process_sec": 107.56276,
+    "total_process_sec": 106.94825,
     "scene_number": 22,
-    "start_process": "2026-03-06 21:53:57",
-    "end_process": "2026-03-06 21:56:24",
+    "start_process": "2026-03-12 00:43:10",
+    "end_process": "2026-03-12 00:43:37",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
-            "python_version": "3.10.19"
+            "os": "Windows 11",
+            "os_version": "10.0.26200",
+            "machine_type": "AMD64",
+            "hostname": "the-Kewl-Laptop",
+            "python_version": "3.12.1"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 16,
             "cpu_frequency_MHz": {
-                "current": 2200.186000000001,
+                "current": 2208.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2208.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 182.47,
-            "used_RAM_GB": 6.24,
-            "RAM_usage_percent": 3.3
+            "total_RAM_GB": 15.84,
+            "available_RAM_GB": 2.6,
+            "used_RAM_GB": 13.24,
+            "RAM_usage_percent": 83.6
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 74.9,
-            "disk_free_GB": 66.39,
-            "disk_usage_percent": 53.0
+            "disk_total_GB": 932.98,
+            "disk_used_GB": 533.29,
+            "disk_free_GB": 399.69,
+            "disk_usage_percent": 57.2
         },
         "gpu_info": {
-            "gpu_model": null
+            "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+            "gpu_memory_total_MB": 6144,
+            "gpu_memory_used_MB": 0,
+            "gpu_driver_version": "572.16"
         }
     },
     "params": {
@@ -547,194 +550,41 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 26.34905,
-            "cpu_time_sec": 0.06518,
-            "ram_before_MB": 1643,
-            "ram_after_MB": 1643,
+            "wall_time_sec": 10.92824,
+            "cpu_time_sec": 0.03125,
+            "ram_before_MB": 559,
+            "ram_after_MB": 559,
             "ram_used_MB": 0,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.01171875,
+            "io_write_MB": 0.009307861328125,
             "gpu_before": [
                 {
                     "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
+                    "name": "NVIDIA GeForce GTX 1660 Ti",
+                    "memory_used_MB": 178,
+                    "memory_total_MB": 6144,
                     "gpu_util_percent": 0,
                     "mem_util_percent": 0
                 }
             ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 1.17373,
-            "cpu_time_sec": 0.25993,
-            "ram_before_MB": 1643,
-            "ram_after_MB": 1643,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.0,
-            "io_write_MB": 2.30078125,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 15.98003,
+            "cpu_time_sec": 12.79688,
+            "ram_before_MB": 559,
+            "ram_after_MB": 564,
+            "ram_used_MB": 5,
+            "io_read_MB": 0.7752056121826172,
+            "io_write_MB": 2.568117141723633,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -1861,244 +1711,215 @@
         }
     ],
     "synopsis": {
-        "chat_name": "Malala Nobel Speech Highlights",
-        "summary": "Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, expressing pride in being the youngest recipient and the first Pashtun and Pakistani to receive the award. She humorously mentions her family dynamics and emphasizes collaboration with Kailash Satyarthi, highlighting unity between India and Pakistan in advocating for children's rights. Malala shares personal anecdotes, reflects on her identity, and passionately calls for global action to end educational deprivation and promote equality and peace. The audience responds positively throughout, showcasing their admiration and support for her message.",
+        "chat_name": "Malala Nobel Speech",
+        "summary": "Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, emphasizing her pride as the youngest recipient, advocating for children's rights, education, and global unity, sharing personal anecdotes, and calling for action to end educational deprivation.",
         "video_highlights": [
             {
-                "timestamp": "00:00:00",
-                "highlight": "Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, expressing pride in being the youngest recipient and the first Pashtun and Pakistani to receive the award."
+                "start": "00:00:00.000",
+                "end": "00:00:15.883",
+                "highlight": "Malala expresses pride in being the youngest Nobel Peace Prize recipient, addressing a formal and attentive audience."
             },
             {
-                "timestamp": "00:00:28",
-                "highlight": "Malala humorously mentions her family, noting she still fights with her younger brothers despite advocating for global peace."
+                "start": "00:00:28.562",
+                "end": "00:00:52.185",
+                "highlight": "Malala humorously mentions her brothers, contrasting global peace with playful family conflicts."
             },
             {
-                "timestamp": "00:01:18",
-                "highlight": "Malala discusses unity between India and Pakistan, emphasizing collaboration to achieve children's rights."
+                "start": "00:00:56.590",
+                "end": "00:01:18.478",
+                "highlight": "Malala highlights collaboration with Kailash Satyarthi and unity between India and Pakistan for children's rights."
             },
             {
-                "timestamp": "00:03:24",
-                "highlight": "Malala delivers a powerful statement, urging global action to ensure no child is deprived of education again."
+                "start": "00:02:28.548",
+                "end": "00:03:24.337",
+                "highlight": "Malala passionately calls for action to end educational deprivation, urging global efforts for peace and equality."
+            },
+            {
+                "start": "00:03:36.750",
+                "end": "Not explicitly stated",
+                "highlight": "Malala reflects on perceptions of her identity, blending humor with determination to advocate for education and women's rights."
             }
         ],
         "video_timeline": [
             {
                 "timestamp": "00:00:00",
-                "event": "Malala begins speech"
-            },
-            {
-                "timestamp": "00:00:15",
-                "event": "Audience applauds achievement"
+                "event": "Acceptance"
             },
             {
                 "timestamp": "00:00:28",
-                "event": "Mentions family humorously"
+                "event": "Humor"
             },
             {
                 "timestamp": "00:00:56",
-                "event": "Acknowledges Kailash Satyarthi"
+                "event": "Gratitude"
             },
             {
                 "timestamp": "00:01:18",
-                "event": "Discusses India-Pakistan unity"
-            },
-            {
-                "timestamp": "00:01:33",
-                "event": "Concludes remarks on unity"
-            },
-            {
-                "timestamp": "00:01:42",
-                "event": "Shares anecdote about name"
+                "event": "Unity"
             },
             {
                 "timestamp": "00:02:28",
-                "event": "Calls for global action"
-            },
-            {
-                "timestamp": "00:03:24",
-                "event": "Powerful statement on education"
+                "event": "Action"
             },
             {
                 "timestamp": "00:03:36",
-                "event": "Reflects on public perception"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "Malala begins her Nobel Peace Prize acceptance speech, expressing pride as the youngest recipient and the first Pashtun and Pakistani to win the award."
-            },
-            {
-                "timestamp": "00:00:28.562",
-                "description": "Malala humorously mentions her brothers, contrasting her global message of peace with relatable family dynamics."
-            },
-            {
-                "timestamp": "00:01:18.478",
-                "description": "Malala discusses unity between India and Pakistan, highlighting collaboration for children's rights and inspiring the audience."
-            },
-            {
-                "timestamp": "00:02:28.548",
-                "description": "Malala passionately calls for action to end educational deprivation, urging global efforts for education and peace."
-            },
-            {
-                "timestamp": "00:03:24.337",
-                "description": "Malala delivers a powerful statement about ensuring no child is deprived of education, resonating deeply with the audience."
+                "event": "Reflection"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, emphasizing children's rights, global unity, and education advocacy while sharing personal anecdotes and expressing gratitude."
+                "answer": "Malala Yousafzai is delivering her Nobel Peace Prize acceptance speech, emphasizing children's rights, education, and global unity."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Malala delivers her speech, highlights her historic achievement, humorously mentions her family, acknowledges Kailash Satyarthi's contributions, discusses collaboration between India and Pakistan, shares personal anecdotes, and calls for action to end educational deprivation."
+                "answer": "Malala expresses pride in her achievements, shares personal anecdotes, highlights collaboration with Kailash Satyarthi, and calls for global action to end educational deprivation."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Malala delivers her speech, expresses gratitude, shares personal stories, advocates for children's rights, and calls for global action. The audience listens attentively and applauds in support of her message."
+                "answer": "Malala delivers a heartfelt speech, shares her experiences, and advocates for children's rights; the audience listens attentively and applauds."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "The main problem highlighted is the deprivation of education for children worldwide and the need for global unity to address this issue."
+                "answer": "The global issue of children's deprivation of education and the need for unity and action to address it."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "The main character is Malala Yousafzai. Her journey involves surviving a Taliban attack, becoming an advocate for children's rights and education, and receiving the Nobel Peace Prize for her efforts."
+                "answer": "Malala Yousafzai, a young advocate for education and peace, reflects on her achievements, shares personal stories, and calls for global change."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Malala Yousafzai: A young Pakistani woman, determined, humorous, and passionate advocate for children's rights. Kailash Satyarthi: Mentioned as an Indian activist for children's rights, respected for his long-standing efforts. Malala's brothers: Briefly mentioned as playful and part of her personal anecdotes. Audience: Supportive and attentive, applauding her speech."
+                "answer": "Malala Yousafzai: Young, determined, and eloquent advocate for education and peace. Kailash Satyarthi: Mentioned as a dedicated champion for children's rights. Malala's brothers: Referenced humorously as part of her personal anecdotes."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "1. 'I'm proud, well in fact I'm very proud, to be the first Pashtun, the first Pakistani, and the youngest person to receive this award.' - Malala Yousafzai. 2. 'It is not time to pity them. It is time to take action.' - Malala Yousafzai. 3. 'So it becomes the last time that we see a child deprived of education.' - Malala Yousafzai."
+                "answer": "\"It is not time to pity them. It is time to take action.\" - Malala. \"I'm proud that we can work together and show the world that an Indian and a Pakistani can work together.\" - Malala."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is a formal venue with a blue wall where Malala delivers her Nobel Peace Prize acceptance speech. It remains consistent throughout and underscores the significance of her achievement and message."
+                "answer": "The setting is a formal event with a blue wall backdrop, consistent throughout, emphasizing the significance of the Nobel Peace Prize ceremony."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with Malala delivering her Nobel Peace Prize acceptance speech, expressing pride in her achievements and gratitude for the recognition."
+                "answer": "Malala begins her speech by expressing pride in being the youngest Nobel Peace Prize recipient and the first Pashtun and Pakistani to receive the award."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with Malala reiterating her call to action to end educational deprivation and promote children's rights, followed by audience applause."
+                "answer": "Malala concludes with a call for unity and action to ensure education for all children, receiving applause from the audience."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "The central object is the podium from which Malala delivers her speech, appearing throughout the video."
+                "answer": "The podium is central throughout the speech, symbolizing Malala's platform for advocacy."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "Malala states, 'So it becomes the last time that we see a child deprived of education,' emphasizing her call to action for global change."
+                "answer": "\"So it becomes the last time that we see a child deprived of education.\""
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The speech transitions from Malala's personal achievements and anecdotes to a broader call to action for global education and unity."
+                "answer": "The speech transitions from personal achievements to a global call to action for children's education and unity."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "It is a formal speech video documenting Malala Yousafzai's Nobel Peace Prize acceptance speech."
+                "answer": "A formal speech at a Nobel Peace Prize ceremony."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "The video aims to advocate for children's rights, education, global unity, and peace while celebrating Malala's achievements and collaborative efforts."
+                "answer": "Advocacy for children's rights, education, global unity, and a call to action against educational deprivation."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Gratitude (expressing thanks for recognition and shared efforts), Determination (calling for action to end educational deprivation), Humor (lighthearted remarks about her family and personal anecdotes), Celebration (formal and appreciative atmosphere of the event)."
+                "answer": "Formal (ceremonial setting), inspirational (call to action), humorous (personal anecdotes), and reflective (gratitude and unity)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Details about Malala's background, her shooting by the Taliban, Kailash Satyarthi's work, and the significance of the Nobel Peace Prize are assumed and require outside knowledge."
+                "answer": "Details about Malala's backstory, Kailash Satyarthi's work, and the Nobel Peace Prize process."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Malala speaks at a podium in front of a blue wall, the audience is attentive and applauding, and the setting is formal and celebratory."
+                "answer": "Malala at a podium, blue wall backdrop, formal audience, and inconsistent captions."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Malala's voice is clear and expressive, blending seriousness with humor. Audience applause punctuates key moments, reflecting engagement and support."
+                "answer": "Malala's clear and passionate voice, audience applause, and occasional humor in her tone."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Yes, the visual and audio cues are aligned, with Malala's speech and the audience's reactions complementing the formal and celebratory atmosphere."
+                "answer": "They are aligned, with visuals complementing Malala's speech and audience reactions matching her tone."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visual cues include Malala at the podium and the audience's attentive demeanor. Prominent audio cues include Malala's speech delivery, applause, and moments of humor."
+                "answer": "Visual: Malala's presence at the podium, audience engagement. Audio: Applause, Malala's voice, and her humorous and serious remarks."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "The video contains live action, with no animation or special effects."
+                "answer": "Live action."
             },
             {
-                "question": "Additional predicted question 1?",
-                "answer": "Not explicitly stated."
+                "question": "What is Malala's tone during her Nobel Peace Prize speech?",
+                "answer": "Her tone is formal, reflective, and occasionally lighthearted, blending humor with determination."
             },
             {
-                "question": "Additional predicted question 2?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala say about her family during the speech?",
+                "answer": "She humorously mentions fighting with her younger brothers, contrasting it with her global message of peace."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
+                "question": "How does Malala describe her collaboration with Kailash Satyarthi?",
+                "answer": "She emphasizes their shared advocacy for children's rights and highlights their unity as an Indian and a Pakistani."
             },
             {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala say about her name?",
+                "answer": "She explains that her name means \"grief-stricken,\" but her grandfather called her \"the happiest girl in the world.\""
             },
             {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
+                "question": "What is Malala's message about India and Pakistan?",
+                "answer": "She expresses pride in showing that an Indian and a Pakistani can work together to achieve children's rights."
             },
             {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
+                "question": "How does the audience react to Malala's speech?",
+                "answer": "The audience frequently applauds, showing admiration and support for her message."
             },
             {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala say about the Nobel Prize she received?",
+                "answer": "She states that the prize represents the collective effort to advocate for children's rights, not just her individual achievement."
             },
             {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
+                "question": "What call to action does Malala make regarding education?",
+                "answer": "She urges action to ensure education for all children, declaring it is time to end educational deprivation."
             },
             {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala say about how people perceive her?",
+                "answer": "She mentions being labeled as \"the girl who was shot by the Taliban\" and \"a Nobel Laureate,\" but humorously adds her brother calls her \"that annoying bossy sister.\""
             },
             {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala highlight about Kailash Satyarthi's work?",
+                "answer": "She notes that his advocacy for children's rights has spanned twice as long as she has been alive."
             },
             {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala say about global peace?",
+                "answer": "She reiterates her desire for peace everywhere, humorously contrasting it with her playful conflicts with her brothers."
             },
             {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala say about the struggles of children worldwide?",
+                "answer": "She emphasizes that the Nobel Prize represents their struggles and calls for action to address them."
             },
             {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala say about the last time a child is deprived of education?",
+                "answer": "She passionately declares, \"So it becomes the last time that we see a child deprived of education.\""
             },
             {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
+                "question": "What does Malala say about her mission?",
+                "answer": "She reaffirms her commitment to ensuring quality education for all children, advocating for women's rights, and promoting global peace."
             },
             {
-                "question": "Additional predicted question 15?",
-                "answer": "Not explicitly stated."
+                "question": "What is the atmosphere during Malala's speech?",
+                "answer": "The atmosphere is formal, celebratory, and supportive, with the audience responding positively to her remarks."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4/rag_embedding.json",
-        "context_count": 27,
+        "rag_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4/rag_embedding.json",
+        "context_count": 26,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }
