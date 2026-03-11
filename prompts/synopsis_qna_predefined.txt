@@ -1,16 +1,12 @@
 You are a story detective.
 Answer the required questions using the narrative only.
 
-Return ONE valid JSON object only. No markdown, no extra text.
-Use this exact schema:
-{{
-  "questions": [
-    {{ "question": "Question text", "answer": "Answer text" }}
-  ]
-}}
+Return exactly {required_questions_count} lines in this format:
+<question> | <answer>
 
 Rules:
-- Return exactly {required_questions_count} items.
+- No JSON, no markdown, no bullets, no numbering, no extra text.
+- Do not include the '|' character in the question or answer.
 - Questions must be the required questions below in exact order and wording.
 - Use only the narrative text.
 - If a detail is missing, answer "Not explicitly stated."

@@ -117,6 +117,211 @@ def _parse_synopsis_json(text: str, debug: bool = False) -> dict:
     return obj
 
 
+def _parse_pipe_pairs(text: str) -> list[tuple[str, str]]:
+    if not isinstance(text, str):
+        return []
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    pairs = []
+    for line in lines:
+        if "|" not in line:
+            continue
+        left, right = line.split("|", 1)
+        left = left.strip()
+        right = right.strip()
+        if not left and not right:
+            continue
+        pairs.append((left, right))
+    return pairs
+
+
+def _parse_qna_pairs(text: str) -> list[tuple[str, str]]:
+    pairs = _parse_pipe_pairs(text)
+    if pairs:
+        return pairs
+    if not isinstance(text, str):
+        return []
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    current_question = None
+    for line in lines:
+        inline = re.match(r"^\s*q(uestion)?\s*[:\-]\s*(.+?)\s+a(nswer)?\s*[:\-]\s*(.+)$", line, re.IGNORECASE)
+        if inline:
+            q_text = inline.group(2).strip()
+            a_text = inline.group(4).strip()
+            if q_text or a_text:
+                pairs.append((q_text, a_text))
+            current_question = None
+            continue
+        q_match = re.match(r"^\s*q(uestion)?\s*[:\-]\s*(.+)$", line, re.IGNORECASE)
+        if q_match:
+            current_question = q_match.group(2).strip()
+            continue
+        a_match = re.match(r"^\s*a(nswer)?\s*[:\-]\s*(.+)$", line, re.IGNORECASE)
+        if a_match and current_question:
+            answer = a_match.group(2).strip()
+            pairs.append((current_question, answer))
+            current_question = None
+    return pairs
+
+
+def _parse_summary_nonjson(text: str) -> tuple[dict, bool]:
+    pairs = _parse_pipe_pairs(text)
+    if not pairs:
+        return {}, False
+    chat_name, summary = pairs[0]
+    if not chat_name or not summary:
+        return {}, False
+    return {"chat_name": chat_name, "summary": summary}, True
+
+
+def _parse_items_nonjson(text: str, key: str, text_key: str, expected_count: int) -> tuple[dict, bool]:
+    pairs = _parse_pipe_pairs(text)
+    ok = len(pairs) >= expected_count
+    items = []
+    for left, right in pairs[:expected_count]:
+        ts = left.strip() if left else "Not explicitly stated"
+        value = right.strip() if right else "Not explicitly stated."
+        if not ts:
+            ts = "Not explicitly stated"
+        if not value:
+            value = "Not explicitly stated."
+        items.append({"timestamp": ts, text_key: value})
+    return {key: items}, ok
+
+
+def _parse_questions_nonjson(text: str, expected_count: int) -> tuple[dict, bool]:
+    pairs = _parse_qna_pairs(text)
+    ok = len(pairs) >= expected_count
+    questions = []
+    for left, right in pairs[:expected_count]:
+        question = _clean_question_text(left) if left else ""
+        if not question:
+            question = "Not explicitly stated"
+        answer = right.strip() if right else "Not explicitly stated."
+        if not answer:
+            answer = "Not explicitly stated."
+        questions.append({"question": question, "answer": answer})
+    return {"questions": questions}, ok
+
+
+def _validate_summary_payload(payload: dict) -> bool:
+    return (
+        isinstance(payload, dict)
+        and isinstance(payload.get("chat_name"), str)
+        and isinstance(payload.get("summary"), str)
+    )
+
+
+def _validate_items_payload(payload: dict, key: str, expected_count: int) -> bool:
+    if not isinstance(payload, dict):
+        return False
+    items = payload.get(key)
+    return isinstance(items, list) and len(items) >= expected_count
+
+
+def _validate_questions_payload(payload: dict, expected_count: int) -> bool:
+    questions = _extract_questions(payload)
+    return len(questions) >= expected_count
+
+
+def _build_repair_prompt(
+    section: str,
+    raw_text: str,
+    highlights_count: int,
+    timeline_count: int,
+    clips_count: int,
+    required_questions_block: str,
+    required_questions_count: int,
+    extra_questions_count: int,
+) -> str:
+    header = (
+        "You are a strict JSON reformatter.\n"
+        "Convert the RAW OUTPUT into ONE valid JSON object only.\n"
+        "No markdown, no extra text.\n"
+        "If information is missing, use \"Not explicitly stated.\".\n"
+    )
+    if section == "summary":
+        schema = (
+            "Use this exact schema and key names:\n"
+            '{ "chat_name": "3-5 word title", "summary": "Single coherent paragraph." }\n'
+            "Rules:\n"
+            "- If chat_name or summary is missing, set it to \"Not explicitly stated.\".\n"
+        )
+    elif section == "highlights":
+        schema = (
+            "Use this exact schema and key names:\n"
+            '{ "video_highlights": [ { "timestamp": "00:00:00", "highlight": "One sentence highlight." } ] }\n'
+            "Rules:\n"
+            f"- \"video_highlights\" must contain exactly {highlights_count} items.\n"
+        )
+    elif section == "timeline":
+        schema = (
+            "Use this exact schema and key names:\n"
+            '{ "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ] }\n'
+            "Rules:\n"
+            f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
+        )
+    elif section == "clips":
+        schema = (
+            "Use this exact schema and key names:\n"
+            '{ "suggested_clips": [ { "timestamp": "00:00:00", "description": "Two sentences about significance of the clip" } ] }\n'
+            "Rules:\n"
+            f"- \"suggested_clips\" must contain exactly {clips_count} items.\n"
+        )
+    elif section == "qna_predefined":
+        schema = (
+            "Use this exact schema and key names:\n"
+            '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
+            "Rules:\n"
+            f"- Include exactly {required_questions_count} items.\n"
+            "- Questions must be the required questions below in exact order.\n"
+            "Required Questions:\n"
+            f"{required_questions_block}\n"
+        )
+    elif section == "qna_generated":
+        schema = (
+            "Use this exact schema and key names:\n"
+            '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
+            "Rules:\n"
+            f"- Include exactly {extra_questions_count} items.\n"
+            "- Do not repeat required questions (they are answered elsewhere).\n"
+            "- If not enough items, add placeholder questions like \"Additional predicted question N?\".\n"
+        )
+    else:
+        schema = "Use a JSON object.\n"
+    return (
+        header
+        + schema
+        + "RAW OUTPUT:\n"
+        + (raw_text or "")
+    )
+
+
+def _build_generated_fill_prompt(
+    narrative_text: str,
+    existing_questions: list[str],
+    missing_count: int,
+) -> str:
+    existing_block = "\n".join([f"- {q}" for q in existing_questions]) if existing_questions else "None"
+    return (
+        "You are a story detective.\n"
+        "Generate additional user-likely questions and answer them from the narrative.\n"
+        "Return ONE valid JSON object only. No markdown, no extra text.\n"
+        "Use this exact schema:\n"
+        '{ "questions": [ { "question": "Question text", "answer": "Answer text" } ] }\n'
+        "Rules:\n"
+        f"- Return exactly {missing_count} items.\n"
+        "- Do not repeat or paraphrase any required questions (they are answered elsewhere).\n"
+        "- Do not repeat or paraphrase any existing questions below.\n"
+        "- Keep generated questions concrete and useful.\n"
+        "- Use only the narrative text.\n"
+        "- If a detail is missing, answer \"Not explicitly stated.\".\n"
+        "Existing Generated Questions (do not repeat):\n"
+        f"{existing_block}\n"
+        "INPUT NARRATIVE:\n"
+        f"{narrative_text}\n"
+    )
+
+
 def _timecode_to_seconds(timecode: str | None):
     if not timecode or not isinstance(timecode, str):
         return None
@@ -413,8 +618,16 @@ def _normalize_predefined_questions(questions: list[dict], required_questions: l
     return normalized
 
 
-def _normalize_generated_questions(questions: list[dict], required_questions: list[str], extra_count: int) -> list[dict]:
+def _normalize_generated_questions(
+    questions: list[dict],
+    required_questions: list[str],
+    extra_count: int,
+    pad: bool = True,
+    exclude_questions: list[str] | None = None,
+) -> list[dict]:
     required_set = {_normalize_question_key(q) for q in required_questions}
+    if exclude_questions:
+        required_set.update({_normalize_question_key(q) for q in exclude_questions})
     seen = set()
     normalized = []
     for qa in questions:
@@ -435,12 +648,13 @@ def _normalize_generated_questions(questions: list[dict], required_questions: li
         })
         if len(normalized) >= extra_count:
             break
-    while len(normalized) < extra_count:
-        idx = len(normalized) + 1
-        normalized.append({
-            "question": f"Additional predicted question {idx}?",
-            "answer": "Not explicitly stated.",
-        })
+    if pad:
+        while len(normalized) < extra_count:
+            idx = len(normalized) + 1
+            normalized.append({
+                "question": f"Additional predicted question {idx}?",
+                "answer": "Not explicitly stated.",
+            })
     return normalized
 
 
@@ -709,7 +923,7 @@ def _build_safe_section_prompt(
             '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
             "Rules:\n"
             f"- Add exactly {extra_questions_count} additional questions (not in required list).\n"
-            "- Do not repeat required questions.\n"
+            "- Do not repeat required questions (they are answered elsewhere).\n"
             "- Use only the narrative.\n"
         )
     elif section == "qna_legacy":
@@ -1041,6 +1255,7 @@ def synthesize_synopsis(
     timeline_count: int = TIMELINE_COUNT,
     clips_count: int = CLIPS_COUNT,
     extra_questions_count: int = EXTRA_QUESTIONS_COUNT,
+    consistency_pass_mode: str = "off",
 ):
     """
     Produce a final synopsis + Q&A from the narrative.
@@ -1148,26 +1363,182 @@ def synthesize_synopsis(
             except Exception as exc:
                 _debug_print(debug, f"synthesize_synopsis: section '{name}' call failed: {exc}")
 
-    summary_payload = _parse_json_object(raw_outputs.get("summary"), debug=debug, context="summary")
-    highlights_payload = _parse_json_object(raw_outputs.get("highlights"), debug=debug, context="highlights")
-    timeline_payload = _parse_json_object(raw_outputs.get("timeline"), debug=debug, context="timeline")
-    clips_payload = _parse_json_object(raw_outputs.get("clips"), debug=debug, context="clips")
-    qna_predefined_a_payload = _parse_json_object(raw_outputs.get("qna_predefined_a"), debug=debug, context="qna_predefined_a")
-    qna_predefined_b_payload = _parse_json_object(raw_outputs.get("qna_predefined_b"), debug=debug, context="qna_predefined_b")
-    qna_generated_payload = _parse_json_object(raw_outputs.get("qna_generated"), debug=debug, context="qna_generated")
 
-    missing_base_sections = any(
-        not isinstance(raw_outputs.get(key), str) or not raw_outputs.get(key, "").strip()
-        for key in ("summary", "highlights", "timeline", "clips")
+    had_errors = False
+
+    summary_text = raw_outputs.get("summary", "")
+    summary_payload, summary_ok = _parse_summary_nonjson(summary_text)
+    if not summary_ok:
+        json_payload = _parse_json_object(summary_text, debug=debug, context="summary_json_fallback")
+        if _validate_summary_payload(json_payload):
+            summary_payload = json_payload
+            summary_ok = True
+
+    highlights_text = raw_outputs.get("highlights", "")
+    highlights_payload, highlights_ok = _parse_items_nonjson(
+        highlights_text,
+        "video_highlights",
+        "highlight",
+        highlights_count,
     )
-    base_payload_invalid = (
-        not isinstance(summary_payload.get("summary"), str)
-        or not isinstance(highlights_payload.get("video_highlights"), list)
-        or not isinstance(timeline_payload.get("video_timeline"), list)
-        or not isinstance(clips_payload.get("suggested_clips"), list)
+    if not highlights_ok:
+        json_payload = _parse_json_object(highlights_text, debug=debug, context="highlights_json_fallback")
+        if _validate_items_payload(json_payload, "video_highlights", highlights_count):
+            highlights_payload = json_payload
+            highlights_ok = True
+
+    timeline_text = raw_outputs.get("timeline", "")
+    timeline_payload, timeline_ok = _parse_items_nonjson(
+        timeline_text,
+        "video_timeline",
+        "event",
+        timeline_count,
     )
-    missing_base_sections = missing_base_sections or base_payload_invalid
-    if missing_base_sections:
+    if not timeline_ok:
+        json_payload = _parse_json_object(timeline_text, debug=debug, context="timeline_json_fallback")
+        if _validate_items_payload(json_payload, "video_timeline", timeline_count):
+            timeline_payload = json_payload
+            timeline_ok = True
+
+    clips_text = raw_outputs.get("clips", "")
+    clips_payload, clips_ok = _parse_items_nonjson(
+        clips_text,
+        "suggested_clips",
+        "description",
+        clips_count,
+    )
+    if not clips_ok:
+        json_payload = _parse_json_object(clips_text, debug=debug, context="clips_json_fallback")
+        if _validate_items_payload(json_payload, "suggested_clips", clips_count):
+            clips_payload = json_payload
+            clips_ok = True
+
+    qna_predefined_a_text = raw_outputs.get("qna_predefined_a", "")
+    qna_predefined_a_payload, qna_predefined_a_ok = _parse_questions_nonjson(
+        qna_predefined_a_text,
+        len(required_questions_a),
+    )
+    if not qna_predefined_a_ok:
+        json_payload = _parse_json_object(qna_predefined_a_text, debug=debug, context="qna_predefined_a_json_fallback")
+        if _validate_questions_payload(json_payload, len(required_questions_a)):
+            qna_predefined_a_payload = json_payload
+            qna_predefined_a_ok = True
+
+    qna_predefined_b_text = raw_outputs.get("qna_predefined_b", "")
+    qna_predefined_b_payload, qna_predefined_b_ok = _parse_questions_nonjson(
+        qna_predefined_b_text,
+        len(required_questions_b),
+    )
+    if not qna_predefined_b_ok:
+        json_payload = _parse_json_object(qna_predefined_b_text, debug=debug, context="qna_predefined_b_json_fallback")
+        if _validate_questions_payload(json_payload, len(required_questions_b)):
+            qna_predefined_b_payload = json_payload
+            qna_predefined_b_ok = True
+
+    qna_generated_text = raw_outputs.get("qna_generated", "")
+    qna_generated_payload, qna_generated_ok = _parse_questions_nonjson(
+        qna_generated_text,
+        extra_questions_count,
+    )
+    if not qna_generated_ok:
+        json_payload = _parse_json_object(qna_generated_text, debug=debug, context="qna_generated_json_fallback")
+        if _validate_questions_payload(json_payload, extra_questions_count):
+            qna_generated_payload = json_payload
+            qna_generated_ok = True
+
+    repair_requests = {}
+    if not summary_ok:
+        repair_requests["summary"] = summary_text
+    if not highlights_ok:
+        repair_requests["highlights"] = highlights_text
+    if not timeline_ok:
+        repair_requests["timeline"] = timeline_text
+    if not clips_ok:
+        repair_requests["clips"] = clips_text
+    if not qna_predefined_a_ok:
+        repair_requests["qna_predefined_a"] = qna_predefined_a_text
+    if not qna_predefined_b_ok:
+        repair_requests["qna_predefined_b"] = qna_predefined_b_text
+    if not qna_generated_ok:
+        repair_requests["qna_generated"] = qna_generated_text
+
+    if repair_requests:
+        had_errors = True
+
+        def _repair_task(name: str, raw_text: str):
+            section = "qna_predefined" if name.startswith("qna_predefined_") else name
+            required_block = (
+                required_block_a if name == "qna_predefined_a"
+                else required_block_b if name == "qna_predefined_b"
+                else required_block
+            )
+            required_count = (
+                len(required_questions_a) if name == "qna_predefined_a"
+                else len(required_questions_b) if name == "qna_predefined_b"
+                else len(REQUIRED_QUESTIONS)
+            )
+            prompt = _build_repair_prompt(
+                section=section,
+                raw_text=raw_text,
+                highlights_count=highlights_count,
+                timeline_count=timeline_count,
+                clips_count=clips_count,
+                required_questions_block=required_block,
+                required_questions_count=required_count,
+                extra_questions_count=extra_questions_count,
+            )
+            if debug:
+                _debug_print(debug, f"synopsis {name} parse failed, repairing")
+            fallback_by_name = {
+                "summary": '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated."}',
+                "highlights": '{"video_highlights":[]}',
+                "timeline": '{"video_timeline":[]}',
+                "clips": '{"suggested_clips":[]}',
+                "qna_predefined_a": '{"questions":[]}',
+                "qna_predefined_b": '{"questions":[]}',
+                "qna_generated": '{"questions":[]}',
+            }
+            text = call_gpt_safe(
+                client,
+                deployment,
+                prompt=prompt,
+                fallback_text=fallback_by_name.get(name, "{}"),
+                debug=debug,
+                context=f"synthesize_synopsis:repair:{name}",
+                raw_fallback=fallback_by_name.get(name, "{}"),
+            )
+            return name, text
+
+        with ThreadPoolExecutor(max_workers=min(6, len(repair_requests))) as executor:
+            futures = [executor.submit(_repair_task, name, raw_text) for name, raw_text in repair_requests.items()]
+            for future in as_completed(futures):
+                name, text = future.result()
+                payload = _parse_json_object(text, debug=debug, context=f"{name}_repair")
+                if name == "summary" and _validate_summary_payload(payload):
+                    summary_payload = payload
+                    summary_ok = True
+                elif name == "highlights" and _validate_items_payload(payload, "video_highlights", highlights_count):
+                    highlights_payload = payload
+                    highlights_ok = True
+                elif name == "timeline" and _validate_items_payload(payload, "video_timeline", timeline_count):
+                    timeline_payload = payload
+                    timeline_ok = True
+                elif name == "clips" and _validate_items_payload(payload, "suggested_clips", clips_count):
+                    clips_payload = payload
+                    clips_ok = True
+                elif name == "qna_predefined_a" and _validate_questions_payload(payload, len(required_questions_a)):
+                    qna_predefined_a_payload = payload
+                    qna_predefined_a_ok = True
+                elif name == "qna_predefined_b" and _validate_questions_payload(payload, len(required_questions_b)):
+                    qna_predefined_b_payload = payload
+                    qna_predefined_b_ok = True
+                elif name == "qna_generated" and _validate_questions_payload(payload, extra_questions_count):
+                    qna_generated_payload = payload
+                    qna_generated_ok = True
+
+    base_ok = summary_ok and highlights_ok and timeline_ok and clips_ok
+    if not base_ok:
+        had_errors = True
         _debug_print(debug, "synthesize_synopsis: falling back to monolithic synopsis for base sections")
         monolith_fallback = '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated.","video_highlights":[],"video_timeline":[],"suggested_clips":[]}'
         synopsis_text = call_gpt_safe(
@@ -1198,6 +1569,7 @@ def synthesize_synopsis(
         highlights_payload = {"video_highlights": monolith.get("video_highlights", [])}
         timeline_payload = {"video_timeline": monolith.get("video_timeline", [])}
         clips_payload = {"suggested_clips": monolith.get("suggested_clips", [])}
+        summary_ok = highlights_ok = timeline_ok = clips_ok = True
 
     chat_name, summary = _normalize_summary_fields(summary_payload)
     video_highlights = _normalize_section_items(highlights_payload, "video_highlights", "highlight", highlights_count)
@@ -1215,10 +1587,54 @@ def synthesize_synopsis(
         _extract_questions(qna_generated_payload),
         REQUIRED_QUESTIONS,
         extra_questions_count,
+        pad=False,
     )
+    missing_generated = extra_questions_count - len(generated_questions)
+    if missing_generated > 0:
+        had_errors = True
+        existing_generated_questions = [
+            q.get("question") for q in generated_questions
+            if isinstance(q, dict) and isinstance(q.get("question"), str)
+        ]
+        fill_prompt = _build_generated_fill_prompt(
+            narrative_text=narrative_text,
+            existing_questions=existing_generated_questions,
+            missing_count=missing_generated,
+        )
+        fill_text = call_gpt_safe(
+            client,
+            deployment,
+            prompt=fill_prompt,
+            fallback_text='{"questions":[]}',
+            debug=debug,
+            context="synthesize_synopsis:fill_generated",
+            raw_fallback='{"questions":[]}',
+        )
+        fill_payload = _parse_json_object(fill_text, debug=debug, context="qna_generated_fill")
+        fill_questions = _normalize_generated_questions(
+            _extract_questions(fill_payload),
+            REQUIRED_QUESTIONS,
+            missing_generated,
+            pad=False,
+            exclude_questions=existing_generated_questions,
+        )
+        generated_questions.extend(fill_questions)
+        missing_generated = extra_questions_count - len(generated_questions)
+        if missing_generated > 0:
+            if debug:
+                _debug_print(debug, "synthesize_synopsis: generated questions still short, padding placeholders")
+            while len(generated_questions) < extra_questions_count:
+                idx = len(generated_questions) + 1
+                generated_questions.append({
+                    "question": f"Additional predicted question {idx}?",
+                    "answer": "Not explicitly stated.",
+                })
     questions = predefined_questions + generated_questions
     required_total = len(REQUIRED_QUESTIONS) + extra_questions_count
+    questions_fallback_used = False
     if _count_questions(questions) < required_total:
+        had_errors = True
+        questions_fallback_used = True
         _debug_print(debug, "synthesize_synopsis: retrying legacy questions prompt")
         questions_fallback = '{"questions":[]}'
         questions_prompt = _build_questions_prompt(
@@ -1263,49 +1679,52 @@ def synthesize_synopsis(
     }
 
     synopsis_json = draft_synopsis
-    try:
-        consistency_prompt = SYNOPSIS_CONSISTENCY_PROMPT.format(
-            text=narrative_text,
-            draft_json=json.dumps(draft_synopsis, ensure_ascii=False),
-            highlights_count=highlights_count,
-            timeline_count=timeline_count,
-            clips_count=clips_count,
-            required_questions_count=len(REQUIRED_QUESTIONS),
-            extra_questions_count=extra_questions_count,
-            required_questions_block=required_block,
-        )
-        consistency_text = call_gpt_safe(
-            client,
-            deployment,
-            consistency_prompt,
-            fallback_text=json.dumps(draft_synopsis, ensure_ascii=False),
-            debug=debug,
-            context="synthesize_synopsis:consistency_pass",
-            safe_prompt=(
-                "Return ONE valid JSON object only. No markdown, no extra text.\n"
-                "Return the JSON below exactly as-is, with no changes:\n"
-                f"{json.dumps(draft_synopsis, ensure_ascii=False)}"
-            ),
-            raw_fallback=json.dumps(draft_synopsis, ensure_ascii=False),
-        )
-        consistency_payload = _parse_synopsis_json(consistency_text, debug=debug)
-        c_chat_name, c_summary = _normalize_summary_fields(consistency_payload)
-        c_highlights = _normalize_section_items(consistency_payload, "video_highlights", "highlight", highlights_count)
-        c_timeline = _normalize_section_items(consistency_payload, "video_timeline", "event", timeline_count)
-        c_clips = _normalize_section_items(consistency_payload, "suggested_clips", "description", clips_count)
-        c_questions = _extract_questions(consistency_payload)
-        c_predefined = _normalize_predefined_questions(c_questions, REQUIRED_QUESTIONS)
-        c_generated = _normalize_generated_questions(c_questions, REQUIRED_QUESTIONS, extra_questions_count)
-        synopsis_json = {
-            "chat_name": c_chat_name,
-            "summary": c_summary,
-            "video_highlights": c_highlights,
-            "video_timeline": c_timeline,
-            "suggested_clips": c_clips,
-            "questions": c_predefined + c_generated,
-        }
-    except Exception as exc:
-        _debug_print(debug, f"synthesize_synopsis: consistency pass failed: {exc}")
+    mode = (consistency_pass_mode or "off").lower()
+    do_consistency = mode == "always" or (mode == "on_error" and had_errors)
+    if do_consistency:
+        try:
+            consistency_prompt = SYNOPSIS_CONSISTENCY_PROMPT.format(
+                text=narrative_text,
+                draft_json=json.dumps(draft_synopsis, ensure_ascii=False),
+                highlights_count=highlights_count,
+                timeline_count=timeline_count,
+                clips_count=clips_count,
+                required_questions_count=len(REQUIRED_QUESTIONS),
+                extra_questions_count=extra_questions_count,
+                required_questions_block=required_block,
+            )
+            consistency_text = call_gpt_safe(
+                client,
+                deployment,
+                consistency_prompt,
+                fallback_text=json.dumps(draft_synopsis, ensure_ascii=False),
+                debug=debug,
+                context="synthesize_synopsis:consistency_pass",
+                safe_prompt=(
+                    "Return ONE valid JSON object only. No markdown, no extra text.\n"
+                    "Return the JSON below exactly as-is, with no changes:\n"
+                    f"{json.dumps(draft_synopsis, ensure_ascii=False)}"
+                ),
+                raw_fallback=json.dumps(draft_synopsis, ensure_ascii=False),
+            )
+            consistency_payload = _parse_synopsis_json(consistency_text, debug=debug)
+            c_chat_name, c_summary = _normalize_summary_fields(consistency_payload)
+            c_highlights = _normalize_section_items(consistency_payload, "video_highlights", "highlight", highlights_count)
+            c_timeline = _normalize_section_items(consistency_payload, "video_timeline", "event", timeline_count)
+            c_clips = _normalize_section_items(consistency_payload, "suggested_clips", "description", clips_count)
+            c_questions = _extract_questions(consistency_payload)
+            c_predefined = _normalize_predefined_questions(c_questions, REQUIRED_QUESTIONS)
+            c_generated = _normalize_generated_questions(c_questions, REQUIRED_QUESTIONS, extra_questions_count)
+            synopsis_json = {
+                "chat_name": c_chat_name,
+                "summary": c_summary,
+                "video_highlights": c_highlights,
+                "video_timeline": c_timeline,
+                "suggested_clips": c_clips,
+                "questions": c_predefined + c_generated,
+            }
+        except Exception as exc:
+            _debug_print(debug, f"synthesize_synopsis: consistency pass failed: {exc}")
 
     synopsis_text = json.dumps(synopsis_json, ensure_ascii=False)
     synopsis_md = render_synopsis_markdown(

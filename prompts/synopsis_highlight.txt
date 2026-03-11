@@ -1,16 +1,12 @@
 You are a story detective.
 Given the video narrative, produce highlights.
 
-Return ONE valid JSON object only. No markdown, no extra text.
-Use this exact schema:
-{{
-  "video_highlights": [
-    {{ "timestamp": "00:00:00", "highlight": "One sentence highlight." }}
-  ]
-}}
+Return exactly {highlights_count} lines in this format:
+<timestamp> | <highlight>
 
 Rules:
-- Return exactly {highlights_count} items.
+- No JSON, no markdown, no bullets, no numbering, no extra text.
+- Do not include the '|' character in the timestamp or highlight.
 - Keep narrative order.
 - Use only the narrative text.
 - If timestamp is missing, set it to "Not explicitly stated".
