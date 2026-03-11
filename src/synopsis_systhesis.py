@@ -18,7 +18,6 @@ GPT_MAX_RETRIES = 6
 GPT_RETRY_BASE_SEC = 2.0
 HIGHLIGHTS_COUNT = 4
 TIMELINE_COUNT = 10
-CLIPS_COUNT = 5
 EXTRA_QUESTIONS_COUNT = 15
 REQUIRED_QUESTIONS = [
     "What is happening in the video?",
@@ -77,7 +76,6 @@ def _parse_synopsis_json(text: str, debug: bool = False) -> dict:
             "summary": "",
             "video_highlights": [],
             "video_timeline": [],
-            "suggested_clips": [],
             "questions": [],
             "parse_error": "Synopsis output was not a string",
         }
@@ -99,18 +97,16 @@ def _parse_synopsis_json(text: str, debug: bool = False) -> dict:
                 "chat_name": "Not explicitly stated",
                 "summary": text.strip(),
                 "video_highlights": [],
-                "video_timeline": [],
-                "suggested_clips": [],
-                "questions": [],
-                "parse_error": "Invalid JSON from model",
-            }
+            "video_timeline": [],
+            "questions": [],
+            "parse_error": "Invalid JSON from model",
+        }
     if not isinstance(obj, dict):
         return {
             "chat_name": "Not explicitly stated",
             "summary": text.strip(),
             "video_highlights": [],
             "video_timeline": [],
-            "suggested_clips": [],
             "questions": [],
             "parse_error": "JSON root was not an object",
         }
@@ -228,7 +224,6 @@ def _build_repair_prompt(
     raw_text: str,
     highlights_count: int,
     timeline_count: int,
-    clips_count: int,
     required_questions_block: str,
     required_questions_count: int,
     extra_questions_count: int,
@@ -259,13 +254,6 @@ def _build_repair_prompt(
             '{ "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ] }\n'
             "Rules:\n"
             f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
-        )
-    elif section == "clips":
-        schema = (
-            "Use this exact schema and key names:\n"
-            '{ "suggested_clips": [ { "timestamp": "00:00:00", "description": "Two sentences about significance of the clip" } ] }\n'
-            "Rules:\n"
-            f"- \"suggested_clips\" must contain exactly {clips_count} items.\n"
         )
     elif section == "qna_predefined":
         schema = (
@@ -420,17 +408,6 @@ def render_synopsis_markdown(synopsis: dict, video_path: str | None = None, outp
             ts_md = _format_timestamp_markdown(ts, video_link_base)
             if isinstance(event, str) and event.strip():
                 lines.append(f"- {ts_md} — {event.strip()}")
-            else:
-                lines.append(f"- {ts_md}")
-
-    clips = synopsis.get("suggested_clips") if isinstance(synopsis, dict) else []
-    if isinstance(clips, list) and clips:
-        lines.extend(["", "## Suggested Clips"])
-        for entry in clips:
-            ts, desc = _extract_timed_entry(entry, "description")
-            ts_md = _format_timestamp_markdown(ts, video_link_base)
-            if isinstance(desc, str) and desc.strip():
-                lines.append(f"- {ts_md}: {desc.strip()}")
             else:
                 lines.append(f"- {ts_md}")
 
@@ -848,14 +825,11 @@ def load_prompt(filename: str) -> str:
 SEGMENT_PROMPT = load_prompt("chunk_summary.txt")
 FALLBACK_SEGMENT_PROMPT = load_prompt("fallback_chunk_summary.txt")
 CARRYOVER_PROMPT = load_prompt("chunk_summary_carryover.txt")
-SYNOPSIS_MONOLITH_PROMPT = load_prompt("synposis_rag.txt")
 SYNOPSIS_SUMMARY_PROMPT = load_prompt("synopsis_summary.txt")
 SYNOPSIS_HIGHLIGHTS_PROMPT = load_prompt("synopsis_highlight.txt")
 SYNOPSIS_TIMELINE_PROMPT = load_prompt("synopsis_timeline.txt")
-SYNOPSIS_CLIPS_PROMPT = load_prompt("synopsis_clips.txt")
 SYNOPSIS_QNA_PREDEFINED_PROMPT = load_prompt("synopsis_qna_predefined.txt")
 SYNOPSIS_QNA_GENERATED_PROMPT = load_prompt("synopsis_qna_generated.txt")
-SYNOPSIS_CONSISTENCY_PROMPT = load_prompt("synopsis_consistency_pass.txt")
 
 
 def _build_safe_section_prompt(
@@ -863,7 +837,6 @@ def _build_safe_section_prompt(
     narrative_text: str,
     highlights_count: int,
     timeline_count: int,
-    clips_count: int,
     required_questions_block: str,
     extra_questions_count: int,
 ) -> str:
@@ -900,15 +873,6 @@ def _build_safe_section_prompt(
             "- Events must be 3-5 words, chronological order.\n"
             "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
-    elif section == "clips":
-        schema = (
-            "Use this exact schema and key names:\n"
-            '{ "suggested_clips": [ { "timestamp": "00:00:00", "description": "Two sentences about significance of the clip" } ] }\n'
-            "Rules:\n"
-            f"- \"suggested_clips\" must contain exactly {clips_count} items.\n"
-            "- Each description is exactly 2 sentences.\n"
-            "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
-        )
     elif section == "qna_predefined":
         schema = (
             "Use this exact schema and key names:\n"
@@ -943,14 +907,12 @@ def _build_safe_section_prompt(
             '  "chat_name": "3-5 word title",\n'
             '  "summary": "Single coherent paragraph.",\n'
             '  "video_highlights": [ { "timestamp": "00:00:00", "highlight": "One sentence highlight." } ],\n'
-            '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
-            '  "suggested_clips": [ { "timestamp": "00:00:00", "description": "Two sentences about significance of the clip" } ]\n'
+            '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ]\n'
             "}\n"
             "Rules:\n"
             "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
             f"- \"video_highlights\" must contain exactly {highlights_count} items.\n"
             f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
-            f"- \"suggested_clips\" must contain exactly {clips_count} items.\n"
             "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
     else:
@@ -1253,7 +1215,6 @@ def synthesize_synopsis(
     synopsis_ext: str = "md",
     highlights_count: int = HIGHLIGHTS_COUNT,
     timeline_count: int = TIMELINE_COUNT,
-    clips_count: int = CLIPS_COUNT,
     extra_questions_count: int = EXTRA_QUESTIONS_COUNT,
     consistency_pass_mode: str = "off",
 ):
@@ -1284,10 +1245,6 @@ def synthesize_synopsis(
             text=narrative_text,
             timeline_count=timeline_count,
         ),
-        "clips": SYNOPSIS_CLIPS_PROMPT.format(
-            text=narrative_text,
-            clips_count=clips_count,
-        ),
         "qna_predefined_a": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
             text=narrative_text,
             required_questions_count=len(required_questions_a),
@@ -1312,7 +1269,6 @@ def synthesize_synopsis(
             "summary": '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated."}',
             "highlights": '{"video_highlights":[]}',
             "timeline": '{"video_timeline":[]}',
-            "clips": '{"suggested_clips":[]}',
             "qna_predefined_a": '{"questions":[]}',
             "qna_predefined_b": '{"questions":[]}',
             "qna_generated": '{"questions":[]}',
@@ -1324,7 +1280,6 @@ def synthesize_synopsis(
             narrative_text=narrative_text,
             highlights_count=highlights_count,
             timeline_count=timeline_count,
-            clips_count=clips_count,
             required_questions_block=safe_required_block,
             extra_questions_count=extra_questions_count,
         )
@@ -1400,19 +1355,6 @@ def synthesize_synopsis(
             timeline_payload = json_payload
             timeline_ok = True
 
-    clips_text = raw_outputs.get("clips", "")
-    clips_payload, clips_ok = _parse_items_nonjson(
-        clips_text,
-        "suggested_clips",
-        "description",
-        clips_count,
-    )
-    if not clips_ok:
-        json_payload = _parse_json_object(clips_text, debug=debug, context="clips_json_fallback")
-        if _validate_items_payload(json_payload, "suggested_clips", clips_count):
-            clips_payload = json_payload
-            clips_ok = True
-
     qna_predefined_a_text = raw_outputs.get("qna_predefined_a", "")
     qna_predefined_a_payload, qna_predefined_a_ok = _parse_questions_nonjson(
         qna_predefined_a_text,
@@ -1453,8 +1395,6 @@ def synthesize_synopsis(
         repair_requests["highlights"] = highlights_text
     if not timeline_ok:
         repair_requests["timeline"] = timeline_text
-    if not clips_ok:
-        repair_requests["clips"] = clips_text
     if not qna_predefined_a_ok:
         repair_requests["qna_predefined_a"] = qna_predefined_a_text
     if not qna_predefined_b_ok:
@@ -1482,7 +1422,6 @@ def synthesize_synopsis(
                 raw_text=raw_text,
                 highlights_count=highlights_count,
                 timeline_count=timeline_count,
-                clips_count=clips_count,
                 required_questions_block=required_block,
                 required_questions_count=required_count,
                 extra_questions_count=extra_questions_count,
@@ -1493,7 +1432,6 @@ def synthesize_synopsis(
                 "summary": '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated."}',
                 "highlights": '{"video_highlights":[]}',
                 "timeline": '{"video_timeline":[]}',
-                "clips": '{"suggested_clips":[]}',
                 "qna_predefined_a": '{"questions":[]}',
                 "qna_predefined_b": '{"questions":[]}',
                 "qna_generated": '{"questions":[]}',
@@ -1523,9 +1461,6 @@ def synthesize_synopsis(
                 elif name == "timeline" and _validate_items_payload(payload, "video_timeline", timeline_count):
                     timeline_payload = payload
                     timeline_ok = True
-                elif name == "clips" and _validate_items_payload(payload, "suggested_clips", clips_count):
-                    clips_payload = payload
-                    clips_ok = True
                 elif name == "qna_predefined_a" and _validate_questions_payload(payload, len(required_questions_a)):
                     qna_predefined_a_payload = payload
                     qna_predefined_a_ok = True
@@ -1536,20 +1471,33 @@ def synthesize_synopsis(
                     qna_generated_payload = payload
                     qna_generated_ok = True
 
-    base_ok = summary_ok and highlights_ok and timeline_ok and clips_ok
+    base_ok = summary_ok and highlights_ok and timeline_ok
     if not base_ok:
         had_errors = True
         _debug_print(debug, "synthesize_synopsis: falling back to monolithic synopsis for base sections")
-        monolith_fallback = '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated.","video_highlights":[],"video_timeline":[],"suggested_clips":[]}'
+        monolith_fallback = '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated.","video_highlights":[],"video_timeline":[]}'
+        monolith_prompt = (
+            "You are a story detective.\n"
+            "Return ONE valid JSON object only. No markdown, no extra text.\n"
+            "Use this exact schema and key names:\n"
+            "{\n"
+            '  "chat_name": "3-5 word title",\n'
+            '  "summary": "Single coherent paragraph.",\n'
+            '  "video_highlights": [ { "timestamp": "00:00:00", "highlight": "One sentence highlight." } ],\n'
+            '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ]\n'
+            "}\n"
+            "Rules:\n"
+            "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
+            f"- \"video_highlights\" must contain exactly {highlights_count} items.\n"
+            f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
+            "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
+            "INPUT NARRATIVE:\n"
+            f"{narrative_text}\n"
+        )
         synopsis_text = call_gpt_safe(
             client,
             deployment,
-            prompt=SYNOPSIS_MONOLITH_PROMPT.format(
-                text=narrative_text,
-                highlights_count=highlights_count,
-                timeline_count=timeline_count,
-                clips_count=clips_count,
-            ),
+            prompt=monolith_prompt,
             fallback_text=monolith_fallback,
             debug=debug,
             context="synthesize_synopsis:monolith_fallback",
@@ -1558,7 +1506,6 @@ def synthesize_synopsis(
                 narrative_text=narrative_text,
                 highlights_count=highlights_count,
                 timeline_count=timeline_count,
-                clips_count=clips_count,
                 required_questions_block=required_block,
                 extra_questions_count=extra_questions_count,
             ),
@@ -1568,13 +1515,11 @@ def synthesize_synopsis(
         summary_payload = {"chat_name": monolith.get("chat_name"), "summary": monolith.get("summary")}
         highlights_payload = {"video_highlights": monolith.get("video_highlights", [])}
         timeline_payload = {"video_timeline": monolith.get("video_timeline", [])}
-        clips_payload = {"suggested_clips": monolith.get("suggested_clips", [])}
-        summary_ok = highlights_ok = timeline_ok = clips_ok = True
+        summary_ok = highlights_ok = timeline_ok = True
 
     chat_name, summary = _normalize_summary_fields(summary_payload)
     video_highlights = _normalize_section_items(highlights_payload, "video_highlights", "highlight", highlights_count)
     video_timeline = _normalize_section_items(timeline_payload, "video_timeline", "event", timeline_count)
-    suggested_clips = _normalize_section_items(clips_payload, "suggested_clips", "description", clips_count)
 
     predefined_questions = _normalize_predefined_questions(
         _extract_questions(qna_predefined_a_payload),
@@ -1655,7 +1600,6 @@ def synthesize_synopsis(
                 narrative_text=narrative_text,
                 highlights_count=highlights_count,
                 timeline_count=timeline_count,
-                clips_count=clips_count,
                 required_questions_block=required_block,
                 extra_questions_count=extra_questions_count,
             ),
@@ -1674,7 +1618,6 @@ def synthesize_synopsis(
         "summary": summary,
         "video_highlights": video_highlights,
         "video_timeline": video_timeline,
-        "suggested_clips": suggested_clips,
         "questions": questions,
     }
 
@@ -1683,15 +1626,29 @@ def synthesize_synopsis(
     do_consistency = mode == "always" or (mode == "on_error" and had_errors)
     if do_consistency:
         try:
-            consistency_prompt = SYNOPSIS_CONSISTENCY_PROMPT.format(
-                text=narrative_text,
-                draft_json=json.dumps(draft_synopsis, ensure_ascii=False),
-                highlights_count=highlights_count,
-                timeline_count=timeline_count,
-                clips_count=clips_count,
-                required_questions_count=len(REQUIRED_QUESTIONS),
-                extra_questions_count=extra_questions_count,
-                required_questions_block=required_block,
+            consistency_prompt = (
+                "You are a story detective.\n"
+                "Return ONE valid JSON object only. No markdown, no extra text.\n"
+                "Review the draft synopsis and correct any factual inconsistencies using only the narrative.\n"
+                "Use this exact schema and key names:\n"
+                "{\n"
+                '  "chat_name": "3-5 word title",\n'
+                '  "summary": "Single coherent paragraph.",\n'
+                '  "video_highlights": [ { "timestamp": "00:00:00", "highlight": "One sentence highlight." } ],\n'
+                '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
+                '  "questions": [ { "question": "Question text", "answer": "Answer text" } ]\n'
+                "}\n"
+                "Rules:\n"
+                f"- \"video_highlights\" must contain exactly {highlights_count} items.\n"
+                f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
+                f"- \"questions\" must contain exactly {len(REQUIRED_QUESTIONS) + extra_questions_count} items.\n"
+                "- Do not add any sections not in the schema.\n"
+                "Required Questions (must appear in order within questions):\n"
+                f"{required_block}\n"
+                "INPUT NARRATIVE:\n"
+                f"{narrative_text}\n"
+                "DRAFT JSON:\n"
+                f"{json.dumps(draft_synopsis, ensure_ascii=False)}\n"
             )
             consistency_text = call_gpt_safe(
                 client,
@@ -1711,7 +1668,6 @@ def synthesize_synopsis(
             c_chat_name, c_summary = _normalize_summary_fields(consistency_payload)
             c_highlights = _normalize_section_items(consistency_payload, "video_highlights", "highlight", highlights_count)
             c_timeline = _normalize_section_items(consistency_payload, "video_timeline", "event", timeline_count)
-            c_clips = _normalize_section_items(consistency_payload, "suggested_clips", "description", clips_count)
             c_questions = _extract_questions(consistency_payload)
             c_predefined = _normalize_predefined_questions(c_questions, REQUIRED_QUESTIONS)
             c_generated = _normalize_generated_questions(c_questions, REQUIRED_QUESTIONS, extra_questions_count)
@@ -1720,7 +1676,6 @@ def synthesize_synopsis(
                 "summary": c_summary,
                 "video_highlights": c_highlights,
                 "video_timeline": c_timeline,
-                "suggested_clips": c_clips,
                 "questions": c_predefined + c_generated,
             }
         except Exception as exc:
