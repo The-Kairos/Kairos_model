@@ -17,7 +17,7 @@ SUMMARY_REDUCE_GROUP_SIZE = 4
 GPT_MAX_RETRIES = 6
 GPT_RETRY_BASE_SEC = 2.0
 HIGHLIGHTS_COUNT = "4-6"
-TIMELINE_COUNT = 10
+TIMELINE_COUNT = "4-6"
 EXTRA_QUESTIONS_COUNT = 15
 REQUIRED_QUESTIONS = [
     "What is happening in the video?",
@@ -93,6 +93,12 @@ def _highlight_count_rule(min_count: int, max_count: int, label: str) -> str:
     if min_count == max_count:
         return f"- \"video_highlights\" must contain exactly {min_count} items.\n"
     return f"- \"video_highlights\" must contain between {min_count} and {max_count} items ({label}).\n"
+
+
+def _timeline_count_rule(min_count: int, max_count: int, label: str) -> str:
+    if min_count == max_count:
+        return f"- \"video_timeline\" must contain exactly {min_count} items.\n"
+    return f"- \"video_timeline\" must contain between {min_count} and {max_count} items ({label}).\n"
 
 def _format_scene_ranges(items: list[dict], limit: int = 4) -> str:
     if not items:
@@ -270,6 +276,23 @@ def _parse_highlights_nonjson(text: str, min_count: int, max_count: int) -> tupl
     return {"video_highlights": items}, ok
 
 
+def _parse_timeline_nonjson(text: str, min_count: int, max_count: int) -> tuple[dict, bool]:
+    pairs = _parse_pipe_pairs(text)
+    items = []
+    for left, right in pairs:
+        ts = left.strip() if left else "Not explicitly stated"
+        value = right.strip() if right else "Not explicitly stated."
+        if not ts:
+            ts = "Not explicitly stated"
+        if not value:
+            value = "Not explicitly stated."
+        items.append({"timestamp": ts, "event": value})
+    if len(items) > max_count:
+        items = items[:max_count]
+    ok = min_count <= len(items) <= max_count
+    return {"video_timeline": items}, ok
+
+
 def _parse_questions_nonjson(text: str, expected_count: int) -> tuple[dict, bool]:
     pairs = _parse_qna_pairs(text)
     ok = len(pairs) >= expected_count
@@ -309,6 +332,15 @@ def _validate_highlights_payload(payload: dict, min_count: int, max_count: int) 
     return min_count <= len(items) <= max_count
 
 
+def _validate_timeline_payload(payload: dict, min_count: int, max_count: int) -> bool:
+    if not isinstance(payload, dict):
+        return False
+    items = payload.get("video_timeline")
+    if not isinstance(items, list):
+        return False
+    return min_count <= len(items) <= max_count
+
+
 def _validate_questions_payload(payload: dict, expected_count: int) -> bool:
     questions = _extract_questions(payload)
     return len(questions) >= expected_count
@@ -320,7 +352,9 @@ def _build_repair_prompt(
     highlight_min: int,
     highlight_max: int,
     highlight_label: str,
-    timeline_count: int,
+    timeline_min: int,
+    timeline_max: int,
+    timeline_label: str,
     required_questions_block: str,
     required_questions_count: int,
     extra_questions_count: int,
@@ -351,7 +385,7 @@ def _build_repair_prompt(
             "Use this exact schema and key names:\n"
             '{ "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ] }\n'
             "Rules:\n"
-            f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
+            f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
         )
     elif section == "qna_predefined":
         schema = (
@@ -723,6 +757,29 @@ def _normalize_highlights(payload: dict, min_count: int, max_count: int) -> list
     return items
 
 
+def _normalize_timeline(payload: dict, min_count: int, max_count: int) -> list[dict]:
+    raw = payload.get("video_timeline", []) if isinstance(payload, dict) else []
+    items = []
+    if isinstance(raw, list):
+        for entry in raw:
+            ts = event = None
+            if isinstance(entry, dict):
+                ts = entry.get("timestamp")
+                event = entry.get("event")
+            elif isinstance(entry, str):
+                event = entry
+            if not isinstance(ts, str) or not ts.strip():
+                ts = "Not explicitly stated"
+            if not isinstance(event, str) or not event.strip():
+                event = "Not explicitly stated."
+            items.append({"timestamp": ts.strip(), "event": event.strip()})
+    if len(items) > max_count:
+        items = items[:max_count]
+    while len(items) < min_count:
+        items.append({"timestamp": "Not explicitly stated", "event": "Not explicitly stated."})
+    return items
+
+
 def _normalize_summary_fields(payload: dict) -> tuple[str, str]:
     chat_name = payload.get("chat_name") if isinstance(payload, dict) else None
     summary = payload.get("summary") if isinstance(payload, dict) else None
@@ -998,7 +1055,9 @@ def _build_safe_section_prompt(
     highlight_min: int,
     highlight_max: int,
     highlight_label: str,
-    timeline_count: int,
+    timeline_min: int,
+    timeline_max: int,
+    timeline_label: str,
     required_questions_block: str,
     extra_questions_count: int,
 ) -> str:
@@ -1031,7 +1090,7 @@ def _build_safe_section_prompt(
             "Use this exact schema and key names:\n"
             '{ "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ] }\n'
             "Rules:\n"
-            f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
+            f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
             "- Events must be 3-5 words, chronological order.\n"
             "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
@@ -1074,7 +1133,7 @@ def _build_safe_section_prompt(
             "Rules:\n"
             "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
-            f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
+            f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
             "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
     else:
@@ -1376,7 +1435,7 @@ def synthesize_synopsis(
     output_dir: str | None = None,
     synopsis_ext: str = "md",
     highlights_count: str | int = HIGHLIGHTS_COUNT,
-    timeline_count: int = TIMELINE_COUNT,
+    timeline_count: str | int = TIMELINE_COUNT,
     extra_questions_count: int = EXTRA_QUESTIONS_COUNT,
     consistency_pass_mode: str = "off",
 ):
@@ -1390,6 +1449,8 @@ def synthesize_synopsis(
 
     highlight_min, highlight_max = _parse_count_range(highlights_count, 4, 6)
     highlight_label = _count_range_label(highlights_count, highlight_min, highlight_max)
+    timeline_min, timeline_max = _parse_count_range(timeline_count, 4, 6)
+    timeline_label = _count_range_label(timeline_count, timeline_min, timeline_max)
 
     required_split_idx = len(REQUIRED_QUESTIONS) // 2
     required_questions_a = REQUIRED_QUESTIONS[:required_split_idx]
@@ -1408,7 +1469,7 @@ def synthesize_synopsis(
         ),
         "timeline": SYNOPSIS_TIMELINE_PROMPT.format(
             text=narrative_text,
-            timeline_count=timeline_count,
+            timeline_count=timeline_label,
         ),
         "qna_predefined_a": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
             text=narrative_text,
@@ -1446,7 +1507,9 @@ def synthesize_synopsis(
             highlight_min=highlight_min,
             highlight_max=highlight_max,
             highlight_label=highlight_label,
-            timeline_count=timeline_count,
+            timeline_min=timeline_min,
+            timeline_max=timeline_max,
+            timeline_label=timeline_label,
             required_questions_block=safe_required_block,
             extra_questions_count=extra_questions_count,
         )
@@ -1509,15 +1572,14 @@ def synthesize_synopsis(
             highlights_ok = True
 
     timeline_text = raw_outputs.get("timeline", "")
-    timeline_payload, timeline_ok = _parse_items_nonjson(
+    timeline_payload, timeline_ok = _parse_timeline_nonjson(
         timeline_text,
-        "video_timeline",
-        "event",
-        timeline_count,
+        timeline_min,
+        timeline_max,
     )
     if not timeline_ok:
         json_payload = _parse_json_object(timeline_text, debug=debug, context="timeline_json_fallback")
-        if _validate_items_payload(json_payload, "video_timeline", timeline_count):
+        if _validate_timeline_payload(json_payload, timeline_min, timeline_max):
             timeline_payload = json_payload
             timeline_ok = True
 
@@ -1571,12 +1633,12 @@ def synthesize_synopsis(
     if repair_requests:
         had_errors = True
 
-        def _repair_task(name: str, raw_text: str):
+        def _repair_task(name: str, raw_text: str, required_block_all: str = required_block):
             section = "qna_predefined" if name.startswith("qna_predefined_") else name
             required_block = (
                 required_block_a if name == "qna_predefined_a"
                 else required_block_b if name == "qna_predefined_b"
-                else required_block
+                else required_block_all
             )
             required_count = (
                 len(required_questions_a) if name == "qna_predefined_a"
@@ -1589,7 +1651,9 @@ def synthesize_synopsis(
                 highlight_min=highlight_min,
                 highlight_max=highlight_max,
                 highlight_label=highlight_label,
-                timeline_count=timeline_count,
+                timeline_min=timeline_min,
+                timeline_max=timeline_max,
+                timeline_label=timeline_label,
                 required_questions_block=required_block,
                 required_questions_count=required_count,
                 extra_questions_count=extra_questions_count,
@@ -1626,7 +1690,7 @@ def synthesize_synopsis(
                 elif name == "highlights" and _validate_highlights_payload(payload, highlight_min, highlight_max):
                     highlights_payload = payload
                     highlights_ok = True
-                elif name == "timeline" and _validate_items_payload(payload, "video_timeline", timeline_count):
+                elif name == "timeline" and _validate_timeline_payload(payload, timeline_min, timeline_max):
                     timeline_payload = payload
                     timeline_ok = True
                 elif name == "qna_predefined_a" and _validate_questions_payload(payload, len(required_questions_a)):
@@ -1657,7 +1721,7 @@ def synthesize_synopsis(
             "Rules:\n"
             "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
-            f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
+            f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
             "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
             "INPUT NARRATIVE:\n"
             f"{narrative_text}\n"
@@ -1675,7 +1739,9 @@ def synthesize_synopsis(
                 highlight_min=highlight_min,
                 highlight_max=highlight_max,
                 highlight_label=highlight_label,
-                timeline_count=timeline_count,
+                timeline_min=timeline_min,
+                timeline_max=timeline_max,
+                timeline_label=timeline_label,
                 required_questions_block=required_block,
                 extra_questions_count=extra_questions_count,
             ),
@@ -1689,7 +1755,7 @@ def synthesize_synopsis(
 
     chat_name, summary = _normalize_summary_fields(summary_payload)
     video_highlights = _normalize_highlights(highlights_payload, highlight_min, highlight_max)
-    video_timeline = _normalize_section_items(timeline_payload, "video_timeline", "event", timeline_count)
+    video_timeline = _normalize_timeline(timeline_payload, timeline_min, timeline_max)
 
     predefined_questions = _normalize_predefined_questions(
         _extract_questions(qna_predefined_a_payload),
@@ -1771,7 +1837,9 @@ def synthesize_synopsis(
                 highlight_min=highlight_min,
                 highlight_max=highlight_max,
                 highlight_label=highlight_label,
-                timeline_count=timeline_count,
+                timeline_min=timeline_min,
+                timeline_max=timeline_max,
+                timeline_label=timeline_label,
                 required_questions_block=required_block,
                 extra_questions_count=extra_questions_count,
             ),
@@ -1812,7 +1880,7 @@ def synthesize_synopsis(
                 "}\n"
                 "Rules:\n"
                 f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
-                f"- \"video_timeline\" must contain exactly {timeline_count} items.\n"
+                f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
                 f"- \"questions\" must contain exactly {len(REQUIRED_QUESTIONS) + extra_questions_count} items.\n"
                 "- Do not add any sections not in the schema.\n"
                 "Required Questions (must appear in order within questions):\n"
@@ -1839,7 +1907,7 @@ def synthesize_synopsis(
             consistency_payload = _parse_synopsis_json(consistency_text, debug=debug)
             c_chat_name, c_summary = _normalize_summary_fields(consistency_payload)
             c_highlights = _normalize_highlights(consistency_payload, highlight_min, highlight_max)
-            c_timeline = _normalize_section_items(consistency_payload, "video_timeline", "event", timeline_count)
+            c_timeline = _normalize_timeline(consistency_payload, timeline_min, timeline_max)
             c_questions = _extract_questions(consistency_payload)
             c_predefined = _normalize_predefined_questions(c_questions, REQUIRED_QUESTIONS)
             c_generated = _normalize_generated_questions(c_questions, REQUIRED_QUESTIONS, extra_questions_count)
