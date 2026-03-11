@@ -1,6 +1,7 @@
 import os
 import json
 import time
+import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import quote
@@ -397,19 +398,23 @@ def _normalize_predefined_questions(questions: list[dict], required_questions: l
         answer = qa.get("answer") if isinstance(qa, dict) else None
         if not isinstance(question, str) or not question.strip():
             continue
-        key = question.strip().lower()
+        question_text = _clean_question_text(question)
+        if not question_text:
+            continue
+        key = _normalize_question_key(question_text)
         if key not in answer_by_question:
             answer_by_question[key] = answer if isinstance(answer, str) and answer.strip() else "Not explicitly stated."
 
     normalized = []
     for required in required_questions:
-        answer = answer_by_question.get(required.strip().lower(), "Not explicitly stated.")
+        key = _normalize_question_key(required)
+        answer = answer_by_question.get(key, "Not explicitly stated.")
         normalized.append({"question": required, "answer": answer})
     return normalized
 
 
 def _normalize_generated_questions(questions: list[dict], required_questions: list[str], extra_count: int) -> list[dict]:
-    required_set = {q.strip().lower() for q in required_questions}
+    required_set = {_normalize_question_key(q) for q in required_questions}
     seen = set()
     normalized = []
     for qa in questions:
@@ -417,12 +422,15 @@ def _normalize_generated_questions(questions: list[dict], required_questions: li
         answer = qa.get("answer") if isinstance(qa, dict) else None
         if not isinstance(question, str) or not question.strip():
             continue
-        key = question.strip().lower()
+        question_text = _clean_question_text(question)
+        if not question_text:
+            continue
+        key = _normalize_question_key(question_text)
         if key in required_set or key in seen:
             continue
         seen.add(key)
         normalized.append({
-            "question": question.strip(),
+            "question": question_text,
             "answer": answer.strip() if isinstance(answer, str) and answer.strip() else "Not explicitly stated.",
         })
         if len(normalized) >= extra_count:
@@ -435,6 +443,23 @@ def _normalize_generated_questions(questions: list[dict], required_questions: li
         })
     return normalized
 
+
+def _clean_question_text(text: str) -> str:
+    if not isinstance(text, str):
+        return ""
+    s = text.strip()
+    if not s:
+        return ""
+    s = re.sub(r"^\s*(q(uestion)?\s*[:\-])\s*", "", s, flags=re.IGNORECASE)
+    s = re.sub(r"^\s*[\(\[]?\d+[\)\].:\-]?\s*", "", s)
+    s = re.sub(r"^\s*[-•]+\s*", "", s)
+    return s.strip()
+
+
+def _normalize_question_key(text: str) -> str:
+    s = _clean_question_text(text).lower()
+    s = re.sub(r"\s+", " ", s)
+    return s
 
 def _normalize_scene_text(value, fallback: str) -> str:
     if isinstance(value, str) and value.strip():
@@ -996,13 +1021,6 @@ def summarize_scenes(
                 _debug_print(debug, f"    narrative_size 3: {len(narrative)} char (final consistency pass)")
         except Exception as exc:
             _debug_print(debug, f"summarize_scenes: final consistency pass failed: {exc}")
-
-    if output_dir:
-        out_dir = Path(output_dir)
-        out_dir.mkdir(parents=True, exist_ok=True)
-        for i, item in enumerate(narratives, start=1):
-            out_path = out_dir / f"narrative_{i}_len_{item['narrative_len']}.txt"
-            out_path.write_text(item["narrative"], encoding="utf-8")
 
     return {
         "scenes": scenes,
