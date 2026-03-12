@@ -271,7 +271,7 @@ from src.audio_detector import scan_audio
 from src.audio_MIT_ast_parallel import extract_sounds_optimized
 from src.audio_whisper_parallel import extract_speech_singlecall
 from src.debug_utils import save_clips
-from src.synopsis_systhesis import summarize_scenes, synthesize_synopsis
+from src.synopsis_synthesis import summarize_scenes, synthesize_synopsis
 from src.rag_convo import make_embedding, ask_rag
 
 
