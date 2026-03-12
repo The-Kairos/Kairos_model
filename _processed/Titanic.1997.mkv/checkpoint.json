@@ -1,40 +1,40 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/.Titanic.1997.mkv",
+    "video_path": "Videos\\.Titanic.1997.mkv",
     "video_length": "03:14:44.631",
-    "total_process_sec": 15312.400999999998,
+    "total_process_sec": 15681.688779999999,
     "scene_number": 1855,
-    "start_process": "2026-03-07 03:35:08",
-    "end_process": "2026-03-07 06:07:31",
+    "start_process": "2026-03-12 20:11:24",
+    "end_process": "2026-03-12 20:18:59",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
+            "os": "Windows 10",
+            "os_version": "10.0.19045",
+            "machine_type": "AMD64",
+            "hostname": "Manahil-Laptop",
             "python_version": "3.10.19"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 8,
             "cpu_frequency_MHz": {
-                "current": 2200.144,
+                "current": 2000.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2000.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 174.12,
-            "used_RAM_GB": 14.59,
-            "RAM_usage_percent": 7.7
+            "total_RAM_GB": 7.42,
+            "available_RAM_GB": 1.05,
+            "used_RAM_GB": 6.38,
+            "RAM_usage_percent": 85.9
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 71.58,
-            "disk_free_GB": 69.71,
-            "disk_usage_percent": 50.7
+            "disk_total_GB": 475.69,
+            "disk_used_GB": 248.81,
+            "disk_free_GB": 226.88,
+            "disk_usage_percent": 52.3
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,194 +1117,32 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 23.8485,
-            "cpu_time_sec": 0.06946,
-            "ram_before_MB": 10470,
-            "ram_after_MB": 10470,
+            "wall_time_sec": 10.50009,
+            "cpu_time_sec": 0.09375,
+            "ram_before_MB": 245,
+            "ram_after_MB": 245,
             "ram_used_MB": 0,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.01171875,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 18191,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 18191,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "io_write_MB": 0.008399009704589844,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 61.15217,
-            "cpu_time_sec": 14.03003,
-            "ram_before_MB": 10470,
-            "ram_after_MB": 10432,
-            "ram_used_MB": -38,
-            "io_read_MB": 0.0,
-            "io_write_MB": 158.3984375,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 18191,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 18191,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 443.78836,
+            "cpu_time_sec": 333.625,
+            "ram_before_MB": 245,
+            "ram_after_MB": 99,
+            "ram_used_MB": -146,
+            "io_read_MB": 0.6603641510009766,
+            "io_write_MB": 164.15610694885254,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -119335,145 +119173,121 @@
     ],
     "synopsis": {
         "chat_name": "Titanic Exploration and Love",
-        "summary": "The narrative begins with serene and surreal visuals, transitioning to underwater exploration of the Titanic wreck led by Brock Lovett's team, highlighting the challenges and discoveries of deep-sea operations. The story introduces elderly Rose Calvert, who identifies herself in a recovered drawing and recounts her experiences aboard the Titanic. Through flashbacks, Rose reflects on her constrained upper-class life, her romance with Jack Dawson, a free-spirited third-class passenger, and their defiance of societal norms. The Titanic's collision with an iceberg triggers chaos, revealing class divisions and acts of courage. Jack sacrifices himself to save Rose, who survives and reflects on his profound impact. The film concludes with symbolic imagery of their reunion, emphasizing themes of love, sacrifice, and memory.",
+        "summary": "The narrative intertwines underwater exploration of the Titanic wreck with Rose Calvert's recollections of love and tragedy aboard the ill-fated ship, culminating in themes of sacrifice, societal constraints, and enduring memory.",
         "video_highlights": [
             {
-                "timestamp": "00:00:00",
-                "highlight": "The film opens with serene visuals of mountains, clouds, and stars, accompanied by the caption 'The Great American Journey,' setting a reflective tone."
+                "start": "00:00:00.000",
+                "end": "Not explicitly stated",
+                "highlight": "The film opens with serene visuals of mountains, clouds, and stars, accompanied by the caption \"The Great American Journey,\" setting a reflective and grandiose tone."
             },
             {
-                "timestamp": "00:10:00",
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
                 "highlight": "Underwater exploration begins, showing a vessel with lights in a dark environment, suggesting a submarine exploring the Titanic wreckage."
             },
             {
-                "timestamp": "00:45:00",
-                "highlight": "Jack Dawson wins his Titanic ticket in a card game and boards the ship with excitement, contrasting with the formality of upper-class passengers."
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "A reflective moment highlights the emotional impact of encountering the Titanic wreck, with haunting descriptions of the ship emerging \"like a ghost ship.\""
             },
             {
-                "timestamp": "02:20:00",
-                "highlight": "The Titanic's collision with an iceberg triggers chaos and tragedy, with Jack and Rose navigating the ship's disarray to survive."
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "Jack Dawson wins his Titanic ticket in a card game, boarding the ship with excitement, contrasting with the formality of the upper-class passengers."
+            },
+            {
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "The Titanic's collision with an iceberg triggers chaos and tragedy, with frantic efforts to mitigate damage and passengers grappling with fear and moral dilemmas."
+            },
+            {
+                "start": "Not explicitly stated",
+                "end": "03:14:44.631",
+                "highlight": "The film concludes with surreal imagery of Jack and Rose reuniting in a grand ballroom, underscoring themes of enduring love, sacrifice, and memory."
             }
         ],
         "video_timeline": [
             {
-                "timestamp": "00:00:00",
-                "event": "Opening with serene visuals"
+                "timestamp": "00:00:00.000",
+                "event": "Journey"
             },
             {
-                "timestamp": "00:10:00",
-                "event": "Underwater exploration begins"
+                "timestamp": "Not explicitly stated",
+                "event": "Exploration"
             },
             {
-                "timestamp": "00:15:00",
-                "event": "Titanic wreck emerges like ghost"
+                "timestamp": "Not explicitly stated",
+                "event": "Operation"
             },
             {
-                "timestamp": "00:20:00",
-                "event": "Brock Lovett leads operation"
+                "timestamp": "Not explicitly stated",
+                "event": "Memories"
             },
             {
-                "timestamp": "00:30:00",
-                "event": "Rose identifies recovered drawing"
+                "timestamp": "Not explicitly stated",
+                "event": "Connection"
             },
             {
-                "timestamp": "00:40:00",
-                "event": "Rose recounts Titanic memories"
-            },
-            {
-                "timestamp": "00:50:00",
-                "event": "Jack saves Rose from suicide"
-            },
-            {
-                "timestamp": "01:10:00",
-                "event": "Jack and Rose bond deepens"
-            },
-            {
-                "timestamp": "02:20:00",
-                "event": "Titanic hits iceberg"
-            },
-            {
-                "timestamp": "02:50:00",
-                "event": "Rose survives; Jack sacrifices"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "Opening visuals of mountains, clouds, and stars with the caption 'The Great American Journey,' setting a reflective and grandiose tone."
-            },
-            {
-                "timestamp": "00:10:00",
-                "description": "Underwater exploration begins, showing a vessel with lights in a dark environment, suggesting the mystery of the Titanic wreckage."
-            },
-            {
-                "timestamp": "00:45:00",
-                "description": "Jack Dawson wins his Titanic ticket in a card game, introducing his character and contrasting the excitement of third-class passengers with the formality of the upper class."
-            },
-            {
-                "timestamp": "02:20:00",
-                "description": "The Titanic collides with an iceberg, triggering chaos and tragedy, with frantic efforts to mitigate damage and passengers grappling with fear and resignation."
-            },
-            {
-                "timestamp": "03:10:00",
-                "description": "Surreal and symbolic imagery of a grand ballroom where Jack and Rose reunite in a romantic embrace, underscoring themes of enduring love and memory."
+                "timestamp": "Not explicitly stated",
+                "event": "Sacrifice"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "The video depicts a blend of historical, emotional, and surreal storytelling centered around the Titanic's tragedy, underwater exploration, and the personal journey of Rose Calvert."
+                "answer": "The video depicts a reflective journey through the Titanic's history, blending underwater exploration, personal memories, and the tragedy of the ship's sinking."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Key events include the underwater exploration of the Titanic wreck, Rose identifying herself in a recovered drawing, her recounting of the Titanic's sinking, Jack and Rose's relationship, the ship's collision with an iceberg, and the aftermath of the disaster."
+                "answer": "Key events include the underwater exploration of the Titanic wreck, Rose recounting her memories, Jack and Rose's relationship, the Titanic's collision with the iceberg, and the aftermath of the disaster."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Brock Lovett leads the underwater exploration; Rose recounts her memories and identifies herself in the drawing; Jack saves Rose from suicide and helps her navigate societal constraints; passengers and crew attempt to survive the Titanic's sinking."
+                "answer": "Brock Lovett leads the underwater expedition; Rose recounts her past; Jack saves Rose from suicide and helps her embrace freedom; the crew and passengers respond to the sinking."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "Conflicts include societal constraints faced by Rose, Jack and Rose's struggle against class divisions, the technical challenges of underwater exploration, and the chaos and tragedy of the Titanic's sinking."
+                "answer": "Conflicts include societal constraints, class divisions, the Titanic's sinking, and the struggle for survival in the freezing ocean."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "The main character is Rose Calvert. Her journey involves reflecting on her past, recounting her experiences aboard the Titanic, her relationship with Jack, and surviving the tragedy while finding emotional freedom and purpose."
+                "answer": "Rose is the main character, transitioning from a stifled upper-class life to self-discovery and survival, deeply influenced by her connection with Jack."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Characters include: Rose Calvert (elderly and young, reflective, central to the story), Jack Dawson (young, adventurous, kind, Rose's love interest), Caledon Hockley (wealthy, controlling, antagonist), Brock Lovett (leader, professional, focused on exploration), Ruth DeWitt Bukater (Rose's mother, traditional, pressuring), Fabrizio and Tommy (Jack's friends, lively, supportive), Titanic passengers and crew (varied appearances, roles in the tragedy)."
+                "answer": "Rose: elegant, reflective, and resilient; Jack: carefree, artistic, and selfless; Cal: controlling and wealthy; Brock: determined leader of the expedition."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "Significant quotes include: 'The woman in the picture is me' (Rose), 'God himself could not sink this ship' (Titanic passenger), 'I'll never let go' (Rose), 'It's payday, boys' (Brock Lovett), 'He saved me in every way that a person can be saved' (Rose)."
+                "answer": "\"The woman in the picture is me\" - Rose; \"God himself could not sink this ship\" - a passenger; \"I'll never let go\" - Rose; \"It's payday, boys\" - Brock."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting includes underwater exploration of the Titanic wreck, the Titanic itself, and Rose's domestic environment. It changes between past and present, connecting the historical tragedy to Rose's personal reflections and the team's investigation."
+                "answer": "The setting transitions between the Titanic, the ocean floor, and modern-day locations, reflecting the historical and emotional layers of the story."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with serene visuals of mountains, clouds, and stars, transitioning to surreal and historical imagery, introducing the Titanic's tragedy and the underwater exploration."
+                "answer": "The video begins with serene visuals of nature and surreal imagery, transitioning to underwater exploration and the introduction of the Titanic wreck."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with surreal imagery of Jack and Rose reuniting in a grand ballroom surrounded by Titanic passengers, symbolizing enduring love and memory, accompanied by the song 'My Heart Will Go On'."
+                "answer": "The video ends with Rose reflecting on Jack's impact, surreal imagery of their reunion in a ballroom, and themes of love and memory underscored by music."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include the Titanic wreck (appears during exploration), the Heart of the Ocean necklace (discussed and tied to Rose's story), the recovered drawing (identified by Rose), and technological tools like submarines and robotic devices (used in exploration)."
+                "answer": "Central objects include the Titanic wreck, the \"Heart of the Ocean\" necklace, and the drawing of Rose, appearing during exploration and Rose's recollections."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "Rose promises, 'I'll never let go,' as Jack succumbs to the cold."
+                "answer": "\"The woman in the picture is me.\""
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The narrative transitions from serene visuals and exploration to the emotional resolution of Jack's sacrifice and Rose's survival."
+                "answer": "The beginning focuses on exploration and mystery, while the end emphasizes love, sacrifice, and memory."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "A dramatic and historical romance film."
+                "answer": "A dramatic historical romance film."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
@@ -119481,97 +119295,97 @@
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Reflective (serene opening visuals), somber (Titanic tragedy), suspenseful (underwater exploration), romantic (Jack and Rose's bond), tragic (Jack's death and the sinking), and triumphant (Rose's survival)."
+                "answer": "Reflective (exploration of history), somber (Titanic's tragedy), romantic (Jack and Rose's bond), suspenseful (the sinking), and triumphant (Rose's survival)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Historical details about the Titanic's sinking and societal norms of the early 20th century are assumed."
+                "answer": "Knowledge of the Titanic's historical significance and societal norms of the early 20th century."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Mountains, clouds, stars, underwater wreckage, Titanic's grandeur, chaotic sinking scenes, and surreal ballroom imagery."
+                "answer": "Underwater wreckage, the Titanic's grandeur, icy waters, chaotic sinking scenes, and surreal ballroom imagery."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Sonar-like sounds, dialogue conveying urgency, haunting music, and the iconic song 'My Heart Will Go On.'"
+                "answer": "Sonar-like sounds, urgent commands, dramatic music, and the iconic song \"My Heart Will Go On.\""
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Yes, they are aligned, with visuals and audio complementing the narrative's emotional and thematic shifts."
+                "answer": "They are aligned, both enhancing the emotional and narrative impact of the scenes."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visuals include the Titanic wreckage, iceberg collision, and ballroom reunion. Prominent audio cues include urgent commands, emotional dialogue, and thematic music."
+                "answer": "Visual: Titanic's sinking, underwater exploration, and Rose's memories. Audio: Narration, dramatic music, and dialogue emphasizing urgency and emotion."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "The video contains live action with special effects depicting the Titanic's sinking and underwater exploration."
+                "answer": "It contains live action with special effects for the Titanic's sinking and underwater scenes."
             },
             {
-                "question": "Additional predicted question 1?",
-                "answer": "Not explicitly stated."
+                "question": "What is the significance of the caption \"The Great American Journey\" at the beginning?",
+                "answer": "It sets a reflective and grandiose tone, hinting at a broader exploration of human ambition and tragedy."
             },
             {
-                "question": "Additional predicted question 2?",
-                "answer": "Not explicitly stated."
+                "question": "What do the underwater visuals convey about the Titanic wreck?",
+                "answer": "They create a mysterious and somber atmosphere, emphasizing the haunting and historical significance of the ship."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
+                "question": "What challenges does the underwater team face during the exploration?",
+                "answer": "They encounter immense pressure, technical difficulties, and eerie sights like skulls and glowing marine life."
             },
             {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
+                "question": "How does Rose react to seeing the recovered drawing of herself?",
+                "answer": "She identifies the woman in the picture as herself and becomes intrigued by the expedition."
             },
             {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
+                "question": "What does Rose reveal about the \"Heart of the Ocean\"?",
+                "answer": "She explains its transformation from the \"Blue Diamond of the Crown\" into the \"Heart of the Ocean\" and its disappearance with the Titanic."
             },
             {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
+                "question": "How does Rose describe her initial impression of the Titanic?",
+                "answer": "She calls it \"the ship of dreams\" and vividly recalls sensory details like fresh paint and unused china."
             },
             {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
+                "question": "What motivates Jack Dawson to board the Titanic?",
+                "answer": "He wins his ticket in a card game and boards with excitement and a sense of adventure."
             },
             {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
+                "question": "How does Jack save Rose's life?",
+                "answer": "He intervenes when she contemplates suicide by jumping off the ship's stern."
             },
             {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
+                "question": "What does the steerage party symbolize for Jack and Rose?",
+                "answer": "It represents freedom, joy, and a break from societal constraints, deepening their bond."
             },
             {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
+                "question": "How does Cal's behavior affect Rose?",
+                "answer": "His controlling and domineering actions highlight her feelings of entrapment and her desire for independence."
             },
             {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
+                "question": "What foreshadowing hints at the Titanic's impending disaster?",
+                "answer": "Discussions about increasing the ship's speed and lighting the last boilers suggest looming danger."
             },
             {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
+                "question": "How do passengers react to the Titanic's collision with the iceberg?",
+                "answer": "They experience denial, fear, and resignation as chaos unfolds and lifeboats are prepared."
             },
             {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
+                "question": "What sacrifices are depicted during the sinking?",
+                "answer": "Musicians play to maintain calm, and a couple holds hands in quiet solidarity, showing courage and love."
             },
             {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
+                "question": "What does Jack urge Rose to do as he succumbs to the cold?",
+                "answer": "He tells her to live a full life and expresses his love, urging her to survive."
             },
             {
-                "question": "Additional predicted question 15?",
-                "answer": "Not explicitly stated."
+                "question": "What is the significance of the ballroom scene at the end?",
+                "answer": "It symbolizes enduring love and memory, reuniting Jack and Rose in a romantic embrace surrounded by the Titanic's passengers."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/Titanic.1997.mkv/rag_embedding.json",
-        "context_count": 1860,
+        "rag_path": "_processed\\Titanic.1997.mkv/rag_embedding.json",
+        "context_count": 1859,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }

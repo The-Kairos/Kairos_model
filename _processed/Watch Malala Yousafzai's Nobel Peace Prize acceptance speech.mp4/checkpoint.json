@@ -2,10 +2,10 @@
     "run_description": "Test run for video processing pipeline.",
     "video_path": "Videos\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
     "video_length": "00:04:33.473",
-    "total_process_sec": 107.75330000000001,
+    "total_process_sec": 114.53752,
     "scene_number": 22,
-    "start_process": "2026-03-12 10:47:03",
-    "end_process": "2026-03-12 10:47:31",
+    "start_process": "2026-03-12 20:31:29",
+    "end_process": "2026-03-12 20:32:04",
     "computer": {
         "os_info": {
             "os": "Windows 10",
@@ -26,15 +26,15 @@
         },
         "ram_info": {
             "total_RAM_GB": 7.42,
-            "available_RAM_GB": 1.16,
-            "used_RAM_GB": 6.26,
-            "RAM_usage_percent": 84.4
+            "available_RAM_GB": 1.02,
+            "used_RAM_GB": 6.41,
+            "RAM_usage_percent": 86.3
         },
         "disk_info": {
             "disk_total_GB": 475.69,
-            "disk_used_GB": 245.07,
-            "disk_free_GB": 230.62,
-            "disk_usage_percent": 51.5
+            "disk_used_GB": 248.85,
+            "disk_free_GB": 226.84,
+            "disk_usage_percent": 52.3
         },
         "gpu_info": {
             "gpu_model": null
@@ -547,13 +547,13 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 12.17189,
+            "wall_time_sec": 11.67613,
             "cpu_time_sec": 0.0625,
-            "ram_before_MB": 515,
-            "ram_after_MB": 516,
-            "ram_used_MB": 1,
+            "ram_before_MB": 253,
+            "ram_after_MB": 253,
+            "ram_used_MB": 0,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.009406089782714844,
+            "io_write_MB": 0.009138107299804688,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -561,13 +561,13 @@
             "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 15.54143,
-            "cpu_time_sec": 5.9375,
-            "ram_before_MB": 516,
-            "ram_after_MB": 521,
+            "wall_time_sec": 22.82141,
+            "cpu_time_sec": 6.14062,
+            "ram_before_MB": 253,
+            "ram_after_MB": 258,
             "ram_used_MB": 5,
             "io_read_MB": 0.6603641510009766,
-            "io_write_MB": 2.5684328079223633,
+            "io_write_MB": 2.568161964416504,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -1705,27 +1705,27 @@
             {
                 "start": "00:00:00.000",
                 "end": "00:00:15.883",
-                "highlight": "Malala expresses pride in being the youngest Nobel Peace Prize recipient and the first Pashtun and Pakistani to receive the award."
+                "highlight": "Malala expresses pride in being the youngest Nobel Peace Prize recipient, with the audience listening attentively."
             },
             {
                 "start": "00:00:28.562",
                 "end": "00:00:52.185",
-                "highlight": "Malala humorously mentions her playful conflicts with her brothers while advocating for global peace."
+                "highlight": "Malala humorously mentions her brothers, contrasting playful family conflicts with her global message of peace."
             },
             {
                 "start": "00:01:18.478",
                 "end": "00:01:33.694",
-                "highlight": "Malala highlights unity between India and Pakistan, emphasizing collaboration for children's rights."
+                "highlight": "Malala discusses unity between India and Pakistan, emphasizing collaboration for children's rights."
             },
             {
                 "start": "00:02:28.548",
                 "end": "00:03:24.337",
-                "highlight": "Malala passionately calls for action to end educational deprivation and ensure peace for all children."
+                "highlight": "Malala passionately calls for action to end educational deprivation, urging global efforts for peace and equality."
             },
             {
                 "start": "00:03:36.750",
                 "end": "Not explicitly stated",
-                "highlight": "Malala reflects on public perceptions of her and humorously mentions her brother's nickname for her, reaffirming her commitment to advocacy."
+                "highlight": "Malala reflects on her identity, blending humor with determination to advocate for education and women's rights."
             }
         ],
         "video_timeline": [
@@ -1761,43 +1761,43 @@
             },
             {
                 "question": "What are the key events?",
-                "answer": "Malala expresses pride in her achievements, humorously mentions her family, acknowledges Kailash Satyarthi, discusses unity between nations, and calls for action to end educational deprivation."
+                "answer": "Malala expresses pride in her achievements, humorously mentions her family, honors Kailash Satyarthi, discusses unity between nations, and calls for action to end educational deprivation."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Malala delivers a heartfelt speech, shares personal anecdotes, acknowledges collaborators, and calls for global action; the audience listens attentively and applauds."
+                "answer": "Malala delivers a heartfelt speech, shares personal anecdotes, and advocates for global collaboration; the audience listens attentively and applauds."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "The deprivation of education for children and the need for global unity to address this issue are central problems."
+                "answer": "The global issues of children's deprivation of education, inequality, and the need for peace are central problems discussed."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "Malala Yousafzai, a young advocate for education and peace, reflects on her achievements, shares personal stories, and calls for collective action to address global issues."
+                "answer": "Malala Yousafzai is the main character, sharing her journey from being a young activist to a Nobel Laureate advocating for education and peace."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Malala Yousafzai: determined, relatable, and inspiring advocate for education and peace. Kailash Satyarthi: respected collaborator in children's rights advocacy. Malala's brothers: humorously mentioned as part of her personal anecdotes."
+                "answer": "Malala Yousafzai: A young Pakistani woman, determined, eloquent, and humorous, advocating for global change. Kailash Satyarthi: Mentioned as a champion for children's rights, respected and collaborative."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "\"I'm proud to be the youngest person to receive this award\" - Malala. \"It is not time to pity them. It is time to take action\" - Malala. \"So it becomes the last time that we see a child deprived of education\" - Malala."
+                "answer": "\"It is not time to pity them. It is time to take action.\" - Malala. \"I'm proud that we can work together and show the world that an Indian and a Pakistani can work together.\" - Malala."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is a formal event with a blue backdrop, symbolizing the significance of the Nobel Peace Prize ceremony. It remains consistent throughout."
+                "answer": "The setting is a formal event with a blue wall backdrop, symbolizing the gravity of the Nobel Peace Prize ceremony. It remains consistent throughout."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video begins with Malala expressing pride and gratitude during her Nobel Peace Prize acceptance speech, setting a formal and celebratory tone."
+                "answer": "The video begins with Malala expressing pride and gratitude as the youngest Nobel Peace Prize recipient, setting a celebratory tone."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with Malala reiterating her call to action for children's education and global peace, leaving the audience inspired and applauding."
+                "answer": "The video ends with Malala calling for global action to end educational deprivation and reaffirming her commitment to peace and equality."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "The podium and blue backdrop are central, appearing throughout the speech as symbols of the formal event."
+                "answer": "The Nobel Peace Prize and the podium are central, appearing throughout as symbols of Malala's advocacy and recognition."
             },
             {
                 "question": "What is the most important thing said or heard?",
@@ -1805,103 +1805,103 @@
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The focus shifts from Malala's personal achievements to a global call to action for children's education and unity."
+                "answer": "The speech transitions from personal achievements to a global call to action for children's rights and education."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "A formal speech."
+                "answer": "A formal speech at a Nobel Peace Prize ceremony."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "Advocacy for children's rights, education, and global unity."
+                "answer": "To advocate for children's rights, education, global unity, and inspire collective action."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Formal (speech setting), celebratory (audience applause), reflective (personal anecdotes), determined (call to action), lighthearted (humorous remarks)."
+                "answer": "Formal (ceremonial setting), inspirational (call to action), lighthearted (personal anecdotes), reflective (gratitude and unity)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Background on Malala's activism, Kailash Satyarthi's work, and the Nobel Peace Prize."
+                "answer": "Details about Malala's background, Kailash Satyarthi's work, and the Nobel Peace Prize's significance."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Malala at a podium in front of a blue wall, formal audience, inconsistent captions."
+                "answer": "Malala at a podium, blue wall backdrop, formal audience, and inconsistent captions."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Malala's clear and passionate speech, audience applause, occasional humor in tone."
+                "answer": "Clear speech delivery, audience applause, and occasional humor in tone."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "They are aligned, with visuals of a formal setting complementing the speech's tone and audience reactions."
+                "answer": "They are aligned, with visuals complementing the speech and audience reactions matching the tone."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Visual: Malala at the podium, audience reactions. Audio: Speech delivery, applause, shifts in tone."
+                "answer": "Visual: Malala's gestures, formal setting. Audio: Applause, shifts in tone from serious to humorous."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "Live action."
+                "answer": "Live action only."
             },
             {
-                "question": "What is the significance of Malala's Nobel Peace Prize?",
-                "answer": "It symbolizes her advocacy for children's rights, education, and global unity, as well as her historic achievements as the youngest recipient and the first Pashtun and Pakistani to win."
+                "question": "What is Malala's tone during her speech?",
+                "answer": "Her tone is a mix of pride, gratitude, determination, and occasional humor."
             },
             {
-                "question": "What humorous comment does Malala make about her family?",
-                "answer": "She jokes about still fighting with her younger brothers, contrasting her global message of peace with relatable sibling dynamics."
+                "question": "How does Malala describe her relationship with her brothers?",
+                "answer": "She humorously mentions that they still fight, contrasting it with her global message of peace."
             },
             {
-                "question": "How does Malala describe her collaboration with Kailash Satyarthi?",
-                "answer": "She highlights their shared mission for children's rights and emphasizes the unity between an Indian and a Pakistani working together."
-            },
-            {
-                "question": "What does Malala say about her name?",
-                "answer": "She explains that her name means \"grief-stricken,\" but her grandfather called her \"the happiest girl in the world.\""
-            },
-            {
-                "question": "What call to action does Malala make regarding children's education?",
-                "answer": "She urges the world to take action to ensure education for all children, declaring it is time to act, not pity."
+                "question": "What does Malala say about Kailash Satyarthi?",
+                "answer": "She praises his long-standing dedication to children's rights and expresses gratitude for sharing the Nobel Peace Prize with him."
             },
             {
                 "question": "How does the audience react to Malala's speech?",
-                "answer": "They respond with applause, cheers, and attentiveness, reflecting their admiration and agreement with her message."
+                "answer": "The audience listens attentively, applauds frequently, and responds positively to her remarks."
             },
             {
-                "question": "What does Malala say about the shared nature of her Nobel Prize?",
-                "answer": "She states it represents the collective effort of advocating for children's rights, not just her individual achievement."
+                "question": "What does Malala say about the collaboration between India and Pakistan?",
+                "answer": "She highlights that an Indian and a Pakistani can work together to achieve goals for children's rights, promoting unity."
             },
             {
-                "question": "What personal anecdote does Malala share about her brother?",
-                "answer": "She humorously mentions that her brother calls her \"that annoying bossy sister.\""
+                "question": "What personal anecdote does Malala share about her name?",
+                "answer": "She explains that her name means \"grief-stricken,\" but her grandfather called her \"the happiest girl in the world.\""
             },
             {
-                "question": "What does Malala emphasize about unity between India and Pakistan?",
-                "answer": "She expresses pride in showing the world that an Indian and a Pakistani can work together to achieve shared goals."
+                "question": "What does Malala emphasize about the Nobel Prize?",
+                "answer": "She states it represents the collective effort to advocate for children's rights, not just her individual achievement."
             },
             {
-                "question": "What does Malala say about Kailash Satyarthi's advocacy?",
-                "answer": "She humorously notes that his work spans twice as long as she has been alive, highlighting his dedication."
-            },
-            {
-                "question": "What is Malala's ultimate goal for children?",
-                "answer": "She wants to ensure that no child is ever deprived of education again."
+                "question": "What is Malala's call to action regarding education?",
+                "answer": "She urges action to ensure education for all children and declares it is time to end educational deprivation."
             },
             {
                 "question": "How does Malala address her global perception?",
-                "answer": "She acknowledges labels like \"the girl who was shot by the Taliban\" and \"a Nobel Laureate\" but focuses on her mission for education and peace."
-            },
-            {
-                "question": "What tone does Malala use in her speech?",
-                "answer": "She blends determination with humor and relatability, engaging her audience effectively."
+                "answer": "She mentions being labeled as \"the girl who was shot by the Taliban\" and \"a Nobel Laureate,\" but humorously adds her brother calls her \"that annoying bossy sister.\""
             },
             {
                 "question": "What does Malala say about the struggles of children worldwide?",
-                "answer": "She highlights their struggles and calls for action to end educational deprivation and promote peace."
+                "answer": "She highlights their struggles and calls for action to ensure peace and education for all."
+            },
+            {
+                "question": "What is the significance of Malala's collaboration with Kailash Satyarthi?",
+                "answer": "It symbolizes unity and shared dedication to children's rights across national and cultural boundaries."
+            },
+            {
+                "question": "What does Malala say about her fight for women's rights?",
+                "answer": "She reaffirms her commitment to advocating for women's rights alongside education and global peace."
+            },
+            {
+                "question": "How does Malala use humor in her speech?",
+                "answer": "She uses humor to make her message relatable, such as joking about her brothers and her global perception."
+            },
+            {
+                "question": "What does Malala say about the audience's role in her mission?",
+                "answer": "Not explicitly stated."
             },
             {
                 "question": "What is the atmosphere during Malala's speech?",
-                "answer": "The setting is formal and celebratory, with the audience showing appreciation and support for her message."
+                "answer": "The atmosphere is formal, celebratory, and reflective, with moments of humor and emotional connection."
             }
         ]
     },

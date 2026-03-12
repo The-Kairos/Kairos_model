@@ -1,14 +1,14 @@
 # Cooking Tutorial Pasta Dough
 
 ## Summary
-A step-by-step tutorial demonstrates how to make simple homemade pasta dough, emphasizing hands-on techniques, accessibility, and resourcefulness, with occasional shifts to unrelated activities like woodworking, before concluding with cooking, serving, and audience engagement.
+A step-by-step cooking tutorial demonstrates how to make simple homemade pasta dough, emphasizing accessibility and hands-on techniques, with occasional shifts to hygiene tips, woodworking, and audience engagement, culminating in the preparation, cooking, and presentation of a pasta dish served with a tomato sauce.
 
 ## Highlights
 - [00:00:00.000](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=0) - [00:00:06.500](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=6): Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.
-- [00:00:06.500](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=6) - [00:00:11.667](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=12): I'm not making the fanciest or the best or the most luxurious recipe, but it's easy.
 - [00:00:14.333](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=14) - [00:00:18.167](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=18): So if the pasta aisle at your grocery store is empty, don't panic.
-- [00:00:56.833](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=57) - [00:01:00.167](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=60): And a teaspoon of salt.
+- [00:00:56.833](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=57) - [00:01:00.167](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=60): Then using a fork, whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well.
 - [00:03:05.167](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=185) - [00:03:11.000](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=191): The pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta.
+- [00:04:36.667](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=277) - [00:04:42.667](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=283): It may be a little bit more time consuming, but let's be real, we all have more time on our hands than normal right now, so really.
 - [00:04:42.667](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=283) - [00:04:50.167](../../Videos/How%20to%20Make%20Pasta%20-%20Without%20a%20Machine.mp4#t=290): No excuse. I'll probably be posting pasta videos every day this week So if you like this video and haven't already consider subscribing.
 
 ## Timeline
@@ -21,67 +21,67 @@ A step-by-step tutorial demonstrates how to make simple homemade pasta dough, em
 
 ## Questions
 **Q:** What is happening in the video?
-**A:** A cooking tutorial demonstrates how to make homemade pasta dough with occasional shifts to unrelated activities like woodworking.
+**A:** A cooking tutorial demonstrates how to make homemade pasta dough, with occasional shifts to unrelated activities like woodworking.
 
 **Q:** What are the key events?
-**A:** The tutorial covers mixing ingredients, kneading dough, rolling it out, cutting it into pasta, cooking it, and presenting the dish.
+**A:** The tutorial progresses through steps of making pasta dough, including kneading, rolling, and cutting, with intermittent scenes of woodworking and ingredient preparation.
 
 **Q:** What are the key actions and who performed them?
-**A:** A person leads the tutorial, mixing, kneading, rolling, and cutting dough, with occasional woodworking and ingredient preparation.
+**A:** A person demonstrates making pasta dough by kneading, rolling, and cutting it, while also offering instructions and tips.
 
 **Q:** What are the main conflicts and problems encountered?
 **A:** Not explicitly stated.
 
 **Q:** Who is the main character? Describe their journey.
-**A:** The unnamed narrator guides viewers through the pasta-making process, emphasizing simplicity and resourcefulness.
+**A:** The unnamed narrator leads the tutorial, guiding viewers through the pasta-making process with a focus on simplicity and accessibility.
 
 **Q:** List the characters. For each character, describe their appearance, traits, and role in the story.
-**A:** Person #1, #30, #34, and others appear, performing tasks like kneading dough or cutting wood, but their appearances and traits are not explicitly described.
+**A:** Person #1, #30, #34, and others appear as unnamed individuals performing tasks like kneading dough or cutting wood; their traits and appearances are not explicitly described.
 
 **Q:** What are some significant quotes from the video and who said them?
-**A:** "Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water." - Narrator.
+**A:** "Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough." - Narrator; "Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water." - Narrator.
 
 **Q:** What is the setting? Did it change? How is it related to the story?
-**A:** The setting alternates between a kitchen and a woodworking area, with the kitchen being central to the pasta tutorial.
+**A:** The setting alternates between a kitchen and a woodworking area, with the kitchen being central to the pasta-making tutorial.
 
 **Q:** How did the video start? Explain the start.
-**A:** The video begins with an introduction to making homemade pasta dough on a wooden cutting board.
+**A:** The video begins with the narrator introducing the tutorial and explaining how to make a simple homemade pasta dough.
 
 **Q:** How did the video end? Explain the ending.
-**A:** The video concludes with a plated pasta dish and a promotional message encouraging audience interaction.
+**A:** The video concludes with the narrator presenting the finished pasta dish and encouraging viewers to connect on social media.
 
 **Q:** What objects are central to the video and when do they appear?
-**A:** Central objects include dough, a wooden cutting board, eggs, flour, and a bowl, appearing throughout the tutorial.
+**A:** Central objects include pasta dough, a wooden cutting board, a bowl, and a rolling pin, appearing throughout the tutorial.
 
 **Q:** What is the most important thing said or heard?
 **A:** "Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough."
 
 **Q:** What is different at the end vs the beginning?
-**A:** The video transitions from making pasta dough to presenting the finished dish and engaging with the audience.
+**A:** The video transitions from demonstrating pasta preparation to promoting engagement and concluding with a reflective tone.
 
 **Q:** What type of video is this?
 **A:** A cooking tutorial.
 
 **Q:** What is the goal or intent or theme of the video?
-**A:** To teach viewers how to make homemade pasta dough and encourage engagement with the creator.
+**A:** To teach viewers how to make homemade pasta dough and encourage audience interaction.
 
 **Q:** List the moods and tones present, explain each one.
-**A:** Instructional (focused on teaching), calm (relaxed pacing), encouraging (reassuring viewers about simplicity), and promotional (inviting audience interaction).
+**A:** Instructional: Guides viewers step-by-step. Encouraging: Reassures simplicity. Reflective: Promotes engagement and creativity.
 
 **Q:** What context is missing or assumed? What would require outside knowledge?
-**A:** The identity of the narrator, the purpose of woodworking scenes, and the details of referenced links or recipes.
+**A:** The identity of the narrator and the relevance of woodworking scenes are not explicitly stated.
 
 **Q:** What are key visual descriptions?
-**A:** Wooden cutting boards, bowls of flour and eggs, kneading dough, rolling pasta, and a finished dish with tomato sauce.
+**A:** Wooden cutting boards, bowls of dough, pasta preparation, and occasional woodworking elements.
 
 **Q:** What are key audio descriptions?
-**A:** Faint background music, clear instructional dialogue, occasional promotional messages, and a concluding phrase from children.
+**A:** Calm narration, faint background music, and occasional promotional or reflective statements.
 
 **Q:** Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?
-**A:** Mostly aligned, though occasional woodworking visuals diverge from the cooking narrative.
+**A:** Mostly aligned, though woodworking visuals occasionally diverge from the cooking narrative.
 
 **Q:** What are prominent visual cues and audio cues noticed throughout the video?
-**A:** Visuals: dough preparation, pasta cutting, and finished dishes. Audio: step-by-step instructions, faint music, and audience engagement prompts.
+**A:** Visual: Dough kneading, pasta cutting. Audio: Step-by-step instructions, faint music.
 
 **Q:** Does the video contain any live action, animation, or special effects?
 **A:** Live action.
@@ -92,41 +92,41 @@ A step-by-step tutorial demonstrates how to make simple homemade pasta dough, em
 **Q:** What is the tone of the tutorial?
 **A:** The tone is calm, instructional, and encouraging.
 
-**Q:** What is the purpose of the stationary object labeled "donut #1"?
+**Q:** What is the purpose of "donut #1" in the scene?
 **A:** Not explicitly stated.
 
-**Q:** What ingredients are mentioned in the tutorial?
-**A:** Flour, eggs, olive oil, and salt are mentioned.
+**Q:** What does the narrator emphasize about the recipe?
+**A:** The simplicity and accessibility of the recipe.
 
-**Q:** What does the narrator say about the simplicity of the recipe?
-**A:** The narrator emphasizes that the recipe is easy and uses common household ingredients.
+**Q:** What is the significance of "bowl #2"?
+**A:** It holds prepared food and is central to the pasta-making process.
 
-**Q:** What is the significance of the American flag appearing in the measuring cup?
-**A:** Not explicitly stated.
+**Q:** What is the narrator's advice if the grocery store pasta aisle is empty?
+**A:** "Don't panic," as making pasta at home is easy.
 
-**Q:** What hygiene practices are emphasized in the tutorial?
-**A:** Washing hands and sanitizing the work surface are emphasized.
+**Q:** What hygiene advice is given during the tutorial?
+**A:** Wash your hands and sanitize your work surface.
 
-**Q:** What is the purpose of creating a well in the flour?
-**A:** It is for mixing the eggs and flour together.
+**Q:** What unusual imagery appears in the measuring cup?
+**A:** An American flag, possibly a metaphor or editing error.
 
-**Q:** What troubleshooting tips are provided for the dough?
-**A:** Add water if the dough is too dry, or add flour if it is too wet.
+**Q:** What is the next step after cracking three eggs into the flour?
+**A:** Begin whisking the eggs and incorporating the flour.
 
-**Q:** How long should the dough be kneaded?
-**A:** The dough should be kneaded for about 10 minutes.
+**Q:** What troubleshooting tip is provided for dry dough?
+**A:** Add a touch of water to adjust the consistency.
 
-**Q:** What is the next step after kneading the dough?
-**A:** Wrap it in cling film and let it rest for a minimum of 30 minutes.
+**Q:** What is the recommended resting time for the dough?
+**A:** A minimum of 30 minutes wrapped in cling film.
 
-**Q:** What shape of pasta does the narrator demonstrate?
-**A:** The narrator demonstrates making long tagliatelle-style pasta.
+**Q:** What is the narrator's suggestion for storing prepared pasta?
+**A:** Wrap it and freeze or refrigerate it.
 
-**Q:** What is the cooking time for fresh pasta?
-**A:** Fresh pasta cooks quickly and only needs about 2-3 minutes in salted boiling water.
+**Q:** How long does fresh pasta take to cook?
+**A:** About 2-3 minutes in salted boiling water.
 
-**Q:** What serving suggestion does the narrator provide?
-**A:** The narrator suggests serving the pasta with a simple tomato sauce.
+**Q:** What is the narrator serving the pasta with?
+**A:** A simple tomato sauce.
 
-**Q:** What does the narrator encourage viewers to do at the end of the tutorial?
-**A:** The narrator encourages viewers to subscribe, connect on Instagram, and leave questions or comments.
+**Q:** What is the narrator's closing message to viewers?
+**A:** Encouragement to subscribe, connect on Instagram, and leave questions.

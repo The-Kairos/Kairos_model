@@ -1,40 +1,40 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/.UDST honors graduation.mp4",
+    "video_path": "Videos\\.UDST honors graduation.mp4",
     "video_length": "02:22:45.000",
-    "total_process_sec": 6261.13106,
+    "total_process_sec": 6444.70857,
     "scene_number": 1244,
-    "start_process": "2026-03-07 14:35:53",
-    "end_process": "2026-03-07 14:40:32",
+    "start_process": "2026-03-12 20:19:00",
+    "end_process": "2026-03-12 20:23:06",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
+            "os": "Windows 10",
+            "os_version": "10.0.19045",
+            "machine_type": "AMD64",
+            "hostname": "Manahil-Laptop",
             "python_version": "3.10.19"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 8,
             "cpu_frequency_MHz": {
-                "current": 2200.214000000002,
+                "current": 2000.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2000.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 182.96,
-            "used_RAM_GB": 5.74,
-            "RAM_usage_percent": 3.0
+            "total_RAM_GB": 7.42,
+            "available_RAM_GB": 1.25,
+            "used_RAM_GB": 6.17,
+            "RAM_usage_percent": 83.1
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 71.49,
-            "disk_free_GB": 69.8,
-            "disk_usage_percent": 50.6
+            "disk_total_GB": 475.69,
+            "disk_used_GB": 248.82,
+            "disk_free_GB": 226.87,
+            "disk_usage_percent": 52.3
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,194 +1117,32 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 19.16194,
-            "cpu_time_sec": 0.06319,
-            "ram_before_MB": 1321,
-            "ram_after_MB": 1321,
-            "ram_used_MB": 0,
+            "wall_time_sec": 12.65407,
+            "cpu_time_sec": 0.14062,
+            "ram_before_MB": 105,
+            "ram_after_MB": 106,
+            "ram_used_MB": 1,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.01171875,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "io_write_MB": 0.008722305297851562,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 42.79598,
-            "cpu_time_sec": 9.2482,
-            "ram_before_MB": 1321,
-            "ram_after_MB": 1396,
-            "ram_used_MB": 75,
-            "io_read_MB": 0.0,
-            "io_write_MB": 106.20703125,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 232.88136,
+            "cpu_time_sec": 241.04688,
+            "ram_before_MB": 106,
+            "ram_after_MB": 128,
+            "ram_used_MB": 22,
+            "io_read_MB": 0.6603641510009766,
+            "io_write_MB": 111.36571407318115,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -73163,102 +73001,78 @@
         }
     ],
     "synopsis": {
-        "chat_name": "University Graduation Ceremonies",
-        "summary": "The video documents formal graduation ceremonies at the University of Dubai (UD) and the University of Doha for Science and Technology (UDST), celebrating academic achievements, cultural pride, and institutional milestones. Graduates in traditional robes receive diplomas, with speeches by dignitaries and officials emphasizing resilience, societal development, and the role of education in a rapidly evolving world. Personal stories highlight perseverance and transformation, while cultural performances and ceremonial traditions enhance the celebratory atmosphere. The events conclude with reflections on leadership, innovation, and societal impact, symbolizing the graduates' readiness to contribute to a knowledge-based economy and shape the future.",
+        "chat_name": "Graduation Ceremonies Overview",
+        "summary": "The video highlights formal graduation events at the University of Dubai and the University of Doha for Science and Technology, celebrating academic achievements, cultural pride, institutional milestones, and personal stories of resilience, with speeches, performances, and reflections on societal impact and future aspirations.",
         "video_highlights": [
             {
-                "timestamp": "00:00:00",
-                "highlight": "The video begins with abstract visuals, including a blue background, projected logos, and celebratory music, emphasizing academic achievements and institutional milestones."
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "The video chronicles formal and celebratory graduation ceremonies at the University of Dubai and the University of Doha for Science and Technology, marked by academic achievements and cultural pride."
             },
             {
-                "timestamp": "00:02:15",
-                "highlight": "Graduation ceremonies at the University of Dubai and UDST feature speeches, diploma presentations, and cultural pride, with graduates recognized individually."
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "Opening visuals feature a blue background, projected logos, and celebratory music, emphasizing milestones like anniversaries, international conferences, and national pride."
             },
             {
-                "timestamp": "00:15:30",
-                "highlight": "Personal stories of resilience and transformation highlight themes of perseverance, societal development, and the role of education in shaping the future."
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "Graduates in black robes receive diplomas, with names announced individually, while speeches by dignitaries highlight academic recognition and institutional milestones."
             },
             {
-                "timestamp": "00:25:45",
-                "highlight": "The ceremonies conclude with celebratory music, speeches, and visuals of graduates interacting with faculty and family, symbolizing shared success and institutional pride."
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "Musical performances, including the National Anthem and Quran recitations, enhance the ceremonial atmosphere, alongside cultural displays and collective celebrations."
+            },
+            {
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "Personal stories of resilience and transformation highlight themes of perseverance, societal development, and the role of education in shaping futures."
+            },
+            {
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "Ceremonies conclude with celebratory music, confetti, and speeches, emphasizing unity, shared success, and Qatar's commitment to fostering a knowledge-based economy."
             }
         ],
         "video_timeline": [
             {
-                "timestamp": "00:00:00",
-                "event": "Abstract visuals and music"
+                "timestamp": "Not explicitly stated",
+                "event": "Abstract visuals and milestones"
             },
             {
-                "timestamp": "00:01:30",
-                "event": "Logos and milestones shown"
+                "timestamp": "Not explicitly stated",
+                "event": "UD and UDST graduations"
             },
             {
-                "timestamp": "00:02:15",
-                "event": "Graduation at UD and UDST"
+                "timestamp": "Not explicitly stated",
+                "event": "Speeches and recognition"
             },
             {
-                "timestamp": "00:05:00",
-                "event": "Speeches by dignitaries"
-            },
-            {
-                "timestamp": "00:08:30",
-                "event": "Diplomas presented to graduates"
-            },
-            {
-                "timestamp": "00:12:00",
-                "event": "Cultural performances held"
-            },
-            {
-                "timestamp": "00:15:30",
+                "timestamp": "Not explicitly stated",
                 "event": "Personal stories shared"
             },
             {
-                "timestamp": "00:18:45",
-                "event": "Themes of resilience discussed"
+                "timestamp": "Not explicitly stated",
+                "event": "Ceremonial traditions conclude"
             },
             {
-                "timestamp": "00:22:00",
-                "event": "Closing speeches and music"
-            },
-            {
-                "timestamp": "00:25:45",
-                "event": "Celebratory visuals and fireworks"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "Abstract visuals with blue background, projected logos, and celebratory music set a formal tone, emphasizing academic achievements and cultural milestones."
-            },
-            {
-                "timestamp": "00:08:30",
-                "description": "Graduates in traditional robes receive diplomas, with names announced individually, highlighting academic recognition and cultural pride."
-            },
-            {
-                "timestamp": "00:05:00",
-                "description": "Speeches by dignitaries such as Sheikh Muhammad bin Abdulrahman bin Jassim Al-Thani and Dr. Salem bin Nasser Al Nuaimi emphasize institutional achievements and resilience."
-            },
-            {
-                "timestamp": "00:15:30",
-                "description": "Personal stories of graduates reflect themes of perseverance, societal development, and the transformative power of education."
-            },
-            {
-                "timestamp": "00:25:45",
-                "description": "Closing scenes feature graduates celebrating with family and friends, confetti, fireworks, and speeches expressing gratitude and hope for the future."
+                "timestamp": "Not explicitly stated",
+                "event": "Broader reflections and celebrations"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "The video showcases formal and celebratory graduation ceremonies at the University of Dubai (UD) and the University of Doha for Science and Technology (UDST), highlighting academic achievements, cultural pride, and institutional milestones."
+                "answer": "The video showcases formal and celebratory graduation ceremonies at the University of Dubai and the University of Doha for Science and Technology, highlighting academic achievements, cultural pride, and institutional milestones."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Key events include graduation ceremonies, speeches by dignitaries, diploma presentations, cultural performances, recognition of institutional milestones, and personal stories of transformation."
+                "answer": "Graduation ceremonies, speeches by dignitaries, diploma presentations, cultural performances, and reflections on academic and personal journeys."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Key actions include speeches by officials such as Sayyid Hassan bin Abdullah Al-Ghanim, Sheikh Muhammad bin Abdulrahman bin Jassim Al-Thani, and Dr. Salem bin Nasser Al Nuaimi; diploma presentations to graduates; cultural performances like the National Anthem and Arabic songs; and personal reflections by graduates."
+                "answer": "Graduates receive diplomas, dignitaries deliver speeches, cultural performances are conducted, and personal stories are shared by participants."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
@@ -73266,11 +73080,11 @@
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "Not explicitly stated, but the graduates collectively represent the main focus, showcasing their academic achievements, resilience, and personal growth."
+                "answer": "Not explicitly stated; the focus is on collective achievements and individual graduate stories."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Characters include graduates (wearing black and blue robes, symbolizing academic success), dignitaries like Sayyid Hassan bin Abdullah Al-Ghanim (official role, delivering speeches), Sheikh Muhammad bin Abdulrahman bin Jassim Al-Thani (official role, delivering speeches), Dr. Salem bin Nasser Al Nuaimi (university president, emphasizing institutional pride), and faculty members such as Dr. Awni Al-Attoum and Dr. Rashid Bin Al-Amri (recognized for contributions)."
+                "answer": "Graduates in black robes (participants), dignitaries like Sayyid Hassan bin Abdullah Al-Ghanim and Sheikh Muhammad bin Abdulrahman bin Jassim Al-Thani (speakers), and faculty members like Dr. Salem bin Nasser Al Nuaimi (organizers)."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
@@ -73278,27 +73092,27 @@
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting includes formal graduation venues at UD and UDST, featuring ceremonial stages, audience seating, and cultural decorations. It transitions to visuals of laboratories, industrial areas, and a desert rocket launch, symbolizing innovation and exploration. The setting reinforces themes of academic achievement and societal impact."
+                "answer": "The setting is primarily at the University of Dubai and UDST, with ceremonial halls and cultural backdrops; it remains consistent and ties to the academic and cultural themes."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with abstract visuals, including a blue background, projected logos, celebratory music, and captions referencing milestones such as anniversaries, conferences, and academic achievements."
+                "answer": "The video begins with abstract visuals, celebratory music, and captions highlighting academic milestones and cultural anniversaries."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with celebratory music, confetti, fireworks, and speeches expressing gratitude, followed by graduates celebrating with family and friends, marking the conclusion of the honors graduation ceremony at UDST."
+                "answer": "The video ends with celebratory music, speeches, and visuals of graduates celebrating with family and friends, symbolizing unity and achievement."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include diplomas (presented during graduation ceremonies), flags and logos (symbolizing cultural pride and institutional milestones), ceremonial robes (worn by graduates), and visuals like a rocket launch and glowing green ball (symbolizing exploration and innovation)."
+                "answer": "Diplomas, robes, flags, logos, and a glowing green ball appear during ceremonies, symbolizing academic success and innovation."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "Themes of resilience, hope, and the vibrant charm of new beginnings are emphasized, urging graduates to embrace opportunities, overcome challenges, and shape their futures."
+                "answer": "Speeches emphasize resilience, societal development, and the role of education in preparing graduates for a rapidly evolving world shaped by technology and artificial intelligence."
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The video transitions from abstract visuals and milestones to celebratory graduation ceremonies, personal stories, and broader reflections on societal impact and innovation."
+                "answer": "The video transitions from abstract visuals and milestones to celebratory scenes of graduates receiving diplomas, personal stories, and reflections on societal impact."
             },
             {
                 "question": "What type of video is this?",
@@ -73306,101 +73120,101 @@
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "To celebrate academic achievements, cultural pride, institutional milestones, and inspire graduates to contribute to society."
+                "answer": "To celebrate academic achievements, cultural pride, and institutional milestones while inspiring graduates to embrace opportunities and shape the future."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Formal (structured ceremonies and speeches), celebratory (music, confetti, and fireworks), inspirational (themes of resilience and hope), and reflective (personal stories and societal impact)."
+                "answer": "Formal (structured ceremonies), celebratory (music, confetti, and applause), reflective (personal stories and speeches), and inspirational (themes of resilience and hope)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Details about the universities' histories, the significance of the anniversaries, and the broader cultural context of the ceremonies are not explicitly explained."
+                "answer": "Details about the universities' histories, the significance of milestones, and the broader cultural context of the events."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Graduates in black and blue robes, diplomas, flags, logos, confetti, fireworks, laboratories, industrial areas, and a rocket launch in the desert."
+                "answer": "Graduates in black and blue robes, flags, logos, confetti, fireworks, a rocket launch, and a glowing green ball symbolizing innovation."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Ceremonial music, speeches, applause, recitations of the National Anthem and verses from the Holy Quran, and an Arabic song performed by a man in black robes."
+                "answer": "Ceremonial music, applause, speeches, the National Anthem, Quran recitations, and celebratory songs."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Yes, the visuals and audio cues are aligned, both emphasizing formal ceremonies, cultural pride, and celebratory themes."
+                "answer": "Yes, they are aligned, as both emphasize celebration, formality, and cultural pride."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visual cues include graduates receiving diplomas, flags, logos, and confetti. Prominent audio cues include speeches, applause, ceremonial music, and recitations."
+                "answer": "Visual cues include graduates receiving diplomas, cultural symbols, and festive elements; audio cues include speeches, music, and applause."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "The video contains live action with graduation ceremonies and special effects like confetti and fireworks."
+                "answer": "The video contains live action with some abstract visuals and celebratory special effects like confetti and fireworks."
             },
             {
-                "question": "Additional predicted question 1?",
-                "answer": "Not explicitly stated."
+                "question": "What is the significance of the blue background and stripes in the opening scenes?",
+                "answer": "They set a formal tone for the video and emphasize the celebratory atmosphere."
             },
             {
-                "question": "Additional predicted question 2?",
-                "answer": "Not explicitly stated."
+                "question": "What milestones are referenced in the opening captions?",
+                "answer": "Milestones such as \"32 Degrees Graduate Excellence,\" \"426 College Business School,\" and anniversaries like the \"25th anniversary logo for the UAE\" are highlighted."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
+                "question": "What do the graduation robes symbolize?",
+                "answer": "The traditional black robes and caps symbolize academic achievement and cultural pride."
             },
             {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
+                "question": "Which faculties are mentioned during the graduate recognition?",
+                "answer": "Faculties such as the College of Business, Health Sciences, and Engineering are mentioned."
             },
             {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
+                "question": "What role do cultural performances play in the ceremonies?",
+                "answer": "They enhance the ceremonial atmosphere with elements like the National Anthem, Quran recitations, and Arabic songs."
             },
             {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
+                "question": "Who are some of the dignitaries recognized during the ceremonies?",
+                "answer": "Figures such as Sayyid Hassan bin Abdullah Al-Ghanim and Sheikh Muhammad bin Abdulrahman bin Jassim Al-Thani are recognized."
             },
             {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
+                "question": "What achievements of UDST are highlighted?",
+                "answer": "Achievements include its 77 programs, 200 laboratories, 21 academic accreditations, and 65 partnerships."
             },
             {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
+                "question": "What personal story is shared by a woman in a black hijab?",
+                "answer": "She reflects on her success in Qatar's first healthcare management program, inspired by support and discovering her passion."
             },
             {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
+                "question": "How does the man’s personal story connect to resilience?",
+                "answer": "He shares how the loss of his brother motivated him to pursue a medical career and postgraduate studies."
             },
             {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
+                "question": "What themes are addressed in the speeches about the younger generation?",
+                "answer": "Themes include creativity, social awareness, diversity, and challenging stereotypes about reliance on digital spaces."
             },
             {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
+                "question": "What visual symbolizes exploration and aspiration?",
+                "answer": "A rocket launch in the desert symbolizes exploration and aspiration."
             },
             {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
+                "question": "What does the glowing green ball represent?",
+                "answer": "It represents discovery and innovation."
             },
             {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
+                "question": "How do graduates celebrate their success in the closing scenes?",
+                "answer": "They perform on stage, interact with faculty, and celebrate with family and friends."
             },
             {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
+                "question": "What broader reflections are shared in the Arabic speeches?",
+                "answer": "Reflections focus on nation-building, intellectual contributions, and addressing challenges in a world shaped by artificial intelligence."
             },
             {
-                "question": "Additional predicted question 15?",
-                "answer": "Not explicitly stated."
+                "question": "What enhances the celebratory atmosphere at the end of the video?",
+                "answer": "Ceremonial music, confetti, fireworks, and festive visuals enhance the atmosphere."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/UDST honors graduation.mp4/rag_embedding.json",
-        "context_count": 1249,
+        "rag_path": "_processed\\UDST honors graduation.mp4/rag_embedding.json",
+        "context_count": 1248,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }

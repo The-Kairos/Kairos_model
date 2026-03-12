@@ -2,45 +2,42 @@
     "run_description": "Test run for video processing pipeline.",
     "video_path": "Videos\\.CCTV Dogs.mp4",
     "video_length": "00:05:00.037",
-    "total_process_sec": 126.91844,
+    "total_process_sec": 1426.50111,
     "scene_number": 16,
-    "start_process": "2026-03-12 00:41:39",
-    "end_process": "2026-03-12 00:42:04",
+    "start_process": "2026-03-12 21:14:23",
+    "end_process": "2026-03-12 21:39:41",
     "computer": {
         "os_info": {
-            "os": "Windows 11",
-            "os_version": "10.0.26200",
+            "os": "Windows 10",
+            "os_version": "10.0.19045",
             "machine_type": "AMD64",
-            "hostname": "the-Kewl-Laptop",
-            "python_version": "3.12.1"
+            "hostname": "Manahil-Laptop",
+            "python_version": "3.10.19"
         },
         "cpu_info": {
-            "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+            "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
             "cpu_physical_cores": 8,
-            "cpu_logical_cores": 16,
+            "cpu_logical_cores": 8,
             "cpu_frequency_MHz": {
-                "current": 2208.0,
+                "current": 2000.0,
                 "min": 0.0,
-                "max": 2208.0
+                "max": 2000.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 15.84,
-            "available_RAM_GB": 2.18,
-            "used_RAM_GB": 13.66,
-            "RAM_usage_percent": 86.3
+            "total_RAM_GB": 7.42,
+            "available_RAM_GB": 1.56,
+            "used_RAM_GB": 5.86,
+            "RAM_usage_percent": 79.0
         },
         "disk_info": {
-            "disk_total_GB": 932.98,
-            "disk_used_GB": 533.27,
-            "disk_free_GB": 399.71,
-            "disk_usage_percent": 57.2
+            "disk_total_GB": 475.69,
+            "disk_used_GB": 255.73,
+            "disk_free_GB": 219.96,
+            "disk_usage_percent": 53.8
         },
         "gpu_info": {
-            "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
-            "gpu_memory_total_MB": 6144,
-            "gpu_memory_used_MB": 0,
-            "gpu_driver_version": "572.16"
+            "gpu_model": null
         }
     },
     "params": {
@@ -74,1082 +71,182 @@
         "rag_top_k_context": 10
     },
     "steps": {
-        "audio_scan": {
-            "wall_time_sec": 8.01259,
-            "cpu_time_sec": 8.0463,
-            "ram_before_MB": 1314,
-            "ram_after_MB": 1478,
-            "ram_used_MB": 164,
-            "io_read_MB": 0.0,
-            "io_write_MB": 0.0,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
-        },
         "get_scene_list": {
-            "wall_time_sec": 2.47692,
-            "cpu_time_sec": 22.995,
-            "ram_before_MB": 3269,
-            "ram_after_MB": 3291,
-            "ram_used_MB": 22,
-            "io_read_MB": 45.8359375,
+            "wall_time_sec": 7.21086,
+            "cpu_time_sec": 22.3125,
+            "ram_before_MB": 381,
+            "ram_after_MB": 391,
+            "ram_used_MB": 10,
+            "io_read_MB": 588.546407699585,
             "io_write_MB": 0.0,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                864,
-                0,
-                0,
-                0
-            ]
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "save_clips": {
-            "wall_time_sec": 1.60864,
-            "cpu_time_sec": 0.01477,
-            "ram_before_MB": 3291,
-            "ram_after_MB": 3291,
+            "wall_time_sec": 3.55833,
+            "cpu_time_sec": 0.14062,
+            "ram_before_MB": 391,
+            "ram_after_MB": 391,
             "ram_used_MB": 0,
-            "io_read_MB": 0.5,
-            "io_write_MB": 45.18359375,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                864,
-                0,
-                0,
-                0
-            ]
+            "io_read_MB": 0.04666614532470703,
+            "io_write_MB": 0.0,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "sample_frames": {
-            "wall_time_sec": 1.05518,
-            "cpu_time_sec": 4.59806,
-            "ram_before_MB": 3291,
-            "ram_after_MB": 3291,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.0,
-            "io_write_MB": 1.4375,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                864,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 1.296,
+            "cpu_time_sec": 3.4375,
+            "ram_before_MB": 391,
+            "ram_after_MB": 396,
+            "ram_used_MB": 5,
+            "io_read_MB": 59.89750862121582,
+            "io_write_MB": 1.3637990951538086,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "caption_frames": {
-            "wall_time_sec": 21.46437,
-            "cpu_time_sec": 21.46904,
-            "ram_before_MB": 3291,
-            "ram_after_MB": 3291,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.0,
+            "wall_time_sec": 188.28119,
+            "cpu_time_sec": 160.4375,
+            "ram_before_MB": 396,
+            "ram_after_MB": 1269,
+            "ram_used_MB": 873,
+            "io_read_MB": 0.021712303161621094,
             "io_write_MB": 0.0,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 11,
-                    "mem_util_percent": 8
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                921,
-                0,
-                0,
-                0
-            ]
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "sample_fps": {
-            "wall_time_sec": 16.72669,
-            "cpu_time_sec": 97.89584,
-            "ram_before_MB": 3291,
-            "ram_after_MB": 3291,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.1484375,
-            "io_write_MB": 37.53125,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                864,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 21.01595,
+            "cpu_time_sec": 79.53125,
+            "ram_before_MB": 1257,
+            "ram_after_MB": 1450,
+            "ram_used_MB": 193,
+            "io_read_MB": 1490.503478050232,
+            "io_write_MB": 35.55330848693848,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "detect_object_yolo": {
-            "wall_time_sec": 6.35505,
-            "cpu_time_sec": 6.36864,
-            "ram_before_MB": 3291,
-            "ram_after_MB": 3291,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.0,
-            "io_write_MB": 39.1875,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17709,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 17711,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 100,
-                    "mem_util_percent": 100
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                912,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                2638,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 395.01524,
+            "cpu_time_sec": 1031.60938,
+            "ram_before_MB": 1450,
+            "ram_after_MB": 3028,
+            "ram_used_MB": 1578,
+            "io_read_MB": 23.839035987854004,
+            "io_write_MB": 37.46288013458252,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
+        },
+        "audio_scan": {
+            "wall_time_sec": 38.63978,
+            "cpu_time_sec": 63.54688,
+            "ram_before_MB": 2912,
+            "ram_after_MB": 2716,
+            "ram_used_MB": -196,
+            "io_read_MB": 297.8701171875,
+            "io_write_MB": 1.9153242111206055,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "asr_timings": {
-            "wall_time_sec": 4e-05,
-            "cpu_time_sec": 0.00098,
-            "ram_before_MB": 1478,
-            "ram_after_MB": 1478,
+            "wall_time_sec": 0.0,
+            "cpu_time_sec": 0.0,
+            "ram_before_MB": 2648,
+            "ram_after_MB": 2648,
             "ram_used_MB": 0,
             "io_read_MB": 0.0,
             "io_write_MB": 0.0,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "ast_timings": {
-            "wall_time_sec": 11.42777,
-            "cpu_time_sec": 0.10382,
-            "ram_before_MB": 1478,
-            "ram_after_MB": 1481,
-            "ram_used_MB": 3,
-            "io_read_MB": 0.0,
-            "io_write_MB": 0.0,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 108.90121,
+            "cpu_time_sec": 0.1875,
+            "ram_before_MB": 2648,
+            "ram_after_MB": 13,
+            "ram_used_MB": -2635,
+            "io_read_MB": 0.005219459533691406,
+            "io_write_MB": 18.30409526824951,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "describe_scenes": {
-            "wall_time_sec": 20.45436,
-            "cpu_time_sec": 0.67335,
-            "ram_before_MB": 1481,
-            "ram_after_MB": 1489,
-            "ram_used_MB": 8,
-            "io_read_MB": 0.0,
+            "wall_time_sec": 22.71536,
+            "cpu_time_sec": 0.9375,
+            "ram_before_MB": 15,
+            "ram_after_MB": 70,
+            "ram_used_MB": 55,
+            "io_read_MB": 0.9356193542480469,
             "io_write_MB": 0.0,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "summarize_scenes": {
-            "wall_time_sec": 12.89742,
-            "cpu_time_sec": 0.01628,
-            "ram_before_MB": 1489,
-            "ram_after_MB": 1489,
-            "ram_used_MB": 0,
+            "wall_time_sec": 613.81783,
+            "cpu_time_sec": 0.07812,
+            "ram_before_MB": 70,
+            "ram_after_MB": 28,
+            "ram_used_MB": -42,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.00390625,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "io_write_MB": 0.0,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 8.90934,
-            "cpu_time_sec": 0.35938,
-            "ram_before_MB": 518,
-            "ram_after_MB": 526,
-            "ram_used_MB": 8,
-            "io_read_MB": 1.1889457702636719,
-            "io_write_MB": 0.008403778076171875,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA GeForce GTX 1660 Ti",
-                    "memory_used_MB": 178,
-                    "memory_total_MB": 6144,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
+            "wall_time_sec": 8.72755,
+            "cpu_time_sec": 0.15625,
+            "ram_before_MB": 29,
+            "ram_after_MB": 36,
+            "ram_used_MB": 7,
+            "io_read_MB": 0.0,
+            "io_write_MB": 0.006046295166015625,
+            "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
             "cuda_after_MB": null,
             "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 15.53007,
-            "cpu_time_sec": 10.48438,
-            "ram_before_MB": 526,
-            "ram_after_MB": 547,
-            "ram_used_MB": 21,
-            "io_read_MB": 3.4280128479003906,
-            "io_write_MB": 2.032107353210449,
+            "wall_time_sec": 17.32181,
+            "cpu_time_sec": 5.14062,
+            "ram_before_MB": 36,
+            "ram_after_MB": 84,
+            "ram_used_MB": 48,
+            "io_read_MB": 2.73763370513916,
+            "io_write_MB": 2.032046318054199,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -1165,16 +262,16 @@
             "start_seconds": 0.0,
             "end_seconds": 20.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0000.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0000.mp4",
             "frame_captions": [
-                "a video frame of a house and yard with the view of a garden",
-                "a video frame of a backyard area with a small garden in the middle",
-                "a video frame of a car with a view of a driveway and yard"
+                "a video frame of an abandoned house, taken by a cci camera",
+                "a video frame of the camera that is in a car ' s windshield",
+                "a video frame of a car with an image on it and the camera"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "none",
-            "llm_scene_description": "This scene captures a quiet outdoor setting in a residential area. The video alternates between views of a house, a backyard with a small garden, and a driveway with a parked car. No characters or animals are visible, and there is no audio evidence to provide further context. The environment appears calm, with no signs of activity or conflict.\n\nCharacters:\nName: None detected\nRole: None detected\n\nKey Dialogue:\nSpeaker: None\nCause: No audio evidence\n\nCausal Relationships:\nEmotion or action: None detected\nCause: No activity or dialogue\nEvidence: Lack of audio and visible characters\n\nObjects and Setting:\nObject or environment: House, backyard garden, driveway, car\nContext relevance: Establishes a residential setting, potentially for future activity or character introduction\n\nCross-Scene Continuity:\nOngoing conflict: None detected\nCharacter development: None detected"
+            "llm_scene_description": "This scene depicts a sequence of frames from a video titled \"CCTV Dogs.mp4.\" The visual evidence is inconsistent, with captions suggesting different settings: an abandoned house (Frame 0), a car windshield camera (Frame 1), and a car with an image and camera (Frame 2). No audio evidence or character tracks are detected, leaving the scene ambiguous and lacking explicit narrative or emotional cues.\n\nCharacters:\nName: None detected\nRole: None identified\n\nKey Dialogue:\nSpeaker: None\nCause: No audio evidence available\n\nCausal Relationships:\nEmotion or action: None observed\nCause: No explicit evidence provided\nEvidence: Lack of audio and character tracks\n\nObjects and Setting:\nObject or environment: Abandoned house, car windshield camera, car with an image\nContext relevance: The captions suggest disparate environments, but no clear connection or narrative continuity is established.\n\nCross-Scene Continuity:\nOngoing conflict: None identified\nCharacter development: None observed\n\n"
         },
         {
             "scene_index": 1,
@@ -1183,16 +280,16 @@
             "start_seconds": 20.0,
             "end_seconds": 40.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0001.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0001.mp4",
             "frame_captions": [
-                "a video frame of a small house with an outside area in the background",
-                "a video frame of a car with the view of a small garden in the background",
-                "a video frame of a house and yard with a dog in the middle"
+                "a video frame of an outdoor area with a dog in the middle of the image",
+                "a video frame of a dog running in the yard with its owner watching from the back",
+                "a video frame of an empty backyard area with a car parked on the road"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "helicopter (conf=0.40)",
-            "llm_scene_description": "This scene shows an outdoor area near a small house with a yard. A dog is visible in the middle of the yard, suggesting some activity or presence of life in the previously quiet setting. The audio faintly includes a helicopter sound, though its relevance to the scene is unclear. The environment appears calm, with no visible signs of distress or unusual activity.\n\nCharacters:  \nName: Dog  \nRole: Animal present in the yard, possibly a pet.  \n\nKey Dialogue:  \nSpeaker: None  \nCause: No speech detected in the scene.  \n\nCausal Relationships:  \nEmotion or action: Calm presence of the dog in the yard.  \nCause: The dog is stationary or moving without apparent distress.  \nEvidence: Visual presence of the dog in the yard, no alarming sounds or actions detected.  \n\nObjects and Setting:  \nObject or environment: Small house, yard, garden, car.  \nContext relevance: Establishes a residential setting, indicating a peaceful domestic environment.  \n\nCross-Scene Continuity:  \nOngoing conflict: None apparent.  \nCharacter development: Introduction of the dog, adding life to the previously quiet setting."
+            "llm_scene_description": "This scene captures a brief outdoor interaction involving a dog and its owner in what appears to be a backyard area. The initial frame shows a dog standing in the middle of the yard, followed by a frame where the dog is running while its owner observes from a distance. The final frame depicts an empty backyard with a parked car visible on the road. A faint helicopter sound is detected in the audio but is not clearly linked to the events in the scene.\n\nCharacters:\nName: Dog\nRole: Pet, central focus of the scene.\n\nName: Owner\nRole: Observer, present in the background.\n\nKey Dialogue:\nSpeaker: None\nCause: No speech detected in the audio.\n\nCausal Relationships:\nEmotion or action: The dog appears active and playful.\nCause: The dog is seen running in the yard, suggesting a moment of play or excitement.\nEvidence: Visual depiction of the dog running.\n\nObjects and Setting:\nObject or environment: Backyard area\nContext relevance: The backyard serves as the primary setting for the interaction between the dog and its owner.\n\nObject or environment: Parked car on the road\nContext relevance: Visible in the final frame but unrelated to the main action.\n\nCross-Scene Continuity:\nOngoing conflict: None evident in this scene.\nCharacter development: The dog's playful behavior and the owner's passive observation provide a glimpse into their relationship, suggesting a casual and peaceful dynamic."
         },
         {
             "scene_index": 2,
@@ -1201,16 +298,16 @@
             "start_seconds": 40.0,
             "end_seconds": 60.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0002.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0002.mp4",
             "frame_captions": [
-                "a video frame of an empty backyard with a car parked on the side",
-                "a video frame of an empty house with trees and bushes in the background",
-                "a video frame of a car that is in the driveway with an open door"
+                "a video frame of an empty car in the driveway with no people or objects",
+                "a video frame of a car in a driveway with an open door and no people",
+                "a video frame of a car parked in the driveway with a view of a yard"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "none",
-            "llm_scene_description": "This scene shows a quiet residential backyard and driveway area. The setting includes a parked car, which now has an open door, suggesting recent activity. There are no visible people or animals, and the audio remains silent, providing no additional context. The environment appears calm and still, with trees and bushes in the background.\n\nCharacters:\nName: None visible\nRole: N/A\n\nKey Dialogue:\nSpeaker: None\nCause: No audio detected\n\nCausal Relationships:\nEmotion or action: Inferred recent activity (car door open)\nCause: The car door is open in the driveway, which was previously closed in earlier scenes.\nEvidence: Visual change in the car's state between frames.\n\nObjects and Setting:\nObject or environment: Car with an open door\nContext relevance: Suggests potential human or animal presence or interaction not captured on video.\n\nCross-Scene Continuity:\nOngoing conflict: Unclear; potential for unseen activity or movement in the area.\nCharacter development: The dog seen in the previous scene is no longer visible, and the open car door introduces a new element of possible interaction or movement."
+            "llm_scene_description": "This scene shows a stationary car parked in a driveway, with its door open in one frame. No people, animals, or significant movement are observed. The surrounding environment includes a yard, but no additional details or sounds provide further context. The scene is silent, and no tracks or characters are detected.\n\nCharacters:\nName: None detected  \nRole: N/A  \n\nKey Dialogue:\nSpeaker: None  \nCause: No audio present  \n\nCausal Relationships:\nEmotion or action: None observed  \nCause: Lack of characters or movement  \nEvidence: Silent audio and static visuals  \n\nObjects and Setting:\nObject or environment: Car with an open door in a driveway  \nContext relevance: Suggests potential recent activity or interaction, though no characters or movement confirm this  \n\nCross-Scene Continuity:\nOngoing conflict: Unclear activity involving the car; no direct evidence of interaction or purpose  \nCharacter development: No characters present in this scene to develop further  "
         },
         {
             "scene_index": 3,
@@ -1219,16 +316,16 @@
             "start_seconds": 60.0,
             "end_seconds": 80.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0003.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0003.mp4",
             "frame_captions": [
-                "a video frame of the front view of a house with a car in it",
-                "a video frame of an outdoor area with a dog in it and the camera attached",
-                "a video frame of an outdoor area with a car parked on the side"
+                "a video frame of a small house with an open door and a car parked in front",
+                "a video frame of a car that is in the garage with a camera",
+                "a video frame of the view from inside of a car with a camera attached to it"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "none",
-            "llm_scene_description": "This scene shows a quiet outdoor area in front of a house with a parked car visible. The setting appears calm and still, with no significant activity or sounds detected. A dog is briefly visible in the yard, but there is no interaction or movement suggesting activity. The camera angle changes slightly between frames, capturing different parts of the outdoor area, including the driveway and yard.\n\nCharacters:\nName: Dog  \nRole: An animal present in the yard, likely a pet.\n\nKey Dialogue:\nSpeaker: None  \nCause: No audio or speech detected.\n\nCausal Relationships:\nEmotion or action: Calm and uneventful atmosphere  \nCause: Lack of movement, sound, or interaction in the scene  \nEvidence: Visual evidence of a still environment, absence of audio.\n\nObjects and Setting:\nObject or environment: House and driveway  \nContext relevance: Indicates a residential setting, suggesting a private outdoor area.  \nObject or environment: Car  \nContext relevance: Parked in the driveway, implying a typical household scene.  \nObject or environment: Dog  \nContext relevance: Suggests the presence of a pet, though no interaction occurs.\n\nCross-Scene Continuity:\nOngoing conflict: None apparent, as the scenes consistently depict a calm residential area.  \nCharacter development: The dog appears intermittently, suggesting it may be a recurring presence in the yard."
+            "llm_scene_description": "This scene shows a quiet and uneventful moment captured by a CCTV camera. The video frames depict a small house with an open door and a car parked in front. Subsequent frames show a car in a garage and a view from inside the car, which appears to have a camera mounted on it. No movement, sounds, or characters are present, leaving the context ambiguous. The absence of audio or activity suggests a static and observational recording rather than an active event.\n\nCharacters:\nName: None detected\nRole: None present in this scene\n\nKey Dialogue:\nSpeaker: None\nCause: No audio or speech detected\n\nCausal Relationships:\nEmotion or action: None observed\nCause: No characters or activity present\nEvidence: Lack of movement or sound in the scene\n\nObjects and Setting:\nObject or environment: Small house with an open door, parked car, garage, camera inside a car\nContext relevance: Suggests surveillance or monitoring, but no explicit activity or purpose is evident\n\nCross-Scene Continuity:\nOngoing conflict: None explicitly identified; inferred surveillance theme across scenes\nCharacter development: No characters present; no progression in narrative or emotional context"
         },
         {
             "scene_index": 4,
@@ -1237,16 +334,16 @@
             "start_seconds": 80.0,
             "end_seconds": 100.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0004.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0004.mp4",
             "frame_captions": [
-                "a video frame of an outdoor area with a car parked in the background",
-                "a video frame of a car parked on a driveway with a view of the garage and driveway",
-                "a video frame of the surveillance camera showing the moment of a dog ' s death"
+                "a video frame of the camera that shows a car and a truck parked in the driveway",
+                "a video frame of a house with an empty yard and trees in the background",
+                "a video frame of a small car parked in a yard, showing the driver ' s view of the area"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "hum (conf=0.43), mains hum (conf=0.63)",
-            "llm_scene_description": "This scene shows an outdoor area captured by a surveillance camera. A parked car is visible in the driveway, with the garage in the background. The audio contains faint humming sounds, but no speech or distinct activity is detected. The caption suggests a tragic event involving a dog, though no explicit visual or audio evidence confirms this claim. The setting appears still and quiet.\n\nCharacters:\nName: Dog\nRole: Likely a pet in the household, present in prior scenes.\n\nKey Dialogue:\nSpeaker: None\nCause: No dialogue or speech detected.\n\nCausal Relationships:\nEmotion or action: Inferred tragedy involving the dog.\nCause: Caption suggests the dog's death, but no corroborating audio or visual evidence is present.\nEvidence: Caption text only; no explicit confirmation from other modalities.\n\nObjects and Setting:\nObject or environment: Parked car, driveway, garage.\nContext relevance: Establishes the outdoor residential setting, but does not directly relate to the inferred event.\n\nCross-Scene Continuity:\nOngoing conflict: Possible tragic event involving the dog, inferred from captions but not confirmed by audio or visual evidence.\nCharacter development: The dog has been consistently present in prior scenes, suggesting it is a significant part of the household. Its inferred absence or harm may indicate a shift in the narrative."
+            "llm_scene_description": "This scene shows a quiet outdoor area captured by a CCTV camera. The initial frame depicts a driveway with a car and a truck parked. Subsequent frames transition to a view of a house with an empty yard and trees in the background, followed by a perspective from within a parked car, possibly showing the driver’s view of the area. The audio captures faint humming sounds, but no speech or significant activity is present. The scene remains static and uneventful, with no visible characters or movement.\n\nCharacters:\nName: None observed.\nRole: None applicable.\n\nKey Dialogue:\nSpeaker: None.\nCause: No dialogue or speech detected.\n\nCausal Relationships:\nEmotion or action: None evident.\nCause: The scene lacks characters, movement, or notable events.\nEvidence: Static visuals and faint background hums.\n\nObjects and Setting:\nObject or environment: Car, truck, house, yard, trees.\nContext relevance: The setting appears to be a residential area under surveillance, but no activity or interaction is observed.\n\nCross-Scene Continuity:\nOngoing conflict: The lack of activity or context continues from prior scenes, maintaining a sense of stillness and ambiguity.\nCharacter development: No characters are present or developed in this scene."
         },
         {
             "scene_index": 5,
@@ -1255,16 +352,16 @@
             "start_seconds": 100.0,
             "end_seconds": 120.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0005.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0005.mp4",
             "frame_captions": [
-                "a video frame of a small backyard with an open car door and no people",
-                "a video frame of the backyard area with an open door and trash cans",
-                "a video frame of an outdoor area with some trees and bushes in the background"
+                "a video frame of a car in a driveway with the view of the back yard",
+                "a video frame of the house is shown in this image from the google street view",
+                "a video frame of an outdoor area with a tree in the background and a view from inside"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "none",
-            "llm_scene_description": "This scene shows a quiet backyard area with an open car door and no visible people or animals. The setting includes trash cans, trees, and bushes in the background, suggesting a residential environment. There is no audio to provide further context or indicate any activity. The scene remains static and uneventful.\n\nCharacters:  \nName: None visible.  \nRole: None present in this scene.  \n\nKey Dialogue:  \nSpeaker: None.  \nCause: No dialogue or sounds are present.  \n\nCausal Relationships:  \nEmotion or action: None observed.  \nCause: No characters or activity are visible.  \nEvidence: The video frames and lack of audio indicate stillness and inactivity.  \n\nObjects and Setting:  \nObject or environment: Open car door, trash cans, trees, bushes.  \nContext relevance: Suggests a residential backyard setting, but no significant actions or events are occurring.  \n\nCross-Scene Continuity:  \nOngoing conflict: Previous scenes imply a possible event involving a dog, but this scene provides no additional evidence or progression.  \nCharacter development: No characters are present or developed in this scene.  "
+            "llm_scene_description": "This scene shows a quiet residential area captured by a CCTV camera. The frames depict a driveway with a parked car, a backyard with trees, and a house. The captions suggest views of the house and outdoor areas, but the descriptions are inconsistent and lack clarity. No movement, characters, or audio sounds are detected in this scene, leaving the context ambiguous.\n\nCharacters:\nName: None detected  \nRole: None present  \n\nKey Dialogue:\nSpeaker: None  \nCause: No audio dialogue or sounds  \n\nCausal Relationships:\nEmotion or action: None observed  \nCause: No characters or activity present  \nEvidence: Visual frames show static environments; audio is silent  \n\nObjects and Setting:\nObject or environment: Car in driveway, backyard with trees, house  \nContext relevance: Suggests a residential setting, but no activity or interaction is visible  \n\nCross-Scene Continuity:\nOngoing conflict: None explicitly identified  \nCharacter development: None observed  \n\n"
         },
         {
             "scene_index": 6,
@@ -1273,16 +370,16 @@
             "start_seconds": 120.0,
             "end_seconds": 140.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0006.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0006.mp4",
             "frame_captions": [
-                "a video frame of a car driving through a garage with a car in the background",
-                "a video frame of a dog in a backyard area with a fence and some plants",
-                "a video frame of an old car parked in the yard, showing how it was used for driving"
+                "a video frame of the inside of a garage with a car parked in it",
+                "a video frame of an outdoor area with trees and bushes in the background",
+                "a video frame of a car parked in a driveway with the rear door open"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "mains hum (conf=0.31)",
-            "llm_scene_description": "This scene shows a backyard area with a dog present near a fence and some plants. The setting includes an old car parked in the yard, suggesting it may have been recently used. The audio contains faint mains hum, but no significant sounds or dialogue are present to clarify the events. The scene appears calm and uneventful, with no visible human activity or notable actions involving the dog.\n\nCharacters:  \nName: Dog  \nRole: Likely a pet or guard animal in the backyard.  \n\nKey Dialogue:  \nSpeaker: None  \nCause: No dialogue or significant sounds detected.  \n\nCausal Relationships:  \nEmotion or action: Calm and still environment.  \nCause: Lack of movement, human presence, or significant audio cues.  \nEvidence: Visual stillness and faint background hum.  \n\nObjects and Setting:  \nObject or environment: Old car parked in the yard.  \nContext relevance: Suggests the car may have been recently used or is part of the household's outdoor area.  \n\nCross-Scene Continuity:  \nOngoing conflict: The dog's role and any potential events involving it remain unclear across scenes, though prior captions suggest a tragic moment may have occurred.  \nCharacter development: The dog continues to appear in the outdoor setting, reinforcing its presence as a key figure in the scene's context.  "
+            "llm_scene_description": "This scene shows a sequence of perspectives transitioning from an indoor garage with a parked car to an outdoor area with trees and bushes, and finally to a driveway where a car is parked with its rear door open. The audio captures a faint mains hum, but no dialogue, movement, or significant activity is detected. The setting appears calm and uneventful.\n\nCharacters:\nName: None identified\nRole: None present or discernible\n\nKey Dialogue:\nSpeaker: None\nCause: No dialogue or identifiable sounds are present in this scene.\n\nCausal Relationships:\nEmotion or action: None observed\nCause: No characters, dialogue, or significant activity are present to suggest emotional or physical actions.\nEvidence: Visual frames show static environments, and audio only captures faint ambient noise.\n\nObjects and Setting:\nObject or environment: Garage with a parked car, outdoor area with trees, driveway with a car and open rear door\nContext relevance: The open rear door of the car in the driveway may suggest recent activity, but no characters or actions are visible to confirm this.\n\nCross-Scene Continuity:\nOngoing conflict: None explicitly identified. The open car door may connect to prior scenes involving the parked car, but no clear narrative or conflict is evident.\nCharacter development: No characters are present in this scene to contribute to development.\n\n"
         },
         {
             "scene_index": 7,
@@ -1291,16 +388,16 @@
             "start_seconds": 140.0,
             "end_seconds": 160.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0007.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0007.mp4",
             "frame_captions": [
-                "a video frame of a car with an image of the driver in it",
-                "a video frame of a house with a car in the background and the view from inside",
-                "a video frame of a car that is parked in a driveway with the door open"
+                "a video frame of a car parked in a driveway with a small dog standing on the ground",
+                "a video frame of a car with a car inside it and an open roof",
+                "a video frame of a small house with an outdoor patio and backyard area"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "hum (conf=0.54), mains hum (conf=0.72)",
-            "llm_scene_description": "This scene shows a quiet outdoor area near a house with a parked car in the driveway. The car door is open, but no people or animals are visible. The audio contains faint background hums, which do not provide additional context. The setting appears calm and uneventful, with no significant activity or movement detected.\n\nCharacters:\nName: Unknown driver  \nRole: Possible car owner or resident (inferred from parked car and open door).\n\nKey Dialogue:\nSpeaker: None  \nCause: No dialogue or speech detected.\n\nCausal Relationships:\nEmotion or action: Calm, uneventful atmosphere  \nCause: Lack of visible activity or interaction in the scene.  \nEvidence: No movement or sounds beyond faint hums.\n\nObjects and Setting:\nObject or environment: Car parked in driveway with open door  \nContext relevance: Suggests recent use or interaction with the car, though no direct evidence of activity is present.\n\nCross-Scene Continuity:\nOngoing conflict: Possible unresolved incident involving a dog, inferred from earlier captions suggesting a tragic moment. No direct evidence in this scene.  \nCharacter development: No new developments or interactions observed."
+            "llm_scene_description": "This scene depicts a quiet residential setting with a parked car in a driveway and a small dog standing nearby. The surrounding area includes a house with an outdoor patio and backyard. There is no visible movement or activity beyond the dog, and the audio captures a faint mains hum, suggesting a calm and uneventful environment.\n\nCharacters:\nName: Small Dog  \nRole: Possible pet or stray animal present in the scene.\n\nKey Dialogue:\nSpeaker: None  \nCause: No dialogue or human presence detected.\n\nCausal Relationships:\nEmotion or action: Calm and stationary environment.  \nCause: Lack of visible activity or human interaction, supported by faint ambient sounds.  \nEvidence: Audio recording of mains hum and absence of movement in the video frames.\n\nObjects and Setting:\nObject or environment: Parked car in driveway.  \nContext relevance: Indicates a residential area and possible human presence, though no people are visible.  \n\nObject or environment: Small house with patio and backyard.  \nContext relevance: Establishes the setting as a quiet suburban or rural location.  \n\nObject or environment: Small dog.  \nContext relevance: Adds a minor dynamic element to an otherwise still scene, suggesting potential pet ownership or nearby human activity.\n\nCross-Scene Continuity:\nOngoing conflict: None evident; the scenes consistently depict a quiet and uneventful residential area.  \nCharacter development: The small dog is introduced as a new element, potentially indicating the presence of life or activity in the area."
         },
         {
             "scene_index": 8,
@@ -1309,16 +406,16 @@
             "start_seconds": 160.0,
             "end_seconds": 180.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0008.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0008.mp4",
             "frame_captions": [
-                "a video frame of the inside of a house with an empty parking lot",
-                "a video frame of a cat running through the yard, with the camera on its head",
-                "a video frame of a car parked in a driveway with an old vehicle"
+                "a video frame of the house in a backyard with a fence and an umbrella",
+                "a video frame of a dog running through a backyard yard in a house",
+                "a video frame of a car in the middle of the street in san, california"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "hum (conf=0.33), mains hum (conf=0.52)",
-            "llm_scene_description": "This scene shows a residential area with a driveway and a parked car, captured by a surveillance camera. The captions mention a cat running through the yard with a camera attached to its head, but this detail is uncertain due to the lack of supporting audio or visible evidence in the frames. The audio contains faint humming sounds, which do not provide further context. The setting remains quiet and uneventful, with no clear activity or interaction observed.\n\nCharacters:\nName: Cat (inferred)\nRole: Possible animal in the yard, uncertain presence due to caption inconsistencies.\n\nKey Dialogue:\nSpeaker: None\nCause: No dialogue or discernible audio.\n\nCausal Relationships:\nEmotion or action: Unclear activity involving a cat.\nCause: Caption suggests movement, but no visual or audio confirmation.\nEvidence: Caption mentions a cat running, but the frames and audio do not corroborate this.\n\nObjects and Setting:\nObject or environment: Residential driveway with a parked car.\nContext relevance: Suggests a quiet neighborhood with minimal activity.\n\nCross-Scene Continuity:\nOngoing conflict: Unclear events involving animals, possibly a dog in earlier scenes and now a cat, though details remain inconsistent.\nCharacter development: No discernible progression due to lack of reliable evidence."
+            "llm_scene_description": "This scene shows a backyard area of a house with a fence and an umbrella visible. A dog is seen running through the backyard. The audio captures faint humming sounds, possibly from electrical equipment, but no dialogue or significant sounds are present. There is a brief mention of a car in the captions, but it is unclear if it is directly related to the backyard setting.\n\nCharacters:\nName: Unnamed dog  \nRole: Animal present in the backyard  \n\nKey Dialogue:\nSpeaker: None  \nCause: No dialogue or significant sounds detected  \n\nCausal Relationships:\nEmotion or action: Movement (dog running)  \nCause: Likely natural behavior of the dog in the backyard  \nEvidence: Visual caption of the dog running  \n\nObjects and Setting:\nObject or environment: Backyard with a fence and umbrella  \nContext relevance: Establishes the setting as a residential outdoor area  \n\nCross-Scene Continuity:\nOngoing conflict: None evident  \nCharacter development: The dog appears to be a recurring presence in the backyard scenes, suggesting it may belong to the household.  "
         },
         {
             "scene_index": 9,
@@ -1327,16 +424,16 @@
             "start_seconds": 180.0,
             "end_seconds": 200.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0009.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0009.mp4",
             "frame_captions": [
-                "a video frame of a cat in a backyard area with the camera facing at its own",
-                "a video frame of a small car in the driveway with the camera attached",
-                "a video frame of a dog standing on the ground in front of a house"
+                "a video frame of a cat on a street in a backyard area with a dog standing next to it",
+                "a video frame of a car in the driveway with an empty lot and trees",
+                "a video frame of an outdoor area with a cat and a bird on it"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "mains hum (conf=0.36)",
-            "llm_scene_description": "This scene captures a residential area monitored by a CCTV camera. The frames transition between different parts of the property, including a backyard, a driveway, and the front of a house. A cat is briefly seen in the backyard, followed by a small car in the driveway, and finally, a dog standing in front of the house. The audio remains minimal, with only a faint mains hum detected, offering no additional context. The visual evidence suggests a quiet and uneventful environment, but prior scenes hint at a potentially significant event involving the dog, though no explicit actions or emotions are visible in this scene.\n\nCharacters:  \nName: Cat  \nRole: Briefly seen in the backyard, possibly indicating minor activity.  \n\nName: Dog  \nRole: Standing in front of the house, possibly connected to prior events.  \n\nKey Dialogue:  \nSpeaker: None  \nCause: No dialogue or sounds detected.  \n\nCausal Relationships:  \nEmotion or action: Unclear, as no explicit activity or interaction is observed.  \nCause: The scene remains static, with no discernible events.  \nEvidence: Visual frames show stationary objects and animals, and the audio lacks relevant sounds.  \n\nObjects and Setting:  \nObject or environment: Backyard, driveway, house  \nContext relevance: Establishes the setting as a quiet residential area under surveillance, with no visible human activity.  \n\nCross-Scene Continuity:  \nOngoing conflict: Prior scenes suggest a significant event involving the dog, but this scene does not provide further clarity.  \nCharacter development: The dog's presence in front of the house may connect to earlier scenes, but its role remains ambiguous.  "
+            "llm_scene_description": "This scene appears to depict a quiet outdoor area with minimal activity. The visual evidence shows inconsistent captions, mentioning a cat, a dog, a bird, and a car across frames, but no clear continuity or interaction between these elements. The audio remains consistent with a faint mains hum, suggesting no significant sound events or dialogue. The setting includes a backyard, driveway, and trees, aligning with prior scenes.\n\nCharacters:\nName: Dog\nRole: Resident animal in the backyard area.\n\nName: Cat\nRole: Possible stray or resident animal, inferred from captions.\n\nKey Dialogue:\nSpeaker: None detected.\nCause: No speech or significant audio events present.\n\nCausal Relationships:\nEmotion or action: Calm and stationary environment.\nCause: Lack of movement or significant audio cues.\nEvidence: Visual frames show no interaction or activity; audio confirms a faint hum.\n\nObjects and Setting:\nObject or environment: Backyard area with trees and driveway.\nContext relevance: Suggests a residential setting with outdoor space, consistent with prior scenes.\n\nCross-Scene Continuity:\nOngoing conflict: None observed; the environment remains calm and uneventful.\nCharacter development: The dog has been consistently present in prior scenes, suggesting it is a recurring character in this location.\n\n"
         },
         {
             "scene_index": 10,
@@ -1345,16 +442,16 @@
             "start_seconds": 200.0,
             "end_seconds": 220.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0010.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0010.mp4",
             "frame_captions": [
-                "a video frame of an outdoor area with a car in the background and a dog in the fore",
-                "a video frame of a small dog outside a house in the philippines, taken from a drone camera",
-                "a video frame of a car with an open door and the view from inside"
+                "a video frame of a car with an image of the rear view of the car",
+                "a video frame of a man walking in the backyard, with the camera pointed to the ground",
+                "a video frame of an outdoor park with a dog and a fenced area"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "hum (conf=0.55), mains hum (conf=0.75)",
-            "llm_scene_description": "This scene shows an outdoor area with a small dog near a house, possibly in a residential neighborhood in the Philippines. A car with an open door is visible in the background, suggesting recent activity or preparation for departure. The setting appears calm, with no significant movement or interaction detected. The audio consists of a faint humming sound, likely ambient noise.\n\nCharacters:  \nName: Small Dog  \nRole: Resident animal, present near the house.  \n\nKey Dialogue:  \nSpeaker: None detected.  \nCause: No dialogue or significant sounds present.  \n\nCausal Relationships:  \nEmotion or action: Calm and uneventful.  \nCause: Lack of movement or interaction in the scene.  \nEvidence: Stationary visuals and faint ambient audio.  \n\nObjects and Setting:  \nObject or environment: Car with an open door.  \nContext relevance: Suggests recent or upcoming activity involving the car.  \n\nCross-Scene Continuity:  \nOngoing conflict: None observed.  \nCharacter development: The small dog appears to be a recurring presence in the residential area, reinforcing its role as a resident animal.  "
+            "llm_scene_description": "This scene shows a series of outdoor locations with minimal activity. The video begins with a view of a car’s rear, transitions to a man walking in a backyard, and ends with a dog near a fenced area in an outdoor park. The audio features a faint mains hum, suggesting ambient noise but no significant events or dialogue. The scene appears calm, with no visible signs of distress or interaction between characters.\n\nCharacters:\nName: Man\nRole: Appears to be walking in a backyard, possibly a resident or visitor.\n\nName: Dog\nRole: Seen near a fenced area in an outdoor park, possibly a pet or stray.\n\nKey Dialogue:\nSpeaker: None detected.\nCause: No speech or explicit sounds present in the audio.\n\nCausal Relationships:\nEmotion or action: Calm and uneventful.\nCause: Lack of movement or interaction between characters; faint background hum.\nEvidence: Visual frames show static environments with minimal activity, and audio confirms no significant sounds.\n\nObjects and Setting:\nObject or environment: Car (rear view), backyard, fenced area in a park.\nContext relevance: Suggests a transition between locations, possibly indicating surveillance or casual observation.\n\nCross-Scene Continuity:\nOngoing conflict: No conflict detected across scenes.\nCharacter development: The dog has been consistently present in prior scenes, suggesting it may be a recurring character or resident of the area. The man appears for the first time, with no notable actions or interactions."
         },
         {
             "scene_index": 11,
@@ -1363,16 +460,16 @@
             "start_seconds": 220.0,
             "end_seconds": 240.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0011.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0011.mp4",
             "frame_captions": [
-                "a video frame of a car parked on the side of the road, with a man in the fore",
-                "a video frame of a car with the rear view camera attached to it",
-                "a video frame of an outdoor area with trees and bushes in the background"
+                "a video frame of a car in the driveway of a house with the roof missing",
+                "a video frame of a small house with an empty yard and some trees",
+                "a video frame of a house in the philippines with a car parked outside"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "none",
-            "llm_scene_description": "This scene shows a quiet outdoor area with a parked car on the side of the road. A man is visible in the foreground, but there is no discernible activity or movement. The background includes trees and bushes, suggesting a suburban or rural setting. The audio is silent, with no sounds detected.\n\nCharacters:\nName: Unnamed man  \nRole: Possible pedestrian or car owner  \n\nKey Dialogue:\nSpeaker: None  \nCause: No audio detected  \n\nCausal Relationships:\nEmotion or action: Neutral or inactive  \nCause: Lack of movement or interaction  \nEvidence: Visual stillness and absence of sound  \n\nObjects and Setting:\nObject or environment: Parked car, trees, bushes  \nContext relevance: Indicates a quiet outdoor environment, potentially near a residential area  \n\nCross-Scene Continuity:\nOngoing conflict: None apparent  \nCharacter development: The man appears briefly, but there is no interaction or progression in his role"
+            "llm_scene_description": "This scene shows a stationary outdoor setting featuring a house and a parked car in the driveway. The captions suggest inconsistencies regarding the house's condition, such as a missing roof, but there is no visual confirmation of damage. The audio is silent, with no speech or ambient sounds detected. The scene remains calm and uneventful, with no visible activity or movement.\n\nCharacters:\nName: None identified.\nRole: None present in this scene.\n\nKey Dialogue:\nSpeaker: None.\nCause: No audio evidence of dialogue.\n\nCausal Relationships:\nEmotion or action: Calm and stationary environment.\nCause: Lack of movement, sound, or visible activity.\nEvidence: Silent audio and static visuals.\n\nObjects and Setting:\nObject or environment: House and parked car in driveway.\nContext relevance: Suggests a residential area, but no activity or interaction is observed.\n\nCross-Scene Continuity:\nOngoing conflict: None evident.\nCharacter development: No characters are present in this scene."
         },
         {
             "scene_index": 12,
@@ -1381,16 +478,16 @@
             "start_seconds": 240.0,
             "end_seconds": 260.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0012.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0012.mp4",
             "frame_captions": [
-                "a video frame of the car parked on the side of the road, with an image of a person riding",
-                "a video frame of a backyard with a car and a small house in the background",
-                "a video frame of a car driving on the road with an animal in the background"
+                "a video frame of a car in a garage with an overhead view of the front yard",
+                "a video frame of a car parked in the driveway with a person standing next to it",
+                "a video frame of a car in the driveway with an animal on it"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "mains hum (conf=0.34)",
-            "llm_scene_description": "This scene shows a quiet outdoor area captured by a CCTV camera. The setting includes a parked car on the side of the road, a small house in the background, and a backyard. An animal is faintly visible in the distance, but no significant movement or interaction occurs. The audio consists of a faint humming noise, likely ambient electrical sounds. The environment remains calm and uneventful.\n\nCharacters:\nName: Unknown animal (possibly a dog or cat)\nRole: Background presence, no active involvement.\n\nKey Dialogue:\nSpeaker: None\nCause: No dialogue or speech detected.\n\nCausal Relationships:\nEmotion or action: Calm and still environment\nCause: Lack of movement or interaction; faint ambient noise.\nEvidence: Stationary objects, no detected tracks, and consistent audio hum.\n\nObjects and Setting:\nObject or environment: Parked car, backyard, small house\nContext relevance: Suggests a residential area with minimal activity.\n\nCross-Scene Continuity:\nOngoing conflict: None evident; scenes consistently depict a quiet neighborhood with occasional animal appearances.\nCharacter development: Animals (dog and cat) appear sporadically but do not engage in notable actions."
+            "llm_scene_description": "This scene shows a parked car in a driveway, with a person standing next to it. The setting includes a garage and a front yard visible from an overhead perspective. In the following frame, an animal is seen on the car, though the type of animal is unclear. The audio features a faint mains hum, which does not provide additional context.\n\nCharacters:\nName: Unknown Person  \nRole: Individual standing next to the parked car, possibly the car's owner or a resident.\n\nKey Dialogue:\nSpeaker: None detected  \nCause: No speech or significant audio present in this scene.\n\nCausal Relationships:\nEmotion or action: Presence of the person near the car  \nCause: Likely related to the car's parked position or activity near the driveway.  \nEvidence: Visual depiction of the person standing next to the vehicle.\n\nObjects and Setting:\nObject or environment: Car parked in driveway  \nContext relevance: Central to the scene, as the person and animal are interacting with or near the car.  \nObject or environment: Front yard and garage  \nContext relevance: Provides spatial context for the scene but does not directly influence the action.\n\nCross-Scene Continuity:\nOngoing conflict: None explicitly identified, though the presence of animals near the car may suggest recurring interactions between pets and the environment.  \nCharacter development: The person standing next to the car may be connected to prior scenes involving the house and driveway, though their role remains unclear."
         },
         {
             "scene_index": 13,
@@ -1399,16 +496,16 @@
             "start_seconds": 260.0,
             "end_seconds": 280.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0013.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0013.mp4",
             "frame_captions": [
-                "a video frame of a man in a backyard area with his dog, looking at the camera",
-                "a video frame of a car with the camera attached to it and showing a view of a house",
-                "a video frame of an outdoor area with a small dog in it and a camera on the ground"
+                "a video frame of a car in the driveway with the rear view mirror",
+                "a video frame of a car with an open door and some trees in the background",
+                "a video frame of an outdoor area with trees and a small building in the background"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "mains hum (conf=0.38)",
-            "llm_scene_description": "This scene shows a backyard area where a man is standing with his dog, looking directly at the camera. The following frames transition to a view of a house, a parked car with a camera attached, and an outdoor area where a small dog is visible near a camera placed on the ground. The audio features a faint mains hum, suggesting a quiet and uneventful environment.\n\nCharacters:\nName: Unnamed man  \nRole: Possible homeowner or caretaker, interacting with the dog and camera.\n\nName: Small dog  \nRole: Pet, present in the backyard and outdoor area.\n\nKey Dialogue:\nSpeaker: None detected.  \nCause: No speech or explicit audio evidence is present.\n\nCausal Relationships:\nEmotion or action: Calm and neutral behavior from the man and dog.  \nCause: No significant movement, dialogue, or external disturbances.  \nEvidence: Visual frames show the man standing calmly with the dog, and the audio lacks any sudden or disruptive sounds.\n\nObjects and Setting:\nObject or environment: Backyard area with a house, parked car, and camera equipment.  \nContext relevance: Suggests a residential setting, possibly monitored by CCTV or similar equipment.\n\nCross-Scene Continuity:\nOngoing conflict: None explicitly detected across scenes. The environment remains quiet and uneventful.  \nCharacter development: The man and dog appear repeatedly, suggesting they are central figures in this residential setting. Their calm demeanor is consistent across scenes."
+            "llm_scene_description": "This scene shows a stationary car in a driveway with its rearview mirror visible. In the next frame, the car door is open, and trees are visible in the background. The final frame shifts focus to an outdoor area with trees and a small building in the background. No characters or animals are detected in this scene, and the audio consists of a faint mains hum, providing no additional context.\n\nCharacters:\nName: None detected\nRole: N/A\n\nKey Dialogue:\nSpeaker: None\nCause: No dialogue or significant sounds are present in this scene.\n\nCausal Relationships:\nEmotion or action: None observed\nCause: No characters or animals are present to exhibit emotions or actions.\nEvidence: Visual evidence shows only stationary objects, and the audio is limited to ambient noise.\n\nObjects and Setting:\nObject or environment: Stationary car, driveway, trees, small building\nContext relevance: The car and driveway suggest a residential or suburban setting. The open car door may indicate recent activity, though no characters are visible to confirm this.\n\nCross-Scene Continuity:\nOngoing conflict: The presence of a car and driveway continues the theme of a residential or outdoor setting seen in previous scenes. However, no direct conflict or interaction is evident in this scene.\nCharacter development: No characters are present in this scene to contribute to ongoing development."
         },
         {
             "scene_index": 14,
@@ -1417,16 +514,16 @@
             "start_seconds": 280.0,
             "end_seconds": 300.0,
             "duration_seconds": 20.0,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0014.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0014.mp4",
             "frame_captions": [
-                "a video frame of a backyard area with a small pond and several trees",
-                "a video frame of an empty yard with a dog standing in it and the camera on the left",
-                "a video frame of an abandoned house in the middle of the country, with a view of the back yard"
+                "a video frame of the back yard, showing a small garden and a large lawn area",
+                "a video frame of a car with the view from inside it, showing an image of a parking lot",
+                "a video frame of a house that has been taken from the rear view"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "mains hum (conf=0.42)",
-            "llm_scene_description": "This scene shows a quiet backyard area with a small pond and several trees. A dog is standing in the yard near the camera, which is positioned on the left. The environment appears calm, with no significant actions or interactions occurring. The audio features a faint mains hum, suggesting ambient electrical noise.\n\nCharacters:\nName: Dog  \nRole: Animal present in the scene, possibly a pet.\n\nKey Dialogue:\nSpeaker: None  \nCause: No speech detected in the scene.\n\nCausal Relationships:\nEmotion or action: Calm and uneventful atmosphere.  \nCause: Lack of movement or interaction in the scene.  \nEvidence: Visual depiction of a stationary backyard and faint ambient audio.\n\nObjects and Setting:\nObject or environment: Backyard with a small pond and trees.  \nContext relevance: Indicates the outdoor location and the presence of natural elements, contributing to the calm atmosphere.\n\nCross-Scene Continuity:\nOngoing conflict: None evident.  \nCharacter development: The dog has been consistently present in previous scenes, suggesting it may belong to the household or be a recurring figure in the setting."
+            "llm_scene_description": "This scene shows a series of disconnected visual frames with minimal activity and no clear narrative progression. The audio contains only a faint mains hum, providing no additional context or dialogue. The frames depict a backyard, a parking lot viewed from inside a car, and the rear view of a house, but these visuals do not appear to be sequentially related or provide a coherent storyline.\n\nCharacters:  \nName: None observed.  \nRole: No active characters are present in this scene.  \n\nKey Dialogue:  \nSpeaker: None.  \nCause: No dialogue or discernible sounds are present.  \n\nCausal Relationships:  \nEmotion or action: None observed.  \nCause: No characters or events are depicted.  \nEvidence: The scene consists of static visuals with no movement or interaction.  \n\nObjects and Setting:  \nObject or environment: Backyard, parking lot, rear view of a house.  \nContext relevance: The visuals are disconnected and lack a clear narrative link.  \n\nCross-Scene Continuity:  \nOngoing conflict: No ongoing conflict is evident in this scene.  \nCharacter development: No characters are present, so no development occurs.  "
         },
         {
             "scene_index": 15,
@@ -1435,91 +532,96 @@
             "start_seconds": 300.0,
             "end_seconds": 300.0366666666667,
             "duration_seconds": 0.03666666666669016,
-            "clip_path": "_processed/CCTV Dogs.mp4/.clips/scene_0015.mp4",
+            "clip_path": "_processed\\CCTV Dogs.mp4\\.clips\\scene_0015.mp4",
             "frame_captions": [
-                "a video frame of a car that is parked in a driveway with a car behind it"
+                "a video frame of a car in the driveway with a view of the ground"
             ],
             "yolo_detections": [],
             "audio_speech": "",
             "audio_natural": "none",
-            "llm_scene_description": "This scene shows a parked car in a driveway with another car positioned behind it. The setting appears quiet, with no visible characters or animals present. The audio is silent, offering no additional context or activity.\n\nCharacters:  \nName: None detected  \nRole: None present  \n\nKey Dialogue:  \nSpeaker: None  \nCause: No dialogue or sounds detected  \n\nCausal Relationships:  \nEmotion or action: None observed  \nCause: No characters or actions present  \nEvidence: Silent audio and static visual frame  \n\nObjects and Setting:  \nObject or environment: Parked cars in a driveway  \nContext relevance: Indicates a residential or suburban setting, but no further context is provided  \n\nCross-Scene Continuity:  \nOngoing conflict: None explicitly identified  \nCharacter development: No characters present to establish continuity  \n\n"
+            "llm_scene_description": "This scene shows a stationary car parked in a driveway with the camera focused on the ground. There is no visible activity, movement, or sound, and the setting appears quiet and uneventful. The lack of audio and visual cues makes it difficult to determine the purpose or significance of this specific frame.\n\nCharacters:\nName: None detected in this scene.\nRole: Not applicable.\n\nKey Dialogue:\nSpeaker: None.\nCause: No dialogue or audio present.\n\nCausal Relationships:\nEmotion or action: None observed.\nCause: No characters or activity detected.\nEvidence: The scene is static with no audio or visible movement.\n\nObjects and Setting:\nObject or environment: Stationary car in driveway, ground visible.\nContext relevance: Suggests an outdoor residential setting, but no clear action or purpose is evident.\n\nCross-Scene Continuity:\nOngoing conflict: Unclear, as this scene lacks activity or context to connect with prior events.\nCharacter development: None observed in this scene."
         }
     ],
     "narratives": [
         {
-            "narrative_len": 3027,
+            "narrative_len": 3506,
             "chunk_len": 1,
-            "narrative": "### Chronological Summary of Scenes 0 to 15 (00:00:00.000 to 00:05:00.037):\n\n1. **00:00:00.000**: A quiet residential area is shown, featuring a house, backyard garden, driveway, and a parked car. No characters, animals, or sounds are present, and the environment is calm and inactive.\n\n2. **00:00:20.000**: A dog appears in the yard, introducing life to the setting. A faint helicopter sound is heard, but its relevance is unclear. The scene remains calm with no signs of distress.\n\n3. **00:00:40.000**: The car in the driveway now has an open door, suggesting recent activity. No characters or animals are visible, and the audio remains silent.\n\n4. **00:01:00.000**: The dog reappears briefly in the yard, but there is no interaction or movement. The setting remains calm and uneventful.\n\n5. **00:01:20.000**: The backyard and driveway are shown again, with faint humming sounds in the audio. A caption suggests a tragic event involving the dog, but no visual or audio evidence confirms this.\n\n6. **00:01:40.000**: The backyard is shown with an open car door, trash cans, and trees. No characters or animals are visible, and the scene remains static and silent.\n\n7. **00:02:00.000**: The dog is seen near a fence and plants in the backyard. An old car is parked nearby, and faint mains hum is heard. The environment is calm and uneventful.\n\n8. **00:02:20.000**: The driveway is shown with a parked car and an open door, but no people or animals are visible. The faint hum continues, and the scene remains quiet.\n\n9. **00:02:40.000**: A caption mentions a cat running through the yard with a camera on its head, but there is no visual or audio evidence to support this. The setting remains quiet and uneventful.\n\n10. **00:03:00.000**: A cat is briefly seen in the backyard, followed by a dog standing in front of the house. A small car is visible in the driveway. The audio remains minimal, and no significant activity occurs.\n\n11. **00:03:20.000**: A small dog is seen near a house, with a car and its open door in the background. The scene is calm, with no movement or interaction.\n\n12. **00:03:40.000**: A man appears in the foreground near a parked car, but there is no discernible activity. The background includes trees and bushes, and the audio is silent.\n\n13. **00:04:00.000**: A backyard with a parked car, small house, and faintly visible animal (possibly a dog or cat) is shown. The environment remains calm and uneventful.\n\n14. **00:04:20.000**: A man is standing with a small dog in the backyard, looking at the camera. The scene transitions to a house, a parked car with a camera attached, and another dog near a camera on the ground. The environment is quiet, with faint mains hum in the audio.\n\n15. **00:04:40.000**: A backyard with a small pond and trees is shown. A dog is standing near the camera, and the scene remains calm and uneventful.\n\n16. **00:05:00.000**: Two parked cars are visible in a driveway. No characters or animals are present, and the audio is silent. The setting remains static and quiet."
+            "narrative": "### Chronological Summary of Scenes 0 to 15 (00:00:00.000 to 00:05:00.037)\n\n1. **00:00:00.000**: The video titled \"CCTV Dogs.mp4\" begins with inconsistent captions showing an abandoned house (Frame 0), a car windshield camera (Frame 1), and a car with an image and camera (Frame 2). No audio, characters, or narrative cues are present.\n\n2. **00:00:20.000**: A backyard scene shows a dog standing, then running, while its owner observes from a distance. The final frame depicts an empty backyard with a parked car visible on the road. A faint helicopter sound is detected.\n\n3. **00:00:40.000**: A stationary car is parked in a driveway with its door open. The surrounding yard is quiet, with no movement, characters, or audio.\n\n4. **00:01:00.000**: A CCTV camera captures a small house with an open door, a parked car, and a garage. Later frames show a car interior with a mounted camera. No movement, audio, or characters are present.\n\n5. **00:01:20.000**: A driveway with a parked car and truck transitions to a view of a house with an empty yard and trees. A perspective from inside a parked car is shown. Faint humming sounds are audible, but no activity or characters are visible.\n\n6. **00:01:40.000**: A residential area is shown with a driveway, parked car, backyard, and house. Captions suggest inconsistencies about the house, but no movement, characters, or audio are detected.\n\n7. **00:02:00.000**: A sequence transitions from a garage with a parked car to an outdoor area with trees and bushes, then to a driveway with a car and open rear door. Faint mains hum is audible, but no activity or characters are present.\n\n8. **00:02:20.000**: A small dog stands near a parked car in a driveway. The setting includes a house with a patio and backyard. No movement or human interaction is visible, and faint mains hum is audible.\n\n9. **00:02:40.000**: A backyard with a fence and umbrella is shown, where a dog is running. Faint humming sounds are audible, and captions briefly mention a car, though its relevance is unclear.\n\n10. **00:03:00.000**: Inconsistent captions mention a cat, dog, bird, and car, but no interaction or continuity is evident. The setting includes a backyard, driveway, and trees. Faint mains hum is audible.\n\n11. **00:03:20.000**: A car’s rear view transitions to a man walking in a backyard and ends with a dog near a fenced area in a park. Faint mains hum is audible, and the scene remains calm.\n\n12. **00:03:40.000**: A house and parked car in a driveway are shown. Captions suggest inconsistencies about the house’s condition, but no visual confirmation or activity is present. The audio is silent.\n\n13. **00:04:00.000**: A person stands next to a parked car in a driveway. An animal is seen on the car in the next frame. The setting includes a garage and front yard. Faint mains hum is audible.\n\n14. **00:04:20.000**: A stationary car in a driveway is shown with its rearview mirror visible. The car door is open in the next frame, followed by an outdoor area with trees and a small building. No characters or animals are detected, and faint mains hum is audible.\n\n15. **00:04:40.000**: Disconnected visuals show a backyard, parking lot viewed from inside a car, and the rear view of a house. No activity, characters, or narrative progression is evident. Faint mains hum is audible.\n\n16. **00:05:00.000**: A stationary car parked in a driveway is shown with the camera focused on the ground. No movement, characters, or audio are present, and the scene remains uneventful."
         }
     ],
     "synopsis": {
-        "chat_name": "Quiet Residential Area",
-        "summary": "A calm and uneventful sequence unfolds in a residential setting featuring sporadic appearances of animals, a man, and parked cars, with faint audio hints and captions suggesting activity or tragedy, though no explicit evidence is shown.",
+        "chat_name": "CCTV Dogs Video",
+        "summary": "A series of disconnected scenes featuring parked cars, backyards, and faint audio hums, with minimal activity, inconsistent captions, and sporadic appearances of dogs and humans.",
         "video_highlights": [
             {
-                "start": "00:00:00.000",
+                "start": "Not explicitly stated",
                 "end": "00:00:20.000",
-                "highlight": "A quiet residential area transitions to life as a dog appears in the yard with faint helicopter sounds in the background."
+                "highlight": "A backyard scene shows a dog standing, then running, while its owner observes from a distance."
             },
             {
-                "start": "00:00:40.000",
-                "end": "00:01:20.000",
-                "highlight": "The car door opens, suggesting activity, while the dog briefly reappears in the yard amidst faint humming sounds and a caption hinting at tragedy."
+                "start": "00:01:20.000",
+                "end": "00:02:20.000",
+                "highlight": "A driveway with a parked car and truck transitions to a view of a house with an empty yard and trees."
             },
             {
                 "start": "00:02:40.000",
-                "end": "00:03:00.000",
-                "highlight": "A caption mentions a cat with a camera, followed by brief appearances of a cat and a dog in the backyard, with minimal audio and activity."
+                "end": "00:03:20.000",
+                "highlight": "A backyard with a fence and umbrella is shown, where a dog is running."
             },
             {
-                "start": "00:03:40.000",
+                "start": "00:03:20.000",
+                "end": "00:04:00.000",
+                "highlight": "A car’s rear view transitions to a man walking in a backyard and ends with a dog near a fenced area in a park."
+            },
+            {
+                "start": "00:04:00.000",
                 "end": "00:04:20.000",
-                "highlight": "A man appears near a parked car, later seen standing with a dog in the backyard alongside a camera and another dog nearby."
+                "highlight": "A person stands next to a parked car in a driveway. An animal is seen on the car in the next frame."
             },
             {
                 "start": "00:04:40.000",
-                "end": "00:05:00.000",
-                "highlight": "A backyard with a pond and trees transitions to a driveway with two parked cars, maintaining a calm and uneventful atmosphere."
+                "end": "Not explicitly stated",
+                "highlight": "Disconnected visuals show a backyard, parking lot viewed from inside a car, and the rear view of a house."
             }
         ],
         "video_timeline": [
             {
                 "timestamp": "00:00:00",
-                "event": "Calm scene starts"
+                "event": "Abandoned house"
             },
             {
                 "timestamp": "00:00:20",
-                "event": "Dog appears briefly"
+                "event": "Backyard dog"
             },
             {
                 "timestamp": "00:00:40",
-                "event": "Car drives by"
+                "event": "Quiet driveway"
+            },
+            {
+                "timestamp": "00:01:00",
+                "event": "CCTV house"
             },
             {
                 "timestamp": "00:01:20",
-                "event": "Tragedy unfolds"
+                "event": "Empty yard"
             },
             {
-                "timestamp": "00:03:00",
-                "event": "Cat enters frame"
-            },
-            {
-                "timestamp": "00:04:20",
-                "event": "Man walks in"
+                "timestamp": "00:01:40",
+                "event": "Residential stillness"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "A quiet residential area is shown with occasional appearances of a dog, a cat, and a man, but no significant activity or interaction occurs."
+                "answer": "The video shows a series of disconnected scenes involving a house, backyard, parked cars, and occasional appearances of a dog and a man, with minimal activity or narrative progression."
             },
             {
                 "question": "What are the key events?",
-                "answer": "A dog and a cat briefly appear, a car door is seen open, and a man is shown standing with a dog. Captions suggest events, but they are not visually confirmed."
+                "answer": "A dog runs in a backyard, a man walks in a backyard, and a car door is shown open in a driveway."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "A dog and a cat move through the yard, a man stands with a dog, and a car door is left open, but no explicit actions are shown."
+                "answer": "A dog runs in a backyard, and a man is briefly seen walking in a backyard."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
@@ -1531,7 +633,7 @@
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "A dog (small, active, appears multiple times), a cat (briefly seen, possibly with a camera), and a man (stands with a dog, no further details)."
+                "answer": "A dog: small, seen running or standing near cars. A man: briefly seen walking in a backyard, no further details provided."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
@@ -1539,123 +641,123 @@
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "A quiet residential area with a house, backyard, driveway, and parked cars. The setting remains static and calm, providing a backdrop for minimal activity."
+                "answer": "The setting includes a house, backyard, driveway, and parked cars. It changes slightly between scenes but remains residential and uneventful."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video begins with a quiet residential area, showing a house, backyard, driveway, and a parked car with no characters or sounds."
+                "answer": "The video starts with inconsistent captions showing an abandoned house, a car windshield camera, and a car with a mounted camera."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with two parked cars in a driveway, no characters or animals present, and the setting remaining static and quiet."
+                "answer": "The video ends with a stationary car parked in a driveway, the camera focused on the ground, with no movement or audio."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "A parked car with an open door (appears multiple times), a camera (mentioned in captions but not clearly shown), and trash cans (visible briefly)."
+                "answer": "Cars appear throughout the video, often parked in driveways or with open doors. A dog appears near cars or in backyards."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "A caption suggests a tragic event involving the dog, though no visual or audio evidence confirms this."
+                "answer": "Not explicitly stated"
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The presence of a man, a small pond, and two parked cars in the driveway."
+                "answer": "The focus shifts from a dog running and faint helicopter sounds to stationary cars and uneventful scenes with faint mains hum."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "Not explicitly stated."
+                "answer": "Surveillance-style footage with inconsistent captions."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "Not explicitly stated."
+                "answer": "Not explicitly stated"
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Calm: The environment remains quiet and uneventful throughout. Ambiguous: Captions hint at events without confirmation."
+                "answer": "Calm: Stationary visuals and faint sounds create a tranquil atmosphere. Eerie: Inconsistent captions and lack of activity suggest mystery."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "The significance of the captions and the relevance of the faint sounds."
+                "answer": "The significance of the captions, the relevance of the dog, and the purpose of the video."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "A quiet residential area, a backyard, parked cars, a dog, a cat, a man, and a small pond."
+                "answer": "Stationary cars, backyards, houses, trees, and occasional animals like a dog."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Faint helicopter sound, mains hum, and otherwise minimal or silent audio."
+                "answer": "Faint helicopter sounds, mains hum, and otherwise silence."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "They are mostly aligned, though captions hint at events not visually or audibly confirmed."
+                "answer": "They are mostly aligned, both being uneventful and subdued."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Visual: Open car doors, animals, and a man. Audio: Faint hums and silence."
+                "answer": "Visual: Stationary cars, backyards, and houses. Audio: Faint mains hum and occasional helicopter sounds."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
                 "answer": "Live action."
             },
             {
-                "question": "What is the first sign of life in the narrative?",
-                "answer": "A dog appears in the yard at 00:00:20.000."
+                "question": "What is the significance of the faint helicopter sound in Scene 2?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What suggests recent activity around the car?",
-                "answer": "The car in the driveway has an open door at 00:00:40.000."
+                "question": "Why are the captions inconsistent throughout the video?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is mentioned about the dog in the caption at 00:01:20.000?",
-                "answer": "A caption suggests a tragic event involving the dog, but no visual or audio evidence confirms this."
+                "question": "What is the relevance of the parked car shown repeatedly?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What faint sound is heard in multiple scenes?",
-                "answer": "A faint mains hum is heard in several scenes."
+                "question": "Does the dog running in Scene 9 interact with anyone or anything?",
+                "answer": "No interaction is visible"
             },
             {
-                "question": "Is there any visual evidence of the cat running with a camera on its head?",
-                "answer": "No, there is no visual or audio evidence of this."
+                "question": "What does the faint mains hum signify in multiple scenes?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is the first appearance of a man in the narrative?",
-                "answer": "A man appears near a parked car at 00:03:40.000."
+                "question": "Why is the house door open in Scene 4?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is the significance of the camera mentioned at 00:04:20.000?",
-                "answer": "A parked car has a camera attached, and another camera is on the ground near a dog."
+                "question": "What is the connection between the man walking in Scene 11 and the dog near the park?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is the environment like throughout the narrative?",
-                "answer": "The environment is consistently calm and uneventful."
+                "question": "Why does the video focus on stationary cars in multiple scenes?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is shown in the final scene at 00:05:00.000?",
-                "answer": "Two parked cars are visible in a driveway, with no characters or animals present."
+                "question": "What is the purpose of showing the car's rearview mirror in Scene 14?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is the first mention of a caption in the narrative?",
-                "answer": "A caption at 00:01:20.000 suggests a tragic event involving the dog."
+                "question": "Is there any interaction between the person and the animal in Scene 13?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "Are there any interactions between the animals and the man?",
-                "answer": "Not explicitly stated."
+                "question": "What is the relevance of the umbrella in the backyard in Scene 9?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is the role of the faint helicopter sound?",
-                "answer": "Its relevance is unclear."
+                "question": "Why does the camera focus on the ground in Scene 16?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is the significance of the small pond shown at 00:04:40.000?",
-                "answer": "Not explicitly stated."
+                "question": "What does the inconsistency about the house’s condition in Scene 12 imply?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is the first appearance of a cat in the narrative?",
-                "answer": "A cat is briefly seen in the backyard at 00:03:00.000."
+                "question": "Why are there captions mentioning a cat, dog, bird, and car in Scene 10?",
+                "answer": "Not explicitly stated"
             },
             {
-                "question": "What is the state of the audio in most scenes?",
-                "answer": "The audio is minimal or silent in most scenes."
+                "question": "What is the significance of the patio shown in Scene 8?",
+                "answer": "Not explicitly stated"
             }
         ]
     },

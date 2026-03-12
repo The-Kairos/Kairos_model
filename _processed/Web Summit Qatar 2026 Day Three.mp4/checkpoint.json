@@ -1,40 +1,40 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/.Web Summit Qatar 2026 Day Three.mp4",
+    "video_path": "Videos\\.Web Summit Qatar 2026 Day Three.mp4",
     "video_length": "07:03:54.667",
-    "total_process_sec": 9834.12967,
+    "total_process_sec": 10180.28772,
     "scene_number": 2081,
-    "start_process": "2026-03-08 07:56:41",
-    "end_process": "2026-03-08 08:26:32",
+    "start_process": "2026-03-12 20:23:06",
+    "end_process": "2026-03-12 20:30:18",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
+            "os": "Windows 10",
+            "os_version": "10.0.19045",
+            "machine_type": "AMD64",
+            "hostname": "Manahil-Laptop",
             "python_version": "3.10.19"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 8,
             "cpu_frequency_MHz": {
-                "current": 2200.2360000000012,
+                "current": 2000.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2000.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 182.45,
-            "used_RAM_GB": 6.26,
-            "RAM_usage_percent": 3.3
+            "total_RAM_GB": 7.42,
+            "available_RAM_GB": 0.81,
+            "used_RAM_GB": 6.61,
+            "RAM_usage_percent": 89.1
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 78.62,
-            "disk_free_GB": 62.68,
-            "disk_usage_percent": 55.6
+            "disk_total_GB": 475.69,
+            "disk_used_GB": 248.84,
+            "disk_free_GB": 226.85,
+            "disk_usage_percent": 52.3
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,194 +1117,32 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 15.56878,
-            "cpu_time_sec": 0.05902,
-            "ram_before_MB": 1554,
-            "ram_after_MB": 1554,
+            "wall_time_sec": 12.80758,
+            "cpu_time_sec": 0.10938,
+            "ram_before_MB": 132,
+            "ram_after_MB": 132,
             "ram_used_MB": 0,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.01171875,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "io_write_MB": 0.009495735168457031,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 68.34806,
-            "cpu_time_sec": 15.20153,
-            "ram_before_MB": 1554,
-            "ram_after_MB": 1585,
-            "ram_used_MB": 31,
-            "io_read_MB": 0.0,
-            "io_write_MB": 178.2734375,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 417.26731,
+            "cpu_time_sec": 362.84375,
+            "ram_before_MB": 132,
+            "ram_after_MB": 360,
+            "ram_used_MB": 228,
+            "io_read_MB": 0.6603641510009766,
+            "io_write_MB": 184.6014642715454,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -113013,105 +112851,81 @@
     ],
     "synopsis": {
         "chat_name": "Web Summit Qatar 2026",
-        "summary": "The Web Summit Qatar 2026 is a multifaceted event showcasing advancements in AI, robotics, quantum computing, space exploration, media, and sustainability. Discussions emphasize global collaboration, ethical considerations, and transformative progress, with highlights including AI's role in enterprise, quantum technology applications, commercial space exploration, and cultural innovation. Notable figures such as Scott from DeepGram, Abhinav Gupta of Skilled AI, and Sir Mo Farah contribute insights on technology, wellness, and societal impact. The event concludes with celebratory performances, emphasizing innovation, collaboration, and a commitment to a sustainable future.",
+        "summary": "The event showcases advancements in AI, robotics, quantum computing, space exploration, and sustainability, emphasizing global collaboration, ethical considerations, and transformative progress through discussions, pitches, and cultural performances.",
         "video_highlights": [
             {
-                "timestamp": "00:00:00",
-                "highlight": "Day Three opens with discussions on AI adoption, enterprise challenges, and the competitive edge of AI-native startups."
+                "start": "Not explicitly stated",
+                "end": "02:27:43.600",
+                "highlight": "Day Three opens with discussions on AI adoption, enterprise challenges, and the competitive edge of AI-native startups, highlighted by a $130 million funding round led by ABP."
             },
             {
-                "timestamp": "02:27:43",
-                "highlight": "Evening celebrations include fireworks, dancing robots, and a pitch competition showcasing innovative startups like Plantaform."
+                "start": "Not explicitly stated",
+                "end": "Not explicitly stated",
+                "highlight": "The Startup Qatar showcase features innovative solutions in logistics, gaming, AI, agri-tech, clean energy, and digital payments, concluding with fireworks and the launch of the Startup Qatar Investment Program."
             },
             {
-                "timestamp": "05:56:40",
-                "highlight": "Panels explore advancements in quantum technology, space exploration, and cultural innovation, emphasizing sustainability and collaboration."
+                "start": "02:27:43.600",
+                "end": "02:55:02.000",
+                "highlight": "Evening celebrations include fireworks, music, and dancing robots, alongside a pitch competition where Plantaform presents fogponics technology, requesting $1.5 million in bridge funding."
             },
             {
-                "timestamp": "06:33:31",
-                "highlight": "Closing celebrations feature motivational reflections, Sir Mo Farah's wellness initiative, and discussions on fostering hope and societal impact."
+                "start": "04:51:12.933",
+                "end": "05:56:40.933",
+                "highlight": "Panels explore the shift to socially native storytelling and robotics innovations, with Skilled AI demonstrating adaptable robots capable of complex tasks."
+            },
+            {
+                "start": "05:56:40.933",
+                "end": "06:33:31.733",
+                "highlight": "Discussions on quantum technology and space exploration highlight advancements in quantum encryption and plans for commercial space stations by Axiom Space and Vast."
+            },
+            {
+                "start": "06:33:31.733",
+                "end": "07:03:54.667",
+                "highlight": "The summit concludes with motivational reflections, Sir Mo Farah's wellness initiative, and celebratory performances, emphasizing legacy and societal impact."
             }
         ],
         "video_timeline": [
             {
-                "timestamp": "00:00:00",
-                "event": "Web Summit logo displayed"
+                "timestamp": "00:00:00.000",
+                "event": "Opening"
             },
             {
-                "timestamp": "00:05:00",
-                "event": "Scott discusses scalable AI systems"
+                "timestamp": "02:27:43.600",
+                "event": "Fireworks"
             },
             {
-                "timestamp": "00:45:00",
-                "event": "Startup Qatar showcase begins"
+                "timestamp": "04:51:12.933",
+                "event": "Robotics"
             },
             {
-                "timestamp": "02:27:43",
-                "event": "Fireworks and dancing robots"
+                "timestamp": "05:56:40.933",
+                "event": "Quantum Advances"
             },
             {
-                "timestamp": "02:40:00",
-                "event": "Plantaform pitch on fogponics"
+                "timestamp": "06:33:31.733",
+                "event": "Reflections"
             },
             {
-                "timestamp": "04:51:12",
-                "event": "Media storytelling discussions begin"
-            },
-            {
-                "timestamp": "05:56:40",
-                "event": "Quantum technology panels start"
-            },
-            {
-                "timestamp": "06:10:00",
-                "event": "Space exploration discussions"
-            },
-            {
-                "timestamp": "06:33:31",
-                "event": "Motivational reflections session"
-            },
-            {
-                "timestamp": "07:03:54",
-                "event": "Event concludes with celebrations"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "Opening visuals of the Web Summit logo set a professional tone, introducing discussions on AI, compliance, and enterprise challenges."
-            },
-            {
-                "timestamp": "02:27:43",
-                "description": "Evening celebrations feature fireworks, music, dancing robots, and a pitch competition showcasing innovative startups like Plantaform."
-            },
-            {
-                "timestamp": "04:51:12",
-                "description": "Panels discuss the transformative role of technology in media and storytelling, emphasizing authenticity and grassroots journalism."
-            },
-            {
-                "timestamp": "05:56:40",
-                "description": "Quantum technology and space exploration panels highlight advancements in quantum computing and the transition to commercial space stations."
-            },
-            {
-                "timestamp": "06:33:31",
-                "description": "Closing celebrations include motivational reflections, Sir Mo Farah's wellness initiative, and discussions on the event's legacy and societal impact."
+                "timestamp": "07:03:54.667",
+                "event": "Closing"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "The Web Summit Qatar 2026 is taking place, showcasing advancements in technology, entrepreneurship, and cultural innovation through discussions, presentations, and performances."
+                "answer": "The Web Summit Qatar 2026 is a multifaceted event featuring discussions on technology, innovation, and global challenges, alongside performances and cultural showcases."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Key events include discussions on AI, robotics, quantum computing, space exploration, and sustainability; the Startup Qatar showcase; pitch competitions; keynote presentations; and closing celebrations with motivational reflections and performances."
+                "answer": "Key events include panels on AI, robotics, quantum computing, space exploration, storytelling, and sustainability, as well as startup pitches, motivational sessions, and celebratory performances."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Scott from DeepGram emphasized scalable AI systems; Alberto from Plantaform pitched fogponics technology; Abhinav Gupta presented robotics innovations; Kasim 'Swizz Beatz' Dean launched Versys; Sir Mo Farah introduced 'Run with Mo' to promote wellness."
+                "answer": "Scott from DeepGram discusses scalable AI systems; Abhinav Gupta presents robotics innovations; Alberto pitches Plantaform's fogponics; Sir Mo Farah promotes wellness through \"Run with Mo.\""
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "Conflicts include public skepticism about AI, challenges in integrating AI into systems, concerns about worker displacement, infrastructure costs, rapid GPU depreciation, and limitations of large language models."
+                "answer": "Challenges include AI adoption skepticism, workforce displacement, AI infrastructure costs, monetizing social media, and equitable access to technology and education."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
@@ -113119,7 +112933,7 @@
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Scott (AI expert, focused on scalable systems); Alberto (innovator in sustainable agriculture); Abhinav Gupta (robotics expert, addressing adaptability); Kasim 'Swizz Beatz' Dean (Grammy-winning producer, advocating for cultural empowerment); Sir Mo Farah (Olympic champion, promoting wellness)."
+                "answer": "Scott: AI expert; Abhinav Gupta: robotics innovator; Alberto: sustainable agriculture advocate; Sir Mo Farah: athlete promoting wellness; Kasim Dean: cultural empowerment advocate."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
@@ -113127,129 +112941,129 @@
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is the Web Summit Qatar 2026, held in Qatar. It transitions between professional discussions, pitch competitions, and celebratory performances, reflecting the event's multifaceted nature."
+                "answer": "The setting is the Web Summit Qatar 2026, transitioning between panels, startup showcases, and celebratory scenes, reflecting the event's dynamic nature."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with visuals of the Web Summit logo, setting a professional tone for discussions on AI, compliance, and enterprise challenges."
+                "answer": "The video starts with visuals of the Web Summit logo, setting a professional tone for discussions on AI and enterprise challenges."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with celebratory scenes, including fireworks, music, and reflections on societal impact, wellness, and fostering hope."
+                "answer": "The video ends with fireworks, music, and reflections on societal impact, wellness, and fostering hope, marking the event's conclusion."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include the Plantaform Smart Indoor Garden (pitch competition), robotics demonstrations (keynote presentation), and fireworks (closing celebrations)."
+                "answer": "Central objects include the Plantaform Smart Indoor Garden during the pitch and robots during the robotics demonstrations."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "The summit emphasizes advancements in AI, robotics, quantum computing, space exploration, media, cultural innovation, and sustainability, focusing on global collaboration, ethical considerations, and transformative progress."
+                "answer": "AI's transformative potential is compared to the industrial revolution and the internet, emphasizing faster processes, greater productivity, and societal changes."
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The event transitions from professional discussions and presentations to motivational reflections and celebratory scenes, including fireworks, music, and performances."
+                "answer": "The event transitions from professional discussions and debates to motivational reflections and celebratory performances."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "It is a documentary-style event coverage video."
+                "answer": "A professional event summary video."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "The goal is to showcase the Web Summit Qatar 2026, highlighting technological innovation, global collaboration, cultural empowerment, and sustainability."
+                "answer": "To showcase technological advancements, global collaboration, and cultural innovation while inspiring optimism and progress."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Professional (during discussions and panels), celebratory (fireworks, music, performances), motivational (reflections and advice), and innovative (exploration of cutting-edge technologies)."
+                "answer": "Professional (discussions on AI and technology), Inspirational (motivational reflections), Celebratory (fireworks and performances), Optimistic (emphasis on societal progress)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Details about the specific technologies, companies, and individuals mentioned would require outside knowledge for deeper understanding."
+                "answer": "Specific details about the technologies, companies, and individuals mentioned may require prior knowledge or research."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Scenes include the Web Summit logo, fireworks, dancing robots, pitch presentations, and motivational speakers."
+                "answer": "Fireworks, dancing robots, startup pitches, panel discussions, and celebratory performances."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Audio includes panel discussions, keynote speeches, music, and celebratory sounds like fireworks."
+                "answer": "Keynote speeches, panel debates, music, and motivational reflections."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Yes, the visual and audio cues are aligned, with visuals complementing the discussions, presentations, and celebratory moments."
+                "answer": "Yes, they are aligned, with visuals complementing the discussions and celebratory themes."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visual cues include the Web Summit logo, fireworks, and robots; prominent audio cues include keynote speeches, panel discussions, and music."
+                "answer": "Visual cues include fireworks, robots, and startup showcases; audio cues include speeches, music, and panel discussions."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "The video contains live action and special effects, such as fireworks and dancing robots."
+                "answer": "It contains live action and celebratory special effects like fireworks."
             },
             {
-                "question": "Additional predicted question 1?",
-                "answer": "Not explicitly stated."
+                "question": "What is fogponics technology introduced by Plantaform?",
+                "answer": "Fogponics is a patented agricultural technology that reduces water usage by 98% and accelerates plant growth by 40%."
             },
             {
-                "question": "Additional predicted question 2?",
-                "answer": "Not explicitly stated."
+                "question": "What role does storytelling play in organizations according to the summit?",
+                "answer": "Storytelling is a strategic tool for organizations, with video becoming the dominant medium for information and entertainment."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
+                "question": "What concerns were raised about AI adoption during the summit?",
+                "answer": "Concerns included public skepticism, worker displacement, denial-of-service attacks, and the financial struggles of AGI products."
             },
             {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
+                "question": "What is the significance of the Startup Qatar showcase?",
+                "answer": "It highlights Qatar's startup ecosystem as a gateway for founders to access funding, incubation, and market opportunities."
             },
             {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
+                "question": "What predictions were made about AI agents in contact centers?",
+                "answer": "AI agents are predicted to dominate contact centers by 2029, raising concerns about denial-of-service attacks."
             },
             {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
+                "question": "What challenges in robotics were addressed by Skilled AI?",
+                "answer": "Skilled AI addressed challenges like inaccessible data, slow hardware, and high costs in robotics development."
             },
             {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
+                "question": "What is the role of quantum technology discussed at the summit?",
+                "answer": "Quantum technology is explored for applications like molecular modeling, carbon sequestration, and quantum encryption."
             },
             {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
+                "question": "What is the focus of the \"Run with Mo\" initiative introduced by Sir Mo Farah?",
+                "answer": "The initiative promotes wellness and healthier lifestyles through physical activity and education."
             },
             {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
+                "question": "What advancements in space exploration were discussed?",
+                "answer": "The transition from government-led to commercial space stations and the emergence of a space economy were key topics."
             },
             {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
+                "question": "What is the role of Versys in cultural innovation?",
+                "answer": "Versys empowers creators and drives cultural shifts, treating culture as infrastructure in a digital world."
             },
             {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
+                "question": "What were the concerns about AI infrastructure costs?",
+                "answer": "Concerns included rapid GPU depreciation and the financial challenges of maintaining large language models."
             },
             {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
+                "question": "What is the productivity paradox in enterprise AI?",
+                "answer": "It refers to the challenge of overcoming pilot fatigue and delivering tangible value during economic challenges."
             },
             {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
+                "question": "What is the significance of socially native storytelling?",
+                "answer": "It emphasizes authenticity, relatability, and audience engagement in digital media."
             },
             {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
+                "question": "What opportunities are identified in microgravity research?",
+                "answer": "Microgravity research is seen as a key driver for manufacturing and economic growth in the space economy."
             },
             {
-                "question": "Additional predicted question 15?",
-                "answer": "Not explicitly stated."
+                "question": "What was the atmosphere of the summit's closing celebrations?",
+                "answer": "The closing featured fireworks, music, and performances, blending innovation with entertainment and reflections on legacy."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/Web Summit Qatar 2026 Day Three.mp4/rag_embedding.json",
-        "context_count": 2086,
+        "rag_path": "_processed\\Web Summit Qatar 2026 Day Three.mp4/rag_embedding.json",
+        "context_count": 2085,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }

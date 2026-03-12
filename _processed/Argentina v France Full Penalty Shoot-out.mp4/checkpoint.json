@@ -2,10 +2,10 @@
     "run_description": "Test run for video processing pipeline.",
     "video_path": "Videos\\Argentina v France Full Penalty Shoot-out.mp4",
     "video_length": "00:07:39.000",
-    "total_process_sec": 409.13864,
+    "total_process_sec": 401.30167,
     "scene_number": 75,
-    "start_process": "2026-03-12 10:45:46",
-    "end_process": "2026-03-12 10:46:30",
+    "start_process": "2026-03-12 20:30:18",
+    "end_process": "2026-03-12 20:30:55",
     "computer": {
         "os_info": {
             "os": "Windows 10",
@@ -26,15 +26,15 @@
         },
         "ram_info": {
             "total_RAM_GB": 7.42,
-            "available_RAM_GB": 0.98,
-            "used_RAM_GB": 6.45,
-            "RAM_usage_percent": 86.9
+            "available_RAM_GB": 1.13,
+            "used_RAM_GB": 6.29,
+            "RAM_usage_percent": 84.7
         },
         "disk_info": {
             "disk_total_GB": 475.69,
-            "disk_used_GB": 245.07,
-            "disk_free_GB": 230.62,
-            "disk_usage_percent": 51.5
+            "disk_used_GB": 248.85,
+            "disk_free_GB": 226.84,
+            "disk_usage_percent": 52.3
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,13 +1117,13 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 16.73057,
-            "cpu_time_sec": 0.07812,
-            "ram_before_MB": 513,
-            "ram_after_MB": 513,
-            "ram_used_MB": 0,
+            "wall_time_sec": 11.10629,
+            "cpu_time_sec": 0.14062,
+            "ram_before_MB": 362,
+            "ram_after_MB": 363,
+            "ram_used_MB": 1,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.009366989135742188,
+            "io_write_MB": 0.009349822998046875,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -1131,13 +1131,13 @@
             "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 27.24019,
-            "cpu_time_sec": 24.57812,
-            "ram_before_MB": 513,
-            "ram_after_MB": 515,
-            "ram_used_MB": 2,
+            "wall_time_sec": 25.0275,
+            "cpu_time_sec": 28.0,
+            "ram_before_MB": 363,
+            "ram_after_MB": 279,
+            "ram_used_MB": -84,
             "io_read_MB": 0.6603641510009766,
-            "io_write_MB": 7.323491096496582,
+            "io_write_MB": 7.323825836181641,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -5360,38 +5360,38 @@
         }
     ],
     "synopsis": {
-        "chat_name": "World Cup Final Shootout",
-        "summary": "Argentina wins the FIFA World Cup after a tense penalty shootout against France, with Emiliano Martinez's crucial saves, Gonzalo Montiel's decisive kick, and Lionel Messi's historic triumph celebrated as the nation's first victory in 36 years.",
+        "chat_name": "Argentina vs France Final",
+        "summary": "Argentina wins World Cup after tense penalty shootout, with Montiel scoring the decisive kick, Messi achieving career-defining triumph, and the nation celebrating its first victory in 36 years since Maradona's 1986 win.",
         "video_highlights": [
             {
                 "start": "00:00:00.000",
                 "end": "00:00:04.800",
-                "highlight": "The scene opens in a stadium during the penalty shootout of the Argentina vs. France soccer match, with tense atmosphere and commentary referencing France's penalty history."
+                "highlight": "The scene opens in a stadium during the penalty shootout of the Argentina vs. France soccer match, with commentary referencing France's penalty shootout history."
+            },
+            {
+                "start": "00:00:11.040",
+                "end": "00:00:16.800",
+                "highlight": "A player in a blue shirt, likely Mbappé, is shown preparing for the shootout, with commentary emphasizing his prior penalty misses and successes."
             },
             {
                 "start": "00:01:39.040",
                 "end": "00:01:48.000",
-                "highlight": "Kingsley Coman's penalty is saved by Emiliano Martinez, prompting celebration and commentary describing Martinez as a \"massive character.\""
-            },
-            {
-                "start": "00:03:05.600",
-                "end": "00:03:21.920",
-                "highlight": "Emiliano Martinez uses psychological tactics to unsettle Suomenia, who misses their penalty, striking it wide."
+                "highlight": "Kingsley Coman takes his penalty kick amidst loud crowd whistles, but Emiliano Martinez makes a save, prompting celebration and commentary on his skill."
             },
             {
                 "start": "00:05:53.600",
                 "end": "00:05:57.280",
-                "highlight": "Gonzalo Montiel scores the decisive penalty kick, securing Argentina's victory in the FIFA World Cup final against France."
+                "highlight": "Gonzalo Montiel successfully scores the decisive penalty kick, securing Argentina's victory in the FIFA World Cup final against France."
             },
             {
                 "start": "00:06:24.960",
                 "end": "00:06:31.680",
-                "highlight": "Argentina's victory is celebrated as their first World Cup win in 36 years, described as \"a nation's new throne of immortals.\""
+                "highlight": "The audio references \"36 years since Maradona and Mexico,\" connecting Argentina's win to their previous World Cup victory in 1986."
             },
             {
-                "start": "00:06:49.920",
-                "end": "00:07:04.320",
-                "highlight": "Lionel Messi falls to his knees, overwhelmed by emotion, as the commentator describes the moment as \"incredible scenes.\""
+                "start": "00:07:04.320",
+                "end": "00:07:14.080",
+                "highlight": "Lionel Messi's triumph is described as \"shaking hands with paradise,\" symbolizing his monumental accomplishment and Argentina's victory."
             }
         ],
         "video_timeline": [
@@ -5409,7 +5409,7 @@
             },
             {
                 "timestamp": "00:02:14.400",
-                "event": "Scored"
+                "event": "Calm Penalty"
             },
             {
                 "timestamp": "00:05:53.600",
@@ -5417,7 +5417,7 @@
             },
             {
                 "timestamp": "00:06:49.920",
-                "event": "Emotion"
+                "event": "Messi Kneels"
             }
         ],
         "questions": [
@@ -5427,43 +5427,43 @@
             },
             {
                 "question": "What are the key events?",
-                "answer": "Emiliano Martinez's critical saves, Paulo Dybala's composed penalty, Gonzalo Montiel's decisive goal, and Argentina's celebration after winning the World Cup."
+                "answer": "Emiliano Martinez makes critical saves, Paulo Dybala scores calmly, Gonzalo Montiel scores the decisive penalty, and Argentina celebrates their first World Cup win in 36 years."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Emiliano Martinez made key saves; Paulo Dybala scored calmly; Gonzalo Montiel scored the winning penalty; Lionel Messi celebrated emotionally."
+                "answer": "Emiliano Martinez saves penalties, Gonzalo Montiel scores the winning penalty, Lionel Messi celebrates emotionally, and the Argentine team and fans rejoice."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "The pressure of the penalty shootout, missed penalties by France, and the tension of deciding the World Cup winner."
+                "answer": "The tension of the penalty shootout, missed penalties by France, and the psychological pressure on players."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "Lionel Messi is the main character, experiencing the culmination of his career by leading Argentina to a historic World Cup victory."
+                "answer": "Lionel Messi is the main character, achieving his career-defining moment by leading Argentina to World Cup victory."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Lionel Messi: emotional and triumphant, key player; Emiliano Martinez: confident and strategic, goalkeeper; Gonzalo Montiel: composed, scored the winning penalty; Paulo Dybala: calm, penalty scorer; Kingsley Coman: missed penalty for France."
+                "answer": "Lionel Messi: emotional and triumphant, Argentina's leader. Emiliano Martinez: confident and strategic, key goalkeeper. Gonzalo Montiel: composed, scores the decisive penalty. Kingsley Coman: pressured, misses a penalty for France."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "\"Argentina. Champions of the world.\" - Commentator; \"Messi will be sainted.\" - Commentator; \"Martinez is trying to get in his head.\" - Commentator."
+                "answer": "\"Argentina. Champions of the world.\" – Commentator. \"Messi will be sainted.\" – Commentator. \"A nation's new throne of immortals.\" – Commentator."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is a stadium during the World Cup final penalty shootout. It remains constant, emphasizing the high-stakes atmosphere."
+                "answer": "The setting is a stadium during the World Cup final. It transitions from a tense shootout atmosphere to a celebratory scene after Argentina's victory."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with a tense penalty shootout between Argentina and France, with commentary referencing past penalty misses."
+                "answer": "The video starts with the penalty shootout between Argentina and France, with commentary referencing France's penalty history and Kylian Mbappé's past miss."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with Gonzalo Montiel scoring the decisive penalty, Argentina celebrating their victory, and Lionel Messi emotionally reflecting on the achievement."
+                "answer": "The video ends with Gonzalo Montiel scoring the decisive penalty, Argentina celebrating their victory, and Lionel Messi being praised for his historic achievement."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "The soccer ball is central, appearing during penalty kicks and symbolizing the match's outcome."
+                "answer": "The soccer ball appears throughout the penalty shootout, symbolizing the high stakes of the match."
             },
             {
                 "question": "What is the most important thing said or heard?",
@@ -5471,103 +5471,103 @@
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The atmosphere shifts from tense anticipation to triumphant celebration as Argentina wins."
+                "answer": "The narrative transitions from tense penalty shootout moments to Argentina's celebratory World Cup victory."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "A sports highlight or recap of a FIFA World Cup penalty shootout."
+                "answer": "A sports highlight or recap video of the FIFA World Cup final penalty shootout."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "To showcase the drama, tension, and ultimate triumph of Argentina's World Cup victory."
+                "answer": "To depict the dramatic and emotional journey of Argentina's victory in the World Cup final."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Tense (during the shootout), celebratory (after Argentina's win), reflective (on Messi's legacy), and national pride (Argentina's cultural significance)."
+                "answer": "Tense (during the shootout), triumphant (after Argentina's win), reflective (on Messi's career and Argentina's history), celebratory (fans and players rejoicing)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Knowledge of FIFA World Cup history, players like Messi and Martinez, and the significance of penalty shootouts."
+                "answer": "Knowledge of the FIFA World Cup, the players' histories, and the significance of the Argentina vs. France match."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Players preparing for penalties, Martinez's saves, Montiel's decisive kick, Messi's emotional reaction, and fans celebrating."
+                "answer": "Players preparing for penalties, crowd reactions, Messi kneeling in emotion, and celebratory group hugs."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Commentary emphasizing tension, triumph, and historical context; crowd cheers; celebratory phrases like \"Champions of the world.\""
+                "answer": "Commentary emphasizing tension, triumph, and historical significance, with celebratory phrases like \"Champions of the world.\""
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Mostly aligned, but some visuals lack context or clarity, and captions occasionally misidentify players or events."
+                "answer": "Mostly aligned, but some visuals lack clarity or context, and captions occasionally misidentify players or events."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Visual: penalty kicks, player reactions, crowd celebrations. Audio: commentary on key moments, crowd noise, celebratory phrases."
+                "answer": "Visuals: penalty kicks, emotional reactions, crowd celebrations. Audio: commentary highlighting key moments and emotional stakes."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "Live action, with some abstract visuals (e.g., lights, stars) unrelated to the narrative."
+                "answer": "Live action with occasional abstract visuals (e.g., lights and text)."
             },
             {
-                "question": "What is the significance of Emiliano Martinez's role in the shootout?",
+                "question": "What is the significance of Emiliano Martinez's role in the penalty shootout?",
                 "answer": "He made critical saves and used psychological tactics to unsettle opponents, showcasing confidence and skill."
             },
             {
-                "question": "Why was Kylian Mbappé under pressure during the shootout?",
-                "answer": "Commentary highlighted his past missed penalty against Switzerland, adding to the stakes of his performance."
+                "question": "Why was Kingsley Coman's penalty important?",
+                "answer": "His penalty was saved by Martinez, adding to France's challenges in the shootout."
             },
             {
-                "question": "What was Paulo Dybala's strategy during his penalty kick?",
-                "answer": "He calmly and strategically shot \"down the middle,\" demonstrating composure under pressure."
+                "question": "What does the commentary say about Paulo Dybala's penalty?",
+                "answer": "It describes his shot as calm and strategic, emphasizing his composure under pressure."
             },
             {
-                "question": "What happened when Kingsley Coman took his penalty?",
-                "answer": "Emiliano Martinez saved his shot, prompting the commentator to praise Martinez's performance."
+                "question": "What happened when Suomenia took their penalty?",
+                "answer": "Suomenia missed the shot, striking it wide, which increased the tension."
             },
             {
-                "question": "How did the crowd react during the penalty shootout?",
-                "answer": "The atmosphere was tense, with loud whistles and cheers reflecting the high stakes."
+                "question": "What was the atmosphere like during Gonzalo Montiel's penalty?",
+                "answer": "The atmosphere was tense as his penalty was decisive for Argentina's victory."
             },
             {
-                "question": "What was the outcome of Suomenia's penalty?",
-                "answer": "Suomenia missed the shot, striking it wide, which added to France's challenges."
+                "question": "How did the crowd react to Argentina's victory?",
+                "answer": "Fans celebrated jubilantly, with visuals showing cheering and Argentina-themed attire."
             },
             {
-                "question": "What did the commentator say about Lionel Messi's achievement?",
-                "answer": "Messi was described as \"shaking hands with paradise\" and \"pitching up in heaven,\" symbolizing his monumental accomplishment."
+                "question": "What historical context is provided about Argentina's win?",
+                "answer": "The audio references their last World Cup victory in 1986, connecting it to this triumph."
             },
             {
-                "question": "What was the historical context of Argentina's victory?",
-                "answer": "It was their first World Cup win in 36 years, connecting to their 1986 triumph under Maradona."
+                "question": "What is said about Lionel Messi's achievement?",
+                "answer": "He is described as reaching his \"final peak\" and \"shaking hands with paradise,\" marking a historic career moment."
             },
             {
-                "question": "How did Gonzalo Montiel contribute to Argentina's win?",
-                "answer": "He scored the decisive penalty kick, securing the victory in the shootout."
+                "question": "How is Lionel Scaloni portrayed in the narrative?",
+                "answer": "He is highlighted as a pivotal figure in Argentina's success, with the audio stating, \"Scaloni will be fated.\""
             },
             {
-                "question": "What was the emotional reaction of Lionel Messi after the win?",
-                "answer": "He fell to his knees in the center circle, overwhelmed by emotion, as teammates surrounded him."
+                "question": "What does the commentary say about France's penalty attempt?",
+                "answer": "It declares, \"France this time denied, defied,\" indicating their failure in the shootout."
             },
             {
-                "question": "What did the commentator say about Lionel Scaloni's role?",
-                "answer": "Scaloni was described as being \"fated,\" highlighting his significance as Argentina's coach."
+                "question": "What emotional reaction does Lionel Messi display after the win?",
+                "answer": "He falls to his knees in the center circle, overwhelmed by emotion, as teammates surround him."
             },
             {
-                "question": "What was the reaction of the French goalkeeper Ugo Lloris during the shootout?",
-                "answer": "He nearly saved a penalty shot, but the atmosphere remained tense as France struggled."
+                "question": "What metaphor is used to describe Messi's accomplishment?",
+                "answer": "He is described as \"pitching up in heaven,\" symbolizing his monumental achievement."
             },
             {
-                "question": "What was the commentator's description of the pressure on penalty takers?",
-                "answer": "He noted that some players looked nervous and described the difficulty of performing under such high stakes."
+                "question": "What does the audio say about Messi's origins?",
+                "answer": "It refers to him as \"the boy from Rosario Santa Fe,\" emphasizing his journey to greatness."
             },
             {
-                "question": "How did the visuals depict the aftermath of Argentina's victory?",
-                "answer": "Fans celebrated jubilantly in the stadium, and players embraced on the field."
+                "question": "What is the mood during the final moments of the shootout?",
+                "answer": "The mood transitions from tension to triumph as Argentina secures victory."
             },
             {
-                "question": "What was the commentator's closing remark about Argentina's victory?",
-                "answer": "He described it as \"a nation's new throne of immortals,\" emphasizing its historic significance."
+                "question": "What visuals are shown during the celebrations?",
+                "answer": "Players and fans are depicted cheering, crying, and embracing, reflecting the emotional weight of the win."
             }
         ]
     },

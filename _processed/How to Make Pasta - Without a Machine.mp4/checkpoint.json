@@ -2,10 +2,10 @@
     "run_description": "Test run for video processing pipeline.",
     "video_path": "Videos\\How to Make Pasta - Without a Machine.mp4",
     "video_length": "00:05:28.000",
-    "total_process_sec": 913.49998,
+    "total_process_sec": 915.8462800000001,
     "scene_number": 60,
-    "start_process": "2026-03-12 10:46:30",
-    "end_process": "2026-03-12 10:47:03",
+    "start_process": "2026-03-12 20:30:55",
+    "end_process": "2026-03-12 20:31:29",
     "computer": {
         "os_info": {
             "os": "Windows 10",
@@ -26,15 +26,15 @@
         },
         "ram_info": {
             "total_RAM_GB": 7.42,
-            "available_RAM_GB": 0.9,
-            "used_RAM_GB": 6.52,
-            "RAM_usage_percent": 87.8
+            "available_RAM_GB": 1.03,
+            "used_RAM_GB": 6.4,
+            "RAM_usage_percent": 86.2
         },
         "disk_info": {
             "disk_total_GB": 475.69,
-            "disk_used_GB": 245.07,
-            "disk_free_GB": 230.62,
-            "disk_usage_percent": 51.5
+            "disk_used_GB": 248.85,
+            "disk_free_GB": 226.84,
+            "disk_usage_percent": 52.3
         },
         "gpu_info": {
             "gpu_model": null
@@ -880,13 +880,13 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 10.37497,
-            "cpu_time_sec": 0.14062,
-            "ram_before_MB": 515,
-            "ram_after_MB": 515,
-            "ram_used_MB": 0,
+            "wall_time_sec": 11.98518,
+            "cpu_time_sec": 0.09375,
+            "ram_before_MB": 247,
+            "ram_after_MB": 248,
+            "ram_used_MB": 1,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.00811004638671875,
+            "io_write_MB": 0.008148193359375,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -894,13 +894,13 @@
             "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 21.84682,
-            "cpu_time_sec": 22.89062,
-            "ram_before_MB": 515,
-            "ram_after_MB": 515,
-            "ram_used_MB": 0,
+            "wall_time_sec": 22.58291,
+            "cpu_time_sec": 24.51562,
+            "ram_before_MB": 248,
+            "ram_after_MB": 257,
+            "ram_used_MB": 9,
             "io_read_MB": 0.6603641510009766,
-            "io_write_MB": 6.605951309204102,
+            "io_write_MB": 7.067453384399414,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -2988,17 +2988,12 @@
     ],
     "synopsis": {
         "chat_name": "Cooking Tutorial Pasta Dough",
-        "summary": "A step-by-step tutorial demonstrates how to make simple homemade pasta dough, emphasizing hands-on techniques, accessibility, and resourcefulness, with occasional shifts to unrelated activities like woodworking, before concluding with cooking, serving, and audience engagement.",
+        "summary": "A step-by-step cooking tutorial demonstrates how to make simple homemade pasta dough, emphasizing accessibility and hands-on techniques, with occasional shifts to hygiene tips, woodworking, and audience engagement, culminating in the preparation, cooking, and presentation of a pasta dish served with a tomato sauce.",
         "video_highlights": [
             {
                 "start": "00:00:00.000",
                 "end": "00:00:06.500",
                 "highlight": "Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough."
-            },
-            {
-                "start": "00:00:06.500",
-                "end": "00:00:11.667",
-                "highlight": "I'm not making the fanciest or the best or the most luxurious recipe, but it's easy."
             },
             {
                 "start": "00:00:14.333",
@@ -3008,12 +3003,17 @@
             {
                 "start": "00:00:56.833",
                 "end": "00:01:00.167",
-                "highlight": "And a teaspoon of salt."
+                "highlight": "Then using a fork, whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well."
             },
             {
                 "start": "00:03:05.167",
                 "end": "00:03:11.000",
                 "highlight": "The pasta dough into whatever shape you like and today I'm just doing some long tagliatelle style pasta."
+            },
+            {
+                "start": "00:04:36.667",
+                "end": "00:04:42.667",
+                "highlight": "It may be a little bit more time consuming, but let's be real, we all have more time on our hands than normal right now, so really."
             },
             {
                 "start": "00:04:42.667",
@@ -3050,15 +3050,15 @@
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "A cooking tutorial demonstrates how to make homemade pasta dough with occasional shifts to unrelated activities like woodworking."
+                "answer": "A cooking tutorial demonstrates how to make homemade pasta dough, with occasional shifts to unrelated activities like woodworking."
             },
             {
                 "question": "What are the key events?",
-                "answer": "The tutorial covers mixing ingredients, kneading dough, rolling it out, cutting it into pasta, cooking it, and presenting the dish."
+                "answer": "The tutorial progresses through steps of making pasta dough, including kneading, rolling, and cutting, with intermittent scenes of woodworking and ingredient preparation."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "A person leads the tutorial, mixing, kneading, rolling, and cutting dough, with occasional woodworking and ingredient preparation."
+                "answer": "A person demonstrates making pasta dough by kneading, rolling, and cutting it, while also offering instructions and tips."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
@@ -3066,31 +3066,31 @@
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "The unnamed narrator guides viewers through the pasta-making process, emphasizing simplicity and resourcefulness."
+                "answer": "The unnamed narrator leads the tutorial, guiding viewers through the pasta-making process with a focus on simplicity and accessibility."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Person #1, #30, #34, and others appear, performing tasks like kneading dough or cutting wood, but their appearances and traits are not explicitly described."
+                "answer": "Person #1, #30, #34, and others appear as unnamed individuals performing tasks like kneading dough or cutting wood; their traits and appearances are not explicitly described."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "\"Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water.\" - Narrator."
+                "answer": "\"Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.\" - Narrator; \"Fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water.\" - Narrator."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting alternates between a kitchen and a woodworking area, with the kitchen being central to the pasta tutorial."
+                "answer": "The setting alternates between a kitchen and a woodworking area, with the kitchen being central to the pasta-making tutorial."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video begins with an introduction to making homemade pasta dough on a wooden cutting board."
+                "answer": "The video begins with the narrator introducing the tutorial and explaining how to make a simple homemade pasta dough."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video concludes with a plated pasta dish and a promotional message encouraging audience interaction."
+                "answer": "The video concludes with the narrator presenting the finished pasta dish and encouraging viewers to connect on social media."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include dough, a wooden cutting board, eggs, flour, and a bowl, appearing throughout the tutorial."
+                "answer": "Central objects include pasta dough, a wooden cutting board, a bowl, and a rolling pin, appearing throughout the tutorial."
             },
             {
                 "question": "What is the most important thing said or heard?",
@@ -3098,7 +3098,7 @@
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The video transitions from making pasta dough to presenting the finished dish and engaging with the audience."
+                "answer": "The video transitions from demonstrating pasta preparation to promoting engagement and concluding with a reflective tone."
             },
             {
                 "question": "What type of video is this?",
@@ -3106,31 +3106,31 @@
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "To teach viewers how to make homemade pasta dough and encourage engagement with the creator."
+                "answer": "To teach viewers how to make homemade pasta dough and encourage audience interaction."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Instructional (focused on teaching), calm (relaxed pacing), encouraging (reassuring viewers about simplicity), and promotional (inviting audience interaction)."
+                "answer": "Instructional: Guides viewers step-by-step. Encouraging: Reassures simplicity. Reflective: Promotes engagement and creativity."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "The identity of the narrator, the purpose of woodworking scenes, and the details of referenced links or recipes."
+                "answer": "The identity of the narrator and the relevance of woodworking scenes are not explicitly stated."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Wooden cutting boards, bowls of flour and eggs, kneading dough, rolling pasta, and a finished dish with tomato sauce."
+                "answer": "Wooden cutting boards, bowls of dough, pasta preparation, and occasional woodworking elements."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Faint background music, clear instructional dialogue, occasional promotional messages, and a concluding phrase from children."
+                "answer": "Calm narration, faint background music, and occasional promotional or reflective statements."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Mostly aligned, though occasional woodworking visuals diverge from the cooking narrative."
+                "answer": "Mostly aligned, though woodworking visuals occasionally diverge from the cooking narrative."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Visuals: dough preparation, pasta cutting, and finished dishes. Audio: step-by-step instructions, faint music, and audience engagement prompts."
+                "answer": "Visual: Dough kneading, pasta cutting. Audio: Step-by-step instructions, faint music."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
@@ -3145,56 +3145,56 @@
                 "answer": "The tone is calm, instructional, and encouraging."
             },
             {
-                "question": "What is the purpose of the stationary object labeled \"donut #1\"?",
+                "question": "What is the purpose of \"donut #1\" in the scene?",
                 "answer": "Not explicitly stated."
             },
             {
-                "question": "What ingredients are mentioned in the tutorial?",
-                "answer": "Flour, eggs, olive oil, and salt are mentioned."
+                "question": "What does the narrator emphasize about the recipe?",
+                "answer": "The simplicity and accessibility of the recipe."
             },
             {
-                "question": "What does the narrator say about the simplicity of the recipe?",
-                "answer": "The narrator emphasizes that the recipe is easy and uses common household ingredients."
+                "question": "What is the significance of \"bowl #2\"?",
+                "answer": "It holds prepared food and is central to the pasta-making process."
             },
             {
-                "question": "What is the significance of the American flag appearing in the measuring cup?",
-                "answer": "Not explicitly stated."
+                "question": "What is the narrator's advice if the grocery store pasta aisle is empty?",
+                "answer": "\"Don't panic,\" as making pasta at home is easy."
             },
             {
-                "question": "What hygiene practices are emphasized in the tutorial?",
-                "answer": "Washing hands and sanitizing the work surface are emphasized."
+                "question": "What hygiene advice is given during the tutorial?",
+                "answer": "Wash your hands and sanitize your work surface."
             },
             {
-                "question": "What is the purpose of creating a well in the flour?",
-                "answer": "It is for mixing the eggs and flour together."
+                "question": "What unusual imagery appears in the measuring cup?",
+                "answer": "An American flag, possibly a metaphor or editing error."
             },
             {
-                "question": "What troubleshooting tips are provided for the dough?",
-                "answer": "Add water if the dough is too dry, or add flour if it is too wet."
+                "question": "What is the next step after cracking three eggs into the flour?",
+                "answer": "Begin whisking the eggs and incorporating the flour."
             },
             {
-                "question": "How long should the dough be kneaded?",
-                "answer": "The dough should be kneaded for about 10 minutes."
+                "question": "What troubleshooting tip is provided for dry dough?",
+                "answer": "Add a touch of water to adjust the consistency."
             },
             {
-                "question": "What is the next step after kneading the dough?",
-                "answer": "Wrap it in cling film and let it rest for a minimum of 30 minutes."
+                "question": "What is the recommended resting time for the dough?",
+                "answer": "A minimum of 30 minutes wrapped in cling film."
             },
             {
-                "question": "What shape of pasta does the narrator demonstrate?",
-                "answer": "The narrator demonstrates making long tagliatelle-style pasta."
+                "question": "What is the narrator's suggestion for storing prepared pasta?",
+                "answer": "Wrap it and freeze or refrigerate it."
             },
             {
-                "question": "What is the cooking time for fresh pasta?",
-                "answer": "Fresh pasta cooks quickly and only needs about 2-3 minutes in salted boiling water."
+                "question": "How long does fresh pasta take to cook?",
+                "answer": "About 2-3 minutes in salted boiling water."
             },
             {
-                "question": "What serving suggestion does the narrator provide?",
-                "answer": "The narrator suggests serving the pasta with a simple tomato sauce."
+                "question": "What is the narrator serving the pasta with?",
+                "answer": "A simple tomato sauce."
             },
             {
-                "question": "What does the narrator encourage viewers to do at the end of the tutorial?",
-                "answer": "The narrator encourages viewers to subscribe, connect on Instagram, and leave questions or comments."
+                "question": "What is the narrator's closing message to viewers?",
+                "answer": "Encouragement to subscribe, connect on Instagram, and leave questions."
             }
         ]
     },

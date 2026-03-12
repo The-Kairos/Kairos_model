@@ -2,10 +2,10 @@
     "run_description": "Test run for video processing pipeline.",
     "video_path": "Videos\\.DJI Osmo Pocket 3 Walk in NYC Manhattan Chinatown.mp4",
     "video_length": "00:44:13.020",
-    "total_process_sec": 1377.1041500000001,
+    "total_process_sec": 1374.5642300000002,
     "scene_number": 257,
-    "start_process": "2026-03-12 10:53:11",
-    "end_process": "2026-03-12 10:54:31",
+    "start_process": "2026-03-12 20:04:13",
+    "end_process": "2026-03-12 20:05:30",
     "computer": {
         "os_info": {
             "os": "Windows 10",
@@ -26,15 +26,15 @@
         },
         "ram_info": {
             "total_RAM_GB": 7.42,
-            "available_RAM_GB": 0.63,
-            "used_RAM_GB": 6.79,
-            "RAM_usage_percent": 91.5
+            "available_RAM_GB": 0.84,
+            "used_RAM_GB": 6.58,
+            "RAM_usage_percent": 88.6
         },
         "disk_info": {
             "disk_total_GB": 475.69,
-            "disk_used_GB": 245.1,
-            "disk_free_GB": 230.59,
-            "disk_usage_percent": 51.5
+            "disk_used_GB": 248.79,
+            "disk_free_GB": 226.9,
+            "disk_usage_percent": 52.3
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,13 +1117,13 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 9.44617,
-            "cpu_time_sec": 0.17188,
-            "ram_before_MB": 507,
-            "ram_after_MB": 507,
-            "ram_used_MB": 0,
+            "wall_time_sec": 14.80353,
+            "cpu_time_sec": 0.09375,
+            "ram_before_MB": 485,
+            "ram_after_MB": 412,
+            "ram_used_MB": -73,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.00806427001953125,
+            "io_write_MB": 0.008169174194335938,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -1131,13 +1131,13 @@
             "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 69.7346,
-            "cpu_time_sec": 71.21875,
-            "ram_before_MB": 507,
-            "ram_after_MB": 529,
-            "ram_used_MB": 22,
+            "wall_time_sec": 61.83732,
+            "cpu_time_sec": 78.26562,
+            "ram_before_MB": 412,
+            "ram_after_MB": 406,
+            "ram_used_MB": -6,
             "io_read_MB": 0.6603641510009766,
-            "io_write_MB": 24.745906829833984,
+            "io_write_MB": 23.729429244995117,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -42146,8 +42146,8 @@
         }
     ],
     "synopsis": {
-        "chat_name": "Manhattan Chinatown Walkthrough",
-        "summary": "A narrated exploration of Manhattan's Chinatown on October 27th, 2023, showcasing its vibrant streets, cultural landmarks, economic challenges, affordable markets, transportation hubs, and unresolved local issues, concluding with serene views of the Brooklyn Bridge at sunset.",
+        "chat_name": "Chinatown Walkthrough Vlog",
+        "summary": "A detailed exploration of Manhattan's Chinatown on October 27th, 2023, showcasing its vibrant streets, cultural landmarks, economic challenges, affordable markets, transportation options, and unresolved local issues, concluding with serene views of the Brooklyn Bridge at sunset.",
         "video_highlights": [
             {
                 "start": "Not explicitly stated",
@@ -42157,7 +42157,7 @@
             {
                 "start": "Not explicitly stated",
                 "end": "Not explicitly stated",
-                "highlight": "The narrator highlights Corky Lee Way, reflecting on Corky Lee's legacy as a human rights activist and photographer."
+                "highlight": "The narrator highlights Corky Lee Way, reflecting on his legacy as a human rights activist and photographer."
             },
             {
                 "start": "Not explicitly stated",
@@ -42167,52 +42167,52 @@
             {
                 "start": "Not explicitly stated",
                 "end": "Not explicitly stated",
-                "highlight": "The unresolved gas line issue at 79 Christie Street is mentioned, reflecting community frustrations."
+                "highlight": "The narrator discusses affordable produce at outdoor markets, contrasting it with higher prices at chain stores."
             },
             {
                 "start": "Not explicitly stated",
                 "end": "Not explicitly stated",
-                "highlight": "The video concludes with a serene view of the Brooklyn Bridge and Manhattan skyline at sunset, accompanied by soft music."
+                "highlight": "The video concludes with a serene view of the Brooklyn Bridge and Manhattan skyline at sunset, accompanied by a farewell."
             }
         ],
         "video_timeline": [
             {
-                "timestamp": "00:00",
-                "event": "Map Introduction"
+                "timestamp": "Not explicitly stated",
+                "event": "Map introduction"
             },
             {
-                "timestamp": "02:00",
-                "event": "Lunchtime Rush"
+                "timestamp": "2:00 PM",
+                "event": "Chinatown streets"
             },
             {
                 "timestamp": "Not explicitly stated",
-                "event": "Corky Lee Legacy"
+                "event": "Corky Lee legacy"
             },
             {
                 "timestamp": "Not explicitly stated",
-                "event": "Dead Mall"
+                "event": "Nam Wah Tea Parlor"
             },
             {
                 "timestamp": "Not explicitly stated",
-                "event": "Gas Line Issue"
+                "event": "East Broadway Mall"
             },
             {
                 "timestamp": "Not explicitly stated",
-                "event": "Sunset Farewell"
+                "event": "Brooklyn Bridge sunset"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "A narrator explores Manhattan's Chinatown, showcasing its vibrant streets, cultural landmarks, economic challenges, and urban life."
+                "answer": "The narrator explores Manhattan's Chinatown, highlighting its culture, history, urban activity, and challenges through a vlog-style walkthrough."
             },
             {
                 "question": "What are the key events?",
-                "answer": "The narrator highlights landmarks, discusses Chinatown's history, observes markets, addresses local issues, and concludes with a sunset view of the Brooklyn Bridge."
+                "answer": "The narrator visits landmarks, observes markets, discusses economic struggles, and concludes with a sunset view of the Brooklyn Bridge and Manhattan skyline."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "The narrator walks through Chinatown, tests a camera, provides commentary on landmarks, and reflects on cultural and economic aspects."
+                "answer": "The narrator walks through Chinatown, tests a camera, reflects on cultural history, and provides commentary on the neighborhood's vibrancy and issues."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
@@ -42220,31 +42220,31 @@
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "The narrator is the main character, guiding viewers through Chinatown while reflecting on its culture, history, and challenges."
+                "answer": "The narrator is the main character, guiding viewers through Chinatown's streets, reflecting on its culture, history, and challenges, and ending with a serene farewell."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "The narrator: unseen, reflective, and informative, serving as a guide. Corky Lee: mentioned as a historical figure and activist."
+                "answer": "The narrator: unseen, reflective, and informative, serves as the guide. Corky Lee: mentioned as a historical figure and activist. Other characters are pedestrians, vendors, and cyclists, contributing to the urban atmosphere."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "\"Take care\" – Narrator. \"Corky Lee Way honors a human rights activist and photographer\" – Narrator."
+                "answer": "\"Take care\" by the narrator; reflections on Corky Lee's legacy and comments on Chinatown's economic challenges are significant but not verbatim."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is Manhattan's Chinatown, transitioning from bustling streets to quieter spaces and ending with a nighttime cityscape. It reflects the area's vibrancy and challenges."
+                "answer": "The setting is Manhattan's Chinatown, transitioning from bustling streets to quieter areas and ending with a nighttime cityscape. It reflects the neighborhood's vibrancy and struggles."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video begins with a map and the narrator introducing Chinatown, the date, time, weather, and camera details."
+                "answer": "The video starts with a map and the narrator introducing Chinatown, providing context about the date, time, weather, and camera being used."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with a serene view of the Brooklyn Bridge and Manhattan skyline at sunset, accompanied by soft music and a farewell message."
+                "answer": "The video ends with a sunset view of the Brooklyn Bridge and Manhattan skyline, accompanied by soft music and the narrator's farewell."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "The DJI Osmo Pocket 3 camera is central, appearing throughout as the narrator tests its features."
+                "answer": "The DJI Osmo Pocket 3 camera is central, appearing throughout as the narrator tests its features. Other objects include murals, markets, and the gas line issue at 79 Christie Street."
             },
             {
                 "question": "What is the most important thing said or heard?",
@@ -42252,7 +42252,7 @@
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The video transitions from bustling daytime scenes of Chinatown to a serene nighttime cityscape of the Brooklyn Bridge and Manhattan skyline."
+                "answer": "The video transitions from bustling daytime scenes in Chinatown to a serene nighttime cityscape of the Brooklyn Bridge and Manhattan skyline."
             },
             {
                 "question": "What type of video is this?",
@@ -42264,38 +42264,38 @@
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Lively (bustling streets and markets), Reflective (discussions on history and community challenges), Serene (calm nighttime conclusion)."
+                "answer": "Lively (bustling streets and markets), Reflective (discussions on history and challenges), Serene (calm nighttime conclusion)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Details about Corky Lee's full biography, Chinatown's broader history, and the unresolved gas line issue at 79 Christie Street."
+                "answer": "Details about Corky Lee's full biography, Chinatown's broader history, and the unresolved gas line issue's specifics."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Bustling streets, murals, graffiti-covered alleyways, outdoor markets, Nam Wah Tea Parlor, East Broadway Mall, and the Brooklyn Bridge at sunset."
+                "answer": "Bustling streets, graffiti-covered alleyways, outdoor markets, cultural landmarks, and the Brooklyn Bridge at sunset."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Urban noise, narrator commentary, street performers, and soft music during the conclusion."
+                "answer": "Urban noise, narrator commentary, and soft music during the farewell."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Yes, they are aligned, with visuals of Chinatown's activity matching the narrator's commentary and ambient sounds."
+                "answer": "They are aligned, with visuals of Chinatown's streets and landmarks matching the narrator's commentary."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Visuals: Pedestrians, vehicles, markets, landmarks, and graffiti. Audio: Narrator's reflections, urban noise, and concluding music."
+                "answer": "Visuals: markets, murals, landmarks, and urban decay. Audio: narrator's reflections, street noise, and soft closing music."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
                 "answer": "Live action."
             },
             {
-                "question": "What camera does the narrator use during the walkthrough?",
-                "answer": "The narrator uses the DJI Osmo Pocket 3 camera."
+                "question": "What camera is the narrator using during the walkthrough?",
+                "answer": "The narrator is using the DJI Osmo Pocket 3 camera."
             },
             {
-                "question": "What is the historical significance of Corky Lee Way?",
+                "question": "What is the significance of Corky Lee Way?",
                 "answer": "Corky Lee Way honors Corky Lee, a human rights activist and photographer who worked to correct the historical exclusion of Chinese-Americans from railroad company photos."
             },
             {
@@ -42303,52 +42303,52 @@
                 "answer": "The East Broadway Mall is described as a \"dead mall\" with limited activity, non-operating escalators, and economic struggles."
             },
             {
-                "question": "What is notable about Nam Wah Tea Parlor?",
+                "question": "What is the historical importance of Nam Wah Tea Parlor?",
                 "answer": "Nam Wah Tea Parlor is the first dim sum parlor in Chinatown, known for its historical significance and popularity."
             },
             {
-                "question": "What type of food does Wah Fung Foods specialize in?",
+                "question": "What type of food is sold at Wah Fung Foods?",
                 "answer": "Wah Fung Foods is praised for its roast dishes, offering good value despite recent price increases."
             },
             {
-                "question": "What unresolved issue is mentioned at 79 Christie Street?",
-                "answer": "An unresolved gas line issue at 79 Christie Street has persisted for months, causing frustration among residents."
+                "question": "What issue is affecting residents at 79 Christie Street?",
+                "answer": "An unresolved gas line issue has persisted for months, causing frustration among residents."
             },
             {
-                "question": "What transportation option is highlighted near the Manhattan Bridge?",
-                "answer": "The narrator mentions one-way bus tickets to Boston from 145 Canal Street, priced at $60."
+                "question": "What transportation options are mentioned for traveling to Boston?",
+                "answer": "One-way bus tickets to Boston from 145 Canal Street are priced at $60, with cheaper options suggested online."
             },
             {
-                "question": "What safety concern is noted near the Manhattan Bridge Bicycle Path?",
-                "answer": "The pedestrian crossing near the bridge is described as dangerous due to heavy traffic and a two-way bike path."
+                "question": "What is the narrator’s observation about Chinatown’s outdoor markets?",
+                "answer": "Outdoor markets sell affordable produce like sweet potatoes and broccoli, contrasting with higher prices at chain stores."
             },
             {
-                "question": "What type of produce is sold at Chinatown's outdoor markets?",
-                "answer": "Affordable produce such as sweet potatoes and broccoli is sold at Chinatown's outdoor markets."
+                "question": "What does the narrator say about the pedestrian crossing near the Manhattan Bridge?",
+                "answer": "The pedestrian crossing is described as dangerous due to heavy traffic and a two-way bike path."
             },
             {
-                "question": "What is the narrator’s impression of Chinatown’s economic landscape?",
-                "answer": "The narrator observes contrasts between vibrant markets and desolate urban spaces, reflecting economic challenges."
+                "question": "What urban contrasts are highlighted in Chinatown?",
+                "answer": "Vibrant markets and bustling streets are contrasted with graffiti-covered alleyways, vacant buildings, and quieter spaces."
             },
             {
-                "question": "What visual elements contribute to Chinatown's urban ambiance?",
-                "answer": "Graffiti-covered alleyways, vacant buildings, parked cars, moving vehicles, and pedestrians contribute to the urban ambiance."
+                "question": "What is the narrator’s reflection on Chinatown’s economic challenges?",
+                "answer": "The narrator emphasizes underutilized areas and hopes for revitalization amidst signs of urban decay."
             },
             {
-                "question": "What is the narrator’s farewell message at the end of the video?",
-                "answer": "The narrator bids farewell with the phrase \"Take care,\" accompanied by soft music and text reading \"Thanks for watching.\""
+                "question": "What landmarks are featured near the end of the video?",
+                "answer": "The Brooklyn Bridge and Manhattan skyline at sunset are featured in the concluding scenes."
             },
             {
                 "question": "What does the narrator say about the weather during the walkthrough?",
-                "answer": "The weather is described as 71°F/22°C."
+                "answer": "The weather is described as 71°F/22°C, contributing to a pleasant atmosphere."
             },
             {
-                "question": "What landmarks are featured in the nighttime cityscape?",
-                "answer": "The Brooklyn Bridge and Manhattan skyline are featured in the nighttime cityscape."
+                "question": "What does the narrator mention about the camera’s performance?",
+                "answer": "The DJI Osmo Pocket 3 camera tends to overexpose the sky, requiring adjustments to restore color."
             },
             {
-                "question": "What is the narrator’s reflection on Chinatown’s culinary scene?",
-                "answer": "The narrator highlights the abundance of restaurants and vibrant culinary options during the lunchtime rush."
+                "question": "What phrase does the narrator use to conclude the video?",
+                "answer": "The narrator bids farewell with the phrase \"Take care,\" accompanied by soft music and text reading \"Thanks for watching.\""
             }
         ]
     },

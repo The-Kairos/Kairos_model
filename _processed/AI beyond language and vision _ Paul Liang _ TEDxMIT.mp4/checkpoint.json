@@ -2,10 +2,10 @@
     "run_description": "Test run for video processing pipeline.",
     "video_path": "Videos\\.AI beyond language and vision _ Paul Liang _ TEDxMIT.mp4",
     "video_length": "00:16:07.600",
-    "total_process_sec": 398.84918,
+    "total_process_sec": 400.80738,
     "scene_number": 47,
-    "start_process": "2026-03-12 10:52:36",
-    "end_process": "2026-03-12 10:53:11",
+    "start_process": "2026-03-12 20:03:05",
+    "end_process": "2026-03-12 20:03:42",
     "computer": {
         "os_info": {
             "os": "Windows 10",
@@ -26,15 +26,15 @@
         },
         "ram_info": {
             "total_RAM_GB": 7.42,
-            "available_RAM_GB": 0.49,
-            "used_RAM_GB": 6.93,
-            "RAM_usage_percent": 93.3
+            "available_RAM_GB": 0.73,
+            "used_RAM_GB": 6.69,
+            "RAM_usage_percent": 90.1
         },
         "disk_info": {
             "disk_total_GB": 475.69,
-            "disk_used_GB": 245.09,
-            "disk_free_GB": 230.6,
-            "disk_usage_percent": 51.5
+            "disk_used_GB": 248.79,
+            "disk_free_GB": 226.9,
+            "disk_usage_percent": 52.3
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,13 +1117,13 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 12.64464,
-            "cpu_time_sec": 0.73438,
+            "wall_time_sec": 12.61932,
+            "cpu_time_sec": 0.5625,
             "ram_before_MB": 473,
-            "ram_after_MB": 481,
-            "ram_used_MB": 8,
+            "ram_after_MB": 480,
+            "ram_used_MB": 7,
             "io_read_MB": 0.8930854797363281,
-            "io_write_MB": 0.010204315185546875,
+            "io_write_MB": 0.009873390197753906,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -1131,13 +1131,13 @@
             "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 22.92247,
-            "cpu_time_sec": 18.46875,
-            "ram_before_MB": 481,
-            "ram_after_MB": 507,
+            "wall_time_sec": 24.90599,
+            "cpu_time_sec": 20.26562,
+            "ram_before_MB": 480,
+            "ram_after_MB": 506,
             "ram_used_MB": 26,
             "io_read_MB": 2.73763370513916,
-            "io_write_MB": 5.723224639892578,
+            "io_write_MB": 5.076127052307129,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -4805,17 +4805,17 @@
     ],
     "synopsis": {
         "chat_name": "TEDxMIT AI Talk",
-        "summary": "Paul Liang discusses multisensory AI advancements, including sensory integration, haptic technology, and brain-computer interfaces, emphasizing interdisciplinary collaboration, ethical challenges, and the transformative potential of AI to enhance human perception and connection.",
+        "summary": "Paul Liang discusses multisensory AI advancements, including sensory integration, haptic technology, and ethical challenges, while envisioning future applications like brain-computer interfaces and augmented human senses.",
         "video_highlights": [
             {
                 "start": "00:00:00.000",
                 "end": "00:00:07.474",
-                "highlight": "The TEDxMIT event begins with Paul Liang's introduction, featuring an orange backdrop and TEDxMIT branding."
+                "highlight": "The TEDxMIT event begins with Paul Liang's introduction, featuring an orange background and TEDxMIT branding."
             },
             {
                 "start": "00:00:15.883",
                 "end": "00:00:44.444",
-                "highlight": "Paul Liang is introduced as a computer scientist, with anecdotes about sensory experiences like strawberries and artificial flavors."
+                "highlight": "Paul Liang is introduced as a distinguished computer scientist, with anecdotes about sensory experiences like strawberries and artificial flavors."
             },
             {
                 "start": "00:02:13.734",
@@ -4825,17 +4825,17 @@
             {
                 "start": "00:03:34.481",
                 "end": "Not explicitly stated",
-                "highlight": "Paul envisions AI sharing sensory experiences like smells, emphasizing its transformative potential."
+                "highlight": "Paul envisions AI sharing sensory experiences like smells, emphasizing the transformative potential of multisensory technology."
             },
             {
                 "start": "00:10:27.293",
                 "end": "00:10:32.632",
-                "highlight": "Paul introduces \"haptic intuition gloves\" as a breakthrough in replicating touch for sensory enhancement."
+                "highlight": "Paul introduces \"haptic intuition gloves\" as a breakthrough in replicating touch for sensory loss and object manipulation."
             },
             {
                 "start": "00:12:53.039",
                 "end": "00:13:14.127",
-                "highlight": "Paul predicts AI integration into human brains within 10-20 years, addressing challenges like privacy and decision-making."
+                "highlight": "Paul predicts AI integration into human brains within 10-20 years, addressing challenges like privacy and decision-making augmentation."
             }
         ],
         "video_timeline": [
@@ -4867,27 +4867,27 @@
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "Paul Liang delivers a TEDxMIT talk on multisensory AI, exploring sensory perception, AI advancements, and future possibilities for integrating human senses with technology."
+                "answer": "Paul Liang delivers a TEDxMIT talk about multisensory AI, exploring sensory perception, AI advancements, and future possibilities for integrating human senses with technology."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Paul discusses AI's limitations, introduces haptic gloves, explores sensory integration, reflects on BCIs, and concludes with a multisensory project demonstration."
+                "answer": "Paul discusses sensory perception, AI's limitations, haptic technology, brain-computer interfaces, and interdisciplinary collaboration, concluding with a lighter discussion on sensory preferences."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Paul Liang presents research on AI and sensory enhancement, engages in discussions about BCIs, and demonstrates a multisensory project. Other speakers ask questions and contribute insights."
+                "answer": "Paul Liang presents his research, discusses AI's potential, introduces haptic gloves, and engages in conversations about sensory integration and interdisciplinary teamwork."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "Challenges include replicating intuitive senses like touch, ethical concerns with AI integration, and technical hurdles in sensory simulation and privacy."
+                "answer": "Challenges include AI's difficulty replicating intuitive senses like touch, ethical concerns like privacy, and the technical hurdles of integrating AI with human senses."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "Paul Liang is the main character, a computer scientist exploring AI's potential to replicate and enhance human senses, addressing challenges, and envisioning future applications."
+                "answer": "Paul Liang, a computer scientist, shares his journey from studying AI's sensory limitations to envisioning a future where AI enhances human perception and connection."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Paul Liang: A computer scientist, innovative and reflective, leads discussions on multisensory AI. Other unnamed speakers: inquisitive and professional, contribute questions and insights."
+                "answer": "Paul Liang: A computer scientist and innovator, passionate and reflective, central to the narrative. Other unnamed individuals: Interviewers, audience members, and collaborators, providing questions, feedback, and dialogue."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
@@ -4895,19 +4895,19 @@
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting alternates between formal stages, informal discussions, and a Media Lab. These changes reflect the blend of professional and personal exploration of AI."
+                "answer": "The setting shifts between a TEDxMIT stage, informal discussions, and professional environments, reflecting the blend of technical and personal aspects of AI research."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video begins with Paul Liang's introduction at TEDxMIT, setting the stage for his talk on sensory perception and AI."
+                "answer": "The video begins with Paul Liang's introduction at TEDxMIT, where he expresses excitement for his presentation on multisensory AI."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with audience applause and a transition to a theatrical stage, signaling appreciation for Paul Liang's presentation."
+                "answer": "The video ends with Paul Liang being thanked, audience applause, and a transition to a theatrical stage, signaling the conclusion of his talk."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Haptic gloves appear during discussions on touch simulation. The TED logo and stage props reinforce the event's branding throughout."
+                "answer": "Haptic gloves are central, appearing during discussions on replicating touch and enhancing sensory experiences."
             },
             {
                 "question": "What is the most important thing said or heard?",
@@ -4915,103 +4915,103 @@
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The discussion transitions from introducing Paul Liang and his research to exploring interdisciplinary collaboration and personal sensory experiences."
+                "answer": "The discussion transitions from introducing Paul Liang and his research to exploring practical applications and interdisciplinary collaboration."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "A TEDxMIT talk featuring a mix of formal presentations, interviews, and discussions."
+                "answer": "A TEDxMIT talk featuring a formal presentation and informal discussions on AI and sensory integration."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "To explore advancements in multisensory AI, its potential to replicate human senses, and its implications for human connection and evolution."
+                "answer": "To explore advancements in multisensory AI, its potential to enhance human experiences, and the ethical and technical challenges involved."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Professional (formal presentations), reflective (discussions on sensory perception), enthusiastic (future AI possibilities), lighthearted (personal sensory preferences)."
+                "answer": "Professional (formal presentations), Reflective (discussions on sensory perception), Enthusiastic (future AI applications), Lighthearted (personal sensory preferences)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Detailed technical explanations of AI systems, historical context of AI advancements, and prior knowledge of sensory perception theories."
+                "answer": "Detailed technical explanations of AI systems and prior knowledge of sensory science and AI advancements."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Orange background with TEDxMIT branding, informal seating on stairs, professional stage settings, and a theatrical stage with audience applause."
+                "answer": "Orange TEDxMIT branding, formal stage settings, informal stair and living room discussions, and haptic gloves demonstrations."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Conversational tones, reflective questions, audience applause, and enthusiastic explanations of AI concepts."
+                "answer": "Professional dialogue, reflective questions, audience applause, and conversational tones during informal discussions."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Yes, the visuals of professional and informal settings align with the corresponding tones and discussions."
+                "answer": "Yes, the visuals of formal and informal settings align with the corresponding professional and conversational tones."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Visual cues: TEDxMIT branding, stage settings, and haptic gloves. Audio cues: Reflective dialogue, audience engagement, and applause."
+                "answer": "Visual: TEDxMIT branding, haptic gloves, stage and informal settings. Audio: Reflective questions, enthusiastic explanations, and audience applause."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
                 "answer": "Live action only."
             },
             {
-                "question": "What is Paul Liang's primary area of expertise?",
-                "answer": "Paul Liang specializes in AI and sensory enhancement, focusing on advancing human senses through technology."
+                "question": "What is the significance of the orange background at the TEDxMIT event?",
+                "answer": "Not explicitly stated."
             },
             {
-                "question": "What example does Paul use to discuss sensory perception?",
-                "answer": "He compares the taste of strawberries to Jolly Ranchers, exploring how artificial flavors shape perceptions of natural tastes."
+                "question": "What does Paul Liang compare the taste of strawberries to?",
+                "answer": "He compares the taste of strawberries to Jolly Ranchers."
             },
             {
-                "question": "What is the goal of Paul Liang's research group, Multisensory Intelligence?",
-                "answer": "Their goal is to develop AI capable of interacting through all human senses, addressing the limitations of current AI systems."
+                "question": "What is the focus of Paul Liang's research group, Multisensory Intelligence?",
+                "answer": "Developing AI capable of interacting through all human senses."
             },
             {
-                "question": "What unique ability of smell does Paul highlight?",
-                "answer": "He emphasizes smell's ability to perceive the past, such as detecting food, beverages, or people in a space moments ago."
+                "question": "What literary works does Paul Liang reference in his talk?",
+                "answer": "He references *Slaughterhouse-Five* and works by Madeline L'Engle."
             },
             {
-                "question": "What challenge in AI development does Paul discuss related to touch?",
-                "answer": "He explains Moravec's paradox, noting AI's difficulty in mastering intuitive tasks like touch despite success in intellectual challenges."
+                "question": "What sensory ability does Paul Liang emphasize as important for AI to replicate?",
+                "answer": "He emphasizes the importance of replicating the sense of smell."
             },
             {
-                "question": "What breakthrough in haptic technology does Paul introduce?",
-                "answer": "He introduces \"haptic intuition gloves,\" designed to replicate the sense of touch and address sensory loss."
+                "question": "What does Paul Liang say about AI's ability to perceive the past?",
+                "answer": "He highlights smell's unique ability to detect past events, such as food or people in a space moments ago."
             },
             {
-                "question": "What speculative applications of AI does Paul explore?",
-                "answer": "He speculates on creating new senses, such as visualizing Wi-Fi signals or detecting heat loss, and integrating AI with brain-technology interfaces."
+                "question": "What humorous remark does the interviewer make about Paul's academic journey?",
+                "answer": "The interviewer humorously dismisses the idea of a PhD in smell."
             },
             {
-                "question": "What timeline does Paul predict for AI integration with BCIs?",
-                "answer": "He predicts AI will become powerful and compact enough to be implanted into human brains within 10 to 20 years."
+                "question": "What is Moravec's paradox, as explained by Paul Liang?",
+                "answer": "It is the contrast between AI's difficulty mastering intuitive tasks like touch and its success in intellectual challenges."
             },
             {
-                "question": "What ethical challenges in AI development does Paul mention?",
-                "answer": "He highlights challenges like robustness, privacy, and ensuring AI augments human decision-making."
+                "question": "What breakthrough technology does Paul Liang introduce for replicating touch?",
+                "answer": "He introduces \"haptic intuition gloves.\""
             },
             {
-                "question": "What interdisciplinary collaboration does Paul emphasize?",
-                "answer": "He stresses the importance of combining expertise in AI, biology, chemistry, neuroscience, and technology to tackle challenges like AI for smell."
+                "question": "What does Paul Liang speculate about creating new senses?",
+                "answer": "He speculates on the possibility of creating senses beyond the classical five, such as visualizing Wi-Fi signals."
             },
             {
-                "question": "What personal question does Paul ask to conclude a discussion?",
-                "answer": "He asks a conversational partner about their favorite smell, transitioning to a lighter topic."
+                "question": "What timeline does Paul Liang predict for AI integration with brain-computer interfaces?",
+                "answer": "He predicts AI could be compact and powerful enough for brain implantation within 10 to 20 years."
             },
             {
-                "question": "What multi-sensory project does Paul describe at MIT's Media Lab?",
-                "answer": "Participants can input a memory prompt to experience it through visuals, scents, and tactile sensations via haptic gloves."
+                "question": "What does Paul Liang emphasize about recruiting talent for his research group?",
+                "answer": "He emphasizes the need for interdisciplinary expertise across sensory domains like smell."
             },
             {
-                "question": "What does Paul say about memory as a sense?",
-                "answer": "He discusses AI's ability to augment memory, emphasizing its unbounded capacity and applications in health and decision-making."
+                "question": "What personal question does Paul Liang ask to conclude the discussion?",
+                "answer": "He asks a conversational partner about their favorite smell."
             },
             {
-                "question": "What is the purpose of the interview with Paul Liang?",
-                "answer": "It aims to promote his future talks and highlight his cutting-edge research."
+                "question": "What multi-sensory project does Paul Liang describe at MIT's Media Lab?",
+                "answer": "A project allowing participants to input a memory prompt and experience it through visuals, scents, and tactile sensations."
             },
             {
-                "question": "How does the TEDxMIT event conclude?",
-                "answer": "The event transitions to a theatrical stage environment with applause, signaling appreciation for Paul Liang’s presentation."
+                "question": "What is the audience's reaction at the end of Paul Liang's TEDxMIT talk?",
+                "answer": "The audience applauds, signaling appreciation for his presentation."
             }
         ]
     },
