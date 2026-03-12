@@ -1,40 +1,40 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/.NEW YORK TIMES SQUARE 2024 _ 4K WALK TOUR MORNING.mp4",
+    "video_path": "Videos\\.NEW YORK TIMES SQUARE 2024 _ 4K WALK TOUR MORNING.mp4",
     "video_length": "00:11:19.917",
-    "total_process_sec": 358.51971,
+    "total_process_sec": 371.38719999999995,
     "scene_number": 57,
-    "start_process": "2026-03-06 22:07:53",
-    "end_process": "2026-03-06 22:11:40",
+    "start_process": "2026-03-12 10:55:10",
+    "end_process": "2026-03-12 10:55:47",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
+            "os": "Windows 10",
+            "os_version": "10.0.19045",
+            "machine_type": "AMD64",
+            "hostname": "Manahil-Laptop",
             "python_version": "3.10.19"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 8,
             "cpu_frequency_MHz": {
-                "current": 2200.186000000001,
+                "current": 2000.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2000.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 182.73,
-            "used_RAM_GB": 5.98,
-            "RAM_usage_percent": 3.2
+            "total_RAM_GB": 7.42,
+            "available_RAM_GB": 0.54,
+            "used_RAM_GB": 6.88,
+            "RAM_usage_percent": 92.7
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 74.91,
-            "disk_free_GB": 66.38,
-            "disk_usage_percent": 53.0
+            "disk_total_GB": 475.69,
+            "disk_used_GB": 245.1,
+            "disk_free_GB": 230.59,
+            "disk_usage_percent": 51.5
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,194 +1117,32 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 21.68336,
-            "cpu_time_sec": 0.06531,
-            "ram_before_MB": 1758,
-            "ram_after_MB": 1759,
+            "wall_time_sec": 12.80913,
+            "cpu_time_sec": 0.14062,
+            "ram_before_MB": 515,
+            "ram_after_MB": 516,
             "ram_used_MB": 1,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.0078125,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "io_write_MB": 0.008080482482910156,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 2.27999,
-            "cpu_time_sec": 0.52598,
-            "ram_before_MB": 1759,
-            "ram_after_MB": 1669,
-            "ram_used_MB": -90,
-            "io_read_MB": 0.0,
-            "io_write_MB": 5.26953125,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 24.02171,
+            "cpu_time_sec": 18.34375,
+            "ram_before_MB": 516,
+            "ram_after_MB": 504,
+            "ram_used_MB": -12,
+            "io_read_MB": 0.6603641510009766,
+            "io_write_MB": 5.641656875610352,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -14811,101 +14649,77 @@
     ],
     "synopsis": {
         "chat_name": "Times Square Morning Scenes",
-        "summary": "The video depicts a morning in Times Square, New York City, showcasing its iconic bustling urban environment with pedestrians and vehicles navigating the streets. The scenes consistently highlight the vibrant energy of the area, framed by tall buildings, bright billboards, and lively activity. Background audio includes faint speech, vehicle noises, and occasional sirens, but no clear dialogue or significant events occur. Distinct moments include a man in an American flag shirt, a man dancing, and a Mandarin statement about 'an ancient building,' which is unrelated to the visuals. The video focuses on routine urban activity without notable conflicts or character development.",
+        "summary": "The video depicts a vibrant morning in Times Square, New York City, showcasing bustling pedestrian and vehicle activity amidst iconic billboards and tall buildings, with faint background sounds but no significant events or dialogue.",
         "video_highlights": [
             {
-                "timestamp": "00:00:00",
-                "highlight": "The video begins with a morning walk-through of Times Square, showcasing its bustling pedestrian and vehicle activity."
+                "start": "00:00:00.000",
+                "end": "00:00:44.833",
+                "highlight": "Morning walk-through of Times Square captures bustling pedestrians and vibrant urban energy."
             },
             {
-                "timestamp": "00:01:16.500",
-                "highlight": "A 4K walking tour captures the vibrant morning energy of Times Square, with landmarks like the Times Building visible."
+                "start": "00:01:16.500",
+                "end": "00:01:44.167",
+                "highlight": "Prominent landmarks like the Times Building appear amidst lively pedestrian activity."
             },
             {
-                "timestamp": "00:08:13.333",
-                "highlight": "A man in a black shirt dances on the street, adding a dynamic element to the bustling urban scene."
+                "start": "00:02:12.333",
+                "end": "00:02:33.000",
+                "highlight": "Streets busy with pedestrians and vehicles, showcasing dynamic Times Square ambiance."
             },
             {
-                "timestamp": "00:10:49.000",
-                "highlight": "A voice in Mandarin mentions 'an ancient building,' though no such structure is visually identified in the scene."
+                "start": "00:07:28.167",
+                "end": "00:08:13.333",
+                "highlight": "A man in an American flag shirt and another dancing add unique moments to the urban scene."
+            },
+            {
+                "start": "00:10:08.333",
+                "end": "00:10:49.000",
+                "highlight": "Faint animal sounds and Mandarin speech about \"an ancient building\" create unexpected contrasts."
+            },
+            {
+                "start": "00:11:16.167",
+                "end": "00:11:19.333",
+                "highlight": "Scene concludes with pedestrians and vehicles maintaining Times Square's lively energy."
             }
         ],
         "video_timeline": [
             {
                 "timestamp": "00:00:00",
-                "event": "Morning walk-through Times Square"
+                "event": "Morning scene starts"
             },
             {
                 "timestamp": "00:00:44",
-                "event": "Woman crosses busy street"
+                "event": "Crossing a path"
             },
             {
                 "timestamp": "00:01:16",
-                "event": "4K walking tour begins"
+                "event": "Viewing landmarks"
             },
             {
-                "timestamp": "00:01:47",
-                "event": "Vehicles navigate streets"
-            },
-            {
-                "timestamp": "00:02:33",
-                "event": "Pedestrians loop in frame"
+                "timestamp": "00:02:12",
+                "event": "Walking on streets"
             },
             {
                 "timestamp": "00:03:02",
-                "event": "Morning activity continues"
-            },
-            {
-                "timestamp": "00:04:48",
-                "event": "Signs advertise live music"
+                "event": "Energy builds up"
             },
             {
                 "timestamp": "00:08:13",
-                "event": "Man dances in black shirt"
-            },
-            {
-                "timestamp": "00:10:08",
-                "event": "Truck passes faint bleating"
-            },
-            {
-                "timestamp": "00:10:49",
-                "event": "Mandarin mentions ancient building"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "Opening scene showcasing the bustling morning activity in Times Square, with pedestrians and vibrant urban energy."
-            },
-            {
-                "timestamp": "00:01:16.500",
-                "description": "A 4K walking tour captures the iconic landmarks and dynamic atmosphere of Times Square during the morning."
-            },
-            {
-                "timestamp": "00:07:28.167",
-                "description": "A man wearing an American flag shirt stands out among the crowd, adding a unique visual element to the scene."
-            },
-            {
-                "timestamp": "00:08:13.333",
-                "description": "A man dancing in a black shirt introduces a dynamic and lively moment amidst the routine urban activity."
-            },
-            {
-                "timestamp": "00:10:49.000",
-                "description": "A voice in Mandarin mentions 'an ancient building,' creating an intriguing contrast to the modern Times Square visuals."
+                "event": "People are dancing"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "The video depicts a morning walking tour of Times Square, New York City, showcasing its bustling urban environment with pedestrians, vehicles, and iconic billboards."
+                "answer": "The video depicts a morning in Times Square, New York City, showcasing its bustling urban activity with pedestrians, vehicles, and iconic billboards."
             },
             {
                 "question": "What are the key events?",
-                "answer": "There are no significant events; the video consistently captures routine urban activity in Times Square."
+                "answer": "Not explicitly stated."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Key actions include pedestrians walking, vehicles navigating the streets, and a man dancing in a black shirt. These actions are performed by general pedestrians and drivers."
+                "answer": "Pedestrians walk, cross streets, and some remain stationary; vehicles, including cars, buses, and trucks, navigate the streets."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
@@ -14917,35 +14731,35 @@
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Characters include general pedestrians and drivers, a man in an American flag shirt and sunglasses, and a man dancing in a black shirt. Their roles are limited to contributing to the urban ambiance, with no detailed traits or development provided."
+                "answer": "General pedestrians and drivers; a man in an American flag shirt, a man dancing in a black shirt, and a person holding a skateboard briefly stand out."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "Significant quotes include '冰島駅' ('Iceland Station') and '這是一座古老的建築物' ('This is an ancient building'), both heard in Mandarin. The speakers are not identified."
+                "answer": "\"這是一座古老的建築物\" (\"This is an ancient building\") in Mandarin; speaker unidentified."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is Times Square, New York City, during the morning. It remains consistent throughout the video and is central to showcasing the bustling urban environment."
+                "answer": "Times Square, New York City, during the morning; the setting remains constant and emphasizes urban vibrancy."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with a morning walk-through of Times Square, showing pedestrians and vehicles in a vibrant urban setting."
+                "answer": "The video begins with a morning walkthrough of Times Square, showing pedestrians and vehicles in a lively urban environment."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with pedestrians walking and standing amidst the bustling environment of Times Square, with faint speech and vehicle noise."
+                "answer": "The video ends with pedestrians walking and standing amidst the bustling streets of Times Square, with faint background noise."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include billboards, vehicles (cars, buses, trucks), and a skateboard. They appear throughout the video as part of the urban scenery."
+                "answer": "Iconic billboards, vehicles, and a skateboard appear throughout the video, contributing to the urban atmosphere."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "The Mandarin statement '這是一座古老的建築物' ('This is an ancient building') is repeated twice, though its relevance is unclear."
+                "answer": "\"這是一座古老的建築物\" (\"This is an ancient building\"), though its relevance is unclear."
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "Not explicitly stated."
+                "answer": "A Mandarin statement and a visual caption referencing \"June 9, 2012\" appear, adding ambiguity."
             },
             {
                 "question": "What type of video is this?",
@@ -14953,19 +14767,19 @@
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "To showcase the bustling urban environment and iconic landmarks of Times Square during a typical morning."
+                "answer": "To showcase the bustling morning activity and iconic urban environment of Times Square."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Lively: The bustling activity of pedestrians and vehicles creates a vibrant atmosphere. Neutral: There are no emotional cues or conflicts present."
+                "answer": "Lively: Reflects the bustling energy of Times Square. Neutral: No emotional tension or conflict is present."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "The relevance of the Mandarin statements and the caption referencing 'June 9, 2012' are unclear and require outside knowledge to understand their significance."
+                "answer": "The relevance of the Mandarin phrases and the \"June 9, 2012\" caption is not explained."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Pedestrians walking in various directions, vehicles navigating streets, iconic billboards, tall buildings, and occasional distinct individuals like a man in an American flag shirt or a man dancing."
+                "answer": "Pedestrians, vehicles, tall buildings, bright billboards, and occasional distinct individuals like a man in an American flag shirt."
             },
             {
                 "question": "What are key audio descriptions?",
@@ -14973,81 +14787,81 @@
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "They are mostly aligned, depicting a bustling urban environment. However, the Mandarin statement about an ancient building and faint animal sounds seem unrelated to the visuals."
+                "answer": "Mostly aligned, but the Mandarin statement about an ancient building is unrelated to the visuals."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visual cues include pedestrians, vehicles, billboards, and tall buildings. Prominent audio cues include faint speech, vehicle sounds, and occasional sirens."
+                "answer": "Visual: Iconic billboards, pedestrians, vehicles. Audio: Faint traffic noise, indistinct speech, occasional sirens."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "The video contains live action only."
+                "answer": "Live action."
             },
             {
-                "question": "Additional predicted question 1?",
+                "question": "What is the primary setting of the narrative?",
+                "answer": "Times Square, New York City, during the morning."
+            },
+            {
+                "question": "What languages are heard in the audio?",
+                "answer": "English, Mandarin, and Chinese phrases."
+            },
+            {
+                "question": "Are there any specific characters introduced?",
+                "answer": "A man in an American flag shirt, a man dancing in a black shirt, and general pedestrians."
+            },
+            {
+                "question": "What is the significance of the phrase \"冰島駅\"?",
                 "answer": "Not explicitly stated."
             },
             {
-                "question": "Additional predicted question 2?",
+                "question": "What is the atmosphere of Times Square as depicted?",
+                "answer": "Lively, bustling, and urban with iconic billboards and tall buildings."
+            },
+            {
+                "question": "Are there any notable events or conflicts?",
+                "answer": "None are mentioned in the narrative."
+            },
+            {
+                "question": "What types of vehicles are present in the scenes?",
+                "answer": "Cars, trucks, buses, and bicycles."
+            },
+            {
+                "question": "What is the role of audio in the scenes?",
+                "answer": "It includes faint speech, vehicle sounds, and occasional sirens, enhancing the urban ambiance."
+            },
+            {
+                "question": "Is there any emotional tone conveyed in the scenes?",
+                "answer": "No notable emotional tone is described."
+            },
+            {
+                "question": "What is the relevance of the Mandarin phrase about \"an ancient building\"?",
                 "answer": "Not explicitly stated."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
+                "question": "Are there any errors or inconsistencies in the narrative?",
+                "answer": "A visual caption references \"June 9, 2012,\" which seems inconsistent with the present-day setting."
             },
             {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
+                "question": "What visual elements dominate the scenes?",
+                "answer": "Tall buildings, bright billboards, and crowded streets."
             },
             {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
+                "question": "Are there any references to specific landmarks?",
+                "answer": "The Times Building and a red neon \"Times Square\" sign are mentioned."
             },
             {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
+                "question": "What unusual sounds are noted in the audio?",
+                "answer": "Faint animal sounds, such as bleating, are heard in one scene."
             },
             {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
-            },
-            {
-                "question": "Additional predicted question 15?",
+                "question": "Does the narrative suggest any deeper themes or messages?",
                 "answer": "Not explicitly stated."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/NEW YORK TIMES SQUARE 2024 _ 4K WALK TOUR MORNING.mp4/rag_embedding.json",
-        "context_count": 62,
+        "rag_path": "_processed\\NEW YORK TIMES SQUARE 2024 _ 4K WALK TOUR MORNING.mp4/rag_embedding.json",
+        "context_count": 61,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }

@@ -1,40 +1,40 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/.Statistical Learning_ 5.2 K-fold Cross Validation.mp4",
+    "video_path": "Videos\\.Statistical Learning_ 5.2 K-fold Cross Validation.mp4",
     "video_length": "00:13:33.200",
-    "total_process_sec": 320.90855,
+    "total_process_sec": 323.79881,
     "scene_number": 41,
-    "start_process": "2026-03-06 22:11:55",
-    "end_process": "2026-03-06 22:15:47",
+    "start_process": "2026-03-12 10:59:08",
+    "end_process": "2026-03-12 10:59:43",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
+            "os": "Windows 10",
+            "os_version": "10.0.19045",
+            "machine_type": "AMD64",
+            "hostname": "Manahil-Laptop",
             "python_version": "3.10.19"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 8,
             "cpu_frequency_MHz": {
-                "current": 2200.186000000001,
+                "current": 2000.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2000.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 182.73,
-            "used_RAM_GB": 5.98,
-            "RAM_usage_percent": 3.2
+            "total_RAM_GB": 7.42,
+            "available_RAM_GB": 0.73,
+            "used_RAM_GB": 6.7,
+            "RAM_usage_percent": 90.2
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 74.91,
-            "disk_free_GB": 66.38,
-            "disk_usage_percent": 53.0
+            "disk_total_GB": 475.69,
+            "disk_used_GB": 245.11,
+            "disk_free_GB": 230.59,
+            "disk_usage_percent": 51.5
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,194 +1117,32 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 30.08672,
-            "cpu_time_sec": 0.0705,
-            "ram_before_MB": 1634,
-            "ram_after_MB": 1634,
-            "ram_used_MB": 0,
-            "io_read_MB": 0.0,
-            "io_write_MB": 0.01171875,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 15.88183,
+            "cpu_time_sec": 0.59375,
+            "ram_before_MB": 472,
+            "ram_after_MB": 481,
+            "ram_used_MB": 9,
+            "io_read_MB": 0.8930854797363281,
+            "io_write_MB": 0.010245323181152344,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 1.81449,
-            "cpu_time_sec": 0.40437,
-            "ram_before_MB": 1634,
-            "ram_after_MB": 1635,
-            "ram_used_MB": 1,
-            "io_read_MB": 0.0,
-            "io_write_MB": 3.953125,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 1699,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                855,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                855,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 18.90964,
+            "cpu_time_sec": 17.17188,
+            "ram_before_MB": 481,
+            "ram_after_MB": 504,
+            "ram_used_MB": 23,
+            "io_read_MB": 2.73763370513916,
+            "io_write_MB": 4.274970054626465,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -2070,244 +1908,220 @@
         }
     ],
     "synopsis": {
-        "chat_name": "K-Fold Cross-Validation Explained",
-        "summary": "The lecturer provides a detailed explanation of k-fold cross-validation, emphasizing its importance in estimating prediction error and addressing limitations of previous validation methods. He describes the iterative process of dividing data into k parts, training on k-1 parts, and validating on the remaining part, with common choices for k being 5 or 10. The concept of leave-one-out cross-validation is introduced as a special case, highlighting its computational efficiency but also its high variance due to correlated folds. Comparisons between cross-validation methods, bias-variance tradeoffs, and error estimation techniques are discussed, with visuals supporting the explanations. The lecture concludes by contrasting cross-validation with the bootstrap method, underscoring cross-validation's role in accurately estimating test error for both regression and classification problems.",
+        "chat_name": "KFoldValidationLecture",
+        "summary": "The lecturer explains k-fold cross-validation, its mechanics, common choices for k, iterative processes, error calculations, and comparisons with leave-one-out cross-validation, emphasizing computational efficiency, bias-variance tradeoffs, and its importance in statistical learning.",
         "video_highlights": [
             {
-                "timestamp": "00:00:00",
-                "highlight": "The lecturer introduces k-fold cross-validation, emphasizing its importance in addressing validation method drawbacks."
+                "start": "00:00:00.000",
+                "end": "00:00:20.000",
+                "highlight": "The lecturer introduces k-fold cross-validation, highlighting its role in addressing validation method drawbacks and its widespread use."
             },
             {
-                "timestamp": "00:00:40",
-                "highlight": "The mechanics of k-fold cross-validation are explained, using 5-fold cross-validation as an example."
+                "start": "00:00:40.000",
+                "end": "00:01:00.000",
+                "highlight": "The mechanics of k-fold cross-validation are explained, with a focus on dividing the dataset into k parts and using 5-fold as an example."
             },
             {
-                "timestamp": "00:03:40",
-                "highlight": "Leave-one-out cross-validation is introduced as a special case of k-fold cross-validation with unique validation sets."
+                "start": "00:03:40.000",
+                "end": "00:04:00.000",
+                "highlight": "Leave-one-out cross-validation is introduced as a special case of k-fold, where each observation serves as the validation set."
             },
             {
-                "timestamp": "00:06:40",
-                "highlight": "The bias-variance tradeoff in k-fold cross-validation is discussed, recommending 5 or 10 folds for effectiveness."
+                "start": "00:06:20.000",
+                "end": "00:06:40.000",
+                "highlight": "The speaker contrasts leave-one-out with k-fold cross-validation, recommending k = 5 or 10 for lower variance and better performance."
+            },
+            {
+                "start": "00:10:40.000",
+                "end": "00:11:00.000",
+                "highlight": "The bias-variance tradeoff is discussed, with k = 5 or 10 folds offering a balance, while leave-one-out has lower bias but higher variance."
+            },
+            {
+                "start": "00:13:00.000",
+                "end": "00:13:20.000",
+                "highlight": "Cross-validation is compared to the bootstrap method, emphasizing its separation of training and validation data for accurate error estimation."
             }
         ],
         "video_timeline": [
             {
                 "timestamp": "00:00:00",
-                "event": "Introduces k-fold cross-validation"
+                "event": "Introduction"
             },
             {
                 "timestamp": "00:00:20",
-                "event": "Explains k-parts division"
+                "event": "Technique"
             },
             {
                 "timestamp": "00:00:40",
-                "event": "Describes 5-fold mechanics"
+                "event": "Mechanics"
             },
             {
                 "timestamp": "00:01:00",
-                "event": "Discusses common k values"
-            },
-            {
-                "timestamp": "00:02:00",
-                "event": "Combines prediction errors"
-            },
-            {
-                "timestamp": "00:03:40",
-                "event": "Introduces leave-one-out method"
-            },
-            {
-                "timestamp": "00:06:40",
-                "event": "Explains bias-variance tradeoff"
-            },
-            {
-                "timestamp": "00:08:20",
-                "event": "Transitions to smoothing splines"
-            },
-            {
-                "timestamp": "00:10:40",
-                "event": "Discusses classification problems"
-            },
-            {
-                "timestamp": "00:13:00",
-                "event": "Contrasts with bootstrap method"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "The lecturer introduces k-fold cross-validation, emphasizing its importance in addressing validation method drawbacks and its frequent use in academia and industry."
+                "event": "Choices"
             },
             {
                 "timestamp": "00:01:20",
-                "description": "The iterative process of 5-fold cross-validation is explained, highlighting how prediction errors are recorded and combined for cross-validation error calculation."
+                "event": "Iteration"
             },
             {
-                "timestamp": "00:03:40",
-                "description": "Leave-one-out cross-validation is introduced as a special case of k-fold cross-validation, where each observation serves as the validation set."
-            },
-            {
-                "timestamp": "00:06:40",
-                "description": "The bias-variance tradeoff in k-fold cross-validation is discussed, recommending k values of 5 or 10 for effective statistical learning."
-            },
-            {
-                "timestamp": "00:12:00",
-                "description": "The speaker explains the calculation of cross-validation error rates and standard errors, emphasizing the importance of standard error bands to account for variability."
+                "timestamp": "00:02:00",
+                "event": "Error"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "The video is an educational lecture explaining statistical methods, primarily focusing on k-fold cross-validation and its variations, including leave-one-out cross-validation, and their applications in estimating prediction errors and understanding model complexity."
+                "answer": "A lecturer explains k-fold cross-validation, its mechanics, advantages, and comparisons to other methods like leave-one-out cross-validation, using visuals and mathematical details."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Key events include the introduction of k-fold cross-validation, explanation of its mechanics, discussion of leave-one-out cross-validation, comparison of cross-validation methods, exploration of bias-variance tradeoffs, and the introduction of error estimation techniques using simulated data."
+                "answer": "The lecturer introduces k-fold cross-validation, explains its iterative process, discusses error calculations, compares it with leave-one-out cross-validation, and highlights the bias-variance tradeoff."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "The lecturer performs key actions such as explaining concepts, using visual aids, referencing textbook figures, and comparing statistical methods to clarify their strengths and limitations."
+                "answer": "The lecturer explains concepts, uses diagrams, and compares methods to teach statistical learning techniques."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "The main problems discussed are the limitations of leave-one-out cross-validation, such as high variance and correlated folds, and the bias-variance tradeoff in k-fold cross-validation. Computational challenges and assumptions about independent observations are also highlighted."
+                "answer": "Challenges include unclear visuals, high variance in leave-one-out cross-validation, and assumptions about independent observations in k-fold cross-validation."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "The main character is the lecturer, who methodically guides the audience through statistical concepts, starting with basic explanations of k-fold cross-validation and progressing to advanced topics like error estimation and bias-variance tradeoffs, maintaining a professional and instructional tone throughout."
+                "answer": "The lecturer is the main character, guiding the audience through statistical concepts, addressing challenges, and emphasizing practical applications."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Characters include the lecturer, who is analytical, focused, and professional, serving as the primary guide through the statistical concepts. No other characters are explicitly mentioned or described in the narrative."
+                "answer": "The lecturer: professional, focused, and analytical, explaining statistical methods. No physical description is provided."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "Significant quotes include: 'Now we're going to talk about k-fold cross-validation which will solve some of these problems,' 'It's validation, as we've seen, but done sort of like a k-part play,' and 'We take all the prediction errors from all 5 parts, we add them together, and that gives us what's called the cross-validation error,' all said by the lecturer."
+                "answer": "\"Now we're going to talk about k-fold cross-validation which will solve some of these problems.\" - Lecturer. \"We take all the prediction errors from all 5 parts, we add them together, and that gives us what's called the cross-validation error.\" - Lecturer."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is a lecture environment with visuals such as slides and diagrams. It remains consistent throughout the video and serves as the backdrop for the educational content being delivered."
+                "answer": "The setting is a lecture environment with slides and diagrams. It remains constant, supporting the educational tone."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with the lecturer introducing k-fold cross-validation, explaining its importance in addressing the drawbacks of previous validation methods, supported by visual aids."
+                "answer": "The video begins with the lecturer introducing k-fold cross-validation, explaining its importance and addressing drawbacks of previous methods."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with the lecturer emphasizing the importance of cross-validation as a foundational technique for understanding test error, contrasting it with the bootstrap method, and reinforcing its applications in statistical learning."
+                "answer": "The video concludes with a comparison of cross-validation and bootstrap methods, emphasizing cross-validation's importance in estimating test error."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include visual aids such as slides, diagrams, and textbook figures, which appear throughout the video to support the explanations of statistical concepts."
+                "answer": "Central objects include slides, diagrams, and mathematical formulas, appearing throughout to illustrate concepts."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "Cross-validation is a key technique for understanding test error in both quantitative response and classification problems."
+                "answer": "\"Now we're going to talk about k-fold cross-validation which will solve some of these problems.\""
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The video transitions from introducing k-fold cross-validation to discussing its limitations, comparisons with other methods, and its application to classification problems."
+                "answer": "The video transitions from introducing k-fold cross-validation to comparing it with other methods like leave-one-out and bootstrap, emphasizing its practical applications and limitations."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "Educational lecture."
+                "answer": "An educational lecture on statistical learning methods."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "To explain k-fold cross-validation, its mechanics, applications, and limitations in statistical learning."
+                "answer": "To explain k-fold cross-validation, its mechanics, advantages, limitations, and its role in statistical learning."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Focused: The speaker maintains a professional and instructional tone throughout. Analytical: Detailed explanations of mathematical concepts and trade-offs are provided. Humorous: Occasional light remarks, such as acknowledging imperfections in drawings, add levity."
+                "answer": "Focused (clear explanations of concepts), professional (formal delivery), humorous (acknowledging drawing imperfections), analytical (detailed comparisons of methods)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Understanding statistical learning concepts, familiarity with terms like 'hat matrix' and 'mean square error,' and access to referenced textbook figures are assumed."
+                "answer": "Prior knowledge of statistical learning, validation methods, and mathematical concepts like the hat matrix is assumed."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "Text slides, diagrams, graphs, mathematical formulas, and occasional unrelated imagery like a black cat or waves."
+                "answer": "Text slides, diagrams, graphs, equations, and occasional unrelated visuals like a train or a black cat."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Clear instructional explanations, occasional background sounds like sighs or chewing, and consistent emphasis on key concepts."
+                "answer": "Clear instructional tone, faint background sounds like sighs or chewing, and consistent verbal explanations of concepts."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Partially aligned; visuals support the audio explanations but are occasionally unclear or unrelated."
+                "answer": "Not entirely; visuals sometimes include unrelated imagery or unclear captions, while audio remains focused on the lecture content."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visual cues: Diagrams, graphs, and formulas. Prominent audio cues: Explanations of k-fold cross-validation mechanics, trade-offs, and applications."
+                "answer": "Prominent visuals include diagrams, graphs, and equations; prominent audio cues are the lecturer's explanations and key phrases like \"cross-validation error.\""
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
                 "answer": "Not explicitly stated."
             },
             {
-                "question": "Additional predicted question 1?",
-                "answer": "Not explicitly stated."
+                "question": "What is k-fold cross-validation?",
+                "answer": "It is a technique for estimating prediction error and understanding model complexity by dividing a dataset into k parts, where each part alternates as the validation set while the remaining k-1 parts act as the training set."
             },
             {
-                "question": "Additional predicted question 2?",
-                "answer": "Not explicitly stated."
+                "question": "Why are k = 5 or k = 10 common choices for folds?",
+                "answer": "These values balance computational efficiency and accuracy, providing equal-sized divisions of the dataset while minimizing bias and variance."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
+                "question": "How is the cross-validation error calculated?",
+                "answer": "Prediction errors from all k parts are summed and averaged to determine the cross-validation error."
             },
             {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
+                "question": "What happens if the dataset size is not a multiple of k?",
+                "answer": "The dataset is divided approximately into equal parts to maintain balance."
             },
             {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
+                "question": "What is leave-one-out cross-validation?",
+                "answer": "It is a special case of k-fold cross-validation where the number of folds equals the number of observations, with each observation individually serving as the validation set."
             },
             {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
+                "question": "Why is leave-one-out cross-validation computationally efficient?",
+                "answer": "It avoids refitting the model for each fold by using the full dataset and leveraging the diagonal of the hat matrix."
             },
             {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
+                "question": "What role does the hat matrix play in leave-one-out cross-validation?",
+                "answer": "The hat matrix projects Y onto the column space of X, with its diagonal (Hi) measuring an observation's influence on its own fit."
             },
             {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
+                "question": "How does leave-one-out cross-validation handle influential observations?",
+                "answer": "Observations with high influence inflate residuals by dividing by small Hi values, ensuring computational appropriateness."
             },
             {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
+                "question": "Why is leave-one-out cross-validation less effective than k-fold cross-validation?",
+                "answer": "Its training sets differ by only one observation, leading to highly correlated folds and high variance in error averaging."
             },
             {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
+                "question": "What is the bias-variance tradeoff in k-fold cross-validation?",
+                "answer": "K = 5 or 10 folds provide a good balance, with lower bias and variance compared to leave-one-out cross-validation."
             },
             {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
+                "question": "How does averaging results improve k-fold cross-validation?",
+                "answer": "Averaging errors across folds reduces variability and provides a more consistent estimate of cross-validation performance."
             },
             {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
+                "question": "What error measure is used for classification problems in k-fold cross-validation?",
+                "answer": "Misclassification error replaces squared error to evaluate model performance."
             },
             {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
+                "question": "How are weighted averages calculated in k-fold cross-validation?",
+                "answer": "Fold sizes influence the calculation, with weights becoming 1/K if the dataset size is divisible by the number of folds."
             },
             {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
+                "question": "What is the standard error of cross-validation error?",
+                "answer": "It measures variability in the estimate and assumes independent observations, though folds share training samples."
             },
             {
-                "question": "Additional predicted question 15?",
-                "answer": "Not explicitly stated."
+                "question": "How does cross-validation differ from the bootstrap method?",
+                "answer": "Cross-validation separates training and validation data to estimate test error accurately, while the bootstrap method does not."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/rag_embedding.json",
-        "context_count": 46,
+        "rag_path": "_processed\\Statistical Learning_ 5.2 K-fold Cross Validation.mp4/rag_embedding.json",
+        "context_count": 45,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }

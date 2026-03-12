@@ -1,40 +1,40 @@
 {
     "run_description": "Test run for video processing pipeline.",
-    "video_path": "Videos/.Learning_ Support Vector Machines.mp4",
+    "video_path": "Videos\\.Learning_ Support Vector Machines.mp4",
     "video_length": "00:49:33.804",
-    "total_process_sec": 762.09122,
+    "total_process_sec": 777.37722,
     "scene_number": 111,
-    "start_process": "2026-03-06 23:24:03",
-    "end_process": "2026-03-06 23:38:16",
+    "start_process": "2026-03-12 10:54:31",
+    "end_process": "2026-03-12 10:55:10",
     "computer": {
         "os_info": {
-            "os": "Linux 5.10.0-38-cloud-amd64",
-            "os_version": "#1 SMP Debian 5.10.249-1 (2026-02-10)",
-            "machine_type": "x86_64",
-            "hostname": "kairos",
+            "os": "Windows 10",
+            "os_version": "10.0.19045",
+            "machine_type": "AMD64",
+            "hostname": "Manahil-Laptop",
             "python_version": "3.10.19"
         },
         "cpu_info": {
-            "cpu_model": "",
-            "cpu_physical_cores": 24,
-            "cpu_logical_cores": 48,
+            "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
+            "cpu_physical_cores": 8,
+            "cpu_logical_cores": 8,
             "cpu_frequency_MHz": {
-                "current": 2200.186000000001,
+                "current": 2000.0,
                 "min": 0.0,
-                "max": 0.0
+                "max": 2000.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 188.71,
-            "available_RAM_GB": 179.28,
-            "used_RAM_GB": 9.43,
-            "RAM_usage_percent": 5.0
+            "total_RAM_GB": 7.42,
+            "available_RAM_GB": 0.57,
+            "used_RAM_GB": 6.85,
+            "RAM_usage_percent": 92.3
         },
         "disk_info": {
-            "disk_total_GB": 147.4,
-            "disk_used_GB": 74.93,
-            "disk_free_GB": 66.36,
-            "disk_usage_percent": 53.0
+            "disk_total_GB": 475.69,
+            "disk_used_GB": 245.1,
+            "disk_free_GB": 230.59,
+            "disk_usage_percent": 51.5
         },
         "gpu_info": {
             "gpu_model": null
@@ -1117,194 +1117,32 @@
             ]
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 18.94642,
-            "cpu_time_sec": 0.05854,
-            "ram_before_MB": 5173,
-            "ram_after_MB": 5173,
+            "wall_time_sec": 11.75929,
+            "cpu_time_sec": 0.04688,
+            "ram_before_MB": 525,
+            "ram_after_MB": 525,
             "ram_used_MB": 0,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.01171875,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 21007,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 21007,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                864,
-                0,
-                0,
-                0
-            ]
+            "io_write_MB": 0.010280609130859375,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 4.18033,
-            "cpu_time_sec": 0.94381,
-            "ram_before_MB": 5173,
-            "ram_after_MB": 5175,
-            "ram_used_MB": 2,
-            "io_read_MB": 0.0,
-            "io_write_MB": 9.92578125,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 21007,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "gpu_after": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 21007,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 1,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 2,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                },
-                {
-                    "id": 3,
-                    "name": "NVIDIA L4",
-                    "memory_used_MB": 558,
-                    "memory_total_MB": 23034,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
-            "cuda_before_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_after_MB": [
-                864,
-                0,
-                0,
-                0
-            ],
-            "cuda_peak_MB": [
-                864,
-                0,
-                0,
-                0
-            ]
+            "wall_time_sec": 26.65346,
+            "cpu_time_sec": 31.39062,
+            "ram_before_MB": 525,
+            "ram_after_MB": 515,
+            "ram_used_MB": -10,
+            "io_read_MB": 0.6603641510009766,
+            "io_write_MB": 10.456659317016602,
+            "gpu_before": [],
+            "gpu_after": [],
+            "cuda_before_MB": null,
+            "cuda_after_MB": null,
+            "cuda_peak_MB": null
         }
     },
     "scenes": [
@@ -10584,142 +10422,118 @@
         }
     ],
     "synopsis": {
-        "chat_name": "Support Vector Machines Lecture",
-        "summary": "The lecture provides a detailed explanation of Support Vector Machines (SVMs), focusing on decision boundaries, optimization, and kernel functions. The instructor discusses the mathematical framework, including Lagrange multipliers, constraints, and transformations to handle linearly inseparable data. Historical context highlights Vladimir Vapnik's contributions and the evolution of SVMs over decades. The tone is technical and instructional, with the blackboard as a central teaching tool. An abstract interlude with unclear relevance briefly interrupts the session.",
+        "chat_name": "SVM Lecture Analysis",
+        "summary": "A detailed academic lecture on Support Vector Machines explores decision boundaries, optimization techniques, kernel functions, and historical contributions by Vladimir Vapnik, emphasizing mathematical rigor and practical applications.",
         "video_highlights": [
             {
-                "timestamp": "00:00:00",
-                "highlight": "The speaker introduces Support Vector Machines (SVMs) and reflects on Vladimir Vapnik's contributions to machine learning."
+                "start": "00:00:00.000",
+                "end": "00:02:30.283",
+                "highlight": "The speaker introduces Support Vector Machines as essential tools for understanding decision boundaries in machine learning, reflecting on Vladimir Vapnik's contributions."
             },
             {
-                "timestamp": "00:03:27",
-                "highlight": "The instructor explains the concept of the 'widest street' for separating data points in SVMs."
+                "start": "00:02:48.168",
+                "end": "00:03:27.407",
+                "highlight": "The lecture emphasizes Vapnik's method of separating positive and negative examples, focusing on the \"widest street\" principle for optimal decision boundaries."
             },
             {
-                "timestamp": "00:06:45",
-                "highlight": "The lecturer introduces the decision rule for identifying positive samples using the dot product and a constant."
+                "start": "00:04:53.493",
+                "end": "00:06:45.338",
+                "highlight": "The instructor explains the geometric properties of vectors and introduces decision rules for classifying positive samples using dot products and constraints."
             },
             {
-                "timestamp": "00:19:13",
-                "highlight": "The instructor elaborates on constraints and the calculation of 'street width,' engaging with a student for clarification."
+                "start": "00:09:15.622",
+                "end": "00:10:39.973",
+                "highlight": "The lecture simplifies equations by introducing \"y sub i\" to unify positive and negative sample classifications, aiding in data separation."
+            },
+            {
+                "start": "00:16:48.875",
+                "end": "00:17:44.797",
+                "highlight": "The instructor demonstrates calculating unit vectors and explains constraints for samples in the \"gutter,\" reinforcing the mathematical framework of SVMs."
+            },
+            {
+                "start": "00:45:03.027",
+                "end": "00:46:03.027",
+                "highlight": "The instructor narrates Vladimir Vapnik's journey, highlighting the delayed recognition of SVMs and their eventual application in handwriting recognition."
             }
         ],
         "video_timeline": [
             {
-                "timestamp": "00:00:00",
-                "event": "Lecture on SVM begins"
+                "timestamp": "00:00:00.000",
+                "event": "Introduction"
             },
             {
-                "timestamp": "00:02:30",
-                "event": "Neural networks discussed"
+                "timestamp": "00:02:30.283",
+                "event": "Neural Networks"
             },
             {
-                "timestamp": "00:03:05",
-                "event": "Positive/negative classifications"
+                "timestamp": "00:03:05.385",
+                "event": "Vapnik's Concept"
             },
             {
-                "timestamp": "00:06:45",
-                "event": "Decision rule introduced"
+                "timestamp": "00:04:18.391",
+                "event": "Decision Rules"
             },
             {
-                "timestamp": "00:09:53",
-                "event": "Variable y sub i explained"
+                "timestamp": "00:05:14.047",
+                "event": "Vector Perpendicular"
             },
             {
-                "timestamp": "00:14:33",
-                "event": "Maximizing street width"
-            },
-            {
-                "timestamp": "00:18:55",
-                "event": "Street width formula derived"
-            },
-            {
-                "timestamp": "00:23:58",
-                "event": "Lagrangian equation introduced"
-            },
-            {
-                "timestamp": "00:41:16",
-                "event": "Kernel functions explained"
-            },
-            {
-                "timestamp": "00:45:03",
-                "event": "Vapnik's history discussed"
-            }
-        ],
-        "suggested_clips": [
-            {
-                "timestamp": "00:00:00",
-                "description": "The speaker introduces Support Vector Machines (SVMs), reflecting on their evolution and Vladimir Vapnik's contributions, setting the educational tone."
-            },
-            {
-                "timestamp": "00:02:48",
-                "description": "The speaker discusses Vladimir Vapnik's transformative contributions to machine learning in the early 1990s, emphasizing their historical significance."
-            },
-            {
-                "timestamp": "00:03:27",
-                "description": "The instructor explains the concept of the 'widest street' for optimal separation of data points, a key principle in Vapnik's approach to SVMs."
-            },
-            {
-                "timestamp": "00:06:45",
-                "description": "The lecturer introduces the decision rule for identifying positive samples, explaining the mathematical foundation of SVMs."
-            },
-            {
-                "timestamp": "00:45:03",
-                "description": "The instructor narrates Vladimir Vapnik's journey and the application of kernel functions to handwriting recognition, highlighting perseverance and innovation."
+                "timestamp": "00:06:45.338",
+                "event": "Positive Samples"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "The video is a lecture on Support Vector Machines (SVMs) in a classroom setting, focusing on mathematical concepts, historical context, and practical applications in machine learning."
+                "answer": "A professor is delivering a detailed lecture on Support Vector Machines (SVMs), explaining mathematical concepts, historical context, and practical applications in a classroom setting."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Key events include the introduction of SVMs, explanations of decision boundaries, discussions on optimization techniques, historical references to Vladimir Vapnik's contributions, and the introduction of kernel functions for data transformation."
+                "answer": "The professor introduces SVMs, explains decision boundaries, discusses Vapnik's contributions, elaborates on kernel functions, and concludes with a historical overview of SVM development."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "The lecturer explains SVM concepts, writes equations on the blackboard, interacts with students, corrects errors, and provides historical context about Vladimir Vapnik's work."
+                "answer": "The professor writes equations on the blackboard, explains mathematical concepts, interacts with students, and uses examples to clarify SVM principles."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "The main challenges discussed are handling linearly inseparable data, avoiding overfitting with kernel functions, and optimizing mathematical constraints in SVMs."
+                "answer": "Challenges include explaining complex mathematical concepts, addressing doubts about optimization, and discussing SVM limitations like overfitting and handling inseparable data."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "The main character is the lecturer, who methodically explains SVM concepts, engages with students, addresses doubts, and provides historical insights, demonstrating expertise and persistence throughout the lecture."
+                "answer": "The professor is the main character, guiding the audience through SVM concepts with expertise, enthusiasm, and occasional humor, while addressing challenges and historical context."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Characters include the lecturer (focused, knowledgeable, uses blackboard for teaching), Brett (student, asks questions, engages with the lecture), Wanda (participant, provides input in Romanian), and Vladimir Vapnik (historical figure, referenced for his contributions to SVMs)."
+                "answer": "The professor: focused, knowledgeable, and engaging, serves as the primary educator. Brett: a student who asks questions, prompting clarifications. Wanda: provides input in Romanian, adding collaboration."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
-                "answer": "Significant quotes include 'The math is beginning to sing' (lecturer), 'Anybody see any bugs in that?' (lecturer), and 'This is really a job for the numerical analyst' (lecturer)."
+                "answer": "\"The math is beginning to sing.\" - Professor. \"Anybody see any bugs in that?\" - Professor. \"What do we call that one up there?\" - Professor."
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting is a classroom with a blackboard, occasionally transitioning to a desk with a laptop and an abstract interlude. The setting supports the instructional tone and visual explanations of SVM concepts."
+                "answer": "The setting is a classroom with a blackboard. It briefly shifts to a desk with a laptop and an abstract interlude. The classroom supports the instructional tone and visual aids."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video starts with the lecturer introducing Support Vector Machines (SVMs) as a sophisticated tool for understanding decision boundaries in machine learning, referencing historical context and Vladimir Vapnik's contributions."
+                "answer": "The video begins with the professor introducing SVMs as a tool for understanding decision boundaries, reflecting on historical advancements in machine learning."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with a historical discussion of Vapnik's journey and contributions to SVMs, followed by an abstract interlude with visuals of a dark stage, a silhouette, and a guitar player."
+                "answer": "The video ends with a historical overview of Vapnik's contributions to SVMs and an abstract interlude featuring a dark stage and a guitar player."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "Central objects include the blackboard (used throughout for visual explanations), chalk (for writing equations), and a laptop (briefly shown during discussions on kernel functions). An iceberg image appears during the kernel function explanation."
+                "answer": "The blackboard appears throughout as a visual aid for equations and diagrams. Kernel functions and equations are central to the lecture's content."
             },
             {
                 "question": "What is the most important thing said or heard?",
-                "answer": "The significance of Vladimir Vapnik's contributions to Support Vector Machines (SVMs) and the concept of maximizing separation using the 'widest street' approach."
+                "answer": "Vapnik's method of maximizing separation in SVMs is emphasized as transformative for machine learning."
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "The lecture transitions from foundational concepts of SVMs to advanced topics like kernel functions and historical context about Vapnik's work."
+                "answer": "The lecture transitions from foundational SVM concepts to advanced topics like kernel functions and Vapnik's historical contributions."
             },
             {
                 "question": "What type of video is this?",
@@ -10727,101 +10541,101 @@
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "To educate the audience on the mathematical framework, applications, and historical development of Support Vector Machines."
+                "answer": "To educate the audience on SVMs, their mathematical foundations, and practical applications."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Educational (focused on teaching complex concepts), Enthusiastic (highlighting the significance of SVMs and Vapnik's work), Reflective (discussing historical context), Humorous (occasional jokes to engage the audience), Analytical (methodical explanations of mathematical principles)."
+                "answer": "Educational (focused on teaching), Reflective (historical context of Vapnik's work), Enthusiastic (instructor's passion for the subject), and Humorous (light jokes to engage students)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "Understanding of basic machine learning concepts, linear algebra, and optimization techniques is assumed. Historical details about Vapnik and Bell Labs require external knowledge."
+                "answer": "Prior knowledge of machine learning, linear algebra, and optimization is assumed."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "The instructor uses a blackboard filled with equations and diagrams, occasionally gestures, and interacts with students. A computer screen displays an iceberg image, and there is an abstract interlude with projections and silhouettes."
+                "answer": "A chalkboard filled with equations, the instructor writing and gesturing, and occasional abstract visuals like a silhouette and guitar."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "The instructor's voice is clear and instructional, with occasional sighs and humor. Student interactions include questions and responses. Background sounds include faint snoring and whispers."
+                "answer": "The instructor's explanations, occasional student interactions, faint background noises, and a brief musical interlude."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "Yes, the visual cues (blackboard illustrations) align with the audio explanations, reinforcing the mathematical concepts being taught."
+                "answer": "They are mostly aligned, though the abstract interlude lacks clear connection to the lecture."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Prominent visual cues include the blackboard with equations and diagrams. Prominent audio cues include the instructor's explanations, student interactions, and occasional background noises."
+                "answer": "Visual: Chalkboard equations, instructor's gestures. Audio: Technical explanations, student questions, and mild humor."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "The video contains live action (lecture setting) and an abstract interlude with projections and silhouettes, but no animation or special effects."
+                "answer": "Live action with a brief abstract interlude featuring projections and a guitar player."
             },
             {
-                "question": "Additional predicted question 1?",
-                "answer": "Not explicitly stated."
+                "question": "What is the significance of Vladimir Vapnik's contributions to SVMs?",
+                "answer": "Vapnik introduced Support Vector Machines in the early 1990s, revolutionizing machine learning by providing a method to maximize separation between positive and negative classifications."
             },
             {
-                "question": "Additional predicted question 2?",
-                "answer": "Not explicitly stated."
+                "question": "How does the \"widest street\" principle work in SVMs?",
+                "answer": "It involves finding the optimal straight line that maximizes the margin between positive and negative examples, ensuring the best separation."
             },
             {
-                "question": "Additional predicted question 3?",
-                "answer": "Not explicitly stated."
+                "question": "What is the role of the dot product in SVMs?",
+                "answer": "The dot product helps measure distances and determine positions relative to the decision boundary, aiding in classification."
             },
             {
-                "question": "Additional predicted question 4?",
-                "answer": "Not explicitly stated."
+                "question": "How are positive and negative samples classified in SVMs?",
+                "answer": "Positive samples satisfy the condition where the dot product plus a constant is greater than or equal to zero, while negative samples satisfy a similar condition with a negative inequality."
             },
             {
-                "question": "Additional predicted question 5?",
-                "answer": "Not explicitly stated."
+                "question": "What is \"y sub i\" and why is it introduced?",
+                "answer": "\"y sub i\" is a variable assigned +1 for positive samples and -1 for negative samples, simplifying equations and unifying classification rules."
             },
             {
-                "question": "Additional predicted question 6?",
-                "answer": "Not explicitly stated."
+                "question": "What is the significance of kernel functions in SVMs?",
+                "answer": "Kernel functions allow data to be transformed into higher-dimensional spaces for better separation, enabling efficient computation without explicit transformations."
             },
             {
-                "question": "Additional predicted question 7?",
-                "answer": "Not explicitly stated."
+                "question": "How does sigma affect kernel functions?",
+                "answer": "Smaller sigma values create tighter focus around sample points, which can lead to overfitting, while larger values provide broader generalization."
             },
             {
-                "question": "Additional predicted question 8?",
-                "answer": "Not explicitly stated."
+                "question": "Why are Lagrange multipliers used in SVM optimization?",
+                "answer": "They help optimize the margin while adhering to constraints, simplifying the process of maximizing the separation between classes."
             },
             {
-                "question": "Additional predicted question 9?",
-                "answer": "Not explicitly stated."
+                "question": "What challenges arise with linearly inseparable data in SVMs?",
+                "answer": "SVMs struggle with such data, requiring transformations or kernel functions to make the data separable in higher dimensions."
             },
             {
-                "question": "Additional predicted question 10?",
-                "answer": "Not explicitly stated."
+                "question": "What is the historical significance of SVMs in handwriting recognition?",
+                "answer": "Vapnik's collaboration with Bell Labs in the 1990s applied kernel functions in SVMs to handwriting recognition, showcasing their practical utility."
             },
             {
-                "question": "Additional predicted question 11?",
-                "answer": "Not explicitly stated."
+                "question": "How does the convex nature of SVM optimization benefit the algorithm?",
+                "answer": "It prevents the algorithm from getting stuck in local maxima, ensuring a global solution unlike neural networks."
             },
             {
-                "question": "Additional predicted question 12?",
-                "answer": "Not explicitly stated."
+                "question": "What is the equation for the width of the street in SVMs?",
+                "answer": "The width is calculated as \"2 over the magnitude of w,\" representing the optimal margin between classifications."
             },
             {
-                "question": "Additional predicted question 13?",
-                "answer": "Not explicitly stated."
+                "question": "What is the role of constraints in SVM optimization?",
+                "answer": "Constraints ensure that samples are correctly classified and lie within the defined margins, guiding the optimization process."
             },
             {
-                "question": "Additional predicted question 14?",
-                "answer": "Not explicitly stated."
+                "question": "How does the decision rule integrate vector \"w\"?",
+                "answer": "The decision rule uses \"w\" as a linear sum of sample vectors to classify points relative to the separating line."
             },
             {
-                "question": "Additional predicted question 15?",
-                "answer": "Not explicitly stated."
+                "question": "What was the impact of Vapnik's emigration to the U.S.?",
+                "answer": "It allowed him to collaborate with Bell Labs, where his SVM concepts were fully realized and applied to practical problems like handwriting recognition."
             }
         ]
     },
     "rag_embedding": {
-        "rag_path": "_processed/Learning_ Support Vector Machines.mp4/rag_embedding.json",
-        "context_count": 116,
+        "rag_path": "_processed\\Learning_ Support Vector Machines.mp4/rag_embedding.json",
+        "context_count": 115,
         "embedding_dim": 3072,
         "model": "gemini-embedding-001"
     }

@@ -1,0 +1,2128 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\.Statistical Learning_ 5.2 K-fold Cross Validation.mp4",
+  "video_length": "00:13:33.200",
+  "total_process_sec": 323.79881,
+  "scene_number": 41,
+  "start_process": "2026-03-12 10:59:08",
+  "end_process": "2026-03-12 10:59:43",
+  "computer": {
+    "os_info": {
+      "os": "Windows 10",
+      "os_version": "10.0.19045",
+      "machine_type": "AMD64",
+      "hostname": "Manahil-Laptop",
+      "python_version": "3.10.19"
+    },
+    "cpu_info": {
+      "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 8,
+      "cpu_frequency_MHz": {
+        "current": 2000.0,
+        "min": 0.0,
+        "max": 2000.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 7.42,
+      "available_RAM_GB": 0.73,
+      "used_RAM_GB": 6.7,
+      "RAM_usage_percent": 90.2
+    },
+    "disk_info": {
+      "disk_total_GB": 475.69,
+      "disk_used_GB": 245.11,
+      "disk_free_GB": 230.59,
+      "disk_usage_percent": 51.5
+    },
+    "gpu_info": {
+      "gpu_model": null
+    }
+  },
+  "params": {
+    "improve_motion_detection": false,
+    "prioritize_speed": false,
+    "process_static_videos": false,
+    "pyscene_threshold": 27,
+    "pyscene_shortest": 2,
+    "frames_per_scene": 3,
+    "frame_resolution": 320,
+    "blip_start_prompt": "a video frame of",
+    "blip_caption_len": 50,
+    "blip_min_length": 15,
+    "blip_num_beams": 1,
+    "blip_do_sample": true,
+    "blip_top_p": 0.85,
+    "blip_temperature": 0.65,
+    "blip_length_penalty": 1.0,
+    "blip_no_repeat_ngram_size": 3,
+    "blip_repetition_penalty": 1.1,
+    "yolo_conf_thres": 0.8,
+    "yolo_iou_thres": 0.5,
+    "ast_target_sr": 16000,
+    "asr_model_size": "medium",
+    "asr_use_vad": true,
+    "asr_target_sr": 16000,
+    "llm_scene_history": 5,
+    "llm_chunk_len": 20000,
+    "llm_summary_len": 50000,
+    "llm_cooldown_sec": 0,
+    "rag_top_k_context": 10
+  },
+  "steps": {
+    "audio_scan": {
+      "wall_time_sec": 28.65541,
+      "cpu_time_sec": 28.6915,
+      "ram_before_MB": 1293,
+      "ram_after_MB": 1511,
+      "ram_used_MB": 218,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        855,
+        0,
+        0,
+        0
+      ]
+    },
+    "get_scene_list": {
+      "wall_time_sec": 9.27056,
+      "cpu_time_sec": 45.76039,
+      "ram_before_MB": 3453,
+      "ram_after_MB": 3462,
+      "ram_used_MB": 9,
+      "io_read_MB": 17.16015625,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        864,
+        0,
+        0,
+        0
+      ]
+    },
+    "save_clips": {
+      "wall_time_sec": 6.76743,
+      "cpu_time_sec": 0.03227,
+      "ram_before_MB": 3462,
+      "ram_after_MB": 3462,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 17.12109375,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        864,
+        0,
+        0,
+        0
+      ]
+    },
+    "sample_frames": {
+      "wall_time_sec": 2.06373,
+      "cpu_time_sec": 8.3681,
+      "ram_before_MB": 3462,
+      "ram_after_MB": 3462,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 1.93359375,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        864,
+        0,
+        0,
+        0
+      ]
+    },
+    "caption_frames": {
+      "wall_time_sec": 58.51006,
+      "cpu_time_sec": 58.51741,
+      "ram_before_MB": 3462,
+      "ram_after_MB": 3462,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 18,
+          "mem_util_percent": 11
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        921,
+        0,
+        0,
+        0
+      ]
+    },
+    "sample_fps": {
+      "wall_time_sec": 35.75999,
+      "cpu_time_sec": 207.7003,
+      "ram_before_MB": 3462,
+      "ram_after_MB": 3533,
+      "ram_used_MB": 71,
+      "io_read_MB": 0.0,
+      "io_write_MB": 51.2421875,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        864,
+        0,
+        0,
+        0
+      ]
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 16.34118,
+      "cpu_time_sec": 16.35476,
+      "ram_before_MB": 3533,
+      "ram_after_MB": 3573,
+      "ram_used_MB": 40,
+      "io_read_MB": 0.0,
+      "io_write_MB": 55.55859375,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 17723,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 41,
+          "mem_util_percent": 38
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        864,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        912,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        2638,
+        0,
+        0,
+        0
+      ]
+    },
+    "asr_timings": {
+      "wall_time_sec": 36.66767,
+      "cpu_time_sec": 6.59257,
+      "ram_before_MB": 1511,
+      "ram_after_MB": 1632,
+      "ram_used_MB": 121,
+      "io_read_MB": 0.0,
+      "io_write_MB": 77.21875,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        855,
+        0,
+        0,
+        0
+      ]
+    },
+    "ast_timings": {
+      "wall_time_sec": 28.85981,
+      "cpu_time_sec": 0.16257,
+      "ram_before_MB": 1632,
+      "ram_after_MB": 1632,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        855,
+        0,
+        0,
+        0
+      ]
+    },
+    "describe_scenes": {
+      "wall_time_sec": 50.29755,
+      "cpu_time_sec": 0.42545,
+      "ram_before_MB": 1632,
+      "ram_after_MB": 1634,
+      "ram_used_MB": 2,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        855,
+        0,
+        0,
+        0
+      ]
+    },
+    "summarize_scenes": {
+      "wall_time_sec": 15.81395,
+      "cpu_time_sec": 0.05035,
+      "ram_before_MB": 1634,
+      "ram_after_MB": 1634,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.015625,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 1699,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 1,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 2,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        },
+        {
+          "id": 3,
+          "name": "NVIDIA L4",
+          "memory_used_MB": 558,
+          "memory_total_MB": 23034,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_after_MB": [
+        855,
+        0,
+        0,
+        0
+      ],
+      "cuda_peak_MB": [
+        855,
+        0,
+        0,
+        0
+      ]
+    },
+    "synthesize_synopsis": {
+      "wall_time_sec": 15.88183,
+      "cpu_time_sec": 0.59375,
+      "ram_before_MB": 472,
+      "ram_after_MB": 481,
+      "ram_used_MB": 9,
+      "io_read_MB": 0.8930854797363281,
+      "io_write_MB": 0.010245323181152344,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "make_embedding": {
+      "wall_time_sec": 18.90964,
+      "cpu_time_sec": 17.17188,
+      "ram_before_MB": 481,
+      "ram_after_MB": 504,
+      "ram_used_MB": 23,
+      "io_read_MB": 2.73763370513916,
+      "io_write_MB": 4.274970054626465,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:20.000",
+      "start_seconds": 0.0,
+      "end_seconds": 20.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0000.mp4",
+      "frame_captions": [
+        "a video frame of text with the words ' x - cross - validation '",
+        "a video frame of a man giving an explanation on his own - youtube",
+        "a video frame of the text that says, ' i amer '"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.941,
+          "start_frame": 7,
+          "end_frame": 42,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "mostly stationary",
+          "path_length": 5.906,
+          "net_displacement": 2.135,
+          "direction_change_var": 1.9462,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Welcome back. In the last section we talked about validation and we saw some drawbacks with that method. Now we're going to talk about k-fold cross-validation which will solve some of these problems. This is actually a very important technique that we're going to use throughout the course in various sections and also something that we use in our work all the time. So it's really important to understand k-fold cross-validation.",
+      "audio_natural": "silence (conf=0.85)",
+      "llm_scene_description": "This scene introduces the concept of k-fold cross-validation in a lecture-style presentation. The speaker, a man, is explaining the importance of this statistical technique as a solution to the drawbacks of previous validation methods. The tone is educational and focused, with no evident emotional undertones. The video alternates between text slides and the speaker addressing the audience directly.\n\nCharacters:  \nName: Lecturer  \nRole: Presenter of statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Now we're going to talk about k-fold cross-validation which will solve some of these problems. This is actually a very important technique that we're going to use throughout the course in various sections and also something that we use in our work all the time.\"  \nCause: The speaker is introducing the topic of k-fold cross-validation and emphasizing its significance in both academic and professional contexts.  \n\nCausal Relationships:  \nEmotion or action: The speaker is focused and professional.  \nCause: The purpose of the scene is to educate the audience on a key statistical concept.  \nEvidence: The audio transcript explicitly outlines the topic and its importance.  \n\nObjects and Setting:  \nObject or environment: Text slides with phrases like \"x-cross-validation\" and \"i amer\" (possibly a transcription error).  \nContext relevance: The slides provide visual reinforcement of the lecture content, though some text may be unclear or incomplete.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of addressing the limitations of previous validation methods.  \nCharacter development: The lecturer is portrayed as knowledgeable and methodical, building on prior lessons to introduce new concepts.  "
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:20.000",
+      "end_timecode": "00:00:40.000",
+      "start_seconds": 20.0,
+      "end_seconds": 40.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0001.mp4",
+      "frame_captions": [
+        "a video frame of the text from a poem in english, with a black background",
+        "a video frame of an error in the application, with text and image",
+        "a video frame of a video with the text ' fo - evaluation '"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So it's really important to understand k-fold cross-validation. It's used for a lot of methods. It's an extremely flexible and powerful technique for estimating prediction error and to get an idea of model complexity. So what's the idea of k-fold cross-validation? Well, it's really in the name. It's validation, as we've seen, but done sort of like a k-part play.",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene focuses on a continuation of an educational lecture on statistical learning, specifically discussing the concept of k-fold cross-validation. The speaker emphasizes its importance as a flexible and powerful technique for estimating prediction error and understanding model complexity. The explanation introduces the idea of dividing validation into \"k-parts,\" likening it to a structured process. The audio is clear and instructional, with no emotional undertones or distractions.\n\nCharacters:\nName: Unnamed lecturer  \nRole: Educator explaining statistical learning concepts.\n\nKey Dialogue:\nSpeaker: Unnamed lecturer  \nCause: To explain the purpose and process of k-fold cross-validation in statistical learning.\n\nCausal Relationships:\nEmotion or action: Instructional tone, focused delivery.  \nCause: The lecturer is presenting a key concept in statistical learning.  \nEvidence: Audio transcript explicitly describes the importance and mechanics of k-fold cross-validation.\n\nObjects and Setting:\nObject or environment: Video frames with text and visuals, though captions are inconsistent and unclear.  \nContext relevance: Frames appear to support the lecture but do not provide additional clarity due to caption errors.\n\nCross-Scene Continuity:\nOngoing conflict: None explicitly stated, but the lecture continues to address challenges in model validation methods.  \nCharacter development: The lecturer builds on prior explanations, reinforcing their role as an educator guiding viewers through complex statistical concepts."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:40.000",
+      "end_timecode": "00:01:00.000",
+      "start_seconds": 40.0,
+      "end_seconds": 60.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0002.mp4",
+      "frame_captions": [
+        "a video frame of text on a white background with the words below it",
+        "a video frame of an image with the text ' s text in white",
+        "a video frame of the text that reads, ' ' ' and '"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "It's validation, as we've seen, but done sort of like a k-part play. It's done k times with each part getting to play the role of the validation set and the other k-1 parts playing the role of the training set, which I say here. Let me go to the picture here and I'll sort of point the picture as I say it. So here we're doing 5-fold cross-validation.",
+      "audio_natural": "sigh (conf=0.33), silence (conf=0.39)",
+      "llm_scene_description": "This scene continues the educational lecture from the video \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker elaborates on the concept of k-fold cross-validation, describing it as a method where the dataset is divided into k parts, with each part alternately serving as the validation set while the remaining k-1 parts act as the training set. He refers to a visual aid, likely a diagram or slide, to clarify the explanation and mentions the specific case of 5-fold cross-validation. The tone remains instructional and focused, with no notable emotional shifts. Background sounds are minimal, with occasional silence and a faint sigh, but these do not affect the presentation.\n\nCharacters:\nName: Lecturer\nRole: Presenter and educator explaining statistical concepts\n\nKey Dialogue:\nSpeaker: \"It's validation, as we've seen, but done sort of like a k-part play. It's done k times with each part getting to play the role of the validation set and the other k-1 parts playing the role of the training set, which I say here. Let me go to the picture here and I'll sort of point the picture as I say it. So here we're doing 5-fold cross-validation.\"\nCause: The speaker is explaining the mechanics of k-fold cross-validation to enhance understanding of the concept.\n\nCausal Relationships:\nEmotion or action: Focused and instructional tone\nCause: The speaker is teaching a statistical method and referencing visual aids to support the explanation.\nEvidence: Audio transcript and prior scene context\n\nObjects and Setting:\nObject or environment: Likely a slide or diagram related to k-fold cross-validation\nContext relevance: The visual aid is used to illustrate the concept being explained.\n\nCross-Scene Continuity:\nOngoing conflict: No conflict; the scene builds on the previous explanation of k-fold cross-validation.\nCharacter development: The lecturer continues to establish himself as a knowledgeable and methodical educator, reinforcing his role as a guide in statistical learning."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:01:00.000",
+      "end_timecode": "00:01:20.000",
+      "start_seconds": 60.0,
+      "end_seconds": 80.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0003.mp4",
+      "frame_captions": [
+        "a video frame of an event in which a person is standing in the center of the picture",
+        "a video frame of a number line in the form of a vertical line",
+        "a video frame of the same number and a photo of a line of different lengths"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So here we're doing 5-fold cross-validation. As we'll talk about in more detail, the best choices for k, the number of folds, is usually about 5 or 10. And I'll explain, we'll talk about that in a few minutes about why those are good choices. But let's fix here k equals 5. So I've taken the data set, I've divided it at random, the samples, into 5 parts, again of size about the same.",
+      "audio_natural": "silence (conf=0.44)",
+      "llm_scene_description": "This scene focuses on an educational explanation of 5-fold cross-validation within the context of statistical learning. The speaker, likely an instructor, elaborates on why k = 5 or k = 10 are common choices for the number of folds in this validation technique. They describe dividing a dataset randomly into five equal parts, emphasizing the importance of maintaining similar sizes across the folds. The visuals appear to include abstract representations, such as number lines and diagrams, but the audio provides the clearest explanation of the process.\n\nCharacters:\nName: Instructor  \nRole: Presenter and educator explaining statistical concepts.\n\nKey Dialogue:\nSpeaker: \"So here we're doing 5-fold cross-validation. As we'll talk about in more detail, the best choices for k, the number of folds, is usually about 5 or 10. And I'll explain, we'll talk about that in a few minutes about why those are good choices. But let's fix here k equals 5. So I've taken the data set, I've divided it at random, the samples, into 5 parts, again of size about the same.\"\nCause: The speaker is providing step-by-step instructions and reasoning for the choice of k in cross-validation.\n\nCausal Relationships:\nEmotion or action: Neutral and focused delivery of information.  \nCause: The speaker is engaged in teaching statistical methods in a structured and logical manner.  \nEvidence: Audio transcript indicates clear and detailed explanation without emotional inflection.\n\nObjects and Setting:\nObject or environment: Number lines and diagrams.  \nContext relevance: These visuals are likely used to support the explanation of dividing data into folds but are secondary to the audio explanation.\n\nCross-Scene Continuity:\nOngoing conflict: None explicitly stated; the focus remains on teaching statistical concepts.  \nCharacter development: The instructor continues to build on previous scenes by elaborating on the practical application of k-fold cross-validation, reinforcing their role as an educator."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:01:20.000",
+      "end_timecode": "00:01:40.000",
+      "start_seconds": 80.0,
+      "end_seconds": 100.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0004.mp4",
+      "frame_captions": [
+        "a video frame of an object that is not a function in the flow",
+        "a video frame of a video screen showing the number and position of the following train",
+        "a video frame of the algorithm to show how we can use a - 1"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So I've taken the data set, I've divided it at random, the samples, into 5 parts, again of size about the same. This box looks a bit bigger, right? Okay, that's my lack of drawing ability. But anyway, it's supposed to be the same. I just tried to squish the word validation in. So the boxes are supposed to be about the same size in number of observations. But in this case, the first part's the validation set, the other 4 are the training parts.",
+      "audio_natural": "sigh (conf=0.32), snort (conf=0.50)",
+      "llm_scene_description": "This scene features a lecture from an educational video titled \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker, who is explaining the concept of 5-fold cross-validation, discusses dividing a dataset into five equal parts at random, with one part serving as the validation set and the other four as training sets. The speaker acknowledges a minor issue with their drawing, noting that one of the boxes appears larger due to their lack of drawing ability, but clarifies that all parts are meant to be of equal size. The tone is light and self-deprecating, as the speaker humorously comments on their attempt to fit the word \"validation\" into the diagram. The visuals seem to include a diagram or slide illustrating the concept, though the captions suggest some inconsistencies or unclear representations.\n\nCharacters:\nName: Lecturer  \nRole: Presenter and educator explaining statistical learning concepts.\n\nKey Dialogue:\nSpeaker: \"So I've taken the data set, I've divided it at random, the samples, into 5 parts, again of size about the same. This box looks a bit bigger, right? Okay, that's my lack of drawing ability. But anyway, it's supposed to be the same. I just tried to squish the word validation in.\"\n\nCausal Relationships:\nEmotion or action: The speaker's light humor and self-awareness.  \nCause: Their acknowledgment of the imperfect diagram while explaining the concept.  \nEvidence: Audio transcript where the speaker comments on the diagram's appearance.\n\nObjects and Setting:\nObject or environment: Diagram or slide illustrating 5-fold cross-validation.  \nContext relevance: The diagram is central to the explanation of the concept, though its clarity is slightly compromised by the speaker's drawing.\n\nCross-Scene Continuity:\nOngoing conflict: The challenge of clearly conveying complex statistical concepts through visuals and explanations.  \nCharacter development: The lecturer continues to demonstrate expertise while maintaining a relatable and approachable demeanor, using humor to address minor imperfections in their presentation."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:01:40.000",
+      "end_timecode": "00:02:00.000",
+      "start_seconds": 100.0,
+      "end_seconds": 120.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0005.mp4",
+      "frame_captions": [
+        "a video frame of a number line that is divided by the number line",
+        "a video frame of a train with the words ' c - ches - d",
+        "a video frame of the video showing a video clip with the text, ` ' '"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So what we're going to do, what cross-validation does, it forms these 5 parts. We're going to train the model on the 4 training parts, put together as one big block, take the fitted model and then predict on the validation part and record the error. And then that's phase 1. Phase 2, the validation set will be part 2, this block.",
+      "audio_natural": "silence (conf=0.64)",
+      "llm_scene_description": "This scene features a continuation of an educational lecture on statistical learning, specifically focusing on the process of 5-fold cross-validation. The speaker explains the methodology in detail, describing how the dataset is divided into five parts, with four parts combined to train the model and the fifth part used as the validation set to record prediction errors. The explanation progresses to phase two, where the validation set shifts to the second part, and the process repeats. The visuals appear unclear or unrelated to the topic, with captions mentioning a number line and text fragments that do not align with the audio content. The audio remains the primary source of reliable information, as it provides a structured explanation of the statistical concept.\n\nCharacters:\nName: Lecturer  \nRole: Educational presenter explaining statistical learning concepts.\n\nKey Dialogue:\nSpeaker: \"So what we're going to do, what cross-validation does, it forms these 5 parts. We're going to train the model on the 4 training parts, put together as one big block, take the fitted model and then predict on the validation part and record the error. And then that's phase 1. Phase 2, the validation set will be part 2, this block.\"\nCause: The speaker is explaining the step-by-step process of 5-fold cross-validation to ensure the audience understands the methodology.\n\nCausal Relationships:\nEmotion or action: Focused and instructional tone.\nCause: The speaker is presenting a technical concept essential for statistical learning.\nEvidence: Detailed explanation of the cross-validation process in the audio transcript.\n\nObjects and Setting:\nObject or environment: Visuals include unclear captions mentioning a number line and fragmented text.\nContext relevance: The visuals do not contribute meaningfully to the explanation, making the audio the primary source of information.\n\nCross-Scene Continuity:\nOngoing conflict: The challenge of clearly illustrating statistical concepts through visuals persists, as the captions and images remain ambiguous.\nCharacter development: The lecturer continues to build on prior explanations, reinforcing the audience's understanding of k-fold cross-validation through detailed audio descriptions."
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:02:00.000",
+      "end_timecode": "00:02:20.000",
+      "start_seconds": 120.0,
+      "end_seconds": 140.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0006.mp4",
+      "frame_captions": [
+        "a video frame of an array with the following of an x and y",
+        "a video frame of a video with a picture of an object and the number of each object",
+        "a video frame of a train, with the words in red and white"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Phase 2, the validation set will be part 2, this block. All the other 4 parts will be the training set. We fit the model to the training set and then apply it to this validation part. And in the third stage, this is the validation piece, etc. So we have 5 stages where in each stage, one part gets to play the role of validation set,",
+      "audio_natural": "silence (conf=0.76)",
+      "llm_scene_description": "This scene explains the process of 5-fold cross-validation in statistical learning, continuing the educational focus of the video. The speaker describes dividing a dataset into five parts, where each part alternates as the validation set while the remaining four are used as the training set. They emphasize the sequential nature of the process, detailing how the model is fitted to the training set and validated on the designated part in each stage. The visuals appear to include abstract representations, such as arrays or diagrams, but the audio provides the primary explanation. The scene maintains a technical and instructional tone.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Phase 2, the validation set will be part 2, this block. All the other 4 parts will be the training set. We fit the model to the training set and then apply it to this validation part. And in the third stage, this is the validation piece, etc. So we have 5 stages where in each stage, one part gets to play the role of validation set.\"  \nCause: The speaker is explaining the sequential process of 5-fold cross-validation to clarify its methodology.  \n\nCausal Relationships:  \nEmotion or action: Instructional tone  \nCause: The speaker is focused on teaching the audience about the mechanics of k-fold cross-validation.  \nEvidence: Detailed explanation of dividing data into parts and the iterative validation process.  \n\nObjects and Setting:  \nObject or environment: Abstract visuals, possibly arrays or diagrams  \nContext relevance: The visuals are likely used to support the explanation of k-fold cross-validation but are secondary to the audio explanation.  \n\nCross-Scene Continuity:  \nOngoing conflict: None; the scene continues the educational explanation of k-fold cross-validation without introducing new conflicts.  \nCharacter development: The speaker consistently demonstrates expertise and clarity in explaining statistical learning concepts.  "
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:02:20.000",
+      "end_timecode": "00:02:40.000",
+      "start_seconds": 140.0,
+      "end_seconds": 160.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0007.mp4",
+      "frame_captions": [
+        "a video frame of a train in the same order, which is called as a",
+        "a video frame of an x - class and a photo of the class",
+        "a video frame of a train with the number 1 on it and the train number 2 on it"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So we have 5 stages where in each stage, one part gets to play the role of validation set, the other 4 parts are the training set. We take all the prediction errors from all 5 parts, we add them together, and that gives us what's called the cross-validation error. So now in algebra, I'll basically give you the details of what I said in words. So we'll let the k parts of the data be C1 through Ck.",
+      "audio_natural": "silence (conf=0.73)",
+      "llm_scene_description": "This scene continues the educational explanation of K-fold cross-validation in statistical learning. The speaker describes the process of dividing data into five parts, where each part alternates as the validation set while the remaining four serve as the training set. They explain that the prediction errors from all five parts are combined to calculate the cross-validation error. The speaker transitions to discussing the algebraic details of the process, referring to the data parts as C1 through Ck. The visuals appear to include representations of trains and numbers, but these may be metaphorical or illustrative rather than literal. The audio provides the primary explanation, and the visuals seem secondary or abstract.\n\nCharacters:\nName: Speaker  \nRole: Educator explaining statistical learning concepts.\n\nKey Dialogue:\nSpeaker: \"We take all the prediction errors from all 5 parts, we add them together, and that gives us what's called the cross-validation error. So now in algebra, I'll basically give you the details of what I said in words. So we'll let the k parts of the data be C1 through Ck.\"\nCause: The speaker is providing a detailed explanation of K-fold cross-validation to help the audience understand the methodology.\n\nCausal Relationships:\nEmotion or action: The speaker is focused and methodical in their explanation.  \nCause: They aim to clarify the mathematical and conceptual process of K-fold cross-validation.  \nEvidence: The audio transcript provides a clear and structured explanation of the topic.\n\nObjects and Setting:\nObject or environment: Visuals of trains, numbers, and possibly abstract diagrams.  \nContext relevance: These visuals may be illustrative or metaphorical, supporting the explanation of dividing data into parts.\n\nCross-Scene Continuity:\nOngoing conflict: The challenge of effectively teaching a complex statistical concept.  \nCharacter development: The speaker continues to build on their explanation, transitioning from conceptual to algebraic details to deepen the audience's understanding."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:02:40.000",
+      "end_timecode": "00:03:00.000",
+      "start_seconds": 160.0,
+      "end_seconds": 180.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0008.mp4",
+      "frame_captions": [
+        "a video frame of the particle time and its properties, showing an example of the number of particles in the",
+        "a video frame of a large number of letters with the same letters and their corresponding numbers",
+        "a video frame of the text that reads, ` ` ' ' s, ` ' s and ` s, ' s"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So we'll let the k parts of the data be C1 through Ck. So these are the observations that are in each of the 5 parts. Remember k was 5 in our example. And we'll try to make the number of observations about the same in every part. Of course, if n is not a multiple of k of 5, we can't do that exactly, but we'll do it approximately. So we'll let n sub k be the number of observations in the kth part.",
+      "audio_natural": "silence (conf=0.75)",
+      "llm_scene_description": "This scene continues the educational video titled \"Statistical Learning: 5.2 K-fold Cross Validation,\" focusing on the concept of dividing data into five parts for statistical analysis. The speaker elaborates on ensuring an approximately equal number of observations in each part (C1 through Ck), despite challenges when the total number of observations (n) is not a multiple of k. The explanation emphasizes the practical adjustments needed in real-world scenarios. Visuals appear abstract and text-based, with captions that may not directly align with the audio content.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"So we'll let the k parts of the data be C1 through Ck. So these are the observations that are in each of the 5 parts. Remember k was 5 in our example. And we'll try to make the number of observations about the same in every part. Of course, if n is not a multiple of k of 5, we can't do that exactly, but we'll do it approximately. So we'll let n sub k be the number of observations in the kth part.\"  \nCause: The speaker is explaining the methodology of K-fold cross-validation, specifically addressing the division of data and practical adjustments when the dataset size does not evenly divide.  \n\nCausal Relationships:  \nEmotion or action: Neutral and instructional tone  \nCause: The speaker is focused on delivering a clear explanation of statistical concepts.  \nEvidence: The audio transcript reflects a calm and detailed explanation without emotional inflection.  \n\nObjects and Setting:  \nObject or environment: Abstract visuals, including text and diagrams  \nContext relevance: The visuals likely aim to support the speaker's explanation but appear less detailed or misaligned with the audio content.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of dividing data evenly in K-fold cross-validation when the dataset size is not a multiple of k.  \nCharacter development: The speaker consistently builds on previous explanations, reinforcing the practical aspects of statistical learning methods.  "
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:03:00.000",
+      "end_timecode": "00:03:20.000",
+      "start_seconds": 180.0,
+      "end_seconds": 200.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0009.mp4",
+      "frame_captions": [
+        "a video frame of the formula of a line and the equation on the slope",
+        "a video frame of the text that reads ' the details ' and is in white text",
+        "a video frame of the equation of an object with a number of 1"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So we'll let n sub k be the number of observations in the kth part. So here's the cross-validation error rate. Basically, this is the mean square error we get by applying the fit to the k minus 1 parts that don't involve part number k. That gives us our fit Yi hat for observation i.",
+      "audio_natural": "chewing, mastication (conf=0.58)",
+      "llm_scene_description": "This scene explains the algebraic details of K-fold cross-validation in statistical learning. The speaker discusses the calculation of the cross-validation error rate, describing it as the mean square error obtained by applying the fit to the k minus 1 parts that exclude part k. They introduce the notation \"n sub k\" to represent the number of observations in the kth part and explain how the fit for observation i, denoted as Yi hat, is derived. The visuals include text and equations, though their exact clarity is uncertain. Background sounds of chewing are faintly detected but unrelated to the educational content.\n\nCharacters:\nName: Speaker\nRole: Educator explaining statistical learning concepts\n\nKey Dialogue:\nSpeaker: \"So we'll let n sub k be the number of observations in the kth part. So here's the cross-validation error rate. Basically, this is the mean square error we get by applying the fit to the k minus 1 parts that don't involve part number k. That gives us our fit Yi hat for observation i.\"\nCause: The speaker is elaborating on the mathematical process behind K-fold cross-validation.\n\nCausal Relationships:\nEmotion or action: Neutral and focused explanation\nCause: The speaker is teaching statistical learning concepts in a structured and detailed manner.\nEvidence: Clear and technical audio transcript.\n\nObjects and Setting:\nObject or environment: Text and equations\nContext relevance: The visuals support the explanation of mathematical formulas and processes related to K-fold cross-validation.\n\nCross-Scene Continuity:\nOngoing conflict: None evident; the video maintains an educational focus.\nCharacter development: The speaker continues to build on previous explanations, transitioning from general concepts to detailed algebraic calculations."
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:03:20.000",
+      "end_timecode": "00:03:40.000",
+      "start_seconds": 200.0,
+      "end_seconds": 220.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0010.mp4",
+      "frame_captions": [
+        "a video frame of an open field with the text, ' ' the ideals '",
+        "a video frame of a slide slide slide slides slide slide video slides slide slides slides slides slide pp slide slides",
+        "a video frame of the same number, and a photo of an object in a series"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "That gives us our fit Yi hat for observation i. Full fifths of the data in this case. Right. And then we add up the error. This is the mean square error that we obtain now on the validation part using that model. So this is for the kth part. And now we do this for all 5 parts in turn, 5 acts of the play, and then we get the cross-validation error rate.",
+      "audio_natural": "silence (conf=0.72)",
+      "llm_scene_description": "This scene is part of the educational video \"Statistical Learning: 5.2 K-fold Cross Validation,\" focusing on the methodology of K-fold cross-validation in statistical learning. The speaker explains the process of calculating the cross-validation error rate by dividing data into five parts, training a model on four parts, and validating it on the remaining part. They describe summing the mean square errors from each validation set to obtain the overall error rate. The visuals appear abstract and repetitive, with captions mentioning slides and text, but the audio provides the primary explanation. There are no detected sounds or emotional cues in this scene.\n\nCharacters:\nName: Speaker  \nRole: Educator explaining statistical concepts  \n\nKey Dialogue:\nSpeaker: \"That gives us our fit Yi hat for observation i. Full fifths of the data in this case. Right. And then we add up the error. This is the mean square error that we obtain now on the validation part using that model. So this is for the kth part. And now we do this for all 5 parts in turn, 5 acts of the play, and then we get the cross-validation error rate.\"  \nCause: The speaker is explaining the step-by-step process of K-fold cross-validation, emphasizing the calculation of mean square error and its role in determining the cross-validation error rate.\n\nCausal Relationships:\nEmotion or action: Neutral, focused explanation  \nCause: The speaker is delivering an educational lecture on statistical methods.  \nEvidence: Detailed audio transcript with technical terminology and structured explanation.\n\nObjects and Setting:\nObject or environment: Abstract visuals including slides and text  \nContext relevance: The visuals are likely intended to complement the explanation but appear repetitive and unclear, making the audio the primary source of information.\n\nCross-Scene Continuity:\nOngoing conflict: None detected; the video maintains a consistent focus on teaching statistical concepts.  \nCharacter development: The speaker continues to build on prior explanations, providing a deeper understanding of K-fold cross-validation methodology."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:03:40.000",
+      "end_timecode": "00:04:00.000",
+      "start_seconds": 220.0,
+      "end_seconds": 240.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0011.mp4",
+      "frame_captions": [
+        "a video frame of the same number in a series, which is an infinite value",
+        "a video frame of a particle with the text ' s formula ' in green",
+        "a video frame of an object with a text box on it and the text box in the bottom"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "And a special case of this is leave-one-out cross-validation, where the number of folds is the same as the number of observations. So that means in this picture, that actually would be one box per observation. And in leave-one-out cross-validation, each observation by itself gets to play the role of the validation set.",
+      "audio_natural": "silence (conf=0.57)",
+      "llm_scene_description": "This scene is part of the educational video \"Statistical Learning: 5.2 K-fold Cross Validation,\" focusing on the concept of leave-one-out cross-validation as a special case of K-fold cross-validation. The speaker explains that in leave-one-out cross-validation, the number of folds equals the number of observations, meaning each observation individually serves as the validation set. The visuals likely include diagrams or text boxes illustrating this process, though their exact content is uncertain due to caption inconsistencies. The audio provides a clear and reliable explanation, while the visuals appear abstract or ambiguous.\n\nCharacters:\nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:\nSpeaker: \"And a special case of this is leave-one-out cross-validation, where the number of folds is the same as the number of observations. So that means in this picture, that actually would be one box per observation. And in leave-one-out cross-validation, each observation by itself gets to play the role of the validation set.\"  \nCause: The speaker is elaborating on a specific method within K-fold cross-validation to enhance understanding of statistical learning techniques.  \n\nCausal Relationships:\nEmotion or action: Neutral, focused explanation  \nCause: The speaker is delivering an academic concept in a clear and structured manner.  \nEvidence: Audio transcript  \n\nObjects and Setting:\nObject or environment: Diagrams or text boxes, possibly representing observations and validation sets  \nContext relevance: The visuals aim to support the explanation of leave-one-out cross-validation but are unclear due to caption errors.  \n\nCross-Scene Continuity:\nOngoing conflict: None; the video consistently builds on statistical learning concepts without introducing conflict.  \nCharacter development: The speaker maintains their role as an educator, progressively detailing statistical methods for audience comprehension.  "
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:04:00.000",
+      "end_timecode": "00:04:20.000",
+      "start_seconds": 240.0,
+      "end_seconds": 260.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0012.mp4",
+      "frame_captions": [
+        "a video frame of the text showing an image of a train, which is shown in red",
+        "a video frame of a train that is moving through the tracks and has been",
+        "a video frame of the text describing a special case with random lines on rectangular polygonic"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "And in leave-one-out cross-validation, each observation by itself gets to play the role of the validation set. The other n minus 1 are the training set. Now actually, leave-one-out cross-validation has a nice special case of that. It represents a nice special case in the sense that this cross-validation can be done without actually having to refit the model at all.",
+      "audio_natural": "silence (conf=0.61)",
+      "llm_scene_description": "This scene explains the concept of leave-one-out cross-validation as a special case of K-fold cross-validation in statistical learning. The speaker describes how each observation individually serves as the validation set while the remaining observations form the training set. They emphasize that this method can be implemented without refitting the model, highlighting its computational efficiency. The visuals appear to include text and potentially unrelated imagery, such as a train, though these do not align with the audio explanation. The audio is clear and provides the primary source of information, while the visuals seem to add minimal relevant context.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"And in leave-one-out cross-validation, each observation by itself gets to play the role of the validation set. The other n minus 1 are the training set. Now actually, leave-one-out cross-validation has a nice special case of that. It represents a nice special case in the sense that this cross-validation can be done without actually having to refit the model at all.\"  \nCause: The speaker is elaborating on the computational benefits of leave-one-out cross-validation as part of the broader discussion on K-fold cross-validation.  \n\nCausal Relationships:  \nEmotion or action: The speaker maintains a neutral, informative tone.  \nCause: They are focused on delivering an educational explanation of statistical learning techniques.  \nEvidence: Clear and structured audio narration.  \n\nObjects and Setting:  \nObject or environment: Visuals of text and a train image.  \nContext relevance: The visuals are mostly unrelated to the audio content, with the train imagery adding no clear connection to the statistical learning topic.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of explaining statistical learning concepts in a clear and accessible manner continues.  \nCharacter development: The speaker consistently builds on prior explanations, transitioning from general K-fold cross-validation to its special case, leave-one-out cross-validation.  "
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:04:20.000",
+      "end_timecode": "00:04:40.000",
+      "start_seconds": 260.0,
+      "end_seconds": 280.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0013.mp4",
+      "frame_captions": [
+        "a video frame of the lecture slides with a slide and text on it",
+        "a video frame of a computer with the text, a screen of a monitor",
+        "a video frame of the algorithm for a computer screen with the text that reads ' a special case '"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So leave-one-out cross-validation, at least for a least squares model or a polynomial model, if the cross-validation, leave-one-out cross-validation has the following form. So the Yi hat is now just a fit on the full data set. Hi is the diagonal of the hat matrix.",
+      "audio_natural": "silence (conf=0.38)",
+      "llm_scene_description": "This scene continues the educational explanation of statistical learning concepts, specifically focusing on leave-one-out cross-validation as a special case of k-fold cross-validation. The speaker explains that for a least squares or polynomial model, leave-one-out cross-validation involves fitting the model on the full dataset, with the diagonal of the hat matrix (Hi) playing a key role in the computation. The visuals likely display slides or text related to the topic, though the captions are unclear or inconsistent. The audio provides the primary explanation, with no significant background sounds detected.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"So leave-one-out cross-validation, at least for a least squares model or a polynomial model, if the cross-validation, leave-one-out cross-validation has the following form. So the Yi hat is now just a fit on the full data set. Hi is the diagonal of the hat matrix.\"  \nCause: The speaker is elaborating on the computational details of leave-one-out cross-validation to provide a deeper understanding of its mechanics.  \n\nCausal Relationships:  \nEmotion or action: Detailed explanation of the topic.  \nCause: The speaker aims to clarify the mathematical and conceptual underpinnings of leave-one-out cross-validation.  \nEvidence: The audio transcript explicitly describes the process and mentions specific terms like \"hat matrix\" and \"Yi hat.\"  \n\nObjects and Setting:  \nObject or environment: Lecture slides and a computer screen.  \nContext relevance: The slides and screen likely display text or equations that complement the speaker's explanation of leave-one-out cross-validation.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of understanding statistical learning concepts, particularly the nuances of cross-validation methods.  \nCharacter development: The speaker consistently builds on previous explanations, moving from general k-fold cross-validation to the specific case of leave-one-out cross-validation, reinforcing the educational narrative.  "
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:04:40.000",
+      "end_timecode": "00:05:00.000",
+      "start_seconds": 280.0,
+      "end_seconds": 300.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0014.mp4",
+      "frame_captions": [
+        "a video frame of the lecture, showing the equation of the fouriers",
+        "a video frame of an object with a text that reads, ' a special case '",
+        "a video frame of the lecture presentation of a lecture on the physics lecture"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Hi is the diagonal of the hat matrix. So have a look in the book for details, but the hat matrix is the projection matrix that projects Y onto the column space of X to give you the fit. This is something that can get computed easily when you fit your least squares model. So, go ahead, Trevor. Yeah, it's, we don't, we haven't emphasized it, but it's available.",
+      "audio_natural": "silence (conf=0.76)",
+      "llm_scene_description": "This scene is part of an educational lecture video titled \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker continues explaining statistical learning concepts, focusing on the hat matrix in the context of least squares models. The audio describes the hat matrix as a projection matrix that maps Y onto the column space of X to provide the fit. The speaker briefly mentions that the details can be found in the book and notes that while the hat matrix is not heavily emphasized, it is readily available when fitting least squares models. The visuals likely display lecture slides or equations, but their captions appear inconsistent with the audio content.\n\nCharacters:  \nName: Speaker  \nRole: Lecturer explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Hi is the diagonal of the hat matrix. So have a look in the book for details, but the hat matrix is the projection matrix that projects Y onto the column space of X to give you the fit. This is something that can get computed easily when you fit your least squares model. So, go ahead, Trevor. Yeah, it's, we don't, we haven't emphasized it, but it's available.\"  \n\nCausal Relationships:  \nEmotion or action: The speaker provides a detailed explanation of the hat matrix and its role in least squares models.  \nCause: The explanation is part of the ongoing lecture on statistical learning, specifically focusing on the mathematical tools used in model fitting.  \nEvidence: The audio transcript explicitly describes the hat matrix and its function.  \n\nObjects and Setting:  \nObject or environment: Lecture slides or presentation screen  \nContext relevance: Likely displays equations or text related to the hat matrix and least squares models, though captions do not align with the audio content.  \n\nCross-Scene Continuity:  \nOngoing conflict: The lecture continues to build on the explanation of statistical learning concepts, transitioning from cross-validation methods to specific mathematical components like the hat matrix.  \nCharacter development: The speaker maintains a consistent role as an educator, providing detailed explanations and referencing additional resources for deeper understanding.  "
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:05:00.000",
+      "end_timecode": "00:05:20.000",
+      "start_seconds": 300.0,
+      "end_seconds": 320.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0015.mp4",
+      "frame_captions": [
+        "a video frame of a lecture on the theoretical method of a quantum and a",
+        "a video frame of a computer showing a text description of the text and a video",
+        "a video frame of the text with a picture of a man and woman"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Yeah, it's, we don't, we haven't emphasized it, but it's available. It's one of the things that's available when you fit your least squares model. So the overall point of this is that to do a leave-one-out cross-validation for these particular models, you don't actually have to leave anything out. You can do the fit on the overall data set and then extract the information you need to get the cross-validation sum of squares. And it's interesting because the HI tells you how much influence an observation has on its own fit.",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene continues the educational lecture from the video \"Statistical Learning: 5.2 K-fold Cross Validation,\" focusing on leave-one-out cross-validation within statistical learning. The speaker explains that for certain models, it is unnecessary to refit the model for each observation during leave-one-out cross-validation. Instead, the fit can be performed on the entire dataset, and the necessary information, such as the cross-validation sum of squares, can be extracted. The speaker highlights the role of the \"Hi\" value in determining an observation's influence on its own fit. The audio is clear, with no significant background noise, and the visuals likely include slides or text related to the explanation, though their captions are inconsistent and unclear.\n\nCharacters:\nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:\nSpeaker: \"To do a leave-one-out cross-validation for these particular models, you don't actually have to leave anything out. You can do the fit on the overall data set and then extract the information you need to get the cross-validation sum of squares. The HI tells you how much influence an observation has on its own fit.\"  \nCause: The speaker aims to clarify the computational efficiency and conceptual understanding of leave-one-out cross-validation for the audience.  \n\nCausal Relationships:\nEmotion or action: The speaker is focused and analytical.  \nCause: The goal is to educate the audience on statistical learning methods and their practical applications.  \nEvidence: The structured explanation in the audio transcript.  \n\nObjects and Setting:\nObject or environment: Lecture slides or a computer screen with text and diagrams  \nContext relevance: The visuals likely support the speaker's explanation of cross-validation and the hat matrix, although the captions are inconsistent and do not align with the audio content.  \n\nCross-Scene Continuity:\nOngoing conflict: The challenge of explaining complex statistical concepts in an accessible manner.  \nCharacter development: The speaker consistently builds on prior explanations, reinforcing the audience's understanding of leave-one-out cross-validation and its computational nuances.  "
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:05:20.000",
+      "end_timecode": "00:05:40.000",
+      "start_seconds": 320.0,
+      "end_seconds": 340.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0016.mp4",
+      "frame_captions": [
+        "a video frame of an object that is not in motion, the object is not moving",
+        "a video frame of a computer screen with the text, ` s ' '",
+        "a video frame of the physics experiment shows how we use the formulas for the spectrally density"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "And it's interesting because the HI tells you how much influence an observation has on its own fit. It's a number between 0 and 1. And so if an observation is very influential on its own fit, you can see it punishes the residual because it divides by a number that's small and it inflates the residual. So it sort of does the right thing here. Okay, so, but a better, although leave-one-out cross-validation does have this nice computational formula,",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene is part of an educational video titled \"Statistical Learning: 5.2 K-fold Cross Validation,\" focusing on statistical concepts related to cross-validation methods. The speaker discusses the influence of observations on their own fit in leave-one-out cross-validation, specifically referencing the HI measure. The explanation highlights how influential observations affect residuals by dividing by small values, which inflates the residuals. The speaker notes that this approach \"does the right thing\" computationally. The visuals appear to include a computer screen, but the captions are unclear and unrelated to the audio content. Background sounds are minimal, with occasional silence and faint music.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"And it's interesting because the HI tells you how much influence an observation has on its own fit. It's a number between 0 and 1. And so if an observation is very influential on its own fit, you can see it punishes the residual because it divides by a number that's small and it inflates the residual. So it sort of does the right thing here.\"  \nCause: The speaker is elaborating on the computational behavior of the HI measure in leave-one-out cross-validation.  \n\nCausal Relationships:  \nEmotion or action: The speaker conveys interest and analytical reasoning.  \nCause: The explanation of how the HI measure influences residuals and its computational implications.  \nEvidence: Explicit dialogue in the audio transcript.  \n\nObjects and Setting:  \nObject or environment: Computer screen with text  \nContext relevance: Likely contains visual aids or formulas related to the discussed statistical concepts, though captions do not align with the audio explanation.  \n\nCross-Scene Continuity:  \nOngoing conflict: The video continues to explore the computational and theoretical aspects of cross-validation methods, focusing on leave-one-out cross-validation and its nuances.  \nCharacter development: The speaker consistently builds on prior explanations, deepening the audience's understanding of statistical measures like the hat matrix and HI.  "
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:05:40.000",
+      "end_timecode": "00:06:00.000",
+      "start_seconds": 340.0,
+      "end_seconds": 360.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0017.mp4",
+      "frame_captions": [
+        "a video frame of an object with a number of pixels and a few other words",
+        "a video frame of the algorithm for a computer, with a number of words",
+        "a video frame of an object with the equation for a particle ' s orbital"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Okay, so, but a better, although leave-one-out cross-validation does have this nice computational formula, for most of the methods we talk about in this book and most statistical learning methods, it's better to choose K to be 5 or 10 rather than have leave-one-out cross-validation. And why is that? Well, one problem with leave-one-out cross-validation is that each of the training sets look very much like the other ones, right?",
+      "audio_natural": "silence (conf=0.60)",
+      "llm_scene_description": "This scene is part of an educational video titled \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker continues discussing statistical learning methods, specifically comparing leave-one-out cross-validation to K-fold cross-validation. The audio explains that while leave-one-out cross-validation has a computational advantage, it is often better to choose K as 5 or 10 for most statistical learning methods. The reasoning provided is that leave-one-out cross-validation results in training sets that are too similar, which can limit its effectiveness. The visuals likely include text or diagrams related to the topic, but their exact content is unclear due to caption inconsistencies.\n\nCharacters:\nName: Speaker\nRole: Educator explaining statistical learning concepts\n\nKey Dialogue:\nSpeaker: \"Okay, so, but a better, although leave-one-out cross-validation does have this nice computational formula, for most of the methods we talk about in this book and most statistical learning methods, it's better to choose K to be 5 or 10 rather than have leave-one-out cross-validation. And why is that? Well, one problem with leave-one-out cross-validation is that each of the training sets look very much like the other ones, right?\"\nCause: The speaker is elaborating on the limitations of leave-one-out cross-validation and advocating for K-fold cross-validation with specific values of K.\n\nCausal Relationships:\nEmotion or action: The speaker appears focused and analytical.\nCause: The discussion centers on explaining the advantages and disadvantages of different cross-validation methods.\nEvidence: The detailed explanation provided in the audio transcript.\n\nObjects and Setting:\nObject or environment: Likely lecture slides or a computer screen displaying text or formulas related to statistical learning.\nContext relevance: The visuals support the speaker's explanation but are secondary to the audio content.\n\nCross-Scene Continuity:\nOngoing conflict: The trade-offs between computational efficiency and effectiveness in statistical learning methods.\nCharacter development: The speaker consistently demonstrates expertise and a methodical approach to teaching statistical concepts."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:06:00.000",
+      "end_timecode": "00:06:20.000",
+      "start_seconds": 360.0,
+      "end_seconds": 380.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0018.mp4",
+      "frame_captions": [
+        "a video frame of an electric field with a number of electric fields, and the wavelength is divided by a",
+        "a video frame of the fourier model with the equation on it and an image of a line of symmetry",
+        "a video frame of a square graph with a line of coordinates and a point of the line of longitude"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Well, one problem with leave-one-out cross-validation is that each of the training sets look very much like the other ones, right? They only differ by one observation. So when you take the average cross-validation is you take the average of errors over the n folds. And in leave-one-out cross-validation, the n folds look very similar to each other because the training sets are almost the same.",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene continues an educational lecture on statistical learning, specifically focusing on the challenges of leave-one-out cross-validation compared to K-fold cross-validation. The speaker explains that in leave-one-out cross-validation, the training sets are nearly identical, differing by only one observation, which leads to folds that are very similar. This similarity impacts the averaging of errors across folds, making the method less distinct in its evaluations. The visuals likely include lecture slides or graphs, though their descriptions are inconsistent and may not directly align with the audio content.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"One problem with leave-one-out cross-validation is that each of the training sets look very much like the other ones, right? They only differ by one observation. So when you take the average cross-validation is you take the average of errors over the n folds. And in leave-one-out cross-validation, the n folds look very similar to each other because the training sets are almost the same.\"  \nCause: The speaker is elaborating on the limitations of leave-one-out cross-validation to provide a deeper understanding of its drawbacks compared to K-fold cross-validation.  \n\nCausal Relationships:  \nEmotion or action: Analytical explanation  \nCause: The speaker is addressing a key limitation of leave-one-out cross-validation to contrast it with other methods like K-fold cross-validation.  \nEvidence: The audio transcript provides a clear and detailed explanation of the concept.  \n\nObjects and Setting:  \nObject or environment: Lecture slides or graphs  \nContext relevance: The visuals likely support the speaker's explanation of statistical learning concepts, though their exact content is unclear or inconsistently described in the captions.  \n\nCross-Scene Continuity:  \nOngoing conflict: The trade-offs between different cross-validation methods, such as leave-one-out and K-fold, remain a central theme in the lecture.  \nCharacter development: The speaker continues to build on previous explanations, reinforcing their role as an educator guiding the audience through complex statistical concepts.  "
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:06:20.000",
+      "end_timecode": "00:06:40.000",
+      "start_seconds": 380.0,
+      "end_seconds": 400.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0019.mp4",
+      "frame_captions": [
+        "a video frame of a computer, showing the process for a computer machine",
+        "a video frame of an algorithm for the algorithm to show how the algorithm is used",
+        "a video frame of an object with the number 1 and the word 3"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So as a result, that average has a high variance because the ingredients are highly correlated. So that's the main reason why it's thought, and we also agree, that a better choice for K in cross-validation is 5 or 10. On the other hand, the leave-one-out cross-validation is actually trying to estimate the error rate",
+      "audio_natural": "silence (conf=0.53)",
+      "llm_scene_description": "This scene features a continuation of an educational lecture on statistical learning methods, specifically focusing on K-fold cross-validation. The speaker explains that using K values of 5 or 10 is generally preferred over leave-one-out cross-validation due to the high variance caused by correlated data when averaging results. The speaker also mentions that leave-one-out cross-validation attempts to estimate error rates but has limitations. The visuals likely include algorithm-related text or equations, though their exact content is unclear. The audio is clear and informative, with no background noise or interruptions.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"So as a result, that average has a high variance because the ingredients are highly correlated. So that's the main reason why it's thought, and we also agree, that a better choice for K in cross-validation is 5 or 10. On the other hand, the leave-one-out cross-validation is actually trying to estimate the error rate.\"  \nCause: The speaker is explaining the reasoning behind the preference for certain K values in cross-validation and the limitations of leave-one-out cross-validation.  \n\nCausal Relationships:  \nEmotion or action: The speaker is providing a detailed explanation of statistical methods.  \nCause: The goal is to educate the audience on the advantages and disadvantages of different cross-validation techniques.  \nEvidence: Clear and structured audio explanation of the statistical concepts.  \n\nObjects and Setting:  \nObject or environment: Likely a computer screen displaying algorithm-related text or equations.  \nContext relevance: Supports the technical discussion on statistical learning methods.  \n\nCross-Scene Continuity:  \nOngoing conflict: The trade-offs between different cross-validation methods, particularly K-fold versus leave-one-out, remain a central topic.  \nCharacter development: The speaker continues to build on previous explanations, providing deeper insights into statistical learning concepts.  "
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:06:40.000",
+      "end_timecode": "00:07:00.000",
+      "start_seconds": 400.0,
+      "end_seconds": 420.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0020.mp4",
+      "frame_captions": [
+        "a video frame of a lecture on the concept of the mathematical algorithm for a",
+        "a video frame of a rectangular prism is shown by the equation on the diagram",
+        "a video frame of the lecture showing how to use the text to represent a specific data"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "for the training sample of almost the same size as what you have. So it's got low bias, but as Rob said, high variance. So actually, picking K is also a bias-variance tradeoff for prediction area. And as Rob said, K equals 5 or 10 tend to be a good choice. So on the next slide, we've got a comparison of leave-one-out cross-validation",
+      "audio_natural": "sigh (conf=0.43), silence (conf=0.40)",
+      "llm_scene_description": "This scene focuses on an educational lecture from the video \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker discusses the concept of K-fold cross-validation, emphasizing its bias-variance tradeoff and explaining why choosing K as 5 or 10 is generally effective. The speaker contrasts this with leave-one-out cross-validation, highlighting its high variance despite low bias. The visuals likely include diagrams or equations supporting the explanation, though the audio remains the primary source of information. The speaker mentions a forthcoming slide comparing leave-one-out cross-validation, suggesting a continuation of the topic.\n\nCharacters:  \nName: Speaker  \nRole: Lecturer explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"So it's got low bias, but as Rob said, high variance. So actually, picking K is also a bias-variance tradeoff for prediction area. And as Rob said, K equals 5 or 10 tend to be a good choice. So on the next slide, we've got a comparison of leave-one-out cross-validation.\"  \nCause: The speaker is providing an educational explanation of statistical methods, specifically focusing on the tradeoffs in K-fold cross-validation.  \n\nCausal Relationships:  \nEmotion or action: The speaker remains focused and analytical.  \nCause: The explanation is part of a structured lecture on statistical learning methods.  \nEvidence: The audio transcript clearly outlines the technical discussion, with no emotional deviation detected.  \n\nObjects and Setting:  \nObject or environment: Likely diagrams, equations, or text related to K-fold cross-validation.  \nContext relevance: These visuals support the speaker's explanation of statistical concepts, though the audio provides the main details.  \n\nCross-Scene Continuity:  \nOngoing conflict: The tradeoff between bias and variance in statistical methods remains a key theme across scenes, with K-fold cross-validation presented as a practical solution.  \nCharacter development: The speaker continues to build on previous explanations, reinforcing their role as an educator guiding the audience through complex statistical concepts.  "
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:07:00.000",
+      "end_timecode": "00:07:20.000",
+      "start_seconds": 420.0,
+      "end_seconds": 440.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0021.mp4",
+      "frame_captions": [
+        "a video frame of a computer screen shows an image of the same numbers and the number of each",
+        "a video frame of the simulation of a patient ' s pulse and pulse",
+        "a video frame of the two - dimensional, linearly, and angular - shaped graphs"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So on the next slide, we've got a comparison of leave-one-out cross-validation in 10-fold CV for the auto data. Remember, before we saw with two-fold validation... well, sorry, with just validation into two parts, we got a lot of variability between the 10... when we changed the sample, the half-sample that we took. Now, let's see what happens with leave-one-out cross-validation.",
+      "audio_natural": "silence (conf=0.53)",
+      "llm_scene_description": "This scene presents an educational lecture on statistical learning concepts, specifically focusing on a comparison between leave-one-out cross-validation and 10-fold cross-validation. The speaker explains how leave-one-out cross-validation differs from 10-fold CV, referencing prior discussions about variability in two-part validation. The visuals likely include graphs or numerical simulations, though their exact relevance to the audio explanation is uncertain. The environment remains quiet, with no significant background noise.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"So on the next slide, we've got a comparison of leave-one-out cross-validation in 10-fold CV for the auto data. Remember, before we saw with two-fold validation... well, sorry, with just validation into two parts, we got a lot of variability between the 10... when we changed the sample, the half-sample that we took. Now, let's see what happens with leave-one-out cross-validation.\"  \nCause: The speaker is transitioning to a detailed comparison of cross-validation methods, building on previously discussed concepts.  \n\nCausal Relationships:  \nEmotion or action: The speaker appears focused and methodical.  \nCause: The explanation is part of a structured educational lecture on statistical learning methods.  \nEvidence: The audio transcript provides a clear and logical progression of ideas.  \n\nObjects and Setting:  \nObject or environment: Computer screen displaying graphs and simulations.  \nContext relevance: The visuals likely support the speaker's explanation of cross-validation methods, though their exact contribution is unclear.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of understanding the tradeoffs between different cross-validation methods continues to be explored.  \nCharacter development: The speaker consistently builds on prior explanations, reinforcing their role as an educator guiding the audience through complex statistical concepts.  "
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:07:20.000",
+      "end_timecode": "00:07:40.000",
+      "start_seconds": 440.0,
+      "end_seconds": 460.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0022.mp4",
+      "frame_captions": [
+        "a video frame of the image shows an image of two different wavelengths, one in blue and one in white",
+        "a video frame of the same number of different datas in the same range",
+        "a video frame of an image showing the results of two different neurons and a single cell"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Now, let's see what happens with leave-one-out cross-validation. We get a curve that's, again, got the minimum around the same place as we saw before, and then it's pretty flat after that. 10-fold cross-validation, now, again, it's also showing the minimum around 2, but there's not the... what we're seeing here is the 10-fold cross-validation as we take different partitions into 10 parts of the data,",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene continues the educational lecture on statistical learning from the video \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker elaborates on leave-one-out cross-validation and 10-fold cross-validation methods. They explain that leave-one-out cross-validation produces a curve with a minimum similar to prior observations but remains relatively flat afterward. The speaker contrasts this with 10-fold cross-validation, which also shows a minimum around 2 but involves partitioning the data into 10 parts. The visuals appear to include graphs or diagrams depicting these methods, though their exact details are unclear from the captions.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Now, let's see what happens with leave-one-out cross-validation. We get a curve that's, again, got the minimum around the same place as we saw before, and then it's pretty flat after that. 10-fold cross-validation, now, again, it's also showing the minimum around 2, but there's not the... what we're seeing here is the 10-fold cross-validation as we take different partitions into 10 parts of the data.\"  \nCause: The speaker is explaining the differences between leave-one-out and 10-fold cross-validation methods, focusing on their respective characteristics and outcomes.  \n\nCausal Relationships:  \nEmotion or action: The speaker is focused and analytical.  \nCause: They are explaining technical concepts and comparing statistical methods to educate the audience.  \nEvidence: The detailed explanation in the audio transcript.  \n\nObjects and Setting:  \nObject or environment: Graphs, diagrams, and numerical data likely displayed on a computer screen.  \nContext relevance: These visuals support the speaker's explanation of cross-validation methods and their outcomes.  \n\nCross-Scene Continuity:  \nOngoing conflict: The tradeoff between bias and variance in statistical learning methods, particularly in choosing the value of K for cross-validation.  \nCharacter development: The speaker continues to build on previous explanations, providing more detailed comparisons of leave-one-out and 10-fold cross-validation methods.  "
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:07:40.000",
+      "end_timecode": "00:08:00.000",
+      "start_seconds": 460.0,
+      "end_seconds": 480.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0023.mp4",
+      "frame_captions": [
+        "a video frame of the image shows the effect of the two different types of the same lines",
+        "a video frame of an object with the same wavelength as a line, and a line of light",
+        "a video frame of the same size showing an image of two different types of radiation"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "as we take different partitions into 10 parts of the data, and we see there's not much variability. They're pretty consistent. In contrast to the... when we divide into two parts, we've got much more variability. And those get averaged as well, those curves on the right. Right, exactly. So they're averaged together,",
+      "audio_natural": "silence (conf=0.59)",
+      "llm_scene_description": "This scene focuses on an educational explanation of statistical learning concepts, specifically K-fold cross-validation. The speaker describes the process of dividing data into partitions, contrasting the consistency observed in 10-fold cross-validation with the higher variability seen when dividing data into only two parts. The speaker emphasizes how averaging the results reduces variability, referencing curves displayed in the visuals. The visuals likely include graphs or diagrams illustrating these statistical concepts, though their exact details are unclear from the captions.\n\nCharacters:  \nName: Unnamed speaker  \nRole: Educator or lecturer explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"As we take different partitions into 10 parts of the data, and we see there's not much variability. They're pretty consistent. In contrast to the... when we divide into two parts, we've got much more variability. And those get averaged as well, those curves on the right.\"  \nCause: The speaker is explaining the advantages of 10-fold cross-validation over simpler partitioning methods, focusing on variability and averaging.  \n\nCausal Relationships:  \nEmotion or action: The speaker conveys confidence and clarity in explaining statistical concepts.  \nCause: Their tone and structured explanation suggest expertise and an intent to educate.  \nEvidence: The audio transcript provides a clear and coherent explanation of the topic.  \n\nObjects and Setting:  \nObject or environment: Graphs or diagrams related to cross-validation methods  \nContext relevance: These visuals likely support the explanation of variability and averaging in different partitioning methods.  \n\nCross-Scene Continuity:  \nOngoing conflict: The comparison between different cross-validation methods continues to be a central theme, with the speaker emphasizing the benefits of 10-fold cross-validation over other methods.  \nCharacter development: The speaker consistently demonstrates expertise and a didactic approach, reinforcing their role as an educator in statistical learning.  "
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:08:00.000",
+      "end_timecode": "00:08:20.000",
+      "start_seconds": 480.0,
+      "end_seconds": 500.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0024.mp4",
+      "frame_captions": [
+        "a video frame of an object, with the text and image in black",
+        "a video frame of a text that reads the details in the text below",
+        "a video frame of a mouse mouse mouse in the mouse mouse, which is a mouse"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "which we saw here, they're averaged together to give us the overall estimate of cross-validation, which the overall cross-validation curve will be... will look pretty much like this, with its minimum around 2. Okay, this is... this is figure 5. 6 from the textbook,",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene is part of an educational video titled \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker continues explaining statistical concepts, specifically focusing on K-fold cross-validation. They describe how averaging results from multiple folds provides an overall estimate of cross-validation performance. The speaker mentions that the cross-validation curve generally has a minimum around 2 and references \"Figure 5.6 from the textbook\" as a visual aid. The visuals likely include text or diagrams related to the explanation, though the captions are unclear and repetitive.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Which we saw here, they're averaged together to give us the overall estimate of cross-validation, which the overall cross-validation curve will be... will look pretty much like this, with its minimum around 2. Okay, this is... this is figure 5.6 from the textbook.\"  \nCause: The speaker is providing detailed information about the behavior of cross-validation curves and referencing supporting materials to enhance understanding.  \n\nCausal Relationships:  \nEmotion or action: The speaker is focused and informative.  \nCause: They are delivering an educational lecture on statistical methods.  \nEvidence: The audio transcript provides a clear explanation of cross-validation concepts.  \n\nObjects and Setting:  \nObject or environment: Likely a presentation slide or textbook figure.  \nContext relevance: The visuals support the speaker's explanation of cross-validation curves and their minimum values.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of understanding and applying cross-validation techniques effectively in statistical learning.  \nCharacter development: The speaker consistently builds on previous explanations, reinforcing the importance of K-fold cross-validation and its practical applications.  "
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:08:20.000",
+      "end_timecode": "00:08:40.000",
+      "start_seconds": 500.0,
+      "end_seconds": 520.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0025.mp4",
+      "frame_captions": [
+        "a video frame of a mouse mouse mouse with the mouse mouse and mouse mouse",
+        "a video frame of the same number of the two different groups, the three are identical",
+        "a video frame of a cell with a white background and a blue screen showing the image"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "this is figure 5. 6 from the textbook, and this is the simulated data example, which was figured from figure 2. 9 of the book. Just recall that this is smoothing splines in three different situations. In this case, the true curve... true error curve is the blue curve. And again, these three different functions that we're examining.",
+      "audio_natural": "sigh (conf=0.85)",
+      "llm_scene_description": "This scene features an educational lecture discussing statistical learning concepts, specifically smoothing splines and error curves in the context of simulated data examples. The speaker references figures 5.6 and 2.9 from a textbook to explain three different functions being examined, emphasizing the true error curve represented by the blue line. The audio is clear and provides reliable information about the topic, while the visual captions are inconsistent and do not contribute meaningful context. The speaker sighs briefly, potentially indicating a moment of reflection or slight fatigue.\n\nCharacters:\nName: Speaker\nRole: Educator explaining statistical learning concepts\n\nKey Dialogue:\nSpeaker: \"This is figure 5.6 from the textbook, and this is the simulated data example, which was figured from figure 2.9 of the book. Just recall that this is smoothing splines in three different situations. In this case, the true curve... true error curve is the blue curve. And again, these three different functions that we're examining.\"\nCause: The speaker is providing detailed explanations of statistical learning concepts using textbook references to clarify the topic.\n\nCausal Relationships:\nEmotion or action: Brief sigh\nCause: Possible reflection or slight fatigue during the explanation\nEvidence: Audio transcript and sound detection\n\nObjects and Setting:\nObject or environment: Simulated data example, smoothing splines, error curves\nContext relevance: These are central to the lecture topic, providing a basis for understanding statistical learning methods.\n\nCross-Scene Continuity:\nOngoing conflict: The lecture continues to build on statistical learning concepts, transitioning from K-fold cross-validation to smoothing splines and error curves.\nCharacter development: The speaker demonstrates expertise and thoroughness in explaining complex statistical concepts, maintaining continuity with prior scenes focused on cross-validation methods."
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:08:40.000",
+      "end_timecode": "00:09:00.000",
+      "start_seconds": 520.0,
+      "end_seconds": 540.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0026.mp4",
+      "frame_captions": [
+        "a video frame of the same size and a video screen showing different stages of the model",
+        "a video frame of the fourier and fourier in a single - line wave",
+        "a video frame of a single cell with the same number of cell cells"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "This is mean square error for simulated data. The true error curve, how do we get that, Rob? Well, it's simulated data, so we just... Oh, so we can get a... we can get a very big test set... Exactly. and estimate the error exactly. Lie-Weinolt cross-validation is the... the black broken line,",
+      "audio_natural": "silence (conf=0.69)",
+      "llm_scene_description": "This scene is part of an educational video titled \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker continues explaining statistical learning concepts, focusing on error estimation methods using simulated data. They discuss the mean square error for simulated data and how the true error curve can be estimated by using a very large test set. The speaker also references \"Lie-Weinolt cross-validation\" and describes it as represented by a black broken line, likely referring to a visual aid on the screen. The visuals appear to include graphs or diagrams related to error curves and cross-validation, though the captions describing them are unclear or inconsistent.\n\nCharacters:  \nName: Speaker  \nRole: Instructor or presenter explaining statistical learning concepts.  \n\nKey Dialogue:  \nSpeaker: \"This is mean square error for simulated data. The true error curve, how do we get that, Rob? Well, it's simulated data, so we just... Oh, so we can get a... we can get a very big test set... Exactly. and estimate the error exactly. Lie-Weinolt cross-validation is the... the black broken line.\"  \nCause: The speaker is explaining how to estimate the true error curve using simulated data and large test sets, while referencing specific cross-validation methods.  \n\nCausal Relationships:  \nEmotion or action: Explanation of statistical methods.  \nCause: The speaker is teaching error estimation techniques in the context of K-fold cross-validation.  \nEvidence: The audio transcript explicitly describes the process of using simulated data and test sets to estimate errors.  \n\nObjects and Setting:  \nObject or environment: Graphs or diagrams on a computer screen.  \nContext relevance: These visuals likely illustrate the error curves and cross-validation methods being discussed in the audio.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of accurately estimating error curves and comparing cross-validation methods.  \nCharacter development: The speaker builds on previous explanations of cross-validation, adding details about error estimation using simulated data and test sets.  "
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:09:00.000",
+      "end_timecode": "00:09:20.000",
+      "start_seconds": 540.0,
+      "end_seconds": 560.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0027.mp4",
+      "frame_captions": [
+        "a video frame of an image showing the results of a fourier and an image of a function",
+        "a video frame of the image shows two different plots and one is the same",
+        "a video frame of the same length and color of the image shows a close up of the normal number of"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "and the orange curve is tenfold cross-validation. So we can see... what do we see? Well, here we see that the test error curve is a little higher than the tenfold and Lie-Weinolt cross-validation. The minimum's fairly close, but the minimum of cross-validation is around 8,",
+      "audio_natural": "silence (conf=0.39)",
+      "llm_scene_description": "This scene is part of the educational video \"Statistical Learning: 5.2 K-fold Cross Validation,\" focusing on statistical learning methods, specifically cross-validation techniques. The speaker discusses tenfold cross-validation and compares it to other methods, noting differences in test error curves and minimum values. The visuals likely display graphs or plots related to the topic, though the captions provide inconsistent descriptions.\n\nCharacters:\nName: Speaker\nRole: Educator explaining statistical learning concepts\n\nKey Dialogue:\nSpeaker: \"And the orange curve is tenfold cross-validation. So we can see... what do we see? Well, here we see that the test error curve is a little higher than the tenfold and Lie-Weinolt cross-validation. The minimum's fairly close, but the minimum of cross-validation is around 8.\"\nCause: The speaker is explaining the comparative results of cross-validation methods, emphasizing test error behavior and minimum values.\n\nCausal Relationships:\nEmotion or action: Analytical explanation\nCause: The speaker is interpreting data from cross-validation methods.\nEvidence: Audio transcript explicitly mentions test error curves and minimum values.\n\nObjects and Setting:\nObject or environment: Graphs or plots\nContext relevance: Visuals likely support the explanation of cross-validation techniques and error curve comparisons.\n\nCross-Scene Continuity:\nOngoing conflict: The video continues to explore statistical learning concepts, focusing on the effectiveness and variability of different cross-validation methods.\nCharacter development: The speaker consistently provides detailed explanations, building on previous discussions of statistical learning techniques."
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:09:20.000",
+      "end_timecode": "00:09:40.000",
+      "start_seconds": 560.0,
+      "end_seconds": 580.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0028.mp4",
+      "frame_captions": [
+        "a video frame of the same line and the same image with an image of two different areas",
+        "a video frame of the simulation for the time to determine the temperature and temperature of an object",
+        "a video frame of the same size with different values in it and one image of the number of the two"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "whereas the true curve is minimized around 6. In this case, the two cross-validation methods are doing a better job approximating the test error curve and have the minimum... well, the minimum's... again, they're fairly close, not exactly on the mark. Black curve's minimized around 6, and the true error curve is minimized around...",
+      "audio_natural": "silence (conf=0.40)",
+      "llm_scene_description": "This scene continues the educational discussion on statistical learning concepts, specifically focusing on K-fold cross-validation. The audio explains the approximation of test error curves using cross-validation methods, noting that while the black curve's minimum is around 6, the true error curve's minimum is also near this value but not perfectly aligned. The speaker emphasizes the accuracy and proximity of these methods in estimating error. Visuals likely include graphs or plots illustrating these curves, though the captions describing them are unclear and potentially inaccurate.\n\nCharacters:  \nName: Unnamed speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Whereas the true curve is minimized around 6. In this case, the two cross-validation methods are doing a better job approximating the test error curve and have the minimum... well, the minimum's... again, they're fairly close, not exactly on the mark. Black curve's minimized around 6, and the true error curve is minimized around...\"  \nCause: Explaining the relationship between cross-validation methods and test error approximation.  \n\nCausal Relationships:  \nEmotion or action: Analytical explanation of error curve behavior.  \nCause: The speaker is teaching the audience about the effectiveness of cross-validation methods in estimating test error curves.  \nEvidence: Audio transcript detailing the comparison of error curve minima.  \n\nObjects and Setting:  \nObject or environment: Graphs or plots of error curves.  \nContext relevance: Visual aids likely support the explanation of cross-validation methods and their accuracy.  \n\nCross-Scene Continuity:  \nOngoing conflict: Understanding the accuracy and reliability of cross-validation methods in statistical learning.  \nCharacter development: The speaker consistently provides detailed explanations, building on prior scenes to deepen the audience's understanding of statistical concepts.  "
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:09:40.000",
+      "end_timecode": "00:10:00.000",
+      "start_seconds": 580.0,
+      "end_seconds": 600.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0029.mp4",
+      "frame_captions": [
+        "a video frame of the same wavelength with an image of a person in it and a line of the other",
+        "a video frame of the same size and color, with different amplitudes",
+        "a video frame of a computer screen showing the results of a single - cell"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "it's maybe 3. Although those error curves are fairly flat, so there's obviously a high variance in where the minimum should be. Right. It doesn't really matter where, you know... It's not going to matter much if you choose a model with flexibility 2 or maybe even 10 here, because the error is pretty flat in that region. And then the third example,",
+      "audio_natural": "silence (conf=0.53)",
+      "llm_scene_description": "This scene is part of the educational video \"Statistical Learning: 5.2 K-fold Cross Validation,\" continuing the discussion on statistical learning concepts and error analysis. The speaker elaborates on error curves and model flexibility, emphasizing that the error curves are flat in certain regions, indicating high variance in determining the minimum error. The speaker suggests that choosing a model with flexibility between 2 and 10 would not significantly impact the results due to this flatness. The visuals appear to show computer screens, possibly displaying graphs or numerical results, though the captions describing them are unclear.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Although those error curves are fairly flat, so there's obviously a high variance in where the minimum should be. Right. It doesn't really matter where, you know... It's not going to matter much if you choose a model with flexibility 2 or maybe even 10 here, because the error is pretty flat in that region.\"  \nCause: The speaker is explaining the implications of flat error curves on model selection flexibility.  \n\nCausal Relationships:  \nEmotion or action: Analytical tone  \nCause: The speaker is analyzing the error curves and their impact on model selection.  \nEvidence: Audio transcript describing flat error curves and variance.  \n\nObjects and Setting:  \nObject or environment: Computer screen displaying results  \nContext relevance: Likely showing numerical or graphical data related to error curves and cross-validation results.  \n\nCross-Scene Continuity:  \nOngoing conflict: Understanding the relationship between error curves and model flexibility in statistical learning.  \nCharacter development: The speaker continues to build on prior explanations, providing deeper insights into error analysis and model selection criteria.  "
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:10:00.000",
+      "end_timecode": "00:10:20.000",
+      "start_seconds": 600.0,
+      "end_seconds": 620.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0030.mp4",
+      "frame_captions": [
+        "a video frame of an image with the text truestret mf for similar data",
+        "a video frame of the same size with an image of two different lines and one line of equal width",
+        "a video frame of the first version of the text that is in english"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "validation curves do quite a good job of approximating the test error curve, and the minimum is around the two cross-validation curves do quite a good job of approximating the test error curve, and the minimum's around 10 in each case. Okay. So actually I said this already, but I'll say it again, that one issue with cross-validation but I'll say it again, that one issue with cross-validation is that since the training set is not as big as the original training set, the essence is that since the training set",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene focuses on an educational explanation of K-fold cross-validation within the context of statistical learning. The speaker discusses how validation curves approximate the test error curve, emphasizing that the minimum error occurs around 10 for the cross-validation curves. The speaker reiterates a key limitation of cross-validation: the reduced size of the training set compared to the original dataset. The visuals likely include graphs or diagrams illustrating these concepts, though the captions are unclear and may not accurately describe the content.\n\nCharacters:  \nName: Presenter  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Validation curves do quite a good job of approximating the test error curve, and the minimum is around 10 in each case. One issue with cross-validation is that since the training set is not as big as the original training set...\"  \nCause: The speaker is explaining the strengths and limitations of cross-validation methods in approximating test error curves.  \n\nCausal Relationships:  \nEmotion or action: Reiteration of a key concept  \nCause: The speaker wants to emphasize the importance of understanding the limitations of cross-validation.  \nEvidence: The speaker explicitly repeats the point about the reduced training set size.  \n\nObjects and Setting:  \nObject or environment: Graphs or diagrams related to error curves and cross-validation  \nContext relevance: These visuals likely support the speaker's explanation of validation curves and test error approximation.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of accurately estimating test error using cross-validation due to limitations in training set size.  \nCharacter development: The presenter continues to build on prior explanations of statistical learning concepts, reinforcing critical points about error curves and model evaluation.  "
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:10:20.000",
+      "end_timecode": "00:10:40.000",
+      "start_seconds": 620.0,
+      "end_seconds": 640.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0031.mp4",
+      "frame_captions": [
+        "a video frame of the same text, which reads, ` ' person ' s validation",
+        "a video frame of the text on a white background with a purple border",
+        "a video frame of a text on a screen with the text overlayed"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "is that since the training set is not as big as the original training set, the essence the essence of prediction error will be... of prediction error will be biased up a little bit, because we have less data we're working will be biased up a little bit, because we have less data we're working with. with. Um... And I also said, and I'll say it again, that leave-one-out cross-validation has smaller bias in this sense, because the training set is almost the same size as the original set,",
+      "audio_natural": "silence (conf=0.32)",
+      "llm_scene_description": "This scene is part of an educational video titled \"Statistical Learning: 5.2 K-fold Cross Validation,\" focusing on statistical learning concepts, particularly K-fold cross-validation. The speaker elaborates on the bias introduced when using smaller training sets in cross-validation, explaining that prediction error tends to increase due to reduced data availability. They contrast this with leave-one-out cross-validation, which has a smaller bias because its training set size is nearly identical to the original dataset. The visuals appear to include text overlays on a white background with a purple border, though their relevance to the discussion is unclear due to caption inconsistencies. The audio is clear and provides the primary source of information.\n\nCharacters:\nName: Presenter\nRole: Educator explaining statistical learning concepts.\n\nKey Dialogue:\nSpeaker: \"Leave-one-out cross-validation has smaller bias in this sense, because the training set is almost the same size as the original set.\"\nCause: The speaker is emphasizing the advantages of leave-one-out cross-validation compared to K-fold cross-validation in terms of bias reduction.\n\nCausal Relationships:\nEmotion or action: Neutral and informative tone.\nCause: The speaker is delivering an academic explanation aimed at clarifying the concept of bias in cross-validation methods.\nEvidence: Audio transcript explicitly describes the bias differences between methods.\n\nObjects and Setting:\nObject or environment: Text overlays on a white background with a purple border.\nContext relevance: Visuals are likely intended to support the speaker's explanation, though their exact contribution is unclear due to caption errors.\n\nCross-Scene Continuity:\nOngoing conflict: The video continues to explore the trade-offs and limitations of different cross-validation methods in statistical learning.\nCharacter development: The presenter consistently provides detailed explanations, building on prior discussions of error curves and validation techniques."
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:10:40.000",
+      "end_timecode": "00:11:00.000",
+      "start_seconds": 640.0,
+      "end_seconds": 660.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0032.mp4",
+      "frame_captions": [
+        "a video frame of text in white and black with a green font on it",
+        "a video frame of the text with an image of a black cat in it",
+        "a video frame of an object that is not in use, but the video screen displays the message"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "but on the other hand it's got higher variance because the training sets that it's using are almost the same as the original set, they're only different by one observation. So K equals 5 or 10-fold is a good compromise for this bias-variance tradeoff. Okay, so we talked about cross-validation for a quantitative response, and we used mean square error. For classification problems, the idea is exactly the same, the only thing that changes is the",
+      "audio_natural": "silence (conf=0.76)",
+      "llm_scene_description": "This scene focuses on an educational explanation of statistical learning concepts, specifically K-fold cross-validation. The speaker discusses the bias-variance tradeoff, emphasizing that using K = 5 or 10 folds provides a good balance. They explain that leave-one-out cross-validation has lower bias but higher variance because the training sets differ by only one observation. The speaker transitions to discussing cross-validation for classification problems, noting that the approach is similar but involves a different metric. The visuals appear to include text and possibly an image of a black cat, though this detail may not be directly relevant to the educational content.\n\nCharacters:  \nName: Unnamed speaker  \nRole: Educator or presenter explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"But on the other hand it's got higher variance because the training sets that it's using are almost the same as the original set, they're only different by one observation. So K equals 5 or 10-fold is a good compromise for this bias-variance tradeoff.\"  \nCause: The speaker is explaining the tradeoff between bias and variance in cross-validation methods.  \n\nCausal Relationships:  \nEmotion or action: The speaker maintains a neutral and informative tone.  \nCause: The goal is to educate the audience on statistical learning techniques.  \nEvidence: The audio transcript provides a clear and structured explanation of the topic.  \n\nObjects and Setting:  \nObject or environment: Text visuals and an image of a black cat  \nContext relevance: The text likely supports the explanation of cross-validation, while the image of the cat appears unrelated to the educational content.  \n\nCross-Scene Continuity:  \nOngoing conflict: The tradeoff between bias and variance in statistical methods continues to be a central theme.  \nCharacter development: The speaker consistently builds on prior explanations, moving from quantitative response cross-validation to classification problems.  "
+    },
+    {
+      "scene_index": 33,
+      "start_timecode": "00:11:00.000",
+      "end_timecode": "00:11:20.000",
+      "start_seconds": 660.0,
+      "end_seconds": 680.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0033.mp4",
+      "frame_captions": [
+        "a video frame of the calculaion problem with a picture of a calculaancy",
+        "a video frame of the calculaion problems in calculus calculations, the calcittion problems are solved by",
+        "a video frame of the gravitational equation is shown by a line that passes through the center of the sphere"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "For classification problems, the idea is exactly the same, the only thing that changes is the measure of error, of course you no longer use square error, but a misclassification error. Otherwise, cross-validation process is exactly the same. Divide the data up into K parts, we train on K minus 1 parts, we record the error on the K-th part, and we add things up together to get the overall cross-validation error.",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene is part of an educational video titled \"Statistical Learning: 5.2 K-fold Cross Validation.\" The speaker explains the application of K-fold cross-validation to classification problems, emphasizing that while the process remains the same as for regression problems, the error measure changes from squared error to misclassification error. The speaker describes dividing data into K parts, training on K-1 parts, and using the remaining part to calculate error, which is then aggregated to determine the overall cross-validation error. The visuals appear to include mathematical or statistical equations, though the captions are inconsistent and unclear. Background music and silence are detected but do not interfere with the explanation.\n\nCharacters:\nName: Speaker  \nRole: Educator explaining statistical learning concepts.\n\nKey Dialogue:\nSpeaker: \"For classification problems, the idea is exactly the same, the only thing that changes is the measure of error, of course you no longer use square error, but a misclassification error. Otherwise, cross-validation process is exactly the same. Divide the data up into K parts, we train on K minus 1 parts, we record the error on the K-th part, and we add things up together to get the overall cross-validation error.\"\nCause: Explaining the adaptation of K-fold cross-validation to classification problems.\n\nCausal Relationships:\nEmotion or action: Clear and methodical explanation.  \nCause: The speaker aims to educate viewers on applying cross-validation to classification tasks.  \nEvidence: Detailed explanation in the audio transcript.\n\nObjects and Setting:\nObject or environment: Mathematical equations and possibly diagrams.  \nContext relevance: These visuals likely support the explanation of K-fold cross-validation but are described inconsistently in the captions.\n\nCross-Scene Continuity:\nOngoing conflict: The video continues to address the challenges of understanding and applying K-fold cross-validation, particularly its nuances in different contexts (e.g., regression vs. classification).  \nCharacter development: The speaker consistently builds on prior explanations, reinforcing key concepts and addressing specific applications of cross-validation."
+    },
+    {
+      "scene_index": 34,
+      "start_timecode": "00:11:20.000",
+      "end_timecode": "00:11:40.000",
+      "start_seconds": 680.0,
+      "end_seconds": 700.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0034.mp4",
+      "frame_captions": [
+        "a video frame of a calculaion problem, with the calculaation problem",
+        "a video frame of the calculaion problem, with the calculation formula",
+        "a video frame of an electric field with the equation of a charged charge"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "It looks like a weighted average in that formula, right? There's NK over N. Well, do you want to explain that? Because each of the folds might not be exactly the same size, so we actually compute a weight which is proportionate to this, which is the relative size of the fold, and then use a",
+      "audio_natural": "silence (conf=0.72)",
+      "llm_scene_description": "This scene focuses on an educational explanation of K-fold cross-validation within the context of statistical learning. The speaker elaborates on the formula used to compute weights for folds of varying sizes, describing how the relative size of each fold influences the weighted average calculation. The audio provides a clear explanation, while the visuals appear to show mathematical formulas or equations, though their captions contain errors and inconsistencies. There is no detected emotional tone or interpersonal conflict, as the scene is purely instructional.\n\nCharacters:  \nName: Presenter  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: Presenter  \nCause: Explaining the formula for weighted averages in K-fold cross-validation due to varying fold sizes  \n\nCausal Relationships:  \nEmotion or action: Neutral, focused explanation  \nCause: The presenter is teaching statistical concepts related to cross-validation  \nEvidence: Audio transcript detailing the formula and its application  \n\nObjects and Setting:  \nObject or environment: Mathematical formulas displayed visually  \nContext relevance: Supports the explanation of weighted averages in K-fold cross-validation  \n\nCross-Scene Continuity:  \nOngoing conflict: None  \nCharacter development: The presenter continues to build on prior explanations of K-fold cross-validation, adding details about weighted averages and fold size adjustments"
+    },
+    {
+      "scene_index": 35,
+      "start_timecode": "00:11:40.000",
+      "end_timecode": "00:12:00.000",
+      "start_seconds": 700.0,
+      "end_seconds": 720.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0035.mp4",
+      "frame_captions": [
+        "a video frame of a calculaion problem, showing a calcittion problem",
+        "a video frame of the calculation of the calculaion problems in the calcit",
+        "a video frame of an electric circuit with a wave and a diagram of the current voltage"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "weighted average. Right, and if we are lucky that the K divides, the N divides by K exactly, then that weight will just be 1, over K. One other thing to add, which is that since this cross-validation error is just an average, the standard error of that average also gives us a standard error of the cross-validation estimate.",
+      "audio_natural": "silence (conf=0.65)",
+      "llm_scene_description": "This scene discusses the concept of weighted averages in the context of K-fold cross-validation, a statistical learning method. The speaker explains that if the number of data points (N) is evenly divisible by the number of folds (K), the weight for each fold becomes 1/K. Additionally, the speaker highlights that the cross-validation error is an average, and its standard error provides a measure of the variability in the cross-validation estimate. The visuals appear to include mathematical calculations or diagrams, though the captions are inconsistent and unclear. The audio provides the primary context for understanding the scene.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"Weighted average. Right, and if we are lucky that the K divides, the N divides by K exactly, then that weight will just be 1, over K. One other thing to add, which is that since this cross-validation error is just an average, the standard error of that average also gives us a standard error of the cross-validation estimate.\"  \nCause: The speaker is elaborating on the mathematical principles underlying K-fold cross-validation.  \n\nCausal Relationships:  \nEmotion or action: The speaker is focused and informative.  \nCause: They are explaining a technical concept in statistical learning.  \nEvidence: The detailed explanation in the audio transcript.  \n\nObjects and Setting:  \nObject or environment: Mathematical calculations and diagrams  \nContext relevance: Illustrates the concepts of weighted averages and cross-validation errors being discussed in the audio.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of balancing bias and variance in cross-validation methods.  \nCharacter development: The speaker continues to build on previous explanations of K-fold cross-validation, adding depth to the discussion by introducing weighted averages and standard error calculations.  "
+    },
+    {
+      "scene_index": 36,
+      "start_timecode": "00:12:00.000",
+      "end_timecode": "00:12:20.000",
+      "start_seconds": 720.0,
+      "end_seconds": 740.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0036.mp4",
+      "frame_captions": [
+        "a video frame of the calculaion problem, with a slide slide",
+        "a video frame of a particle with a line that is in the center",
+        "a video frame of a computer, showing the properties of the classification and classification"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "estimate. So we take the error rates from each of the folds, their average is the cross-validation error rate, their standard error is the standard deviation of the cross-validation estimate. So here's the formula for that. So this is a useful quantity, and when we draw CV curves, we should always put a standard error band around the curve at the end of the variability.",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene focuses on explaining statistical concepts related to K-fold cross-validation, specifically the calculation of cross-validation error rates and their standard errors. The speaker describes how the average error rate across folds represents the cross-validation error rate, while the standard deviation provides the standard error of the estimate. The speaker emphasizes the importance of including a standard error band when plotting cross-validation curves to account for variability. Visuals likely include slides or formulas related to these concepts, though captions describing \"calculation problems\" and unrelated objects like a particle or computer appear inconsistent with the audio content.\n\nCharacters:  \nName: Speaker  \nRole: Educator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"So we take the error rates from each of the folds, their average is the cross-validation error rate, their standard error is the standard deviation of the cross-validation estimate. So here's the formula for that. So this is a useful quantity, and when we draw CV curves, we should always put a standard error band around the curve at the end of the variability.\"  \nCause: Explaining the importance of error rates and variability in cross-validation.  \n\nCausal Relationships:  \nEmotion or action: Informative and instructional tone  \nCause: The speaker is explaining statistical concepts in an educational context.  \nEvidence: Audio transcript clearly outlines the explanation of cross-validation error rates and standard errors.  \n\nObjects and Setting:  \nObject or environment: Slides or formulas related to cross-validation  \nContext relevance: Supports the explanation of statistical concepts, though captions describing unrelated visuals (e.g., particle, computer) are inconsistent with the audio.  \n\nCross-Scene Continuity:  \nOngoing conflict: None evident; the video continues to build on the explanation of K-fold cross-validation.  \nCharacter development: The speaker consistently provides detailed explanations of statistical learning concepts, maintaining an educational tone throughout the scenes.  "
+    },
+    {
+      "scene_index": 37,
+      "start_timecode": "00:12:20.000",
+      "end_timecode": "00:12:40.000",
+      "start_seconds": 740.0,
+      "end_seconds": 760.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0037.mp4",
+      "frame_captions": [
+        "a video frame of a computer, with the text cross validation calculaon",
+        "a video frame of a circular object with the same number of an object",
+        "a video frame of the calculation of a fraction equation on a number line"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So in these previous pictures, we should have had a standard error band around the curves to give us an idea of how variable they are. I say here, it's useful, but not quite valid. Why is that, Dr. Hastie? Well, I wonder why. Well, the thing is, we compute in the standard errors if these were independent observations,",
+      "audio_natural": "silence (conf=0.75)",
+      "llm_scene_description": "This scene focuses on an educational explanation of statistical learning concepts, specifically addressing the calculation of standard errors in K-fold cross-validation. The audio emphasizes the importance of including standard error bands around curves to evaluate variability and explains that standard errors are computed under the assumption of independent observations. The visuals appear to include text and mathematical representations, such as fraction equations and number lines, though their clarity and relevance are uncertain based on captions.\n\nCharacters:  \nName: Dr. Hastie  \nRole: Educator/Presenter  \n\nKey Dialogue:  \nSpeaker: Dr. Hastie  \nCause: Explains the need for standard error bands in cross-validation and the assumptions underlying their computation.  \n\nCausal Relationships:  \nEmotion or action: Analytical explanation  \nCause: The need to clarify the variability of cross-validation results and the assumptions of independence.  \nEvidence: Audio transcript discussing standard errors and variability.  \n\nObjects and Setting:  \nObject or environment: Computer screen with text, fraction equations, and number lines.  \nContext relevance: Likely used to visually support the explanation of statistical concepts, though captions suggest some inconsistencies or unclear visuals.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of accurately representing variability in cross-validation results and ensuring valid assumptions.  \nCharacter development: Dr. Hastie continues to build on previous discussions of K-fold cross-validation, providing deeper insights into the mathematical and practical aspects of the method.  "
+    },
+    {
+      "scene_index": 38,
+      "start_timecode": "00:12:40.000",
+      "end_timecode": "00:13:00.000",
+      "start_seconds": 760.0,
+      "end_seconds": 780.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0038.mp4",
+      "frame_captions": [
+        "a video frame of the calculaion problem, which is not in use",
+        "a video frame of a wave is shown in the image below the wave",
+        "a video frame of a circle with the equation in the center, and a line of the circle with a"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Well, the thing is, we compute in the standard errors if these were independent observations, but they're not strictly independent. Error sub k overlaps with error sub j, because they share some training samples. So there's some correlation between them. But we use this anyway. We use it, and it's actually quite a good estimate, and people have shown this mathematically.",
+      "audio_natural": "silence (conf=0.75)",
+      "llm_scene_description": "This scene continues the instructional explanation of K-fold cross-validation in statistical learning, focusing on the computation of standard errors and their correlation due to shared training samples across folds. The speaker acknowledges that errors between folds are not strictly independent but asserts that the method is still a good estimate, supported by mathematical validation. The visuals appear to include diagrams or equations, though their relevance is unclear from the captions. The audio provides the primary context for understanding the topic.\n\nCharacters:  \nName: Instructor  \nRole: Educator explaining statistical concepts  \n\nKey Dialogue:  \nSpeaker: Instructor  \nCause: To clarify the limitations and validity of standard error estimates in K-fold cross-validation  \n\nCausal Relationships:  \nEmotion or action: Analytical explanation  \nCause: To address the correlation between errors in folds and justify the use of the method  \nEvidence: Audio transcript explicitly discusses overlap and mathematical validation  \n\nObjects and Setting:  \nObject or environment: Visuals of equations, waves, and circles  \nContext relevance: Likely intended to support the explanation, but captions do not clearly connect them to the audio  \n\nCross-Scene Continuity:  \nOngoing conflict: Addressing the challenges of statistical assumptions in K-fold cross-validation  \nCharacter development: The instructor consistently provides detailed explanations, reinforcing their role as an expert educator"
+    },
+    {
+      "scene_index": 39,
+      "start_timecode": "00:13:00.000",
+      "end_timecode": "00:13:20.000",
+      "start_seconds": 780.0,
+      "end_seconds": 800.0,
+      "duration_seconds": 20.0,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0039.mp4",
+      "frame_captions": [
+        "a video frame of the equation for a functional equation of a function",
+        "a video frame of a cross validation calculaion problem with the equation",
+        "a video frame of the calculaion problem in calculus notation, which is a calcula"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Again, the important point being that, is that the cross-validation separates the training part of the data from the validation part. When we talk about the bootstrap method, the next part of this section, we'll see that that's not the case, and that's going to cause a problem. So cross-validation explicitly separates the training set from the validation set in order to get a good idea of test error.",
+      "audio_natural": "sigh (conf=0.69)",
+      "llm_scene_description": "This scene focuses on explaining the concept of cross-validation in statistical learning, specifically emphasizing the separation of training and validation data to estimate test error accurately. The speaker contrasts this with the bootstrap method, which does not separate these sets, leading to potential issues. The tone is instructional, with a slight pause or sigh indicating a reflective or explanatory moment. Visuals likely include mathematical equations or notation related to cross-validation, though the audio provides the primary explanation.\n\nCharacters:  \nName: Speaker  \nRole: Instructor or narrator explaining statistical learning concepts  \n\nKey Dialogue:  \nSpeaker: \"The important point is that cross-validation separates the training part of the data from the validation part. When we talk about the bootstrap method, the next part of this section, we'll see that that's not the case, and that's going to cause a problem.\"  \nCause: Explaining the distinction between cross-validation and bootstrap methods to highlight their implications for test error estimation.  \n\nCausal Relationships:  \nEmotion or action: Reflective tone, slight sigh.  \nCause: Likely due to the complexity or importance of the topic being discussed.  \nEvidence: Audio transcript includes a sigh and detailed explanation of the methods.  \n\nObjects and Setting:  \nObject or environment: Mathematical equations and notation related to cross-validation.  \nContext relevance: Visuals support the explanation of statistical concepts but are secondary to the audio.  \n\nCross-Scene Continuity:  \nOngoing conflict: The challenge of accurately estimating test error using different statistical methods.  \nCharacter development: The speaker continues to build on prior explanations of K-fold cross-validation, adding depth by introducing comparisons with the bootstrap method.  "
+    },
+    {
+      "scene_index": 40,
+      "start_timecode": "00:13:20.000",
+      "end_timecode": "00:13:33.200",
+      "start_seconds": 800.0,
+      "end_seconds": 813.2,
+      "duration_seconds": 13.200000000000045,
+      "clip_path": "_processed/Statistical Learning_ 5.2 K-fold Cross Validation.mp4/.clips/scene_0040.mp4",
+      "frame_captions": [
+        "a video frame of a particle with an equation that is called therm",
+        "a video frame of an equation that shows the direction and magnitude of a wave",
+        "a video frame of the equation of a linear function, with an equation"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "to get a good idea of test error. Okay, so this again, I'll reemphasize that cross-validation is a very important technique to understand, both for quantitative response and classification.",
+      "audio_natural": "silence (conf=0.55)",
+      "llm_scene_description": "This scene focuses on explaining the importance of K-fold cross-validation in statistical learning. The audio emphasizes that cross-validation is a critical technique for understanding test error, applicable to both quantitative response and classification problems. The speaker reiterates its significance and provides a clear instructional tone. Visual captions appear unrelated or unclear, mentioning equations and physical phenomena like waves and particles, but these do not align with the audio discussion. The setting is likely an educational video with slides or diagrams, though the visuals provide minimal context compared to the audio.\n\nCharacters:\nName: Speaker\nRole: Instructor or presenter explaining statistical concepts.\n\nKey Dialogue:\nSpeaker: \"To get a good idea of test error. Okay, so this again, I'll reemphasize that cross-validation is a very important technique to understand, both for quantitative response and classification.\"\nCause: The speaker aims to emphasize the importance of cross-validation for accurate statistical learning and error estimation.\n\nCausal Relationships:\nEmotion or action: Instructional tone, emphasizing clarity and importance.\nCause: The speaker is explaining foundational statistical concepts to an audience.\nEvidence: Clear audio transcript discussing cross-validation.\n\nObjects and Setting:\nObject or environment: Equations and diagrams (unclear visuals).\nContext relevance: The visuals appear unrelated to the audio discussion, providing minimal support for the statistical learning topic.\n\nCross-Scene Continuity:\nOngoing conflict: The visuals continue to be inconsistent or unclear compared to the audio explanations, potentially causing confusion for viewers relying on visual aids.\nCharacter development: The speaker consistently emphasizes the importance of statistical methods, reinforcing their role as an educator."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 15176,
+      "chunk_len": 5,
+      "narrative": "### Chronological Summary of Scenes 0–8 (00:00:00.000 to 00:03:00.000)\n\n1. **00:00:00.000**: The lecturer introduces the concept of k-fold cross-validation in a focused, educational tone. He explains its importance in addressing the drawbacks of previous validation methods and emphasizes its frequent use in academic and professional contexts. Visual aids, such as text slides, accompany the explanation, though some captions are unclear. Key dialogue: \"Now we're going to talk about k-fold cross-validation which will solve some of these problems.\"\n\n2. **00:00:20.000**: The lecturer elaborates on k-fold cross-validation, describing it as a flexible and powerful technique for estimating prediction error and understanding model complexity. He introduces the idea of dividing validation into \"k-parts\" and likens the process to a structured play. Visuals continue to support the lecture, though captions remain inconsistent. Key dialogue: \"It's validation, as we've seen, but done sort of like a k-part play.\"\n\n3. **00:00:40.000**: The lecturer explains the mechanics of k-fold cross-validation, where the dataset is divided into k parts, each alternately serving as the validation set while the remaining k-1 parts act as the training set. He references a visual aid, mentioning 5-fold cross-validation specifically. Background sounds include a faint sigh, but the tone remains instructional. Key dialogue: \"Let me go to the picture here and I'll sort of point the picture as I say it. So here we're doing 5-fold cross-validation.\"\n\n4. **00:01:00.000**: The lecturer discusses why k = 5 or k = 10 are common choices for the number of folds, emphasizing the importance of dividing the dataset into equal parts. He uses diagrams to illustrate the process but humorously acknowledges imperfections in his drawing. Key dialogue: \"This box looks a bit bigger, right? Okay, that's my lack of drawing ability. But anyway, it's supposed to be the same.\"\n\n5. **00:01:20.000**: The lecturer explains the iterative process of 5-fold cross-validation, where the validation set alternates between the five parts, and prediction errors are recorded for each stage. Visuals remain secondary to the audio explanation. Key dialogue: \"We're going to train the model on the 4 training parts, put together as one big block, take the fitted model and then predict on the validation part and record the error.\"\n\n6. **00:02:00.000**: The lecturer describes how prediction errors from all five parts are combined to calculate the cross-validation error. He transitions to algebraic details, referring to the data parts as C1 through Ck. Visuals include abstract representations, such as arrays or diagrams. Key dialogue: \"We take all the prediction errors from all 5 parts, we add them together, and that gives us what's called the cross-validation error.\"\n\n7. **00:02:40.000**: The lecturer explains practical adjustments for dividing data into k parts when the dataset size (n) is not a multiple of k. He emphasizes maintaining approximately equal observations in each part. Visuals remain abstract and text-based. Key dialogue: \"Of course, if n is not a multiple of k of 5, we can't do that exactly, but we'll do it approximately.\"\n\nThroughout the chunk, the lecturer maintains a focused and professional tone, using clear audio explanations to guide the audience through the concept of k-fold cross-validation, supported by visuals that are occasionally unclear.\n### Chronological Summary of Scenes 9 to 17 (00:03:00.000 to 00:06:00.000):\n\n1. **00:03:00.000**: The speaker introduces the algebraic details of K-fold cross-validation, explaining the calculation of the cross-validation error rate as the mean square error obtained by applying the fit to the k-1 parts that exclude part k. They define \"n sub k\" as the number of observations in the kth part and describe how the fit for observation i, denoted as Yi hat, is derived. Background chewing sounds are faint but irrelevant.\n\n2. **00:03:20.000**: The speaker elaborates on the process of dividing data into five parts, training a model on four parts, and validating it on the remaining part. Summing the mean square errors from each validation set provides the overall error rate. The visuals are abstract and repetitive, with the audio serving as the primary explanation.\n\n3. **00:03:40.000**: The concept of leave-one-out cross-validation is introduced as a special case of K-fold cross-validation, where the number of folds equals the number of observations. Each observation individually serves as the validation set. Diagrams or text boxes likely illustrate this, but their clarity is uncertain.\n\n4. **00:04:00.000**: The speaker explains that leave-one-out cross-validation allows each observation to act as the validation set while the remaining observations form the training set. They highlight its computational efficiency, noting that refitting the model is unnecessary. Visuals include text and unrelated imagery, such as a train.\n\n5. **00:04:20.000**: For least squares or polynomial models, leave-one-out cross-validation involves fitting the model on the full dataset, with the diagonal of the hat matrix (Hi) playing a key role. The speaker references the book for further details and emphasizes the computational simplicity of this approach.\n\n6. **00:04:40.000**: The hat matrix is described as a projection matrix that maps Y onto the column space of X to provide the fit. The speaker notes that Hi, the diagonal of the hat matrix, measures an observation's influence on its own fit. Observations with high influence inflate residuals, which \"does the right thing\" computationally.\n\n7. **00:05:00.000**: The speaker explains that leave-one-out cross-validation can be performed on the overall dataset without leaving anything out, extracting necessary information like the cross-validation sum of squares. Hi determines an observation's influence on its fit.\n\n8. **00:05:20.000**: The speaker discusses how influential observations affect residuals in leave-one-out cross-validation, dividing by small Hi values to inflate residuals. They emphasize that this approach is computationally appropriate.\n\n9. **00:05:40.000**: The speaker compares leave-one-out cross-validation to K-fold cross-validation, recommending K values of 5 or 10 for most statistical learning methods. They explain that leave-one-out cross-validation results in overly similar training sets, limiting its effectiveness.\n\n### Key Themes:\n- Detailed explanation of K-fold and leave-one-out cross-validation methods.\n- Computational efficiency and mathematical tools like the hat matrix and Hi.\n- Trade-offs between computational simplicity and effectiveness in statistical learning methods.\n### Chronological Summary of Scenes 18 to 26 (00:06:00.000 to 00:09:00.000):\n\n1. **00:06:00.000**: The speaker explains the limitations of leave-one-out cross-validation, emphasizing that its training sets differ by only one observation, leading to highly correlated folds and high variance in error averaging. Visuals likely include lecture slides or graphs.\n\n2. **00:06:20.000**: The speaker contrasts leave-one-out cross-validation with K-fold cross-validation, recommending K values of 5 or 10 due to their lower variance. Leave-one-out is noted for attempting to estimate error rates but has significant drawbacks. Algorithm-related visuals are likely present.\n\n3. **00:06:40.000**: The speaker discusses the bias-variance tradeoff in K-fold cross-validation, highlighting that K values of 5 or 10 are effective. Leave-one-out cross-validation is noted for low bias but high variance. A forthcoming slide comparison is mentioned.\n\n4. **00:07:00.000**: A comparison between leave-one-out and 10-fold cross-validation is introduced, referencing variability observed in two-part validation. The speaker transitions to analyzing leave-one-out cross-validation results, likely supported by graphs or simulations.\n\n5. **00:07:20.000**: The speaker elaborates on the characteristics of leave-one-out and 10-fold cross-validation curves, noting that both show a minimum around 2. Partitioning data into 10 parts reduces variability compared to simpler methods. Graphs or diagrams are likely displayed.\n\n6. **00:07:40.000**: The speaker emphasizes the consistency of 10-fold cross-validation results compared to dividing data into two parts, explaining how averaging reduces variability. Visuals likely include curves illustrating these concepts.\n\n7. **00:08:00.000**: The speaker describes how averaging results from multiple folds provides an overall estimate of cross-validation performance, referencing \"Figure 5.6 from the textbook.\" The cross-validation curve is noted to have a minimum around 2.\n\n8. **00:08:20.000**: The lecture transitions to smoothing splines and error curves using simulated data examples. The speaker references figures 5.6 and 2.9 from the textbook, explaining the true error curve (blue line) and three functions being examined.\n\n9. **00:08:40.000**: The speaker discusses error estimation methods using simulated data, explaining how the true error curve can be estimated with a large test set. \"Lie-Weinolt cross-validation\" is described as represented by a black broken line, likely shown in accompanying visuals.\n\n### Key Themes:\n- Comparison of cross-validation methods (leave-one-out vs. K-fold).\n- Bias-variance tradeoff in statistical learning.\n- Error estimation techniques using simulated data.\n- Visual aids (graphs, diagrams, textbook figures) supporting explanations.\n### Chronological Summary of Scenes 27 to 35 (00:09:00.000 to 00:12:00.000)\n\n1. **00:09:00.000**: The speaker introduces tenfold cross-validation and compares it to other methods, noting that the test error curve for tenfold cross-validation is slightly higher than Lie-Weinolt cross-validation. The minimum error for tenfold cross-validation is approximately 8. Visuals likely include graphs or plots illustrating error curves.\n\n2. **00:09:20.000**: The speaker explains the approximation of test error curves using cross-validation methods, emphasizing that the black curve's minimum is around 6, closely aligned with the true error curve's minimum. Visuals likely show graphs of error curves.\n\n3. **00:09:40.000**: The speaker discusses flat error curves, indicating high variance in determining the minimum error. They suggest that model flexibility between 2 and 10 would yield similar results due to the flatness of the error curve. Visuals may include computer screens displaying numerical or graphical data.\n\n4. **00:10:00.000**: The speaker highlights the strengths and limitations of cross-validation, noting that validation curves approximate the test error curve well, with a minimum error around 10. They reiterate that cross-validation uses smaller training sets than the original dataset, which introduces bias. Visuals likely include graphs or diagrams.\n\n5. **00:10:20.000**: The speaker contrasts K-fold cross-validation with leave-one-out cross-validation, explaining that the latter has smaller bias due to its training set size being nearly identical to the original dataset. Visuals include text overlays on a white background with a purple border.\n\n6. **00:10:40.000**: The speaker elaborates on the bias-variance tradeoff, stating that K = 5 or 10 folds provides a good balance. They note that leave-one-out cross-validation has lower bias but higher variance. The discussion transitions to cross-validation for classification problems, where the error measure changes to misclassification error. Visuals include text and possibly an unrelated image of a black cat.\n\n7. **00:11:00.000**: The speaker explains the application of K-fold cross-validation to classification problems, emphasizing the use of misclassification error instead of squared error. They describe dividing data into K parts, training on K-1 parts, and aggregating errors to calculate overall cross-validation error. Visuals likely include mathematical equations.\n\n8. **00:11:20.000**: The speaker introduces the formula for weighted averages in K-fold cross-validation, explaining how fold sizes influence the calculation. Visuals likely show mathematical formulas.\n\n9. **00:11:40.000**: The speaker explains that if the number of data points (N) is divisible by the number of folds (K), the weight for each fold becomes 1/K. They add that the standard error of the cross-validation error provides a measure of variability in the estimate. Visuals likely include mathematical calculations or diagrams.\n\nThroughout the scenes, the speaker maintains a neutral, analytical tone, building on prior explanations to deepen the audience's understanding of statistical learning concepts.\n**Chronological Summary of Scenes 36 to 40 (00:12:00.000 to 00:13:33.200):**\n\n1. **00:12:00.000**: The speaker explains K-fold cross-validation, focusing on calculating cross-validation error rates and their standard errors. The average error rate across folds represents the cross-validation error rate, while the standard deviation provides the standard error. The speaker emphasizes the importance of including standard error bands on cross-validation curves to account for variability. Visuals likely include slides or formulas, though captions inconsistently mention unrelated objects like particles or computers.\n\n2. **00:12:20.000**: Dr. Hastie elaborates on the computation of standard errors in cross-validation, emphasizing the need for standard error bands to evaluate variability. He notes that standard errors assume independent observations, which may not strictly apply due to shared training samples across folds. Visuals include fraction equations and number lines, though their relevance is unclear.\n\n3. **00:12:40.000**: The instructor addresses the correlation between errors in folds caused by overlapping training samples. Despite this limitation, the method is validated mathematically and considered a good estimate. Visuals include equations, waves, and circles, but captions do not clearly connect them to the audio explanation.\n\n4. **00:13:00.000**: The speaker contrasts cross-validation with the bootstrap method, highlighting that cross-validation separates training and validation data to estimate test error accurately, whereas the bootstrap method does not. This distinction is presented as critical for understanding test error. Visuals likely include mathematical equations, but the audio provides the primary explanation.\n\n5. **00:13:20.000**: The speaker reemphasizes the importance of cross-validation as a key technique for understanding test error in both quantitative response and classification problems. Visual captions remain unclear, mentioning unrelated phenomena like waves and particles. The speaker maintains an instructional tone, reinforcing the significance of cross-validation.\n\n**Key Themes Across Scenes**:\n- Detailed explanation of K-fold cross-validation, error rates, and standard errors.\n- Importance of standard error bands and addressing variability.\n- Limitations of assumptions in cross-validation and comparison with the bootstrap method.\n- Emphasis on cross-validation as a foundational statistical technique."
+    }
+  ],
+  "synopsis": {
+    "chat_name": "KFoldValidationLecture",
+    "summary": "The lecturer explains k-fold cross-validation, its mechanics, common choices for k, iterative processes, error calculations, and comparisons with leave-one-out cross-validation, emphasizing computational efficiency, bias-variance tradeoffs, and its importance in statistical learning.",
+    "video_highlights": [
+      {
+        "start": "00:00:00.000",
+        "end": "00:00:20.000",
+        "highlight": "The lecturer introduces k-fold cross-validation, highlighting its role in addressing validation method drawbacks and its widespread use."
+      },
+      {
+        "start": "00:00:40.000",
+        "end": "00:01:00.000",
+        "highlight": "The mechanics of k-fold cross-validation are explained, with a focus on dividing the dataset into k parts and using 5-fold as an example."
+      },
+      {
+        "start": "00:03:40.000",
+        "end": "00:04:00.000",
+        "highlight": "Leave-one-out cross-validation is introduced as a special case of k-fold, where each observation serves as the validation set."
+      },
+      {
+        "start": "00:06:20.000",
+        "end": "00:06:40.000",
+        "highlight": "The speaker contrasts leave-one-out with k-fold cross-validation, recommending k = 5 or 10 for lower variance and better performance."
+      },
+      {
+        "start": "00:10:40.000",
+        "end": "00:11:00.000",
+        "highlight": "The bias-variance tradeoff is discussed, with k = 5 or 10 folds offering a balance, while leave-one-out has lower bias but higher variance."
+      },
+      {
+        "start": "00:13:00.000",
+        "end": "00:13:20.000",
+        "highlight": "Cross-validation is compared to the bootstrap method, emphasizing its separation of training and validation data for accurate error estimation."
+      }
+    ],
+    "video_timeline": [
+      {
+        "timestamp": "00:00:00",
+        "event": "Introduction"
+      },
+      {
+        "timestamp": "00:00:20",
+        "event": "Technique"
+      },
+      {
+        "timestamp": "00:00:40",
+        "event": "Mechanics"
+      },
+      {
+        "timestamp": "00:01:00",
+        "event": "Choices"
+      },
+      {
+        "timestamp": "00:01:20",
+        "event": "Iteration"
+      },
+      {
+        "timestamp": "00:02:00",
+        "event": "Error"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is happening in the video?",
+        "answer": "A lecturer explains k-fold cross-validation, its mechanics, advantages, and comparisons to other methods like leave-one-out cross-validation, using visuals and mathematical details."
+      },
+      {
+        "question": "What are the key events?",
+        "answer": "The lecturer introduces k-fold cross-validation, explains its iterative process, discusses error calculations, compares it with leave-one-out cross-validation, and highlights the bias-variance tradeoff."
+      },
+      {
+        "question": "What are the key actions and who performed them?",
+        "answer": "The lecturer explains concepts, uses diagrams, and compares methods to teach statistical learning techniques."
+      },
+      {
+        "question": "What are the main conflicts and problems encountered?",
+        "answer": "Challenges include unclear visuals, high variance in leave-one-out cross-validation, and assumptions about independent observations in k-fold cross-validation."
+      },
+      {
+        "question": "Who is the main character? Describe their journey.",
+        "answer": "The lecturer is the main character, guiding the audience through statistical concepts, addressing challenges, and emphasizing practical applications."
+      },
+      {
+        "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
+        "answer": "The lecturer: professional, focused, and analytical, explaining statistical methods. No physical description is provided."
+      },
+      {
+        "question": "What are some significant quotes from the video and who said them?",
+        "answer": "\"Now we're going to talk about k-fold cross-validation which will solve some of these problems.\" - Lecturer. \"We take all the prediction errors from all 5 parts, we add them together, and that gives us what's called the cross-validation error.\" - Lecturer."
+      },
+      {
+        "question": "What is the setting? Did it change? How is it related to the story?",
+        "answer": "The setting is a lecture environment with slides and diagrams. It remains constant, supporting the educational tone."
+      },
+      {
+        "question": "How did the video start? Explain the start.",
+        "answer": "The video begins with the lecturer introducing k-fold cross-validation, explaining its importance and addressing drawbacks of previous methods."
+      },
+      {
+        "question": "How did the video end? Explain the ending.",
+        "answer": "The video concludes with a comparison of cross-validation and bootstrap methods, emphasizing cross-validation's importance in estimating test error."
+      },
+      {
+        "question": "What objects are central to the video and when do they appear?",
+        "answer": "Central objects include slides, diagrams, and mathematical formulas, appearing throughout to illustrate concepts."
+      },
+      {
+        "question": "What is the most important thing said or heard?",
+        "answer": "\"Now we're going to talk about k-fold cross-validation which will solve some of these problems.\""
+      },
+      {
+        "question": "What is different at the end vs the beginning?",
+        "answer": "The video transitions from introducing k-fold cross-validation to comparing it with other methods like leave-one-out and bootstrap, emphasizing its practical applications and limitations."
+      },
+      {
+        "question": "What type of video is this?",
+        "answer": "An educational lecture on statistical learning methods."
+      },
+      {
+        "question": "What is the goal or intent or theme of the video?",
+        "answer": "To explain k-fold cross-validation, its mechanics, advantages, limitations, and its role in statistical learning."
+      },
+      {
+        "question": "List the moods and tones present, explain each one.",
+        "answer": "Focused (clear explanations of concepts), professional (formal delivery), humorous (acknowledging drawing imperfections), analytical (detailed comparisons of methods)."
+      },
+      {
+        "question": "What context is missing or assumed? What would require outside knowledge?",
+        "answer": "Prior knowledge of statistical learning, validation methods, and mathematical concepts like the hat matrix is assumed."
+      },
+      {
+        "question": "What are key visual descriptions?",
+        "answer": "Text slides, diagrams, graphs, equations, and occasional unrelated visuals like a train or a black cat."
+      },
+      {
+        "question": "What are key audio descriptions?",
+        "answer": "Clear instructional tone, faint background sounds like sighs or chewing, and consistent verbal explanations of concepts."
+      },
+      {
+        "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
+        "answer": "Not entirely; visuals sometimes include unrelated imagery or unclear captions, while audio remains focused on the lecture content."
+      },
+      {
+        "question": "What are prominent visual cues and audio cues noticed throughout the video?",
+        "answer": "Prominent visuals include diagrams, graphs, and equations; prominent audio cues are the lecturer's explanations and key phrases like \"cross-validation error.\""
+      },
+      {
+        "question": "Does the video contain any live action, animation, or special effects?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What is k-fold cross-validation?",
+        "answer": "It is a technique for estimating prediction error and understanding model complexity by dividing a dataset into k parts, where each part alternates as the validation set while the remaining k-1 parts act as the training set."
+      },
+      {
+        "question": "Why are k = 5 or k = 10 common choices for folds?",
+        "answer": "These values balance computational efficiency and accuracy, providing equal-sized divisions of the dataset while minimizing bias and variance."
+      },
+      {
+        "question": "How is the cross-validation error calculated?",
+        "answer": "Prediction errors from all k parts are summed and averaged to determine the cross-validation error."
+      },
+      {
+        "question": "What happens if the dataset size is not a multiple of k?",
+        "answer": "The dataset is divided approximately into equal parts to maintain balance."
+      },
+      {
+        "question": "What is leave-one-out cross-validation?",
+        "answer": "It is a special case of k-fold cross-validation where the number of folds equals the number of observations, with each observation individually serving as the validation set."
+      },
+      {
+        "question": "Why is leave-one-out cross-validation computationally efficient?",
+        "answer": "It avoids refitting the model for each fold by using the full dataset and leveraging the diagonal of the hat matrix."
+      },
+      {
+        "question": "What role does the hat matrix play in leave-one-out cross-validation?",
+        "answer": "The hat matrix projects Y onto the column space of X, with its diagonal (Hi) measuring an observation's influence on its own fit."
+      },
+      {
+        "question": "How does leave-one-out cross-validation handle influential observations?",
+        "answer": "Observations with high influence inflate residuals by dividing by small Hi values, ensuring computational appropriateness."
+      },
+      {
+        "question": "Why is leave-one-out cross-validation less effective than k-fold cross-validation?",
+        "answer": "Its training sets differ by only one observation, leading to highly correlated folds and high variance in error averaging."
+      },
+      {
+        "question": "What is the bias-variance tradeoff in k-fold cross-validation?",
+        "answer": "K = 5 or 10 folds provide a good balance, with lower bias and variance compared to leave-one-out cross-validation."
+      },
+      {
+        "question": "How does averaging results improve k-fold cross-validation?",
+        "answer": "Averaging errors across folds reduces variability and provides a more consistent estimate of cross-validation performance."
+      },
+      {
+        "question": "What error measure is used for classification problems in k-fold cross-validation?",
+        "answer": "Misclassification error replaces squared error to evaluate model performance."
+      },
+      {
+        "question": "How are weighted averages calculated in k-fold cross-validation?",
+        "answer": "Fold sizes influence the calculation, with weights becoming 1/K if the dataset size is divisible by the number of folds."
+      },
+      {
+        "question": "What is the standard error of cross-validation error?",
+        "answer": "It measures variability in the estimate and assumes independent observations, though folds share training samples."
+      },
+      {
+        "question": "How does cross-validation differ from the bootstrap method?",
+        "answer": "Cross-validation separates training and validation data to estimate test error accurately, while the bootstrap method does not."
+      }
+    ]
+  },
+  "rag_embedding": {
+    "rag_path": "_processed\\Statistical Learning_ 5.2 K-fold Cross Validation.mp4/rag_embedding.json",
+    "context_count": 45,
+    "embedding_dim": 3072,
+    "model": "gemini-embedding-001"
+  }
+}

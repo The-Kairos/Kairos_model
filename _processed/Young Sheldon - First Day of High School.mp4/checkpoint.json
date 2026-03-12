@@ -2,45 +2,42 @@
     "run_description": "Test run for video processing pipeline.",
     "video_path": "Videos\\Young Sheldon - First Day of High School.mp4",
     "video_length": "00:02:48.502",
-    "total_process_sec": 465.29322,
+    "total_process_sec": 448.73535,
     "scene_number": 35,
-    "start_process": "2026-03-12 00:43:39",
-    "end_process": "2026-03-12 00:44:25",
+    "start_process": "2026-03-12 10:47:31",
+    "end_process": "2026-03-12 10:48:00",
     "computer": {
         "os_info": {
-            "os": "Windows 11",
-            "os_version": "10.0.26200",
+            "os": "Windows 10",
+            "os_version": "10.0.19045",
             "machine_type": "AMD64",
-            "hostname": "the-Kewl-Laptop",
-            "python_version": "3.12.1"
+            "hostname": "Manahil-Laptop",
+            "python_version": "3.10.19"
         },
         "cpu_info": {
-            "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+            "cpu_model": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
             "cpu_physical_cores": 8,
-            "cpu_logical_cores": 16,
+            "cpu_logical_cores": 8,
             "cpu_frequency_MHz": {
-                "current": 2208.0,
+                "current": 2000.0,
                 "min": 0.0,
-                "max": 2208.0
+                "max": 2000.0
             }
         },
         "ram_info": {
-            "total_RAM_GB": 15.84,
-            "available_RAM_GB": 2.4,
-            "used_RAM_GB": 13.44,
-            "RAM_usage_percent": 84.9
+            "total_RAM_GB": 7.42,
+            "available_RAM_GB": 1.26,
+            "used_RAM_GB": 6.16,
+            "RAM_usage_percent": 83.0
         },
         "disk_info": {
-            "disk_total_GB": 932.98,
-            "disk_used_GB": 533.29,
-            "disk_free_GB": 399.68,
-            "disk_usage_percent": 57.2
+            "disk_total_GB": 475.69,
+            "disk_used_GB": 245.07,
+            "disk_free_GB": 230.62,
+            "disk_usage_percent": 51.5
         },
         "gpu_info": {
-            "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
-            "gpu_memory_total_MB": 6144,
-            "gpu_memory_used_MB": 0,
-            "gpu_driver_version": "572.16"
+            "gpu_model": null
         }
     },
     "params": {
@@ -1037,36 +1034,27 @@
             "cuda_peak_MB": null
         },
         "synthesize_synopsis": {
-            "wall_time_sec": 28.24126,
-            "cpu_time_sec": 0.03125,
-            "ram_before_MB": 564,
-            "ram_after_MB": 559,
+            "wall_time_sec": 12.26152,
+            "cpu_time_sec": 0.15625,
+            "ram_before_MB": 521,
+            "ram_after_MB": 516,
             "ram_used_MB": -5,
             "io_read_MB": 0.0,
-            "io_write_MB": 0.009150505065917969,
-            "gpu_before": [
-                {
-                    "id": 0,
-                    "name": "NVIDIA GeForce GTX 1660 Ti",
-                    "memory_used_MB": 178,
-                    "memory_total_MB": 6144,
-                    "gpu_util_percent": 0,
-                    "mem_util_percent": 0
-                }
-            ],
+            "io_write_MB": 0.009622573852539062,
+            "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
             "cuda_after_MB": null,
             "cuda_peak_MB": null
         },
         "make_embedding": {
-            "wall_time_sec": 17.70149,
-            "cpu_time_sec": 26.51562,
-            "ram_before_MB": 559,
-            "ram_after_MB": 567,
-            "ram_used_MB": 8,
-            "io_read_MB": 0.7752056121826172,
-            "io_write_MB": 3.7174549102783203,
+            "wall_time_sec": 17.12336,
+            "cpu_time_sec": 11.95312,
+            "ram_before_MB": 516,
+            "ram_after_MB": 523,
+            "ram_used_MB": 7,
+            "io_read_MB": 0.6603641510009766,
+            "io_write_MB": 4.733695983886719,
             "gpu_before": [],
             "gpu_after": [],
             "cuda_before_MB": null,
@@ -4623,89 +4611,89 @@
     ],
     "synopsis": {
         "chat_name": "Sheldon’s First Day",
-        "summary": "Sheldon, a young boy starting high school, navigates social challenges with his protective mother Mary, showcasing his intellectual curiosity, blunt observations, and optimism despite his nervousness and her concerns.",
+        "summary": "Sheldon navigates his first day of high school with his mother Mary’s support, showcasing his intellect, social challenges, and curiosity, while Mary balances her protective instincts with her concerns about his adjustment.",
         "video_highlights": [
             {
                 "start": "00:00:00.000",
                 "end": "00:00:02.836",
-                "highlight": "A playful tone is set with a driving game suggestion as scenes transition between a park, a street, and a countryside road."
+                "highlight": "The scene transitions between a park, a street with a bus, and a countryside road with a car, setting a playful tone with the question, \"Would you like to play a driving game?\""
             },
             {
                 "start": "00:00:11.678",
                 "end": "00:00:13.680",
-                "highlight": "Sheldon expresses frustration with a driving game, saying, \"Not really. I always lose,\" reflecting his resignation."
+                "highlight": "Sheldon expresses frustration with the driving game, saying, \"Not really. I always lose,\" while his mother playfully suggests a game involving license plates and prime numbers."
             },
             {
                 "start": "00:00:27.861",
                 "end": "00:00:32.199",
-                "highlight": "Sheldon wonders if others will recognize his intellect and make him their leader, contrasting with Mary’s prayer for his protection."
+                "highlight": "Sheldon optimistically wonders if others will recognize his intellect and make him their leader, while Mary prays aloud, asking for him to be protected from bullying."
             },
             {
                 "start": "00:00:50.384",
                 "end": "00:00:55.389",
-                "highlight": "Mary expresses concern about Sheldon fitting in as he stands near a school bus on his first day of high school."
+                "highlight": "Sheldon and Mary stand near a school bus on his first day of high school, with Mary concerned about his social adjustment and Sheldon wearing a bow tie."
             },
             {
-                "start": "00:01:34.928",
-                "end": "00:01:40.934",
-                "highlight": "Sheldon comments on the smell of ammonia in the hallway, appreciating the cleanliness and showcasing his observational nature."
+                "start": "00:01:46.440",
+                "end": "00:01:55.782",
+                "highlight": "Walking through the school hallway, Sheldon bluntly points out a pregnant girl to Mary, saying, \"Hey, Mom, look, that girl's pregnant. Congratulations.\""
             },
             {
-                "start": "00:02:17.137",
-                "end": "00:02:19.473",
-                "highlight": "In a classroom, Sheldon remarks, \"Okay, let the learning begin,\" highlighting his excitement for academics."
+                "start": "00:02:19.473",
+                "end": "00:02:25.979",
+                "highlight": "In a classroom, Sheldon remarks, \"It's probably the ammonia. Probably. Okay, let the learning begin,\" showcasing his excitement for academics."
             }
         ],
         "video_timeline": [
             {
-                "timestamp": "00:00:00",
+                "timestamp": "00:00:00.000",
                 "event": "Driving Game"
             },
             {
-                "timestamp": "00:00:02",
-                "event": "Tie Preparation"
-            },
-            {
-                "timestamp": "00:00:11",
+                "timestamp": "00:00:11.678",
                 "event": "Game Frustration"
             },
             {
-                "timestamp": "00:00:20",
-                "event": "Social Advice"
+                "timestamp": "00:00:20.520",
+                "event": "Social Adjustment"
             },
             {
-                "timestamp": "00:00:32",
-                "event": "Bullying Concern"
+                "timestamp": "00:00:27.861",
+                "event": "Leadership Hopes"
             },
             {
-                "timestamp": "00:00:39",
+                "timestamp": "00:00:32.199",
+                "event": "Mother's Prayer"
+            },
+            {
+                "timestamp": "00:00:39.373",
                 "event": "Rural Drive"
             }
         ],
         "questions": [
             {
                 "question": "What is happening in the video?",
-                "answer": "Sheldon Cooper is preparing for his first day of high school, navigating social challenges, and interacting with his mother, Mary, who is protective and supportive."
+                "answer": "Sheldon Cooper is preparing for and experiencing his first day of high school, accompanied by his mother, Mary, who is concerned about his social adjustment."
             },
             {
                 "question": "What are the key events?",
-                "answer": "Sheldon ties his bow tie, discusses games with Mary, arrives at school, faces dress code issues, and enters his homeroom with curiosity and slight apprehension."
+                "answer": "Sheldon ties his tie in the car, discusses games and prime numbers with Mary, arrives at school, faces comments about his bow tie, interacts with peers, and enters his homeroom."
             },
             {
                 "question": "What are the key actions and who performed them?",
-                "answer": "Sheldon ties his bow tie, discusses prime numbers, and observes his surroundings. Mary drives, advises him on social norms, and reassures him."
+                "answer": "Sheldon ties his tie, expresses frustration with games, and observes his surroundings. Mary drives, reassures Sheldon, and offers advice. Other students comment on Sheldon’s bow tie."
             },
             {
                 "question": "What are the main conflicts and problems encountered?",
-                "answer": "Sheldon struggles with fitting in socially, adhering to the dress code, and understanding social cues, while Mary worries about his adjustment."
+                "answer": "Sheldon struggles with social conformity, such as removing his bow tie, and faces his mother’s concerns about bullying and fitting in."
             },
             {
                 "question": "Who is the main character? Describe their journey.",
-                "answer": "Sheldon Cooper is a highly intelligent but socially awkward boy starting high school. He is optimistic about his intellect but faces challenges fitting in."
+                "answer": "Sheldon Cooper, a highly intelligent but socially awkward boy, navigates his first day of high school with optimism and curiosity, despite challenges in fitting in."
             },
             {
                 "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
-                "answer": "Sheldon: young, wears a bow tie, intelligent, curious, socially awkward. Mary: motherly, protective, conservative, supportive. Other students: varied, represent social norms and challenges."
+                "answer": "Sheldon: young, wears a bow tie, intelligent, curious, socially awkward. Mary: caring, protective, conservative, supportive mother. Other students: casual attire, represent social norms and challenges."
             },
             {
                 "question": "What are some significant quotes from the video and who said them?",
@@ -4713,19 +4701,19 @@
             },
             {
                 "question": "What is the setting? Did it change? How is it related to the story?",
-                "answer": "The setting transitions from a car to a school. The car symbolizes preparation and support, while the school represents new challenges and opportunities."
+                "answer": "The setting transitions from a car on rural roads to a school, emphasizing Sheldon’s journey to high school and the challenges of adapting to a new environment."
             },
             {
                 "question": "How did the video start? Explain the start.",
-                "answer": "The video begins with scenes of movement—park, street, countryside—accompanied by playful audio, setting a lighthearted tone as Sheldon prepares for school."
+                "answer": "The video begins with scenes of movement, including a park, a street with a bus, and a countryside road, accompanied by playful audio suggesting a driving game."
             },
             {
                 "question": "How did the video end? Explain the ending.",
-                "answer": "The video ends with Sheldon entering his homeroom, expressing excitement for learning, and a thematic interlude with abstract visuals."
+                "answer": "The video ends with Sheldon entering his homeroom, expressing excitement for learning, and a thematic interlude with abstract visuals and a logo."
             },
             {
                 "question": "What objects are central to the video and when do they appear?",
-                "answer": "The bow tie symbolizes Sheldon's individuality and social challenges, appearing throughout his journey to school."
+                "answer": "The bow tie appears throughout, symbolizing Sheldon’s individuality. The car is central during the journey to school, and the brown bag appears as Sheldon carries his lunch."
             },
             {
                 "question": "What is the most important thing said or heard?",
@@ -4733,103 +4721,103 @@
             },
             {
                 "question": "What is different at the end vs the beginning?",
-                "answer": "Sheldon transitions from a car ride to entering his high school."
+                "answer": "Sheldon transitions from being in a car to entering his high school, marking a shift from preparation to action."
             },
             {
                 "question": "What type of video is this?",
-                "answer": "A narrative scene about a young boy's first day of high school."
+                "answer": "A narrative-driven scene about a young boy's first day of high school."
             },
             {
                 "question": "What is the goal or intent or theme of the video?",
-                "answer": "To depict Sheldon's transition to high school and his social and intellectual challenges."
+                "answer": "To depict Sheldon's intellectual confidence, social challenges, and his mother's protective concerns."
             },
             {
                 "question": "List the moods and tones present, explain each one.",
-                "answer": "Playful (driving game audio), apprehensive (Sheldon's social concerns), supportive (Mary's reassurances), humorous (Sheldon's blunt comments)."
+                "answer": "Playful (audio game suggestion), apprehensive (Sheldon's social concerns), supportive (Mary's reassurances), humorous (Sheldon's blunt remarks)."
             },
             {
                 "question": "What context is missing or assumed? What would require outside knowledge?",
-                "answer": "The significance of Sheldon's intellect and his relationship with his family."
+                "answer": "Sheldon's background, his relationship with his family, and why his intellect is significant."
             },
             {
                 "question": "What are key visual descriptions?",
-                "answer": "A rural road, a school bus, Sheldon's bow tie, a pregnant girl, and abstract visuals with a \"subbie\" logo."
+                "answer": "A rural road, a car, a school bus, Sheldon's bow tie, students in uniforms, and abstract visuals with colors and shapes."
             },
             {
                 "question": "What are key audio descriptions?",
-                "answer": "Driving game audio, music with explosion sounds, conversational tones, and Mary's prayer."
+                "answer": "Repeated \"Would you like to play a driving game?\" music, explosion sounds, and conversational tones."
             },
             {
                 "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
-                "answer": "They are mostly aligned, though the abstract visuals and \"subbie\" logo lack direct narrative connection."
+                "answer": "They are mostly aligned, though the playful audio contrasts with the serious themes of social adjustment."
             },
             {
                 "question": "What are prominent visual cues and audio cues noticed throughout the video?",
-                "answer": "Visual: Sheldon's bow tie, rural settings, school hallway. Audio: Driving game suggestion, Mary's prayer, Sheldon's comments."
+                "answer": "Visual: Sheldon's bow tie, rural roads, and school settings. Audio: Driving game suggestion, conversational exchanges, and light music."
             },
             {
                 "question": "Does the video contain any live action, animation, or special effects?",
-                "answer": "Live action with abstract visuals and thematic interludes."
+                "answer": "Live action with a brief abstract visual interlude."
             },
             {
-                "question": "What is the significance of the driving game audio?",
-                "answer": "It sets a playful and lighthearted tone, contrasting with Sheldon's serious demeanor."
+                "question": "What game does Sheldon express frustration with during the car ride",
+                "answer": "A driving game, as he says, \"Not really. I always lose.\""
             },
             {
-                "question": "Why does Sheldon express frustration about the driving game?",
-                "answer": "He says, \"Not really. I always lose,\" indicating repeated failures and resignation."
+                "question": "What alternative game does Mary suggest to Sheldon",
+                "answer": "A game involving license plates with prime numbers followed by a constant."
             },
             {
-                "question": "What does Mary suggest after discussing prime numbers?",
-                "answer": "She suggests they \"just talk,\" showing her desire for simpler, personal interaction."
+                "question": "How does Sheldon feel about his chances of fitting in at high school",
+                "answer": "He is optimistic, wondering if others will recognize his intellect and make him their leader."
             },
             {
-                "question": "How does Sheldon view his intelligence in relation to others?",
-                "answer": "He optimistically wonders if others will recognize his intellect and make him their leader."
+                "question": "What is Mary’s main concern about Sheldon starting high school",
+                "answer": "She worries about him being bullied and prays for his protection."
             },
             {
-                "question": "What does Mary pray for regarding Sheldon?",
-                "answer": "She prays for him to be protected from bullying, specifically mentioning her fear of him being \"stuffed in a gym bag.\""
+                "question": "What does Mary observe about a boy near the school",
+                "answer": "She notices he has an exposed tattoo and expresses mild disapproval."
             },
             {
-                "question": "What does Mary say about the boy with the tattoo?",
-                "answer": "She comments, \"Oh, dear. Yeah. That boy has an exposed tattoo,\" reflecting mild disapproval."
+                "question": "What reaction does Sheldon get from other students about his bow tie",
+                "answer": "They comment it violates the dress code and suggest he remove it."
             },
             {
-                "question": "How do students react to Sheldon's bow tie?",
-                "answer": "They note it violates the dress code and suggest he remove it."
-            },
-            {
-                "question": "What advice does Mary give Sheldon about his bow tie?",
-                "answer": "She advises him to observe that other children are not wearing bow ties and encourages him to remove his."
-            },
-            {
-                "question": "How does Sheldon respond to the suggestion of starting a bow tie trend?",
+                "question": "How does Sheldon respond to the suggestion of starting a bow tie trend",
                 "answer": "He optimistically suggests it, but a girl dismisses the idea, saying, \"No, you won't.\""
             },
             {
-                "question": "What does Sheldon negotiate with Missy about?",
+                "question": "What negotiation does Sheldon have with his sister, Missy",
                 "answer": "He offers to take her to Radio Shack if she agrees to \"take it off,\" likely referring to his bow tie."
             },
             {
-                "question": "What does Sheldon say about the smell of ammonia in the hallway?",
-                "answer": "He comments on it, appreciating the cleanliness, showcasing his observational skills."
+                "question": "What does Sheldon comment about the school hallway",
+                "answer": "He remarks on the smell of ammonia, appreciating the cleanliness."
             },
             {
-                "question": "What does Sheldon say upon seeing a pregnant girl?",
-                "answer": "He bluntly points her out to his mother, saying, \"Hey, Mom, look, that girl's pregnant. Congratulations.\""
+                "question": "What blunt observation does Sheldon make about a girl in the hallway",
+                "answer": "He points out a pregnant girl to his mother, saying, \"Hey, Mom, look, that girl's pregnant. Congratulations.\""
             },
             {
-                "question": "How does Sheldon humorously respond to Mary’s offer to accompany him into homeroom?",
-                "answer": "He says, \"No, although I could have used you in the restroom.\""
+                "question": "How does Mary react to Sheldon’s comment about the pregnant girl",
+                "answer": "She appears slightly uncomfortable but does not respond verbally."
             },
             {
-                "question": "What does Sheldon ask Mary about her emotional state?",
+                "question": "What humorous remark does Sheldon make about needing his mother’s help",
+                "answer": "He says, \"No, although I could have used you in the restroom,\" when Mary offers to accompany him to homeroom."
+            },
+            {
+                "question": "What does Sheldon ask Mary about her emotional state",
                 "answer": "He asks, \"Are you crying or having an allergy attack?\""
             },
             {
-                "question": "What does Sheldon say as he transitions to the classroom?",
-                "answer": "He remarks, \"It's probably the ammonia. Probably. Okay, let the learning begin,\" reflecting his excitement for academics."
+                "question": "What is Sheldon’s reaction upon entering the classroom",
+                "answer": "He remarks, \"Okay, let the learning begin,\" showcasing his excitement for academics."
+            },
+            {
+                "question": "What abstract visuals are shown at the end of the summary",
+                "answer": "Colors, shapes, and a \"subbie\" logo on a blue and green background are shown, suggesting a thematic interlude."
             }
         ]
     },
