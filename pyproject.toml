@@ -60,3 +60,11 @@ include = ["kairos*"]
 
 [tool.setuptools.package-data]
 kairos = ["prompts/*.txt", "prompts/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: requires API keys (deselect with -m 'not integration')",
+    "model: requires GPU or model weights (deselect with -m 'not model')",
+    "e2e: full pipeline end-to-end (deselect with -m 'not e2e')",
+]

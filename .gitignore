@@ -214,3 +214,7 @@ logs/
 *.wav
 *.mp4
 *.mp3
+
+# Allow test fixtures (overrides *.mp4 rule above)
+!tests/fixtures/
+!tests/fixtures/**
