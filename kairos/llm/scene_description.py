@@ -6,15 +6,15 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from kairos.utils import apply_gpt_normalization, print_prefixed
+from kairos.core.utils import apply_gpt_normalization, print_prefixed
 
 
 def describe_flash_scene(
     scene_text: str,
     client,
     prompt_path: str = "prompts/describe_scene.txt",
-    model: str = "gemini-2.5-flash",
-    gpt_deployment: str = "gpt-4o-kairos",
+    model: str = None,
+    gpt_deployment: str = None,
     gpt_temperature: float = 0.3,
     video_path: str | None = None,
 ) -> str:
@@ -30,14 +30,24 @@ def describe_flash_scene(
     if "gemini" in model.lower():
         chat = client.chats.create(model=model)
         return chat.send_message(prompt).text.strip()
-    elif "gpt" in model.lower():
-        response = client.chat.completions.create(
+    else:
+        import re
+        kwargs = dict(
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that summarizes visual scenes."},
                 {"role": "user", "content": prompt},
             ],
-            max_tokens=2048, temperature=gpt_temperature, top_p=1.0, model=gpt_deployment,
+            model=gpt_deployment,
         )
+        # GPT 5+ does not support max_tokens or temperature
+        model_ver = re.search(r"(\d+)", gpt_deployment or "")
+        if model_ver and int(model_ver.group(1)) >= 5:
+            kwargs["max_completion_tokens"] = 2048
+        else:
+            kwargs["max_tokens"] = 2048
+            kwargs["temperature"] = gpt_temperature
+            kwargs["top_p"] = 1.0
+        response = client.chat.completions.create(**kwargs)
         return response.choices[0].message.content
     return ""
 
@@ -51,7 +61,7 @@ def normalize_bbox(bbox):
 def format_single_description(captions: list, yolo) -> str:
     lines = []
     if isinstance(yolo, list):
-        from kairos.object_detection import format_track_summaries
+        from kairos.video.object_detection import format_track_summaries
         for idx, cap in enumerate(captions or []):
             lines.append(f"Frame {idx}:")
             lines.append(f'  Caption: "{cap}"')
@@ -107,7 +117,7 @@ def describe_scenes(
     YOLO_key="yolo_detections", FLIP_key="frame_captions",
     ASR_key="audio_natural", AST_key="audio_speech",
     SUMMARY_key="llm_scene_description",
-    model="gemini-2.5-flash",
+    model=None,
     prompt_path="prompts/describe_scene.txt",
     short_prompt_path="prompts/describe_scene_short.txt",
     fallback_prompt_path="prompts/fallback_describe_scene.txt",

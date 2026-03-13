@@ -5,7 +5,7 @@ import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import quote
-from openai import AzureOpenAI
+from openai import OpenAI
 
 CHUNK_SIZE = 7000
 FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
@@ -958,21 +958,27 @@ def _is_responsible_ai_error(exc: Exception) -> bool:
 
 def call_gpt(client, deployment, prompt, retries: int = GPT_MAX_RETRIES, retry_base_sec: float = GPT_RETRY_BASE_SEC):
     """
-    Minimal GPT call using AzureOpenAI client
+    Minimal GPT call using OpenAI client
     """
     last_exc = None
     for attempt in range(retries):
         try:
-            response = client.chat.completions.create(
+            kwargs = dict(
                 messages=[
                     {"role": "system", "content": "You are a precise and reliable assistant."},
                     {"role": "user", "content": prompt}
                 ],
-                max_tokens=16384,  # apparently the max for gpt4o
-                temperature=0.2,
-                top_p=1.0,
-                model=deployment
+                model=deployment,
             )
+            # GPT 5+ does not support max_tokens or temperature
+            model_ver = re.search(r"(\d+)", deployment or "")
+            if model_ver and int(model_ver.group(1)) >= 5:
+                kwargs["max_completion_tokens"] = 16384
+            else:
+                kwargs["max_tokens"] = 16384
+                kwargs["temperature"] = 0.2
+                kwargs["top_p"] = 1.0
+            response = client.chat.completions.create(**kwargs)
             message = response.choices[0].message
             content = message.content
             if isinstance(content, str):
@@ -1951,15 +1957,14 @@ def synthesize_synopsis(
 # 7. Example usage
 # ----------------------
 def test(log_path):
-    endpoint = os.getenv("GPT_ENDPOINT")
-    deployment = os.getenv("GPT_DEPLOYMENT")
-    subscription_key = os.getenv("GPT_KEY")
-    api_version = os.getenv("GPT_VERSION")
+    endpoint = os.getenv("OPENAI_ENDPOINT")
+    deployment = os.getenv("OPENAI_DEPLOYMENT")
+    api_key = os.getenv("OPENAI_KEY")
 
-    client = AzureOpenAI(
-        api_version=api_version,
-        azure_endpoint=endpoint,
-        api_key=subscription_key,
+    from openai import OpenAI
+    client = OpenAI(
+        base_url=endpoint,
+        api_key=api_key,
     )
     with open(log_path, "r", encoding="utf-8") as f:
         logs = json.load(f)

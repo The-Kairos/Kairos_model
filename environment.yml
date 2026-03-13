@@ -1,0 +1,20 @@
+name: kairos
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+
+  # System tools
+  - ffmpeg
+
+  # Everything else via pip
+  - pip:
+      # PyTorch with CUDA 12.4 (from PyTorch wheel index)
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch>=2.6
+      - torchvision>=0.15
+      - torchaudio>=2.6
+      # Kairos package + all other deps (from pyproject.toml)
+      - -e .

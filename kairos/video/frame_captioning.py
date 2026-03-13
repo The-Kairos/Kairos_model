@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from PIL import Image
 
-from kairos.utils import print_prefixed
+from kairos.core.utils import print_prefixed
 
 # Lazy-loaded model singletons
 _blip_model = None

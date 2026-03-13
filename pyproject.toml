@@ -26,10 +26,7 @@ dependencies = [
     "scenedetect>=0.6",
     "imageio_ffmpeg>=0.5.0",
 
-    # Deep learning
-    "torch>=2.0",
-    "torchvision>=0.15",
-    "torchaudio>=2.0",
+    # Deep learning (torch, torchvision, torchaudio managed by conda — see environment.yml)
     "transformers>=4.30",
     "Pillow>=10.0",
     "sentencepiece>=0.2.0",
@@ -55,7 +52,7 @@ dependencies = [
 ]
 
 [project.scripts]
-kairos = "kairos.cli:main"
+kairos = "kairos.cli.runner:main"
 
 [tool.setuptools.packages.find]
 include = ["kairos*"]

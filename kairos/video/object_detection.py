@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
-from kairos.utils import print_prefixed
+from kairos.core.utils import print_prefixed
 
 
 def run_yolo_on_frame(model, frame: np.ndarray, conf: float = 0.25, iou: float = 0.45) -> list:

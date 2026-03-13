@@ -7,18 +7,17 @@ import time
 
 import numpy as np
 
-from kairos.utils import load_prompt
+from kairos.core.utils import load_prompt
 
-EMBEDDING_MODEL = "gemini-embedding-001"
-GENERATION_MODEL = "gemini-2.5-pro"
+EMBEDDING_MODEL = os.getenv("GEMINI_EMBEDDING_MODEL", "gemini-embedding-001")
+GENERATION_MODEL = os.getenv("GEMINI_RAG_MODEL", "gemini-2.5-pro")
 
 
 def _get_gemini_client():
     from google import genai
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        raise RuntimeError("GEMINI_API_KEY not found in environment variables.")
-    return genai.Client(vertexai=True, api_key=api_key)
+    project = os.getenv("GEMINI_PROJECT", "prj-udst-prod-oussama-1")
+    location = os.getenv("GEMINI_LOCATION", "us-central1")
+    return genai.Client(vertexai=True, project=project, location=location)
 
 
 # Formatting helpers

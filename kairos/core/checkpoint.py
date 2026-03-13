@@ -6,7 +6,7 @@ from pathlib import Path
 
 import imageio_ffmpeg as ffmpeg
 
-from kairos.utils import print_prefixed
+from kairos.core.utils import print_prefixed
 
 
 def clear_frames(scene_list: list) -> list:

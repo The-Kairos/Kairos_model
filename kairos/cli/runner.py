@@ -1,9 +1,7 @@
-"""Command-line interface for the Kairos video processing pipeline."""
+"""Pipeline orchestration loop."""
 
 from __future__ import annotations
 
-import argparse
-import json
 import os
 from pathlib import Path
 
@@ -12,174 +10,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from kairos.config import PipelineConfig
-from kairos.checkpoint import read_json, save_checkpoint, have_key, save_clips
-from kairos.pipeline_logging import log_step, initiate_log, complete_log, save_log
-from kairos.redo import apply_redo, REDO_CHOICES
-from kairos.utils import print_section, see_scenes_cuts
+from kairos.core.checkpoint import read_json, save_checkpoint, have_key, save_clips
+from kairos.core.logging import log_step, initiate_log, complete_log, save_log
+from kairos.core.redo import apply_redo
+from kairos.core.utils import print_section, see_scenes_cuts
+from kairos.llm.client import build_llm_client
+from kairos.cli.args import parse_args
+from kairos.cli.catalog import load_video_catalog, select_videos, make_output_dir
 
-
-# Video catalog helpers
-
-def load_video_catalog(path: Path) -> list[dict]:
-    if not path.exists():
-        return []
-    with open(path) as f:
-        data = json.load(f)
-    if isinstance(data, dict) and "videos" in data:
-        data = data["videos"]
-    if not isinstance(data, list):
-        raise ValueError("Expected _all_videos.json to be a list of video objects.")
-    return data
-
-
-def get_video_length_seconds(entry: dict) -> float | None:
-    value = entry.get("video_length")
-    if isinstance(value, (int, float)) and value > 0:
-        return float(value)
-    return None
-
-
-def categorize_length(seconds: float) -> str:
-    minutes = seconds / 60
-    if minutes < 10:
-        return "short"
-    if minutes < 30:
-        return "medium"
-    if minutes < 90:
-        return "long"
-    return "extra"
-
-
-def make_output_dir(video_path: Path, processed_root: Path | str = "processed") -> str:
-    name = video_path.name
-    if name.startswith("."):
-        name = name.lstrip(".")
-    name = name.strip().rstrip(".")
-    if not name:
-        name = "video"
-    return str(Path(processed_root) / name)
-
-
-def resolve_video_arg(arg: str, blob_index: dict, videos_dir: Path) -> Path | None:
-    candidate = Path(arg)
-    if candidate.exists():
-        return candidate
-    candidate = videos_dir / arg
-    if candidate.exists():
-        return candidate
-    entry = blob_index.get(arg)
-    if entry and entry.get("blob"):
-        candidate = videos_dir / entry["blob"]
-        if candidate.exists():
-            return candidate
-    return None
-
-
-def select_videos(args, catalog: list[dict], videos_dir: Path) -> list[Path]:
-    blob_index = {v.get("blob"): v for v in catalog if isinstance(v, dict) and v.get("blob")}
-    selected_paths: list[Path] = []
-
-    if args.video:
-        items = args.video if isinstance(args.video, list) else [args.video]
-        for item in items:
-            path = resolve_video_arg(item, blob_index, videos_dir)
-            if path is None:
-                print(f"Skip: video not found: {item}")
-                continue
-            selected_paths.append(path)
-        return selected_paths
-
-    filter_value = getattr(args, "filter", None)
-    include_unknown = getattr(args, "include_unknown", False)
-    include_all = getattr(args, "all", False)
-
-    if not (include_all or filter_value):
-        print("Select videos with --video, --all, or --filter.")
-        raise SystemExit(2)
-
-    entries = catalog
-    if filter_value:
-        rank = {"short": 1, "medium": 2, "long": 3, "extra": 4}
-        selected_entries = []
-        unknown = 0
-        for entry in entries:
-            length = get_video_length_seconds(entry)
-            if length is None:
-                if include_unknown:
-                    selected_entries.append(entry)
-                else:
-                    unknown += 1
-                continue
-            if rank[categorize_length(length)] <= rank[filter_value]:
-                selected_entries.append(entry)
-        if unknown and not include_unknown:
-            print(f"Skipping {unknown} video(s) with unknown length. Use --include-unknown to include.")
-        entries = selected_entries
-
-    for entry in entries:
-        blob = entry.get("blob")
-        if not blob:
-            continue
-        path = videos_dir / blob
-        if not path.exists():
-            print(f"Skip: missing file on disk: {blob}")
-            continue
-        selected_paths.append(path)
-    return selected_paths
-
-
-# LLM client factory
-
-def _build_llm_client(cfg: PipelineConfig):
-    """Build the LLM client and model name/deployment from environment."""
-    use_gemini = os.getenv("USE_GEMINI", "").lower() in ("1", "true", "yes")
-
-    if use_gemini:
-        from google import genai
-        api_key = os.getenv("GEMINI_API_KEY")
-        client = genai.Client(vertexai=True, api_key=api_key)
-        model_name = "gemini-2.5-flash"
-        deployment = None
-    else:
-        from openai import AzureOpenAI
-        endpoint = os.getenv("GPT_ENDPOINT")
-        deployment = os.getenv("GPT_DEPLOYMENT")
-        subscription_key = os.getenv("GPT_KEY")
-        api_version = os.getenv("GPT_VERSION")
-        client = AzureOpenAI(api_version=api_version, azure_endpoint=endpoint, api_key=subscription_key)
-        model_name = "gpt-4o"
-
-    return client, model_name, deployment
-
-
-# Argument parsing
-
-def parse_args():
-    parser = argparse.ArgumentParser(description="Process videos or run RAG.")
-    subparsers = parser.add_subparsers(dest="command", required=True)
-
-    process = subparsers.add_parser("process", help="Process videos")
-    process.add_argument("--video", action="append", help="Blob name or path (repeatable)")
-    process.add_argument("--all", action="store_true", help="Process all catalog videos")
-    process.add_argument("--filter", choices=["short", "medium", "long", "extra"], help="Inclusive length filter")
-    process.add_argument("--include-unknown", action="store_true", help="Include videos with unknown length when filtering")
-    process.add_argument("--redo", nargs="+", action="append", choices=REDO_CHOICES, help="Redo a processing step (repeatable)")
-    process.add_argument("--redo-only", nargs="*", choices=REDO_CHOICES, help="Redo only specified steps (no dependents)")
-
-    rag = subparsers.add_parser("rag", help="Run RAG for a single video")
-    rag.add_argument("--video", required=True, help="Blob name or path")
-
-    return parser.parse_args()
-
-
-# Logged step wrappers (inline decorator application, no boilerplate functions)
 
 def _logged(func):
     """Apply log_step decorator inline."""
     return log_step()(func)
 
-
-# Main entry point
 
 def main():
     VIDEOS_DIR = Path("Videos")
@@ -187,10 +30,17 @@ def main():
     PROCESSED_ROOT = Path("_processed")
 
     args = parse_args()
-    cfg = PipelineConfig.default()
 
-    redo_only_flag = args.redo_only is not None
-    redo_only_steps = args.redo_only or []
+    preset = getattr(args, "preset", "default")
+    cfg = {
+        "fast": PipelineConfig.fast,
+        "motion": PipelineConfig.motion_sensitive,
+        "static": PipelineConfig.static_video,
+        "default": PipelineConfig.default,
+    }.get(preset, PipelineConfig.default)()
+
+    redo_only_flag = getattr(args, "redo_only", None) is not None
+    redo_only_steps = getattr(args, "redo_only", None) or []
     redo_steps = []
 
     def _flatten(values):
@@ -226,19 +76,19 @@ def main():
         redo_steps = list(dict.fromkeys(redo_steps + _flatten(args.redo)))
     redo_only = redo_only_flag
 
-    client, model_name, deployment = _build_llm_client(cfg)
+    client, model_name, deployment = build_llm_client(llm=getattr(args, "llm", None))
 
     # Lazy imports — models only loaded when their step runs
-    from kairos.scene_detection import get_scene_list
-    from kairos.frame_sampling import sample_frames, sample_fps
-    from kairos.frame_captioning import caption_frames
-    from kairos.object_detection import detect_object_yolo
-    from kairos.scene_description import describe_scenes
-    from kairos.audio_detector import scan_audio
-    from kairos.audio_ast import extract_sounds_optimized
-    from kairos.speech_transcription import extract_speech_singlecall
-    from kairos.synopsis import summarize_scenes, synthesize_synopsis
-    from kairos.rag import make_embedding, ask_rag
+    from kairos.video.scene_detection import get_scene_list
+    from kairos.video.frame_sampling import sample_frames, sample_fps
+    from kairos.video.frame_captioning import caption_frames
+    from kairos.video.object_detection import detect_object_yolo
+    from kairos.llm.scene_description import describe_scenes
+    from kairos.audio.detector import scan_audio
+    from kairos.audio.classifier import extract_sounds_optimized
+    from kairos.audio.transcription import extract_speech_singlecall
+    from kairos.llm.synopsis import summarize_scenes, synthesize_synopsis
+    from kairos.llm.rag import make_embedding, ask_rag
 
     for output_dir, test_video in test_videos.items():
         Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -369,7 +219,7 @@ def main():
                 scan_result = get_scan_result()
             print("")
             print_section("Running Whisper (Parallel)...")
-            checkpoint["scenes"], step["asr_timings"] = _logged(extract_speech_singlecall)(
+            asr_result, step["asr_timings"] = _logged(extract_speech_singlecall)(
                 scenes=checkpoint["scenes"],
                 scan_result=scan_result,
                 model_size=cfg.asr_model_size,
@@ -380,6 +230,7 @@ def main():
                 force_cpu=False,
                 debug=True,
             )
+            checkpoint["scenes"] = asr_result[0] if isinstance(asr_result, tuple) else asr_result
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
         if not have_key(checkpoint["scenes"], "audio_natural"):
@@ -466,7 +317,3 @@ def main():
 
             save_log(data=log, path=f"logs/{output_dir}.json")
             save_checkpoint(checkpoint=log, path=checkpoint_path)
-
-
-if __name__ == "__main__":
-    main()
