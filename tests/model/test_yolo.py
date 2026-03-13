@@ -12,7 +12,7 @@ def test_yolo_detect_real_image(sample_frame_path):
     from ultralytics import YOLO
     from kairos.video.object_detection import run_yolo_on_frame
 
-    model = YOLO("data/models/yolov8s.pt")
+    model = YOLO("models/yolov8s.pt")
     frame = cv2.imread(str(sample_frame_path))
     assert frame is not None
 
@@ -24,7 +24,7 @@ def test_yolo_detection_keys(sample_frame_path):
     from ultralytics import YOLO
     from kairos.video.object_detection import run_yolo_on_frame
 
-    model = YOLO("data/models/yolov8s.pt")
+    model = YOLO("models/yolov8s.pt")
     frame = cv2.imread(str(sample_frame_path))
     detections = run_yolo_on_frame(model, frame, conf=0.3)
 
@@ -42,7 +42,7 @@ def test_yolo_detects_person(sample_frame_path):
     from ultralytics import YOLO
     from kairos.video.object_detection import run_yolo_on_frame
 
-    model = YOLO("data/models/yolov8s.pt")
+    model = YOLO("models/yolov8s.pt")
     frame = cv2.imread(str(sample_frame_path))
     detections = run_yolo_on_frame(model, frame, conf=0.3)
 
