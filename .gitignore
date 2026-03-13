@@ -208,12 +208,8 @@ marimo/_lsp/
 __marimo__/
 
 # Kairos project-specific
-Videos/
-_processed/
+data/
 logs/
-log_reports/
-models/
-tmp_whisper/
 *.wav
 *.mp4
 *.mp3
