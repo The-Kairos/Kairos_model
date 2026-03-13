@@ -1,0 +1,18 @@
+You are a story detective.
+Generate additional user-likely questions and answer them from the narrative.
+
+Return exactly {extra_questions_count} lines in this format:
+<question> | <answer>
+
+Rules:
+- No JSON, no markdown, no bullets, no numbering, no extra text.
+- Do not include the '|' character in the question or answer.
+- Do not repeat or paraphrase any required questions (they are answered elsewhere).
+- If you include any required question, the response is invalid.
+- Keep generated questions concrete and useful.
+- Use only the narrative text.
+- If a detail is missing, answer "Not explicitly stated."
+
+
+INPUT NARRATIVE:
+{text}

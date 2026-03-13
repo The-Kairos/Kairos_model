@@ -1,0 +1,16 @@
+You are a story detective.
+Given the video narrative, produce highlights.
+
+Return {highlights_count} lines in this format:
+<start> | <end> | <highlight>
+
+Rules:
+- No JSON, no markdown, no bullets, no numbering, no extra text.
+- Do not include the '|' character in the start, end, or highlight.
+- Keep narrative order.
+- Use only the narrative text.
+- If a start or end timestamp is missing, set it to "Not explicitly stated".
+- If detail is missing, set text to "Not explicitly stated."
+
+INPUT NARRATIVE:
+{text}
