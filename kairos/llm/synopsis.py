@@ -6,6 +6,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import quote
 from openai import OpenAI
+from kairos.llm.client import is_gemini_client
 
 CHUNK_SIZE = 7000
 FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
@@ -958,41 +959,48 @@ def _is_responsible_ai_error(exc: Exception) -> bool:
 
 def call_gpt(client, deployment, prompt, retries: int = GPT_MAX_RETRIES, retry_base_sec: float = GPT_RETRY_BASE_SEC):
     """
-    Minimal GPT call using OpenAI client
+    Call LLM (Gemini or OpenAI) with retries.
     """
     last_exc = None
     for attempt in range(retries):
         try:
-            kwargs = dict(
-                messages=[
-                    {"role": "system", "content": "You are a precise and reliable assistant."},
-                    {"role": "user", "content": prompt}
-                ],
-                model=deployment,
-            )
-            # GPT 5+ does not support max_tokens or temperature
-            model_ver = re.search(r"(\d+)", deployment or "")
-            if model_ver and int(model_ver.group(1)) >= 5:
-                kwargs["max_completion_tokens"] = 16384
+            if is_gemini_client(client):
+                response = client.models.generate_content(
+                    model=deployment,
+                    contents=prompt,
+                )
+                text = (response.text or "").strip()
             else:
-                kwargs["max_tokens"] = 16384
-                kwargs["temperature"] = 0.2
-                kwargs["top_p"] = 1.0
-            response = client.chat.completions.create(**kwargs)
-            message = response.choices[0].message
-            content = message.content
-            if isinstance(content, str):
-                text = content.strip()
-            elif isinstance(content, list):
-                parts = []
-                for item in content:
-                    if isinstance(item, dict):
-                        value = item.get("text")
-                        if isinstance(value, str):
-                            parts.append(value)
-                text = "".join(parts).strip()
-            else:
-                text = ""
+                kwargs = dict(
+                    messages=[
+                        {"role": "system", "content": "You are a precise and reliable assistant."},
+                        {"role": "user", "content": prompt}
+                    ],
+                    model=deployment,
+                )
+                # GPT 5+ does not support max_tokens or temperature
+                model_ver = re.search(r"(\d+)", deployment or "")
+                if model_ver and int(model_ver.group(1)) >= 5:
+                    kwargs["max_completion_tokens"] = 16384
+                else:
+                    kwargs["max_tokens"] = 16384
+                    kwargs["temperature"] = 0.2
+                    kwargs["top_p"] = 1.0
+                response = client.chat.completions.create(**kwargs)
+                message = response.choices[0].message
+                content = message.content
+                if isinstance(content, str):
+                    text = content.strip()
+                elif isinstance(content, list):
+                    parts = []
+                    for item in content:
+                        if isinstance(item, dict):
+                            value = item.get("text")
+                            if isinstance(value, str):
+                                parts.append(value)
+                    text = "".join(parts).strip()
+                else:
+                    text = ""
             if not text:
                 raise RuntimeError("Model returned empty content")
             return text
