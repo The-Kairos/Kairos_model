@@ -6,7 +6,7 @@ from pathlib import Path
 
 SECTION_LINE = "=" * 40
 
-PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
+PROMPTS_DIR = Path(__file__).resolve().parents[1] / "prompts"
 
 
 def print_section(title: str) -> None:

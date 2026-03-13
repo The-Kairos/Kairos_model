@@ -132,7 +132,7 @@ def get_scene_list(
 
 
 def test():
-    test_video = r'Videos\SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4'
+    test_video = r'data/videos/SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4'
     scenes = get_scene_list(test_video)
 
     print(f"Found {len(scenes)} scenes.")

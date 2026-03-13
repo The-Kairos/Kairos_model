@@ -376,7 +376,7 @@ def format_track_summaries(summaries: list, style: str = "compact") -> list:
 
 def detect_object_yolo(
     scenes: list,
-    model_size: str = "models/yolov8s.pt",
+    model_size: str = "data/models/yolov8s.pt",
     conf: float = 0.5,
     iou: float = 0.45,
     output_dir: str = None,

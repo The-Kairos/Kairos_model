@@ -8,8 +8,8 @@ from openpyxl.styles import Alignment
 # ----------------------------
 # Config
 # ----------------------------
-LOG_DIR = "./logs"
-OUTPUT_EXCEL = "./log_reports/llm_descriptions_comparisons.xlsx"
+LOG_DIR = "./logs/runs"
+OUTPUT_EXCEL = "./logs/reports/llm_descriptions_comparisons.xlsx"
 
 SHARED_COLS = [
     "frame_captions",

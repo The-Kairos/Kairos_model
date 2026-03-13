@@ -30,7 +30,7 @@ class PipelineConfig:
     blip_repetition_penalty: float = 1.1
 
     # YOLO object detection
-    yolo_model_path: str = "models/yolov8s.pt"
+    yolo_model_path: str = "data/models/yolov8s.pt"
     yolo_action_fps: float = 4.0
     yolo_conf_thres: float = 0.8
     yolo_iou_thres: float = 0.5

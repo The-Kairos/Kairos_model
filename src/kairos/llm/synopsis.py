@@ -7,6 +7,7 @@ from pathlib import Path
 from urllib.parse import quote
 from openai import OpenAI
 from kairos.llm.client import is_gemini_client
+from kairos.core.utils import load_prompt
 
 CHUNK_SIZE = 7000
 FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
@@ -1041,14 +1042,6 @@ def call_gpt_safe(
             return raw_fallback
         _debug_print(debug, f"{context}: using fallback due to API error")
         return fallback_text
-
-# ----------------------
-# 4. Segment synthesis prompts (loaded from prompts folder)
-# ----------------------
-PROMPTS_DIR = Path(__file__).resolve().parents[1] / "prompts"
-
-def load_prompt(filename: str) -> str:
-    return (PROMPTS_DIR / filename).read_text(encoding="utf-8")
 
 SEGMENT_PROMPT = load_prompt("chunk_summary.txt")
 FALLBACK_SEGMENT_PROMPT = load_prompt("fallback_chunk_summary.txt")

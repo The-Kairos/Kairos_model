@@ -6,19 +6,21 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from kairos.core.utils import apply_gpt_normalization, print_prefixed
+from kairos.core.utils import apply_gpt_normalization, print_prefixed, load_prompt, PROMPTS_DIR
 
 
 def describe_flash_scene(
     scene_text: str,
     client,
-    prompt_path: str = "prompts/describe_scene.txt",
+    prompt_path: str | None = None,
     model: str = None,
     gpt_deployment: str = None,
     gpt_temperature: float = 0.3,
     video_path: str | None = None,
 ) -> str:
     """Generate an LLM summary for a single scene."""
+    if prompt_path is None:
+        prompt_path = str(PROMPTS_DIR / "describe_scene.txt")
     with open(prompt_path, "r", encoding="utf-8") as f:
         template = f.read()
 
@@ -118,9 +120,9 @@ def describe_scenes(
     ASR_key="audio_natural", AST_key="audio_speech",
     SUMMARY_key="llm_scene_description",
     model=None,
-    prompt_path="prompts/describe_scene.txt",
-    short_prompt_path="prompts/describe_scene_short.txt",
-    fallback_prompt_path="prompts/fallback_describe_scene.txt",
+    prompt_path=None,
+    short_prompt_path=None,
+    fallback_prompt_path=None,
     short_fallback_prompt_path: str | None = None,
     max_workers: int | None = None,
     rate_limit_cooldown_sec: float = 20.0,
@@ -130,6 +132,12 @@ def describe_scenes(
     debug=False,
 ) -> list:
     """Two-stage (map-reduce) scene description pipeline."""
+    if prompt_path is None:
+        prompt_path = str(PROMPTS_DIR / "describe_scene.txt")
+    if short_prompt_path is None:
+        short_prompt_path = str(PROMPTS_DIR / "describe_scene_short.txt")
+    if fallback_prompt_path is None:
+        fallback_prompt_path = str(PROMPTS_DIR / "fallback_describe_scene.txt")
     if short_fallback_prompt_path is None:
         short_fallback_prompt_path = fallback_prompt_path
 

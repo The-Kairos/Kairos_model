@@ -16,8 +16,8 @@ import pandas as pd
 # python log_reports/_print_logs.py -i ./logs/_processed -m new_report_with_titanic.md 
 # =======================================================================================
 
-DEFAULT_LOG_DIR = "./logs"
-DEFAULT_OUTPUT_DIR = "./log_reports"
+DEFAULT_LOG_DIR = "./logs/runs"
+DEFAULT_OUTPUT_DIR = "./logs/reports"
 DEFAULT_OUTPUT_MD = "new_report.md"
 DEFAULT_SAVE_CSV = False
 

@@ -25,9 +25,9 @@ def _logged(func):
 
 
 def main():
-    VIDEOS_DIR = Path("Videos")
+    VIDEOS_DIR = Path("data/videos")
     CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
-    PROCESSED_ROOT = Path("_processed")
+    PROCESSED_ROOT = Path("data/processed")
 
     args = parse_args()
 
@@ -262,7 +262,6 @@ def main():
                 AST_key="audio_natural",
                 SUMMARY_key="llm_scene_description",
                 model=model_name,
-                prompt_path="kairos/prompts/describe_scene.txt",
                 cooldown_sec=cfg.llm_cooldown_sec,
                 debug=True,
                 video_path=test_video,
@@ -315,5 +314,5 @@ def main():
                 vid_df=cleared_checkpoint,
             )
 
-            save_log(data=log, path=f"logs/{output_dir}.json")
+            save_log(data=log, path=f"logs/runs/{output_dir}.json")
             save_checkpoint(checkpoint=log, path=checkpoint_path)
