@@ -90,7 +90,9 @@ _SCHEMA_SUMMARY = (
 
 _SCHEMA_HIGHLIGHTS = (
     "Use this exact schema and key names:\n"
-    '{ "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ] }\n'
+    '{ "video_highlights": [ { "start": "00:00:00", '
+    '"end": "00:00:00", '
+    '"highlight": "One sentence highlight." } ] }\n'
 )
 
 _SCHEMA_TIMELINE = (
@@ -108,8 +110,11 @@ _SCHEMA_MONOLITH = (
     "{\n"
     '  "chat_name": "3-5 word title",\n'
     '  "summary": "Single coherent paragraph.",\n'
-    '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
-    '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ]\n'
+    '  "video_highlights": [ { "start": "00:00:00", '
+    '"end": "00:00:00", '
+    '"highlight": "One sentence highlight." } ],\n'
+    '  "video_timeline": [ { "timestamp": "00:00:00", '
+    '"event": "3-5 word event" } ]\n'
     "}\n"
 )
 
@@ -170,7 +175,8 @@ def _build_repair_prompt(
         rules = (
             f"- Include exactly {extra_questions_count} items.\n"
             "- Do not repeat required questions (they are answered elsewhere).\n"
-            '- If not enough items, add placeholder questions like "Additional predicted question N?".\n'
+            "- If not enough items, add placeholder questions "
+            'like "Additional predicted question N?".\n'
         )
     else:
         rules = ""
@@ -190,13 +196,16 @@ def _build_generated_fill_prompt(
     )
     return (
         "You are a story detective.\n"
-        "Generate additional user-likely questions and answer them from the narrative.\n"
+        "Generate additional user-likely questions "
+        "and answer them from the narrative.\n"
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
         "Use this exact schema:\n"
-        '{ "questions": [ { "question": "Question text", "answer": "Answer text" } ] }\n'
+        '{ "questions": [ { "question": "Question text", '
+        '"answer": "Answer text" } ] }\n'
         "Rules:\n"
         f"- Return exactly {missing_count} items.\n"
-        "- Do not repeat or paraphrase any required questions (they are answered elsewhere).\n"
+        "- Do not repeat or paraphrase any required "
+        "questions (they are answered elsewhere).\n"
         "- Do not repeat or paraphrase any existing questions below.\n"
         "- Keep generated questions concrete and useful.\n"
         "- Use only the narrative text.\n"
@@ -233,9 +242,11 @@ def _build_questions_prompt(
         "}\n"
         "Rules:\n"
         f'- "questions" must contain exactly {total_questions} items.\n'
-        "- The first questions must be the Required Questions in the exact order listed below.\n"
+        "- The first questions must be the Required "
+        "Questions in the exact order listed below.\n"
         f"- After that, add exactly {extra_questions_count} new, predicted questions.\n"
-        f'- Use only the narrative. If a detail is missing, set the answer to "{NOT_STATED_PERIOD}"\n'
+        "- Use only the narrative. If a detail is missing, "
+        f'set the answer to "{NOT_STATED_PERIOD}"\n'
         "- Do not include any other keys besides questions.\n"
         "Required Questions:\n"
         f"{required_block}\n"
@@ -253,8 +264,10 @@ def _build_scene_chunk_summary_prompt(chunk: dict) -> str:
         "- Keep names, objects, and quotes precise.\n"
         "- Include key timestamps when present.\n"
         "- Keep it concise while preserving important events.\n"
-        f"Chunk metadata: scenes {chunk['scene_start_idx']} to {chunk['scene_end_idx']}, "
-        f"time {chunk.get('start_timecode')} to {chunk.get('end_timecode')}.\n\n"
+        f"Chunk metadata: scenes {chunk['scene_start_idx']} "
+        f"to {chunk['scene_end_idx']}, "
+        f"time {chunk.get('start_timecode')} "
+        f"to {chunk.get('end_timecode')}.\n\n"
         f"SCENE CHUNK:\n{chunk['text']}\n"
     )
 
@@ -270,7 +283,8 @@ def _build_reduce_prompt(items: list[dict], round_idx: int) -> str:
     joined = "\n\n".join(blocks)
     return (
         "You are a story detective.\n"
-        "Merge the following adjacent chronological summaries into one coherent summary.\n"
+        "Merge the following adjacent chronological "
+        "summaries into one coherent summary.\n"
         "Rules:\n"
         "- Keep chronological order.\n"
         "- Remove duplicates only when meaning is preserved.\n"
@@ -339,13 +353,15 @@ def _build_safe_section_prompt(
         )
     elif section == "qna_generated":
         rules = (
-            f"- Add exactly {extra_questions_count} additional questions (not in required list).\n"
+            f"- Add exactly {extra_questions_count} "
+            "additional questions (not in required list).\n"
             "- Do not repeat required questions (they are answered elsewhere).\n"
             "- Use only the narrative.\n"
         )
     elif section == "qna_legacy":
         rules = (
-            "- Include the required questions below, in order, then add extra questions.\n"
+            "- Include the required questions below, "
+            "in order, then add extra questions.\n"
             f"- Add exactly {extra_questions_count} extra questions.\n"
             "Required Questions:\n"
             f"{required_questions_block}\n"
@@ -407,17 +423,19 @@ def _build_consistency_prompt(
         "{\n"
         '  "chat_name": "3-5 word title",\n'
         '  "summary": "Single coherent paragraph.",\n'
-        '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
-        '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
+        '  "video_highlights": [ { "start": "00:00:00", '
+        '"end": "00:00:00", '
+        '"highlight": "One sentence highlight." } ],\n'
+        '  "video_timeline": [ { "timestamp": "00:00:00", '
+        '"event": "3-5 word event" } ],\n'
         '  "questions": [ { "question": "Question text", "answer": "Answer text" } ]\n'
         "}\n"
     )
     return (
         "You are a story detective.\n"
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
-        "Review the draft synopsis and correct any factual inconsistencies using only the narrative.\n"
-        + consistency_schema
-        + "Rules:\n"
+        "Review the draft synopsis and correct any factual "
+        "inconsistencies using only the narrative.\n" + consistency_schema + "Rules:\n"
         f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
         f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
         f'- "questions" must contain exactly {required_questions_count} items.\n'

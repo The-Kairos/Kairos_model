@@ -1,4 +1,8 @@
-"""Pipeline step orchestration: scene detection -> frame sampling -> captioning -> YOLO -> audio -> LLM -> synopsis -> RAG."""
+"""Pipeline step orchestration.
+
+scene detection -> frame sampling -> captioning -> YOLO ->
+audio -> LLM -> synopsis -> RAG.
+"""
 
 from __future__ import annotations
 

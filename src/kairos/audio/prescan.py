@@ -1,4 +1,7 @@
-"""Audio pre-scan with dynamic thresholds: orchestrates extraction, RMS, VAD, spectral, and language detection."""
+"""Audio pre-scan with dynamic thresholds.
+
+Orchestrates extraction, RMS, VAD, spectral, and language detection.
+"""
 
 import math
 import time

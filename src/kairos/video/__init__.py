@@ -1,4 +1,7 @@
-"""Video processing: scene detection, frame sampling, captioning, and object detection."""
+"""Video processing.
+
+Scene detection, frame sampling, captioning, and object detection.
+"""
 
 __all__ = [
     "debug_draw",

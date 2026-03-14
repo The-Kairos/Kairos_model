@@ -127,7 +127,8 @@ def chunk_narrative(narrative: str, chunk_size: int = CHUNK_SIZE, debug: bool = 
         chunks.append(this_chunk)
     _mapreduce_log(
         debug,
-        f"chunk_narrative: splitting narrative len={len(narrative)} to {len(chunks)} chunks",
+        f"chunk_narrative: splitting narrative len={len(narrative)} "
+        f"to {len(chunks)} chunks",
     )
     return chunks
 
@@ -253,7 +254,8 @@ def parallel_reduce_summaries(
         current = [item for item in reduced if item is not None]
         _mapreduce_log(
             debug,
-            f"parallel_reduce_summaries: round={round_idx}, groups={len(groups)}, next={len(current)}",
+            f"parallel_reduce_summaries: round={round_idx}, "
+            f"groups={len(groups)}, next={len(current)}",
         )
 
     return current[0] if current else None

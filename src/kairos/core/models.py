@@ -1,4 +1,6 @@
-"""Thread-safe model registry: lazy-load and cache ML models with a single lock per model.
+"""Thread-safe model registry.
+
+Lazy-load and cache ML models with a single lock per model.
 
 Usage::
 

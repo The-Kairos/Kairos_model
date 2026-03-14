@@ -1,4 +1,7 @@
-"""Whisper-based speech transcription: parallel chunking, scene mapping, and orchestration."""
+"""Whisper-based speech transcription.
+
+Parallel chunking, scene mapping, and orchestration.
+"""
 
 import concurrent.futures
 import gc

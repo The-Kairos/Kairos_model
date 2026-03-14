@@ -44,7 +44,9 @@ def sample_scenes():
             },
             "audio_natural": "Speech",
             "audio_speech": "Thank you for this honor.",
-            "llm_scene_description": "A woman speaks at a podium during an awards ceremony.",
+            "llm_scene_description": (
+                "A woman speaks at a podium during an awards ceremony."
+            ),
         },
         {
             "scene_index": 1,
@@ -74,7 +76,9 @@ def sample_scenes():
             "yolo_detections": {},
             "audio_natural": "Speech, Music",
             "audio_speech": "I am proud to be here today.",
-            "llm_scene_description": "A close-up shot of the speaker, wearing a pink headscarf.",
+            "llm_scene_description": (
+                "A close-up shot of the speaker, wearing a pink headscarf."
+            ),
         },
     ]
 

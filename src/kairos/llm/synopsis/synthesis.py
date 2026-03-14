@@ -1,4 +1,8 @@
-"""Synopsis synthesis: LLM orchestration for scene summarization and structured synopsis generation."""
+"""Synopsis synthesis.
+
+LLM orchestration for scene summarization and structured
+synopsis generation.
+"""
 
 from __future__ import annotations
 
@@ -69,7 +73,8 @@ REQUIRED_QUESTIONS = [
     "What are the key actions and who performed them?",
     "What are the main conflicts and problems encountered?",
     "Who is the main character? Describe their journey.",
-    "List the characters. For each character, describe their appearance, traits, and role in the story.",
+    "List the characters. For each character, describe their "
+    "appearance, traits, and role in the story.",
     "What are some significant quotes from the video and who said them?",
     "What is the setting? Did it change? How is it related to the story?",
     "How did the video start? Explain the start.",
@@ -83,7 +88,8 @@ REQUIRED_QUESTIONS = [
     "What context is missing or assumed? What would require outside knowledge?",
     "What are key visual descriptions?",
     "What are key audio descriptions?",
-    "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
+    "Are the visual and audio cues noticed throughout the video "
+    "aligned? If not, how do they differ?",
     "What are prominent visual cues and audio cues noticed throughout the video?",
     "Does the video contain any live action, animation, or special effects?",
 ]
@@ -232,7 +238,8 @@ def summarize_scenes(
         _synopsis_log(debug, "summarize_scenes:")
         _synopsis_log(
             debug,
-            f"    narrative_size 1: {len(narrative)} char ({len(mapped_summaries)} chunks)",
+            f"    narrative_size 1: {len(narrative)} char "
+            f"({len(mapped_summaries)} chunks)",
         )
 
     if len(narrative) > summary_len and mapped_summaries:
@@ -271,7 +278,8 @@ def summarize_scenes(
             if debug:
                 _synopsis_log(
                     debug,
-                    f"    narrative_size 3: {len(narrative)} char (final consistency pass)",
+                    f"    narrative_size 3: {len(narrative)} "
+                    "char (final consistency pass)",
                 )
         except Exception as exc:
             _synopsis_log(
@@ -404,7 +412,11 @@ def _apply_monolith_fallback(
         debug,
         "synthesize_synopsis: falling back to monolithic synopsis for base sections",
     )
-    monolith_fallback = f'{{"chat_name":"{NOT_STATED}","summary":"{NOT_STATED_PERIOD}","video_highlights":[],"video_timeline":[]}}'
+    monolith_fallback = (
+        f'{{"chat_name":"{NOT_STATED}",'
+        f'"summary":"{NOT_STATED_PERIOD}",'
+        f'"video_highlights":[],"video_timeline":[]}}'
+    )
     monolith_prompt = _build_monolith_prompt(
         narrative_text=narrative_text,
         highlight_min=highlight_min,
@@ -436,7 +448,10 @@ def _apply_monolith_fallback(
 def _fill_missing_generated(
     client, generated_questions, narrative_text, extra_questions_count, debug
 ):
-    """Fill missing generated questions via LLM, then pad with placeholders if still short."""
+    """Fill missing generated questions via LLM.
+
+    Pad with placeholders if still short.
+    """
     missing = extra_questions_count - len(generated_questions)
     if missing <= 0:
         return generated_questions, False
@@ -474,7 +489,8 @@ def _fill_missing_generated(
     if len(generated_questions) < extra_questions_count:
         _synopsis_log(
             debug,
-            "synthesize_synopsis: generated questions still short, padding placeholders",
+            "synthesize_synopsis: generated questions "
+            "still short, padding placeholders",
         )
         while len(generated_questions) < extra_questions_count:
             idx = len(generated_questions) + 1

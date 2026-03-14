@@ -38,7 +38,8 @@ def transcribe_via_api(
         client = _ensure_whisper_client()
     if client is None:
         raise ValueError(
-            "Whisper API credentials not found in environment (WHISPER_API_KEY, WHISPER_API_ENDPOINT)."
+            "Whisper API credentials not found in environment"
+            " (WHISPER_API_KEY, WHISPER_API_ENDPOINT)."
         )
     deployment = os.environ.get("WHISPER_API_DEPLOYMENT")
     tmp_dir = Path(__file__).resolve().parent.parent / "tmp_whisper"

@@ -149,7 +149,8 @@ def extract_sounds_optimized(
     if debug:
         print_prefixed(
             "(AST)",
-            f"Done: {processed_count} processed, {skipped_count} skipped, {elapsed:.2f}s",
+            f"Done: {processed_count} processed, "
+            f"{skipped_count} skipped, {elapsed:.2f}s",
         )
 
     return scenes, {

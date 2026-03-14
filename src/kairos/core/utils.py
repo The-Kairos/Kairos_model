@@ -1,4 +1,7 @@
-"""Shared utility functions: printing, timecodes, prompt loading, normalization, retry, and helpers."""
+"""Shared utility functions.
+
+Printing, timecodes, prompt loading, normalization, retry, and helpers.
+"""
 
 import json
 import random
@@ -78,7 +81,8 @@ def see_scenes_cuts(df):
         end_tc = s.get("end_timecode") or format_timecode(s.get("end_seconds"))
         print_prefixed(
             "(PysceneDetect)",
-            f"Scene {scene_label}: {start_tc} -> {end_tc} ({s['duration_seconds']:.2f} sec)",
+            f"Scene {scene_label}: {start_tc} -> {end_tc} "
+            f"({s['duration_seconds']:.2f} sec)",
             indent=4,
         )
 
@@ -112,9 +116,11 @@ def retry_with_backoff(
 
     Args:
         fn: Zero-argument callable to attempt.
-        max_retries: Maximum number of retry attempts (total calls = max_retries + 1 at most).
+        max_retries: Maximum number of retry attempts
+            (total calls = max_retries + 1 at most).
         base_sec: Base delay in seconds; doubles each attempt.
-        is_retryable: Predicate ``(Exception) -> bool``. Defaults to ``is_rate_limit_error``.
+        is_retryable: Predicate ``(Exception) -> bool``.
+            Defaults to ``is_rate_limit_error``.
         jitter: Add random jitter (0-1 s) to the sleep time.
 
     Returns:

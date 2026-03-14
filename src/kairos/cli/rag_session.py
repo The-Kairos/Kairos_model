@@ -119,7 +119,9 @@ def ask_rag(
         if show_timings:
             print("-" * 80)
             print(
-                f"Timings (sec): embed={t1 - t0:.3f} | search={t2 - t1:.3f} | gen={t3 - t2:.3f}"
+                f"Timings (sec): embed={t1 - t0:.3f} "
+                f"| search={t2 - t1:.3f} "
+                f"| gen={t3 - t2:.3f}"
             )
         print("=" * 80)
 

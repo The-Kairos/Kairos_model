@@ -102,7 +102,8 @@ def select_videos(args, catalog: list[dict], videos_dir: Path) -> list[Path]:
                 selected_entries.append(entry)
         if unknown and not include_unknown:
             print(
-                f"Skipping {unknown} video(s) with unknown length. Use --include-unknown to include."
+                f"Skipping {unknown} video(s) with unknown length. "
+                "Use --include-unknown to include."
             )
         entries = selected_entries
 

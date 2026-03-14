@@ -193,7 +193,10 @@ def _compute_moving_with(
     moving_with_speed_ratio,
     moving_with_min_speed,
 ):
-    """Detect pairs of tracks moving together based on velocity similarity and proximity."""
+    """Detect pairs of tracks moving together.
+
+    Based on velocity similarity and proximity.
+    """
     moving_counts = {}
     max_dist = diag * proximity_ratio
     for frame_idx, centers in frame_centers.items():

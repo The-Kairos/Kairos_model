@@ -1,4 +1,7 @@
-"""Video synopsis orchestration: scene summarization and structured synopsis generation."""
+"""Video synopsis orchestration.
+
+Scene summarization and structured synopsis generation.
+"""
 
 from kairos.llm.synopsis.synthesis import (  # noqa: F401
     call_gpt,

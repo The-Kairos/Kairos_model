@@ -1,4 +1,7 @@
-"""LLM-powered scene description: format raw data, call GPT/Gemini, two-stage map-reduce."""
+"""LLM-powered scene description.
+
+Format raw data, call GPT/Gemini, two-stage map-reduce.
+"""
 
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -73,8 +76,11 @@ def format_single_description(captions: list, yolo) -> str:
             for det in dets:
                 x_center, y_center, area = normalize_bbox(det.get("bbox", [0, 0, 0, 0]))
                 lines.append(
-                    f"    - {det.get('label', 'unknown')} (conf={det.get('confidence', 0.0):.2f}), "
-                    f"x_center={x_center:.1f}, y_center={y_center:.1f}, area={area:.1f}"
+                    f"    - {det.get('label', 'unknown')} "
+                    f"(conf={det.get('confidence', 0.0):.2f}), "
+                    f"x_center={x_center:.1f}, "
+                    f"y_center={y_center:.1f}, "
+                    f"area={area:.1f}"
                 )
         else:
             lines.append("  Objects: none detected.")

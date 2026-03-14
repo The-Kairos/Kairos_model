@@ -151,7 +151,10 @@ class PipelineConfig:
 
     @property
     def blip_params(self) -> dict:
-        """Collect all BLIP generation fields into a single dict for **kwargs forwarding."""
+        """Collect all BLIP generation fields into a dict.
+
+        Used for **kwargs forwarding.
+        """
         return {
             "prompt": self.blip_start_prompt,
             "max_length": self.blip_caption_len,

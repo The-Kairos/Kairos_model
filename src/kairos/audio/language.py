@@ -48,7 +48,9 @@ def detect_languages(
     if debug:
         print_prefixed(
             "(AudioDetector)",
-            f"Languages: {detected_counts}, Primary: {primary}, Multilingual: {is_multilingual}",
+            f"Languages: {detected_counts}, "
+            f"Primary: {primary}, "
+            f"Multilingual: {is_multilingual}",
         )
     return {
         "primary_language": primary,

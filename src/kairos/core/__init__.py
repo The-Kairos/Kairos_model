@@ -1,4 +1,6 @@
-"""Core infrastructure: checkpoint I/O, logging, pipeline orchestration, redo, utilities.
+"""Core infrastructure.
+
+Checkpoint I/O, logging, pipeline orchestration, redo, utilities.
 
 New modules added by the enhancement pass:
 - :mod:`kairos.core.exceptions` — custom exception hierarchy
