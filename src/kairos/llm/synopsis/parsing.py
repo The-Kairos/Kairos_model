@@ -372,30 +372,10 @@ def _normalize_highlights(payload: dict, min_count: int, max_count: int) -> list
     return items
 
 
-def _normalize_timeline(payload: dict, min_count: int, max_count: int) -> list[dict]:
-    raw = payload.get("video_timeline", []) if isinstance(payload, dict) else []
-    items = []
-    if isinstance(raw, list):
-        for entry in raw:
-            ts = event = None
-            if isinstance(entry, dict):
-                ts = entry.get("timestamp")
-                event = entry.get("event")
-            elif isinstance(entry, str):
-                event = entry
-            if not isinstance(ts, str) or not ts.strip():
-                ts = "Not explicitly stated"
-            if not isinstance(event, str) or not event.strip():
-                event = "Not explicitly stated."
-            items.append({"timestamp": ts.strip(), "event": event.strip()})
-    if len(items) > max_count:
-        items = items[:max_count]
-    while len(items) < min_count:
-        items.append({"timestamp": "Not explicitly stated", "event": "Not explicitly stated."})
-    return items
-
-
-def _normalize_section_items(payload: dict, key: str, text_key: str, count: int) -> list[dict]:
+def _normalize_section_items(payload: dict, key: str, text_key: str,
+                             min_count: int, max_count: int | None = None) -> list[dict]:
+    if max_count is None:
+        max_count = min_count
     raw = payload.get(key, []) if isinstance(payload, dict) else []
     items = []
     if isinstance(raw, list):
@@ -413,10 +393,15 @@ def _normalize_section_items(payload: dict, key: str, text_key: str, count: int)
             if not isinstance(text, str) or not text.strip():
                 text = "Not explicitly stated."
             items.append({"timestamp": ts.strip(), text_key: text.strip()})
-    items = items[:count]
-    while len(items) < count:
+    if len(items) > max_count:
+        items = items[:max_count]
+    while len(items) < min_count:
         items.append({"timestamp": "Not explicitly stated", text_key: "Not explicitly stated."})
     return items
+
+
+def _normalize_timeline(payload: dict, min_count: int, max_count: int) -> list[dict]:
+    return _normalize_section_items(payload, "video_timeline", "event", min_count, max_count)
 
 
 def _normalize_predefined_questions(questions: list[dict], required_questions: list[str]) -> list[dict]:

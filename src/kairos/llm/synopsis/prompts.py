@@ -41,16 +41,18 @@ def _count_range_label(value, min_count: int, max_count: int) -> str:
     return f"{min_count}-{max_count}"
 
 
-def _highlight_count_rule(min_count: int, max_count: int, label: str) -> str:
+def _count_rule(key: str, min_count: int, max_count: int, label: str) -> str:
     if min_count == max_count:
-        return f"- \"video_highlights\" must contain exactly {min_count} items.\n"
-    return f"- \"video_highlights\" must contain between {min_count} and {max_count} items ({label}).\n"
+        return f"- \"{key}\" must contain exactly {min_count} items.\n"
+    return f"- \"{key}\" must contain between {min_count} and {max_count} items ({label}).\n"
+
+
+def _highlight_count_rule(min_count: int, max_count: int, label: str) -> str:
+    return _count_rule("video_highlights", min_count, max_count, label)
 
 
 def _timeline_count_rule(min_count: int, max_count: int, label: str) -> str:
-    if min_count == max_count:
-        return f"- \"video_timeline\" must contain exactly {min_count} items.\n"
-    return f"- \"video_timeline\" must contain between {min_count} and {max_count} items ({label}).\n"
+    return _count_rule("video_timeline", min_count, max_count, label)
 
 
 def _required_questions_block(required_questions: list[str]) -> str:
@@ -353,4 +355,74 @@ def _build_safe_section_prompt(
         + schema
         + "INPUT NARRATIVE:\n"
         + narrative_text
+    )
+
+
+def _build_monolith_prompt(
+    narrative_text: str,
+    highlight_min: int,
+    highlight_max: int,
+    highlight_label: str,
+    timeline_min: int,
+    timeline_max: int,
+    timeline_label: str,
+) -> str:
+    return (
+        "You are a story detective.\n"
+        "Return ONE valid JSON object only. No markdown, no extra text.\n"
+        "Use this exact schema and key names:\n"
+        "{\n"
+        '  "chat_name": "3-5 word title",\n'
+        '  "summary": "Single coherent paragraph.",\n'
+        '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
+        '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ]\n'
+        "}\n"
+        "Rules:\n"
+        "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
+        f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
+        f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
+        "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
+        "INPUT NARRATIVE:\n"
+        f"{narrative_text}\n"
+    )
+
+
+def _build_consistency_prompt(
+    narrative_text: str,
+    draft_synopsis: dict,
+    highlight_min: int,
+    highlight_max: int,
+    highlight_label: str,
+    timeline_min: int,
+    timeline_max: int,
+    timeline_label: str,
+    required_block: str,
+    required_questions_count: int,
+    extra_questions_count: int,
+) -> str:
+    import json
+    draft_json = json.dumps(draft_synopsis, ensure_ascii=False)
+    return (
+        "You are a story detective.\n"
+        "Return ONE valid JSON object only. No markdown, no extra text.\n"
+        "Review the draft synopsis and correct any factual inconsistencies using only the narrative.\n"
+        "Use this exact schema and key names:\n"
+        "{\n"
+        '  "chat_name": "3-5 word title",\n'
+        '  "summary": "Single coherent paragraph.",\n'
+        '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
+        '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
+        '  "questions": [ { "question": "Question text", "answer": "Answer text" } ]\n'
+        "}\n"
+        "Rules:\n"
+        f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
+        f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
+        f"- \"questions\" must contain exactly {required_questions_count} items.\n"
+        "- Do not add any sections not in the schema.\n"
+        "Required Questions (must appear in order within questions):\n"
+        f"{required_block}\n"
+        "INPUT NARRATIVE:\n"
+        f"{narrative_text}\n"
+        "DRAFT JSON:\n"
+        f"{draft_json}\n"
     )
