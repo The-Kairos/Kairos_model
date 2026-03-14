@@ -52,6 +52,12 @@ dependencies = [
     "emoji",
 ]
 
+[project.optional-dependencies]
+test = [
+    "pytest>=9.0",
+    "pytest-mock>=3.14",
+]
+
 [project.scripts]
 kairos = "kairos.cli.app:main"
 

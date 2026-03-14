@@ -236,22 +236,21 @@ def _validate_items_payload(payload: dict, key: str, expected_count: int) -> boo
     return isinstance(items, list) and len(items) >= expected_count
 
 
-def _validate_highlights_payload(payload: dict, min_count: int, max_count: int) -> bool:
+def _validate_list_payload(payload: dict, key: str, min_count: int, max_count: int) -> bool:
     if not isinstance(payload, dict):
         return False
-    items = payload.get("video_highlights")
+    items = payload.get(key)
     if not isinstance(items, list):
         return False
     return min_count <= len(items) <= max_count
+
+
+def _validate_highlights_payload(payload: dict, min_count: int, max_count: int) -> bool:
+    return _validate_list_payload(payload, "video_highlights", min_count, max_count)
 
 
 def _validate_timeline_payload(payload: dict, min_count: int, max_count: int) -> bool:
-    if not isinstance(payload, dict):
-        return False
-    items = payload.get("video_timeline")
-    if not isinstance(items, list):
-        return False
-    return min_count <= len(items) <= max_count
+    return _validate_list_payload(payload, "video_timeline", min_count, max_count)
 
 
 def _validate_questions_payload(payload: dict, expected_count: int) -> bool:

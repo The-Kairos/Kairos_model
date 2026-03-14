@@ -143,6 +143,14 @@ class ClaudeLLMClient:
         return text
 
 
+def get_embedding_client():
+    """Return a raw Gemini genai.Client for embedding calls."""
+    from google import genai
+    project = os.getenv("GEMINI_PROJECT", "prj-udst-prod-oussama-1")
+    location = os.getenv("GEMINI_LOCATION", "us-central1")
+    return genai.Client(vertexai=True, project=project, location=location)
+
+
 def build_llm_client(llm: str | None = None) -> LLMClient:
     """Build an LLMClient from environment variables.
 

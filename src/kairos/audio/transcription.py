@@ -51,46 +51,52 @@ def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
 
 # Parallel chunking
 
+def _transcribe_via_api_with_retry(chunk_audio, sr, language, client, debug):
+    """Try the Whisper API up to 3 times with rate-limit backoff."""
+    for attempt in range(3):
+        try:
+            return transcribe_via_api(chunk_audio, sr, language=language, client=client)
+        except Exception as e:
+            if ("429" in str(e) or "RateLimitReached" in str(e)) and attempt < 2:
+                time.sleep(65)
+                continue
+            if debug:
+                print(f"[WhisperWorker] API Error: {e}")
+            return []
+    return []
+
+
+def _transcribe_via_local_model(chunk_audio, model_size, force_cpu, language):
+    """Transcribe using a locally loaded Whisper model."""
+    device = "cpu" if force_cpu else None
+    model = whisper.load_model(model_size, device=device)
+    result = model.transcribe(chunk_audio, fp16=False, verbose=None, language=language)
+    segments = result.get("segments", [])
+    del model
+    gc.collect()
+    try:
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+    except Exception:
+        pass
+    return segments
+
+
 def _transcribe_chunk_worker(args):
     (chunk_audio, sr, model_size, chunk_start_time, use_vad, force_cpu, debug, language, use_api, client) = args
     if use_vad:
         chunk_audio = nr.reduce_noise(y=chunk_audio, sr=sr, prop_decrease=0.9)
+
     if use_api:
-        segments = []
-        for attempt in range(3):
-            try:
-                segments = transcribe_via_api(chunk_audio, sr, language=language, client=client)
-                break
-            except Exception as e:
-                if "429" in str(e) or "RateLimitReached" in str(e):
-                    if attempt < 2:
-                        time.sleep(65)
-                        continue
-                if debug:
-                    print(f"[WhisperWorker] API Error: {e}")
-                break
+        segments = _transcribe_via_api_with_retry(chunk_audio, sr, language, client, debug)
         if not segments:
             try:
-                device = "cpu" if force_cpu else None
-                model = whisper.load_model(model_size, device=device)
-                result = model.transcribe(chunk_audio, fp16=False, verbose=None, language=language)
-                segments = result.get("segments", [])
-                del model
-                gc.collect()
+                segments = _transcribe_via_local_model(chunk_audio, model_size, force_cpu, language)
             except Exception:
                 return []
     else:
-        device = "cpu" if force_cpu else None
-        model = whisper.load_model(model_size, device=device)
-        result = model.transcribe(chunk_audio, fp16=False, verbose=None, language=language)
-        segments = result.get("segments", [])
-        del model
-        gc.collect()
-        try:
-            if torch.cuda.is_available():
-                torch.cuda.empty_cache()
-        except Exception:
-            pass
+        segments = _transcribe_via_local_model(chunk_audio, model_size, force_cpu, language)
+
     for seg in segments:
         seg["start"] += chunk_start_time
         seg["end"] += chunk_start_time

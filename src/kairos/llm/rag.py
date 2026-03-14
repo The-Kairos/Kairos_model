@@ -2,22 +2,16 @@
 
 import json
 import os
-import textwrap
 import time
 
 import numpy as np
 
 from kairos.core.utils import load_prompt
+from kairos.llm.client import get_embedding_client
+from kairos.llm.synopsis.render import _extract_timed_entry
 
 EMBEDDING_MODEL = os.getenv("GEMINI_EMBEDDING_MODEL", "gemini-embedding-001")
 GENERATION_MODEL = os.getenv("GEMINI_RAG_MODEL", "gemini-2.5-pro")
-
-
-def _get_gemini_client():
-    from google import genai
-    project = os.getenv("GEMINI_PROJECT", "prj-udst-prod-oussama-1")
-    location = os.getenv("GEMINI_LOCATION", "us-central1")
-    return genai.Client(vertexai=True, project=project, location=location)
 
 
 # Formatting helpers
@@ -61,17 +55,6 @@ def format_paragraph_embedding(paragraphs) -> list:
     if isinstance(paragraphs, list):
         return [p.strip() for p in paragraphs if isinstance(p, str) and p.strip()]
     return [p.strip() for p in paragraphs.split("\n\n") if p.strip()]
-
-
-def _extract_timed_entry(item, text_key: str):
-    if not isinstance(item, dict):
-        return None, None
-    if "timestamp" in item:
-        return item.get("timestamp"), item.get(text_key)
-    if len(item) == 1:
-        timestamp, value = next(iter(item.items()))
-        return timestamp, value
-    return item.get("timestamp"), item.get(text_key)
 
 
 def format_synopsis_embedding(synopsis) -> list:
@@ -127,7 +110,7 @@ MAX_EMBED_BATCH = 250
 
 def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL, batch_size=MAX_EMBED_BATCH):
     if client is None:
-        client = _get_gemini_client()
+        client = get_embedding_client()
     if not contexts:
         return []
     embeddings = []
@@ -139,7 +122,7 @@ def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL, batch_siz
 
 def embed_question(question: str, client=None, model=EMBEDDING_MODEL):
     if client is None:
-        client = _get_gemini_client()
+        client = get_embedding_client()
     result = client.models.embed_content(model=model, contents=question)
     return result.embeddings
 
@@ -244,7 +227,7 @@ def create_answer(question, top_matches, client=None, model=GENERATION_MODEL):
     prompt = template.format(context=context, question=question)
     if client is not None:
         return client.generate(prompt)
-    raw_client = _get_gemini_client()
+    raw_client = get_embedding_client()
     response = raw_client.models.generate_content(model=model, contents=prompt)
     return response.text
 
@@ -279,7 +262,7 @@ def make_embedding(checkpoint: dict, output_path: str, model=EMBEDDING_MODEL, em
     if not contexts:
         raise ValueError("No contexts found in checkpoint to embed.")
     if embedding_client is None:
-        embedding_client = _get_gemini_client()
+        embedding_client = get_embedding_client()
     embeddings = embed_contexts(contexts, client=embedding_client, model=model)
     kmeans_clusters = compute_kmeans_clusters(embeddings)
     payload = save_rag_embeddings(output_path, contexts, embeddings, model=model, kmeans_clusters=kmeans_clusters)
@@ -289,110 +272,3 @@ def make_embedding(checkpoint: dict, output_path: str, model=EMBEDDING_MODEL, em
     }
 
 
-# Conversation
-
-def _ensure_parent_dir(path):
-    folder = os.path.dirname(path)
-    if folder:
-        os.makedirs(folder, exist_ok=True)
-
-
-def _load_conversation(path):
-    if not os.path.exists(path):
-        return []
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        if isinstance(data, list):
-            return data
-        if isinstance(data, dict):
-            if isinstance(data.get("history"), list):
-                return data["history"]
-            if isinstance(data.get("items"), list):
-                return data["items"]
-    except json.JSONDecodeError:
-        return []
-    return []
-
-
-def _write_conversation(path, items):
-    _ensure_parent_dir(path)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(items, f, indent=2, ensure_ascii=False)
-
-
-def ask_rag(
-    rag_path, show_k_context=False, k=10, generation_model=GENERATION_MODEL,
-    conv_path=None, log_source=None, show_timings=False,
-    generation_client=None,
-):
-    data = load_rag_embeddings(rag_path)
-    contexts = data.get("contexts", [])
-    embeddings = data.get("embeddings", [])
-    kmeans_clusters = data.get("kmeans_clusters")
-    if kmeans_clusters is None:
-        kmeans_clusters = compute_kmeans_clusters(embeddings)
-    if not contexts or not embeddings:
-        raise ValueError("RAG embedding file is missing contexts or embeddings.")
-
-    embedding_client = _get_gemini_client()
-    print("RAG ready. Ask questions (type 'exit' to quit).")
-
-    conversation = None
-    if conv_path:
-        _ensure_parent_dir(conv_path)
-        conversation = _load_conversation(conv_path)
-        if not os.path.exists(conv_path):
-            _write_conversation(conv_path, conversation)
-
-    while True:
-        question = input("\nQuestion: ").strip()
-        if question.lower() in {"exit", "quit"}:
-            break
-        if not question:
-            continue
-
-        t0 = time.perf_counter()
-        question_embedding = embed_question(question, client=embedding_client)
-        t1 = time.perf_counter()
-
-        top_matches = get_top_k_similar(question_embedding, embeddings, contexts, k=k, cluster_metadata=kmeans_clusters)
-        t2 = time.perf_counter()
-
-        answer = create_answer(question, top_matches, client=generation_client, model=generation_model)
-        t3 = time.perf_counter()
-
-        print("=" * 80)
-        print("Answer:")
-        print(answer)
-
-        if show_k_context:
-            print("-" * 80)
-            print("Top contexts:")
-            for idx, (text, score) in enumerate(top_matches, 1):
-                snippet = text.strip()[:237] + "..." if len(text.strip()) > 240 else text.strip()
-                print(f"{idx}. score={score:.4f}")
-                print(f"   {textwrap.fill(snippet, width=96, subsequent_indent='   ')}")
-
-        if show_timings:
-            print("-" * 80)
-            print(f"Timings (sec): embed={t1 - t0:.3f} | search={t2 - t1:.3f} | gen={t3 - t2:.3f}")
-        print("=" * 80)
-
-        if conv_path:
-            if conversation is None:
-                conversation = _load_conversation(conv_path)
-            entry = {
-                "timeDate": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "user": question, "rag_answer": answer,
-                "top_k_similar": [(float(score), text) for text, score in top_matches],
-                "durations": {
-                    "question_embedding": round(t1 - t0, 4),
-                    "context_search": round(t2 - t1, 4),
-                    "llm_generation": round(t3 - t2, 4),
-                },
-            }
-            if log_source:
-                entry["source"] = log_source
-            conversation.append(entry)
-            _write_conversation(conv_path, conversation)

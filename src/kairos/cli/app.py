@@ -89,7 +89,7 @@ def main():
 
 
 def _run_rag(output_dir: str, cfg: PipelineConfig, client=None):
-    from kairos.llm.rag import ask_rag
+    from kairos.cli.rag_session import ask_rag
 
     rag_path = f"{output_dir}/rag_embedding.json"
     checkpoint_path = f"{output_dir}/checkpoint.json"

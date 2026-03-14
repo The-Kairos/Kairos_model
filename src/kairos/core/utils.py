@@ -77,3 +77,12 @@ def see_scenes_cuts(df):
             f"Scene {scene_label}: {start_tc} -> {end_tc} ({s['duration_seconds']:.2f} sec)",
             indent=4,
         )
+
+
+def is_rate_limit_error(exc: Exception) -> bool:
+    """Check if an exception indicates an API rate limit error."""
+    err_text = f"{type(exc).__name__}: {exc}".lower()
+    return any(m in err_text for m in (
+        "429", "rate limit", "ratelimit", "too many requests",
+        "quota exceeded", "resource exhausted", "request rate",
+    ))
