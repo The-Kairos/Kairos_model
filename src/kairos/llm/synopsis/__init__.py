@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from kairos.core.utils import load_prompt
-from kairos.llm.synopsis_parsing import (
+from kairos.llm.synopsis.parsing import (
     _debug_print,
     _parse_synopsis_json,
     _parse_json_object,
@@ -29,7 +29,7 @@ from kairos.llm.synopsis_parsing import (
     _normalize_predefined_questions,
     _normalize_generated_questions,
 )
-from kairos.llm.synopsis_prompts import (
+from kairos.llm.synopsis.prompts import (
     _parse_count_range,
     _count_range_label,
     _required_questions_block,
@@ -41,8 +41,8 @@ from kairos.llm.synopsis_prompts import (
     _build_safe_section_prompt,
     _build_narrative_consistency_prompt,
 )
-from kairos.llm.synopsis_render import render_synopsis_markdown
-from kairos.llm.synopsis_mapreduce import (
+from kairos.llm.synopsis.render import render_synopsis_markdown
+from kairos.llm.synopsis.mapreduce import (
     chunk_scenes,
     chunk_narrative,
     parallel_map_summaries,

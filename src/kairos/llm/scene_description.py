@@ -44,7 +44,7 @@ def normalize_bbox(bbox):
 def format_single_description(captions: list, yolo) -> str:
     lines = []
     if isinstance(yolo, list):
-        from kairos.video.object_detection import format_track_summaries
+        from kairos.video.track_summary import format_track_summaries
         for idx, cap in enumerate(captions or []):
             lines.append(f"Frame {idx}:")
             lines.append(f'  Caption: "{cap}"')

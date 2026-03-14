@@ -115,7 +115,7 @@ def test_full_pipeline(sample_video_path, fast_config, llm_client, tmp_path):
         assert "yolo_detections" in s, "Missing yolo_detections"
 
     # --- Stage 5: Audio ---
-    from kairos.audio.detector import scan_audio
+    from kairos.audio.prescan import scan_audio
     from kairos.audio.transcription import extract_speech_singlecall
     from kairos.audio.classifier import extract_sounds_optimized
 

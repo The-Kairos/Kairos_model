@@ -242,11 +242,10 @@ def create_answer(question, top_matches, client=None, model=GENERATION_MODEL):
     context = "\n".join([text for text, _ in top_matches])
     template = load_prompt("generate_answer.txt")
     prompt = template.format(context=context, question=question)
-    if client is not None and hasattr(client, "generate"):
+    if client is not None:
         return client.generate(prompt)
-    if client is None:
-        client = _get_gemini_client()
-    response = client.models.generate_content(model=model, contents=prompt)
+    raw_client = _get_gemini_client()
+    response = raw_client.models.generate_content(model=model, contents=prompt)
     return response.text
 
 
@@ -275,12 +274,13 @@ def load_rag_embeddings(path):
         return json.load(f)
 
 
-def make_embedding(checkpoint: dict, output_path: str, model=EMBEDDING_MODEL):
+def make_embedding(checkpoint: dict, output_path: str, model=EMBEDDING_MODEL, embedding_client=None):
     contexts = build_contexts(checkpoint)
     if not contexts:
         raise ValueError("No contexts found in checkpoint to embed.")
-    client = _get_gemini_client()
-    embeddings = embed_contexts(contexts, client=client, model=model)
+    if embedding_client is None:
+        embedding_client = _get_gemini_client()
+    embeddings = embed_contexts(contexts, client=embedding_client, model=model)
     kmeans_clusters = compute_kmeans_clusters(embeddings)
     payload = save_rag_embeddings(output_path, contexts, embeddings, model=model, kmeans_clusters=kmeans_clusters)
     return {
@@ -324,6 +324,7 @@ def _write_conversation(path, items):
 def ask_rag(
     rag_path, show_k_context=False, k=10, generation_model=GENERATION_MODEL,
     conv_path=None, log_source=None, show_timings=False,
+    generation_client=None,
 ):
     data = load_rag_embeddings(rag_path)
     contexts = data.get("contexts", [])
@@ -334,7 +335,7 @@ def ask_rag(
     if not contexts or not embeddings:
         raise ValueError("RAG embedding file is missing contexts or embeddings.")
 
-    client = _get_gemini_client()
+    embedding_client = _get_gemini_client()
     print("RAG ready. Ask questions (type 'exit' to quit).")
 
     conversation = None
@@ -352,13 +353,13 @@ def ask_rag(
             continue
 
         t0 = time.perf_counter()
-        question_embedding = embed_question(question, client=client)
+        question_embedding = embed_question(question, client=embedding_client)
         t1 = time.perf_counter()
 
         top_matches = get_top_k_similar(question_embedding, embeddings, contexts, k=k, cluster_metadata=kmeans_clusters)
         t2 = time.perf_counter()
 
-        answer = create_answer(question, top_matches, client=client, model=generation_model)
+        answer = create_answer(question, top_matches, client=generation_client, model=generation_model)
         t3 = time.perf_counter()
 
         print("=" * 80)

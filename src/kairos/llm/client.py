@@ -178,13 +178,3 @@ def build_llm_client(llm: str | None = None) -> LLMClient:
     client = OpenAI(base_url=endpoint, api_key=api_key)
     model = os.getenv("OPENAI_MODEL", os.getenv("OPENAI_DEPLOYMENT", "gpt-4o"))
     return OpenAILLMClient(client, model)
-
-
-def is_gemini_client(client) -> bool:
-    """Check if the client is a Gemini client (vs OpenAI).
-
-    Deprecated: Use isinstance(client, GeminiLLMClient) or the LLMClient protocol instead.
-    """
-    if isinstance(client, GeminiLLMClient):
-        return True
-    return hasattr(client, "models") and not hasattr(client, "chat")

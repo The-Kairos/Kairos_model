@@ -1,42 +1,17 @@
-"""Whisper-based speech transcription with parallel chunking and Azure API support."""
+"""Whisper-based speech transcription: parallel chunking, scene mapping, and orchestration."""
 
 import concurrent.futures
 import gc
 import os
-import re
-import tempfile
 import time
-import unicodedata
 
 import noisereduce as nr
 import numpy as np
-import scipy.io.wavfile as wav
 import torch
 import whisper
-from openai import AzureOpenAI
-from pathlib import Path
 
-
-# Whisper API client (lazy)
-
-def _get_whisper_client():
-    key = os.environ.get("WHISPER_API_KEY")
-    endpoint = os.environ.get("WHISPER_API_ENDPOINT")
-    api_version = os.environ.get("WHISPER_API_VERSION", "2024-12-01-preview")
-    if key and endpoint:
-        base_endpoint = endpoint.split("/openai")[0]
-        return AzureOpenAI(api_key=key, azure_endpoint=base_endpoint, api_version=api_version)
-    return None
-
-
-_whisper_client = None
-
-
-def _ensure_whisper_client():
-    global _whisper_client
-    if _whisper_client is None:
-        _whisper_client = _get_whisper_client()
-    return _whisper_client
+from kairos.audio.whisper_api import transcribe_via_api
+from kairos.audio.text_filter import filter_hallucinations
 
 
 # Audio preprocessing
@@ -74,51 +49,17 @@ def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
     return scene_texts
 
 
-# Whisper API transcription
-
-def transcribe_via_api(audio_np: np.ndarray, sr: int, language: str = None, client=None) -> list:
-    if client is None:
-        client = _ensure_whisper_client()
-    if client is None:
-        raise ValueError("Whisper API credentials not found in environment (WHISPER_API_KEY, WHISPER_API_ENDPOINT).")
-    deployment = os.environ.get("WHISPER_API_DEPLOYMENT")
-    tmp_dir = Path(__file__).resolve().parent.parent / "tmp_whisper"
-    tmp_dir.mkdir(parents=True, exist_ok=True)
-    fd, tmp_path = tempfile.mkstemp(suffix=".wav", dir=tmp_dir)
-    os.close(fd)
-    try:
-        wav.write(tmp_path, sr, (audio_np * 32767).astype(np.int16))
-        with open(tmp_path, "rb") as audio_file:
-            response = client.audio.transcriptions.create(
-                model=deployment, file=audio_file, language=language,
-                response_format="verbose_json",
-            )
-    finally:
-        try:
-            os.remove(tmp_path)
-        except Exception:
-            pass
-    segments = getattr(response, "segments", [])
-    if segments and not isinstance(segments[0], dict):
-        segments = [{
-            "start": float(s.start), "end": float(s.end), "text": str(s.text),
-            "avg_logprob": getattr(s, "avg_logprob", 0),
-            "no_speech_prob": getattr(s, "no_speech_prob", 0),
-        } for s in segments]
-    return segments
-
-
 # Parallel chunking
 
 def _transcribe_chunk_worker(args):
-    (chunk_audio, sr, model_size, chunk_start_time, use_vad, force_cpu, debug, language, use_api) = args
+    (chunk_audio, sr, model_size, chunk_start_time, use_vad, force_cpu, debug, language, use_api, client) = args
     if use_vad:
         chunk_audio = nr.reduce_noise(y=chunk_audio, sr=sr, prop_decrease=0.9)
     if use_api:
         segments = []
         for attempt in range(3):
             try:
-                segments = transcribe_via_api(chunk_audio, sr, language=language)
+                segments = transcribe_via_api(chunk_audio, sr, language=language, client=client)
                 break
             except Exception as e:
                 if "429" in str(e) or "RateLimitReached" in str(e):
@@ -156,83 +97,9 @@ def _transcribe_chunk_worker(args):
     return segments
 
 
-# Hallucination filtering
-
-def _strip_emoji_symbols(text: str) -> str:
-    try:
-        import emoji
-        text = emoji.replace_emoji(text, replace="")
-    except Exception:
-        pass
-    return "".join(c for c in text if unicodedata.category(c) not in ("So", "Sk"))
-
-
-def clean_repetitive_text(text: str) -> str:
-    if not text:
-        return text
-    text = re.sub(r"\s+", " ", text).strip()
-    phrases = re.split(r"([.?!,]+)", text)
-    cleaned_phrases = []
-    last_p = None
-    i = 0
-    while i < len(phrases):
-        p = phrases[i]
-        punct = phrases[i + 1] if i + 1 < len(phrases) else ""
-        p_norm = p.strip().lower()
-        if p_norm:
-            if p_norm == last_p:
-                if punct and cleaned_phrases and not re.search(r"[.?!,]$", cleaned_phrases[-1]):
-                    cleaned_phrases[-1] = cleaned_phrases[-1].rstrip() + punct
-            else:
-                cleaned_phrases.append(p.strip() + punct)
-                last_p = p_norm
-        i += 2
-    text = " ".join(cleaned_phrases).strip()
-    words = text.split()
-    if not words:
-        return text
-    cleaned_words = [words[0]]
-    for w in words[1:]:
-        w_norm = w.lower().strip(".,!?")
-        last_norm = cleaned_words[-1].lower().strip(".,!?")
-        if w_norm == last_norm and len(w_norm) > 0:
-            if re.search(r"[.,!?]$", w):
-                cleaned_words[-1] = cleaned_words[-1].rstrip(".,!?") + re.search(r"[.,!?]+$", w).group()
-        else:
-            cleaned_words.append(w)
-    return " ".join(cleaned_words)
-
-
-def filter_hallucinations(segments: list, primary_lang: str = None) -> list:
-    final = []
-    seen_texts = set()
-    for seg in segments:
-        text = _strip_emoji_symbols(seg["text"].strip())
-        text = re.sub(r"\s+", " ", text).strip()
-        if not text:
-            continue
-        special_count = sum(1 for c in text if not (c.isalnum() or c.isspace() or c in ".,!?'-"))
-        if len(text) > 0 and special_count / len(text) > 0.15:
-            continue
-        if seg.get("avg_logprob", 0) < -1.2:
-            continue
-        if seg.get("no_speech_prob", 0) > 0.8:
-            continue
-        text = clean_repetitive_text(text)
-        text_lower = text.lower().strip(".,!? ")
-        if not text_lower or text_lower in seen_texts:
-            continue
-        if len(text_lower) > 2:
-            seen_texts.add(text_lower)
-        seg["text"] = text
-        final.append(seg)
-    return final
-
-
-# Parallel transcription driver
-
 def transcribe_parallel(audio, sr, model_size="medium", chunk_size_sec=600, overlap_sec=30,
-                        lang_info=None, use_vad=True, force_cpu=False, debug=False, use_api=True) -> dict:
+                        lang_info=None, use_vad=True, force_cpu=False, debug=False,
+                        use_api=True, client=None) -> dict:
     duration = len(audio) / sr
     t_start = time.time()
     force_lang = None
@@ -242,7 +109,10 @@ def transcribe_parallel(audio, sr, model_size="medium", chunk_size_sec=600, over
     start = 0
     while start < duration:
         end = min(start + chunk_size_sec + overlap_sec, duration)
-        chunks_args.append((audio[int(start * sr):int(end * sr)].copy(), sr, model_size, start, use_vad, force_cpu, debug, force_lang, use_api))
+        chunks_args.append((
+            audio[int(start * sr):int(end * sr)].copy(), sr, model_size, start,
+            use_vad, force_cpu, debug, force_lang, use_api, client,
+        ))
         if end >= duration:
             break
         start += chunk_size_sec

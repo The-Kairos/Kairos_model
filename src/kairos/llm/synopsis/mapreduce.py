@@ -5,8 +5,8 @@ from __future__ import annotations
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from kairos.llm.synopsis_parsing import _debug_print
-from kairos.llm.synopsis_prompts import (
+from kairos.llm.synopsis.parsing import _debug_print
+from kairos.llm.synopsis.prompts import (
     _build_scene_chunk_summary_prompt,
     _build_reduce_prompt,
     _build_narrative_consistency_prompt,

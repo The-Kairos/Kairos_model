@@ -32,7 +32,7 @@ def run_pipeline(
     from kairos.video.frame_captioning import caption_frames
     from kairos.video.object_detection import detect_object_yolo
     from kairos.llm.scene_description import describe_scenes
-    from kairos.audio.detector import scan_audio
+    from kairos.audio.prescan import scan_audio
     from kairos.audio.classifier import extract_sounds_optimized
     from kairos.audio.transcription import extract_speech_singlecall
     from kairos.llm.synopsis import summarize_scenes, synthesize_synopsis

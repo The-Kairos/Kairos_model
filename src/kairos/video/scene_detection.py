@@ -3,6 +3,8 @@ from scenedetect import open_video, SceneManager
 from scenedetect.detectors import ContentDetector
 import cv2
 
+from kairos.core.utils import format_timecode
+
 def get_scene_list(
     input_video_path: str,
     threshold: float = 27,
@@ -49,18 +51,6 @@ def get_scene_list(
     If no scenes are detected on the first pass, a more sensitive retry is
     attempted. If still empty, a fixed-duration fallback segmentation is used.
     """
-    def format_timecode(seconds: float | None) -> str:
-        if seconds is None:
-            return "??:??:??.???"
-        try:
-            ms_total = int(round(float(seconds) * 1000))
-        except (TypeError, ValueError):
-            return "??:??:??.???"
-        sec_total, ms = divmod(ms_total, 1000)
-        mins_total, sec = divmod(sec_total, 60)
-        hrs, mins = divmod(mins_total, 60)
-        return f"{hrs:02d}:{mins:02d}:{sec:02d}.{ms:03d}"
-
     def detect_scenes_with_threshold(thresh: float) -> list:
         video = open_video(input_video_path)
         scene_manager = SceneManager()
@@ -129,17 +119,3 @@ def get_scene_list(
         start = end
 
     return result
-
-
-def test():
-    test_video = r'data/videos/SpongeBob SquarePants - Writing Essay - Some of These - Meme Source.mp4'
-    scenes = get_scene_list(test_video)
-
-    print(f"Found {len(scenes)} scenes.")
-    for s in scenes:
-        print(
-            f"Scene {s['scene_index']:03d}: "
-            f"{s['start_timecode']} -> {s['end_timecode']} "
-            f"({s['duration_seconds']:.2f} sec)"
-        )
-# test()

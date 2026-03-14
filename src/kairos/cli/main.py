@@ -74,7 +74,7 @@ def main():
         Path(output_dir).mkdir(parents=True, exist_ok=True)
 
         if rag_only:
-            _run_rag(output_dir, cfg)
+            _run_rag(output_dir, cfg, client)
             continue
 
         from kairos.core.pipeline import run_pipeline
@@ -88,7 +88,7 @@ def main():
         )
 
 
-def _run_rag(output_dir: str, cfg: PipelineConfig):
+def _run_rag(output_dir: str, cfg: PipelineConfig, client=None):
     from kairos.llm.rag import ask_rag
 
     rag_path = f"{output_dir}/rag_embedding.json"
@@ -100,4 +100,5 @@ def _run_rag(output_dir: str, cfg: PipelineConfig):
         rag_path=rag_path, show_k_context=True, k=cfg.rag_top_k_context,
         conv_path=f"{output_dir}/conversation_history.json",
         log_source=checkpoint_path, show_timings=False,
+        generation_client=client,
     )
