@@ -21,10 +21,12 @@ def _get_ast_model():
     return _AST_FE, _AST_MODEL
 
 
-def classify_scene_audio(audio_slice: np.ndarray, sr: int, threshold: float = 0.3, device: str = "cpu") -> str:
+def classify_scene_audio(audio_slice: np.ndarray, sr: int, threshold: float = 0.3, device: str = "cpu",
+                         fe=None, model=None) -> str:
     if audio_slice.size == 0:
         return "none"
-    fe, model = _get_ast_model()
+    if fe is None or model is None:
+        fe, model = _get_ast_model()
     inputs = fe(audio_slice, sampling_rate=sr, return_tensors="pt", padding=True).to(device)
     with torch.no_grad():
         probs = torch.sigmoid(model(**inputs).logits)[0].cpu().numpy()

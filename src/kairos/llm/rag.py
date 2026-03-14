@@ -239,11 +239,13 @@ def get_top_k_similar(question_embedding, embeddings, contexts, k=5, debug=False
 
 
 def create_answer(question, top_matches, client=None, model=GENERATION_MODEL):
-    if client is None:
-        client = _get_gemini_client()
     context = "\n".join([text for text, _ in top_matches])
     template = load_prompt("generate_answer.txt")
     prompt = template.format(context=context, question=question)
+    if client is not None and hasattr(client, "generate"):
+        return client.generate(prompt)
+    if client is None:
+        client = _get_gemini_client()
     response = client.models.generate_content(model=model, contents=prompt)
     return response.text
 

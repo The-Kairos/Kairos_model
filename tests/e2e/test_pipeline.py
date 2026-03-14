@@ -25,15 +25,15 @@ def fast_config():
 def llm_client():
     from kairos.llm.client import build_llm_client
     try:
-        client, model_name, deployment = build_llm_client()
+        client = build_llm_client()
     except Exception as e:
         pytest.skip(f"Could not build LLM client: {e}")
-    return client, model_name, deployment
+    return client
 
 
 def test_full_pipeline(sample_video_path, fast_config, llm_client, tmp_path):
     cfg = fast_config
-    client, model_name, deployment = llm_client
+    client = llm_client
     video_path = str(sample_video_path)
     output_dir = str(tmp_path / "output")
     os.makedirs(output_dir, exist_ok=True)
@@ -158,7 +158,6 @@ def test_full_pipeline(sample_video_path, fast_config, llm_client, tmp_path):
         ASR_key="audio_speech",
         AST_key="audio_natural",
         SUMMARY_key="llm_scene_description",
-        model=model_name,
         cooldown_sec=0,
         debug=False,
         video_path=video_path,
@@ -175,7 +174,6 @@ def test_full_pipeline(sample_video_path, fast_config, llm_client, tmp_path):
     checkpoint = {"scenes": scenes, "steps": {}}
     checkpoint = summarize_scenes(
         client=client,
-        deployment=deployment,
         scenes=scenes,
         chunk_size=cfg.llm_chunk_len,
         summary_len=cfg.llm_summary_len,
@@ -189,7 +187,6 @@ def test_full_pipeline(sample_video_path, fast_config, llm_client, tmp_path):
 
     checkpoint = synthesize_synopsis(
         client=client,
-        deployment=deployment,
         data=checkpoint,
         debug=False,
         output_dir=output_dir,

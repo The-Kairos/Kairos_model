@@ -76,8 +76,9 @@ def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
 
 # Whisper API transcription
 
-def transcribe_via_api(audio_np: np.ndarray, sr: int, language: str = None) -> list:
-    client = _ensure_whisper_client()
+def transcribe_via_api(audio_np: np.ndarray, sr: int, language: str = None, client=None) -> list:
+    if client is None:
+        client = _ensure_whisper_client()
     if client is None:
         raise ValueError("Whisper API credentials not found in environment (WHISPER_API_KEY, WHISPER_API_ENDPOINT).")
     deployment = os.environ.get("WHISPER_API_DEPLOYMENT")
@@ -330,7 +331,7 @@ def extract_speech_singlecall(
         whisper_result = transcribe_parallel(audio, sr, model_size=model_size, lang_info=lang_data,
                                              use_vad=use_vad, force_cpu=force_cpu, debug=debug, use_api=use_api)
     else:
-        from kairos.audio.detector import _get_silero_vad
+        from kairos.audio.vad import _get_silero_vad
         silero_model, get_ts_fn = _get_silero_vad()
         whisper_result = transcribe_full_video(audio, sr, model_size=model_size, use_vad=use_vad,
                                                force_cpu=force_cpu, debug=debug,

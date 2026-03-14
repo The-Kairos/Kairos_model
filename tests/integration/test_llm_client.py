@@ -4,7 +4,13 @@ import os
 
 import pytest
 
-from kairos.llm.client import build_llm_client, is_gemini_client
+from kairos.llm.client import (
+    build_llm_client,
+    LLMClient,
+    GeminiLLMClient,
+    OpenAILLMClient,
+    ClaudeLLMClient,
+)
 
 pytestmark = pytest.mark.integration
 
@@ -12,28 +18,37 @@ pytestmark = pytest.mark.integration
 def test_build_llm_client_gemini():
     if not os.getenv("GEMINI_PROJECT"):
         pytest.skip("GEMINI_PROJECT not set")
-    client, model_name, deployment = build_llm_client("gemini")
+    client = build_llm_client("gemini")
     assert client is not None
-    assert isinstance(model_name, str)
-    assert len(model_name) > 0
-    assert is_gemini_client(client) or hasattr(client, "models")
+    assert isinstance(client, GeminiLLMClient)
+    assert isinstance(client.model, str)
+    assert len(client.model) > 0
 
 
 def test_build_llm_client_openai():
     if not os.getenv("OPENAI_KEY"):
         pytest.skip("OPENAI_KEY not set")
-    client, model_name, deployment = build_llm_client("openai")
+    client = build_llm_client("openai")
     assert client is not None
-    assert isinstance(model_name, str)
-    assert hasattr(client, "chat")
+    assert isinstance(client, OpenAILLMClient)
+    assert isinstance(client.model, str)
 
 
-def test_is_gemini_client_with_mock():
-    class FakeGemini:
-        models = True
+def test_build_llm_client_claude():
+    if not os.getenv("CLAUDE_PROJECT") and not os.getenv("GEMINI_PROJECT"):
+        pytest.skip("CLAUDE_PROJECT / GEMINI_PROJECT not set")
+    client = build_llm_client("claude")
+    assert client is not None
+    assert isinstance(client, ClaudeLLMClient)
+    assert isinstance(client.model, str)
 
-    class FakeOpenAI:
-        chat = True
 
-    assert is_gemini_client(FakeGemini()) is True
-    assert is_gemini_client(FakeOpenAI()) is False
+def test_llm_client_protocol():
+    """Verify concrete clients satisfy the LLMClient protocol."""
+    assert isinstance(GeminiLLMClient, type)
+    assert isinstance(OpenAILLMClient, type)
+    assert isinstance(ClaudeLLMClient, type)
+    # Protocol structural check — each class has generate() and model
+    for cls in (GeminiLLMClient, OpenAILLMClient, ClaudeLLMClient):
+        assert hasattr(cls, "generate")
+        assert hasattr(cls, "model")
