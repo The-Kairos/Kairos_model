@@ -6,6 +6,8 @@ import av
 import librosa
 import numpy as np
 
+from kairos.core.utils import print_prefixed
+
 
 def _load_audio_ffmpeg(video_path: str, target_sr: int = 16000):
     cmd = [
@@ -29,7 +31,7 @@ def load_audio_av(video_path: str, target_sr: int = 16000, debug: bool = False):
         audio_stream = next((s for s in container.streams if s.type == "audio"), None)
         if audio_stream is None:
             if debug:
-                print("[AudioDetector] PyAV found no audio stream; trying ffmpeg fallback.")
+                print_prefixed("(AudioDetector)", "PyAV found no audio stream; trying ffmpeg fallback.")
             return _load_audio_ffmpeg(video_path, target_sr)
 
         audio_stream.thread_type = "AUTO"
@@ -40,7 +42,7 @@ def load_audio_av(video_path: str, target_sr: int = 16000, debug: bool = False):
 
         if not samples:
             if debug:
-                print("[AudioDetector] PyAV decoded no audio frames; trying ffmpeg fallback.")
+                print_prefixed("(AudioDetector)", "PyAV decoded no audio frames; trying ffmpeg fallback.")
             return _load_audio_ffmpeg(video_path, target_sr)
 
         audio = np.concatenate(samples).astype(np.float32)
@@ -53,7 +55,7 @@ def load_audio_av(video_path: str, target_sr: int = 16000, debug: bool = False):
 
     except Exception as e:
         if debug:
-            print(f"[AudioDetector] PyAV audio extraction failed: {e!r}")
+            print_prefixed("(AudioDetector)", f"PyAV audio extraction failed: {e!r}")
         try:
             return _load_audio_ffmpeg(video_path, target_sr)
         except Exception:

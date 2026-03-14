@@ -8,9 +8,10 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from kairos.core.utils import load_prompt, is_rate_limit_error, retry_with_backoff
+from kairos.core.utils import load_prompt, is_rate_limit_error, retry_with_backoff, print_prefixed
 from kairos.llm.synopsis.parsing import (
-    _debug_print,
+    NOT_STATED,
+    NOT_STATED_PERIOD,
     _parse_synopsis_json,
     _parse_json_object,
     _parse_summary_nonjson,
@@ -85,7 +86,7 @@ REQUIRED_QUESTIONS = [
 ]
 
 _SECTION_FALLBACKS = {
-    "summary": '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated."}',
+    "summary": f'{{"chat_name":"{NOT_STATED}","summary":"{NOT_STATED_PERIOD}"}}',
     "highlights": '{"video_highlights":[]}',
     "timeline": '{"video_timeline":[]}',
     "qna_predefined_a": '{"questions":[]}',
@@ -98,6 +99,13 @@ _SECTION_FALLBACKS = {
 # ---------------------------------------------------------------------------
 SEGMENT_PROMPT = load_prompt("chunk_summary.txt")
 FALLBACK_SEGMENT_PROMPT = load_prompt("fallback_chunk_summary.txt")
+
+
+def _synopsis_log(debug: bool, message: str):
+    """Unified debug logging for synopsis modules."""
+    if debug:
+        print_prefixed("(Synopsis)", message)
+
 CARRYOVER_PROMPT = load_prompt("chunk_summary_carryover.txt")
 SYNOPSIS_SUMMARY_PROMPT = load_prompt("synopsis_summary.txt")
 SYNOPSIS_HIGHLIGHTS_PROMPT = load_prompt("synopsis_highlight.txt")
@@ -147,16 +155,16 @@ def call_gpt_safe(
     try:
         return call_gpt(client, prompt)
     except Exception as exc:
-        _debug_print(debug, f"{context}: primary prompt failed due to API error: {exc}")
+        _synopsis_log(debug, f"{context}: primary prompt failed due to API error: {exc}")
         if safe_prompt:
             try:
                 return call_gpt(client, safe_prompt)
             except Exception as exc2:
-                _debug_print(debug, f"{context}: safe prompt failed due to API error: {exc2}")
+                _synopsis_log(debug, f"{context}: safe prompt failed due to API error: {exc2}")
         if isinstance(raw_fallback, str):
-            _debug_print(debug, f"{context}: using raw fallback due to API error")
+            _synopsis_log(debug, f"{context}: using raw fallback due to API error")
             return raw_fallback
-        _debug_print(debug, f"{context}: using fallback due to API error")
+        _synopsis_log(debug, f"{context}: using fallback due to API error")
         return fallback_text
 
 
@@ -202,8 +210,8 @@ def summarize_scenes(
         "narrative": narrative,
     })
     if debug:
-        _debug_print(debug, "summarize_scenes:")
-        _debug_print(debug, f"    narrative_size 1: {len(narrative)} char ({len(mapped_summaries)} chunks)")
+        _synopsis_log(debug, "summarize_scenes:")
+        _synopsis_log(debug, f"    narrative_size 1: {len(narrative)} char ({len(mapped_summaries)} chunks)")
 
     if len(narrative) > summary_len and mapped_summaries:
         reduced = parallel_reduce_summaries(
@@ -221,7 +229,7 @@ def summarize_scenes(
                 "narrative": narrative,
             })
             if debug:
-                _debug_print(debug, f"    narrative_size 2: {len(narrative)} char (tree reduced)")
+                _synopsis_log(debug, f"    narrative_size 2: {len(narrative)} char (tree reduced)")
 
     if len(narrative) > summary_len:
         final_prompt = _build_narrative_consistency_prompt(narrative)
@@ -233,9 +241,9 @@ def summarize_scenes(
                 "narrative": narrative,
             })
             if debug:
-                _debug_print(debug, f"    narrative_size 3: {len(narrative)} char (final consistency pass)")
+                _synopsis_log(debug, f"    narrative_size 3: {len(narrative)} char (final consistency pass)")
         except Exception as exc:
-            _debug_print(debug, f"summarize_scenes: final consistency pass failed: {exc}")
+            _synopsis_log(debug, f"summarize_scenes: final consistency pass failed: {exc}")
 
     return {"scenes": scenes, "narratives": narratives}
 
@@ -267,19 +275,19 @@ def _call_all_sections(client, prompts, narrative_text, safe_prompt_kwargs, debu
         )
         try:
             text = call_gpt(client, prompt)
-            _debug_print(debug, f"synopsis {name} [ok] len={len(text)}")
+            _synopsis_log(debug, f"synopsis {name} [ok] len={len(text)}")
             return name, text
         except Exception as exc:
-            _debug_print(debug, f"synopsis {name} [error] {exc}")
+            _synopsis_log(debug, f"synopsis {name} [error] {exc}")
         if safe_prompt:
             try:
                 text = call_gpt(client, safe_prompt)
-                _debug_print(debug, f"synopsis {name} [ok] len={len(text)}")
+                _synopsis_log(debug, f"synopsis {name} [ok] len={len(text)}")
                 return name, text
             except Exception as exc2:
-                _debug_print(debug, f"synopsis {name} [error] {exc2}")
+                _synopsis_log(debug, f"synopsis {name} [error] {exc2}")
         text = _SECTION_FALLBACKS.get(name, "{}")
-        _debug_print(debug, f"synopsis {name} [ok] len={len(text)}")
+        _synopsis_log(debug, f"synopsis {name} [ok] len={len(text)}")
         return name, text
 
     with ThreadPoolExecutor(max_workers=min(8, len(prompts))) as executor:
@@ -290,7 +298,7 @@ def _call_all_sections(client, prompts, narrative_text, safe_prompt_kwargs, debu
                 _, text = future.result()
                 raw_outputs[name] = text
             except Exception as exc:
-                _debug_print(debug, f"synthesize_synopsis: section '{name}' call failed: {exc}")
+                _synopsis_log(debug, f"synthesize_synopsis: section '{name}' call failed: {exc}")
 
     return raw_outputs
 
@@ -304,7 +312,7 @@ def _repair_failed_sections(client, parsed, repair_configs, debug):
     def _repair_task(name, raw_text):
         cfg = repair_configs[name]
         prompt = _build_repair_prompt(section=cfg["section"], raw_text=raw_text, **cfg["repair_kwargs"])
-        _debug_print(debug, f"synopsis {name} parse failed, repairing")
+        _synopsis_log(debug, f"synopsis {name} parse failed, repairing")
         text = call_gpt_safe(
             client, prompt=prompt,
             fallback_text=_SECTION_FALLBACKS.get(name, "{}"),
@@ -331,8 +339,8 @@ def _apply_monolith_fallback(client, narrative_text, highlight_min, highlight_ma
     """Fall back to a single monolithic LLM call for summary + highlights + timeline."""
     from kairos.llm.synopsis.prompts import _build_monolith_prompt
 
-    _debug_print(debug, "synthesize_synopsis: falling back to monolithic synopsis for base sections")
-    monolith_fallback = '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated.","video_highlights":[],"video_timeline":[]}'
+    _synopsis_log(debug, "synthesize_synopsis: falling back to monolithic synopsis for base sections")
+    monolith_fallback = f'{{"chat_name":"{NOT_STATED}","summary":"{NOT_STATED_PERIOD}","video_highlights":[],"video_timeline":[]}}'
     monolith_prompt = _build_monolith_prompt(
         narrative_text=narrative_text,
         highlight_min=highlight_min, highlight_max=highlight_max, highlight_label=highlight_label,
@@ -381,7 +389,7 @@ def _fill_missing_generated(client, generated_questions, narrative_text,
     generated_questions = generated_questions + fill_questions
 
     if len(generated_questions) < extra_questions_count:
-        _debug_print(debug, "synthesize_synopsis: generated questions still short, padding placeholders")
+        _synopsis_log(debug, "synthesize_synopsis: generated questions still short, padding placeholders")
         while len(generated_questions) < extra_questions_count:
             idx = len(generated_questions) + 1
             generated_questions.append({
@@ -432,13 +440,83 @@ def _run_consistency_pass(client, draft_synopsis, narrative_text, highlight_min,
             "questions": c_predefined + c_generated,
         }
     except Exception as exc:
-        _debug_print(debug, f"synthesize_synopsis: consistency pass failed: {exc}")
+        _synopsis_log(debug, f"synthesize_synopsis: consistency pass failed: {exc}")
         return draft_synopsis
 
 
 # ---------------------------------------------------------------------------
 # Full synopsis synthesis
 # ---------------------------------------------------------------------------
+
+def _build_section_prompts(narrative_text, highlight_label, timeline_label,
+                           required_questions_a, required_questions_b,
+                           required_block_a, required_block_b, required_block,
+                           extra_questions_count):
+    """Build the prompt dict for all synopsis sections."""
+    return {
+        "summary": SYNOPSIS_SUMMARY_PROMPT.format(text=narrative_text),
+        "highlights": SYNOPSIS_HIGHLIGHTS_PROMPT.format(text=narrative_text, highlights_count=highlight_label),
+        "timeline": SYNOPSIS_TIMELINE_PROMPT.format(text=narrative_text, timeline_count=timeline_label),
+        "qna_predefined_a": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
+            text=narrative_text, required_questions_count=len(required_questions_a),
+            required_questions_block=required_block_a,
+        ),
+        "qna_predefined_b": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
+            text=narrative_text, required_questions_count=len(required_questions_b),
+            required_questions_block=required_block_b,
+        ),
+        "qna_generated": SYNOPSIS_QNA_GENERATED_PROMPT.format(
+            text=narrative_text, extra_questions_count=extra_questions_count,
+            required_questions_block=required_block,
+        ),
+    }
+
+
+def _build_repair_configs(parsed, section_parse_configs, required_questions_a, required_questions_b,
+                          required_block_a, required_block_b, required_block,
+                          highlight_min, highlight_max, highlight_label,
+                          timeline_min, timeline_max, timeline_label,
+                          extra_questions_count):
+    """Build repair config dict for sections that failed parsing."""
+    repair_configs = {}
+    for name, (_, ok, _) in parsed.items():
+        if not ok:
+            section = "qna_predefined" if name.startswith("qna_predefined_") else name
+            req_block = required_block_a if name == "qna_predefined_a" else required_block_b if name == "qna_predefined_b" else required_block
+            req_count = len(required_questions_a) if name == "qna_predefined_a" else len(required_questions_b) if name == "qna_predefined_b" else len(REQUIRED_QUESTIONS)
+            _, _, validate_fn, validate_args = section_parse_configs[name]
+            repair_configs[name] = {
+                "section": section,
+                "repair_kwargs": dict(
+                    highlight_min=highlight_min, highlight_max=highlight_max,
+                    highlight_label=highlight_label, timeline_min=timeline_min,
+                    timeline_max=timeline_max, timeline_label=timeline_label,
+                    required_questions_block=req_block, required_questions_count=req_count,
+                    extra_questions_count=extra_questions_count,
+                ),
+                "validate_fn": validate_fn,
+                "validate_args": validate_args,
+            }
+    return repair_configs
+
+
+def _save_synopsis_output(synopsis_json, synopsis_md, output_dir, synopsis_ext, debug):
+    """Write synopsis to disk in the requested format."""
+    if not output_dir:
+        return
+    out_dir = Path(output_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ext = synopsis_ext.lstrip(".") if synopsis_ext else "md"
+    synopsis_path = out_dir / f"synopsis.{ext}"
+    if ext.lower() == "md":
+        synopsis_path.write_text(synopsis_md, encoding="utf-8")
+    elif ext.lower() == "json":
+        synopsis_path.write_text(json.dumps(synopsis_json, indent=2, ensure_ascii=False), encoding="utf-8")
+    else:
+        synopsis_path.write_text(json.dumps(synopsis_json, ensure_ascii=False), encoding="utf-8")
+    if debug:
+        _synopsis_log(debug, f"synopsis saved in {synopsis_path}")
+
 
 def synthesize_synopsis(
     client,
@@ -478,23 +556,12 @@ def synthesize_synopsis(
     )
 
     # --- Step 1: Call LLM for all sections in parallel ---
-    prompts = {
-        "summary": SYNOPSIS_SUMMARY_PROMPT.format(text=narrative_text),
-        "highlights": SYNOPSIS_HIGHLIGHTS_PROMPT.format(text=narrative_text, highlights_count=highlight_label),
-        "timeline": SYNOPSIS_TIMELINE_PROMPT.format(text=narrative_text, timeline_count=timeline_label),
-        "qna_predefined_a": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
-            text=narrative_text, required_questions_count=len(required_questions_a),
-            required_questions_block=required_block_a,
-        ),
-        "qna_predefined_b": SYNOPSIS_QNA_PREDEFINED_PROMPT.format(
-            text=narrative_text, required_questions_count=len(required_questions_b),
-            required_questions_block=required_block_b,
-        ),
-        "qna_generated": SYNOPSIS_QNA_GENERATED_PROMPT.format(
-            text=narrative_text, extra_questions_count=extra_questions_count,
-            required_questions_block=required_block,
-        ),
-    }
+    prompts = _build_section_prompts(
+        narrative_text, highlight_label, timeline_label,
+        required_questions_a, required_questions_b,
+        required_block_a, required_block_b, required_block,
+        extra_questions_count,
+    )
     raw_outputs = _call_all_sections(client, prompts, narrative_text, safe_prompt_kwargs, debug)
 
     # --- Step 2: Parse all sections ---
@@ -513,25 +580,13 @@ def synthesize_synopsis(
         parsed[name] = (payload, ok, raw_text)
 
     # --- Step 3: Repair failed sections ---
-    repair_configs = {}
-    for name, (_, ok, _) in parsed.items():
-        if not ok:
-            section = "qna_predefined" if name.startswith("qna_predefined_") else name
-            req_block = required_block_a if name == "qna_predefined_a" else required_block_b if name == "qna_predefined_b" else required_block
-            req_count = len(required_questions_a) if name == "qna_predefined_a" else len(required_questions_b) if name == "qna_predefined_b" else len(REQUIRED_QUESTIONS)
-            _, _, validate_fn, validate_args = section_parse_configs[name]
-            repair_configs[name] = {
-                "section": section,
-                "repair_kwargs": dict(
-                    highlight_min=highlight_min, highlight_max=highlight_max,
-                    highlight_label=highlight_label, timeline_min=timeline_min,
-                    timeline_max=timeline_max, timeline_label=timeline_label,
-                    required_questions_block=req_block, required_questions_count=req_count,
-                    extra_questions_count=extra_questions_count,
-                ),
-                "validate_fn": validate_fn,
-                "validate_args": validate_args,
-            }
+    repair_configs = _build_repair_configs(
+        parsed, section_parse_configs, required_questions_a, required_questions_b,
+        required_block_a, required_block_b, required_block,
+        highlight_min, highlight_max, highlight_label,
+        timeline_min, timeline_max, timeline_label,
+        extra_questions_count,
+    )
     parsed, had_errors = _repair_failed_sections(client, parsed, repair_configs, debug)
 
     # --- Step 4: Monolith fallback for base sections ---
@@ -572,7 +627,7 @@ def synthesize_synopsis(
     required_total = len(REQUIRED_QUESTIONS) + extra_questions_count
     if _count_questions(questions) < required_total:
         had_errors = True
-        _debug_print(debug, "synthesize_synopsis: retrying legacy questions prompt")
+        _synopsis_log(debug, "synthesize_synopsis: retrying legacy questions prompt")
         questions_prompt = _build_questions_prompt(
             narrative_text=narrative_text, required_questions=REQUIRED_QUESTIONS,
             extra_questions_count=extra_questions_count, strict=True,
@@ -609,18 +664,7 @@ def synthesize_synopsis(
     synopsis_md = render_synopsis_markdown(
         synopsis_json, video_path=data.get("video_path"), output_dir=output_dir,
     )
-    if output_dir:
-        out_dir = Path(output_dir)
-        out_dir.mkdir(parents=True, exist_ok=True)
-        ext = synopsis_ext.lstrip(".") if synopsis_ext else "md"
-        synopsis_path = out_dir / f"synopsis.{ext}"
-        if ext.lower() == "md":
-            synopsis_path.write_text(synopsis_md, encoding="utf-8")
-        elif ext.lower() == "json":
-            synopsis_path.write_text(json.dumps(synopsis_json, indent=2, ensure_ascii=False), encoding="utf-8")
-        else:
-            synopsis_path.write_text(json.dumps(synopsis_json, ensure_ascii=False), encoding="utf-8")
-        _debug_print(debug, f"synopsis is saved in {synopsis_path}")
+    _save_synopsis_output(synopsis_json, synopsis_md, output_dir, synopsis_ext, debug)
 
     return {
         "scenes": data.get("scenes", []),

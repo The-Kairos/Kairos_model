@@ -7,6 +7,8 @@ import torch
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
 from transformers import AutoFeatureExtractor, AutoModelForAudioClassification
 
+from kairos.core.utils import print_prefixed
+
 # Lazy-loaded AST model
 _AST_MODEL = None
 _AST_FE = None
@@ -65,7 +67,7 @@ def extract_sounds_optimized(
     if not scan_result["has_any_audio"] or not scan_result["has_background_audio"]:
         if debug:
             reason = "no audio" if not scan_result["has_any_audio"] else "no background audio"
-            print(f"[AST] Skipping all {len(scenes)} scenes ({reason})")
+            print_prefixed("(AST)", f"Skipping all {len(scenes)} scenes ({reason})")
         for scene in scenes:
             scene["audio_natural"] = "none"
         return scenes, {
@@ -97,7 +99,7 @@ def extract_sounds_optimized(
     if debug:
         pre_skip = sum(1 for a in task_args if a[3] < scene_silence_threshold)
         mode = "ProcessPool" if use_processes else "ThreadPool"
-        print(f"[AST] Using {mode} with {max_workers} workers, {pre_skip} pre-skipped")
+        print_prefixed("(AST)", f"Using {mode} with {max_workers} workers, {pre_skip} pre-skipped")
 
     executor_cls = ProcessPoolExecutor if use_processes else ThreadPoolExecutor
     with executor_cls(max_workers=min(max_workers, len(scenes) or 1)) as executor:
@@ -111,7 +113,7 @@ def extract_sounds_optimized(
                 else:
                     processed_count += 1
             except Exception as e:
-                print(f"[AST] [ERROR] Scene processing failed: {e}")
+                print_prefixed("(AST)", f"[ERROR] Scene processing failed: {e}")
                 results[futures[future]] = "error"
                 skipped_count += 1
 
@@ -120,7 +122,7 @@ def extract_sounds_optimized(
 
     elapsed = time.time() - t_start
     if debug:
-        print(f"[AST] Done: {processed_count} processed, {skipped_count} skipped, {elapsed:.2f}s")
+        print_prefixed("(AST)", f"Done: {processed_count} processed, {skipped_count} skipped, {elapsed:.2f}s")
 
     return scenes, {
         "method": "parallel_processes" if use_processes else "parallel_threads",

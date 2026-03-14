@@ -80,6 +80,22 @@ class PipelineConfig:
             yolo_action_fps=0.5,
         )
 
+    @property
+    def blip_params(self) -> dict:
+        """Collect all BLIP generation fields into a single dict for **kwargs forwarding."""
+        return {
+            "prompt": self.blip_start_prompt,
+            "max_length": self.blip_caption_len,
+            "min_length": self.blip_min_length,
+            "num_beams": self.blip_num_beams,
+            "do_sample": self.blip_do_sample,
+            "top_p": self.blip_top_p,
+            "temperature": self.blip_temperature,
+            "length_penalty": self.blip_length_penalty,
+            "no_repeat_ngram_size": self.blip_no_repeat_ngram_size,
+            "repetition_penalty": self.blip_repetition_penalty,
+        }
+
     def to_dict(self) -> dict:
         from dataclasses import asdict
         return asdict(self)

@@ -5,7 +5,8 @@ from __future__ import annotations
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from kairos.llm.synopsis.parsing import _debug_print
+from kairos.core.utils import print_prefixed
+from kairos.llm.synopsis.parsing import NOT_STATED
 from kairos.llm.synopsis.prompts import (
     _build_scene_chunk_summary_prompt,
     _build_reduce_prompt,
@@ -13,6 +14,13 @@ from kairos.llm.synopsis.prompts import (
 )
 
 CHUNK_SIZE = 7000
+
+
+def _mapreduce_log(debug: bool, message: str):
+    """Unified debug logging for map-reduce summarization."""
+    if debug:
+        print_prefixed("(Synopsis)", message)
+
 SUMMARY_MAX_WORKERS = 6
 SUMMARY_REDUCE_GROUP_SIZE = 4
 
@@ -24,7 +32,7 @@ def _normalize_scene_text(value, fallback: str) -> str:
 
 
 def _scene_to_narrative_line(scene: dict) -> str:
-    start_timecode = _normalize_scene_text(scene.get("start_timecode"), "Not explicitly stated")
+    start_timecode = _normalize_scene_text(scene.get("start_timecode"), NOT_STATED)
     llm_scene_description = _normalize_scene_text(scene.get("llm_scene_description"), "No visual description.")
     audio_speech = _normalize_scene_text(scene.get("audio_speech"), "No spoken dialogue.")
     return f'At {start_timecode}, {llm_scene_description} It says "{audio_speech}".'
@@ -33,7 +41,7 @@ def _scene_to_narrative_line(scene: dict) -> str:
 def chunk_scenes(scenes: list, chunk_size: int = CHUNK_SIZE, debug: bool = False):
     scene_count = len(scenes) if isinstance(scenes, list) else 0
     if scene_count == 0:
-        _debug_print(debug, "chunk_scenes: no scenes to chunk")
+        _mapreduce_log(debug, "chunk_scenes: no scenes to chunk")
         return []
 
     chunks = []
@@ -77,7 +85,7 @@ def chunk_scenes(scenes: list, chunk_size: int = CHUNK_SIZE, debug: bool = False
             "end_timecode": end_scene.get("end_timecode") or end_scene.get("start_timecode"),
         })
 
-    _debug_print(debug, f"chunk_scenes: {scene_count} scenes -> {len(chunks)} chunk_scenes")
+    _mapreduce_log(debug, f"chunk_scenes: {scene_count} scenes -> {len(chunks)} chunk_scenes")
     return chunks
 
 
@@ -102,7 +110,7 @@ def chunk_narrative(narrative: str, chunk_size: int = CHUNK_SIZE, debug: bool = 
 
     if this_chunk:
         chunks.append(this_chunk)
-    _debug_print(debug, f"chunk_narrative: splitting narrative len={len(narrative)} to {len(chunks)} chunks")
+    _mapreduce_log(debug, f"chunk_narrative: splitting narrative len={len(narrative)} to {len(chunks)} chunks")
     return chunks
 
 
@@ -117,7 +125,7 @@ def condense_chunk(call_gpt_fn, chunk_text: str, pre_carryover_context: str,
     try:
         summary = call_gpt_fn(segment_prompt)
     except Exception as exc:
-        _debug_print(debug, f"condense_chunk: primary prompt failed: {exc}")
+        _mapreduce_log(debug, f"condense_chunk: primary prompt failed: {exc}")
         try:
             fallback_prompt = fallback_prompt_template.format(
                 carryover_context=pre_carryover_context,
@@ -125,7 +133,7 @@ def condense_chunk(call_gpt_fn, chunk_text: str, pre_carryover_context: str,
             )
             summary = call_gpt_fn(fallback_prompt)
         except Exception as exc2:
-            _debug_print(debug, f"condense_chunk: fallback prompt failed: {exc2}")
+            _mapreduce_log(debug, f"condense_chunk: fallback prompt failed: {exc2}")
             summary = chunk_text
 
     carryover_prompt = carryover_prompt_template.format(
@@ -134,9 +142,9 @@ def condense_chunk(call_gpt_fn, chunk_text: str, pre_carryover_context: str,
     try:
         new_carryover_context = call_gpt_fn(carryover_prompt)
     except Exception as exc:
-        _debug_print(debug, f"condense_chunk: carryover prompt failed: {exc}")
+        _mapreduce_log(debug, f"condense_chunk: carryover prompt failed: {exc}")
         new_carryover_context = pre_carryover_context
-    _debug_print(debug, f"    condense_chunk: len={len(chunk_text)} -> len={len(summary)}")
+    _mapreduce_log(debug, f"    condense_chunk: len={len(chunk_text)} -> len={len(summary)}")
     return summary, new_carryover_context
 
 
@@ -150,9 +158,9 @@ def parallel_map_summaries(call_gpt_fn, scene_chunks: list[dict], max_workers: i
         try:
             summary = call_gpt_fn(prompt)
         except Exception as exc:
-            _debug_print(debug, f"parallel_map_summaries: chunk {chunk['index']} failed: {exc}")
+            _mapreduce_log(debug, f"parallel_map_summaries: chunk {chunk['index']} failed: {exc}")
             summary = chunk["text"]
-        _debug_print(debug, f"    map_summary: len={len(chunk['text'])} -> len={len(summary.strip())}")
+        _mapreduce_log(debug, f"    map_summary: len={len(chunk['text'])} -> len={len(summary.strip())}")
         return {
             "index": chunk["index"],
             "text": summary.strip(),
@@ -190,7 +198,7 @@ def parallel_reduce_summaries(
             try:
                 merged = call_gpt_fn(prompt).strip()
             except Exception as exc:
-                _debug_print(debug, f"parallel_reduce_summaries: group {group_idx} failed: {exc}")
+                _mapreduce_log(debug, f"parallel_reduce_summaries: group {group_idx} failed: {exc}")
                 merged = "\n".join(item["text"] for item in group_items)
             return group_idx, {
                 "index": group_idx,
@@ -207,6 +215,6 @@ def parallel_reduce_summaries(
                 group_idx, result = future.result()
                 reduced[group_idx] = result
         current = [item for item in reduced if item is not None]
-        _debug_print(debug, f"parallel_reduce_summaries: round={round_idx}, groups={len(groups)}, next={len(current)}")
+        _mapreduce_log(debug, f"parallel_reduce_summaries: round={round_idx}, groups={len(groups)}, next={len(current)}")
 
     return current[0] if current else None

@@ -232,7 +232,6 @@ def describe_scenes(
         updated.append(new_scene)
         if debug:
             print_prefixed("(GPT4o)", f"----- Scene {idx} -----")
-            print(summary.strip())
-            print("")
+            print_prefixed("(GPT4o)", summary.strip())
 
     return updated

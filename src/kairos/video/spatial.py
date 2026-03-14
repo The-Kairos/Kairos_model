@@ -82,15 +82,12 @@ def path_metrics(dets: list) -> tuple:
     return path_length, net_displacement, _angle_variance(angles)
 
 
-def compute_relations(tracks, yolo_dict, frame_w, frame_h,
-                      rel_min_frames=2, proximity_ratio=0.12,
-                      moving_with_min_frames=2, moving_with_cos=0.8,
-                      moving_with_speed_ratio=(0.5, 2.0), moving_with_min_speed=1.0):
-    """Compute spatial relations and moving-with relations for tracked objects."""
-    diag = math.hypot(frame_w, frame_h)
-    if diag <= 0:
-        return {}
+# ---------------------------------------------------------------------------
+# compute_relations helpers
+# ---------------------------------------------------------------------------
 
+def _extract_frame_centers(yolo_dict):
+    """Extract per-frame center positions from YOLO detections."""
     frame_centers = {}
     for frame_idx in sorted(yolo_dict.keys()):
         centers = []
@@ -105,7 +102,11 @@ def compute_relations(tracks, yolo_dict, frame_w, frame_h,
             })
         if centers:
             frame_centers[frame_idx] = centers
+    return frame_centers
 
+
+def _compute_spatial_relations(frame_centers, rel_min_frames):
+    """Count pairwise spatial relations across frames and keep dominant ones."""
     rel_counts = {}
     for _, centers in frame_centers.items():
         for i in range(len(centers)):
@@ -124,7 +125,11 @@ def compute_relations(tracks, yolo_dict, frame_w, frame_h,
         rel, count = max(counts.items(), key=lambda kv: kv[1])
         if count >= rel_min_frames:
             rel_results[pair] = rel
+    return rel_results
 
+
+def _compute_track_velocities(tracks):
+    """Compute per-frame velocity vectors for each track."""
     track_positions = {}
     for tid, info in tracks.items():
         dets = sorted(info["detections"], key=lambda d: d["frame_idx"])
@@ -141,7 +146,12 @@ def compute_relations(tracks, yolo_dict, frame_w, frame_h,
             f_prev, x_prev, y_prev = positions[i - 1]
             f_curr, x_curr, y_curr = positions[i]
             track_vel.setdefault(tid, {})[f_curr] = (x_curr - x_prev, y_curr - y_prev)
+    return track_vel
 
+
+def _compute_moving_with(frame_centers, track_vel, diag, proximity_ratio,
+                         moving_with_cos, moving_with_speed_ratio, moving_with_min_speed):
+    """Detect pairs of tracks moving together based on velocity similarity and proximity."""
     moving_counts = {}
     max_dist = diag * proximity_ratio
     for frame_idx, centers in frame_centers.items():
@@ -168,6 +178,25 @@ def compute_relations(tracks, yolo_dict, frame_w, frame_h,
                 if cos_sim >= moving_with_cos and moving_with_speed_ratio[0] <= ratio <= moving_with_speed_ratio[1]:
                     moving_counts[(ids[i], ids[j])] = moving_counts.get((ids[i], ids[j]), 0) + 1
                     moving_counts[(ids[j], ids[i])] = moving_counts.get((ids[j], ids[i]), 0) + 1
+    return moving_counts
+
+
+def compute_relations(tracks, yolo_dict, frame_w, frame_h,
+                      rel_min_frames=2, proximity_ratio=0.12,
+                      moving_with_min_frames=2, moving_with_cos=0.8,
+                      moving_with_speed_ratio=(0.5, 2.0), moving_with_min_speed=1.0):
+    """Compute spatial relations and moving-with relations for tracked objects."""
+    diag = math.hypot(frame_w, frame_h)
+    if diag <= 0:
+        return {}
+
+    frame_centers = _extract_frame_centers(yolo_dict)
+    rel_results = _compute_spatial_relations(frame_centers, rel_min_frames)
+    track_vel = _compute_track_velocities(tracks)
+    moving_counts = _compute_moving_with(
+        frame_centers, track_vel, diag, proximity_ratio,
+        moving_with_cos, moving_with_speed_ratio, moving_with_min_speed,
+    )
 
     relations_map = {}
     track_labels = {tid: info.get("label", "unknown") for tid, info in tracks.items()}

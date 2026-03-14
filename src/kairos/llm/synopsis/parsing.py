@@ -3,13 +3,10 @@
 import json
 import re
 
+from kairos.core.utils import print_prefixed
+
 NOT_STATED = "Not explicitly stated"
 NOT_STATED_PERIOD = "Not explicitly stated."
-
-
-def _debug_print(enabled: bool, message: str):
-    if enabled:
-        print(f"(GPT4o) {message}")
 
 
 def _parse_json_object(text: str, debug: bool = False, context: str = "section") -> dict:
@@ -26,9 +23,11 @@ def _parse_json_object(text: str, debug: bool = False, context: str = "section")
                 obj = json.loads(text[start:end + 1])
                 return obj if isinstance(obj, dict) else {}
             except json.JSONDecodeError as exc:
-                _debug_print(debug, f"{context}: JSON parse failed: {exc}")
+                if debug:
+                    print_prefixed("(Synopsis)", f"{context}: JSON parse failed: {exc}")
                 return {}
-        _debug_print(debug, f"{context}: JSON parse failed")
+        if debug:
+            print_prefixed("(Synopsis)", f"{context}: JSON parse failed")
         return {}
 
 
@@ -108,7 +107,7 @@ def _split_time_range(text: str) -> tuple[str, str]:
             left = left.strip() if left.strip() else NOT_STATED
             right = right.strip() if right.strip() else NOT_STATED
             return left, right
-    return raw, "Not explicitly stated"
+    return raw, NOT_STATED
 
 
 def _parse_summary_nonjson(text: str) -> tuple[dict, bool]:

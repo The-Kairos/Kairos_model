@@ -12,7 +12,7 @@ import whisper
 
 from kairos.audio.whisper_api import transcribe_via_api
 from kairos.audio.text_filter import filter_hallucinations
-from kairos.core.utils import retry_with_backoff
+from kairos.core.utils import retry_with_backoff, print_prefixed
 
 
 # Audio preprocessing
@@ -63,7 +63,7 @@ def _transcribe_via_api_with_retry(chunk_audio, sr, language, client, debug):
         )
     except Exception as e:
         if debug:
-            print(f"[WhisperWorker] API Error: {e}")
+            print_prefixed("(Whisper)", f"API Error: {e}")
         return []
 
 
@@ -104,6 +104,25 @@ def _transcribe_chunk_worker(args):
     return segments
 
 
+def _deduplicate_segments(segments: list) -> list:
+    """Remove near-duplicate segments from sorted Whisper output."""
+    if not segments:
+        return []
+    deduped = [segments[0]]
+    for curr in segments[1:]:
+        prev = deduped[-1]
+        time_diff = abs(curr["start"] - prev["start"])
+        text_match = curr["text"].strip().lower() == prev["text"].strip().lower()
+        if time_diff < 0.5 and text_match:
+            continue
+        if time_diff < 1.0 and (curr["text"].strip() in prev["text"].strip() or prev["text"].strip() in curr["text"].strip()):
+            if len(curr["text"]) > len(prev["text"]):
+                deduped[-1] = curr
+            continue
+        deduped.append(curr)
+    return deduped
+
+
 def transcribe_parallel(audio, sr, model_size="medium", chunk_size_sec=600, overlap_sec=30,
                         lang_info=None, use_vad=True, force_cpu=False, debug=False,
                         use_api=True, client=None) -> dict:
@@ -135,20 +154,7 @@ def transcribe_parallel(audio, sr, model_size="medium", chunk_size_sec=600, over
             gc.collect()
 
     all_segments.sort(key=lambda x: x["start"])
-    deduped = []
-    if all_segments:
-        deduped.append(all_segments[0])
-        for curr in all_segments[1:]:
-            prev = deduped[-1]
-            time_diff = abs(curr["start"] - prev["start"])
-            text_match = curr["text"].strip().lower() == prev["text"].strip().lower()
-            if time_diff < 0.5 and text_match:
-                continue
-            if time_diff < 1.0 and (curr["text"].strip() in prev["text"].strip() or prev["text"].strip() in curr["text"].strip()):
-                if len(curr["text"]) > len(prev["text"]):
-                    deduped[-1] = curr
-                continue
-            deduped.append(curr)
+    deduped = _deduplicate_segments(all_segments)
 
     primary_lang = lang_info.get("primary_language") if lang_info else None
     final_segments = filter_hallucinations(deduped, primary_lang)
@@ -191,7 +197,7 @@ def extract_speech_singlecall(
 
     if not scan_result["has_speech"]:
         if debug:
-            print("[Whisper] No speech detected. Skipping.")
+            print_prefixed("(Whisper)", "No speech detected. Skipping.")
         for scene in scenes:
             scene["audio_speech"] = ""
         return scenes, {
@@ -220,7 +226,7 @@ def extract_speech_singlecall(
 
     if debug:
         scenes_with_speech = sum(1 for t in scene_texts if t.strip())
-        print(f"[Whisper] Mapped speech to {scenes_with_speech}/{len(scenes)} scenes")
+        print_prefixed("(Whisper)", f"Mapped speech to {scenes_with_speech}/{len(scenes)} scenes")
 
     return scenes, {
         "method": whisper_result.get("method", "unknown"),

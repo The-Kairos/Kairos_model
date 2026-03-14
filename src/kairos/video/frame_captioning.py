@@ -13,6 +13,19 @@ from kairos.core.utils import print_prefixed
 _blip_model = None
 _blip_processor = None
 
+# Default BLIP generation parameters — override any via **kwargs
+BLIP_DEFAULTS = {
+    "max_length": 50,
+    "min_length": 20,
+    "num_beams": 1,
+    "do_sample": True,
+    "top_p": 0.9,
+    "temperature": 0.8,
+    "length_penalty": 0.8,
+    "no_repeat_ngram_size": 2,
+    "repetition_penalty": 1.2,
+}
+
 
 def _get_blip_model():
     """Load BLIP model and processor on first use, then cache."""
@@ -35,17 +48,13 @@ def blip_frame(
     model=None,
     processor=None,
     prompt: Optional[str] = None,
-    max_length: int = 50,
-    min_length: int = 20,
-    num_beams: int = 1,
-    do_sample: bool = True,
-    top_p: float = 0.9,
-    temperature: float = 0.8,
-    length_penalty: float = 0.8,
-    no_repeat_ngram_size: int = 2,
-    repetition_penalty: float = 1.2,
+    **generate_kwargs,
 ) -> str:
-    """Generate a BLIP caption for a single frame."""
+    """Generate a BLIP caption for a single frame.
+
+    Any keyword arguments override BLIP_DEFAULTS and are forwarded
+    directly to ``model.generate()``.
+    """
     if model is None or processor is None:
         model, processor = _get_blip_model()
 
@@ -70,19 +79,10 @@ def blip_frame(
 
     inputs = {k: v.to(device) for k, v in inputs.items()}
 
+    kwargs = {**BLIP_DEFAULTS, **generate_kwargs}
+
     with torch.no_grad():
-        output_ids = model.generate(
-            **inputs,
-            max_length=max_length,
-            min_length=min_length,
-            num_beams=num_beams,
-            do_sample=do_sample,
-            top_p=top_p,
-            temperature=temperature,
-            length_penalty=length_penalty,
-            no_repeat_ngram_size=no_repeat_ngram_size,
-            repetition_penalty=repetition_penalty,
-        )
+        output_ids = model.generate(**inputs, **kwargs)
 
     return processor.decode(output_ids[0], skip_special_tokens=True).strip()
 
@@ -91,19 +91,14 @@ def caption_frames(
     scenes: list[dict],
     model=None,
     processor=None,
-    prompt: Optional[str] = None,
-    max_length: int = 50,
-    min_length: int = 20,
-    num_beams: int = 1,
-    do_sample: bool = True,
-    top_p: float = 0.9,
-    temperature: float = 0.8,
-    length_penalty: float = 0.8,
-    no_repeat_ngram_size: int = 2,
-    repetition_penalty: float = 1.2,
     debug: bool = False,
+    **blip_kwargs,
 ) -> list[dict]:
-    """Run BLIP on each frame in each scene and attach captions."""
+    """Run BLIP on each frame in each scene and attach captions.
+
+    Any keyword arguments are forwarded to ``blip_frame`` (and on to
+    ``model.generate()``), overriding BLIP_DEFAULTS.
+    """
     if model is None or processor is None:
         model, processor = _get_blip_model()
 
@@ -120,16 +115,7 @@ def caption_frames(
                 image=frame,
                 model=model,
                 processor=processor,
-                prompt=prompt,
-                max_length=max_length,
-                min_length=min_length,
-                num_beams=num_beams,
-                do_sample=do_sample,
-                top_p=top_p,
-                temperature=temperature,
-                length_penalty=length_penalty,
-                no_repeat_ngram_size=no_repeat_ngram_size,
-                repetition_penalty=repetition_penalty,
+                **blip_kwargs,
             )
             captions.append(caption)
             if debug:

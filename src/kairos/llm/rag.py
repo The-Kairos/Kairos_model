@@ -6,12 +6,17 @@ import time
 
 import numpy as np
 
-from kairos.core.utils import load_prompt
+from kairos.core.utils import load_prompt, print_prefixed
 from kairos.llm.client import get_embedding_client
 from kairos.llm.synopsis.render import _extract_timed_entry
 
 EMBEDDING_MODEL = os.getenv("GEMINI_EMBEDDING_MODEL", "gemini-embedding-001")
 GENERATION_MODEL = os.getenv("GEMINI_RAG_MODEL", "gemini-2.5-pro")
+
+
+def _ensure_embedding_client(client):
+    """Return the given client, or build a default embedding client if None."""
+    return client if client is not None else get_embedding_client()
 
 
 # Formatting helpers
@@ -109,8 +114,7 @@ MAX_EMBED_BATCH = 250
 
 
 def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL, batch_size=MAX_EMBED_BATCH):
-    if client is None:
-        client = get_embedding_client()
+    client = _ensure_embedding_client(client)
     if not contexts:
         return []
     embeddings = []
@@ -121,27 +125,23 @@ def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL, batch_siz
 
 
 def embed_question(question: str, client=None, model=EMBEDDING_MODEL):
-    if client is None:
-        client = get_embedding_client()
+    client = _ensure_embedding_client(client)
     result = client.models.embed_content(model=model, contents=question)
     return result.embeddings
 
 
-def _to_vector(e) -> np.ndarray:
-    if hasattr(e, "values"):
-        try:
-            return np.array(e.values, dtype=np.float32)
-        except Exception:
-            pass
-    if isinstance(e, dict) and "values" in e:
-        return np.array(e["values"], dtype=np.float32)
-    return np.array(e, dtype=np.float32)
-
-
 def _embedding_values(embedding):
+    """Extract raw values from an embedding object, dict, or passthrough."""
     if hasattr(embedding, "values"):
         return embedding.values
+    if isinstance(embedding, dict) and "values" in embedding:
+        return embedding["values"]
     return embedding
+
+
+def _to_vector(e) -> np.ndarray:
+    """Convert an embedding to a numpy float32 vector."""
+    return np.array(_embedding_values(e), dtype=np.float32)
 
 
 # Clustering
@@ -217,7 +217,7 @@ def get_top_k_similar(question_embedding, embeddings, contexts, k=5, debug=False
     top_matches = merge_retrieval(q_vec, embeddings, contexts, cluster_metadata=cluster_metadata, k=k, top_c=top_c, alpha=alpha)
     if debug:
         for text, score in top_matches:
-            print(f"Score: {score:.4f} | Text: {text}\n")
+            print_prefixed("(RAG)", f"Score: {score:.4f} | Text: {text}")
     return top_matches
 
 
@@ -227,7 +227,7 @@ def create_answer(question, top_matches, client=None, model=GENERATION_MODEL):
     prompt = template.format(context=context, question=question)
     if client is not None:
         return client.generate(prompt)
-    raw_client = get_embedding_client()
+    raw_client = _ensure_embedding_client(None)
     response = raw_client.models.generate_content(model=model, contents=prompt)
     return response.text
 
@@ -261,8 +261,7 @@ def make_embedding(checkpoint: dict, output_path: str, model=EMBEDDING_MODEL, em
     contexts = build_contexts(checkpoint)
     if not contexts:
         raise ValueError("No contexts found in checkpoint to embed.")
-    if embedding_client is None:
-        embedding_client = get_embedding_client()
+    embedding_client = _ensure_embedding_client(embedding_client)
     embeddings = embed_contexts(contexts, client=embedding_client, model=model)
     kmeans_clusters = compute_kmeans_clusters(embeddings)
     payload = save_rag_embeddings(output_path, contexts, embeddings, model=model, kmeans_clusters=kmeans_clusters)

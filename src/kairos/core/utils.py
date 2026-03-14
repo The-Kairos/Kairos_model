@@ -54,13 +54,13 @@ def apply_gpt_normalization(text: str, filename: str = "gpt_normalizations.json"
 
 
 def see_first_scene(df):
-    print("Printing first captioned scene:")
-    print("{")
+    print_prefixed("(Debug)", "Printing first captioned scene:")
+    print_prefixed("(Debug)", "{")
     for key in df[0]:
         if key == "frames":
             continue
-        print(f"{key}, {df[0][key]},")
-    print("}")
+        print_prefixed("(Debug)", f"{key}, {df[0][key]},")
+    print_prefixed("(Debug)", "}")
 
 
 def see_scenes_cuts(df):

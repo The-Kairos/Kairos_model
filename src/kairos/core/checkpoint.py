@@ -24,10 +24,10 @@ def clear_frames(scene_list: list) -> list:
 def read_json(json_path: str | Path) -> dict:
     json_path = Path(json_path)
     if not json_path.exists():
-        print(f"JSON path does not exist: {json_path}")
+        print_prefixed("(Checkpoint)", f"JSON path does not exist: {json_path}")
         return {}
 
-    print(f"Reading JSON from {json_path}")
+    print_prefixed("(Checkpoint)", f"Reading JSON from {json_path}")
     with open(json_path, "r", encoding="utf-8") as f:
         checkpoint = json.load(f)
         if isinstance(checkpoint, list):

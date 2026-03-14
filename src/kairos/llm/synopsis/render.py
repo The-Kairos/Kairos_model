@@ -5,12 +5,14 @@ from __future__ import annotations
 import os
 from urllib.parse import quote
 
+from kairos.llm.synopsis.parsing import NOT_STATED, NOT_STATED_PERIOD
+
 
 def _timecode_to_seconds(timecode: str | None):
     if not timecode or not isinstance(timecode, str):
         return None
     tc = timecode.strip()
-    if not tc or tc.lower() == "not explicitly stated":
+    if not tc or tc.lower() == NOT_STATED.lower():
         return None
     parts = tc.split(":")
     try:
@@ -49,7 +51,7 @@ def _build_video_link_base(video_path: str | None, output_dir: str | None) -> st
 
 
 def _format_timestamp_markdown(timestamp: str | None, video_link_base: str | None) -> str:
-    label = timestamp.strip() if isinstance(timestamp, str) and timestamp.strip() else "Not explicitly stated"
+    label = timestamp.strip() if isinstance(timestamp, str) and timestamp.strip() else NOT_STATED
     seconds = _timecode_to_seconds(timestamp)
     if seconds is None:
         return label
@@ -60,9 +62,9 @@ def _format_timestamp_markdown(timestamp: str | None, video_link_base: str | Non
 def _format_time_range_markdown(start: str | None, end: str | None, video_link_base: str | None) -> str:
     start_md = _format_timestamp_markdown(start, video_link_base)
     end_md = _format_timestamp_markdown(end, video_link_base)
-    if end_md == "Not explicitly stated":
+    if end_md == NOT_STATED:
         return start_md
-    if start_md == "Not explicitly stated":
+    if start_md == NOT_STATED:
         return end_md
     return f"{start_md} - {end_md}"
 
@@ -143,7 +145,7 @@ def render_synopsis_markdown(synopsis: dict, video_path: str | None = None, outp
                 if isinstance(answer, str) and answer.strip():
                     lines.append(f"**A:** {answer.strip()}")
                 else:
-                    lines.append("**A:** Not explicitly stated.")
+                    lines.append(f"**A:** {NOT_STATED_PERIOD}")
                 lines.append("")
 
     while lines and lines[-1] == "":

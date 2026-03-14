@@ -11,6 +11,8 @@ import time
 import psutil
 import torch
 
+from kairos.core.utils import print_prefixed
+
 try:
     import pynvml
     pynvml.nvmlInit()
@@ -162,7 +164,7 @@ def save_log(data: dict, path: str) -> str:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    print(f"Saving log: {path}")
+    print_prefixed("(Log)", f"Saved: {path}")
     return path
 
 

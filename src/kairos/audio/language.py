@@ -5,6 +5,8 @@ import gc
 import numpy as np
 import whisper
 
+from kairos.core.utils import print_prefixed
+
 
 def detect_languages(audio: np.ndarray, sr: int, speech_regions: list, debug: bool = False) -> dict:
     if not speech_regions:
@@ -32,5 +34,5 @@ def detect_languages(audio: np.ndarray, sr: int, speech_regions: list, debug: bo
     primary = sorted_langs[0][0]
     is_multilingual = any(count >= 2 for _, count in sorted_langs[1:])
     if debug:
-        print(f"[AudioDetector] Languages: {detected_counts}, Primary: {primary}, Multilingual: {is_multilingual}")
+        print_prefixed("(AudioDetector)", f"Languages: {detected_counts}, Primary: {primary}, Multilingual: {is_multilingual}")
     return {"primary_language": primary, "detected_languages": detected_counts, "is_multilingual": is_multilingual}

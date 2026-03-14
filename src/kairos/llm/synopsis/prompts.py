@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from kairos.llm.synopsis.parsing import NOT_STATED, NOT_STATED_PERIOD
+
 
 def _parse_count_range(value, default_min: int, default_max: int) -> tuple[int, int]:
     if isinstance(value, int):
@@ -107,6 +109,18 @@ _SCHEMA_MONOLITH = (
     "}\n"
 )
 
+_SECTION_SCHEMAS = {
+    "summary": _SCHEMA_SUMMARY,
+    "highlights": _SCHEMA_HIGHLIGHTS,
+    "timeline": _SCHEMA_TIMELINE,
+    "qna_predefined": _SCHEMA_QNA,
+    "qna_generated": _SCHEMA_QNA,
+    "qna_legacy": _SCHEMA_QNA,
+    "monolith": _SCHEMA_MONOLITH,
+}
+
+_TIMESTAMP_NOT_STATED_RULE = f"- If a start or end timestamp is not explicitly stated, use \"{NOT_STATED}\".\n"
+
 
 def _build_repair_prompt(
     section: str,
@@ -125,46 +139,34 @@ def _build_repair_prompt(
         "You are a strict JSON reformatter.\n"
         "Convert the RAW OUTPUT into ONE valid JSON object only.\n"
         "No markdown, no extra text.\n"
-        "If information is missing, use \"Not explicitly stated.\".\n"
+        f"If information is missing, use \"{NOT_STATED_PERIOD}\".\n"
     )
+    base_schema = _SECTION_SCHEMAS.get(section, "Use a JSON object.\n")
     if section == "summary":
-        schema = (
-            _SCHEMA_SUMMARY
-            + "Rules:\n"
-            "- If chat_name or summary is missing, set it to \"Not explicitly stated.\".\n"
-        )
+        rules = f"- If chat_name or summary is missing, set it to \"{NOT_STATED_PERIOD}\".\n"
     elif section == "highlights":
-        schema = (
-            _SCHEMA_HIGHLIGHTS
-            + "Rules:\n"
+        rules = (
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
-            "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
+            f"{_TIMESTAMP_NOT_STATED_RULE}"
         )
     elif section == "timeline":
-        schema = (
-            _SCHEMA_TIMELINE
-            + "Rules:\n"
-            f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
-        )
+        rules = f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
     elif section == "qna_predefined":
-        schema = (
-            _SCHEMA_QNA
-            + "Rules:\n"
+        rules = (
             f"- Include exactly {required_questions_count} items.\n"
             "- Questions must be the required questions below in exact order.\n"
             "Required Questions:\n"
             f"{required_questions_block}\n"
         )
     elif section == "qna_generated":
-        schema = (
-            _SCHEMA_QNA
-            + "Rules:\n"
+        rules = (
             f"- Include exactly {extra_questions_count} items.\n"
             "- Do not repeat required questions (they are answered elsewhere).\n"
             "- If not enough items, add placeholder questions like \"Additional predicted question N?\".\n"
         )
     else:
-        schema = "Use a JSON object.\n"
+        rules = ""
+    schema = base_schema + ("Rules:\n" + rules if rules else "")
     return (
         header
         + schema
@@ -191,7 +193,7 @@ def _build_generated_fill_prompt(
         "- Do not repeat or paraphrase any existing questions below.\n"
         "- Keep generated questions concrete and useful.\n"
         "- Use only the narrative text.\n"
-        "- If a detail is missing, answer \"Not explicitly stated.\".\n"
+        f"- If a detail is missing, answer \"{NOT_STATED_PERIOD}\".\n"
         "Existing Generated Questions (do not repeat):\n"
         f"{existing_block}\n"
         "INPUT NARRATIVE:\n"
@@ -227,7 +229,7 @@ def _build_questions_prompt(
         f'- "questions" must contain exactly {total_questions} items.\n'
         "- The first questions must be the Required Questions in the exact order listed below.\n"
         f"- After that, add exactly {extra_questions_count} new, predicted questions.\n"
-        '- Use only the narrative. If a detail is missing, set the answer to "Not explicitly stated."\n'
+        f'- Use only the narrative. If a detail is missing, set the answer to "{NOT_STATED_PERIOD}"\n'
         "- Do not include any other keys besides questions.\n"
         'Required Questions:\n'
         f"{required_block}\n"
@@ -303,67 +305,55 @@ def _build_safe_section_prompt(
         "You are a story detective.\n"
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
         "Base answers ONLY on the provided text. Do not infer or invent details.\n"
-        "If information is missing, use \"Not explicitly stated.\"\n"
+        f"If information is missing, use \"{NOT_STATED_PERIOD}\"\n"
         "Ensure the report complies with a PG-13 content standard.\n"
     )
+    base_schema = _SECTION_SCHEMAS.get(section, "Use a JSON object.\n")
     if section == "summary":
-        schema = (
-            _SCHEMA_SUMMARY
-            + "Rules:\n"
+        rules = (
             "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
             "- \"summary\" must be one paragraph.\n"
         )
     elif section == "highlights":
-        schema = (
-            _SCHEMA_HIGHLIGHTS
-            + "Rules:\n"
+        rules = (
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
             "- Each highlight is one sentence.\n"
-            "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
+            f"{_TIMESTAMP_NOT_STATED_RULE}"
         )
     elif section == "timeline":
-        schema = (
-            _SCHEMA_TIMELINE
-            + "Rules:\n"
+        rules = (
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
             "- Events must be 3-5 words, chronological order.\n"
-            "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
+            f"- If a timestamp is not explicitly stated, use \"{NOT_STATED}\".\n"
         )
     elif section == "qna_predefined":
-        schema = (
-            _SCHEMA_QNA
-            + "Rules:\n"
+        rules = (
             "- Include only these required questions, in order, no extras:\n"
             f"{required_questions_block}\n"
         )
     elif section == "qna_generated":
-        schema = (
-            _SCHEMA_QNA
-            + "Rules:\n"
+        rules = (
             f"- Add exactly {extra_questions_count} additional questions (not in required list).\n"
             "- Do not repeat required questions (they are answered elsewhere).\n"
             "- Use only the narrative.\n"
         )
     elif section == "qna_legacy":
-        schema = (
-            _SCHEMA_QNA
-            + "Rules:\n"
+        rules = (
             "- Include the required questions below, in order, then add extra questions.\n"
             f"- Add exactly {extra_questions_count} extra questions.\n"
             "Required Questions:\n"
             f"{required_questions_block}\n"
         )
     elif section == "monolith":
-        schema = (
-            _SCHEMA_MONOLITH
-            + "Rules:\n"
+        rules = (
             "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
-            "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
+            f"{_TIMESTAMP_NOT_STATED_RULE}"
         )
     else:
-        schema = "Use a JSON object.\n"
+        rules = ""
+    schema = base_schema + ("Rules:\n" + rules if rules else "")
     return (
         header
         + schema
@@ -389,7 +379,7 @@ def _build_monolith_prompt(
         "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
         f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
         f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
-        "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
+        f"{_TIMESTAMP_NOT_STATED_RULE}"
         "INPUT NARRATIVE:\n"
         f"{narrative_text}\n"
     )
