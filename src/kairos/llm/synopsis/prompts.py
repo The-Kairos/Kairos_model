@@ -77,6 +77,37 @@ def _format_scene_ranges(items: list[dict], limit: int = 4) -> str:
     return f"{head}, ... (+{len(ranges) - limit} more)"
 
 
+_SCHEMA_SUMMARY = (
+    "Use this exact schema and key names:\n"
+    '{ "chat_name": "3-5 word title", "summary": "Single coherent paragraph." }\n'
+)
+
+_SCHEMA_HIGHLIGHTS = (
+    "Use this exact schema and key names:\n"
+    '{ "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ] }\n'
+)
+
+_SCHEMA_TIMELINE = (
+    "Use this exact schema and key names:\n"
+    '{ "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ] }\n'
+)
+
+_SCHEMA_QNA = (
+    "Use this exact schema and key names:\n"
+    '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
+)
+
+_SCHEMA_MONOLITH = (
+    "Use this exact schema and key names:\n"
+    "{\n"
+    '  "chat_name": "3-5 word title",\n'
+    '  "summary": "Single coherent paragraph.",\n'
+    '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
+    '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ]\n'
+    "}\n"
+)
+
+
 def _build_repair_prompt(
     section: str,
     raw_text: str,
@@ -98,31 +129,27 @@ def _build_repair_prompt(
     )
     if section == "summary":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "chat_name": "3-5 word title", "summary": "Single coherent paragraph." }\n'
-            "Rules:\n"
+            _SCHEMA_SUMMARY
+            + "Rules:\n"
             "- If chat_name or summary is missing, set it to \"Not explicitly stated.\".\n"
         )
     elif section == "highlights":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ] }\n'
-            "Rules:\n"
+            _SCHEMA_HIGHLIGHTS
+            + "Rules:\n"
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
             "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
     elif section == "timeline":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ] }\n'
-            "Rules:\n"
+            _SCHEMA_TIMELINE
+            + "Rules:\n"
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
         )
     elif section == "qna_predefined":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
-            "Rules:\n"
+            _SCHEMA_QNA
+            + "Rules:\n"
             f"- Include exactly {required_questions_count} items.\n"
             "- Questions must be the required questions below in exact order.\n"
             "Required Questions:\n"
@@ -130,9 +157,8 @@ def _build_repair_prompt(
         )
     elif section == "qna_generated":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
-            "Rules:\n"
+            _SCHEMA_QNA
+            + "Rules:\n"
             f"- Include exactly {extra_questions_count} items.\n"
             "- Do not repeat required questions (they are answered elsewhere).\n"
             "- If not enough items, add placeholder questions like \"Additional predicted question N?\".\n"
@@ -282,52 +308,46 @@ def _build_safe_section_prompt(
     )
     if section == "summary":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "chat_name": "3-5 word title", "summary": "Single coherent paragraph." }\n'
-            "Rules:\n"
+            _SCHEMA_SUMMARY
+            + "Rules:\n"
             "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
             "- \"summary\" must be one paragraph.\n"
         )
     elif section == "highlights":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ] }\n'
-            "Rules:\n"
+            _SCHEMA_HIGHLIGHTS
+            + "Rules:\n"
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
             "- Each highlight is one sentence.\n"
             "- If a start or end timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
     elif section == "timeline":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ] }\n'
-            "Rules:\n"
+            _SCHEMA_TIMELINE
+            + "Rules:\n"
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
             "- Events must be 3-5 words, chronological order.\n"
             "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
     elif section == "qna_predefined":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
-            "Rules:\n"
+            _SCHEMA_QNA
+            + "Rules:\n"
             "- Include only these required questions, in order, no extras:\n"
             f"{required_questions_block}\n"
         )
     elif section == "qna_generated":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
-            "Rules:\n"
+            _SCHEMA_QNA
+            + "Rules:\n"
             f"- Add exactly {extra_questions_count} additional questions (not in required list).\n"
             "- Do not repeat required questions (they are answered elsewhere).\n"
             "- Use only the narrative.\n"
         )
     elif section == "qna_legacy":
         schema = (
-            "Use this exact schema and key names:\n"
-            '{ "questions": [ { "question": "string", "answer": "string" } ] }\n'
-            "Rules:\n"
+            _SCHEMA_QNA
+            + "Rules:\n"
             "- Include the required questions below, in order, then add extra questions.\n"
             f"- Add exactly {extra_questions_count} extra questions.\n"
             "Required Questions:\n"
@@ -335,14 +355,8 @@ def _build_safe_section_prompt(
         )
     elif section == "monolith":
         schema = (
-            "Use this exact schema and key names:\n"
-            "{\n"
-            '  "chat_name": "3-5 word title",\n'
-            '  "summary": "Single coherent paragraph.",\n'
-            '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
-            '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ]\n'
-            "}\n"
-            "Rules:\n"
+            _SCHEMA_MONOLITH
+            + "Rules:\n"
             "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
@@ -370,14 +384,8 @@ def _build_monolith_prompt(
     return (
         "You are a story detective.\n"
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
-        "Use this exact schema and key names:\n"
-        "{\n"
-        '  "chat_name": "3-5 word title",\n'
-        '  "summary": "Single coherent paragraph.",\n'
-        '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
-        '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ]\n'
-        "}\n"
-        "Rules:\n"
+        + _SCHEMA_MONOLITH
+        + "Rules:\n"
         "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
         f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
         f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
@@ -402,10 +410,7 @@ def _build_consistency_prompt(
 ) -> str:
     import json
     draft_json = json.dumps(draft_synopsis, ensure_ascii=False)
-    return (
-        "You are a story detective.\n"
-        "Return ONE valid JSON object only. No markdown, no extra text.\n"
-        "Review the draft synopsis and correct any factual inconsistencies using only the narrative.\n"
+    consistency_schema = (
         "Use this exact schema and key names:\n"
         "{\n"
         '  "chat_name": "3-5 word title",\n'
@@ -414,7 +419,13 @@ def _build_consistency_prompt(
         '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
         '  "questions": [ { "question": "Question text", "answer": "Answer text" } ]\n'
         "}\n"
-        "Rules:\n"
+    )
+    return (
+        "You are a story detective.\n"
+        "Return ONE valid JSON object only. No markdown, no extra text.\n"
+        "Review the draft synopsis and correct any factual inconsistencies using only the narrative.\n"
+        + consistency_schema
+        + "Rules:\n"
         f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
         f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
         f"- \"questions\" must contain exactly {required_questions_count} items.\n"

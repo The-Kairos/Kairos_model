@@ -12,6 +12,7 @@ import whisper
 
 from kairos.audio.whisper_api import transcribe_via_api
 from kairos.audio.text_filter import filter_hallucinations
+from kairos.core.utils import retry_with_backoff
 
 
 # Audio preprocessing
@@ -53,17 +54,17 @@ def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
 
 def _transcribe_via_api_with_retry(chunk_audio, sr, language, client, debug):
     """Try the Whisper API up to 3 times with rate-limit backoff."""
-    for attempt in range(3):
-        try:
-            return transcribe_via_api(chunk_audio, sr, language=language, client=client)
-        except Exception as e:
-            if ("429" in str(e) or "RateLimitReached" in str(e)) and attempt < 2:
-                time.sleep(65)
-                continue
-            if debug:
-                print(f"[WhisperWorker] API Error: {e}")
-            return []
-    return []
+    try:
+        return retry_with_backoff(
+            lambda: transcribe_via_api(chunk_audio, sr, language=language, client=client),
+            max_retries=2,
+            base_sec=30.0,
+            jitter=False,
+        )
+    except Exception as e:
+        if debug:
+            print(f"[WhisperWorker] API Error: {e}")
+        return []
 
 
 def _transcribe_via_local_model(chunk_audio, model_size, force_cpu, language):

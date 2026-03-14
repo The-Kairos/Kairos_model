@@ -8,7 +8,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from kairos.core.utils import load_prompt, is_rate_limit_error
+from kairos.core.utils import load_prompt, is_rate_limit_error, retry_with_backoff
 from kairos.llm.synopsis.parsing import (
     _debug_print,
     _parse_synopsis_json,
@@ -41,6 +41,9 @@ from kairos.llm.synopsis.prompts import (
 )
 from kairos.llm.synopsis.render import render_synopsis_markdown
 from kairos.llm.synopsis.mapreduce import (
+    CHUNK_SIZE,
+    SUMMARY_MAX_WORKERS,
+    SUMMARY_REDUCE_GROUP_SIZE,
     chunk_scenes,
     chunk_narrative,
     parallel_map_summaries,
@@ -50,10 +53,7 @@ from kairos.llm.synopsis.mapreduce import (
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-CHUNK_SIZE = 7000
 FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
-SUMMARY_MAX_WORKERS = 6
-SUMMARY_REDUCE_GROUP_SIZE = 4
 GPT_MAX_RETRIES = 6
 GPT_RETRY_BASE_SEC = 2.0
 HIGHLIGHTS_COUNT = "4-6"
@@ -122,21 +122,17 @@ def _is_responsible_ai_error(exc: Exception) -> bool:
 
 def call_gpt(client, prompt, retries: int = GPT_MAX_RETRIES, retry_base_sec: float = GPT_RETRY_BASE_SEC):
     """Call LLM with retries via the LLMClient protocol."""
-    last_exc = None
-    for attempt in range(retries):
-        try:
-            return client.generate(prompt, max_tokens=16384, temperature=0.2)
-        except Exception as exc:
-            last_exc = exc
-            if _is_responsible_ai_error(exc):
-                break
-            if attempt >= retries - 1:
-                break
-            sleep_sec = retry_base_sec * (2 ** attempt)
-            if is_rate_limit_error(exc):
-                sleep_sec = max(sleep_sec, 5.0)
-            time.sleep(sleep_sec)
-    raise last_exc
+    def _is_retryable(exc):
+        if _is_responsible_ai_error(exc):
+            return False
+        return is_rate_limit_error(exc)
+
+    return retry_with_backoff(
+        lambda: client.generate(prompt, max_tokens=16384, temperature=0.2),
+        max_retries=retries - 1,
+        base_sec=retry_base_sec,
+        is_retryable=_is_retryable,
+    )
 
 
 def call_gpt_safe(

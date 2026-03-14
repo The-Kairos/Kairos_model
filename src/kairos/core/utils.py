@@ -1,7 +1,9 @@
-"""Shared utility functions: printing, timecodes, prompt loading, normalization."""
+"""Shared utility functions: printing, timecodes, prompt loading, normalization, retry."""
 
 import json
+import random
 import re
+import time
 from pathlib import Path
 
 SECTION_LINE = "=" * 40
@@ -86,3 +88,43 @@ def is_rate_limit_error(exc: Exception) -> bool:
         "429", "rate limit", "ratelimit", "too many requests",
         "quota exceeded", "resource exhausted", "request rate",
     ))
+
+
+def retry_with_backoff(
+    fn,
+    *,
+    max_retries: int = 3,
+    base_sec: float = 2.0,
+    is_retryable=None,
+    jitter: bool = True,
+):
+    """Call *fn()* with exponential backoff on retryable errors.
+
+    Args:
+        fn: Zero-argument callable to attempt.
+        max_retries: Maximum number of retry attempts (total calls = max_retries + 1 at most).
+        base_sec: Base delay in seconds; doubles each attempt.
+        is_retryable: Predicate ``(Exception) -> bool``. Defaults to ``is_rate_limit_error``.
+        jitter: Add random jitter (0-1 s) to the sleep time.
+
+    Returns:
+        The return value of *fn()* on success.
+
+    Raises:
+        The last exception if all attempts fail or the error is not retryable.
+    """
+    if is_retryable is None:
+        is_retryable = is_rate_limit_error
+    last_exc = None
+    for attempt in range(max_retries + 1):
+        try:
+            return fn()
+        except Exception as exc:
+            last_exc = exc
+            if not is_retryable(exc) or attempt >= max_retries:
+                raise
+            sleep_sec = base_sec * (2 ** attempt)
+            if jitter:
+                sleep_sec += random.uniform(0.0, 1.0)
+            time.sleep(sleep_sec)
+    raise last_exc

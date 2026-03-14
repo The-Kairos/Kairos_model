@@ -3,53 +3,52 @@
 import json
 import re
 
+NOT_STATED = "Not explicitly stated"
+NOT_STATED_PERIOD = "Not explicitly stated."
+
 
 def _debug_print(enabled: bool, message: str):
     if enabled:
         print(f"(GPT4o) {message}")
 
 
-def _parse_synopsis_json(text: str, debug: bool = False) -> dict:
+def _parse_json_object(text: str, debug: bool = False, context: str = "section") -> dict:
     if not isinstance(text, str):
-        return {
-            "chat_name": "Not explicitly stated",
-            "summary": "",
-            "video_highlights": [],
-            "video_timeline": [],
-            "questions": [],
-            "parse_error": "Synopsis output was not a string",
-        }
+        return {}
     try:
         obj = json.loads(text)
-    except json.JSONDecodeError as exc:
+        return obj if isinstance(obj, dict) else {}
+    except json.JSONDecodeError:
         start = text.find("{")
         end = text.rfind("}")
         if start != -1 and end != -1 and end > start:
             try:
                 obj = json.loads(text[start:end + 1])
-            except json.JSONDecodeError:
-                obj = None
-        else:
-            obj = None
-        if obj is None:
-            _debug_print(debug, f"synopsis JSON parse failed: {exc}")
-            return {
-                "chat_name": "Not explicitly stated",
-                "summary": text.strip(),
-                "video_highlights": [],
-                "video_timeline": [],
-                "questions": [],
-                "parse_error": "Invalid JSON from model",
-            }
-    if not isinstance(obj, dict):
-        return {
-            "chat_name": "Not explicitly stated",
-            "summary": text.strip(),
-            "video_highlights": [],
-            "video_timeline": [],
-            "questions": [],
-            "parse_error": "JSON root was not an object",
-        }
+                return obj if isinstance(obj, dict) else {}
+            except json.JSONDecodeError as exc:
+                _debug_print(debug, f"{context}: JSON parse failed: {exc}")
+                return {}
+        _debug_print(debug, f"{context}: JSON parse failed")
+        return {}
+
+
+def _synopsis_fallback(text: str, parse_error: str) -> dict:
+    return {
+        "chat_name": NOT_STATED,
+        "summary": text.strip() if isinstance(text, str) else "",
+        "video_highlights": [],
+        "video_timeline": [],
+        "questions": [],
+        "parse_error": parse_error,
+    }
+
+
+def _parse_synopsis_json(text: str, debug: bool = False) -> dict:
+    if not isinstance(text, str):
+        return _synopsis_fallback("", "Synopsis output was not a string")
+    obj = _parse_json_object(text, debug=debug, context="synopsis")
+    if not obj:
+        return _synopsis_fallback(text, "Invalid JSON from model")
     return obj
 
 
@@ -101,13 +100,13 @@ def _parse_qna_pairs(text: str) -> list[tuple[str, str]]:
 
 def _split_time_range(text: str) -> tuple[str, str]:
     if not isinstance(text, str) or not text.strip():
-        return "Not explicitly stated", "Not explicitly stated"
+        return NOT_STATED, NOT_STATED
     raw = text.strip()
     for sep in (" - ", " – ", " — ", " to ", "-"):
         if sep in raw:
             left, right = raw.split(sep, 1)
-            left = left.strip() if left.strip() else "Not explicitly stated"
-            right = right.strip() if right.strip() else "Not explicitly stated"
+            left = left.strip() if left.strip() else NOT_STATED
+            right = right.strip() if right.strip() else NOT_STATED
             return left, right
     return raw, "Not explicitly stated"
 
@@ -127,12 +126,12 @@ def _parse_items_nonjson(text: str, key: str, text_key: str, expected_count: int
     ok = len(pairs) >= expected_count
     items = []
     for left, right in pairs[:expected_count]:
-        ts = left.strip() if left else "Not explicitly stated"
-        value = right.strip() if right else "Not explicitly stated."
+        ts = left.strip() if left else NOT_STATED
+        value = right.strip() if right else NOT_STATED_PERIOD
         if not ts:
-            ts = "Not explicitly stated"
+            ts = NOT_STATED
         if not value:
-            value = "Not explicitly stated."
+            value = NOT_STATED_PERIOD
         items.append({"timestamp": ts, text_key: value})
     return {key: items}, ok
 
@@ -155,11 +154,11 @@ def _parse_highlights_nonjson(text: str, min_count: int, max_count: int) -> tupl
             start, end = _split_time_range(parts[0])
             highlight = parts[1]
         if not start:
-            start = "Not explicitly stated"
+            start = NOT_STATED
         if not end:
-            end = "Not explicitly stated"
+            end = NOT_STATED
         if not highlight:
-            highlight = "Not explicitly stated."
+            highlight = NOT_STATED_PERIOD
         items.append({"start": start, "end": end, "highlight": highlight})
     if len(items) > max_count:
         items = items[:max_count]
@@ -168,16 +167,8 @@ def _parse_highlights_nonjson(text: str, min_count: int, max_count: int) -> tupl
 
 
 def _parse_timeline_nonjson(text: str, min_count: int, max_count: int) -> tuple[dict, bool]:
-    pairs = _parse_pipe_pairs(text)
-    items = []
-    for left, right in pairs:
-        ts = left.strip() if left else "Not explicitly stated"
-        value = right.strip() if right else "Not explicitly stated."
-        if not ts:
-            ts = "Not explicitly stated"
-        if not value:
-            value = "Not explicitly stated."
-        items.append({"timestamp": ts, "event": value})
+    result, _ = _parse_items_nonjson(text, "video_timeline", "event", max_count)
+    items = result.get("video_timeline", [])
     if len(items) > max_count:
         items = items[:max_count]
     ok = min_count <= len(items) <= max_count
@@ -191,32 +182,13 @@ def _parse_questions_nonjson(text: str, expected_count: int) -> tuple[dict, bool
     for left, right in pairs[:expected_count]:
         question = _clean_question_text(left) if left else ""
         if not question:
-            question = "Not explicitly stated"
-        answer = right.strip() if right else "Not explicitly stated."
+            question = NOT_STATED
+        answer = right.strip() if right else NOT_STATED_PERIOD
         if not answer:
-            answer = "Not explicitly stated."
+            answer = NOT_STATED_PERIOD
         questions.append({"question": question, "answer": answer})
     return {"questions": questions}, ok
 
-
-def _parse_json_object(text: str, debug: bool = False, context: str = "section") -> dict:
-    if not isinstance(text, str):
-        return {}
-    try:
-        obj = json.loads(text)
-        return obj if isinstance(obj, dict) else {}
-    except json.JSONDecodeError:
-        start = text.find("{")
-        end = text.rfind("}")
-        if start != -1 and end != -1 and end > start:
-            try:
-                obj = json.loads(text[start:end + 1])
-                return obj if isinstance(obj, dict) else {}
-            except json.JSONDecodeError as exc:
-                _debug_print(debug, f"{context}: JSON parse failed: {exc}")
-                return {}
-        _debug_print(debug, f"{context}: JSON parse failed")
-        return {}
 
 
 # Validation
@@ -299,7 +271,7 @@ def _extract_questions(payload) -> list:
         if isinstance(answer, str) and answer.strip():
             answer_text = answer.strip()
         else:
-            answer_text = "Not explicitly stated."
+            answer_text = NOT_STATED_PERIOD
         cleaned.append({"question": question_text, "answer": answer_text})
     return cleaned
 
@@ -327,9 +299,9 @@ def _normalize_summary_fields(payload: dict) -> tuple[str, str]:
     chat_name = payload.get("chat_name") if isinstance(payload, dict) else None
     summary = payload.get("summary") if isinstance(payload, dict) else None
     if not isinstance(chat_name, str) or not chat_name.strip():
-        chat_name = "Not explicitly stated"
+        chat_name = NOT_STATED
     if not isinstance(summary, str) or not summary.strip():
-        summary = "Not explicitly stated."
+        summary = NOT_STATED_PERIOD
     return chat_name.strip(), summary.strip()
 
 
@@ -355,19 +327,19 @@ def _normalize_highlights(payload: dict, min_count: int, max_count: int) -> list
             elif isinstance(entry, str):
                 text = entry
             if not isinstance(start, str) or not start.strip():
-                start = "Not explicitly stated"
+                start = NOT_STATED
             if not isinstance(end, str) or not end.strip():
-                end = "Not explicitly stated"
+                end = NOT_STATED
             if not isinstance(text, str) or not text.strip():
-                text = "Not explicitly stated."
+                text = NOT_STATED_PERIOD
             items.append({"start": start.strip(), "end": end.strip(), "highlight": text.strip()})
     if len(items) > max_count:
         items = items[:max_count]
     while len(items) < min_count:
         items.append({
-            "start": "Not explicitly stated",
-            "end": "Not explicitly stated",
-            "highlight": "Not explicitly stated.",
+            "start": NOT_STATED,
+            "end": NOT_STATED,
+            "highlight": NOT_STATED_PERIOD,
         })
     return items
 
@@ -384,19 +356,19 @@ def _normalize_section_items(payload: dict, key: str, text_key: str,
                 ts = entry.get("timestamp")
                 text = entry.get(text_key)
             elif isinstance(entry, str):
-                ts = "Not explicitly stated"
+                ts = NOT_STATED
                 text = entry
             else:
                 continue
             if not isinstance(ts, str) or not ts.strip():
-                ts = "Not explicitly stated"
+                ts = NOT_STATED
             if not isinstance(text, str) or not text.strip():
-                text = "Not explicitly stated."
+                text = NOT_STATED_PERIOD
             items.append({"timestamp": ts.strip(), text_key: text.strip()})
     if len(items) > max_count:
         items = items[:max_count]
     while len(items) < min_count:
-        items.append({"timestamp": "Not explicitly stated", text_key: "Not explicitly stated."})
+        items.append({"timestamp": NOT_STATED, text_key: NOT_STATED_PERIOD})
     return items
 
 
@@ -416,12 +388,12 @@ def _normalize_predefined_questions(questions: list[dict], required_questions: l
             continue
         key = _normalize_question_key(question_text)
         if key not in answer_by_question:
-            answer_by_question[key] = answer if isinstance(answer, str) and answer.strip() else "Not explicitly stated."
+            answer_by_question[key] = answer if isinstance(answer, str) and answer.strip() else NOT_STATED_PERIOD
 
     normalized = []
     for required in required_questions:
         key = _normalize_question_key(required)
-        answer = answer_by_question.get(key, "Not explicitly stated.")
+        answer = answer_by_question.get(key, NOT_STATED_PERIOD)
         normalized.append({"question": required, "answer": answer})
     return normalized
 
@@ -452,7 +424,7 @@ def _normalize_generated_questions(
         seen.add(key)
         normalized.append({
             "question": question_text,
-            "answer": answer.strip() if isinstance(answer, str) and answer.strip() else "Not explicitly stated.",
+            "answer": answer.strip() if isinstance(answer, str) and answer.strip() else NOT_STATED_PERIOD,
         })
         if len(normalized) >= extra_count:
             break
@@ -461,6 +433,6 @@ def _normalize_generated_questions(
             idx = len(normalized) + 1
             normalized.append({
                 "question": f"Additional predicted question {idx}?",
-                "answer": "Not explicitly stated.",
+                "answer": NOT_STATED_PERIOD,
             })
     return normalized

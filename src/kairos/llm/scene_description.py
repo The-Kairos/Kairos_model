@@ -1,11 +1,10 @@
 """LLM-powered scene description: format raw data, call GPT/Gemini, two-stage map-reduce."""
 
-import random
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from kairos.core.utils import apply_gpt_normalization, print_prefixed, load_prompt, PROMPTS_DIR, is_rate_limit_error
+from kairos.core.utils import apply_gpt_normalization, print_prefixed, load_prompt, PROMPTS_DIR, retry_with_backoff
 
 
 def describe_flash_scene(
@@ -101,19 +100,11 @@ def raw_descriptions(scenes, YOLO_key="yolo_detections", FLIP_key="frame_caption
 def _call_with_retry(scene_idx, scene_text, prompt_used, client, video_path,
                      max_retries, cooldown_sec, debug):
     """Call describe_flash_scene with rate-limit retry logic."""
-    attempt = 0
-    while True:
-        try:
-            return describe_flash_scene(scene_text, client, prompt_path=prompt_used, video_path=video_path)
-        except Exception as exc:
-            if is_rate_limit_error(exc) and attempt < max_retries:
-                wait_sec = cooldown_sec * (2 ** attempt) + random.uniform(0.0, 1.0)
-                if debug:
-                    print_prefixed("(RATE)", f"Scene {scene_idx} rate-limited; cooling down {wait_sec:.1f}s")
-                time.sleep(wait_sec)
-                attempt += 1
-                continue
-            raise
+    return retry_with_backoff(
+        lambda: describe_flash_scene(scene_text, client, prompt_path=prompt_used, video_path=video_path),
+        max_retries=max_retries,
+        base_sec=cooldown_sec,
+    )
 
 
 def _generate_with_fallback(scene_idx, scene_text, primary_prompt, fallback_prompt,

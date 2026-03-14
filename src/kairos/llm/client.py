@@ -143,12 +143,17 @@ class ClaudeLLMClient:
         return text
 
 
-def get_embedding_client():
-    """Return a raw Gemini genai.Client for embedding calls."""
+def _build_gemini_raw_client():
+    """Build a raw Gemini genai.Client from environment variables."""
     from google import genai
     project = os.getenv("GEMINI_PROJECT", "prj-udst-prod-oussama-1")
     location = os.getenv("GEMINI_LOCATION", "us-central1")
     return genai.Client(vertexai=True, project=project, location=location)
+
+
+def get_embedding_client():
+    """Return a raw Gemini genai.Client for embedding calls."""
+    return _build_gemini_raw_client()
 
 
 def build_llm_client(llm: str | None = None) -> LLMClient:
@@ -164,10 +169,7 @@ def build_llm_client(llm: str | None = None) -> LLMClient:
     backend = (llm or os.getenv("LLM_BACKEND", "openai")).lower()
 
     if backend == "gemini":
-        from google import genai
-        project = os.getenv("GEMINI_PROJECT", "prj-udst-prod-oussama-1")
-        location = os.getenv("GEMINI_LOCATION", "us-central1")
-        client = genai.Client(vertexai=True, project=project, location=location)
+        client = _build_gemini_raw_client()
         model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
         return GeminiLLMClient(client, model)
 
