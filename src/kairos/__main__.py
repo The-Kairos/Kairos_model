@@ -1,4 +1,4 @@
 """Allow running as `python -m kairos`."""
-from kairos.cli.main import main
+from kairos.cli.app import main
 
 main()
