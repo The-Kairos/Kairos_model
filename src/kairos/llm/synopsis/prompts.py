@@ -24,7 +24,9 @@ def _parse_count_range(value, default_min: int, default_max: int) -> tuple[int, 
                     try:
                         min_count = int(parts[0])
                         max_count = int(parts[1])
-                        return max(1, min(min_count, max_count)), max(1, max(min_count, max_count))
+                        return max(1, min(min_count, max_count)), max(
+                            1, max(min_count, max_count)
+                        )
                     except (TypeError, ValueError):
                         return default_min, default_max
             try:
@@ -45,8 +47,10 @@ def _count_range_label(value, min_count: int, max_count: int) -> str:
 
 def _count_rule(key: str, min_count: int, max_count: int, label: str) -> str:
     if min_count == max_count:
-        return f"- \"{key}\" must contain exactly {min_count} items.\n"
-    return f"- \"{key}\" must contain between {min_count} and {max_count} items ({label}).\n"
+        return f'- "{key}" must contain exactly {min_count} items.\n'
+    return (
+        f'- "{key}" must contain between {min_count} and {max_count} items ({label}).\n'
+    )
 
 
 def _highlight_count_rule(min_count: int, max_count: int, label: str) -> str:
@@ -119,7 +123,9 @@ _SECTION_SCHEMAS = {
     "monolith": _SCHEMA_MONOLITH,
 }
 
-_TIMESTAMP_NOT_STATED_RULE = f"- If a start or end timestamp is not explicitly stated, use \"{NOT_STATED}\".\n"
+_TIMESTAMP_NOT_STATED_RULE = (
+    f'- If a start or end timestamp is not explicitly stated, use "{NOT_STATED}".\n'
+)
 
 
 def _build_repair_prompt(
@@ -139,11 +145,13 @@ def _build_repair_prompt(
         "You are a strict JSON reformatter.\n"
         "Convert the RAW OUTPUT into ONE valid JSON object only.\n"
         "No markdown, no extra text.\n"
-        f"If information is missing, use \"{NOT_STATED_PERIOD}\".\n"
+        f'If information is missing, use "{NOT_STATED_PERIOD}".\n'
     )
     base_schema = _SECTION_SCHEMAS.get(section, "Use a JSON object.\n")
     if section == "summary":
-        rules = f"- If chat_name or summary is missing, set it to \"{NOT_STATED_PERIOD}\".\n"
+        rules = (
+            f'- If chat_name or summary is missing, set it to "{NOT_STATED_PERIOD}".\n'
+        )
     elif section == "highlights":
         rules = (
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
@@ -162,17 +170,12 @@ def _build_repair_prompt(
         rules = (
             f"- Include exactly {extra_questions_count} items.\n"
             "- Do not repeat required questions (they are answered elsewhere).\n"
-            "- If not enough items, add placeholder questions like \"Additional predicted question N?\".\n"
+            '- If not enough items, add placeholder questions like "Additional predicted question N?".\n'
         )
     else:
         rules = ""
     schema = base_schema + ("Rules:\n" + rules if rules else "")
-    return (
-        header
-        + schema
-        + "RAW OUTPUT:\n"
-        + (raw_text or "")
-    )
+    return header + schema + "RAW OUTPUT:\n" + (raw_text or "")
 
 
 def _build_generated_fill_prompt(
@@ -180,7 +183,11 @@ def _build_generated_fill_prompt(
     existing_questions: list[str],
     missing_count: int,
 ) -> str:
-    existing_block = "\n".join([f"- {q}" for q in existing_questions]) if existing_questions else "None"
+    existing_block = (
+        "\n".join([f"- {q}" for q in existing_questions])
+        if existing_questions
+        else "None"
+    )
     return (
         "You are a story detective.\n"
         "Generate additional user-likely questions and answer them from the narrative.\n"
@@ -193,7 +200,7 @@ def _build_generated_fill_prompt(
         "- Do not repeat or paraphrase any existing questions below.\n"
         "- Keep generated questions concrete and useful.\n"
         "- Use only the narrative text.\n"
-        f"- If a detail is missing, answer \"{NOT_STATED_PERIOD}\".\n"
+        f'- If a detail is missing, answer "{NOT_STATED_PERIOD}".\n'
         "Existing Generated Questions (do not repeat):\n"
         f"{existing_block}\n"
         "INPUT NARRATIVE:\n"
@@ -219,8 +226,7 @@ def _build_questions_prompt(
     )
     return (
         strict_block
-        +
-        "Return ONE valid JSON object only. No markdown, no extra text.\n"
+        + "Return ONE valid JSON object only. No markdown, no extra text.\n"
         "Use this exact schema and key names:\n"
         "{\n"
         '  "questions": [{"question": "Question text", "answer": "Answer text"}]\n'
@@ -231,7 +237,7 @@ def _build_questions_prompt(
         f"- After that, add exactly {extra_questions_count} new, predicted questions.\n"
         f'- Use only the narrative. If a detail is missing, set the answer to "{NOT_STATED_PERIOD}"\n'
         "- Do not include any other keys besides questions.\n"
-        'Required Questions:\n'
+        "Required Questions:\n"
         f"{required_block}\n"
         "INPUT NARRATIVE:\n"
         f"{narrative_text}\n"
@@ -305,14 +311,14 @@ def _build_safe_section_prompt(
         "You are a story detective.\n"
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
         "Base answers ONLY on the provided text. Do not infer or invent details.\n"
-        f"If information is missing, use \"{NOT_STATED_PERIOD}\"\n"
+        f'If information is missing, use "{NOT_STATED_PERIOD}"\n'
         "Ensure the report complies with a PG-13 content standard.\n"
     )
     base_schema = _SECTION_SCHEMAS.get(section, "Use a JSON object.\n")
     if section == "summary":
         rules = (
-            "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
-            "- \"summary\" must be one paragraph.\n"
+            '- "chat_name" must be 3-5 words and concrete, not creative.\n'
+            '- "summary" must be one paragraph.\n'
         )
     elif section == "highlights":
         rules = (
@@ -324,7 +330,7 @@ def _build_safe_section_prompt(
         rules = (
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
             "- Events must be 3-5 words, chronological order.\n"
-            f"- If a timestamp is not explicitly stated, use \"{NOT_STATED}\".\n"
+            f'- If a timestamp is not explicitly stated, use "{NOT_STATED}".\n'
         )
     elif section == "qna_predefined":
         rules = (
@@ -346,7 +352,7 @@ def _build_safe_section_prompt(
         )
     elif section == "monolith":
         rules = (
-            "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
+            '- "chat_name" must be 3-5 words and concrete, not creative.\n'
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
             f"{_TIMESTAMP_NOT_STATED_RULE}"
@@ -354,12 +360,7 @@ def _build_safe_section_prompt(
     else:
         rules = ""
     schema = base_schema + ("Rules:\n" + rules if rules else "")
-    return (
-        header
-        + schema
-        + "INPUT NARRATIVE:\n"
-        + narrative_text
-    )
+    return header + schema + "INPUT NARRATIVE:\n" + narrative_text
 
 
 def _build_monolith_prompt(
@@ -376,7 +377,7 @@ def _build_monolith_prompt(
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
         + _SCHEMA_MONOLITH
         + "Rules:\n"
-        "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
+        '- "chat_name" must be 3-5 words and concrete, not creative.\n'
         f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
         f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
         f"{_TIMESTAMP_NOT_STATED_RULE}"
@@ -399,6 +400,7 @@ def _build_consistency_prompt(
     extra_questions_count: int,
 ) -> str:
     import json
+
     draft_json = json.dumps(draft_synopsis, ensure_ascii=False)
     consistency_schema = (
         "Use this exact schema and key names:\n"
@@ -418,7 +420,7 @@ def _build_consistency_prompt(
         + "Rules:\n"
         f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
         f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
-        f"- \"questions\" must contain exactly {required_questions_count} items.\n"
+        f'- "questions" must contain exactly {required_questions_count} items.\n'
         "- Do not add any sections not in the schema.\n"
         "Required Questions (must appear in order within questions):\n"
         f"{required_block}\n"

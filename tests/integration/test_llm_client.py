@@ -5,11 +5,10 @@ import os
 import pytest
 
 from kairos.llm.client import (
-    build_llm_client,
-    LLMClient,
+    ClaudeLLMClient,
     GeminiLLMClient,
     OpenAILLMClient,
-    ClaudeLLMClient,
+    build_llm_client,
 )
 
 pytestmark = pytest.mark.integration

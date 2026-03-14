@@ -4,7 +4,12 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from kairos.core.utils import apply_gpt_normalization, print_prefixed, load_prompt, PROMPTS_DIR, retry_with_backoff
+from kairos.core.utils import (
+    PROMPTS_DIR,
+    apply_gpt_normalization,
+    print_prefixed,
+    retry_with_backoff,
+)
 
 
 def describe_flash_scene(
@@ -43,6 +48,7 @@ def format_single_description(captions: list, yolo) -> str:
     lines = []
     if isinstance(yolo, list):
         from kairos.video.track_summary import format_track_summaries
+
         for idx, cap in enumerate(captions or []):
             lines.append(f"Frame {idx}:")
             lines.append(f'  Caption: "{cap}"')
@@ -76,8 +82,13 @@ def format_single_description(captions: list, yolo) -> str:
     return "\n".join(lines)
 
 
-def raw_descriptions(scenes, YOLO_key="yolo_detections", FLIP_key="frame_captions",
-                     ASR_key="audio_natural", AST_key="audio_speech") -> list:
+def raw_descriptions(
+    scenes,
+    YOLO_key="yolo_detections",
+    FLIP_key="frame_captions",
+    ASR_key="audio_natural",
+    AST_key="audio_speech",
+) -> list:
     formatted_list = []
     for scene in scenes:
         captions = scene.get(FLIP_key, []) if FLIP_key else []
@@ -97,57 +108,116 @@ def raw_descriptions(scenes, YOLO_key="yolo_detections", FLIP_key="frame_caption
 # Scene description helpers (extracted from describe_scenes)
 # ---------------------------------------------------------------------------
 
-def _call_with_retry(scene_idx, scene_text, prompt_used, client, video_path,
-                     max_retries, cooldown_sec, debug):
+
+def _call_with_retry(
+    scene_idx,
+    scene_text,
+    prompt_used,
+    client,
+    video_path,
+    max_retries,
+    cooldown_sec,
+    debug,
+):
     """Call describe_flash_scene with rate-limit retry logic."""
     return retry_with_backoff(
-        lambda: describe_flash_scene(scene_text, client, prompt_path=prompt_used, video_path=video_path),
+        lambda: describe_flash_scene(
+            scene_text, client, prompt_path=prompt_used, video_path=video_path
+        ),
         max_retries=max_retries,
         base_sec=cooldown_sec,
     )
 
 
-def _generate_with_fallback(scene_idx, scene_text, primary_prompt, fallback_prompt,
-                            client, video_path, max_retries, rate_cooldown_sec,
-                            post_cooldown_sec, debug):
+def _generate_with_fallback(
+    scene_idx,
+    scene_text,
+    primary_prompt,
+    fallback_prompt,
+    client,
+    video_path,
+    max_retries,
+    rate_cooldown_sec,
+    post_cooldown_sec,
+    debug,
+):
     """Try primary prompt, then fallback, with cooldown between calls."""
     result = None
     try:
-        result = _call_with_retry(scene_idx, scene_text, primary_prompt, client,
-                                  video_path, max_retries, rate_cooldown_sec, debug)
+        result = _call_with_retry(
+            scene_idx,
+            scene_text,
+            primary_prompt,
+            client,
+            video_path,
+            max_retries,
+            rate_cooldown_sec,
+            debug,
+        )
     except Exception as exc:
         if debug:
             print_prefixed("(WARN)", f"Scene {scene_idx} primary failed: {exc}")
         if fallback_prompt:
             try:
-                result = _call_with_retry(scene_idx, scene_text, fallback_prompt, client,
-                                          video_path, max_retries, rate_cooldown_sec, debug)
+                result = _call_with_retry(
+                    scene_idx,
+                    scene_text,
+                    fallback_prompt,
+                    client,
+                    video_path,
+                    max_retries,
+                    rate_cooldown_sec,
+                    debug,
+                )
             except Exception as exc2:
                 if debug:
-                    print_prefixed("(WARN)", f"Scene {scene_idx} fallback failed: {exc2}")
+                    print_prefixed(
+                        "(WARN)", f"Scene {scene_idx} fallback failed: {exc2}"
+                    )
     finally:
         if post_cooldown_sec and post_cooldown_sec > 0:
             time.sleep(post_cooldown_sec)
     return result
 
 
-def _parallel_map(inputs, primary_prompt, fallback_prompt, max_workers,
-                  client, video_path, max_retries, rate_cooldown_sec,
-                  post_cooldown_sec, debug):
+def _parallel_map(
+    inputs,
+    primary_prompt,
+    fallback_prompt,
+    max_workers,
+    client,
+    video_path,
+    max_retries,
+    rate_cooldown_sec,
+    post_cooldown_sec,
+    debug,
+):
     """Map scene descriptions in parallel (or sequentially if max_workers <= 1)."""
     call_kwargs = dict(
-        client=client, video_path=video_path, max_retries=max_retries,
-        rate_cooldown_sec=rate_cooldown_sec, post_cooldown_sec=post_cooldown_sec,
+        client=client,
+        video_path=video_path,
+        max_retries=max_retries,
+        rate_cooldown_sec=rate_cooldown_sec,
+        post_cooldown_sec=post_cooldown_sec,
         debug=debug,
     )
     outputs = [None] * len(inputs)
     if max_workers <= 1 or len(inputs) <= 1:
         for i, text in enumerate(inputs):
-            outputs[i] = _generate_with_fallback(i, text, primary_prompt, fallback_prompt, **call_kwargs)
+            outputs[i] = _generate_with_fallback(
+                i, text, primary_prompt, fallback_prompt, **call_kwargs
+            )
         return outputs
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_to_idx = {
-            executor.submit(_generate_with_fallback, i, text, primary_prompt, fallback_prompt, **call_kwargs): i
+            executor.submit(
+                _generate_with_fallback,
+                i,
+                text,
+                primary_prompt,
+                fallback_prompt,
+                **call_kwargs,
+            ): i
             for i, text in enumerate(inputs)
         }
         for future in as_completed(future_to_idx):
@@ -177,10 +247,15 @@ def _build_short_context(short_summaries, idx, hist_size):
 # Main orchestrator
 # ---------------------------------------------------------------------------
 
+
 def describe_scenes(
-    scenes: list, client, hist_size=3,
-    YOLO_key="yolo_detections", FLIP_key="frame_captions",
-    ASR_key="audio_natural", AST_key="audio_speech",
+    scenes: list,
+    client,
+    hist_size=3,
+    YOLO_key="yolo_detections",
+    FLIP_key="frame_captions",
+    ASR_key="audio_natural",
+    AST_key="audio_speech",
     SUMMARY_key="llm_scene_description",
     prompt_path=None,
     short_prompt_path=None,
@@ -203,7 +278,9 @@ def describe_scenes(
     if short_fallback_prompt_path is None:
         short_fallback_prompt_path = fallback_prompt_path
 
-    formatted_scenes = raw_descriptions(scenes, YOLO_key=YOLO_key, FLIP_key=FLIP_key, ASR_key=ASR_key, AST_key=AST_key)
+    formatted_scenes = raw_descriptions(
+        scenes, YOLO_key=YOLO_key, FLIP_key=FLIP_key, ASR_key=ASR_key, AST_key=AST_key
+    )
 
     if max_workers is None:
         max_workers = min(8, max(1, len(formatted_scenes)))
@@ -211,17 +288,28 @@ def describe_scenes(
         max_workers = max(1, int(max_workers))
 
     map_kwargs = dict(
-        max_workers=max_workers, client=client, video_path=video_path,
-        max_retries=max_rate_limit_retries, rate_cooldown_sec=rate_limit_cooldown_sec,
-        post_cooldown_sec=cooldown_sec, debug=debug,
+        max_workers=max_workers,
+        client=client,
+        video_path=video_path,
+        max_retries=max_rate_limit_retries,
+        rate_cooldown_sec=rate_limit_cooldown_sec,
+        post_cooldown_sec=cooldown_sec,
+        debug=debug,
     )
 
     # Stage 1: short summaries in parallel
-    short_summaries = _parallel_map(formatted_scenes, short_prompt_path, short_fallback_prompt_path, **map_kwargs)
+    short_summaries = _parallel_map(
+        formatted_scenes, short_prompt_path, short_fallback_prompt_path, **map_kwargs
+    )
 
     # Stage 2: full reports using raw scene + Stage-1 context
-    stage2_inputs = [raw + _build_short_context(short_summaries, i, hist_size) for i, raw in enumerate(formatted_scenes)]
-    final_summaries = _parallel_map(stage2_inputs, prompt_path, fallback_prompt_path, **map_kwargs)
+    stage2_inputs = [
+        raw + _build_short_context(short_summaries, i, hist_size)
+        for i, raw in enumerate(formatted_scenes)
+    ]
+    final_summaries = _parallel_map(
+        stage2_inputs, prompt_path, fallback_prompt_path, **map_kwargs
+    )
 
     updated = []
     for idx, (scene, summary) in enumerate(zip(scenes, final_summaries)):

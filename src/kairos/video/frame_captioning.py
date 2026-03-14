@@ -31,7 +31,7 @@ def _get_blip_model():
     """Load BLIP model and processor on first use, then cache."""
     global _blip_model, _blip_processor
     if _blip_model is None:
-        from transformers import BlipProcessor, BlipForConditionalGeneration
+        from transformers import BlipForConditionalGeneration, BlipProcessor
 
         device = "cuda" if torch.cuda.is_available() else "cpu"
         _blip_model = BlipForConditionalGeneration.from_pretrained(

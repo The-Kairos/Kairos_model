@@ -2,7 +2,7 @@
 
 import json
 
-from kairos.core.checkpoint import read_json, save_checkpoint, clear_frames, have_key
+from kairos.core.checkpoint import clear_frames, have_key, read_json, save_checkpoint
 
 
 def test_read_json_missing_file(tmp_path):
@@ -29,7 +29,12 @@ def test_read_json_list_wraps(tmp_path):
 
 def test_clear_frames():
     scenes = [
-        {"scene_index": 0, "frames": [[1, 2, 3]], "yolo_frames": [[4, 5]], "frame_captions": ["cap"]},
+        {
+            "scene_index": 0,
+            "frames": [[1, 2, 3]],
+            "yolo_frames": [[4, 5]],
+            "frame_captions": ["cap"],
+        },
         {"scene_index": 1, "frames": [[6]], "frame_paths": ["/a.jpg"]},
     ]
     cleaned = clear_frames(scenes)
@@ -45,7 +50,12 @@ def test_save_checkpoint_strips_frames(tmp_path):
     path = tmp_path / "cp.json"
     checkpoint = {
         "scenes": [
-            {"scene_index": 0, "frames": [[1]], "yolo_frames": [[2]], "frame_captions": ["a"]},
+            {
+                "scene_index": 0,
+                "frames": [[1]],
+                "yolo_frames": [[2]],
+                "frame_captions": ["a"],
+            },
         ],
         "steps": {},
     }

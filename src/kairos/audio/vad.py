@@ -33,10 +33,15 @@ def detect_speech_regions(
         audio = audio.copy()
     audio_tensor = torch.from_numpy(audio).float()
     speech_ts = get_speech_ts_fn(
-        audio_tensor, silero_model, sampling_rate=sr,
+        audio_tensor,
+        silero_model,
+        sampling_rate=sr,
         threshold=thresholds["VAD_THRESHOLD"],
         min_speech_duration_ms=thresholds["MIN_SPEECH_DURATION_MS"],
         min_silence_duration_ms=thresholds["MIN_SILENCE_DURATION_MS"],
         speech_pad_ms=thresholds["SPEECH_PAD_MS"],
     )
-    return [{"start_sec": seg["start"] / sr, "end_sec": seg["end"] / sr} for seg in speech_ts]
+    return [
+        {"start_sec": seg["start"] / sr, "end_sec": seg["end"] / sr}
+        for seg in speech_ts
+    ]

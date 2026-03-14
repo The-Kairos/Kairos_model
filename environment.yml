@@ -17,4 +17,4 @@ dependencies:
       - torchvision>=0.15
       - torchaudio>=2.6
       # Kairos package + all other deps (from pyproject.toml)
-      - -e .
+      - -e ".[dev,test]"

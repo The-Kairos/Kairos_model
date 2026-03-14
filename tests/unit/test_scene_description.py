@@ -1,8 +1,8 @@
 """Tests for kairos.llm.scene_description formatting functions."""
 
 from kairos.llm.scene_description import (
-    normalize_bbox,
     format_single_description,
+    normalize_bbox,
     raw_descriptions,
 )
 
@@ -86,8 +86,18 @@ def test_raw_descriptions_no_audio():
 
 def test_raw_descriptions_multiple_scenes():
     scenes = [
-        {"frame_captions": ["cap1"], "yolo_detections": {}, "audio_natural": "", "audio_speech": ""},
-        {"frame_captions": ["cap2"], "yolo_detections": {}, "audio_natural": "", "audio_speech": ""},
+        {
+            "frame_captions": ["cap1"],
+            "yolo_detections": {},
+            "audio_natural": "",
+            "audio_speech": "",
+        },
+        {
+            "frame_captions": ["cap2"],
+            "yolo_detections": {},
+            "audio_natural": "",
+            "audio_speech": "",
+        },
     ]
     result = raw_descriptions(scenes)
     assert len(result) == 2

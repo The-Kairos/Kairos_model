@@ -1,4 +1,4 @@
-"""Shared utility functions: printing, timecodes, prompt loading, normalization, retry."""
+"""Shared utility functions: printing, timecodes, prompt loading, normalization, retry, and helpers."""
 
 import json
 import random
@@ -39,7 +39,9 @@ def load_prompt(filename: str) -> str:
     return (PROMPTS_DIR / filename).read_text(encoding="utf-8")
 
 
-def apply_gpt_normalization(text: str, filename: str = "gpt_normalizations.json") -> str:
+def apply_gpt_normalization(
+    text: str, filename: str = "gpt_normalizations.json"
+) -> str:
     """Normalize text before sending to GPT using word-boundary replacements."""
     path = PROMPTS_DIR / filename
     if not path.exists():
@@ -84,10 +86,18 @@ def see_scenes_cuts(df):
 def is_rate_limit_error(exc: Exception) -> bool:
     """Check if an exception indicates an API rate limit error."""
     err_text = f"{type(exc).__name__}: {exc}".lower()
-    return any(m in err_text for m in (
-        "429", "rate limit", "ratelimit", "too many requests",
-        "quota exceeded", "resource exhausted", "request rate",
-    ))
+    return any(
+        m in err_text
+        for m in (
+            "429",
+            "rate limit",
+            "ratelimit",
+            "too many requests",
+            "quota exceeded",
+            "resource exhausted",
+            "request rate",
+        )
+    )
 
 
 def retry_with_backoff(
@@ -123,8 +133,25 @@ def retry_with_backoff(
             last_exc = exc
             if not is_retryable(exc) or attempt >= max_retries:
                 raise
-            sleep_sec = base_sec * (2 ** attempt)
+            sleep_sec = base_sec * (2**attempt)
             if jitter:
                 sleep_sec += random.uniform(0.0, 1.0)
             time.sleep(sleep_sec)
     raise last_exc
+
+
+def flatten(values) -> list:
+    """Flatten a list of items which may themselves be lists/tuples.
+
+    >>> flatten([[1, 2], 3, [4]])
+    [1, 2, 3, 4]
+    """
+    flat: list = []
+    if not values:
+        return flat
+    for value in values:
+        if isinstance(value, (list, tuple)):
+            flat.extend(value)
+        else:
+            flat.append(value)
+    return flat

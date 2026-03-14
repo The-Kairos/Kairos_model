@@ -8,11 +8,19 @@ import whisper
 from kairos.core.utils import print_prefixed
 
 
-def detect_languages(audio: np.ndarray, sr: int, speech_regions: list, debug: bool = False) -> dict:
+def detect_languages(
+    audio: np.ndarray, sr: int, speech_regions: list, debug: bool = False
+) -> dict:
     if not speech_regions:
-        return {"primary_language": None, "detected_languages": {}, "is_multilingual": False}
+        return {
+            "primary_language": None,
+            "detected_languages": {},
+            "is_multilingual": False,
+        }
     model = whisper.load_model("base", device="cpu")
-    sample_indices = np.linspace(0, len(speech_regions) - 1, min(10, len(speech_regions)), dtype=int)
+    sample_indices = np.linspace(
+        0, len(speech_regions) - 1, min(10, len(speech_regions)), dtype=int
+    )
     detected_counts = {}
     for idx in sample_indices:
         region = speech_regions[idx]
@@ -29,10 +37,21 @@ def detect_languages(audio: np.ndarray, sr: int, speech_regions: list, debug: bo
     gc.collect()
 
     if not detected_counts:
-        return {"primary_language": None, "detected_languages": {}, "is_multilingual": False}
+        return {
+            "primary_language": None,
+            "detected_languages": {},
+            "is_multilingual": False,
+        }
     sorted_langs = sorted(detected_counts.items(), key=lambda x: x[1], reverse=True)
     primary = sorted_langs[0][0]
     is_multilingual = any(count >= 2 for _, count in sorted_langs[1:])
     if debug:
-        print_prefixed("(AudioDetector)", f"Languages: {detected_counts}, Primary: {primary}, Multilingual: {is_multilingual}")
-    return {"primary_language": primary, "detected_languages": detected_counts, "is_multilingual": is_multilingual}
+        print_prefixed(
+            "(AudioDetector)",
+            f"Languages: {detected_counts}, Primary: {primary}, Multilingual: {is_multilingual}",
+        )
+    return {
+        "primary_language": primary,
+        "detected_languages": detected_counts,
+        "is_multilingual": is_multilingual,
+    }

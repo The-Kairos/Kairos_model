@@ -44,10 +44,14 @@ def assign_track_ids_iou(yolo_dict: dict, iou_threshold: float = 0.3) -> dict:
                 used_track_ids.add(best_track["id"])
             else:
                 det["track_id"] = next_id
-                active_tracks.append({
-                    "id": next_id, "bbox": det["bbox"],
-                    "label": det.get("label"), "last_frame": frame_idx,
-                })
+                active_tracks.append(
+                    {
+                        "id": next_id,
+                        "bbox": det["bbox"],
+                        "label": det.get("label"),
+                        "last_frame": frame_idx,
+                    }
+                )
                 used_track_ids.add(next_id)
                 next_id += 1
         active_tracks = [t for t in active_tracks if frame_idx - t["last_frame"] <= 1]
@@ -61,10 +65,14 @@ def build_tracks(yolo_dict: dict) -> dict:
             track_id = det.get("track_id")
             if track_id is None:
                 continue
-            track = tracks.setdefault(track_id, {"label": det.get("label", "unknown"), "detections": []})
-            track["detections"].append({
-                "frame_idx": frame_idx,
-                "bbox": det.get("bbox", [0, 0, 0, 0]),
-                "confidence": det.get("confidence", 0.0),
-            })
+            track = tracks.setdefault(
+                track_id, {"label": det.get("label", "unknown"), "detections": []}
+            )
+            track["detections"].append(
+                {
+                    "frame_idx": frame_idx,
+                    "bbox": det.get("bbox", [0, 0, 0, 0]),
+                    "confidence": det.get("confidence", 0.0),
+                }
+            )
     return tracks

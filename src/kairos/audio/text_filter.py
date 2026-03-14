@@ -7,6 +7,7 @@ import unicodedata
 def _strip_emoji_symbols(text: str) -> str:
     try:
         import emoji
+
         text = emoji.replace_emoji(text, replace="")
     except Exception:
         pass
@@ -27,7 +28,11 @@ def clean_repetitive_text(text: str) -> str:
         p_norm = p.strip().lower()
         if p_norm:
             if p_norm == last_p:
-                if punct and cleaned_phrases and not re.search(r"[.?!,]$", cleaned_phrases[-1]):
+                if (
+                    punct
+                    and cleaned_phrases
+                    and not re.search(r"[.?!,]$", cleaned_phrases[-1])
+                ):
                     cleaned_phrases[-1] = cleaned_phrases[-1].rstrip() + punct
             else:
                 cleaned_phrases.append(p.strip() + punct)
@@ -43,7 +48,9 @@ def clean_repetitive_text(text: str) -> str:
         last_norm = cleaned_words[-1].lower().strip(".,!?")
         if w_norm == last_norm and len(w_norm) > 0:
             if re.search(r"[.,!?]$", w):
-                cleaned_words[-1] = cleaned_words[-1].rstrip(".,!?") + re.search(r"[.,!?]+$", w).group()
+                cleaned_words[-1] = (
+                    cleaned_words[-1].rstrip(".,!?") + re.search(r"[.,!?]+$", w).group()
+                )
         else:
             cleaned_words.append(w)
     return " ".join(cleaned_words)
@@ -57,7 +64,9 @@ def filter_hallucinations(segments: list, primary_lang: str = None) -> list:
         text = re.sub(r"\s+", " ", text).strip()
         if not text:
             continue
-        special_count = sum(1 for c in text if not (c.isalnum() or c.isspace() or c in ".,!?'-"))
+        special_count = sum(
+            1 for c in text if not (c.isalnum() or c.isspace() or c in ".,!?'-")
+        )
         if len(text) > 0 and special_count / len(text) > 0.15:
             continue
         if seg.get("avg_logprob", 0) < -1.2:

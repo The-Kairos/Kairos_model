@@ -5,29 +5,18 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-from kairos.config import PipelineConfig
-from kairos.llm.client import build_llm_client
 from kairos.cli.args import parse_args
-from kairos.cli.catalog import load_video_catalog, select_videos, make_output_dir
-
-
-def _flatten(values):
-    flat = []
-    if not values:
-        return flat
-    for value in values:
-        if isinstance(value, (list, tuple)):
-            flat.extend(value)
-        else:
-            flat.append(value)
-    return flat
+from kairos.cli.catalog import load_video_catalog, make_output_dir, select_videos
+from kairos.config import PipelineConfig
+from kairos.core.utils import flatten
+from kairos.llm.client import build_llm_client
 
 
 def main():
+    from dotenv import load_dotenv
+
+    load_dotenv()
+
     VIDEOS_DIR = Path("data/videos")
     CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
     PROCESSED_ROOT = Path("data/processed")
@@ -49,9 +38,11 @@ def main():
     if redo_only_steps:
         redo_steps = redo_only_steps
     elif getattr(args, "redo", None):
-        redo_steps = _flatten(args.redo)
+        redo_steps = flatten(args.redo)
     if redo_only_flag and not redo_steps:
-        raise SystemExit("--redo-only requires at least one step (via --redo-only or --redo)")
+        raise SystemExit(
+            "--redo-only requires at least one step (via --redo-only or --redo)"
+        )
 
     catalog = load_video_catalog(CATALOG_PATH)
     selected_paths = select_videos(args, catalog, VIDEOS_DIR)
@@ -65,7 +56,7 @@ def main():
     rag_only = args.command == "rag"
 
     if redo_only_steps and getattr(args, "redo", None):
-        redo_steps = list(dict.fromkeys(redo_steps + _flatten(args.redo)))
+        redo_steps = list(dict.fromkeys(redo_steps + flatten(args.redo)))
     redo_only = redo_only_flag
 
     client = build_llm_client(llm=getattr(args, "llm", None))
@@ -78,6 +69,7 @@ def main():
             continue
 
         from kairos.core.pipeline import run_pipeline
+
         run_pipeline(
             video_path=video_path,
             output_dir=output_dir,
@@ -97,8 +89,11 @@ def _run_rag(output_dir: str, cfg: PipelineConfig, client=None):
         print(f"RAG embedding not found: {rag_path}. Run process first.")
         return
     ask_rag(
-        rag_path=rag_path, show_k_context=True, k=cfg.rag_top_k_context,
+        rag_path=rag_path,
+        show_k_context=True,
+        k=cfg.rag_top_k_context,
         conv_path=f"{output_dir}/conversation_history.json",
-        log_source=checkpoint_path, show_timings=False,
+        log_source=checkpoint_path,
+        show_timings=False,
         generation_client=client,
     )

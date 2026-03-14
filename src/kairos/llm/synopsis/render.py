@@ -37,7 +37,9 @@ def _encode_url_path(path: str) -> str:
     return "/".join(quote(part) for part in path.split("/"))
 
 
-def _build_video_link_base(video_path: str | None, output_dir: str | None) -> str | None:
+def _build_video_link_base(
+    video_path: str | None, output_dir: str | None
+) -> str | None:
     if not video_path or not isinstance(video_path, str):
         return None
     base = video_path
@@ -50,8 +52,14 @@ def _build_video_link_base(video_path: str | None, output_dir: str | None) -> st
     return _encode_url_path(base)
 
 
-def _format_timestamp_markdown(timestamp: str | None, video_link_base: str | None) -> str:
-    label = timestamp.strip() if isinstance(timestamp, str) and timestamp.strip() else NOT_STATED
+def _format_timestamp_markdown(
+    timestamp: str | None, video_link_base: str | None
+) -> str:
+    label = (
+        timestamp.strip()
+        if isinstance(timestamp, str) and timestamp.strip()
+        else NOT_STATED
+    )
     seconds = _timecode_to_seconds(timestamp)
     if seconds is None:
         return label
@@ -59,7 +67,9 @@ def _format_timestamp_markdown(timestamp: str | None, video_link_base: str | Non
     return f"[{label}]({link})"
 
 
-def _format_time_range_markdown(start: str | None, end: str | None, video_link_base: str | None) -> str:
+def _format_time_range_markdown(
+    start: str | None, end: str | None, video_link_base: str | None
+) -> str:
     start_md = _format_timestamp_markdown(start, video_link_base)
     end_md = _format_timestamp_markdown(end, video_link_base)
     if end_md == NOT_STATED:
@@ -93,7 +103,9 @@ def _extract_highlight_entry(item):
     return item.get("start"), item.get("end"), item.get("highlight")
 
 
-def render_synopsis_markdown(synopsis: dict, video_path: str | None = None, output_dir: str | None = None) -> str:
+def render_synopsis_markdown(
+    synopsis: dict, video_path: str | None = None, output_dir: str | None = None
+) -> str:
     title = "Video Synopsis"
     if isinstance(synopsis, dict):
         chat_name = synopsis.get("chat_name")

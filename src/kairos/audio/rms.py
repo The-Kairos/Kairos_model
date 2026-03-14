@@ -8,12 +8,13 @@ def compute_rms_profile(audio: np.ndarray, sr: int, window_sec: float = 1.0) -> 
     n_windows = max(1, len(audio) // window_samples)
     rms_values = np.zeros(n_windows, dtype=np.float32)
     for i in range(n_windows):
-        chunk = audio[i * window_samples: (i + 1) * window_samples]
-        rms_values[i] = np.sqrt(np.mean(chunk ** 2))
+        chunk = audio[i * window_samples : (i + 1) * window_samples]
+        rms_values[i] = np.sqrt(np.mean(chunk**2))
     eps = 1e-10
     rms_dbfs = 20.0 * np.log10(rms_values + eps)
     return {
-        "rms_values": rms_values, "rms_dbfs": rms_dbfs,
+        "rms_values": rms_values,
+        "rms_dbfs": rms_dbfs,
         "max_rms_dbfs": float(np.max(rms_dbfs)),
         "mean_rms_dbfs": float(np.mean(rms_dbfs)),
         "min_rms_dbfs": float(np.min(rms_dbfs)),
@@ -30,5 +31,5 @@ def compute_per_scene_rms(audio: np.ndarray, sr: int, scenes: list) -> list:
         if len(chunk) == 0:
             per_scene.append(-200.0)
         else:
-            per_scene.append(float(20.0 * np.log10(np.sqrt(np.mean(chunk ** 2)) + eps)))
+            per_scene.append(float(20.0 * np.log10(np.sqrt(np.mean(chunk**2)) + eps)))
     return per_scene

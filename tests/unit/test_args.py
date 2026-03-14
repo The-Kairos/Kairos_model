@@ -28,19 +28,25 @@ def test_no_subcommand_exits(monkeypatch):
 
 
 def test_process_preset(monkeypatch):
-    monkeypatch.setattr(sys, "argv", ["main.py", "process", "--all", "--preset", "fast"])
+    monkeypatch.setattr(
+        sys, "argv", ["main.py", "process", "--all", "--preset", "fast"]
+    )
     args = parse_args()
     assert args.preset == "fast"
 
 
 def test_process_redo(monkeypatch):
-    monkeypatch.setattr(sys, "argv", ["main.py", "process", "--all", "--redo", "scenes"])
+    monkeypatch.setattr(
+        sys, "argv", ["main.py", "process", "--all", "--redo", "scenes"]
+    )
     args = parse_args()
     assert args.redo == [["scenes"]]
 
 
 def test_process_multiple_videos(monkeypatch):
-    monkeypatch.setattr(sys, "argv", ["main.py", "process", "--video", "a.mp4", "--video", "b.mp4"])
+    monkeypatch.setattr(
+        sys, "argv", ["main.py", "process", "--video", "a.mp4", "--video", "b.mp4"]
+    )
     args = parse_args()
     assert args.video == ["a.mp4", "b.mp4"]
 
@@ -52,6 +58,8 @@ def test_process_all_flag(monkeypatch):
 
 
 def test_process_filter(monkeypatch):
-    monkeypatch.setattr(sys, "argv", ["main.py", "process", "--all", "--filter", "short"])
+    monkeypatch.setattr(
+        sys, "argv", ["main.py", "process", "--all", "--filter", "short"]
+    )
     args = parse_args()
     assert args.filter == "short"

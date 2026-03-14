@@ -146,6 +146,7 @@ class ClaudeLLMClient:
 def _build_gemini_raw_client():
     """Build a raw Gemini genai.Client from environment variables."""
     from google import genai
+
     project = os.getenv("GEMINI_PROJECT", "prj-udst-prod-oussama-1")
     location = os.getenv("GEMINI_LOCATION", "us-central1")
     return genai.Client(vertexai=True, project=project, location=location)
@@ -175,14 +176,18 @@ def build_llm_client(llm: str | None = None) -> LLMClient:
 
     if backend == "claude":
         from anthropic import AnthropicVertex
+
         region = os.getenv("CLAUDE_LOCATION", "us-east5")
-        project = os.getenv("CLAUDE_PROJECT", os.getenv("GEMINI_PROJECT", "prj-udst-prod-oussama-1"))
+        project = os.getenv(
+            "CLAUDE_PROJECT", os.getenv("GEMINI_PROJECT", "prj-udst-prod-oussama-1")
+        )
         client = AnthropicVertex(region=region, project_id=project)
         model = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
         return ClaudeLLMClient(client, model)
 
     # default: openai
     from openai import OpenAI
+
     endpoint = os.getenv("OPENAI_ENDPOINT")
     api_key = os.getenv("OPENAI_KEY")
     client = OpenAI(base_url=endpoint, api_key=api_key)

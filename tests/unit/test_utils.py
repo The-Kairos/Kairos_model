@@ -2,7 +2,12 @@
 
 import json
 
-from kairos.core.utils import format_timecode, apply_gpt_normalization, load_prompt, PROMPTS_DIR
+from kairos.core.utils import (
+    PROMPTS_DIR,
+    apply_gpt_normalization,
+    format_timecode,
+    load_prompt,
+)
 
 
 def test_format_timecode_zero():

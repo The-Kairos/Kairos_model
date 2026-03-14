@@ -10,14 +10,16 @@ import numpy as np
 import torch
 import whisper
 
-from kairos.audio.whisper_api import transcribe_via_api
 from kairos.audio.text_filter import filter_hallucinations
-from kairos.core.utils import retry_with_backoff, print_prefixed
-
+from kairos.audio.whisper_api import transcribe_via_api
+from kairos.core.utils import print_prefixed, retry_with_backoff
 
 # Audio preprocessing
 
-def clean_audio(audio: np.ndarray, sr: int, silero_model=None, get_speech_ts=None) -> np.ndarray:
+
+def clean_audio(
+    audio: np.ndarray, sr: int, silero_model=None, get_speech_ts=None
+) -> np.ndarray:
     audio = nr.reduce_noise(y=audio, sr=sr, prop_decrease=0.9)
     if silero_model is not None and get_speech_ts is not None:
         audio_t = torch.from_numpy(audio).float()
@@ -25,13 +27,16 @@ def clean_audio(audio: np.ndarray, sr: int, silero_model=None, get_speech_ts=Non
         if len(speech_ts) > 0:
             enhanced = audio.copy()
             for seg in speech_ts:
-                segment = enhanced[seg["start"]:seg["end"]]
-                enhanced[seg["start"]:seg["end"]] = nr.reduce_noise(y=segment, sr=sr, prop_decrease=0.7)
+                segment = enhanced[seg["start"] : seg["end"]]
+                enhanced[seg["start"] : seg["end"]] = nr.reduce_noise(
+                    y=segment, sr=sr, prop_decrease=0.7
+                )
             audio = enhanced
     return audio
 
 
 # Timestamp-to-scene mapping
+
 
 def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
     scene_texts = []
@@ -52,11 +57,14 @@ def map_segments_to_scenes(whisper_segments: list, scenes: list) -> list:
 
 # Parallel chunking
 
+
 def _transcribe_via_api_with_retry(chunk_audio, sr, language, client, debug):
     """Try the Whisper API up to 3 times with rate-limit backoff."""
     try:
         return retry_with_backoff(
-            lambda: transcribe_via_api(chunk_audio, sr, language=language, client=client),
+            lambda: transcribe_via_api(
+                chunk_audio, sr, language=language, client=client
+            ),
             max_retries=2,
             base_sec=30.0,
             jitter=False,
@@ -84,19 +92,36 @@ def _transcribe_via_local_model(chunk_audio, model_size, force_cpu, language):
 
 
 def _transcribe_chunk_worker(args):
-    (chunk_audio, sr, model_size, chunk_start_time, use_vad, force_cpu, debug, language, use_api, client) = args
+    (
+        chunk_audio,
+        sr,
+        model_size,
+        chunk_start_time,
+        use_vad,
+        force_cpu,
+        debug,
+        language,
+        use_api,
+        client,
+    ) = args
     if use_vad:
         chunk_audio = nr.reduce_noise(y=chunk_audio, sr=sr, prop_decrease=0.9)
 
     if use_api:
-        segments = _transcribe_via_api_with_retry(chunk_audio, sr, language, client, debug)
+        segments = _transcribe_via_api_with_retry(
+            chunk_audio, sr, language, client, debug
+        )
         if not segments:
             try:
-                segments = _transcribe_via_local_model(chunk_audio, model_size, force_cpu, language)
+                segments = _transcribe_via_local_model(
+                    chunk_audio, model_size, force_cpu, language
+                )
             except Exception:
                 return []
     else:
-        segments = _transcribe_via_local_model(chunk_audio, model_size, force_cpu, language)
+        segments = _transcribe_via_local_model(
+            chunk_audio, model_size, force_cpu, language
+        )
 
     for seg in segments:
         seg["start"] += chunk_start_time
@@ -115,7 +140,10 @@ def _deduplicate_segments(segments: list) -> list:
         text_match = curr["text"].strip().lower() == prev["text"].strip().lower()
         if time_diff < 0.5 and text_match:
             continue
-        if time_diff < 1.0 and (curr["text"].strip() in prev["text"].strip() or prev["text"].strip() in curr["text"].strip()):
+        if time_diff < 1.0 and (
+            curr["text"].strip() in prev["text"].strip()
+            or prev["text"].strip() in curr["text"].strip()
+        ):
             if len(curr["text"]) > len(prev["text"]):
                 deduped[-1] = curr
             continue
@@ -123,9 +151,19 @@ def _deduplicate_segments(segments: list) -> list:
     return deduped
 
 
-def transcribe_parallel(audio, sr, model_size="medium", chunk_size_sec=600, overlap_sec=30,
-                        lang_info=None, use_vad=True, force_cpu=False, debug=False,
-                        use_api=True, client=None) -> dict:
+def transcribe_parallel(
+    audio,
+    sr,
+    model_size="medium",
+    chunk_size_sec=600,
+    overlap_sec=30,
+    lang_info=None,
+    use_vad=True,
+    force_cpu=False,
+    debug=False,
+    use_api=True,
+    client=None,
+) -> dict:
     duration = len(audio) / sr
     t_start = time.time()
     force_lang = None
@@ -135,10 +173,20 @@ def transcribe_parallel(audio, sr, model_size="medium", chunk_size_sec=600, over
     start = 0
     while start < duration:
         end = min(start + chunk_size_sec + overlap_sec, duration)
-        chunks_args.append((
-            audio[int(start * sr):int(end * sr)].copy(), sr, model_size, start,
-            use_vad, force_cpu, debug, force_lang, use_api, client,
-        ))
+        chunks_args.append(
+            (
+                audio[int(start * sr) : int(end * sr)].copy(),
+                sr,
+                model_size,
+                start,
+                use_vad,
+                force_cpu,
+                debug,
+                force_lang,
+                use_api,
+                client,
+            )
+        )
         if end >= duration:
             break
         start += chunk_size_sec
@@ -146,9 +194,15 @@ def transcribe_parallel(audio, sr, model_size="medium", chunk_size_sec=600, over
     max_rec_workers = 4 if use_api else 2
     num_workers = min(len(chunks_args), os.cpu_count() or 4, max_rec_workers)
     all_segments = []
-    Executor = concurrent.futures.ThreadPoolExecutor if use_api else concurrent.futures.ProcessPoolExecutor
+    Executor = (
+        concurrent.futures.ThreadPoolExecutor
+        if use_api
+        else concurrent.futures.ProcessPoolExecutor
+    )
     with Executor(max_workers=num_workers) as executor:
-        futures = [executor.submit(_transcribe_chunk_worker, arg) for arg in chunks_args]
+        futures = [
+            executor.submit(_transcribe_chunk_worker, arg) for arg in chunks_args
+        ]
         for future in concurrent.futures.as_completed(futures):
             all_segments.extend(future.result())
             gc.collect()
@@ -168,8 +222,17 @@ def transcribe_parallel(audio, sr, model_size="medium", chunk_size_sec=600, over
 
 # Single-call transcription
 
-def transcribe_full_video(audio, sr, model_size="small", use_vad=True, force_cpu=False,
-                          debug=False, silero_model=None, get_speech_ts_fn=None) -> dict:
+
+def transcribe_full_video(
+    audio,
+    sr,
+    model_size="small",
+    use_vad=True,
+    force_cpu=False,
+    debug=False,
+    silero_model=None,
+    get_speech_ts_fn=None,
+) -> dict:
     t_start = time.time()
     device = "cpu" if force_cpu else None
     model = whisper.load_model(model_size, device=device)
@@ -179,18 +242,27 @@ def transcribe_full_video(audio, sr, model_size="small", use_vad=True, force_cpu
     result = model.transcribe(cleaned, fp16=False, verbose=None)
     t_end = time.time()
     return {
-        "result": result, "segments": result.get("segments", []),
+        "result": result,
+        "segments": result.get("segments", []),
         "full_text": result.get("text", ""),
-        "total_time_sec": t_end - t_start, "method": "single_call",
+        "total_time_sec": t_end - t_start,
+        "method": "single_call",
     }
 
 
 # Main entry point
 
+
 def extract_speech_singlecall(
-    scenes: list, scan_result: dict, model_size: str = "small",
-    use_vad: bool = True, language: str = None, parallel: bool = False,
-    use_api: bool = True, force_cpu: bool = False, debug: bool = False,
+    scenes: list,
+    scan_result: dict,
+    model_size: str = "small",
+    use_vad: bool = True,
+    language: str = None,
+    parallel: bool = False,
+    use_api: bool = True,
+    force_cpu: bool = False,
+    debug: bool = False,
 ) -> tuple:
     """Check scan_result and run single-call or parallel Whisper."""
     t_start = time.time()
@@ -201,8 +273,11 @@ def extract_speech_singlecall(
         for scene in scenes:
             scene["audio_speech"] = ""
         return scenes, {
-            "method": "singlecall_skipped", "total_time_sec": time.time() - t_start,
-            "whisper_time_sec": 0, "segments_found": 0, "scenes_with_speech": 0,
+            "method": "singlecall_skipped",
+            "total_time_sec": time.time() - t_start,
+            "whisper_time_sec": 0,
+            "segments_found": 0,
+            "scenes_with_speech": 0,
         }
 
     audio, sr = scan_result["audio"], scan_result["sr"]
@@ -210,15 +285,35 @@ def extract_speech_singlecall(
     should_parallel = parallel or (duration > 900)
 
     if should_parallel:
-        lang_data = {"primary_language": language, "is_multilingual": False} if language else scan_result.get("lang_info")
-        whisper_result = transcribe_parallel(audio, sr, model_size=model_size, lang_info=lang_data,
-                                             use_vad=use_vad, force_cpu=force_cpu, debug=debug, use_api=use_api)
+        lang_data = (
+            {"primary_language": language, "is_multilingual": False}
+            if language
+            else scan_result.get("lang_info")
+        )
+        whisper_result = transcribe_parallel(
+            audio,
+            sr,
+            model_size=model_size,
+            lang_info=lang_data,
+            use_vad=use_vad,
+            force_cpu=force_cpu,
+            debug=debug,
+            use_api=use_api,
+        )
     else:
         from kairos.audio.vad import _get_silero_vad
+
         silero_model, get_ts_fn = _get_silero_vad()
-        whisper_result = transcribe_full_video(audio, sr, model_size=model_size, use_vad=use_vad,
-                                               force_cpu=force_cpu, debug=debug,
-                                               silero_model=silero_model, get_speech_ts_fn=get_ts_fn)
+        whisper_result = transcribe_full_video(
+            audio,
+            sr,
+            model_size=model_size,
+            use_vad=use_vad,
+            force_cpu=force_cpu,
+            debug=debug,
+            silero_model=silero_model,
+            get_speech_ts_fn=get_ts_fn,
+        )
 
     scene_texts = map_segments_to_scenes(whisper_result["segments"], scenes)
     for i, scene in enumerate(scenes):
@@ -226,12 +321,16 @@ def extract_speech_singlecall(
 
     if debug:
         scenes_with_speech = sum(1 for t in scene_texts if t.strip())
-        print_prefixed("(Whisper)", f"Mapped speech to {scenes_with_speech}/{len(scenes)} scenes")
+        print_prefixed(
+            "(Whisper)", f"Mapped speech to {scenes_with_speech}/{len(scenes)} scenes"
+        )
 
     return scenes, {
         "method": whisper_result.get("method", "unknown"),
         "total_time_sec": time.time() - t_start,
-        "whisper_time_sec": whisper_result.get("transcribe_time_sec", time.time() - t_start),
+        "whisper_time_sec": whisper_result.get(
+            "transcribe_time_sec", time.time() - t_start
+        ),
         "segments_found": len(whisper_result["segments"]),
         "scenes_with_speech": sum(1 for t in scene_texts if t.strip()),
     }

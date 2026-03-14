@@ -1,6 +1,6 @@
 """Tests for kairos.llm.rag formatting functions."""
 
-from kairos.llm.rag import format_scene_embedding, format_paragraph_embedding
+from kairos.llm.rag import format_paragraph_embedding, format_scene_embedding
 
 
 def test_format_scene_embedding(sample_scenes):

@@ -1,15 +1,14 @@
 """Model tests for YOLO object detection."""
 
-import pytest
-
 import cv2
-import numpy as np
+import pytest
 
 pytestmark = pytest.mark.model
 
 
 def test_yolo_detect_real_image(sample_frame_path):
     from ultralytics import YOLO
+
     from kairos.video.yolo_inference import run_yolo_on_frame
 
     model = YOLO("models/yolov8s.pt")
@@ -22,6 +21,7 @@ def test_yolo_detect_real_image(sample_frame_path):
 
 def test_yolo_detection_keys(sample_frame_path):
     from ultralytics import YOLO
+
     from kairos.video.yolo_inference import run_yolo_on_frame
 
     model = YOLO("models/yolov8s.pt")
@@ -40,6 +40,7 @@ def test_yolo_detection_keys(sample_frame_path):
 
 def test_yolo_detects_person(sample_frame_path):
     from ultralytics import YOLO
+
     from kairos.video.yolo_inference import run_yolo_on_frame
 
     model = YOLO("models/yolov8s.pt")

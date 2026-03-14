@@ -1,11 +1,11 @@
 """Tests for kairos.core.redo."""
 
 from kairos.core.redo import (
-    resolve_dependents,
+    PIPELINE_ORDER,
     apply_redo,
     get_stop_after_step,
+    resolve_dependents,
     should_stop_after,
-    PIPELINE_ORDER,
 )
 
 
@@ -34,7 +34,10 @@ def test_resolve_dependents_llm():
 
 
 def test_apply_redo_clears_llm(sample_scenes):
-    checkpoint = {"scenes": list(sample_scenes), "steps": {"describe_scenes": {"wall_time_sec": 5}}}
+    checkpoint = {
+        "scenes": list(sample_scenes),
+        "steps": {"describe_scenes": {"wall_time_sec": 5}},
+    }
     result, info = apply_redo(checkpoint, None, ["llm"])
     assert info["changed"] is True
     for scene in result["scenes"]:

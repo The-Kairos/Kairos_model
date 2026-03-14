@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 
 from kairos.cli.catalog import (
-    load_video_catalog,
     categorize_length,
+    load_video_catalog,
     make_output_dir,
     resolve_video_arg,
 )

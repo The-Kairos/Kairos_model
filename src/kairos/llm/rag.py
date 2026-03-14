@@ -2,7 +2,6 @@
 
 import json
 import os
-import time
 
 import numpy as np
 
@@ -20,6 +19,7 @@ def _ensure_embedding_client(client):
 
 
 # Formatting helpers
+
 
 def format_scene_embedding(scenes: list) -> list:
     texts = []
@@ -71,7 +71,11 @@ def format_synopsis_embedding(synopsis) -> list:
         if isinstance(summary, str) and summary.strip():
             contexts.append(f"summary: {summary.strip()}")
 
-        for key, text_key in [("video_highlights", "highlight"), ("video_timeline", "event"), ("suggested_clips", "description")]:
+        for key, text_key in [
+            ("video_highlights", "highlight"),
+            ("video_timeline", "event"),
+            ("suggested_clips", "description"),
+        ]:
             items_list = synopsis.get(key, [])
             if not isinstance(items_list, list):
                 continue
@@ -82,7 +86,11 @@ def format_synopsis_embedding(synopsis) -> list:
                     continue
                 ts, val = _extract_timed_entry(entry, text_key)
                 if isinstance(val, str) and val.strip():
-                    items.append(f"{ts.strip()} - {val.strip()}" if isinstance(ts, str) and ts.strip() else val.strip())
+                    items.append(
+                        f"{ts.strip()} - {val.strip()}"
+                        if isinstance(ts, str) and ts.strip()
+                        else val.strip()
+                    )
             if items:
                 contexts.append(f"{key}: " + " | ".join(items))
 
@@ -95,7 +103,11 @@ def format_synopsis_embedding(synopsis) -> list:
                 q = qa.get("question")
                 a = qa.get("answer")
                 if isinstance(q, str) and q.strip():
-                    items.append(f"Q: {q.strip()} A: {a.strip()}" if isinstance(a, str) and a.strip() else f"Q: {q.strip()}")
+                    items.append(
+                        f"Q: {q.strip()} A: {a.strip()}"
+                        if isinstance(a, str) and a.strip()
+                        else f"Q: {q.strip()}"
+                    )
             if items:
                 contexts.append("questions: " + " | ".join(items))
         return contexts
@@ -113,13 +125,17 @@ def build_contexts(checkpoint: dict) -> list:
 MAX_EMBED_BATCH = 250
 
 
-def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL, batch_size=MAX_EMBED_BATCH):
+def embed_contexts(
+    contexts: list, client=None, model=EMBEDDING_MODEL, batch_size=MAX_EMBED_BATCH
+):
     client = _ensure_embedding_client(client)
     if not contexts:
         return []
     embeddings = []
     for start in range(0, len(contexts), batch_size):
-        result = client.models.embed_content(model=model, contents=contexts[start:start + batch_size])
+        result = client.models.embed_content(
+            model=model, contents=contexts[start : start + batch_size]
+        )
         embeddings.extend([e.values for e in result.embeddings])
     return embeddings
 
@@ -146,8 +162,12 @@ def _to_vector(e) -> np.ndarray:
 
 # Clustering
 
-def find_optimal_k_elbow(embeddings: list, max_k: int = 20, random_state: int = 42) -> int:
+
+def find_optimal_k_elbow(
+    embeddings: list, max_k: int = 20, random_state: int = 42
+) -> int:
     from sklearn.cluster import KMeans
+
     X = np.array([_to_vector(e) for e in embeddings], dtype=np.float32)
     n = X.shape[0]
     if n < 3:
@@ -167,25 +187,41 @@ def find_optimal_k_elbow(embeddings: list, max_k: int = 20, random_state: int = 
     return max(2, optimal_k)
 
 
-def compute_kmeans_clusters(embeddings: list, num_clusters: int = None, random_state: int = 42) -> dict:
+def compute_kmeans_clusters(
+    embeddings: list, num_clusters: int = None, random_state: int = 42
+) -> dict:
     from sklearn.cluster import KMeans
+
     X = np.array([_to_vector(e) for e in embeddings], dtype=np.float32)
     if X.shape[0] == 0:
         return {}
     if num_clusters is None:
-        num_clusters = find_optimal_k_elbow(embeddings, max_k=20, random_state=random_state)
+        num_clusters = find_optimal_k_elbow(
+            embeddings, max_k=20, random_state=random_state
+        )
     k = min(num_clusters, X.shape[0])
     km = KMeans(n_clusters=k, n_init=10, random_state=random_state)
     labels = km.fit_predict(X)
     return {
-        "algorithm": "kmeans", "num_clusters": int(k),
-        "cluster_assignments": labels.tolist(), "centroids": km.cluster_centers_.tolist(),
+        "algorithm": "kmeans",
+        "num_clusters": int(k),
+        "cluster_assignments": labels.tolist(),
+        "centroids": km.cluster_centers_.tolist(),
     }
 
 
 # Retrieval
 
-def merge_retrieval(query_vec, scene_embeddings, contexts, cluster_metadata=None, k=10, top_c=3, alpha=0.3):
+
+def merge_retrieval(
+    query_vec,
+    scene_embeddings,
+    contexts,
+    cluster_metadata=None,
+    k=10,
+    top_c=3,
+    alpha=0.3,
+):
     s_vecs = np.array([_to_vector(e) for e in scene_embeddings], dtype=np.float32)
     base_sims = s_vecs.dot(query_vec)
     N = len(contexts)
@@ -196,9 +232,9 @@ def merge_retrieval(query_vec, scene_embeddings, contexts, cluster_metadata=None
         assignments = np.array(cluster_metadata.get("cluster_assignments", [-1] * N))
         if assignments.shape[0] == N and centroids.size:
             cluster_sims = centroids.dot(query_vec)
-            top_ids = np.argsort(cluster_sims)[-min(top_c, centroids.shape[0]):]
+            top_ids = np.argsort(cluster_sims)[-min(top_c, centroids.shape[0]) :]
             for cid in top_ids:
-                mask = (assignments == int(cid))
+                mask = assignments == int(cid)
                 cluster_boost[mask] = np.maximum(cluster_boost[mask], cluster_sims[cid])
             maxb = cluster_boost.max() if cluster_boost.max() > 0 else 1.0
             cluster_boost = (cluster_boost / maxb) * alpha
@@ -208,13 +244,30 @@ def merge_retrieval(query_vec, scene_embeddings, contexts, cluster_metadata=None
     return [(contexts[int(i)], float(final[int(i)])) for i in top_idx]
 
 
-def get_top_k_similar(question_embedding, embeddings, contexts, k=5, debug=False, cluster_metadata=None, top_c=3, alpha=0.3):
+def get_top_k_similar(
+    question_embedding,
+    embeddings,
+    contexts,
+    k=5,
+    debug=False,
+    cluster_metadata=None,
+    top_c=3,
+    alpha=0.3,
+):
     if isinstance(question_embedding, list):
         question_embedding = question_embedding[0]
     q_vec = np.array(_embedding_values(question_embedding), dtype=np.float32)
     if cluster_metadata is None:
         cluster_metadata = compute_kmeans_clusters(embeddings)
-    top_matches = merge_retrieval(q_vec, embeddings, contexts, cluster_metadata=cluster_metadata, k=k, top_c=top_c, alpha=alpha)
+    top_matches = merge_retrieval(
+        q_vec,
+        embeddings,
+        contexts,
+        cluster_metadata=cluster_metadata,
+        k=k,
+        top_c=top_c,
+        alpha=alpha,
+    )
     if debug:
         for text, score in top_matches:
             print_prefixed("(RAG)", f"Score: {score:.4f} | Text: {text}")
@@ -234,11 +287,16 @@ def create_answer(question, top_matches, client=None, model=GENERATION_MODEL):
 
 # Persistence
 
-def save_rag_embeddings(path, contexts, embeddings, model=EMBEDDING_MODEL, kmeans_clusters=None):
+
+def save_rag_embeddings(
+    path, contexts, embeddings, model=EMBEDDING_MODEL, kmeans_clusters=None
+):
     payload = {
-        "model": model, "context_count": len(contexts),
+        "model": model,
+        "context_count": len(contexts),
         "embedding_dim": len(embeddings[0]) if embeddings else 0,
-        "contexts": contexts, "embeddings": embeddings,
+        "contexts": contexts,
+        "embeddings": embeddings,
     }
     if kmeans_clusters:
         payload["kmeans_clusters"] = kmeans_clusters
@@ -257,17 +315,21 @@ def load_rag_embeddings(path):
         return json.load(f)
 
 
-def make_embedding(checkpoint: dict, output_path: str, model=EMBEDDING_MODEL, embedding_client=None):
+def make_embedding(
+    checkpoint: dict, output_path: str, model=EMBEDDING_MODEL, embedding_client=None
+):
     contexts = build_contexts(checkpoint)
     if not contexts:
         raise ValueError("No contexts found in checkpoint to embed.")
     embedding_client = _ensure_embedding_client(embedding_client)
     embeddings = embed_contexts(contexts, client=embedding_client, model=model)
     kmeans_clusters = compute_kmeans_clusters(embeddings)
-    payload = save_rag_embeddings(output_path, contexts, embeddings, model=model, kmeans_clusters=kmeans_clusters)
+    payload = save_rag_embeddings(
+        output_path, contexts, embeddings, model=model, kmeans_clusters=kmeans_clusters
+    )
     return {
-        "rag_path": output_path, "context_count": payload["context_count"],
-        "embedding_dim": payload["embedding_dim"], "model": payload["model"],
+        "rag_path": output_path,
+        "context_count": payload["context_count"],
+        "embedding_dim": payload["embedding_dim"],
+        "model": payload["model"],
     }
-
-

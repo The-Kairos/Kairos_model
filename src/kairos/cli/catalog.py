@@ -62,7 +62,9 @@ def resolve_video_arg(arg: str, blob_index: dict, videos_dir: Path) -> Path | No
 
 
 def select_videos(args, catalog: list[dict], videos_dir: Path) -> list[Path]:
-    blob_index = {v.get("blob"): v for v in catalog if isinstance(v, dict) and v.get("blob")}
+    blob_index = {
+        v.get("blob"): v for v in catalog if isinstance(v, dict) and v.get("blob")
+    }
     selected_paths: list[Path] = []
 
     if args.video:
@@ -99,7 +101,9 @@ def select_videos(args, catalog: list[dict], videos_dir: Path) -> list[Path]:
             if rank[categorize_length(length)] <= rank[filter_value]:
                 selected_entries.append(entry)
         if unknown and not include_unknown:
-            print(f"Skipping {unknown} video(s) with unknown length. Use --include-unknown to include.")
+            print(
+                f"Skipping {unknown} video(s) with unknown length. Use --include-unknown to include."
+            )
         entries = selected_entries
 
     for entry in entries:

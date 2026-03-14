@@ -15,6 +15,7 @@ from kairos.core.utils import print_prefixed
 
 try:
     import pynvml
+
     pynvml.nvmlInit()
     _NVML_AVAILABLE = True
 except Exception:
@@ -57,8 +58,11 @@ def get_system_context() -> dict:
 
     try:
         gpu_output = subprocess.check_output(
-            ["nvidia-smi", "--query-gpu=name,memory.total,memory.used,driver_version",
-             "--format=csv,noheader,nounits"],
+            [
+                "nvidia-smi",
+                "--query-gpu=name,memory.total,memory.used,driver_version",
+                "--format=csv,noheader,nounits",
+            ],
             encoding="utf-8",
         )
         gpu_name, mem_total, mem_used, driver = gpu_output.strip().split(", ")
@@ -93,35 +97,43 @@ def get_gpu_stats() -> list:
                 name = pynvml.nvmlDeviceGetName(handle)
                 if isinstance(name, bytes):
                     name = name.decode()
-                gpus.append({
-                    "id": i,
-                    "name": name,
-                    "memory_used_MB": mem.used // (1024**2),
-                    "memory_total_MB": mem.total // (1024**2),
-                    "gpu_util_percent": util.gpu,
-                    "mem_util_percent": util.memory,
-                })
+                gpus.append(
+                    {
+                        "id": i,
+                        "name": name,
+                        "memory_used_MB": mem.used // (1024**2),
+                        "memory_total_MB": mem.total // (1024**2),
+                        "gpu_util_percent": util.gpu,
+                        "mem_util_percent": util.memory,
+                    }
+                )
             return gpus
         except Exception:
             pass
 
     if torch.cuda.is_available():
         try:
-            return [{
-                "id": i,
-                "name": torch.cuda.get_device_name(i),
-                "memory_used_MB": torch.cuda.memory_allocated(i) // (1024**2),
-                "memory_total_MB": torch.cuda.get_device_properties(i).total_mem // (1024**2),
-                "gpu_util_percent": None,
-                "mem_util_percent": None,
-            } for i in range(torch.cuda.device_count())]
+            return [
+                {
+                    "id": i,
+                    "name": torch.cuda.get_device_name(i),
+                    "memory_used_MB": torch.cuda.memory_allocated(i) // (1024**2),
+                    "memory_total_MB": torch.cuda.get_device_properties(i).total_mem
+                    // (1024**2),
+                    "gpu_util_percent": None,
+                    "mem_util_percent": None,
+                }
+                for i in range(torch.cuda.device_count())
+            ]
         except Exception:
             pass
 
     return []
 
 
-def initiate_log(video_path: str, run_description: str, params: dict | None = None) -> dict:
+def initiate_log(
+    video_path: str, run_description: str, params: dict | None = None
+) -> dict:
     return {
         "run_description": run_description,
         "video_path": video_path,
@@ -131,14 +143,18 @@ def initiate_log(video_path: str, run_description: str, params: dict | None = No
     }
 
 
-def complete_log(log: dict, steps: dict, vid_len: str, scene_num: int, vid_df: dict | None = None) -> dict:
+def complete_log(
+    log: dict, steps: dict, vid_len: str, scene_num: int, vid_df: dict | None = None
+) -> dict:
     new_log = {
         "run_description": log["run_description"],
         "video_path": log["video_path"],
         "video_length": vid_len,
         "total_process_sec": sum(steps[s]["wall_time_sec"] for s in steps),
         "scene_number": scene_num,
-        "start_process": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(log["start_process"])),
+        "start_process": time.strftime(
+            "%Y-%m-%d %H:%M:%S", time.localtime(log["start_process"])
+        ),
         "end_process": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),
         "computer": get_system_context(),
         "params": log["params"],
@@ -170,20 +186,21 @@ def save_log(data: dict, path: str) -> str:
 
 def log_step():
     """Decorator that logs CPU, RAM, GPU, IO, runtime and returns (output, log_dict)."""
+
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             process = psutil.Process(os.getpid())
 
             cpu_before = time.process_time()
-            ram_before = process.memory_info().rss // (1024 ** 2)
+            ram_before = process.memory_info().rss // (1024**2)
             io_before = process.io_counters()
             gpu_before = get_gpu_stats()
 
             if torch.cuda.is_available():
                 torch.cuda.reset_peak_memory_stats()
                 cuda_before = [
-                    torch.cuda.memory_allocated(i) // (1024 ** 2)
+                    torch.cuda.memory_allocated(i) // (1024**2)
                     for i in range(torch.cuda.device_count())
                 ]
             else:
@@ -194,17 +211,17 @@ def log_step():
             t1 = time.time()
 
             cpu_after = time.process_time()
-            ram_after = process.memory_info().rss // (1024 ** 2)
+            ram_after = process.memory_info().rss // (1024**2)
             io_after = process.io_counters()
             gpu_after = get_gpu_stats()
 
             if torch.cuda.is_available():
                 cuda_after = [
-                    torch.cuda.memory_allocated(i) // (1024 ** 2)
+                    torch.cuda.memory_allocated(i) // (1024**2)
                     for i in range(torch.cuda.device_count())
                 ]
                 cuda_peak = [
-                    torch.cuda.max_memory_allocated(i) // (1024 ** 2)
+                    torch.cuda.max_memory_allocated(i) // (1024**2)
                     for i in range(torch.cuda.device_count())
                 ]
             else:
@@ -217,7 +234,8 @@ def log_step():
                 "ram_after_MB": ram_after,
                 "ram_used_MB": ram_after - ram_before,
                 "io_read_MB": (io_after.read_bytes - io_before.read_bytes) / (1024**2),
-                "io_write_MB": (io_after.write_bytes - io_before.write_bytes) / (1024**2),
+                "io_write_MB": (io_after.write_bytes - io_before.write_bytes)
+                / (1024**2),
                 "gpu_before": gpu_before,
                 "gpu_after": gpu_after,
                 "cuda_before_MB": cuda_before,
@@ -226,5 +244,7 @@ def log_step():
             }
 
             return output, log_entry
+
         return wrapper
+
     return decorator

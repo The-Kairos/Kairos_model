@@ -16,7 +16,9 @@ def openai_env():
     deployment = os.getenv("OPENAI_DEPLOYMENT")
     api_key = os.getenv("OPENAI_KEY")
     if not all([endpoint, deployment, api_key]):
-        pytest.skip("OpenAI env vars not set (OPENAI_ENDPOINT, OPENAI_DEPLOYMENT, OPENAI_KEY)")
+        pytest.skip(
+            "OpenAI env vars not set (OPENAI_ENDPOINT, OPENAI_DEPLOYMENT, OPENAI_KEY)"
+        )
     return endpoint, deployment, api_key
 
 

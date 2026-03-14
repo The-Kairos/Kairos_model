@@ -11,7 +11,9 @@ def resize_frame(frame: np.ndarray, new_size: int = 320) -> np.ndarray:
     """Resize so the longest side equals *new_size*, preserving aspect ratio."""
     h, w = frame.shape[:2]
     scale = new_size / max(w, h)
-    return cv2.resize(frame, (int(w * scale), int(h * scale)), interpolation=cv2.INTER_AREA)
+    return cv2.resize(
+        frame, (int(w * scale), int(h * scale)), interpolation=cv2.INTER_AREA
+    )
 
 
 def _read_frames_at_positions(
@@ -119,7 +121,7 @@ def sample_from_clip_fps(
             set(max(0, min(pos, total_frames - 1)) for pos in frame_positions)
         )
         # Only keep as many as frames we got back
-        positions = positions[:len(frames)]
+        positions = positions[: len(frames)]
         frame_indices = list(positions)
         frame_timestamps = [pos / video_fps if video_fps else 0.0 for pos in positions]
         return frames, frame_indices, frame_timestamps
@@ -149,7 +151,11 @@ def sample_frames(
             new_size=new_size,
         )
 
-        frame_paths = _save_scene_frames(frames, scene["scene_index"], output_dir) if output_dir else None
+        frame_paths = (
+            _save_scene_frames(frames, scene["scene_index"], output_dir)
+            if output_dir
+            else None
+        )
 
         new_scene = dict(scene)
         new_scene["frames"] = frames

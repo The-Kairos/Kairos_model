@@ -3,10 +3,14 @@
 from ultralytics import YOLO
 
 from kairos.core.utils import print_prefixed
-from kairos.video.yolo_inference import run_yolo_on_frame, run_yolo_track_on_frames, parse_yolo_results
-from kairos.video.tracking import has_track_ids, assign_track_ids_iou
-from kairos.video.track_summary import build_track_summaries, format_track_summaries
 from kairos.video.debug_draw import debug_draw_yolo
+from kairos.video.track_summary import build_track_summaries, format_track_summaries
+from kairos.video.tracking import assign_track_ids_iou, has_track_ids
+from kairos.video.yolo_inference import (
+    parse_yolo_results,
+    run_yolo_on_frame,
+    run_yolo_track_on_frames,
+)
 
 
 def detect_object_yolo(
@@ -35,7 +39,9 @@ def detect_object_yolo(
         yolo_dict = {}
 
         if use_bytetrack and frames:
-            results = run_yolo_track_on_frames(model, frames, conf=conf, iou=iou, tracker=tracker)
+            results = run_yolo_track_on_frames(
+                model, frames, conf=conf, iou=iou, tracker=tracker
+            )
             if results is not None:
                 yolo_dict = parse_yolo_results(results, model)
 
@@ -54,13 +60,15 @@ def detect_object_yolo(
                     save_path=f"./{output_dir}/scene_{s:03d}/detection_{idx:03d}.jpg",
                 )
 
-        new_scene[summary_key] = build_track_summaries(frames, yolo_dict, **track_kwargs)
+        new_scene[summary_key] = build_track_summaries(
+            frames, yolo_dict, **track_kwargs
+        )
         results_scenes.append(new_scene)
 
         if debug:
             lines = format_track_summaries(new_scene[summary_key], style="compact")
             print_prefixed("(YOLOv8)", f"Scene {s}:")
-            for line in (lines or ["none detected"]):
+            for line in lines or ["none detected"]:
                 print_prefixed("(YOLOv8)", line, indent=4)
 
     return results_scenes

@@ -1,10 +1,11 @@
 """YOLOv8 inference: single-frame detection and multi-frame tracking."""
 
 import numpy as np
-from ultralytics import YOLO
 
 
-def run_yolo_on_frame(model, frame: np.ndarray, conf: float = 0.25, iou: float = 0.45) -> list:
+def run_yolo_on_frame(
+    model, frame: np.ndarray, conf: float = 0.25, iou: float = 0.45
+) -> list:
     """Run YOLOv8 on a single frame and return detections."""
     results = model.predict(frame, conf=conf, iou=iou, stream=True, verbose=False)
     detections = []
@@ -13,18 +14,34 @@ def run_yolo_on_frame(model, frame: np.ndarray, conf: float = 0.25, iou: float =
             continue
         for box in r.boxes:
             cls = int(box.cls[0])
-            detections.append({
-                "label": model.names[cls],
-                "confidence": float(box.conf[0]),
-                "bbox": box.xyxy[0].tolist(),
-            })
+            detections.append(
+                {
+                    "label": model.names[cls],
+                    "confidence": float(box.conf[0]),
+                    "bbox": box.xyxy[0].tolist(),
+                }
+            )
     return detections
 
 
-def run_yolo_track_on_frames(model, frames: list, conf: float = 0.25, iou: float = 0.45, tracker: str = "bytetrack.yaml"):
+def run_yolo_track_on_frames(
+    model,
+    frames: list,
+    conf: float = 0.25,
+    iou: float = 0.45,
+    tracker: str = "bytetrack.yaml",
+):
     """Run YOLOv8 tracking on a list of frames. Returns results or None."""
     try:
-        return model.track(frames, conf=conf, iou=iou, tracker=tracker, persist=True, stream=True, verbose=False)
+        return model.track(
+            frames,
+            conf=conf,
+            iou=iou,
+            tracker=tracker,
+            persist=True,
+            stream=True,
+            verbose=False,
+        )
     except Exception:
         return None
 
@@ -44,11 +61,13 @@ def parse_yolo_results(results, model) -> dict:
                     track_id = int(box.id[0])
                 except Exception:
                     track_id = None
-            dets.append({
-                "label": model.names[cls],
-                "confidence": float(box.conf[0]),
-                "bbox": box.xyxy[0].tolist(),
-                "track_id": track_id,
-            })
+            dets.append(
+                {
+                    "label": model.names[cls],
+                    "confidence": float(box.conf[0]),
+                    "bbox": box.xyxy[0].tolist(),
+                    "track_id": track_id,
+                }
+            )
         yolo_dict[idx] = dets
     return yolo_dict

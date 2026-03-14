@@ -37,7 +37,11 @@ def sample_scenes():
             "start_timecode": "00:00:00.000",
             "end_timecode": "00:00:05.000",
             "frame_captions": ["a woman speaking at a podium"],
-            "yolo_detections": {"0": [{"label": "person", "confidence": 0.95, "bbox": [100, 50, 300, 400]}]},
+            "yolo_detections": {
+                "0": [
+                    {"label": "person", "confidence": 0.95, "bbox": [100, 50, 300, 400]}
+                ]
+            },
             "audio_natural": "Speech",
             "audio_speech": "Thank you for this honor.",
             "llm_scene_description": "A woman speaks at a podium during an awards ceremony.",
@@ -50,7 +54,11 @@ def sample_scenes():
             "start_timecode": "00:00:05.000",
             "end_timecode": "00:00:12.000",
             "frame_captions": ["a crowd clapping in an auditorium"],
-            "yolo_detections": {"0": [{"label": "person", "confidence": 0.88, "bbox": [10, 10, 600, 400]}]},
+            "yolo_detections": {
+                "0": [
+                    {"label": "person", "confidence": 0.88, "bbox": [10, 10, 600, 400]}
+                ]
+            },
             "audio_natural": "Applause",
             "audio_speech": "",
             "llm_scene_description": "The audience applauds enthusiastically.",

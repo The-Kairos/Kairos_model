@@ -9,7 +9,9 @@ NOT_STATED = "Not explicitly stated"
 NOT_STATED_PERIOD = "Not explicitly stated."
 
 
-def _parse_json_object(text: str, debug: bool = False, context: str = "section") -> dict:
+def _parse_json_object(
+    text: str, debug: bool = False, context: str = "section"
+) -> dict:
     if not isinstance(text, str):
         return {}
     try:
@@ -20,7 +22,7 @@ def _parse_json_object(text: str, debug: bool = False, context: str = "section")
         end = text.rfind("}")
         if start != -1 and end != -1 and end > start:
             try:
-                obj = json.loads(text[start:end + 1])
+                obj = json.loads(text[start : end + 1])
                 return obj if isinstance(obj, dict) else {}
             except json.JSONDecodeError as exc:
                 if debug:
@@ -77,7 +79,11 @@ def _parse_qna_pairs(text: str) -> list[tuple[str, str]]:
     lines = [line.strip() for line in text.splitlines() if line.strip()]
     current_question = None
     for line in lines:
-        inline = re.match(r"^\s*q(uestion)?\s*[:\-]\s*(.+?)\s+a(nswer)?\s*[:\-]\s*(.+)$", line, re.IGNORECASE)
+        inline = re.match(
+            r"^\s*q(uestion)?\s*[:\-]\s*(.+?)\s+a(nswer)?\s*[:\-]\s*(.+)$",
+            line,
+            re.IGNORECASE,
+        )
         if inline:
             q_text = inline.group(2).strip()
             a_text = inline.group(4).strip()
@@ -120,7 +126,9 @@ def _parse_summary_nonjson(text: str) -> tuple[dict, bool]:
     return {"chat_name": chat_name, "summary": summary}, True
 
 
-def _parse_items_nonjson(text: str, key: str, text_key: str, expected_count: int) -> tuple[dict, bool]:
+def _parse_items_nonjson(
+    text: str, key: str, text_key: str, expected_count: int
+) -> tuple[dict, bool]:
     pairs = _parse_pipe_pairs(text)
     ok = len(pairs) >= expected_count
     items = []
@@ -135,7 +143,9 @@ def _parse_items_nonjson(text: str, key: str, text_key: str, expected_count: int
     return {key: items}, ok
 
 
-def _parse_highlights_nonjson(text: str, min_count: int, max_count: int) -> tuple[dict, bool]:
+def _parse_highlights_nonjson(
+    text: str, min_count: int, max_count: int
+) -> tuple[dict, bool]:
     if not isinstance(text, str):
         return {}, False
     lines = [line.strip() for line in text.splitlines() if line.strip()]
@@ -165,7 +175,9 @@ def _parse_highlights_nonjson(text: str, min_count: int, max_count: int) -> tupl
     return {"video_highlights": items}, ok
 
 
-def _parse_timeline_nonjson(text: str, min_count: int, max_count: int) -> tuple[dict, bool]:
+def _parse_timeline_nonjson(
+    text: str, min_count: int, max_count: int
+) -> tuple[dict, bool]:
     result, _ = _parse_items_nonjson(text, "video_timeline", "event", max_count)
     items = result.get("video_timeline", [])
     if len(items) > max_count:
@@ -189,8 +201,8 @@ def _parse_questions_nonjson(text: str, expected_count: int) -> tuple[dict, bool
     return {"questions": questions}, ok
 
 
-
 # Validation
+
 
 def _validate_summary_payload(payload: dict) -> bool:
     return (
@@ -207,7 +219,9 @@ def _validate_items_payload(payload: dict, key: str, expected_count: int) -> boo
     return isinstance(items, list) and len(items) >= expected_count
 
 
-def _validate_list_payload(payload: dict, key: str, min_count: int, max_count: int) -> bool:
+def _validate_list_payload(
+    payload: dict, key: str, min_count: int, max_count: int
+) -> bool:
     if not isinstance(payload, dict):
         return False
     items = payload.get(key)
@@ -230,6 +244,7 @@ def _validate_questions_payload(payload: dict, expected_count: int) -> bool:
 
 
 # Normalization
+
 
 def _clean_question_text(text: str) -> str:
     if not isinstance(text, str):
@@ -331,20 +346,25 @@ def _normalize_highlights(payload: dict, min_count: int, max_count: int) -> list
                 end = NOT_STATED
             if not isinstance(text, str) or not text.strip():
                 text = NOT_STATED_PERIOD
-            items.append({"start": start.strip(), "end": end.strip(), "highlight": text.strip()})
+            items.append(
+                {"start": start.strip(), "end": end.strip(), "highlight": text.strip()}
+            )
     if len(items) > max_count:
         items = items[:max_count]
     while len(items) < min_count:
-        items.append({
-            "start": NOT_STATED,
-            "end": NOT_STATED,
-            "highlight": NOT_STATED_PERIOD,
-        })
+        items.append(
+            {
+                "start": NOT_STATED,
+                "end": NOT_STATED,
+                "highlight": NOT_STATED_PERIOD,
+            }
+        )
     return items
 
 
-def _normalize_section_items(payload: dict, key: str, text_key: str,
-                             min_count: int, max_count: int | None = None) -> list[dict]:
+def _normalize_section_items(
+    payload: dict, key: str, text_key: str, min_count: int, max_count: int | None = None
+) -> list[dict]:
     if max_count is None:
         max_count = min_count
     raw = payload.get(key, []) if isinstance(payload, dict) else []
@@ -372,10 +392,14 @@ def _normalize_section_items(payload: dict, key: str, text_key: str,
 
 
 def _normalize_timeline(payload: dict, min_count: int, max_count: int) -> list[dict]:
-    return _normalize_section_items(payload, "video_timeline", "event", min_count, max_count)
+    return _normalize_section_items(
+        payload, "video_timeline", "event", min_count, max_count
+    )
 
 
-def _normalize_predefined_questions(questions: list[dict], required_questions: list[str]) -> list[dict]:
+def _normalize_predefined_questions(
+    questions: list[dict], required_questions: list[str]
+) -> list[dict]:
     answer_by_question = {}
     for qa in questions:
         question = qa.get("question") if isinstance(qa, dict) else None
@@ -387,7 +411,11 @@ def _normalize_predefined_questions(questions: list[dict], required_questions: l
             continue
         key = _normalize_question_key(question_text)
         if key not in answer_by_question:
-            answer_by_question[key] = answer if isinstance(answer, str) and answer.strip() else NOT_STATED_PERIOD
+            answer_by_question[key] = (
+                answer
+                if isinstance(answer, str) and answer.strip()
+                else NOT_STATED_PERIOD
+            )
 
     normalized = []
     for required in required_questions:
@@ -421,17 +449,23 @@ def _normalize_generated_questions(
         if key in required_set or key in seen:
             continue
         seen.add(key)
-        normalized.append({
-            "question": question_text,
-            "answer": answer.strip() if isinstance(answer, str) and answer.strip() else NOT_STATED_PERIOD,
-        })
+        normalized.append(
+            {
+                "question": question_text,
+                "answer": answer.strip()
+                if isinstance(answer, str) and answer.strip()
+                else NOT_STATED_PERIOD,
+            }
+        )
         if len(normalized) >= extra_count:
             break
     if pad:
         while len(normalized) < extra_count:
             idx = len(normalized) + 1
-            normalized.append({
-                "question": f"Additional predicted question {idx}?",
-                "answer": NOT_STATED_PERIOD,
-            })
+            normalized.append(
+                {
+                    "question": f"Additional predicted question {idx}?",
+                    "answer": NOT_STATED_PERIOD,
+                }
+            )
     return normalized

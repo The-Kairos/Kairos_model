@@ -11,13 +11,19 @@ from kairos.core.utils import print_prefixed
 
 def clear_frames(scene_list: list) -> list:
     omit_keys = {
-        "frames", "yolo_frames",
-        "frame_paths", "yolo_frame_paths", "frame_indices", "frame_timestamps",
-        "sample_fps", "motion_bullets", "yolo_tracks", "yolo_track_summaries",
+        "frames",
+        "yolo_frames",
+        "frame_paths",
+        "yolo_frame_paths",
+        "frame_indices",
+        "frame_timestamps",
+        "sample_fps",
+        "motion_bullets",
+        "yolo_tracks",
+        "yolo_track_summaries",
     }
     return [
-        {k: v for k, v in scene.items() if k not in omit_keys}
-        for scene in scene_list
+        {k: v for k, v in scene.items() if k not in omit_keys} for scene in scene_list
     ]
 
 
@@ -75,15 +81,21 @@ def save_clips(video_path: str, scenes: list, output_dir: str) -> list:
         cmd = [
             ffmpeg_path,
             "-y",
-            "-i", video_path,
-            "-ss", str(start),
-            "-t", str(duration),
-            "-c", "copy",
+            "-i",
+            video_path,
+            "-ss",
+            str(start),
+            "-t",
+            str(duration),
+            "-c",
+            "copy",
             str(clip_path),
         ]
 
         if clip_path.exists():
-            print_prefixed("(save_clips)", f"Skipping existing clip: {clip_filename}", indent=4)
+            print_prefixed(
+                "(save_clips)", f"Skipping existing clip: {clip_filename}", indent=4
+            )
         else:
             subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 

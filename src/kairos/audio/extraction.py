@@ -11,10 +11,23 @@ from kairos.core.utils import print_prefixed
 
 def _load_audio_ffmpeg(video_path: str, target_sr: int = 16000):
     cmd = [
-        "ffmpeg", "-v", "error", "-i", video_path,
-        "-vn", "-ac", "1", "-ar", str(target_sr), "-f", "f32le", "-",
+        "ffmpeg",
+        "-v",
+        "error",
+        "-i",
+        video_path,
+        "-vn",
+        "-ac",
+        "1",
+        "-ar",
+        str(target_sr),
+        "-f",
+        "f32le",
+        "-",
     ]
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+    proc = subprocess.run(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False
+    )
     if proc.returncode != 0:
         err = proc.stderr.decode("utf-8", errors="ignore").strip()
         raise RuntimeError(f"ffmpeg failed (code {proc.returncode}): {err}")
@@ -27,11 +40,16 @@ def _load_audio_ffmpeg(video_path: str, target_sr: int = 16000):
 def load_audio_av(video_path: str, target_sr: int = 16000, debug: bool = False):
     """Extract full audio from video using PyAV, with ffmpeg fallback."""
     try:
-        container = av.open(video_path, options={"fflags": "+genpts", "ignore_editlist": "1"})
+        container = av.open(
+            video_path, options={"fflags": "+genpts", "ignore_editlist": "1"}
+        )
         audio_stream = next((s for s in container.streams if s.type == "audio"), None)
         if audio_stream is None:
             if debug:
-                print_prefixed("(AudioDetector)", "PyAV found no audio stream; trying ffmpeg fallback.")
+                print_prefixed(
+                    "(AudioDetector)",
+                    "PyAV found no audio stream; trying ffmpeg fallback.",
+                )
             return _load_audio_ffmpeg(video_path, target_sr)
 
         audio_stream.thread_type = "AUTO"
@@ -42,7 +60,10 @@ def load_audio_av(video_path: str, target_sr: int = 16000, debug: bool = False):
 
         if not samples:
             if debug:
-                print_prefixed("(AudioDetector)", "PyAV decoded no audio frames; trying ffmpeg fallback.")
+                print_prefixed(
+                    "(AudioDetector)",
+                    "PyAV decoded no audio frames; trying ffmpeg fallback.",
+                )
             return _load_audio_ffmpeg(video_path, target_sr)
 
         audio = np.concatenate(samples).astype(np.float32)

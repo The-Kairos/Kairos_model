@@ -1,8 +1,17 @@
-"""Pipeline configuration as a dataclass with presets."""
+"""Pipeline configuration as a dataclass with presets.
+
+Every tunable parameter lives here.  Presets (``fast``, ``motion_sensitive``,
+``static_video``) override sensible subsets.  A ``__post_init__`` validator
+catches nonsensical values early.
+"""
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+import importlib.resources
+from dataclasses import asdict, dataclass
+from pathlib import Path
+
+from kairos.core.exceptions import KairosConfigError
 
 
 @dataclass
@@ -50,6 +59,65 @@ class PipelineConfig:
     # RAG
     rag_top_k_context: int = 10
 
+    # Parallelism
+    llm_max_workers: int = 4
+
+    # Paths (defaults derived at runtime if not set)
+    data_dir: str = "data"
+    prompts_dir: str = ""  # empty → resolved via importlib.resources
+    logs_dir: str = "logs"
+
+    def __post_init__(self) -> None:
+        """Validate configuration values eagerly."""
+        if self.pyscene_threshold <= 0:
+            raise KairosConfigError(
+                f"pyscene_threshold must be > 0, got {self.pyscene_threshold}"
+            )
+        if self.pyscene_shortest < 0:
+            raise KairosConfigError(
+                f"pyscene_shortest must be >= 0, got {self.pyscene_shortest}"
+            )
+        if self.frames_per_scene < 1:
+            raise KairosConfigError(
+                f"frames_per_scene must be >= 1, got {self.frames_per_scene}"
+            )
+        if self.frame_resolution < 1:
+            raise KairosConfigError(
+                f"frame_resolution must be >= 1, got {self.frame_resolution}"
+            )
+        if self.blip_caption_len < 1:
+            raise KairosConfigError(
+                f"blip_caption_len must be >= 1, got {self.blip_caption_len}"
+            )
+        if self.blip_min_length < 1:
+            raise KairosConfigError(
+                f"blip_min_length must be >= 1, got {self.blip_min_length}"
+            )
+        if self.yolo_conf_thres < 0 or self.yolo_conf_thres > 1:
+            raise KairosConfigError(
+                f"yolo_conf_thres must be in [0, 1], got {self.yolo_conf_thres}"
+            )
+        if self.llm_max_workers < 1:
+            raise KairosConfigError(
+                f"llm_max_workers must be >= 1, got {self.llm_max_workers}"
+            )
+        if self.rag_top_k_context < 1:
+            raise KairosConfigError(
+                f"rag_top_k_context must be >= 1, got {self.rag_top_k_context}"
+            )
+        if self.llm_cooldown_sec < 0:
+            raise KairosConfigError(
+                f"llm_cooldown_sec must be >= 0, got {self.llm_cooldown_sec}"
+            )
+
+        # Resolve prompts_dir via importlib.resources if not explicitly set
+        if not self.prompts_dir:
+            try:
+                ref = importlib.resources.files("kairos") / "prompts"
+                self.prompts_dir = str(ref)
+            except (TypeError, ModuleNotFoundError):
+                self.prompts_dir = str(Path(__file__).resolve().parent / "prompts")
+
     @classmethod
     def default(cls) -> PipelineConfig:
         return cls()
@@ -61,6 +129,7 @@ class PipelineConfig:
             frames_per_scene=1,
             llm_chunk_len=500000,
             llm_summary_len=500000,
+            llm_max_workers=8,
         )
 
     @classmethod
@@ -97,5 +166,5 @@ class PipelineConfig:
         }
 
     def to_dict(self) -> dict:
-        from dataclasses import asdict
+        """Serialize all fields to a plain ``dict``."""
         return asdict(self)

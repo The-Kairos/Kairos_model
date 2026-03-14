@@ -3,5 +3,14 @@
 __version__ = "0.1.0"
 
 from kairos.config import PipelineConfig
+from kairos.core.exceptions import KairosError
+from kairos.core.models import ModelRegistry
+from kairos.core.scene import Scene
 
-__all__ = ["PipelineConfig", "__version__"]
+__all__ = [
+    "PipelineConfig",
+    "KairosError",
+    "ModelRegistry",
+    "Scene",
+    "__version__",
+]

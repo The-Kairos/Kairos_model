@@ -7,12 +7,12 @@ import time
 
 from kairos.llm.client import get_embedding_client
 from kairos.llm.rag import (
-    load_rag_embeddings,
+    GENERATION_MODEL,
+    compute_kmeans_clusters,
+    create_answer,
     embed_question,
     get_top_k_similar,
-    create_answer,
-    compute_kmeans_clusters,
-    GENERATION_MODEL,
+    load_rag_embeddings,
 )
 
 
@@ -47,8 +47,13 @@ def _write_conversation(path, items):
 
 
 def ask_rag(
-    rag_path, show_k_context=False, k=10, generation_model=GENERATION_MODEL,
-    conv_path=None, log_source=None, show_timings=False,
+    rag_path,
+    show_k_context=False,
+    k=10,
+    generation_model=GENERATION_MODEL,
+    conv_path=None,
+    log_source=None,
+    show_timings=False,
     generation_client=None,
 ):
     data = load_rag_embeddings(rag_path)
@@ -81,10 +86,18 @@ def ask_rag(
         question_embedding = embed_question(question, client=embedding_client)
         t1 = time.perf_counter()
 
-        top_matches = get_top_k_similar(question_embedding, embeddings, contexts, k=k, cluster_metadata=kmeans_clusters)
+        top_matches = get_top_k_similar(
+            question_embedding,
+            embeddings,
+            contexts,
+            k=k,
+            cluster_metadata=kmeans_clusters,
+        )
         t2 = time.perf_counter()
 
-        answer = create_answer(question, top_matches, client=generation_client, model=generation_model)
+        answer = create_answer(
+            question, top_matches, client=generation_client, model=generation_model
+        )
         t3 = time.perf_counter()
 
         print("=" * 80)
@@ -95,13 +108,19 @@ def ask_rag(
             print("-" * 80)
             print("Top contexts:")
             for idx, (text, score) in enumerate(top_matches, 1):
-                snippet = text.strip()[:237] + "..." if len(text.strip()) > 240 else text.strip()
+                snippet = (
+                    text.strip()[:237] + "..."
+                    if len(text.strip()) > 240
+                    else text.strip()
+                )
                 print(f"{idx}. score={score:.4f}")
                 print(f"   {textwrap.fill(snippet, width=96, subsequent_indent='   ')}")
 
         if show_timings:
             print("-" * 80)
-            print(f"Timings (sec): embed={t1 - t0:.3f} | search={t2 - t1:.3f} | gen={t3 - t2:.3f}")
+            print(
+                f"Timings (sec): embed={t1 - t0:.3f} | search={t2 - t1:.3f} | gen={t3 - t2:.3f}"
+            )
         print("=" * 80)
 
         if conv_path:
@@ -109,7 +128,8 @@ def ask_rag(
                 conversation = _load_conversation(conv_path)
             entry = {
                 "timeDate": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "user": question, "rag_answer": answer,
+                "user": question,
+                "rag_answer": answer,
                 "top_k_similar": [(float(score), text) for text, score in top_matches],
                 "durations": {
                     "question_embedding": round(t1 - t0, 4),

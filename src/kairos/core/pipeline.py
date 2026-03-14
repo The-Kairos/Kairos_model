@@ -6,10 +6,10 @@ import os
 from pathlib import Path
 
 from kairos.config import PipelineConfig
-from kairos.core.checkpoint import read_json, save_checkpoint, have_key, save_clips
-from kairos.core.logging import log_step, initiate_log, complete_log, save_log
+from kairos.core.checkpoint import have_key, read_json, save_checkpoint, save_clips
+from kairos.core.logging import complete_log, initiate_log, log_step, save_log
 from kairos.core.redo import apply_redo
-from kairos.core.utils import print_section, print_prefixed, see_scenes_cuts
+from kairos.core.utils import print_prefixed, print_section, see_scenes_cuts
 
 
 def _logged(func):
@@ -20,6 +20,7 @@ def _logged(func):
 # ---------------------------------------------------------------------------
 # Step-group helpers — each owns its logging and checkpoint saves
 # ---------------------------------------------------------------------------
+
 
 def _run_scene_detection(checkpoint, step, video_path, cfg, checkpoint_path):
     from kairos.video.scene_detection import get_scene_list
@@ -46,8 +47,8 @@ def _run_scene_detection(checkpoint, step, video_path, cfg, checkpoint_path):
 
 
 def _run_frame_processing(checkpoint, step, video_path, cfg, checkpoint_path):
-    from kairos.video.frame_sampling import sample_frames
     from kairos.video.frame_captioning import caption_frames
+    from kairos.video.frame_sampling import sample_frames
 
     if have_key(checkpoint["scenes"], "frame_captions"):
         return
@@ -109,8 +110,8 @@ def _run_yolo(checkpoint, step, video_path, cfg, checkpoint_path):
 
 
 def _run_audio(checkpoint, step, video_path, cfg, checkpoint_path):
-    from kairos.audio.prescan import scan_audio
     from kairos.audio.classifier import extract_sounds_optimized
+    from kairos.audio.prescan import scan_audio
     from kairos.audio.transcription import extract_speech_singlecall
 
     scan_result = None
@@ -142,7 +143,9 @@ def _run_audio(checkpoint, step, video_path, cfg, checkpoint_path):
             force_cpu=False,
             debug=True,
         )
-        checkpoint["scenes"] = asr_result[0] if isinstance(asr_result, tuple) else asr_result
+        checkpoint["scenes"] = (
+            asr_result[0] if isinstance(asr_result, tuple) else asr_result
+        )
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
     if not have_key(checkpoint["scenes"], "audio_natural"):
@@ -156,7 +159,9 @@ def _run_audio(checkpoint, step, video_path, cfg, checkpoint_path):
             force_cpu=False,
             debug=True,
         )
-        checkpoint["scenes"] = scenes_result[0] if isinstance(scenes_result, tuple) else scenes_result
+        checkpoint["scenes"] = (
+            scenes_result[0] if isinstance(scenes_result, tuple) else scenes_result
+        )
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
 
@@ -194,7 +199,10 @@ def _run_llm(checkpoint, step, video_path, cfg, client, checkpoint_path, output_
         narratives = checkpoint.get("narratives", [])
         if narratives:
             last = narratives[-1]
-            narrative_path = Path(output_dir) / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
+            narrative_path = (
+                Path(output_dir)
+                / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
+            )
             print_prefixed("(Pipeline)", f"Saving narrative in: {narrative_path}")
         save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 
@@ -223,7 +231,8 @@ def _run_rag(checkpoint, step, output_dir, checkpoint_path, log, video_path):
 
     cleared_checkpoint = save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
     log = complete_log(
-        log=log, steps=step,
+        log=log,
+        steps=step,
         vid_len=checkpoint["scenes"][-1]["end_timecode"],
         scene_num=len(checkpoint["scenes"]),
         vid_df=cleared_checkpoint,
@@ -236,6 +245,7 @@ def _run_rag(checkpoint, step, output_dir, checkpoint_path, log, video_path):
 # ---------------------------------------------------------------------------
 # Main pipeline orchestrator
 # ---------------------------------------------------------------------------
+
 
 def run_pipeline(
     video_path: str,
@@ -261,8 +271,10 @@ def run_pipeline(
 
     if redo_steps:
         checkpoint, redo_info = apply_redo(
-            checkpoint=checkpoint, output_dir=output_dir,
-            redo_steps=redo_steps, redo_only=redo_only,
+            checkpoint=checkpoint,
+            output_dir=output_dir,
+            redo_steps=redo_steps,
+            redo_only=redo_only,
         )
         if redo_info.get("changed") and "scenes" in checkpoint:
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
