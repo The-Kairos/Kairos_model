@@ -83,7 +83,7 @@ flowchart LR
 
 - [Conda](https://docs.conda.io/en/latest/miniconda.html) (Miniconda or Anaconda)
 - NVIDIA GPU with CUDA 12.4+ (recommended)
-- API keys for at least one LLM backend (Gemini, OpenAI, or Anthropic)
+- Credentials for at least one LLM backend (see [LLM Backends](#-llm-backends))
 
 ### Setup
 
@@ -105,14 +105,36 @@ kairos --help
 Create a `.env` file in the project root:
 
 ```dotenv
-# At least one LLM backend key is required
-GEMINI_API_KEY=your-gemini-key
-OPENAI_API_KEY=your-openai-key
-ANTHROPIC_API_KEY=your-anthropic-key
+# Default LLM backend (gemini | openai | claude)
+LLM_BACKEND=openai
 
-# Optional: default LLM backend (gemini | openai | claude)
-LLM_BACKEND=gemini
+# ── Gemini (Vertex AI — uses GCP service account, not API keys) ──
+GEMINI_PROJECT=your-gcp-project-id
+GEMINI_LOCATION=us-central1
+GEMINI_MODEL=gemini-2.5-flash
+
+# ── OpenAI / Azure OpenAI (API key auth) ──
+OPENAI_ENDPOINT=https://your-endpoint.openai.azure.com/openai/v1/
+OPENAI_KEY=your-openai-api-key
+OPENAI_MODEL=gpt-4o
+
+# ── Claude (Vertex AI — uses GCP service account, not API keys) ──
+CLAUDE_LOCATION=us-east5
+CLAUDE_MODEL=claude-sonnet-4-6
+
+# ── Whisper API (optional, API key auth) ──
+WHISPER_API_KEY=your-whisper-api-key
+WHISPER_API_ENDPOINT=https://your-endpoint.cognitiveservices.azure.com
+WHISPER_API_DEPLOYMENT=whisper
 ```
+
+> **Authentication note:** Gemini and Claude are accessed through
+> **Google Cloud Vertex AI** and authenticate via
+> [Application Default Credentials (ADC)](https://cloud.google.com/docs/authentication/application-default-credentials)
+> — typically a GCP service account attached to the VM.
+> They do **not** use API keys. On non-GCP machines, set
+> `GOOGLE_APPLICATION_CREDENTIALS` to a service account key file.
+> OpenAI and Whisper use standard API key authentication.
 
 ---
 
@@ -254,11 +276,15 @@ The RAG system retrieves the top-k most relevant scene contexts (default: 10) an
 
 Kairos supports three LLM backends, configurable via `--llm` flag or `LLM_BACKEND` environment variable:
 
-| Backend | Flag | Env Key | Models |
-|---------|------|---------|--------|
-| Google Gemini | `--llm gemini` | `GEMINI_API_KEY` | Gemini Pro / Flash |
-| OpenAI | `--llm openai` | `OPENAI_API_KEY` | GPT-4o |
-| Anthropic Claude | `--llm claude` | `ANTHROPIC_API_KEY` | Claude 3.5 Sonnet |
+| Backend | Flag | Auth Method | Models |
+|---------|------|-------------|--------|
+| Google Gemini | `--llm gemini` | **Vertex AI** (GCP service account / ADC) | Gemini 2.5 Flash / Pro |
+| OpenAI | `--llm openai` | **API key** (`OPENAI_KEY`) | GPT-4o / GPT-5 |
+| Anthropic Claude | `--llm claude` | **Vertex AI** (GCP service account / ADC) | Claude Sonnet 4 |
+
+> ⚠️ **Gemini and Claude** authenticate via Google Cloud Vertex AI using
+> Application Default Credentials (service account), **not API keys**.
+> See [Configuration → Environment Variables](docs/configuration.md#environment-variables) for details.
 
 ---
 

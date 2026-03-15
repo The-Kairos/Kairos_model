@@ -281,6 +281,8 @@ Kairos supports three LLM backends through a unified `LLMClient` protocol:
 | **Gemini** | `GeminiLLMClient` | `gemini-2.5-flash` | `GEMINI_PROJECT`, `GEMINI_LOCATION`, `GEMINI_MODEL` |
 | **Claude** | `ClaudeLLMClient` | `claude-sonnet-4-6` | `CLAUDE_PROJECT`, `CLAUDE_LOCATION`, `CLAUDE_MODEL` |
 
+> **Authentication:** Gemini and Claude are accessed via **Google Cloud Vertex AI** and authenticate using [Application Default Credentials (ADC)](https://cloud.google.com/docs/authentication/application-default-credentials) — typically a GCP service account. They do **not** use API keys. OpenAI uses standard API key authentication (`OPENAI_KEY`).
+
 ### LLMClient Protocol
 
 All backends implement the same interface:

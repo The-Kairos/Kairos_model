@@ -290,6 +290,8 @@ Kairos reads several environment variables to configure LLM backends and API con
 | `GEMINI_EMBEDDING_MODEL` | `"gemini-embedding-001"` | Model used for RAG embedding generation. |
 | `GEMINI_RAG_MODEL` | `"gemini-2.5-pro"` | Model used for RAG answer generation. |
 
+
+> **Authentication:** Gemini uses Google Cloud Vertex AI and authenticates via [Application Default Credentials (ADC)](https://cloud.google.com/docs/authentication/application-default-credentials) — typically a GCP service account attached to the VM. It does **not** use API keys. On non-GCP machines, set `GOOGLE_APPLICATION_CREDENTIALS` to a service account JSON key file.
 ### Claude (Vertex AI)
 
 | Variable | Default | Description |
@@ -298,6 +300,8 @@ Kairos reads several environment variables to configure LLM backends and API con
 | `CLAUDE_PROJECT` | Falls back to `GEMINI_PROJECT` | GCP project ID for the Claude endpoint. |
 | `CLAUDE_MODEL` | `"claude-sonnet-4-6"` | Claude model identifier. |
 
+
+> **Authentication:** Claude is accessed through Google Cloud Vertex AI (via the `anthropic[vertex]` SDK) and uses the same [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials) as Gemini. It does **not** use Anthropic API keys.
 ### Whisper API (Azure OpenAI)
 
 | Variable | Default | Description |
