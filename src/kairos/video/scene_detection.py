@@ -1,0 +1,123 @@
+"""Scene detection using PySceneDetect with fallback segmentation."""
+
+from __future__ import annotations
+
+import cv2
+from scenedetect import SceneManager, open_video
+from scenedetect.detectors import ContentDetector
+
+from kairos.core.utils import format_timecode
+
+
+def get_scene_list(
+    input_video_path: str,
+    threshold: float = 27,
+    min_scene_sec: int = 2,
+    frame_skip: int = 3,
+    retry_threshold_factor: float = 0.5,
+    fallback_interval_sec: int = 20,
+) -> list[dict]:
+    """Detect scenes in a video using PySceneDetect and return structured metadata.
+
+    The function uses ``ContentDetector`` to find abrupt content changes.
+    If no scenes are detected on the first pass, a more sensitive retry is
+    attempted using ``threshold * retry_threshold_factor``.  If still
+    empty, the video is split into fixed-duration segments of
+    *fallback_interval_sec* seconds.
+
+    Args:
+        input_video_path: Path to the input video file.
+        threshold: Sensitivity for the ``ContentDetector``.  Lower values
+            detect more scene cuts.
+        min_scene_sec: Minimum scene length in seconds.  Converted to
+            frames internally using the video's FPS.
+        frame_skip: Number of frames to skip between detections for
+            performance.
+        retry_threshold_factor: If no scenes are detected, retry with
+            ``threshold * retry_threshold_factor`` (more sensitive).
+        fallback_interval_sec: If still no scenes are detected, split the
+            video into fixed-duration segments of this many seconds.
+
+    Returns:
+        A list of dictionaries, each containing:
+
+        - ``"scene_index"``: Index of the detected scene.
+        - ``"start_timecode"``: Start timecode (``HH:MM:SS.mmm``).
+        - ``"end_timecode"``: End timecode (``HH:MM:SS.mmm``).
+        - ``"start_seconds"``: Start time in seconds (float).
+        - ``"end_seconds"``: End time in seconds (float).
+        - ``"duration_seconds"``: Duration of the scene in seconds.
+    """
+
+    def detect_scenes_with_threshold(thresh: float) -> list:
+        video = open_video(input_video_path)
+        scene_manager = SceneManager()
+        scene_manager.add_detector(
+            ContentDetector(threshold=thresh, min_scene_len=min_scene_len)
+        )
+        scene_manager.detect_scenes(video, frame_skip=frame_skip)
+        return scene_manager.get_scene_list()
+
+    # Read video metadata once
+    cap = cv2.VideoCapture(input_video_path)
+    fps: float = cap.get(cv2.CAP_PROP_FPS)
+    frame_count: float = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+    cap.release()
+
+    if not fps or fps <= 0:
+        fps = 30.0
+
+    # Getting the min_scene_len based on fps
+    min_scene_len: int = max(1, round(fps * min_scene_sec))
+
+    scene_list = detect_scenes_with_threshold(threshold)
+    if not scene_list:
+        retry_threshold = max(0.1, threshold * retry_threshold_factor)
+        scene_list = detect_scenes_with_threshold(retry_threshold)
+
+    result: list[dict] = []
+    if scene_list:
+        for idx, (start_time, end_time) in enumerate(scene_list):
+            start_sec: float = start_time.get_seconds()
+            end_sec: float = end_time.get_seconds()
+            result.append(
+                {
+                    "scene_index": idx,
+                    "start_timecode": str(start_time),
+                    "end_timecode": str(end_time),
+                    "start_seconds": start_sec,
+                    "end_seconds": end_sec,
+                    "duration_seconds": end_sec - start_sec,
+                }
+            )
+        return result
+
+    # Fallback: fixed-duration segmentation when no scenes are found
+    if frame_count and frame_count > 0:
+        duration_sec: float = frame_count / fps
+    else:
+        duration_sec = max(float(min_scene_sec), 1.0)
+
+    if fallback_interval_sec <= 0:
+        fallback_interval_sec = 20
+
+    start: float = 0.0
+    idx: int = 0
+    while start < duration_sec:
+        end: float = min(start + float(fallback_interval_sec), duration_sec)
+        if end <= start:
+            break
+        result.append(
+            {
+                "scene_index": idx,
+                "start_timecode": format_timecode(start),
+                "end_timecode": format_timecode(end),
+                "start_seconds": start,
+                "end_seconds": end,
+                "duration_seconds": end - start,
+            }
+        )
+        idx += 1
+        start = end
+
+    return result

@@ -1,0 +1,15 @@
+"""Video synopsis orchestration.
+
+Scene summarization and structured synopsis generation.
+"""
+
+from __future__ import annotations
+
+from kairos.llm.synopsis.synthesis import (
+    call_gpt,
+    call_gpt_safe,
+    summarize_scenes,
+    synthesize_synopsis,
+)
+
+__all__ = ["call_gpt", "call_gpt_safe", "summarize_scenes", "synthesize_synopsis"]

@@ -3,6 +3,8 @@ __pycache__/
 *.py[codz]
 *$py.class
 .*
+!.pre-commit-config.yaml
+!.env.example
 
 # C extensions
 *.so
@@ -206,3 +208,14 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Kairos project-specific
+logs/
+!logs/reports/
+*.wav
+*.mp4
+*.mp3
+
+# Allow test fixtures (overrides *.mp4 rule above)
+!tests/fixtures/
+!tests/fixtures/**
