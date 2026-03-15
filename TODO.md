@@ -9,6 +9,7 @@ Items are grouped by priority and domain.
 
 ### Containerisation ([Issue #8](https://github.com/The-Kairos/Kairos_model/issues/8))
 
+- [ ] **Parallelize** 
 - [ ] **Add `Dockerfile`** — multi-stage build with conda env, CUDA runtime, and
   pip-installed Kairos package. Target: reproducible GPU-enabled image.
 - [ ] **Add `docker-compose.yml`** — service definition with NVIDIA runtime /
@@ -102,19 +103,19 @@ Items are grouped by priority and domain.
 
 ## ✅ Completed
 
-- [x] Restructure into `src/` layout with `pyproject.toml` packaging
-- [x] Domain sub-packages (`audio/`, `video/`, `llm/`, `cli/`, `core/`)
-- [x] Protocol-based LLM client abstraction (Gemini, OpenAI, Claude)
-- [x] `PipelineConfig` dataclass with validation and presets
-- [x] Checkpoint & redo system for pipeline resumability
-- [x] Comprehensive pytest test suite (unit / integration / model / e2e)
-- [x] GitHub Actions CI (Ruff lint + pytest matrix 3.10–3.12)
-- [x] SOLID / DRY / KISS refactoring passes
-- [x] Full type annotations and Google-style docstrings
-- [x] `from __future__ import annotations` across all modules
-- [x] 9-page documentation (architecture, pipeline, config, CLI, RAG, etc.)
-- [x] `Makefile` with `lint`, `format`, `test`, `build`, `clean` targets
-- [x] `.pre-commit-config.yaml` (Ruff + file hygiene hooks)
-- [x] `CHANGELOG.md` for v0.1.0
-- [x] Close duplicate GitHub issue #6
-- [x] Fix `.gitignore` to allow `.env.example` and `.pre-commit-config.yaml`
+- [X] Restructure into `src/` layout with `pyproject.toml` packaging
+- [X] Domain sub-packages (`audio/`, `video/`, `llm/`, `cli/`, `core/`)
+- [X] Protocol-based LLM client abstraction (Gemini, OpenAI, Claude)
+- [X] `PipelineConfig` dataclass with validation and presets
+- [X] Checkpoint & redo system for pipeline resumability
+- [X] Comprehensive pytest test suite (unit / integration / model / e2e)
+- [X] GitHub Actions CI (Ruff lint + pytest matrix 3.10–3.12)
+- [X] SOLID / DRY / KISS refactoring passes
+- [X] Full type annotations and Google-style docstrings
+- [X] `from __future__ import annotations` across all modules
+- [X] 9-page documentation (architecture, pipeline, config, CLI, RAG, etc.)
+- [X] `Makefile` with `lint`, `format`, `test`, `build`, `clean` targets
+- [X] `.pre-commit-config.yaml` (Ruff + file hygiene hooks)
+- [X] `CHANGELOG.md` for v0.1.0
+- [X] Close duplicate GitHub issue #6
+- [X] Fix `.gitignore` to allow `.env.example` and `.pre-commit-config.yaml`
