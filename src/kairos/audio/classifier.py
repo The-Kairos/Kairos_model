@@ -1,5 +1,7 @@
 """MIT AST (Audio Spectrogram Transformer) parallelized per-scene classification."""
 
+from __future__ import annotations
+
 import time
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 

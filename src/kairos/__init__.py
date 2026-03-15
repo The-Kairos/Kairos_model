@@ -8,6 +8,8 @@ This top-level package re-exports the most commonly used symbols so that
 downstream code can simply write ``from kairos import PipelineConfig``.
 """
 
+from __future__ import annotations
+
 __version__ = "0.1.0"
 
 from kairos.config import PipelineConfig

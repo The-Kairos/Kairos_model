@@ -9,6 +9,8 @@ New modules added by the enhancement pass:
 - :mod:`kairos.core.timing` — ``@timed_stage`` decorator and timing reports
 """
 
+from __future__ import annotations
+
 from kairos.core.exceptions import (
     KairosConfigError,
     KairosError,

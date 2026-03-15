@@ -1,5 +1,7 @@
 """Scene detection using PySceneDetect with fallback segmentation."""
 
+from __future__ import annotations
+
 import cv2
 from scenedetect import SceneManager, open_video
 from scenedetect.detectors import ContentDetector

@@ -55,6 +55,8 @@ All public submodule names are listed in ``__all__`` so that
 imports are preferred).
 """
 
+from __future__ import annotations
+
 __all__ = [
     "classifier",
     "extraction",

@@ -1,5 +1,7 @@
 """YOLOv8 object detection and tracking per scene (orchestrator)."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from ultralytics import YOLO

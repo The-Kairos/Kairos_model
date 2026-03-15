@@ -5,6 +5,8 @@ computing the mean spectral flatness of an audio waveform. Spectral flatness
 measures how tone-like vs. noise-like a signal is (0 = tonal, 1 = white noise).
 """
 
+from __future__ import annotations
+
 import numpy as np
 
 

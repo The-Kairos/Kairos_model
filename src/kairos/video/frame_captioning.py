@@ -1,5 +1,7 @@
 """BLIP frame captioning with lazy model loading."""
 
+from __future__ import annotations
+
 from typing import Any
 
 import cv2

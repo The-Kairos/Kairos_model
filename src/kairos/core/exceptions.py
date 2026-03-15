@@ -4,6 +4,8 @@ All custom exceptions inherit from :class:`KairosError` so callers can
 catch the entire family with a single ``except KairosError`` clause.
 """
 
+from __future__ import annotations
+
 
 class KairosError(Exception):
     """Base exception for all Kairos errors."""

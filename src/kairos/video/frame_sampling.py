@@ -1,5 +1,7 @@
 """Frame sampling from video scenes at fixed counts or FPS."""
 
+from __future__ import annotations
+
 import os
 
 import cv2

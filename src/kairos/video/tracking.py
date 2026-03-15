@@ -1,5 +1,7 @@
 """Object tracking: IoU-based fallback tracker and track building."""
 
+from __future__ import annotations
+
 
 def _bbox_iou(b1: list[float], b2: list[float]) -> float:
     """Compute the Intersection-over-Union (IoU) of two axis-aligned bounding boxes.

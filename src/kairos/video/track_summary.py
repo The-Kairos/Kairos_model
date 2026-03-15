@@ -1,5 +1,7 @@
 """Track summary building and formatting for YOLO detections."""
 
+from __future__ import annotations
+
 import math
 
 import numpy as np

@@ -1,5 +1,7 @@
 """Language detection using Whisper."""
 
+from __future__ import annotations
+
 import gc
 
 import numpy as np

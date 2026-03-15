@@ -3,6 +3,8 @@
 Scene detection, frame sampling, captioning, and object detection.
 """
 
+from __future__ import annotations
+
 __all__ = [
     "debug_draw",
     "frame_captioning",

@@ -7,6 +7,8 @@ portable.  The module also supports extracting individual scene clips
 from a source video via FFmpeg.
 """
 
+from __future__ import annotations
+
 import json
 import subprocess
 from pathlib import Path

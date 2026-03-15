@@ -3,6 +3,8 @@
 Orchestrates extraction, RMS, VAD, spectral, and language detection.
 """
 
+from __future__ import annotations
+
 import math
 import time
 

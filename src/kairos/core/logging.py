@@ -22,6 +22,8 @@ Typical usage::
     save_log(full_log, "logs/run")
 """
 
+from __future__ import annotations
+
 import functools
 import json
 import os

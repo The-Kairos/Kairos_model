@@ -1,5 +1,7 @@
 """Audio extraction from video files using PyAV with ffmpeg fallback."""
 
+from __future__ import annotations
+
 import subprocess
 
 import av

@@ -1,5 +1,7 @@
 """Spatial analysis: position labels, movement detection, and inter-object relations."""
 
+from __future__ import annotations
+
 import math
 
 
