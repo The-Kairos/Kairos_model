@@ -6,10 +6,22 @@ import random
 import cv2
 import numpy as np
 
-YOLO_COLOR_MAP = {}
+YOLO_COLOR_MAP: dict[str, tuple[int, int, int]] = {}
 
 
-def get_color_for_label(label: str):
+def get_color_for_label(label: str) -> tuple[int, int, int]:
+    """Get a consistent random BGR color for a given detection label.
+
+    If the label has not been seen before, a new random color is generated
+    and cached in ``YOLO_COLOR_MAP``. Subsequent calls with the same label
+    return the cached color.
+
+    Args:
+        label: The detection class label (e.g. ``"person"``, ``"car"``).
+
+    Returns:
+        A BGR color tuple with each channel in the range [80, 255].
+    """
     if label not in YOLO_COLOR_MAP:
         YOLO_COLOR_MAP[label] = (
             random.randint(80, 255),
@@ -20,9 +32,31 @@ def get_color_for_label(label: str):
 
 
 def debug_draw_yolo(
-    frame: np.ndarray, detections: list, save_path: str | None = None
+    frame: np.ndarray,
+    detections: list[dict],
+    save_path: str | None = None,
 ) -> np.ndarray:
-    """Draw YOLO detections on a frame for debugging."""
+    """Draw YOLO detections on a frame for debugging.
+
+    Each detection is drawn as a bounding box with a label and confidence
+    score.  If the detection includes a ``track_id``, it is appended to the
+    label text.  A black padding border is added around the frame so that
+    boxes near the edges remain fully visible.
+
+    Args:
+        frame: The BGR image (NumPy array) to draw on.  The original array
+            is **not** modified; a padded copy is used instead.
+        detections: A list of detection dictionaries.  Each dictionary must
+            contain the keys ``"label"`` (str), ``"confidence"`` (float),
+            and ``"bbox"`` (sequence of four numeric values
+            ``[x1, y1, x2, y2]``).  An optional ``"track_id"`` (int) key
+            is also supported.
+        save_path: If provided, the annotated image is written to this
+            path.  Parent directories are created automatically.
+
+    Returns:
+        The annotated image as a NumPy array (with padding).
+    """
     pad = 20
     drawn = cv2.copyMakeBorder(
         frame, pad, pad, pad, pad, borderType=cv2.BORDER_CONSTANT, value=(0, 0, 0)

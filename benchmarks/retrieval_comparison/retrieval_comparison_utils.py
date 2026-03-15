@@ -1,3 +1,9 @@
+"""Utility functions for comparing flat vs. hierarchical (KMeans / HDBSCAN) RAG retrieval.
+
+Provides embedding helpers, clustering routines, merged retrieval scoring,
+answer generation via Gemini, and Markdown report writing.
+"""
+
 import os
 import sys
 import json
@@ -32,7 +38,7 @@ def load_rag_embeddings(path: str) -> Dict[str, Any]:
 
 
 def embed_question_via_gemini(question: str):
-    """Embed a question using Gemini API. Requires GEMINI_API_KEY env var."""
+    """Embed a question using the Gemini API and return a numpy float32 vector."""
     try:
         from src.rag_convo import embed_question
         res = embed_question(question)
@@ -56,7 +62,7 @@ def normalize_name(name: str) -> str:
 
 
 def find_optimal_k_elbow(embeddings: List[List[float]], max_k: int = 20, random_state: int = 42) -> int:
-    """Find optimal number of clusters using the elbow method."""
+    """Find optimal number of clusters using the elbow method on KMeans inertia."""
     try:
         from sklearn.cluster import KMeans
     except Exception as e:
@@ -90,6 +96,7 @@ def find_optimal_k_elbow(embeddings: List[List[float]], max_k: int = 20, random_
 
 
 def compute_kmeans_clusters(embeddings: List[List[float]], num_clusters: Optional[int] = None, random_state: int = 42) -> Dict[str, Any]:
+    """Run KMeans clustering on embeddings and return cluster metadata."""
     try:
         from sklearn.cluster import KMeans
     except Exception as e:
@@ -116,6 +123,7 @@ def compute_kmeans_clusters(embeddings: List[List[float]], num_clusters: Optiona
 
 
 def compute_hdbscan_clusters(embeddings: List[List[float]], min_cluster_size: int = 3) -> Dict[str, Any]:
+    """Run HDBSCAN clustering on embeddings and return cluster metadata."""
     try:
         import hdbscan
     except Exception:
@@ -144,6 +152,7 @@ def compute_hdbscan_clusters(embeddings: List[List[float]], min_cluster_size: in
 
 
 def _to_vector(e) -> np.ndarray:
+    """Convert an embedding (object, dict, or list) to a numpy float32 vector."""
     if hasattr(e, "values"):
         try:
             return np.array(e.values, dtype=np.float32)
@@ -163,6 +172,7 @@ def merge_retrieval(
     top_c: int = 3,
     alpha: float = 0.3,
 ) -> List[Tuple[str, float]]:
+    """Merge flat cosine similarity with cluster-boosted scores and return top-k chunks."""
     s_vecs = np.array([_to_vector(e) for e in scene_embeddings], dtype=np.float32)
     base_sims = s_vecs.dot(query_vec)
 
@@ -202,6 +212,7 @@ def merge_retrieval(
 
 
 def jaccard(a: List[int], b: List[int]) -> float:
+    """Compute the Jaccard similarity between two index lists."""
     sa = set(a)
     sb = set(b)
     if not sa and not sb:
@@ -212,6 +223,7 @@ def jaccard(a: List[int], b: List[int]) -> float:
 
 
 def save_json(path: str, payload: Dict[str, Any]):
+    """Write a JSON payload to *path*, creating parent directories as needed."""
     folder = os.path.dirname(path)
     if folder:
         os.makedirs(folder, exist_ok=True)
@@ -490,7 +502,7 @@ def run_hierarchical_retrieval_comparison(
 
 
 def format_query_section(query_data: Dict[str, Any]) -> str:
-    """Format a single query's results for the markdown report."""
+    """Format a single query's results as a Markdown section for the comparison report."""
     lines = []
     query = query_data["query"]
     lines.append(f"## Query: {query}\n")
@@ -538,7 +550,7 @@ def format_query_section(query_data: Dict[str, Any]) -> str:
 
 
 def write_comparison_report(md_path: str, results: Dict[str, Any], checkpoint: Optional[Dict[str, Any]] = None):
-    """Write the complete comparison report in markdown format."""
+    """Write the complete comparison report in Markdown format to *md_path*."""
     lines = []
     video_name = results["video"]
     config = results["config"]

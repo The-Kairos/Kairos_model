@@ -1,8 +1,15 @@
+"""Heavy VLM: LLaVA v1.6 Vicuna 7B (llava-hf).
+
+Loads the 4-bit quantized LLaVA-Next model for detailed scene captioning
+and provides a standalone benchmark when run directly.
+"""
+
 import torch
 from transformers import LlavaNextProcessor, LlavaNextForConditionalGeneration, BitsAndBytesConfig
 import os
 
 def load_vlm_model(model_id="llava-hf/llava-v1.6-vicuna-7b-hf"):
+    """Load and return the 4-bit quantized LLaVA-Next model and processor."""
     print(f"Loading {model_id}...")
     quantization_config = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -17,6 +24,7 @@ def load_vlm_model(model_id="llava-hf/llava-v1.6-vicuna-7b-hf"):
     return model, processor
 
 def caption_image(model, processor, image, prompt=None):
+    """Generate a scene caption for *image* using LLaVA-Next."""
     if prompt is None:
         prompt = "[INST] <image>\nDescribe the scene in detail. Focus only on what is visually observable. Do not assume intentions or unseen events. Mention actions, objects, and interactions. [/INST]"
     

@@ -1,9 +1,16 @@
+"""Heavy VLM: Qwen-VL-Chat (Alibaba).
+
+Loads the Qwen-VL chat model for detailed scene captioning and provides
+a standalone benchmark when run directly.
+"""
+
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
 from PIL import Image
 
 def load_vlm_model(model_id="Qwen/Qwen-VL-Chat"):
+    """Load and return the Qwen-VL-Chat model and tokenizer."""
     print(f"Loading {model_id}...")
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(
@@ -15,6 +22,7 @@ def load_vlm_model(model_id="Qwen/Qwen-VL-Chat"):
     return model, tokenizer
 
 def caption_image(model, tokenizer, image, question=None):
+    """Generate a scene caption for *image* using Qwen-VL chat."""
     if question is None:
         question = "Describe the scene in detail. Focus only on what is visually observable. Mention actions, objects, and interactions."
     

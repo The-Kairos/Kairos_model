@@ -1,5 +1,4 @@
-"""
-Check which (light VLM, video) pairs have completed successfully and which are missing.
+"""Check which (light VLM, video) pairs have completed successfully and which are missing.
 
 Run from project root:
 
@@ -23,6 +22,7 @@ VLMS = ["blip2", "instructblip", "llava_mistral", "phi3_vision", "siglip"]
 
 
 def main():
+    """Scan results directory and print per-VLM completion status for each video."""
     videos = [v for v in VIDEOS_DIR.glob("*.mp4") if not v.name.startswith("_")]
     if not videos:
         print("No videos in Videos/. Add .mp4 files to run benchmarks.")
@@ -85,4 +85,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

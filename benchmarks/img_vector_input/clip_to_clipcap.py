@@ -1,3 +1,5 @@
+"""Benchmark CLIP image encoding with CLIPCap caption decoding via a GPT-2 language model."""
+
 import json
 import sys
 import time
@@ -16,24 +18,32 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 
 def load_image(path: Path) -> Image.Image:
+    """Load an image from disk and convert to RGB."""
     if not path.exists():
         raise FileNotFoundError(f"Image not found: {path}")
     return Image.open(path).convert("RGB")
 
 
 class MLP(torch.nn.Module):
+    """Two-layer MLP with tanh activation for projecting CLIP embeddings to GPT-2 space."""
+
     def __init__(self, prefix_size: int, intermediate_size: int, out_size: int) -> None:
+        """Initialize projection layers."""
         super().__init__()
         self.proj1 = torch.nn.Linear(prefix_size, intermediate_size, bias=True)
         self.proj2 = torch.nn.Linear(intermediate_size, out_size, bias=True)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """Apply two-layer projection with tanh non-linearity."""
         z = torch.nn.functional.tanh(self.proj1(x))
         return self.proj2(z)
 
 
 class ClipCapModel(torch.nn.Module):
+    """CLIPCap model that maps CLIP embeddings to GPT-2 prefix embeddings for captioning."""
+
     def __init__(self, prefix_length: int, prefix_size: int = 512) -> None:
+        """Initialize the GPT-2 backbone and CLIP-to-GPT-2 mapping network."""
         super().__init__()
         self.prefix_length = prefix_length
         from transformers import GPT2LMHeadModel
@@ -53,6 +63,7 @@ def generate_greedy(
     prefix_embed: torch.Tensor,
     max_length: int = 30,
 ) -> str:
+    """Autoregressively generate a caption using greedy decoding from a prefix embedding."""
     model.eval()
     tokens = None
     generated = prefix_embed
@@ -80,6 +91,7 @@ def encode_image(
     image: Image.Image,
     device: str,
 ) -> torch.Tensor:
+    """Encode an image with the CLIP vision encoder and return the feature vector."""
     pixel_values = clip_processor(images=image, return_tensors="pt").pixel_values.to(device)
     with torch.no_grad():
         clip_features = clip_model.get_image_features(pixel_values=pixel_values).float()
@@ -92,6 +104,7 @@ def decode_caption(
     clip_features: torch.Tensor,
     max_length: int = 30,
 ) -> str:
+    """Map CLIP features through the prefix network and generate a caption."""
     prefix_embed = model.mapping(clip_features).view(
         -1, model.prefix_length, model.gpt_embedding_size
     )
@@ -99,6 +112,7 @@ def decode_caption(
 
 
 def main() -> None:
+    """Encode an image with CLIP, decode a caption via CLIPCap, and print timing results as JSON."""
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     image_path = BASE_DIR / "woman_driving.jpg"

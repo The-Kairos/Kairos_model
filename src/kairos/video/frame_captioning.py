@@ -1,5 +1,6 @@
 """BLIP frame captioning with lazy model loading."""
 
+from typing import Any
 
 import cv2
 import numpy as np
@@ -9,11 +10,11 @@ from PIL import Image
 from kairos.core.utils import print_prefixed
 
 # Lazy-loaded model singletons
-_blip_model = None
-_blip_processor = None
+_blip_model: Any = None
+_blip_processor: Any = None
 
 # Default BLIP generation parameters — override any via **kwargs
-BLIP_DEFAULTS = {
+BLIP_DEFAULTS: dict[str, Any] = {
     "max_length": 50,
     "min_length": 20,
     "num_beams": 1,
@@ -26,8 +27,17 @@ BLIP_DEFAULTS = {
 }
 
 
-def _get_blip_model():
-    """Load BLIP model and processor on first use, then cache."""
+def _get_blip_model() -> tuple[Any, Any]:
+    """Load the BLIP model and processor on first use, then cache.
+
+    The model is loaded onto CUDA if available, otherwise CPU.  Subsequent
+    calls return the cached singletons without reloading.
+
+    Returns:
+        A tuple of ``(model, processor)`` where *model* is a
+        ``BlipForConditionalGeneration`` instance and *processor* is a
+        ``BlipProcessor`` instance.
+    """
     global _blip_model, _blip_processor
     if _blip_model is None:
         from transformers import BlipForConditionalGeneration, BlipProcessor
@@ -43,16 +53,35 @@ def _get_blip_model():
 
 
 def blip_frame(
-    image,
-    model=None,
-    processor=None,
+    image: Image.Image | np.ndarray,
+    model: Any = None,
+    processor: Any = None,
     prompt: str | None = None,
-    **generate_kwargs,
+    **generate_kwargs: Any,
 ) -> str:
     """Generate a BLIP caption for a single frame.
 
-    Any keyword arguments override BLIP_DEFAULTS and are forwarded
+    Any keyword arguments override ``BLIP_DEFAULTS`` and are forwarded
     directly to ``model.generate()``.
+
+    Args:
+        image: The input image, either a ``PIL.Image.Image`` or a NumPy
+            array in BGR (OpenCV) or RGB format.
+        model: A pre-loaded ``BlipForConditionalGeneration`` model.  If
+            ``None``, the lazily-loaded singleton is used.
+        processor: A pre-loaded ``BlipProcessor``.  If ``None``, the
+            lazily-loaded singleton is used.
+        prompt: An optional text prompt to condition the caption on.
+        **generate_kwargs: Additional keyword arguments forwarded to
+            ``model.generate()``, overriding values in ``BLIP_DEFAULTS``.
+
+    Returns:
+        The generated caption string, stripped of special tokens and
+        leading/trailing whitespace.
+
+    Raises:
+        TypeError: If *image* is not a ``PIL.Image.Image`` or
+            ``numpy.ndarray``.
     """
     if model is None or processor is None:
         model, processor = _get_blip_model()
@@ -88,15 +117,32 @@ def blip_frame(
 
 def caption_frames(
     scenes: list[dict],
-    model=None,
-    processor=None,
+    model: Any = None,
+    processor: Any = None,
     debug: bool = False,
-    **blip_kwargs,
+    **blip_kwargs: Any,
 ) -> list[dict]:
-    """Run BLIP on each frame in each scene and attach captions.
+    """Run BLIP on each frame in every scene and attach captions.
 
     Any keyword arguments are forwarded to ``blip_frame`` (and on to
-    ``model.generate()``), overriding BLIP_DEFAULTS.
+    ``model.generate()``), overriding ``BLIP_DEFAULTS``.
+
+    Args:
+        scenes: A list of scene dictionaries.  Each scene should contain a
+            ``"frames"`` key mapping to a list of images (PIL or NumPy).
+        model: A pre-loaded ``BlipForConditionalGeneration`` model.  If
+            ``None``, the lazily-loaded singleton is used.
+        processor: A pre-loaded ``BlipProcessor``.  If ``None``, the
+            lazily-loaded singleton is used.
+        debug: If ``True``, print caption progress to stdout using
+            :func:`kairos.core.utils.print_prefixed`.
+        **blip_kwargs: Additional keyword arguments forwarded to
+            ``blip_frame``.
+
+    Returns:
+        A new list of scene dictionaries, each augmented with a
+        ``"frame_captions"`` key containing a list of caption strings
+        (one per frame).
     """
     if model is None or processor is None:
         model, processor = _get_blip_model()

@@ -1,12 +1,14 @@
+"""Light VLM: InstructBLIP (Salesforce). Instruction-following image captioning.
+
+Uses the flan-t5-xl variant for a lighter footprint than vicuna-7b.
 """
-Light VLM: InstructBLIP (Salesforce). Instruction-following image captioning.
-Uses flan-t5-xl variant for lighter footprint than vicuna-7b.
-"""
+
 import torch
 from transformers import InstructBlipProcessor, InstructBlipForConditionalGeneration
 import os
 
 def load_vlm_model(model_id="Salesforce/instructblip-flan-t5-xl"):
+    """Load and return the InstructBLIP flan-t5-xl model and processor."""
     print(f"Loading {model_id}...")
     processor = InstructBlipProcessor.from_pretrained(model_id)
     model = InstructBlipForConditionalGeneration.from_pretrained(
@@ -17,6 +19,7 @@ def load_vlm_model(model_id="Salesforce/instructblip-flan-t5-xl"):
     return model, processor
 
 def caption_image(model, processor, image, prompt=None):
+    """Generate an instruction-guided caption for *image* using InstructBLIP."""
     if prompt is None:
         prompt = "Describe the scene in detail. Focus on what is visually observable: actions, objects, and interactions."
     inputs = processor(images=image, text=prompt, return_tensors="pt").to(model.device)

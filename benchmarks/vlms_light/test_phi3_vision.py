@@ -1,5 +1,7 @@
-"""
-Light VLM: Phi-3.5 Vision (OCR-oriented). Use with OCR-focused prompt for document/scene text.
+"""Light VLM: Phi-3.5 Vision (OCR-oriented).
+
+Uses an OCR-focused prompt for document/scene text extraction
+alongside brief scene description.
 """
 import os
 import torch
@@ -7,6 +9,7 @@ from transformers import AutoProcessor, AutoModelForCausalLM, AutoConfig
 
 
 def load_vlm_model(model_id="microsoft/Phi-3.5-vision-instruct"):
+    """Load and return the Phi-3.5 Vision model and processor with eager attention."""
     print(f"Loading {model_id}...")
     # Make sure any flash-attn toggles are off at env level as well.
     os.environ.setdefault("FLASH_ATTENTION_2_ENABLED", "0")
@@ -29,6 +32,7 @@ def load_vlm_model(model_id="microsoft/Phi-3.5-vision-instruct"):
     return model, processor
 
 def caption_image(model, processor, image, prompt=None):
+    """Generate an OCR-oriented caption for *image* using Phi-3.5 Vision."""
     if prompt is None:
         prompt = "Describe what text or text-like content is visible in this image (OCR). Then briefly describe the scene: actions, objects, and interactions."
     # Phi-3.5 processor expects text with <|image_1|> and images list

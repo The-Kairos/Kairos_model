@@ -7,7 +7,22 @@ import argparse
 from kairos.core.redo import REDO_CHOICES
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
+    """Parse and return command-line arguments for the Kairos CLI.
+
+    Builds an :class:`argparse.ArgumentParser` with two sub-commands:
+
+    * **process** – run the video-processing pipeline on one or more videos.
+    * **rag** – start an interactive RAG session for a single video.
+
+    Both sub-commands accept ``--video`` and ``--llm`` flags.  The
+    ``process`` sub-command additionally supports ``--all``, ``--filter``,
+    ``--include-unknown``, ``--preset``, ``--redo``, and ``--redo-only``.
+
+    Returns:
+        The parsed :class:`argparse.Namespace` containing all provided
+        CLI options and their values.
+    """
     parser = argparse.ArgumentParser(description="Process videos or run RAG.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 

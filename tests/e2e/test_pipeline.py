@@ -8,6 +8,7 @@ Requires: API keys, GPU/models, and test fixture video.
 """
 
 import os
+from pathlib import Path
 
 import pytest
 
@@ -17,12 +18,14 @@ pytestmark = pytest.mark.e2e
 
 
 @pytest.fixture
-def fast_config():
+def fast_config() -> PipelineConfig:
+    """Return a PipelineConfig using the 'fast' preset for quicker test runs."""
     return PipelineConfig.fast()
 
 
 @pytest.fixture
 def llm_client():
+    """Build and return an LLM client, skipping the test if construction fails."""
     from kairos.llm.client import build_llm_client
 
     try:
@@ -32,7 +35,13 @@ def llm_client():
     return client
 
 
-def test_full_pipeline(sample_video_path, fast_config, llm_client, tmp_path):
+def test_full_pipeline(
+    sample_video_path: Path,
+    fast_config: PipelineConfig,
+    llm_client,
+    tmp_path: Path,
+) -> None:
+    """Run full pipeline end-to-end and verify all stages."""
     cfg = fast_config
     client = llm_client
     video_path = str(sample_video_path)

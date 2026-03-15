@@ -1,3 +1,5 @@
+"""Benchmark BLIP image encoding and caption decoding from a vision embedding."""
+
 import json
 import sys
 import time
@@ -15,6 +17,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 
 def load_image(path: Path) -> Image.Image:
+    """Load an image from disk and convert to RGB."""
     if not path.exists():
         raise FileNotFoundError(f"Image not found: {path}")
     return Image.open(path).convert("RGB")
@@ -26,6 +29,7 @@ def encode_image(
     image: Image.Image,
     device: str,
 ) -> torch.Tensor:
+    """Encode an image through the BLIP vision encoder and return hidden states."""
     inputs = processor(images=image, return_tensors="pt")
     pixel_values = inputs["pixel_values"].to(device)
     with torch.no_grad():
@@ -40,6 +44,7 @@ def decode_caption(
     device: str,
     prompt: str = "a photo of",
 ) -> str:
+    """Generate a caption from pre-computed encoder hidden states using the BLIP text decoder."""
     text_inputs = processor(text=prompt, return_tensors="pt")
     input_ids = text_inputs["input_ids"].to(device)
     attention_mask = text_inputs.get("attention_mask")
@@ -67,6 +72,7 @@ def decode_caption(
 
 
 def main() -> None:
+    """Encode an image with BLIP, decode a caption, and print timing results as JSON."""
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     image_path = BASE_DIR / "woman_driving.jpg"

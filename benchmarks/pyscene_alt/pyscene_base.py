@@ -1,3 +1,5 @@
+"""Baseline scene splitting using PySceneDetect only (no semantic merge)."""
+
 from __future__ import annotations
 
 import argparse
@@ -30,6 +32,7 @@ def run(
     threshold: float = pyscene_threshold,
     min_scene_sec: float = pyscene_shortest,
 ) -> dict:
+    """Run baseline PySceneDetect scene cuts and return results."""
     video_path = Path(video_path)
     if not video_path.is_absolute():
         video_path = (PROJECT_ROOT / video_path).resolve()
@@ -62,6 +65,7 @@ def run(
 
 
 def main() -> None:
+    """CLI entry-point for baseline PySceneDetect scene cuts."""
     parser = argparse.ArgumentParser(description="Baseline PySceneDetect scene cuts.")
     parser.add_argument(
         "--video",

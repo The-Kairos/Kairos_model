@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from typing import Any
 
 from kairos.cli.args import parse_args
 from kairos.cli.catalog import load_video_catalog, make_output_dir, select_videos
@@ -12,7 +13,21 @@ from kairos.core.utils import flatten
 from kairos.llm.client import build_llm_client
 
 
-def main():
+def main() -> None:
+    """Run the Kairos CLI application.
+
+    Parses command-line arguments, loads the video catalog, selects videos
+    based on user-specified criteria, and dispatches each video to either
+    the full processing pipeline or a RAG-only session.
+
+    The function handles configuration preset selection, redo-step logic,
+    LLM client construction, and output directory creation for each video.
+
+    Raises:
+        SystemExit: If no videos are selected, if RAG mode is invoked with
+            more than one video, or if ``--redo-only`` is used without
+            specifying any steps.
+    """
     from dotenv import load_dotenv
 
     load_dotenv()
@@ -80,7 +95,21 @@ def main():
         )
 
 
-def _run_rag(output_dir: str, cfg: PipelineConfig, client=None):
+def _run_rag(output_dir: str, cfg: PipelineConfig, client: Any = None) -> None:
+    """Launch an interactive RAG session for an already-processed video.
+
+    Loads the RAG embedding file from the given output directory and starts
+    an interactive question-answering loop using the configured LLM client.
+
+    Args:
+        output_dir: Path to the processed-video output directory that
+            contains ``rag_embedding.json`` and ``checkpoint.json``.
+        cfg: Pipeline configuration, used to retrieve
+            ``cfg.rag_top_k_context``.
+        client: Pre-built LLM client instance for answer generation.
+            When ``None``, the default client configured in
+            :func:`kairos.cli.rag_session.ask_rag` is used.
+    """
     from kairos.cli.rag_session import ask_rag
 
     rag_path = f"{output_dir}/rag_embedding.json"

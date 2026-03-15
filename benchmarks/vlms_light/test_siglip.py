@@ -1,5 +1,7 @@
-"""
-Light VLM: SigLIP (retrieval-first). No direct caption; retrieve best-matching template description.
+"""Light VLM: SigLIP (retrieval-first).
+
+No direct caption generation; instead retrieves best-matching template
+descriptions via image–text similarity scoring.
 """
 import torch
 from transformers import AutoProcessor, AutoModel
@@ -24,6 +26,7 @@ SCENE_TEMPLATES = [
 ]
 
 def load_vlm_model(model_id="google/siglip-base-patch16-224"):
+    """Load and return the SigLIP model and processor."""
     print(f"Loading {model_id}...")
     processor = AutoProcessor.from_pretrained(model_id)
     model = AutoModel.from_pretrained(

@@ -10,13 +10,48 @@ from __future__ import annotations
 import importlib.resources
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import Any
 
 from kairos.core.exceptions import KairosConfigError
 
 
 @dataclass
 class PipelineConfig:
-    """All tunable parameters for the Kairos video processing pipeline."""
+    """All tunable parameters for the Kairos video processing pipeline.
+
+    Attributes:
+        pyscene_threshold: Sensitivity for PySceneDetect content detector.
+        pyscene_shortest: Minimum scene length in seconds.
+        frames_per_scene: Number of frames to sample per scene.
+        frame_resolution: Target resolution (longest side) for sampled frames.
+        blip_start_prompt: Starting text prompt for BLIP captioning.
+        blip_caption_len: Maximum caption length in tokens.
+        blip_min_length: Minimum caption length in tokens.
+        blip_num_beams: Number of beams for beam search.
+        blip_do_sample: Whether to use sampling during generation.
+        blip_top_p: Nucleus sampling probability threshold.
+        blip_temperature: Sampling temperature.
+        blip_length_penalty: Length penalty for beam search.
+        blip_no_repeat_ngram_size: N-gram size to prevent repetition.
+        blip_repetition_penalty: Repetition penalty factor.
+        yolo_model_path: Path to the YOLOv8 model weights.
+        yolo_action_fps: Frames per second for YOLO action sampling.
+        yolo_conf_thres: YOLO confidence threshold.
+        yolo_iou_thres: YOLO IoU threshold for NMS.
+        ast_target_sr: Target sample rate for AST audio classification.
+        asr_model_size: Whisper model size for speech recognition.
+        asr_use_vad: Whether to use Voice Activity Detection.
+        asr_target_sr: Target sample rate for ASR.
+        llm_scene_history: Number of previous scenes to include as context.
+        llm_chunk_len: Maximum character length per narrative chunk.
+        llm_summary_len: Maximum character length for the full summary.
+        llm_cooldown_sec: Cooldown in seconds between LLM API calls.
+        rag_top_k_context: Number of top contexts to retrieve for RAG.
+        llm_max_workers: Maximum number of parallel LLM workers.
+        data_dir: Root data directory.
+        prompts_dir: Directory containing prompt templates.
+        logs_dir: Directory for pipeline logs.
+    """
 
     # Scene detection
     pyscene_threshold: float = 27.0
@@ -68,7 +103,12 @@ class PipelineConfig:
     logs_dir: str = "logs"
 
     def __post_init__(self) -> None:
-        """Validate configuration values eagerly."""
+        """Validate configuration values eagerly.
+
+        Raises:
+            KairosConfigError: If any configuration value is out of its
+                acceptable range.
+        """
         if self.pyscene_threshold <= 0:
             raise KairosConfigError(
                 f"pyscene_threshold must be > 0, got {self.pyscene_threshold}"
@@ -120,10 +160,23 @@ class PipelineConfig:
 
     @classmethod
     def default(cls) -> PipelineConfig:
+        """Create a configuration with all default values.
+
+        Returns:
+            A new ``PipelineConfig`` instance with default settings.
+        """
         return cls()
 
     @classmethod
     def fast(cls) -> PipelineConfig:
+        """Create a configuration optimised for speed over accuracy.
+
+        Uses a higher scene-detection threshold, fewer sampled frames,
+        larger LLM chunks, and more parallel workers.
+
+        Returns:
+            A new ``PipelineConfig`` instance tuned for fast processing.
+        """
         return cls(
             pyscene_threshold=40,
             frames_per_scene=1,
@@ -134,6 +187,14 @@ class PipelineConfig:
 
     @classmethod
     def motion_sensitive(cls) -> PipelineConfig:
+        """Create a configuration tuned for high-motion content.
+
+        Uses a lower scene-detection threshold, more frames per scene,
+        and a higher YOLO action sampling rate.
+
+        Returns:
+            A new ``PipelineConfig`` instance tuned for motion-heavy video.
+        """
         return cls(
             pyscene_threshold=15,
             pyscene_shortest=0.5,
@@ -143,6 +204,14 @@ class PipelineConfig:
 
     @classmethod
     def static_video(cls) -> PipelineConfig:
+        """Create a configuration tuned for slow-moving or static content.
+
+        Uses a very low scene-detection threshold, fewer frames per scene,
+        and a reduced YOLO action sampling rate.
+
+        Returns:
+            A new ``PipelineConfig`` instance tuned for static video.
+        """
         return cls(
             pyscene_threshold=3,
             frames_per_scene=1,
@@ -150,10 +219,13 @@ class PipelineConfig:
         )
 
     @property
-    def blip_params(self) -> dict:
+    def blip_params(self) -> dict[str, Any]:
         """Collect all BLIP generation fields into a dict.
 
-        Used for **kwargs forwarding.
+        Used for ``**kwargs`` forwarding to ``model.generate()``.
+
+        Returns:
+            A dictionary of BLIP generation parameters.
         """
         return {
             "prompt": self.blip_start_prompt,
@@ -168,6 +240,10 @@ class PipelineConfig:
             "repetition_penalty": self.blip_repetition_penalty,
         }
 
-    def to_dict(self) -> dict:
-        """Serialize all fields to a plain ``dict``."""
+    def to_dict(self) -> dict[str, Any]:
+        """Serialize all fields to a plain ``dict``.
+
+        Returns:
+            A dictionary representation of this configuration.
+        """
         return asdict(self)

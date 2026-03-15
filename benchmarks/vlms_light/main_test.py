@@ -1,8 +1,11 @@
+"""Light VLM benchmark: same pipeline as vlms_heavy but with lighter VLMs.
+
+Uses the shared Videos folder, runs scene detection → audio → YOLO → light-VLM
+captioning → LLM fusion, and writes per-video results plus a summary table.
+
+Run:  python test_light_vlms/main_test.py  (from project root)
 """
-Light VLM benchmark: same pipeline as test_heavy_vlms but with light VLMs.
-Uses the same Videos folder and benchmarks; writes per-video results and a summary table.
-Run: python test_light_vlms/main_test.py  (from project root)
-"""
+
 import os
 import sys
 import time
@@ -37,6 +40,7 @@ except ImportError:
 
 # Light VLM registry (same interface: load_vlm_model, caption_image)
 def get_vlm_module(vlm_name):
+    """Lazily import and return the module for the specified light VLM."""
     if vlm_name == "blip2":
         import test_light_vlms.test_blip2 as vlm
     elif vlm_name == "instructblip":
@@ -58,7 +62,7 @@ SUMMARY_PATH = Path(__file__).parent / "light_vlm_metrics.json"
 SUMMARY_TABLE_PATH = Path(__file__).parent / "results" / "summary_table.md"
 
 def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
-    """Run full pipeline with the given light VLM. Same steps as heavy."""
+    """Run the full pipeline with the given light VLM (same steps as heavy)."""
     video_name = Path(video_path).stem
     output_dir = results_dir / vlm_name / video_name
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -197,7 +201,7 @@ def build_summary_table(metrics_path, table_path):
 
 
 def parse_args():
-    """CLI options to select which VLMs and videos to run."""
+    """Parse CLI options to select which VLMs and videos to run."""
     parser = argparse.ArgumentParser(description="Run light VLM benchmarks.")
     parser.add_argument(
         "--vlms",

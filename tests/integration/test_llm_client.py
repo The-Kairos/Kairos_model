@@ -1,4 +1,9 @@
-"""Integration tests for kairos.llm.client."""
+"""Integration tests for kairos.llm.client.
+
+Verifies that LLM client construction works for each supported provider
+(Gemini, OpenAI, Claude) when the required environment variables are set,
+and that all concrete clients satisfy the LLMClient protocol.
+"""
 
 import os
 
@@ -14,7 +19,8 @@ from kairos.llm.client import (
 pytestmark = pytest.mark.integration
 
 
-def test_build_llm_client_gemini():
+def test_build_llm_client_gemini() -> None:
+    """Verify that build_llm_client('gemini') returns a valid GeminiLLMClient."""
     if not os.getenv("GEMINI_PROJECT"):
         pytest.skip("GEMINI_PROJECT not set")
     client = build_llm_client("gemini")
@@ -24,7 +30,8 @@ def test_build_llm_client_gemini():
     assert len(client.model) > 0
 
 
-def test_build_llm_client_openai():
+def test_build_llm_client_openai() -> None:
+    """Verify that build_llm_client('openai') returns a valid OpenAILLMClient."""
     if not os.getenv("OPENAI_KEY"):
         pytest.skip("OPENAI_KEY not set")
     client = build_llm_client("openai")
@@ -33,7 +40,8 @@ def test_build_llm_client_openai():
     assert isinstance(client.model, str)
 
 
-def test_build_llm_client_claude():
+def test_build_llm_client_claude() -> None:
+    """Verify that build_llm_client('claude') returns a valid ClaudeLLMClient."""
     if not os.getenv("CLAUDE_PROJECT") and not os.getenv("GEMINI_PROJECT"):
         pytest.skip("CLAUDE_PROJECT / GEMINI_PROJECT not set")
     client = build_llm_client("claude")
@@ -42,8 +50,8 @@ def test_build_llm_client_claude():
     assert isinstance(client.model, str)
 
 
-def test_llm_client_protocol():
-    """Verify concrete clients satisfy the LLMClient protocol."""
+def test_llm_client_protocol() -> None:
+    """Verify concrete clients satisfy the LLMClient protocol (generate + model)."""
     assert isinstance(GeminiLLMClient, type)
     assert isinstance(OpenAILLMClient, type)
     assert isinstance(ClaudeLLMClient, type)

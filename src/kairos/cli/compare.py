@@ -26,7 +26,21 @@ LINE_HEIGHT = 15
 
 
 def format_yolo(yolo_dict: object) -> str:
-    """Convert YOLO detection dict into human-readable text."""
+    """Convert a YOLO detection dictionary into human-readable text.
+
+    Each frame's detections are formatted as a labelled list with
+    optional confidence scores.
+
+    Args:
+        yolo_dict: A dictionary mapping frame indices to lists of
+            detection dicts (each with ``"label"`` and optional
+            ``"confidence"`` keys).  If the value is not a ``dict``,
+            an empty string is returned.
+
+    Returns:
+        A multi-line string summarising per-frame detections, or an
+        empty string when the input is not a valid detection dict.
+    """
     if not isinstance(yolo_dict, dict):
         return ""
 
@@ -49,7 +63,17 @@ def format_yolo(yolo_dict: object) -> str:
 
 
 def main() -> None:
-    """Entry point for the description-comparison CLI."""
+    """Entry point for the description-comparison CLI.
+
+    Reads all JSON log files from the default log directory, groups them
+    by filename prefix, and writes one Excel sheet per group.  Each sheet
+    contains per-scene LLM descriptions from every log in the group,
+    alongside shared columns (frame captions, YOLO detections, audio
+    natural sounds, and audio speech).
+
+    The generated workbook is saved to
+    :data:`DEFAULT_OUTPUT_EXCEL`.
+    """
     log_dir = DEFAULT_LOG_DIR
     output_excel = DEFAULT_OUTPUT_EXCEL
 

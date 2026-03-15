@@ -1,5 +1,8 @@
 """Integration tests for LLM API connections.
 
+Validates live connectivity to OpenAI and Gemini APIs by sending a trivial
+prompt and asserting a non-empty response is returned.
+
 Converted from benchmarks/gpt4o_connection.py and benchmarks/gemini_connection.py.
 """
 
@@ -11,7 +14,8 @@ pytestmark = pytest.mark.integration
 
 
 @pytest.fixture
-def openai_env():
+def openai_env() -> tuple[str, str, str]:
+    """Return (endpoint, deployment, api_key) from environment, skipping if not set."""
     endpoint = os.getenv("OPENAI_ENDPOINT")
     deployment = os.getenv("OPENAI_DEPLOYMENT")
     api_key = os.getenv("OPENAI_KEY")
@@ -23,14 +27,16 @@ def openai_env():
 
 
 @pytest.fixture
-def gemini_env():
+def gemini_env() -> str:
+    """Return the GEMINI_PROJECT env var, skipping if not set."""
     project = os.getenv("GEMINI_PROJECT")
     if not project:
         pytest.skip("GEMINI_PROJECT env var not set")
     return project
 
 
-def test_openai_connection(openai_env):
+def test_openai_connection(openai_env: tuple[str, str, str]) -> None:
+    """Send a simple prompt to the OpenAI API and verify a non-empty response."""
     from openai import OpenAI
 
     endpoint, deployment, api_key = openai_env
@@ -48,7 +54,8 @@ def test_openai_connection(openai_env):
     assert len(content.strip()) > 0
 
 
-def test_gemini_connection(gemini_env):
+def test_gemini_connection(gemini_env: str) -> None:
+    """Send a simple prompt to the Gemini API and verify a non-empty response."""
     from google import genai
 
     project = gemini_env

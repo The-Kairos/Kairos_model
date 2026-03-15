@@ -1,15 +1,19 @@
+"""Utility to delete per-test frame sub-folders inside frame_boundaries video dirs."""
+
 import argparse
 import shutil
 from pathlib import Path
 
 
 def iter_video_dirs(root: Path) -> list[Path]:
+    """Return immediate subdirectories of *root*."""
     if not root.exists():
         return []
     return [p for p in root.iterdir() if p.is_dir()]
 
 
 def delete_test_folders(video_dir: Path, dry_run: bool = False, verbose: bool = True) -> int:
+    """Delete all child directories inside *video_dir*, returning the count."""
     deleted = 0
     for child in sorted(video_dir.iterdir()):
         if not child.is_dir():
@@ -23,6 +27,7 @@ def delete_test_folders(video_dir: Path, dry_run: bool = False, verbose: bool = 
 
 
 def main() -> int:
+    """CLI entry-point: parse args and delete per-test frame folders."""
     parser = argparse.ArgumentParser(
         description=(
             "Delete per-test frame folders inside each video folder in frame_boundaries, "

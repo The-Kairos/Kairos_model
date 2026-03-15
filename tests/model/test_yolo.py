@@ -1,4 +1,10 @@
-"""Model tests for YOLO object detection."""
+"""Model tests for YOLO object detection.
+
+Runs YOLOv8 inference on a real sample frame to verify detection output
+structure, key types, and expected object labels.
+"""
+
+from pathlib import Path
 
 import cv2
 import pytest
@@ -6,7 +12,8 @@ import pytest
 pytestmark = pytest.mark.model
 
 
-def test_yolo_detect_real_image(sample_frame_path):
+def test_yolo_detect_real_image(sample_frame_path: Path) -> None:
+    """Verify YOLO returns a list of detections from a real image."""
     from ultralytics import YOLO
 
     from kairos.video.yolo_inference import run_yolo_on_frame
@@ -19,7 +26,8 @@ def test_yolo_detect_real_image(sample_frame_path):
     assert isinstance(detections, list)
 
 
-def test_yolo_detection_keys(sample_frame_path):
+def test_yolo_detection_keys(sample_frame_path: Path) -> None:
+    """Verify detection dicts have label, confidence, bbox."""
     from ultralytics import YOLO
 
     from kairos.video.yolo_inference import run_yolo_on_frame
@@ -38,7 +46,8 @@ def test_yolo_detection_keys(sample_frame_path):
         assert len(det["bbox"]) == 4
 
 
-def test_yolo_detects_person(sample_frame_path):
+def test_yolo_detects_person(sample_frame_path: Path) -> None:
+    """Verify YOLO detects at least one 'person' in the sample frame."""
     from ultralytics import YOLO
 
     from kairos.video.yolo_inference import run_yolo_on_frame

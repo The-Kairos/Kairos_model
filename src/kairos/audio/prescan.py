@@ -6,6 +6,8 @@ Orchestrates extraction, RMS, VAD, spectral, and language detection.
 import math
 import time
 
+import numpy as np
+
 from kairos.audio.extraction import load_audio_av
 from kairos.audio.language import detect_languages
 from kairos.audio.rms import compute_per_scene_rms, compute_rms_profile
@@ -15,11 +17,55 @@ from kairos.core.utils import print_prefixed
 
 
 def get_sensitivity_multiplier(duration_minutes: float) -> float:
+    """Compute a sensitivity multiplier based on video duration.
+
+    Longer videos receive a higher multiplier (up to 1.5) so that
+    detection thresholds can be scaled to reduce false positives on
+    extended content. The formula is:
+
+        ``min(1.0 + 0.1 * log2(max(1, duration_minutes)), 1.5)``
+
+    Args:
+        duration_minutes: Duration of the video in minutes.
+
+    Returns:
+        A float multiplier in the range ``[1.0, 1.5]``.
+    """
     dur = max(1.0, duration_minutes)
     return min(1.0 + 0.1 * math.log2(dur), 1.5)
 
 
-def get_dynamic_thresholds(duration_minutes: float) -> dict:
+def get_dynamic_thresholds(duration_minutes: float) -> dict[str, float | int]:
+    """Get dynamically scaled audio analysis thresholds.
+
+    Computes a set of thresholds used throughout the audio pre-scan
+    pipeline (silence detection, VAD, spectral flatness, etc.),
+    adjusted by the sensitivity multiplier derived from the video's
+    duration.
+
+    Args:
+        duration_minutes: Duration of the video in minutes.
+
+    Returns:
+        A dictionary with the following keys:
+
+        * **SILENCE_THRESHOLD_DBFS** (*float*) – Global silence
+          threshold in dBFS.
+        * **SCENE_SILENCE_DBFS** (*float*) – Per-scene silence
+          threshold in dBFS.
+        * **VAD_THRESHOLD** (*float*) – Voice activity detection
+          confidence threshold.
+        * **MIN_SPEECH_DURATION_MS** (*int*) – Minimum speech segment
+          length in milliseconds.
+        * **MIN_SILENCE_DURATION_MS** (*int*) – Minimum inter-speech
+          silence in milliseconds (fixed at 300).
+        * **SPEECH_PAD_MS** (*int*) – Padding added around detected
+          speech segments in milliseconds.
+        * **SPECTRAL_FLATNESS_THRESHOLD** (*float*) – Maximum spectral
+          flatness below which background audio is deemed present.
+        * **sensitivity_multiplier** (*float*) – The raw multiplier
+          value used to derive the other thresholds.
+    """
     m = get_sensitivity_multiplier(duration_minutes)
     return {
         "SILENCE_THRESHOLD_DBFS": -60.0 * m,
@@ -34,13 +80,58 @@ def get_dynamic_thresholds(duration_minutes: float) -> dict:
 
 
 def scan_audio(
-    video_path: str, scenes: list, target_sr: int = 16000, debug: bool = False
+    video_path: str,
+    scenes: list[dict],
+    target_sr: int = 16000,
+    debug: bool = False,
 ) -> dict:
-    """Full 2-stage audio pre-scan with dynamic thresholds."""
+    """Perform a full 2-stage audio pre-scan with dynamic thresholds.
+
+    Stage 1 extracts audio and checks global RMS to detect total
+    silence. If audio is present, Stage 2 runs VAD, spectral-flatness
+    analysis, and language detection, then masks speech regions and
+    computes per-scene RMS values.
+
+    The returned dictionary carries all data needed by downstream
+    classifiers (e.g.,
+    :func:`kairos.audio.classifier.extract_sounds_optimized`).
+
+    Args:
+        video_path: Path to the input video file.
+        scenes: List of scene dicts, each containing
+            ``"start_seconds"`` and ``"end_seconds"`` keys.
+        target_sr: Sampling rate to which extracted audio is resampled.
+            Defaults to ``16000``.
+        debug: If ``True``, emit timing and diagnostic messages via
+            :func:`~kairos.core.utils.print_prefixed`.
+            Defaults to ``False``.
+
+    Returns:
+        A dictionary containing:
+
+        * **audio** (*np.ndarray*) – Raw mono audio waveform.
+        * **audio_masked** (*np.ndarray*) – Audio with speech regions
+          zeroed out (only when audio is present).
+        * **sr** (*int*) – Sampling rate of the returned audio.
+        * **duration_sec** (*float*) – Total audio duration in seconds.
+        * **has_any_audio** (*bool*) – Whether the file has non-silent
+          audio.
+        * **has_speech** (*bool*) – Whether speech was detected.
+        * **has_background_audio** (*bool*) – Whether non-speech
+          background audio was detected.
+        * **speech_regions** (*list[dict]*) – Detected speech segments.
+        * **lang_info** (*dict*) – Language detection results (only
+          when audio is present).
+        * **rms_profile** (*dict*) – Global RMS statistics.
+        * **per_scene_rms** (*list[float]*) – Per-scene RMS in dBFS.
+        * **spectral_flatness_mean** (*float*) – Mean spectral flatness.
+        * **thresholds_used** (*dict*) – The dynamic thresholds applied.
+        * **scan_time_sec** (*float*) – Wall-clock time of the scan.
+    """
     t_start = time.time()
     audio, sr = load_audio_av(video_path, target_sr, debug=debug)
-    duration_sec = len(audio) / sr
-    duration_min = duration_sec / 60.0
+    duration_sec: float = len(audio) / sr
+    duration_min: float = duration_sec / 60.0
 
     if debug:
         print_prefixed(
@@ -50,7 +141,7 @@ def scan_audio(
 
     thresholds = get_dynamic_thresholds(duration_min)
     rms = compute_rms_profile(audio, sr)
-    has_any_audio = rms["max_rms_dbfs"] > thresholds["SILENCE_THRESHOLD_DBFS"]
+    has_any_audio: bool = rms["max_rms_dbfs"] > thresholds["SILENCE_THRESHOLD_DBFS"]
 
     if not has_any_audio:
         elapsed = time.time() - t_start
@@ -74,18 +165,20 @@ def scan_audio(
         }
 
     speech_regions = detect_speech_regions(audio, sr, thresholds)
-    has_speech = len(speech_regions) > 0
-    flatness_mean = compute_spectral_flatness_mean(audio, sr, debug=debug)
-    has_background_audio = flatness_mean <= thresholds["SPECTRAL_FLATNESS_THRESHOLD"]
+    has_speech: bool = len(speech_regions) > 0
+    flatness_mean: float = compute_spectral_flatness_mean(audio, sr, debug=debug)
+    has_background_audio: bool = (
+        flatness_mean <= thresholds["SPECTRAL_FLATNESS_THRESHOLD"]
+    )
     lang_info = detect_languages(audio, sr, speech_regions, debug=debug)
 
-    audio_masked = audio.copy()
+    audio_masked: np.ndarray = audio.copy()
     for region in speech_regions:
         s_idx = int(region["start_sec"] * sr)
         e_idx = int(region["end_sec"] * sr)
         audio_masked[s_idx:e_idx] = 0.0
 
-    per_scene_rms = compute_per_scene_rms(audio, sr, scenes)
+    per_scene_rms: list[float] = compute_per_scene_rms(audio, sr, scenes)
     elapsed = time.time() - t_start
 
     if debug:

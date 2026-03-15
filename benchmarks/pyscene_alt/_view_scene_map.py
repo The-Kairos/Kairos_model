@@ -1,3 +1,5 @@
+"""Build visual contact-sheet images from saved scene-boundary frames."""
+
 from __future__ import annotations
 
 import argparse
@@ -17,6 +19,7 @@ _SCENE_RE = re.compile(r"scene(\d+)", re.IGNORECASE)
 
 
 def _scene_index(path: Path) -> int:
+    """Extract numeric scene index from a filename like 'scene03.jpg'."""
     match = _SCENE_RE.search(path.stem)
     if match:
         return int(match.group(1))
@@ -25,12 +28,14 @@ def _scene_index(path: Path) -> int:
 
 
 def _sanitize_filename(name: str) -> str:
+    """Replace filesystem-unsafe characters with underscores."""
     invalid = '<>:"/\\|?*'
     cleaned = "".join("_" if ch in invalid else ch for ch in name)
     return cleaned.strip().strip(".")
 
 
 def _collect_scene_images(test_dir: Path) -> List[Path]:
+    """Gather scene frame images from a test directory, sorted by index."""
     images = [p for p in test_dir.glob("scene*.jpg") if p.is_file()]
     if not images:
         images = [p for p in test_dir.glob("*.jpg") if p.is_file()]
@@ -38,6 +43,7 @@ def _collect_scene_images(test_dir: Path) -> List[Path]:
 
 
 def _resize_image(image: Image.Image, scale: float) -> Image.Image:
+    """Resize *image* by the given *scale* factor."""
     if scale == 1.0:
         return image
     new_w = max(1, int(round(image.width * scale)))
@@ -46,6 +52,7 @@ def _resize_image(image: Image.Image, scale: float) -> Image.Image:
 
 
 def _load_results(path: Path) -> dict:
+    """Load JSON results file, returning empty dict on failure."""
     if not path.exists():
         return {}
     try:
@@ -55,6 +62,7 @@ def _load_results(path: Path) -> dict:
 
 
 def _iter_result_sets(results: dict) -> List[dict]:
+    """Return a list of per-video result dicts from the results structure."""
     if isinstance(results, dict) and isinstance(results.get("videos"), list):
         return [r for r in results["videos"] if isinstance(r, dict)]
     if isinstance(results, dict):
@@ -63,6 +71,7 @@ def _iter_result_sets(results: dict) -> List[dict]:
 
 
 def _index_results_by_video(results: dict) -> dict:
+    """Create a mapping from sanitized video stem to its result dict."""
     indexed: dict[str, dict] = {}
     for entry in _iter_result_sets(results):
         video = entry.get("video")
@@ -74,6 +83,7 @@ def _index_results_by_video(results: dict) -> dict:
 
 
 def _lookup_metrics(results: dict, test_name: str, fallback_count: int) -> tuple[int, float]:
+    """Look up scene count and elapsed time for a test from results."""
     if not isinstance(results, dict):
         return fallback_count, 0.0
     entry = results.get(test_name)
@@ -90,6 +100,7 @@ def _lookup_metrics(results: dict, test_name: str, fallback_count: int) -> tuple
 
 
 def _lookup_threshold(results: dict, test_name: str) -> str | None:
+    """Look up the threshold value used by a test, formatted as a string."""
     if not isinstance(results, dict):
         return None
     entry = results.get(test_name)
@@ -106,6 +117,7 @@ def _lookup_threshold(results: dict, test_name: str) -> str | None:
 
 
 def _lookup_timecode(results: dict, test_name: str, scene_idx: int) -> str | None:
+    """Return a human-readable timecode for a scene start, or None."""
     if not isinstance(results, dict):
         return None
     entry = results.get(test_name)
@@ -133,6 +145,7 @@ def _lookup_timecode(results: dict, test_name: str, scene_idx: int) -> str | Non
 
 
 def _text_height(font: ImageFont.ImageFont) -> int:
+    """Return the pixel height of a line of text using *font*."""
     bbox = font.getbbox("Ag")
     return bbox[3] - bbox[1]
 
@@ -146,6 +159,7 @@ def build_contact_sheet(
     gap: int = 8,
     row_gap: int | None = None,
 ) -> Path | None:
+    """Create a single contact-sheet JPEG for one test directory."""
     images = _collect_scene_images(test_dir)
     if not images:
         return None
@@ -215,6 +229,7 @@ def build_contact_sheets(
     gap: int = 8,
     results_path: Path | None = None,
 ) -> List[Path]:
+    """Build contact sheets for every test directory under *frame_root*."""
     outputs: List[Path] = []
     if not frame_root.exists():
         return outputs
@@ -239,6 +254,7 @@ def build_contact_sheets(
 
 
 def main() -> None:
+    """CLI entry-point: build contact sheets from command-line options."""
     parser = argparse.ArgumentParser(
         description="Build contact sheets for scene boundary frames."
     )

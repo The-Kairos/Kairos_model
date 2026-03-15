@@ -1,3 +1,9 @@
+"""Mapping of video base-names to lists of test queries for retrieval comparison.
+
+Keys match the video filename (without extension) found in processed checkpoints.
+Each value is a list of natural-language queries used to evaluate retrieval quality.
+"""
+
 from typing import Dict, List
 
 # Placeholder test queries map. Fill this in with the video base-names

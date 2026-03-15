@@ -1,3 +1,5 @@
+"""Hybrid scene splitting: PySceneDetect initial cuts merged with CLIP embeddings."""
+
 from __future__ import annotations
 
 import argparse
@@ -34,11 +36,13 @@ DEFAULT_BATCH_SIZE = 16
 
 
 def _batched(items: List, batch_size: int):
+    """Yield successive *batch_size* chunks from *items*."""
     for i in range(0, len(items), batch_size):
         yield items[i : i + batch_size]
 
 
-def _encode_clip(images, model, processor, device, batch_size: int):
+def _encode_clip(images: List, model: object, processor: object, device: str, batch_size: int) -> List:
+    """Compute normalised CLIP image embeddings for a list of PIL images."""
     import torch
 
     embeddings: List[torch.Tensor] = []
@@ -53,6 +57,7 @@ def _encode_clip(images, model, processor, device, batch_size: int):
 
 
 def _merge_scenes(scenes: List[dict], embeddings: List, threshold: float) -> List[dict]:
+    """Merge consecutive scenes whose embeddings exceed *threshold* similarity."""
     if not scenes:
         return []
 
@@ -84,6 +89,7 @@ def run(
     batch_size: int = DEFAULT_BATCH_SIZE,
     model_id: str = CLIP_MODEL_ID,
 ) -> dict:
+    """Run hybrid PySceneDetect + CLIP merge and return scene results."""
     import torch
     from transformers import CLIPModel, CLIPProcessor
 
@@ -157,6 +163,7 @@ def run(
 
 
 def main() -> None:
+    """CLI entry-point for hybrid PySceneDetect + CLIP merge."""
     parser = argparse.ArgumentParser(
         description="Hybrid PySceneDetect + CLIP semantic merge."
     )

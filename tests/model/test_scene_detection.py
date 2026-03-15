@@ -1,4 +1,10 @@
-"""Model tests for PySceneDetect scene detection."""
+"""Model tests for PySceneDetect scene detection.
+
+Runs scene detection on a real sample video and validates the output structure,
+key presence, temporal coverage, and duration consistency.
+"""
+
+from pathlib import Path
 
 import pytest
 
@@ -14,7 +20,8 @@ EXPECTED_KEYS = {
 }
 
 
-def test_scene_detection_real_video(sample_video_path):
+def test_scene_detection_real_video(sample_video_path: Path) -> None:
+    """Verify scene detection returns at least one scene from a real video."""
     from kairos.video.scene_detection import get_scene_list
 
     scenes = get_scene_list(str(sample_video_path), threshold=27, min_scene_sec=2)
@@ -22,7 +29,8 @@ def test_scene_detection_real_video(sample_video_path):
     assert len(scenes) >= 1
 
 
-def test_scene_detection_keys(sample_video_path):
+def test_scene_detection_keys(sample_video_path: Path) -> None:
+    """Verify every detected scene dict contains all expected keys."""
     from kairos.video.scene_detection import get_scene_list
 
     scenes = get_scene_list(str(sample_video_path), threshold=27, min_scene_sec=2)
@@ -31,7 +39,8 @@ def test_scene_detection_keys(sample_video_path):
         assert not missing, f"Scene missing keys: {missing}"
 
 
-def test_scene_detection_coverage(sample_video_path):
+def test_scene_detection_coverage(sample_video_path: Path) -> None:
+    """Verify scenes span the full video from near-zero to near the end."""
     from kairos.video.scene_detection import get_scene_list
 
     scenes = get_scene_list(str(sample_video_path), threshold=27, min_scene_sec=2)
@@ -41,7 +50,8 @@ def test_scene_detection_coverage(sample_video_path):
     )
 
 
-def test_scene_detection_durations(sample_video_path):
+def test_scene_detection_durations(sample_video_path: Path) -> None:
+    """Verify each scene has a positive duration consistent with start/end times."""
     from kairos.video.scene_detection import get_scene_list
 
     scenes = get_scene_list(str(sample_video_path), threshold=27, min_scene_sec=2)

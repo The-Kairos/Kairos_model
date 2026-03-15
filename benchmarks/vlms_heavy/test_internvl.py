@@ -1,8 +1,15 @@
+"""Heavy VLM: InternVL-Chat-V1-5 (OpenGVLab).
+
+Loads the InternVL model for detailed scene captioning and provides a
+standalone benchmark when run directly.
+"""
+
 import torch
 from transformers import AutoModel, AutoTokenizer
 import os
 
 def load_vlm_model(model_id="OpenGVLab/InternVL-Chat-V1-5"):
+    """Load and return the InternVL model and tokenizer."""
     print(f"Loading {model_id}...")
     model = AutoModel.from_pretrained(
         model_id,
@@ -15,6 +22,7 @@ def load_vlm_model(model_id="OpenGVLab/InternVL-Chat-V1-5"):
     return model, tokenizer
 
 def caption_image(model, tokenizer, image, question=None):
+    """Generate a scene caption for *image* using InternVL chat."""
     if question is None:
         question = "Describe the scene in detail. Focus only on what is visually observable. Mention actions, objects, and interactions."
     

@@ -18,6 +18,7 @@ import functools
 import json
 import threading
 import time
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -27,16 +28,16 @@ _timing_lock = threading.Lock()
 _timing_records: list[dict[str, Any]] = []
 
 
-def timed_stage(stage_name: str):
+def timed_stage(stage_name: str) -> Callable:
     """Decorator that logs wall-clock time for a pipeline stage.
 
     The timing is printed immediately and also accumulated in a
     module-level list that can be saved to disk via :func:`save_timing_report`.
     """
 
-    def decorator(func):
+    def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
             t0 = time.perf_counter()
             try:
                 result = func(*args, **kwargs)

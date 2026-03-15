@@ -1,3 +1,5 @@
+"""Compare BLIP and CLIP+CLIPCap pipelines for scene-cut detection and captioning."""
+
 import json
 import sys
 import time
@@ -27,12 +29,14 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
 
 def load_image(path: Path) -> Image.Image:
+    """Load an image from disk and convert to RGB."""
     if not path.exists():
         raise FileNotFoundError(f"Image not found: {path}")
     return Image.open(path).convert("RGB")
 
 
 def frame_number(path: Path) -> int:
+    """Extract the numeric frame index from a filename like 'frame_01.jpg'."""
     stem = path.stem
     parts = stem.split("_")
     if len(parts) > 1 and parts[-1].isdigit():
@@ -44,6 +48,7 @@ def frame_number(path: Path) -> int:
 
 
 def list_frames(frames_dir: Path) -> tuple[list[Path], list[int]]:
+    """Return sorted frame paths and their indices, validating continuity."""
     frames = sorted(frames_dir.glob("frame_*.jpg"), key=frame_number)
     if not frames:
         raise FileNotFoundError(f"No frames found in {frames_dir}")
@@ -59,6 +64,7 @@ def list_frames(frames_dir: Path) -> tuple[list[Path], list[int]]:
 
 
 def pool_embedding(embedding: torch.Tensor) -> torch.Tensor:
+    """Mean-pool and L2-normalize an embedding tensor to a single vector."""
     if embedding.dim() == 3:
         embedding = embedding.mean(dim=1)
     if embedding.dim() == 1:
@@ -69,6 +75,7 @@ def pool_embedding(embedding: torch.Tensor) -> torch.Tensor:
 
 
 def cosine_similarity(a: torch.Tensor, b: torch.Tensor) -> float:
+    """Compute cosine similarity between two 1-D tensors."""
     return torch.nn.functional.cosine_similarity(a.unsqueeze(0), b.unsqueeze(0)).item()
 
 
@@ -76,6 +83,7 @@ def compute_scene_bounds(
     pooled_vectors: list[torch.Tensor],
     threshold: float,
 ) -> list[tuple[int, int]]:
+    """Detect scene boundaries by thresholding cosine similarity between consecutive frames."""
     bounds: list[tuple[int, int]] = []
     start_idx = 0
     prev_vec = pooled_vectors[0]
@@ -92,6 +100,7 @@ def compute_scene_bounds(
 
 
 def render_scene_labels(bounds: list[tuple[int, int]], frame_numbers: list[int]) -> list[str]:
+    """Convert scene boundary indices into human-readable frame-range labels."""
     labels = []
     for start_idx, end_idx in bounds:
         start = frame_numbers[start_idx]
@@ -106,6 +115,7 @@ def run_blip(
     device: str,
     threshold: float,
 ):
+    """Run scene-cut detection and captioning using the BLIP pipeline."""
     blip_id = "Salesforce/blip-image-captioning-base"
     model = BlipForConditionalGeneration.from_pretrained(blip_id).to(device)
     processor = BlipProcessor.from_pretrained(blip_id)
@@ -148,6 +158,7 @@ def run_clip(
     device: str,
     threshold: float,
 ):
+    """Run scene-cut detection and captioning using the CLIP+CLIPCap pipeline."""
     clip_id = "openai/clip-vit-base-patch32"
     clip_model = CLIPModel.from_pretrained(clip_id).to(device)
     clip_processor = CLIPProcessor.from_pretrained(clip_id)
@@ -191,6 +202,7 @@ def run_clip(
 
 
 def main() -> None:
+    """Load frames, run both pipelines, and print a JSON comparison of results."""
     frames_dir = BASE_DIR / "video_fps"
     if len(sys.argv) > 1:
         raw_path = Path(sys.argv[1]).expanduser()

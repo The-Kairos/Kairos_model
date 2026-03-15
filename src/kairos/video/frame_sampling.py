@@ -7,7 +7,16 @@ import numpy as np
 
 
 def resize_frame(frame: np.ndarray, new_size: int = 320) -> np.ndarray:
-    """Resize so the longest side equals *new_size*, preserving aspect ratio."""
+    """Resize a frame so the longest side equals *new_size*, preserving aspect ratio.
+
+    Args:
+        frame: The input BGR image as a NumPy array.
+        new_size: The desired length (in pixels) of the longest side after
+            resizing.
+
+    Returns:
+        The resized image as a NumPy array.
+    """
     h, w = frame.shape[:2]
     scale = new_size / max(w, h)
     return cv2.resize(
@@ -20,7 +29,24 @@ def _read_frames_at_positions(
     frame_positions: list[int],
     new_size: int = 320,
 ) -> list[np.ndarray]:
-    """Open a video, seek to each position, read and resize the frame."""
+    """Open a video, seek to each position, read and resize the frame.
+
+    Duplicate and out-of-range positions are clamped and deduplicated
+    before reading.
+
+    Args:
+        input_video_path: Path to the input video file.
+        frame_positions: A list of zero-based frame indices to read.
+        new_size: Passed to :func:`resize_frame` as the target longest
+            side.
+
+    Returns:
+        A list of resized frames (NumPy arrays) for positions that were
+        successfully read.
+
+    Raises:
+        ValueError: If the video file cannot be opened.
+    """
     cap = cv2.VideoCapture(input_video_path)
     if not cap.isOpened():
         raise ValueError(f"Cannot open video: {input_video_path}")
@@ -47,10 +73,23 @@ def _save_scene_frames(
     scene_index: int,
     output_dir: str,
 ) -> list[str]:
-    """Save frames to disk and return their paths."""
+    """Save frames to disk and return their file paths.
+
+    Frames are saved as JPEG files inside a per-scene sub-directory named
+    ``scene_<NNN>`` under *output_dir*.
+
+    Args:
+        frames: List of BGR image arrays to save.
+        scene_index: Numeric index of the scene, used to name the
+            sub-directory.
+        output_dir: Root directory under which scene folders are created.
+
+    Returns:
+        A list of absolute file paths for the saved images.
+    """
     scene_folder = os.path.join(output_dir, f"scene_{scene_index:03d}")
     os.makedirs(scene_folder, exist_ok=True)
-    paths = []
+    paths: list[str] = []
     for idx, frame in enumerate(frames):
         frame_path = os.path.join(scene_folder, f"frame_{idx:02d}.jpg")
         cv2.imwrite(frame_path, frame)
@@ -66,7 +105,23 @@ def sample_from_clip(
     num_frames: int = 5,
     new_size: int = 320,
 ) -> list[np.ndarray]:
-    """Sample *num_frames* evenly-spaced frames from a scene interval."""
+    """Sample *num_frames* evenly-spaced frames from a scene interval.
+
+    Frame positions are distributed across the interval
+    ``[start_seconds, end_seconds]`` with equal spacing.
+
+    Args:
+        input_video_path: Path to the input video file.
+        scene_index: Index of the scene (currently informational only).
+        start_seconds: Start time of the scene in seconds.
+        end_seconds: End time of the scene in seconds.
+        num_frames: Number of frames to sample.
+        new_size: Passed to :func:`resize_frame` as the target longest
+            side.
+
+    Returns:
+        A list of resized sampled frames (NumPy arrays).
+    """
     cap = cv2.VideoCapture(input_video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -93,8 +148,27 @@ def sample_from_clip_fps(
     fps: float = 4.0,
     new_size: int = 320,
     return_meta: bool = False,
-):
-    """Sample frames from a scene interval at a fixed FPS."""
+) -> list[np.ndarray] | tuple[list[np.ndarray], list[int], list[float]]:
+    """Sample frames from a scene interval at a fixed FPS.
+
+    Args:
+        input_video_path: Path to the input video file.
+        scene_index: Index of the scene (currently informational only).
+        start_seconds: Start time of the scene in seconds.
+        end_seconds: End time of the scene in seconds.
+        fps: Target sampling rate in frames per second.
+        new_size: Passed to :func:`resize_frame` as the target longest
+            side.
+        return_meta: If ``True``, also return frame indices and
+            timestamps alongside the frames.
+
+    Returns:
+        If *return_meta* is ``False``, a list of resized frames (NumPy
+        arrays).  If ``True``, a tuple of
+        ``(frames, frame_indices, frame_timestamps)`` where
+        *frame_indices* is a list of zero-based frame numbers and
+        *frame_timestamps* is a list of corresponding seconds.
+    """
     cap = cv2.VideoCapture(input_video_path)
     video_fps = cap.get(cv2.CAP_PROP_FPS)
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -134,7 +208,27 @@ def sample_frames(
     new_size: int = 320,
     output_dir: str | None = None,
 ) -> list[dict]:
-    """Loop over scenes and attach sampled frames to each."""
+    """Loop over scenes and attach sampled frames to each.
+
+    For every scene dictionary the function adds a ``"frames"`` key
+    (list of NumPy arrays) and, when *output_dir* is provided, a
+    ``"frame_paths"`` key (list of saved file paths).
+
+    Args:
+        input_video_path: Path to the input video file.
+        scenes: A list of scene dictionaries, each containing at least
+            ``"scene_index"``, ``"start_seconds"``, and
+            ``"end_seconds"``.
+        num_frames: Number of frames to sample per scene.
+        new_size: Passed to :func:`resize_frame` as the target longest
+            side.
+        output_dir: If provided, sampled frames are saved to disk inside
+            this directory.
+
+    Returns:
+        A new list of scene dictionaries augmented with ``"frames"`` and
+        optionally ``"frame_paths"``.
+    """
     if output_dir is not None:
         os.makedirs(output_dir, exist_ok=True)
 
@@ -175,7 +269,32 @@ def sample_fps(
     store_paths: bool = False,
     store_meta: bool = False,
 ) -> list[dict]:
-    """Loop over scenes and attach frames sampled at a fixed FPS."""
+    """Loop over scenes and attach frames sampled at a fixed FPS.
+
+    Args:
+        input_video_path: Path to the input video file.
+        scenes: A list of scene dictionaries, each containing at least
+            ``"scene_index"``, ``"start_seconds"``, and
+            ``"end_seconds"``.
+        fps: Target sampling rate in frames per second.
+        new_size: Passed to :func:`resize_frame` as the target longest
+            side.
+        output_dir: If provided, sampled frames are saved to disk inside
+            this directory.
+        frames_key: Dictionary key under which sampled frames are stored
+            in each scene.
+        frame_paths_key: Dictionary key under which saved file paths are
+            stored (only when *store_paths* is ``True``).
+        store_paths: If ``True`` and *output_dir* is set, include saved
+            file paths in each scene dictionary.
+        store_meta: If ``True``, include ``"frame_indices"``,
+            ``"frame_timestamps"``, and ``"sample_fps"`` in each scene
+            dictionary.
+
+    Returns:
+        A new list of scene dictionaries augmented with sampled frames
+        and optional metadata.
+    """
     if output_dir is not None:
         os.makedirs(output_dir, exist_ok=True)
 

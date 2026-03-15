@@ -8,8 +8,10 @@ from __future__ import annotations
 
 import json
 import os
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from typing import Any
 
 from kairos.core.utils import (
     is_rate_limit_error,
@@ -94,7 +96,7 @@ REQUIRED_QUESTIONS = [
     "Does the video contain any live action, animation, or special effects?",
 ]
 
-_SECTION_FALLBACKS = {
+_SECTION_FALLBACKS: dict[str, str] = {
     "summary": f'{{"chat_name":"{NOT_STATED}","summary":"{NOT_STATED_PERIOD}"}}',
     "highlights": '{"video_highlights":[]}',
     "timeline": '{"video_timeline":[]}',
@@ -110,8 +112,13 @@ SEGMENT_PROMPT = load_prompt("chunk_summary.txt")
 FALLBACK_SEGMENT_PROMPT = load_prompt("fallback_chunk_summary.txt")
 
 
-def _synopsis_log(debug: bool, message: str):
-    """Unified debug logging for synopsis modules."""
+def _synopsis_log(debug: bool, message: str) -> None:
+    """Emit a debug log message for synopsis modules.
+
+    Args:
+        debug: If ``True``, print the message; otherwise do nothing.
+        message: The log message to print.
+    """
     if debug:
         print_prefixed("(Synopsis)", message)
 
@@ -129,6 +136,15 @@ SYNOPSIS_QNA_GENERATED_PROMPT = load_prompt("synopsis_qna_generated.txt")
 
 
 def _is_responsible_ai_error(exc: Exception) -> bool:
+    """Check whether an exception is a responsible-AI content-filter error.
+
+    Args:
+        exc: The exception to inspect.
+
+    Returns:
+        ``True`` if the error message indicates a content-filter or
+        policy-violation rejection.
+    """
     msg = str(exc).lower()
     return (
         "content_filter" in msg
@@ -140,14 +156,32 @@ def _is_responsible_ai_error(exc: Exception) -> bool:
 
 
 def call_gpt(
-    client,
-    prompt,
+    client: Any,
+    prompt: str,
     retries: int = GPT_MAX_RETRIES,
     retry_base_sec: float = GPT_RETRY_BASE_SEC,
-):
-    """Call LLM with retries via the LLMClient protocol."""
+) -> str:
+    """Call the LLM with automatic retries on transient errors.
 
-    def _is_retryable(exc):
+    Uses exponential back-off via :func:`retry_with_backoff`.
+    Responsible-AI / content-filter errors are **not** retried.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol (must
+            have a ``generate`` method).
+        prompt: The prompt string to send.
+        retries: Maximum number of attempts (including the first).
+        retry_base_sec: Base delay in seconds for exponential back-off.
+
+    Returns:
+        The model's response text.
+
+    Raises:
+        Exception: Re-raises the last exception if all retries are
+            exhausted.
+    """
+
+    def _is_retryable(exc: Exception) -> bool:
         if _is_responsible_ai_error(exc):
             return False
         return is_rate_limit_error(exc)
@@ -161,14 +195,32 @@ def call_gpt(
 
 
 def call_gpt_safe(
-    client,
+    client: Any,
     prompt: str,
     fallback_text: str,
     debug: bool = False,
     context: str = "call",
     safe_prompt: str | None = None,
     raw_fallback: str | None = None,
-):
+) -> str:
+    """Call the LLM with graceful fallback on failure.
+
+    If the primary *prompt* fails, a *safe_prompt* is tried.  If that
+    also fails, *raw_fallback* (or *fallback_text*) is returned.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol.
+        prompt: The primary prompt string.
+        fallback_text: Default text returned when all calls fail.
+        debug: If ``True``, emit debug log messages.
+        context: Label used in debug messages.
+        safe_prompt: Optional secondary prompt to try on failure.
+        raw_fallback: Optional raw text returned before falling back to
+            *fallback_text*.
+
+    Returns:
+        The model's response text, or the appropriate fallback.
+    """
     try:
         return call_gpt(client, prompt)
     except Exception as exc:
@@ -195,21 +247,44 @@ def call_gpt_safe(
 
 
 def summarize_scenes(
-    client,
-    scenes,
+    client: Any,
+    scenes: list[dict[str, Any]],
     chunk_size: int = CHUNK_SIZE,
     summary_len: int = FINAL_CHUNK_SIZE,
     debug: bool = False,
     output_dir: str | None = None,
     max_workers: int | None = None,
     reduce_group_size: int = SUMMARY_REDUCE_GROUP_SIZE,
-):
-    """Summarize scenes into a narrative via parallel map-reduce."""
+) -> dict[str, Any]:
+    """Summarise scenes into a narrative via parallel map-reduce.
+
+    The scene list is chunked, each chunk is summarised in parallel
+    (map), and the summaries are hierarchically merged (reduce) until
+    the narrative is short enough.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol.
+        scenes: List of scene dicts to summarise.
+        chunk_size: Maximum character length per scene chunk.
+        summary_len: Target maximum narrative length.  Additional
+            reduce / consistency passes are applied when exceeded.
+        debug: If ``True``, emit debug log messages.
+        output_dir: Optional directory for output artefacts (currently
+            unused but reserved).
+        max_workers: Maximum thread-pool size.  Defaults to
+            ``min(SUMMARY_MAX_WORKERS, cpu_count * 2)``.
+        reduce_group_size: Number of adjacent summaries merged per
+            reduce group.
+
+    Returns:
+        A dict with ``scenes`` (the original list) and ``narratives``
+        (a list of progressive narrative snapshots).
+    """
     scene_chunks = chunk_scenes(scenes, chunk_size, debug=debug)
     if not scene_chunks:
         return {"scenes": scenes, "narratives": []}
 
-    narratives = []
+    narratives: list[dict[str, Any]] = []
     if max_workers is None:
         cpu = os.cpu_count() or 4
         max_workers = min(SUMMARY_MAX_WORKERS, max(2, cpu * 2))
@@ -295,9 +370,29 @@ def summarize_scenes(
 
 
 def _parse_section(
-    raw_text, parse_fn, parse_args, validate_fn, validate_args, debug, context
-):
-    """Parse a raw LLM output with non-JSON parser, falling back to JSON extraction."""
+    raw_text: str,
+    parse_fn: Callable[..., tuple[dict[str, Any], bool]],
+    parse_args: tuple[Any, ...],
+    validate_fn: Callable[..., bool],
+    validate_args: tuple[Any, ...],
+    debug: bool,
+    context: str,
+) -> tuple[dict[str, Any], bool]:
+    """Parse raw LLM output, falling back to JSON extraction on failure.
+
+    Args:
+        raw_text: The raw text from the model.
+        parse_fn: Primary non-JSON parser function.
+        parse_args: Extra positional args forwarded to *parse_fn*.
+        validate_fn: Validator function applied to the JSON fallback.
+        validate_args: Extra positional args forwarded to *validate_fn*.
+        debug: If ``True``, emit debug log messages.
+        context: Label used in debug messages.
+
+    Returns:
+        A 2-tuple ``(payload, ok)`` where *payload* is a parsed dict
+        and *ok* indicates whether validation passed.
+    """
     payload, ok = parse_fn(raw_text, *parse_args)
     if not ok:
         json_payload = _parse_json_object(
@@ -308,11 +403,34 @@ def _parse_section(
     return payload, ok
 
 
-def _call_all_sections(client, prompts, narrative_text, safe_prompt_kwargs, debug):
-    """Call LLM for all synopsis sections in parallel, with safe-prompt fallback."""
-    raw_outputs = {}
+def _call_all_sections(
+    client: Any,
+    prompts: dict[str, str],
+    narrative_text: str,
+    safe_prompt_kwargs: dict[str, Any],
+    debug: bool,
+) -> dict[str, str]:
+    """Call the LLM for all synopsis sections in parallel.
 
-    def _call_named(name, prompt):
+    Each section is called with its prompt; on failure a safe-prompt
+    fallback is tried, and ultimately a hard-coded fallback string is
+    used.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol.
+        prompts: Mapping of section name to prompt string.
+        narrative_text: The source narrative (used to build safe
+            prompts).
+        safe_prompt_kwargs: Keyword arguments forwarded to
+            :func:`_build_safe_section_prompt`.
+        debug: If ``True``, emit debug log messages.
+
+    Returns:
+        A dict mapping section names to raw LLM output strings.
+    """
+    raw_outputs: dict[str, str] = {}
+
+    def _call_named(name: str, prompt: str) -> tuple[str, str]:
         safe_section_name = (
             "qna_predefined" if name.startswith("qna_predefined_") else name
         )
@@ -356,13 +474,33 @@ def _call_all_sections(client, prompts, narrative_text, safe_prompt_kwargs, debu
     return raw_outputs
 
 
-def _repair_failed_sections(client, parsed, repair_configs, debug):
-    """Re-call LLM for sections that failed parsing, then re-validate."""
-    repair_requests = {name: raw for name, (_, ok, raw) in parsed.items() if not ok}
+def _repair_failed_sections(
+    client: Any,
+    parsed: dict[str, tuple[dict[str, Any], bool, str]],
+    repair_configs: dict[str, dict[str, Any]],
+    debug: bool,
+) -> tuple[dict[str, tuple[dict[str, Any], bool, str]], bool]:
+    """Re-call the LLM for sections that failed parsing, then re-validate.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol.
+        parsed: Dict mapping section names to ``(payload, ok,
+            raw_text)`` triples.
+        repair_configs: Dict mapping section names to their repair
+            configuration (section name, repair kwargs, validator).
+        debug: If ``True``, emit debug log messages.
+
+    Returns:
+        A 2-tuple of the updated *parsed* dict and a boolean indicating
+        whether any repairs were attempted.
+    """
+    repair_requests: dict[str, str] = {
+        name: raw for name, (_, ok, raw) in parsed.items() if not ok
+    }
     if not repair_requests:
         return parsed, False
 
-    def _repair_task(name, raw_text):
+    def _repair_task(name: str, raw_text: str) -> tuple[str, str]:
         cfg = repair_configs[name]
         prompt = _build_repair_prompt(
             section=cfg["section"], raw_text=raw_text, **cfg["repair_kwargs"]
@@ -394,18 +532,39 @@ def _repair_failed_sections(client, parsed, repair_configs, debug):
 
 
 def _apply_monolith_fallback(
-    client,
-    narrative_text,
-    highlight_min,
-    highlight_max,
-    highlight_label,
-    timeline_min,
-    timeline_max,
-    timeline_label,
-    safe_prompt_kwargs,
-    debug,
-):
-    """Fall back to a single monolithic LLM call for summary + highlights + timeline."""
+    client: Any,
+    narrative_text: str,
+    highlight_min: int,
+    highlight_max: int,
+    highlight_label: str,
+    timeline_min: int,
+    timeline_max: int,
+    timeline_label: str,
+    safe_prompt_kwargs: dict[str, Any],
+    debug: bool,
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    """Fall back to a single monolithic LLM call for base sections.
+
+    Produces summary, highlights, and timeline in one call when
+    individual section calls failed.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol.
+        narrative_text: The source narrative text.
+        highlight_min: Minimum required number of highlights.
+        highlight_max: Maximum allowed number of highlights.
+        highlight_label: Human-readable range label for highlights.
+        timeline_min: Minimum required number of timeline events.
+        timeline_max: Maximum allowed number of timeline events.
+        timeline_label: Human-readable range label for timeline.
+        safe_prompt_kwargs: Keyword arguments forwarded to
+            :func:`_build_safe_section_prompt`.
+        debug: If ``True``, emit debug log messages.
+
+    Returns:
+        A 3-tuple ``(summary_payload, highlights_payload,
+        timeline_payload)`` of section dicts.
+    """
     from kairos.llm.synopsis.prompts import _build_monolith_prompt
 
     _synopsis_log(
@@ -446,11 +605,30 @@ def _apply_monolith_fallback(
 
 
 def _fill_missing_generated(
-    client, generated_questions, narrative_text, extra_questions_count, debug
-):
-    """Fill missing generated questions via LLM.
+    client: Any,
+    generated_questions: list[dict[str, str]],
+    narrative_text: str,
+    extra_questions_count: int,
+    debug: bool,
+) -> tuple[list[dict[str, str]], bool]:
+    """Fill missing generated questions via the LLM.
 
-    Pad with placeholders if still short.
+    If fewer than *extra_questions_count* questions exist, the model is
+    asked to generate more.  Remaining gaps are filled with placeholder
+    entries.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol.
+        generated_questions: Already-generated Q&A dicts.
+        narrative_text: The source narrative text.
+        extra_questions_count: Desired total number of generated
+            questions.
+        debug: If ``True``, emit debug log messages.
+
+    Returns:
+        A 2-tuple ``(questions, had_fill)`` where *questions* is the
+        (possibly extended) list and *had_fill* indicates whether any
+        fill was performed.
     """
     missing = extra_questions_count - len(generated_questions)
     if missing <= 0:
@@ -505,20 +683,42 @@ def _fill_missing_generated(
 
 
 def _run_consistency_pass(
-    client,
-    draft_synopsis,
-    narrative_text,
-    highlight_min,
-    highlight_max,
-    highlight_label,
-    timeline_min,
-    timeline_max,
-    timeline_label,
-    required_block,
-    extra_questions_count,
-    debug,
-):
-    """Optionally re-check the draft synopsis for factual consistency."""
+    client: Any,
+    draft_synopsis: dict[str, Any],
+    narrative_text: str,
+    highlight_min: int,
+    highlight_max: int,
+    highlight_label: str,
+    timeline_min: int,
+    timeline_max: int,
+    timeline_label: str,
+    required_block: str,
+    extra_questions_count: int,
+    debug: bool,
+) -> dict[str, Any]:
+    """Optionally re-check the draft synopsis for factual consistency.
+
+    Calls the model with a consistency-review prompt.  On failure the
+    original *draft_synopsis* is returned unchanged.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol.
+        draft_synopsis: The draft synopsis dict to review.
+        narrative_text: The source narrative text.
+        highlight_min: Minimum required number of highlights.
+        highlight_max: Maximum allowed number of highlights.
+        highlight_label: Human-readable range label for highlights.
+        timeline_min: Minimum required number of timeline events.
+        timeline_max: Maximum allowed number of timeline events.
+        timeline_label: Human-readable range label for timeline.
+        required_block: Formatted block of required questions.
+        extra_questions_count: Number of extra generated questions.
+        debug: If ``True``, emit debug log messages.
+
+    Returns:
+        The consistency-checked synopsis dict, or the original draft on
+        failure.
+    """
     from kairos.llm.synopsis.prompts import _build_consistency_prompt
 
     try:
@@ -575,17 +775,32 @@ def _run_consistency_pass(
 
 
 def _build_section_prompts(
-    narrative_text,
-    highlight_label,
-    timeline_label,
-    required_questions_a,
-    required_questions_b,
-    required_block_a,
-    required_block_b,
-    required_block,
-    extra_questions_count,
-):
-    """Build the prompt dict for all synopsis sections."""
+    narrative_text: str,
+    highlight_label: str,
+    timeline_label: str,
+    required_questions_a: list[str],
+    required_questions_b: list[str],
+    required_block_a: str,
+    required_block_b: str,
+    required_block: str,
+    extra_questions_count: int,
+) -> dict[str, str]:
+    """Build the prompt dict for all synopsis sections.
+
+    Args:
+        narrative_text: The source narrative text.
+        highlight_label: Human-readable range label for highlights.
+        timeline_label: Human-readable range label for timeline.
+        required_questions_a: First half of required questions.
+        required_questions_b: Second half of required questions.
+        required_block_a: Formatted block for *required_questions_a*.
+        required_block_b: Formatted block for *required_questions_b*.
+        required_block: Full formatted block of all required questions.
+        extra_questions_count: Number of extra generated questions.
+
+    Returns:
+        A dict mapping section names to their prompt strings.
+    """
     return {
         "summary": SYNOPSIS_SUMMARY_PROMPT.format(text=narrative_text),
         "highlights": SYNOPSIS_HIGHLIGHTS_PROMPT.format(
@@ -613,23 +828,48 @@ def _build_section_prompts(
 
 
 def _build_repair_configs(
-    parsed,
-    section_parse_configs,
-    required_questions_a,
-    required_questions_b,
-    required_block_a,
-    required_block_b,
-    required_block,
-    highlight_min,
-    highlight_max,
-    highlight_label,
-    timeline_min,
-    timeline_max,
-    timeline_label,
-    extra_questions_count,
-):
-    """Build repair config dict for sections that failed parsing."""
-    repair_configs = {}
+    parsed: dict[str, tuple[dict[str, Any], bool, str]],
+    section_parse_configs: dict[str, tuple[Any, ...]],
+    required_questions_a: list[str],
+    required_questions_b: list[str],
+    required_block_a: str,
+    required_block_b: str,
+    required_block: str,
+    highlight_min: int,
+    highlight_max: int,
+    highlight_label: str,
+    timeline_min: int,
+    timeline_max: int,
+    timeline_label: str,
+    extra_questions_count: int,
+) -> dict[str, dict[str, Any]]:
+    """Build repair configuration dicts for sections that failed parsing.
+
+    Args:
+        parsed: Dict mapping section names to ``(payload, ok,
+            raw_text)`` triples.
+        section_parse_configs: Dict mapping section names to their parse
+            config tuples ``(parse_fn, parse_args, validate_fn,
+            validate_args)``.
+        required_questions_a: First half of required questions.
+        required_questions_b: Second half of required questions.
+        required_block_a: Formatted block for *required_questions_a*.
+        required_block_b: Formatted block for *required_questions_b*.
+        required_block: Full formatted block of all required questions.
+        highlight_min: Minimum required number of highlights.
+        highlight_max: Maximum allowed number of highlights.
+        highlight_label: Human-readable range label for highlights.
+        timeline_min: Minimum required number of timeline events.
+        timeline_max: Maximum allowed number of timeline events.
+        timeline_label: Human-readable range label for timeline.
+        extra_questions_count: Number of extra generated questions.
+
+    Returns:
+        A dict mapping failed section names to their repair
+        configuration (section identifier, repair kwargs, validate
+        function, validate args).
+    """
+    repair_configs: dict[str, dict[str, Any]] = {}
     for name, (_, ok, _) in parsed.items():
         if not ok:
             section = "qna_predefined" if name.startswith("qna_predefined_") else name
@@ -667,8 +907,25 @@ def _build_repair_configs(
     return repair_configs
 
 
-def _save_synopsis_output(synopsis_json, synopsis_md, output_dir, synopsis_ext, debug):
-    """Write synopsis to disk in the requested format."""
+def _save_synopsis_output(
+    synopsis_json: dict[str, Any],
+    synopsis_md: str,
+    output_dir: str | None,
+    synopsis_ext: str,
+    debug: bool,
+) -> None:
+    """Write the synopsis to disk in the requested format.
+
+    Creates the output directory if it does not exist.
+
+    Args:
+        synopsis_json: The synopsis dict to serialise.
+        synopsis_md: Pre-rendered Markdown string.
+        output_dir: Directory to write the file into.  If ``None``, no
+            file is written.
+        synopsis_ext: File extension (e.g. ``"md"``, ``"json"``).
+        debug: If ``True``, emit debug log messages.
+    """
     if not output_dir:
         return
     out_dir = Path(output_dir)
@@ -690,8 +947,8 @@ def _save_synopsis_output(synopsis_json, synopsis_md, output_dir, synopsis_ext, 
 
 
 def synthesize_synopsis(
-    client,
-    data: dict,
+    client: Any,
+    data: dict[str, Any],
     debug: bool = False,
     output_dir: str | None = None,
     synopsis_ext: str = "md",
@@ -699,8 +956,33 @@ def synthesize_synopsis(
     timeline_count: str | int = TIMELINE_COUNT,
     extra_questions_count: int = EXTRA_QUESTIONS_COUNT,
     consistency_pass_mode: str = "off",
-):
-    """Produce a final synopsis + Q&A from the narrative."""
+) -> dict[str, Any]:
+    """Produce a final synopsis and Q&A from the narrative.
+
+    Orchestrates parallel LLM calls for each section (summary,
+    highlights, timeline, Q&A), repairs failures, normalises the
+    results, and optionally runs a consistency pass.
+
+    Args:
+        client: An object implementing the ``LLMClient`` protocol.
+        data: Pipeline data dict containing a ``narratives`` key (list
+            of narrative snapshots, each with a ``narrative`` string).
+        debug: If ``True``, emit debug log messages.
+        output_dir: Optional directory for saving the synopsis file.
+        synopsis_ext: File extension for the saved synopsis (e.g.
+            ``"md"`` or ``"json"``).
+        highlights_count: Desired highlight count or range (e.g. ``5``
+            or ``"4-6"``).
+        timeline_count: Desired timeline event count or range.
+        extra_questions_count: Number of additional generated questions
+            beyond the required set.
+        consistency_pass_mode: When to run a consistency pass:
+            ``"off"`` (never), ``"on_error"`` (only when parsing
+            errors occurred), or ``"always"``.
+
+    Returns:
+        A dict with ``scenes``, ``narratives``, and ``synopsis`` keys.
+    """
     narratives = data.get("narratives", [])
     narrative_text = narratives[-1]["narrative"] if narratives else ""
     if not isinstance(narrative_text, str):
@@ -718,7 +1000,7 @@ def synthesize_synopsis(
     required_block_b = _required_questions_block(required_questions_b)
     required_block = _required_questions_block(REQUIRED_QUESTIONS)
 
-    safe_prompt_kwargs = dict(
+    safe_prompt_kwargs: dict[str, Any] = dict(
         highlight_min=highlight_min,
         highlight_max=highlight_max,
         highlight_label=highlight_label,
@@ -746,7 +1028,7 @@ def synthesize_synopsis(
     )
 
     # --- Step 2: Parse all sections ---
-    section_parse_configs = {
+    section_parse_configs: dict[str, tuple[Any, ...]] = {
         "summary": (_parse_summary_nonjson, (), _validate_summary_payload, ()),
         "highlights": (
             _parse_highlights_nonjson,
@@ -779,7 +1061,7 @@ def synthesize_synopsis(
             (extra_questions_count,),
         ),
     }
-    parsed = {}
+    parsed: dict[str, tuple[dict[str, Any], bool, str]] = {}
     for name, (
         parse_fn,
         parse_args,
@@ -900,7 +1182,7 @@ def synthesize_synopsis(
         )
 
     # --- Step 8: Build draft and optional consistency pass ---
-    draft_synopsis = {
+    draft_synopsis: dict[str, Any] = {
         "chat_name": chat_name,
         "summary": summary,
         "video_highlights": video_highlights,

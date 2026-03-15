@@ -15,6 +15,7 @@ Usage::
 from __future__ import annotations
 
 import threading
+from collections.abc import Callable
 from typing import Any
 
 import torch
@@ -62,7 +63,7 @@ class ModelRegistry:
                 self._locks[name] = threading.Lock()
             return self._locks[name]
 
-    def _get_or_load(self, name: str, loader):
+    def _get_or_load(self, name: str, loader: Callable[[], Any]) -> Any:
         """Return the cached value or call *loader()* once under a lock."""
         if name in self._cache:
             return self._cache[name]
@@ -81,7 +82,7 @@ class ModelRegistry:
         (defaults to GPU if available).
         """
 
-        def _load():
+        def _load() -> tuple:
             try:
                 from transformers import BlipForConditionalGeneration, BlipProcessor
             except ImportError as exc:
@@ -103,7 +104,7 @@ class ModelRegistry:
     def yolo(self, model_path: str = "models/yolov8s.pt") -> Any:
         """Return a loaded YOLO model."""
 
-        def _load():
+        def _load() -> Any:
             try:
                 from ultralytics import YOLO
             except ImportError as exc:
@@ -117,7 +118,7 @@ class ModelRegistry:
     def ast(self, device: str | None = None) -> tuple:
         """Return ``(feature_extractor, model)`` for MIT AST audio classification."""
 
-        def _load():
+        def _load() -> tuple:
             try:
                 from transformers import (
                     AutoFeatureExtractor,
@@ -141,7 +142,7 @@ class ModelRegistry:
         """Return a loaded local Whisper model."""
         cache_key = f"whisper_{model_size}"
 
-        def _load():
+        def _load() -> Any:
             try:
                 import whisper
             except ImportError as exc:
@@ -155,7 +156,7 @@ class ModelRegistry:
     def silero_vad(self) -> tuple:
         """Return ``(silero_model, get_speech_timestamps_fn)``."""
 
-        def _load():
+        def _load() -> tuple:
             try:
                 model, utils = torch.hub.load(
                     repo_or_dir="snakers4/silero-vad",

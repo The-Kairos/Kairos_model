@@ -1,3 +1,5 @@
+"""Run BLIP, BLIP-2, and CLIPCap captioning scripts and produce a comparison table."""
+
 import json
 import subprocess
 import sys
@@ -13,6 +15,7 @@ SCRIPTS = [
 
 
 def run_script(label: str, path: Path, image_path: Path | None) -> dict:
+    """Execute a captioning script as a subprocess and return its JSON output."""
     if not path.exists():
         raise FileNotFoundError(f"Missing script: {path}")
 
@@ -43,10 +46,12 @@ def run_script(label: str, path: Path, image_path: Path | None) -> dict:
 
 
 def format_seconds(value: float) -> str:
+    """Format a float as a string with four decimal places."""
     return f"{value:.4f}"
 
 
 def write_table(rows: list[dict], output_path: Path) -> None:
+    """Write a Markdown comparison table to the given output path."""
     lines = [
         "| Decoder | Caption | Encoder time (s) | Decoder time (s) |",
         "| --- | --- | --- | --- |",
@@ -71,6 +76,7 @@ def write_table(rows: list[dict], output_path: Path) -> None:
 
 
 def main() -> None:
+    """Run all captioning scripts and write the comparison table."""
     image_path = None
     if len(sys.argv) > 1:
         raw_path = Path(sys.argv[1]).expanduser()

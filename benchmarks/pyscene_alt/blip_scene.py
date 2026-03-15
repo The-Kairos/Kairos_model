@@ -1,3 +1,5 @@
+"""Semantic scene splitting using BLIP vision-encoder embeddings (standalone)."""
+
 from __future__ import annotations
 
 import argparse
@@ -32,6 +34,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
 def _batched(items: List, batch_size: int):
+    """Yield successive *batch_size* chunks from *items*."""
     for i in range(0, len(items), batch_size):
         yield items[i : i + batch_size]
 
@@ -41,6 +44,7 @@ def _load_blip_vision(
     device: str,
     local_only: bool,
 ) -> Tuple[object, object, bool]:
+    """Load the BLIP vision sub-model and processor, discarding the decoder."""
     from transformers import BlipForConditionalGeneration, BlipProcessor
 
     processor = BlipProcessor.from_pretrained(model_id, local_files_only=local_only)
@@ -51,7 +55,8 @@ def _load_blip_vision(
     return full_model.vision_model, processor, True
 
 
-def _encode_blip(images, vision_model, processor, device, batch_size: int):
+def _encode_blip(images: List, vision_model: object, processor: object, device: str, batch_size: int) -> List:
+    """Compute normalised BLIP vision embeddings for a list of PIL images."""
     import torch
 
     embeddings: List[torch.Tensor] = []
@@ -73,6 +78,7 @@ def run(
     batch_size: int = DEFAULT_BATCH_SIZE,
     model_id: str = BLIP_MODEL_ID,
 ) -> dict:
+    """Run BLIP-based semantic scene splitting on a video and return results."""
     import torch
 
     video_path = Path(video_path)
@@ -130,6 +136,7 @@ def run(
 
 
 def main() -> None:
+    """CLI entry-point for BLIP semantic scene splitting."""
     parser = argparse.ArgumentParser(description="Semantic scene splitting using BLIP vision embeddings.")
     parser.add_argument(
         "--video",

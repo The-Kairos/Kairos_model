@@ -1,3 +1,5 @@
+"""Send scene-boundary contact sheets to GPT-4o and append quality reports."""
+
 from __future__ import annotations
 
 import base64
@@ -21,6 +23,7 @@ REPORT_MARKER = "## GPT-4o Reports"
 
 
 def _client() -> AzureOpenAI:
+    """Build and return an AzureOpenAI client from env vars."""
     endpoint = os.getenv("GPT_ENDPOINT")
     deployment = os.getenv("GPT_DEPLOYMENT")
     subscription_key = os.getenv("GPT_KEY")
@@ -48,6 +51,7 @@ def _client() -> AzureOpenAI:
 
 
 def _data_url(image_path: Path) -> str:
+    """Encode an image file as a base64 data-URL string."""
     data = image_path.read_bytes()
     encoded = base64.b64encode(data).decode("utf-8")
     suffix = image_path.suffix.lower().lstrip(".")
@@ -57,12 +61,14 @@ def _data_url(image_path: Path) -> str:
 
 
 def _list_video_dirs() -> List[Path]:
+    """Return sorted list of video sub-directories under FRAME_ROOT."""
     if not FRAME_ROOT.exists():
         return []
     return sorted([p for p in FRAME_ROOT.iterdir() if p.is_dir()])
 
 
 def _list_concat_images(video_dir: Path) -> List[Path]:
+    """List image files directly inside *video_dir*, sorted by name."""
     images = [
         p
         for p in video_dir.iterdir()
@@ -72,6 +78,7 @@ def _list_concat_images(video_dir: Path) -> List[Path]:
 
 
 def _pipeline_basics() -> str:
+    """Return a short text description of the Kairos pipeline for context."""
     return (
         "Kairos pipeline basics (from main.py):\n"
         "- PySceneDetect splits video into scenes (threshold + min scene length).\n"
@@ -88,6 +95,7 @@ def _pipeline_basics() -> str:
 
 
 def _build_messages(video_name: str, images: List[Path], results_md: str) -> List[dict]:
+    """Construct the chat messages (system + user w/ images) for GPT-4o."""
     system_prompt = (
         "You are a video segmentation expert helping tune a scene-splitting step "
         "for a multi-stage vision/audio NLP pipeline. Avoid any sexual content; "
@@ -126,18 +134,21 @@ def _build_messages(video_name: str, images: List[Path], results_md: str) -> Lis
 
 
 def _load_results_md() -> str:
+    """Load the existing test-results Markdown file, if any."""
     if REPORT_PATH.exists():
         return REPORT_PATH.read_text(encoding="utf-8")
     return ""
 
 
 def _strip_existing_reports(content: str) -> str:
+    """Remove any previously appended GPT-4o report section."""
     if REPORT_MARKER not in content:
         return content.rstrip()
     return content.split(REPORT_MARKER, 1)[0].rstrip()
 
 
 def _build_report_section(reports: List[Tuple[str, str]]) -> str:
+    """Format collected reports into a Markdown section."""
     lines = [REPORT_MARKER, ""]
     for video_name, report in reports:
         lines.append(f"### {video_name}")
@@ -148,6 +159,7 @@ def _build_report_section(reports: List[Tuple[str, str]]) -> str:
 
 
 def _write_reports(base_md: str, reports: List[Tuple[str, str]]) -> None:
+    """Write combined Markdown (base + reports) to REPORT_PATH."""
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     cleaned = _strip_existing_reports(base_md)
     report_block = _build_report_section(reports)
@@ -156,6 +168,7 @@ def _write_reports(base_md: str, reports: List[Tuple[str, str]]) -> None:
 
 
 def _format_filter_error(err: BadRequestError) -> str:
+    """Extract a short reason string from a content-filter error."""
     try:
         details = err.response.json()
         inner = details.get("error", {}).get("inner_error", {})
@@ -165,10 +178,12 @@ def _format_filter_error(err: BadRequestError) -> str:
 
 
 def _safe_report(reason: str) -> str:
+    """Return a placeholder report when the real one cannot be generated."""
     return f"cannot process cuz of {reason}"
 
 
 def main() -> None:
+    """Run GPT-4o evaluation on all video contact sheets and save reports."""
     client = _client()
     deployment = os.getenv("GPT_DEPLOYMENT")
     video_dirs = _list_video_dirs()

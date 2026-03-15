@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""
-Run light VLM benchmarks (same as main_test.py). Convenience launcher from project root:
+"""Convenience launcher for light VLM benchmarks (delegates to main_test.py).
+
+Run from project root:
   python test_light_vlms/run_light_vlms.py
 """
+
 import runpy
 import sys
 from pathlib import Path

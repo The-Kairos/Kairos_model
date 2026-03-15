@@ -1,3 +1,5 @@
+"""Benchmark script for testing the Gemini 2.5 Pro API with image-based content generation."""
+
 import os
 from dotenv import load_dotenv
 load_dotenv(".env")

@@ -40,7 +40,16 @@ METRIC_COLUMNS = [
 
 
 def to_number(value: object) -> float | str | object:
-    """Convert *value* to a float, parsing ``HH:MM:SS`` if needed."""
+    """Convert *value* to a float, parsing ``HH:MM:SS`` strings if needed.
+
+    Args:
+        value: A numeric type, a numeric string, or a colon-separated
+            time string (``"H:M:S"``).
+
+    Returns:
+        The value as a ``float`` when conversion succeeds, or the
+        original *value* unchanged when it cannot be parsed.
+    """
     if isinstance(value, (int, float)):
         return float(value)
     if isinstance(value, str):
@@ -60,18 +69,43 @@ def to_number(value: object) -> float | str | object:
 
 
 def safe_div(x: float | int, d: float | int | None) -> float | int:
-    """Divide *x* by *d*, returning *x* unchanged when *d* is 0/None."""
+    """Divide *x* by *d*, returning *x* unchanged when *d* is 0 or None.
+
+    Args:
+        x: The numerator.
+        d: The divisor.  When ``0`` or ``None``, *x* is returned as-is.
+
+    Returns:
+        The quotient ``x / d``, or *x* when division is not possible.
+    """
     return x / d if d not in (0, None) else x
 
 
 def format_num(value: object, precision: int = 2, fallback: str = "n/a") -> str:
-    """Format a number to *precision* decimal places."""
+    """Format a number to *precision* decimal places.
+
+    Args:
+        value: The value to format.  Must be ``int`` or ``float`` for
+            numeric formatting.
+        precision: Number of decimal places in the output.
+        fallback: String returned when *value* is not numeric.
+
+    Returns:
+        A formatted numeric string, or *fallback* when *value* is not
+        a number.
+    """
     if isinstance(value, (int, float)):
         return f"{value:.{precision}f}"
     return fallback
 
 
 def _parse_args() -> argparse.Namespace:
+    """Parse command-line arguments for the report generator.
+
+    Returns:
+        The parsed :class:`argparse.Namespace` with ``input_dir``,
+        ``output_dir``, ``output_md``, and ``save_csv`` attributes.
+    """
     parser = argparse.ArgumentParser(
         description="Generate markdown summary from log JSON files."
     )
@@ -103,7 +137,13 @@ def _parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    """Entry point for the log-report CLI."""
+    """Entry point for the log-report CLI.
+
+    Reads all JSON log files from the configured input directory,
+    computes per-step performance metrics for each video, and writes
+    a consolidated Markdown report.  Optionally exports per-video CSV
+    files alongside the report.
+    """
     args = _parse_args()
 
     log_dir = args.input_dir

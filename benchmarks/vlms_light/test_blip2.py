@@ -1,11 +1,11 @@
-"""
-Light VLM: BLIP-2 (Salesforce). Image captioning via BLIP-2 OPT 2.7B.
-"""
+"""Light VLM: BLIP-2 (Salesforce). Image captioning via BLIP-2 OPT 2.7B."""
+
 import torch
 from transformers import Blip2Processor, Blip2ForConditionalGeneration
 import os
 
 def load_vlm_model(model_id="Salesforce/blip2-opt-2.7b"):
+    """Load and return the BLIP-2 OPT 2.7B model and processor."""
     print(f"Loading {model_id}...")
     processor = Blip2Processor.from_pretrained(model_id)
     model = Blip2ForConditionalGeneration.from_pretrained(
@@ -16,6 +16,7 @@ def load_vlm_model(model_id="Salesforce/blip2-opt-2.7b"):
     return model, processor
 
 def caption_image(model, processor, image, prompt=None):
+    """Generate an unconditional caption for *image* using BLIP-2."""
     # BLIP-2 unconditional captioning; prompt is ignored for base usage
     inputs = processor(images=image, return_tensors="pt").to(model.device)
     with torch.no_grad():

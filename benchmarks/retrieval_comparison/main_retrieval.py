@@ -1,3 +1,10 @@
+"""Main entry-point for video processing, RAG querying, and retrieval comparison benchmarks.
+
+Configures pipeline parameters (scene detection, BLIP captioning, YOLO, audio,
+LLM descriptions, and RAG) and dispatches to the appropriate sub-command
+(process, rag, or compare-retrieval).
+"""
+
 from pathlib import Path
 import os
 import sys
@@ -123,6 +130,7 @@ params = {
 
 # =========================================================
 def parse_args():
+    """Parse CLI arguments for process, rag, and compare-retrieval sub-commands."""
     parser = argparse.ArgumentParser(description="Process videos or run RAG.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 

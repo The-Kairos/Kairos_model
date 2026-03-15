@@ -1,6 +1,12 @@
-"""Shared pytest fixtures for the Kairos test suite."""
+"""Shared pytest fixtures for the Kairos test suite.
+
+Provides common fixtures used across unit, integration, model, and e2e tests,
+including sample video/frame paths, scene data, catalog entries, and checkpoint
+structures.
+"""
 
 from pathlib import Path
+from typing import Any
 
 import pytest
 from dotenv import load_dotenv
@@ -11,7 +17,8 @@ FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
 @pytest.fixture
-def sample_video_path():
+def sample_video_path() -> Path:
+    """Return sample test video path, skip if missing."""
     path = FIXTURES_DIR / "sample_video.mp4"
     if not path.exists():
         pytest.skip(f"Fixture not found: {path}")
@@ -19,7 +26,8 @@ def sample_video_path():
 
 
 @pytest.fixture
-def sample_frame_path():
+def sample_frame_path() -> Path:
+    """Return sample test frame path, skip if missing."""
     path = FIXTURES_DIR / "sample_frame.jpg"
     if not path.exists():
         pytest.skip(f"Fixture not found: {path}")
@@ -27,7 +35,8 @@ def sample_frame_path():
 
 
 @pytest.fixture
-def sample_scenes():
+def sample_scenes() -> list[dict[str, Any]]:
+    """Return three representative scene dicts with standard keys."""
     return [
         {
             "scene_index": 0,
@@ -84,7 +93,8 @@ def sample_scenes():
 
 
 @pytest.fixture
-def sample_catalog():
+def sample_catalog() -> list[dict[str, Any]]:
+    """Return a small video catalog with three entries."""
     return [
         {"blob": "video_a.mp4", "video_length": 120.0, "resolution": [1280, 720]},
         {"blob": "video_b.mp4", "video_length": 1500.0, "resolution": [640, 360]},
@@ -93,7 +103,8 @@ def sample_catalog():
 
 
 @pytest.fixture
-def sample_checkpoint(sample_scenes):
+def sample_checkpoint(sample_scenes: list[dict[str, Any]]) -> dict[str, Any]:
+    """Return a checkpoint dict containing sample scenes and partial step timings."""
     return {
         "scenes": sample_scenes,
         "steps": {

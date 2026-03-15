@@ -1,9 +1,12 @@
 """Interactive RAG question-answering session."""
 
+from __future__ import annotations
+
 import json
 import os
 import textwrap
 import time
+from typing import Any
 
 from kairos.llm.client import get_embedding_client
 from kairos.llm.rag import (
@@ -16,13 +19,31 @@ from kairos.llm.rag import (
 )
 
 
-def _ensure_parent_dir(path):
+def _ensure_parent_dir(path: str) -> None:
+    """Create all parent directories for *path* if they do not exist.
+
+    Args:
+        path: A filesystem path whose parent directory tree should be
+            created.
+    """
     folder = os.path.dirname(path)
     if folder:
         os.makedirs(folder, exist_ok=True)
 
 
-def _load_conversation(path):
+def _load_conversation(path: str) -> list[dict]:
+    """Load an existing conversation history from a JSON file.
+
+    Supports both a plain list format and dict formats with
+    ``"history"`` or ``"items"`` keys.
+
+    Args:
+        path: Filesystem path to the conversation JSON file.
+
+    Returns:
+        A list of conversation-entry dicts.  Returns an empty list when
+        the file does not exist or contains invalid JSON.
+    """
     if not os.path.exists(path):
         return []
     try:
@@ -40,22 +61,58 @@ def _load_conversation(path):
     return []
 
 
-def _write_conversation(path, items):
+def _write_conversation(path: str, items: list[dict]) -> None:
+    """Persist conversation history to a JSON file.
+
+    Parent directories are created automatically if they do not exist.
+
+    Args:
+        path: Destination path for the JSON file.
+        items: List of conversation-entry dicts to serialise.
+    """
     _ensure_parent_dir(path)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(items, f, indent=2, ensure_ascii=False)
 
 
 def ask_rag(
-    rag_path,
-    show_k_context=False,
-    k=10,
-    generation_model=GENERATION_MODEL,
-    conv_path=None,
-    log_source=None,
-    show_timings=False,
-    generation_client=None,
-):
+    rag_path: str,
+    show_k_context: bool = False,
+    k: int = 10,
+    generation_model: str = GENERATION_MODEL,
+    conv_path: str | None = None,
+    log_source: str | None = None,
+    show_timings: bool = False,
+    generation_client: Any = None,
+) -> None:
+    """Start an interactive RAG question-answering loop.
+
+    Loads pre-computed RAG embeddings, then repeatedly prompts the user
+    for questions, retrieves the top-*k* most similar contexts, and
+    generates an answer using the configured LLM.  Conversation history
+    is optionally persisted to disk after each exchange.
+
+    Args:
+        rag_path: Path to the ``rag_embedding.json`` file containing
+            pre-computed contexts and embeddings.
+        show_k_context: If ``True``, print the top-*k* context snippets
+            alongside each answer.
+        k: Number of top similar contexts to retrieve for each question.
+        generation_model: Name of the LLM model used for answer
+            generation.
+        conv_path: Optional path to a JSON file where conversation
+            history is loaded from and appended to.
+        log_source: Optional identifier (e.g. checkpoint path) stored
+            in each conversation entry for traceability.
+        show_timings: If ``True``, print per-stage timing information
+            after each answer.
+        generation_client: Pre-built LLM client instance for answer
+            generation.  When ``None``, the default client is used.
+
+    Raises:
+        ValueError: If the RAG embedding file is missing contexts or
+            embeddings.
+    """
     data = load_rag_embeddings(rag_path)
     contexts = data.get("contexts", [])
     embeddings = data.get("embeddings", [])
@@ -68,7 +125,7 @@ def ask_rag(
     embedding_client = get_embedding_client()
     print("RAG ready. Ask questions (type 'exit' to quit).")
 
-    conversation = None
+    conversation: list[dict] | None = None
     if conv_path:
         _ensure_parent_dir(conv_path)
         conversation = _load_conversation(conv_path)

@@ -1,5 +1,7 @@
 """YOLOv8 object detection and tracking per scene (orchestrator)."""
 
+from typing import Any
+
 from ultralytics import YOLO
 
 from kairos.core.utils import print_prefixed
@@ -14,9 +16,9 @@ from kairos.video.yolo_inference import (
 
 
 def detect_object_yolo(
-    scenes: list,
+    scenes: list[dict],
     model_size: str = "models/yolov8s.pt",
-    model=None,
+    model: Any = None,
     conf: float = 0.5,
     iou: float = 0.45,
     output_dir: str | None = None,
@@ -26,17 +28,52 @@ def detect_object_yolo(
     frame_key: str = "frames",
     summary_key: str = "yolo_detections",
     debug: bool = False,
-    **track_kwargs,
-) -> list:
-    """Run YOLO on all scenes. Adds track summaries under *summary_key*."""
+    **track_kwargs: Any,
+) -> list[dict]:
+    """Run YOLO detection and tracking on all scenes.
+
+    For each scene the function runs YOLOv8 inference on every frame,
+    assigns track IDs (via ByteTrack or an IoU-based fallback), builds
+    per-track summaries, and stores them under *summary_key* in each
+    scene dictionary.
+
+    Args:
+        scenes: A list of scene dictionaries, each expected to contain
+            frames under the key specified by *frame_key*.
+        model_size: Path to the YOLO model weights file.  Only used when
+            *model* is ``None``.
+        model: A pre-loaded ``ultralytics.YOLO`` model instance.  If
+            ``None``, a new model is loaded from *model_size*.
+        conf: Minimum confidence threshold for detections.
+        iou: IoU threshold used during non-maximum suppression.
+        output_dir: If provided, annotated debug images are saved to
+            this directory.
+        use_bytetrack: If ``True``, use ByteTrack for multi-frame
+            tracking.  Falls back to per-frame detection when tracking
+            fails.
+        tracker: Tracker configuration file name (e.g.
+            ``"bytetrack.yaml"``).
+        fallback_iou: IoU threshold for the simple IoU-based fallback
+            tracker when ByteTrack does not produce track IDs.
+        frame_key: Key used to look up frames in each scene dictionary.
+        summary_key: Key under which track summaries are stored in each
+            output scene dictionary.
+        debug: If ``True``, print compact track summaries to stdout.
+        **track_kwargs: Additional keyword arguments forwarded to
+            :func:`kairos.video.track_summary.build_track_summaries`.
+
+    Returns:
+        A new list of scene dictionaries, each augmented with track
+        summaries under *summary_key*.
+    """
     if model is None:
         model = YOLO(model_size)
-    results_scenes = []
+    results_scenes: list[dict] = []
 
     for s, scene in enumerate(scenes):
         new_scene = dict(scene)
         frames = scene.get(frame_key, [])
-        yolo_dict = {}
+        yolo_dict: dict[int, list[dict]] = {}
 
         if use_bytetrack and frames:
             results = run_yolo_track_on_frames(

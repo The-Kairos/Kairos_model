@@ -1,3 +1,5 @@
+"""Hybrid scene splitting: PySceneDetect initial cuts merged with BLIP embeddings."""
+
 from __future__ import annotations
 
 import argparse
@@ -34,6 +36,7 @@ DEFAULT_BATCH_SIZE = 16
 
 
 def _batched(items: List, batch_size: int):
+    """Yield successive *batch_size* chunks from *items*."""
     for i in range(0, len(items), batch_size):
         yield items[i : i + batch_size]
 
@@ -43,6 +46,7 @@ def _load_blip_vision(
     device: str,
     local_only: bool,
 ) -> Tuple[object, object, bool]:
+    """Load the BLIP vision sub-model and processor, discarding the decoder."""
     from transformers import BlipForConditionalGeneration, BlipProcessor
 
     processor = BlipProcessor.from_pretrained(model_id, local_files_only=local_only)
@@ -53,7 +57,8 @@ def _load_blip_vision(
     return full_model.vision_model, processor, True
 
 
-def _encode_blip(images, vision_model, processor, device, batch_size: int):
+def _encode_blip(images: List, vision_model: object, processor: object, device: str, batch_size: int) -> List:
+    """Compute normalised BLIP vision embeddings for a list of PIL images."""
     import torch
 
     embeddings: List[torch.Tensor] = []
@@ -69,6 +74,7 @@ def _encode_blip(images, vision_model, processor, device, batch_size: int):
 
 
 def _merge_scenes(scenes: List[dict], embeddings: List, threshold: float) -> List[dict]:
+    """Merge consecutive scenes whose embeddings exceed *threshold* similarity."""
     if not scenes:
         return []
 
@@ -100,6 +106,7 @@ def run(
     batch_size: int = DEFAULT_BATCH_SIZE,
     model_id: str = BLIP_MODEL_ID,
 ) -> dict:
+    """Run hybrid PySceneDetect + BLIP merge and return scene results."""
     import torch
 
     video_path = Path(video_path)
@@ -169,6 +176,7 @@ def run(
 
 
 def main() -> None:
+    """CLI entry-point for hybrid PySceneDetect + BLIP merge."""
     parser = argparse.ArgumentParser(
         description="Hybrid PySceneDetect + BLIP semantic merge."
     )

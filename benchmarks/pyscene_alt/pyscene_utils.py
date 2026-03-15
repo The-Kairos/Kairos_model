@@ -1,3 +1,5 @@
+"""Shared utilities for PyScene benchmark scripts: video I/O, HF cache, frame saving."""
+
 from __future__ import annotations
 
 import os
@@ -27,6 +29,7 @@ try:
     from src.debug_utils import format_timecode as _format_timecode
 except Exception:  # pragma: no cover - fallback for standalone runs
     def _format_timecode(seconds: float | None) -> str:
+        """Format seconds as HH:MM:SS.mmm (fallback implementation)."""
         if seconds is None:
             return "??:??:??.???"
         try:
@@ -40,16 +43,19 @@ except Exception:  # pragma: no cover - fallback for standalone runs
 
 
 def format_timecode(seconds: float | None) -> str:
+    """Format *seconds* as a human-readable timecode string."""
     return _format_timecode(seconds)
 
 
 def sanitize_filename(name: str) -> str:
+    """Replace filesystem-unsafe characters with underscores."""
     invalid = '<>:"/\\|?*'
     cleaned = "".join("_" if ch in invalid else ch for ch in name)
     return cleaned.strip().strip(".")
 
 
 def to_relative(path: Path) -> str:
+    """Return *path* as a POSIX string relative to PROJECT_ROOT if possible."""
     try:
         return path.relative_to(PROJECT_ROOT).as_posix()
     except ValueError:
@@ -57,10 +63,12 @@ def to_relative(path: Path) -> str:
 
 
 def _env_truthy(value: str | None) -> bool:
+    """Check whether an env-var string is a truthy value."""
     return str(value).strip().lower() in {"1", "true", "yes", "on"}
 
 
 def hf_local_only() -> bool:
+    """Return True if HuggingFace Hub should be used in offline/local mode."""
     return (
         _env_truthy(os.getenv("HF_HUB_OFFLINE"))
         or _env_truthy(os.getenv("TRANSFORMERS_OFFLINE"))
@@ -71,6 +79,7 @@ _HF_OFFLINE_STATE: bool | None = None
 
 
 def _proxy_host_port(value: str) -> tuple[str | None, int | None]:
+    """Parse a proxy URL and return (host, port)."""
     proxy_url = value.strip()
     if "://" not in proxy_url:
         proxy_url = f"http://{proxy_url}"
@@ -83,6 +92,7 @@ def _proxy_host_port(value: str) -> tuple[str | None, int | None]:
 
 
 def _proxy_unreachable(timeout: float) -> bool:
+    """Return True if the configured HTTP(S) proxy cannot be reached."""
     proxy = os.getenv("HTTPS_PROXY") or os.getenv("HTTP_PROXY")
     if not proxy:
         return False
@@ -97,6 +107,7 @@ def _proxy_unreachable(timeout: float) -> bool:
 
 
 def _direct_reachable(host: str, timeout: float) -> bool:
+    """Return True if *host* is directly reachable on port 443."""
     try:
         with socket.create_connection((host, 443), timeout=timeout):
             return True
@@ -108,6 +119,7 @@ def ensure_hf_offline_if_unreachable(
     host: str = "huggingface.co",
     timeout: float = 0.5,
 ) -> bool:
+    """Auto-detect network availability and set HF offline env vars if needed."""
     global _HF_OFFLINE_STATE
     if _HF_OFFLINE_STATE is not None:
         return _HF_OFFLINE_STATE
@@ -136,6 +148,7 @@ def ensure_hf_offline_if_unreachable(
 
 
 def get_video_info(video_path: str | Path) -> Tuple[float, int, float]:
+    """Return (fps, frame_count, duration_seconds) for a video file."""
     import cv2
 
     cap = cv2.VideoCapture(str(video_path))
@@ -150,7 +163,8 @@ def get_video_info(video_path: str | Path) -> Tuple[float, int, float]:
     return fps, frame_count, duration
 
 
-def _resize_frame(frame, new_size: int):
+def _resize_frame(frame: object, new_size: int) -> object:
+    """Resize a raw OpenCV frame using the project's resize_frame helper."""
     from src.frame_sampling import resize_frame
 
     return resize_frame(frame, new_size=new_size)
@@ -160,7 +174,8 @@ def sample_video_frames(
     video_path: str | Path,
     sample_fps: float,
     new_size: int,
-) -> Tuple[List["Image.Image"], List[float], dict]:
+) -> Tuple[List, List[float], dict]:
+    """Sample frames from *video_path* at *sample_fps* and return (frames, timestamps, info)."""
     import cv2
     from PIL import Image
 
@@ -205,7 +220,8 @@ def load_frames_at_times(
     video_path: str | Path,
     times: Iterable[float],
     new_size: int,
-) -> List["Image.Image"]:
+) -> List:
+    """Load specific frames by timestamp from *video_path*."""
     import cv2
     from PIL import Image
 
@@ -241,12 +257,13 @@ def load_frames_at_times(
 
 
 def _read_frame_at_time(
-    cap,
+    cap: object,
     time_sec: float,
     fps: float,
     frame_count: int,
     new_size: int,
-):
+) -> object | None:
+    """Seek to *time_sec* in an open VideoCapture and return the resized frame."""
     import cv2
 
     if fps <= 0:
@@ -269,6 +286,7 @@ def save_scene_boundary_frames(
     new_size: int,
     output_dir: Path | None = None,
 ) -> List[dict]:
+    """Save a representative frame per scene and return augmented scene dicts."""
     import cv2
 
     if output_dir is None:
@@ -313,6 +331,7 @@ def save_scene_boundary_frames(
 
 
 def finalize_scene_times(scenes: List[dict]) -> List[dict]:
+    """Add timecodes, duration, and scene index to each scene dict."""
     finalized: List[dict] = []
     for idx, scene in enumerate(scenes):
         start_seconds = float(scene.get("start_seconds", 0.0))

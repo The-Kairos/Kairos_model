@@ -1,3 +1,10 @@
+"""Quick per-video test for heavy VLMs on the first N scenes.
+
+Loads a single heavy VLM, detects scenes via PySceneDetect, samples a
+mid-scene frame for each, runs VLM inference with benchmark timing,
+and prints a JSON summary.
+"""
+
 import os
 import sys
 import time
@@ -16,9 +23,7 @@ from src.frame_sampling import sample_from_clip
 from test_heavy_vlms.benchmark_utils import benchmark_inference
 
 def load_vlm(model_name):
-    """
-    Loads one of the pre-defined heavy VLMs.
-    """
+    """Load one of the pre-defined heavy VLMs and return an inference callable."""
     if model_name == "llava":
         from transformers import LlavaNextProcessor, LlavaNextForConditionalGeneration, BitsAndBytesConfig
         model_id = "llava-hf/llava-v1.6-vicuna-7b-hf"
@@ -27,6 +32,7 @@ def load_vlm(model_name):
         model = LlavaNextForConditionalGeneration.from_pretrained(model_id, quantization_config=quantization_config, device_map="auto")
         
         def infer(image):
+            """Run LLaVA inference on a single PIL image."""
             prompt = "[INST] <image>\nDescribe the scene in detail. Focus only on what is visually observable. Do not assume intentions or unseen events. Mention actions, objects, and interactions. [/INST]"
             inputs = processor(prompt, image, return_tensors="pt").to("cuda")
             output = model.generate(**inputs, max_new_tokens=200)
@@ -40,6 +46,7 @@ def load_vlm(model_name):
         tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
         
         def infer(image):
+            """Run InternVL inference on a single PIL image."""
             pixel_values = model.extract_feature(image)
             question = "Describe the scene in detail. Focus only on what is visually observable. Mention actions, objects, and interactions."
             response, history = model.chat(tokenizer, pixel_values, question, generation_config={"max_new_tokens": 200})
@@ -53,6 +60,7 @@ def load_vlm(model_name):
         model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto", trust_remote_code=True, fp16=True).eval()
 
         def infer(image):
+            """Run Qwen-VL inference on a single PIL image."""
             # Qwen-VL needs a file path, we'll save the image temporarily
             temp_path = "temp_vlm_frame.jpg"
             image.save(temp_path)
@@ -68,9 +76,7 @@ def load_vlm(model_name):
         raise ValueError(f"Unknown model: {model_name}")
 
 def run_video_test(video_path, model_name, num_scenes_to_test=3):
-    """
-    Runs the VLM test on the first few scenes of a video.
-    """
+    """Run the heavy VLM test on the first *num_scenes_to_test* scenes of a video."""
     print(f"\n--- Testing {video_path.name} with {model_name} ---")
     
     # 1. Detect Scenes

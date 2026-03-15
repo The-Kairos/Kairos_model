@@ -3,12 +3,24 @@
 from __future__ import annotations
 
 import os
+from typing import Any
 from urllib.parse import quote
 
 from kairos.llm.synopsis.parsing import NOT_STATED, NOT_STATED_PERIOD
 
 
-def _timecode_to_seconds(timecode: str | None):
+def _timecode_to_seconds(timecode: str | None) -> int | None:
+    """Convert a timecode string to total seconds.
+
+    Supported formats include ``HH:MM:SS``, ``MM:SS``, and bare seconds.
+
+    Args:
+        timecode: A timecode string such as ``"01:23:45"`` or ``None``.
+
+    Returns:
+        The rounded total seconds as an ``int``, or ``None`` if the
+        timecode is missing, empty, or unparseable.
+    """
     if not timecode or not isinstance(timecode, str):
         return None
     tc = timecode.strip()
@@ -34,12 +46,33 @@ def _timecode_to_seconds(timecode: str | None):
 
 
 def _encode_url_path(path: str) -> str:
+    """Percent-encode each segment of a ``/``-separated path.
+
+    Args:
+        path: A file-system or URL path string.
+
+    Returns:
+        The path with each segment individually percent-encoded.
+    """
     return "/".join(quote(part) for part in path.split("/"))
 
 
 def _build_video_link_base(
     video_path: str | None, output_dir: str | None
 ) -> str | None:
+    """Compute a relative, URL-encoded base path to the video file.
+
+    If *output_dir* is provided, the video path is made relative to it.
+
+    Args:
+        video_path: Absolute or relative path to the video file.
+        output_dir: Directory from which the synopsis will be read
+            (used to compute a relative path).
+
+    Returns:
+        A URL-encoded relative path string, or ``None`` if
+        *video_path* is empty.
+    """
     if not video_path or not isinstance(video_path, str):
         return None
     base = video_path
@@ -55,6 +88,19 @@ def _build_video_link_base(
 def _format_timestamp_markdown(
     timestamp: str | None, video_link_base: str | None
 ) -> str:
+    """Render a single timestamp as a Markdown link (or plain text).
+
+    If the timestamp can be parsed and *video_link_base* is available, a
+    clickable ``[HH:MM:SS](path#t=N)`` link is returned.
+
+    Args:
+        timestamp: Timecode string (e.g. ``"00:01:30"``).
+        video_link_base: URL-encoded base path to the video, or
+            ``None``.
+
+    Returns:
+        A Markdown-formatted timestamp string.
+    """
     label = (
         timestamp.strip()
         if isinstance(timestamp, str) and timestamp.strip()
@@ -70,6 +116,19 @@ def _format_timestamp_markdown(
 def _format_time_range_markdown(
     start: str | None, end: str | None, video_link_base: str | None
 ) -> str:
+    """Render a start–end time range as Markdown.
+
+    If either endpoint is :data:`NOT_STATED`, only the other is shown.
+
+    Args:
+        start: Start timecode string.
+        end: End timecode string.
+        video_link_base: URL-encoded base path to the video, or
+            ``None``.
+
+    Returns:
+        A Markdown-formatted time-range string.
+    """
     start_md = _format_timestamp_markdown(start, video_link_base)
     end_md = _format_timestamp_markdown(end, video_link_base)
     if end_md == NOT_STATED:
@@ -79,7 +138,21 @@ def _format_time_range_markdown(
     return f"{start_md} - {end_md}"
 
 
-def _extract_timed_entry(item, text_key: str):
+def _extract_timed_entry(
+    item: dict[str, Any] | Any, text_key: str
+) -> tuple[str | None, str | None]:
+    """Extract a ``(timestamp, text)`` pair from a dict.
+
+    Handles dicts with an explicit ``timestamp`` key as well as
+    single-key dicts.
+
+    Args:
+        item: A dict containing timestamped data.
+        text_key: The key name for the text value (e.g. ``"event"``).
+
+    Returns:
+        A 2-tuple ``(timestamp, text)`` where either may be ``None``.
+    """
     if not isinstance(item, dict):
         return None, None
     if "timestamp" in item:
@@ -90,7 +163,21 @@ def _extract_timed_entry(item, text_key: str):
     return item.get("timestamp"), item.get(text_key)
 
 
-def _extract_highlight_entry(item):
+def _extract_highlight_entry(
+    item: dict[str, Any] | Any,
+) -> tuple[str | None, str | None, str | None]:
+    """Extract ``(start, end, highlight)`` from a highlight dict.
+
+    Handles dicts with ``start``/``end``, ``timestamp``, or single-key
+    layouts.
+
+    Args:
+        item: A dict containing highlight data.
+
+    Returns:
+        A 3-tuple ``(start, end, highlight)`` where any element may be
+        ``None``.
+    """
     if not isinstance(item, dict):
         return None, None, None
     if "start" in item or "end" in item:
@@ -104,8 +191,27 @@ def _extract_highlight_entry(item):
 
 
 def render_synopsis_markdown(
-    synopsis: dict, video_path: str | None = None, output_dir: str | None = None
+    synopsis: dict[str, Any],
+    video_path: str | None = None,
+    output_dir: str | None = None,
 ) -> str:
+    """Render a synopsis dict into a Markdown document.
+
+    Sections included: title, summary, highlights, timeline, and
+    questions.
+
+    Args:
+        synopsis: The synopsis dict with keys such as ``chat_name``,
+            ``summary``, ``video_highlights``, ``video_timeline``, and
+            ``questions``.
+        video_path: Optional path to the video file for generating
+            clickable timestamp links.
+        output_dir: Optional directory used to compute relative video
+            paths.
+
+    Returns:
+        The rendered Markdown string (terminated with a newline).
+    """
     title = "Video Synopsis"
     if isinstance(synopsis, dict):
         chat_name = synopsis.get("chat_name")
@@ -113,7 +219,7 @@ def render_synopsis_markdown(
             title = chat_name.strip()
 
     video_link_base = _build_video_link_base(video_path, output_dir)
-    lines = [f"# {title}"]
+    lines: list[str] = [f"# {title}"]
 
     summary = synopsis.get("summary") if isinstance(synopsis, dict) else ""
     if isinstance(summary, str) and summary.strip():

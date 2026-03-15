@@ -102,7 +102,29 @@ select = [
     "B",    # bugbear — common pitfalls
     "SIM",  # simplify — cleaner constructs
     "RUF",  # ruff-specific rules
+    "D",    # pydocstyle — docstring enforcement
+    "ANN",  # flake8-annotations — type hint enforcement
 ]
+ignore = [
+    "ANN401",  # dynamically typed expressions (Any) are allowed
+    "D105",    # missing docstring in magic method
+    "D107",    # missing docstring in __init__ (use class docstring instead)
+    "D203",    # no-blank-line-before-class (conflicts with D211)
+    "D213",    # multi-line-summary-second-line (conflicts with D212)
+    "RUF002",  # ambiguous unicode character in docstring (intentional em-dashes etc.)
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "D100",    # missing docstring in public module (relaxed for tests)
+    "D103",    # missing docstring in public function (relaxed for tests)
+    "D104",    # missing docstring in public package (relaxed for tests)
+    "ANN",     # type annotations not enforced in tests
+]
+"src/kairos/__main__.py" = ["D"]  # entry-point script
 
 [tool.ruff.format]
 quote-style = "double"

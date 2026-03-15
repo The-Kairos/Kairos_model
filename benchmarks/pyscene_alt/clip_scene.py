@@ -1,3 +1,5 @@
+"""Semantic scene splitting using CLIP image embeddings (standalone)."""
+
 from __future__ import annotations
 
 import argparse
@@ -32,11 +34,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
 def _batched(items: List, batch_size: int):
+    """Yield successive *batch_size* chunks from *items*."""
     for i in range(0, len(items), batch_size):
         yield items[i : i + batch_size]
 
 
-def _encode_clip(images, model, processor, device, batch_size: int):
+def _encode_clip(images: List, model: object, processor: object, device: str, batch_size: int) -> List:
+    """Compute normalised CLIP image embeddings for a list of PIL images."""
     import torch
 
     embeddings: List[torch.Tensor] = []
@@ -57,6 +61,7 @@ def run(
     batch_size: int = DEFAULT_BATCH_SIZE,
     model_id: str = CLIP_MODEL_ID,
 ) -> dict:
+    """Run CLIP-based semantic scene splitting on a video and return results."""
     import torch
     from transformers import CLIPModel, CLIPProcessor
 
@@ -118,6 +123,7 @@ def run(
 
 
 def main() -> None:
+    """CLI entry-point for CLIP semantic scene splitting."""
     parser = argparse.ArgumentParser(description="Semantic scene splitting using CLIP embeddings.")
     parser.add_argument(
         "--video",

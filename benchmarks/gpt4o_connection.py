@@ -1,3 +1,5 @@
+"""Benchmark script for testing the Azure OpenAI GPT-4o API connection."""
+
 import os
 from openai import AzureOpenAI
 from dotenv import load_dotenv
@@ -34,5 +36,3 @@ response = client.chat.completions.create(
 )
 
 print(response.choices[0].message.content)
-
-

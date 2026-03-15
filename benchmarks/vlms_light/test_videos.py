@@ -1,5 +1,6 @@
-"""
-Quick per-video test for light VLMs (first N scenes). Same structure as test_heavy_vlms/test_videos.py.
+"""Quick per-video test for light VLMs (first N scenes).
+
+Same structure as test_heavy_vlms/test_videos.py.
 Uses same Videos directory as heavy VLMs.
 """
 import os
@@ -20,35 +21,40 @@ from test_light_vlms.benchmark_utils import benchmark_inference
 
 
 def load_vlm(model_name):
-    """Load one of the light VLMs (same interface as heavy: returns infer(image) -> caption)."""
+    """Load one of the light VLMs and return an inference callable."""
     if model_name == "blip2":
         import test_light_vlms.test_blip2 as m
         model, processor = m.load_vlm_model()
         def infer(image):
+            """Run BLIP-2 inference on a single PIL image."""
             return m.caption_image(model, processor, image)
         return infer
     elif model_name == "instructblip":
         import test_light_vlms.test_instructblip as m
         model, processor = m.load_vlm_model()
         def infer(image):
+            """Run InstructBLIP inference on a single PIL image."""
             return m.caption_image(model, processor, image)
         return infer
     elif model_name == "llava_mistral":
         import test_light_vlms.test_llava_mistral as m
         model, processor = m.load_vlm_model()
         def infer(image):
+            """Run LLaVA-Mistral inference on a single PIL image."""
             return m.caption_image(model, processor, image)
         return infer
     elif model_name == "phi3_vision":
         import test_light_vlms.test_phi3_vision as m
         model, processor = m.load_vlm_model()
         def infer(image):
+            """Run Phi-3.5 Vision inference on a single PIL image."""
             return m.caption_image(model, processor, image)
         return infer
     elif model_name == "siglip":
         import test_light_vlms.test_siglip as m
         model, processor = m.load_vlm_model()
         def infer(image):
+            """Run SigLIP inference on a single PIL image."""
             return m.caption_image(model, processor, image)
         return infer
     else:
@@ -56,7 +62,7 @@ def load_vlm(model_name):
 
 
 def run_video_test(video_path, model_name, num_scenes_to_test=3):
-    """Run light VLM on first num_scenes_to_test scenes of the video."""
+    """Run light VLM on the first *num_scenes_to_test* scenes of a video."""
     print(f"\n--- Testing {video_path.name} with {model_name} ---")
     scenes = get_scene_list(str(video_path))
     scenes_to_test = scenes[:num_scenes_to_test]

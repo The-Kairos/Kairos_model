@@ -1,3 +1,5 @@
+"""Semantic scene splitting using ViT embeddings (standalone); also exports shared pipeline settings."""
+
 from __future__ import annotations
 
 import argparse
@@ -81,11 +83,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
 def _batched(items: List, batch_size: int):
+    """Yield successive *batch_size* chunks from *items*."""
     for i in range(0, len(items), batch_size):
         yield items[i : i + batch_size]
 
 
-def _encode_vit(images, model, processor, device, batch_size: int):
+def _encode_vit(images: List, model: object, processor: object, device: str, batch_size: int) -> List:
+    """Compute normalised ViT embeddings for a list of PIL images."""
     import torch
 
     embeddings: List[torch.Tensor] = []
@@ -110,6 +114,7 @@ def run(
     batch_size: int = DEFAULT_BATCH_SIZE,
     model_id: str = VIT_MODEL_ID,
 ) -> dict:
+    """Run ViT-based semantic scene splitting on a video and return results."""
     import torch
     from transformers import ViTImageProcessor, ViTModel
 
@@ -169,6 +174,7 @@ def run(
 
 
 def main() -> None:
+    """CLI entry-point for ViT semantic scene splitting."""
     parser = argparse.ArgumentParser(description="Semantic scene splitting using ViT embeddings.")
     parser.add_argument(
         "--video",

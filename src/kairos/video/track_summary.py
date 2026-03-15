@@ -2,6 +2,8 @@
 
 import math
 
+import numpy as np
+
 from kairos.video.spatial import (
     compute_relations,
     movement_label,
@@ -11,38 +13,75 @@ from kairos.video.spatial import (
 from kairos.video.tracking import build_tracks
 
 
-def build_track_summaries(frames, yolo_dict, **kwargs) -> list:
-    """Build per-scene track summaries with movement and relation labels."""
+def build_track_summaries(
+    frames: list[np.ndarray],
+    yolo_dict: dict[int, list[dict]],
+    **kwargs: object,
+) -> list[dict]:
+    """Build per-scene track summaries with movement and relation labels.
+
+    For each tracked object the function computes start/end positions,
+    movement direction, path metrics, and inter-object relations.
+
+    Args:
+        frames: List of BGR image arrays for the scene (used to
+            determine frame dimensions).
+        yolo_dict: A mapping from frame index to a list of detection
+            dictionaries (each containing ``"track_id"``, ``"label"``,
+            ``"confidence"``, and ``"bbox"`` keys).
+        **kwargs: Additional keyword arguments forwarded to
+            :func:`kairos.video.spatial.compute_relations`.
+
+    Returns:
+        A list of track summary dictionaries sorted by ``"track_id"``.
+        Each dictionary contains:
+
+        - ``"track_id"``: Integer track identifier.
+        - ``"label"``: Object class label.
+        - ``"confidence_avg"``: Mean detection confidence.
+        - ``"start_frame"`` / ``"end_frame"``: First and last frame
+          indices.
+        - ``"start_pos"`` / ``"end_pos"``: Human-readable position
+          labels.
+        - ``"movement"``: Movement description string.
+        - ``"path_length"``: Cumulative path distance.
+        - ``"net_displacement"``: Straight-line displacement.
+        - ``"direction_change_var"``: Heading change variance.
+        - ``"relations"``: List of relation description strings.
+    """
     tracks = build_tracks(yolo_dict)
     if not frames:
         return []
     frame_h, frame_w = frames[0].shape[:2]
     relations = compute_relations(tracks, yolo_dict, frame_w, frame_h, **kwargs)
     diag = math.hypot(frame_w, frame_h)
-    summaries = []
+    summaries: list[dict] = []
     for track_id, info in tracks.items():
         dets = sorted(info["detections"], key=lambda d: d["frame_idx"])
         if not dets:
             continue
-        label = info.get("label", "unknown")
-        start_bbox, end_bbox = dets[0]["bbox"], dets[-1]["bbox"]
-        start_center = (
+        label: str = info.get("label", "unknown")
+        start_bbox: list[float] = dets[0]["bbox"]
+        end_bbox: list[float] = dets[-1]["bbox"]
+        start_center: tuple[float, float] = (
             (start_bbox[0] + start_bbox[2]) / 2.0,
             (start_bbox[1] + start_bbox[3]) / 2.0,
         )
-        end_center = (
+        end_center: tuple[float, float] = (
             (end_bbox[0] + end_bbox[2]) / 2.0,
             (end_bbox[1] + end_bbox[3]) / 2.0,
         )
-        start_area = max(0.0, start_bbox[2] - start_bbox[0]) * max(
+        start_area: float = max(0.0, start_bbox[2] - start_bbox[0]) * max(
             0.0, start_bbox[3] - start_bbox[1]
         )
-        end_area = max(0.0, end_bbox[2] - end_bbox[0]) * max(
+        end_area: float = max(0.0, end_bbox[2] - end_bbox[0]) * max(
             0.0, end_bbox[3] - end_bbox[1]
         )
-        start_pos = position_label(start_center[0], start_center[1], frame_w, frame_h)
-        end_pos = position_label(end_center[0], end_center[1], frame_w, frame_h)
-        move = movement_label(
+        start_pos: str = position_label(
+            start_center[0], start_center[1], frame_w, frame_h
+        )
+        end_pos: str = position_label(end_center[0], end_center[1], frame_w, frame_h)
+        move: str = movement_label(
             start_center, end_center, start_area, end_area, frame_w, frame_h
         )
         pl, net_disp, angle_var = path_metrics(dets)
@@ -51,7 +90,7 @@ def build_track_summaries(frames, yolo_dict, **kwargs) -> list:
                 move += ", looping/circling"
             elif pl > net_disp * 3 and angle_var > 0.3:
                 move += ", moving in a loop"
-        confs = [d.get("confidence", 0.0) for d in dets]
+        confs: list[float] = [d.get("confidence", 0.0) for d in dets]
         summaries.append(
             {
                 "track_id": track_id,
@@ -73,12 +112,24 @@ def build_track_summaries(frames, yolo_dict, **kwargs) -> list:
 
 
 def format_track_summary(summary: dict, style: str = "compact") -> str:
-    label = summary.get("label", "unknown")
-    track_id = summary.get("track_id", "unknown")
-    movement = summary.get("movement", "unknown")
-    start_pos = summary.get("start_pos", "unknown")
-    end_pos = summary.get("end_pos", "unknown")
-    relations = summary.get("relations", []) or []
+    """Format a single track summary dictionary as a human-readable string.
+
+    Args:
+        summary: A track summary dictionary as produced by
+            :func:`build_track_summaries`.
+        style: Formatting style.  ``"compact"`` produces a concise
+            one-liner; ``"narrative"`` produces a natural-language
+            sentence.
+
+    Returns:
+        A formatted string describing the track.
+    """
+    label: str = summary.get("label", "unknown")
+    track_id: int = summary.get("track_id", "unknown")
+    movement: str = summary.get("movement", "unknown")
+    start_pos: str = summary.get("start_pos", "unknown")
+    end_pos: str = summary.get("end_pos", "unknown")
+    relations: list[str] = summary.get("relations", []) or []
 
     if style == "narrative":
         movement_phrase = movement.replace(",", "")
@@ -96,5 +147,16 @@ def format_track_summary(summary: dict, style: str = "compact") -> str:
     return base
 
 
-def format_track_summaries(summaries: list, style: str = "compact") -> list:
+def format_track_summaries(summaries: list[dict], style: str = "compact") -> list[str]:
+    """Format a list of track summaries as human-readable strings.
+
+    Args:
+        summaries: A list of track summary dictionaries as produced by
+            :func:`build_track_summaries`.
+        style: Formatting style forwarded to
+            :func:`format_track_summary`.
+
+    Returns:
+        A list of formatted strings, one per track summary.
+    """
     return [format_track_summary(s, style=style) for s in summaries]

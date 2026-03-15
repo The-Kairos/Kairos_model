@@ -1,9 +1,16 @@
-"""Tests for kairos.config.PipelineConfig."""
+"""Tests for kairos.config.PipelineConfig.
+
+Validates the default, fast, motion-sensitive, and static-video presets,
+ensuring each preset produces correct field values and that ``to_dict``
+serialises the full configuration.
+"""
+
 
 from kairos.config import PipelineConfig
 
 
-def test_default_values():
+def test_default_values() -> None:
+    """Verify all critical default field values of PipelineConfig."""
     cfg = PipelineConfig.default()
     assert cfg.pyscene_threshold == 27.0
     assert cfg.frames_per_scene == 3
@@ -15,7 +22,8 @@ def test_default_values():
     assert cfg.rag_top_k_context == 10
 
 
-def test_fast_preset():
+def test_fast_preset() -> None:
+    """Verify the fast preset overrides threshold, frames, and chunk sizes."""
     cfg = PipelineConfig.fast()
     assert cfg.pyscene_threshold == 40
     assert cfg.frames_per_scene == 1
@@ -26,7 +34,8 @@ def test_fast_preset():
     assert cfg.yolo_conf_thres == 0.8
 
 
-def test_motion_sensitive_preset():
+def test_motion_sensitive_preset() -> None:
+    """Verify motion-sensitive preset lowers threshold."""
     cfg = PipelineConfig.motion_sensitive()
     assert cfg.pyscene_threshold == 15
     assert cfg.pyscene_shortest == 0.5
@@ -36,14 +45,16 @@ def test_motion_sensitive_preset():
     assert cfg.frame_resolution == 320
 
 
-def test_static_video_preset():
+def test_static_video_preset() -> None:
+    """Verify the static-video preset uses a very low threshold and minimal sampling."""
     cfg = PipelineConfig.static_video()
     assert cfg.pyscene_threshold == 3
     assert cfg.frames_per_scene == 1
     assert cfg.yolo_action_fps == 0.5
 
 
-def test_to_dict():
+def test_to_dict() -> None:
+    """Verify to_dict returns a dict containing all expected keys."""
     cfg = PipelineConfig.default()
     d = cfg.to_dict()
     assert isinstance(d, dict)

@@ -1,3 +1,5 @@
+"""Embedding math helpers: pooling, normalisation, cosine similarity, and scene boundary detection."""
+
 from __future__ import annotations
 
 from typing import List, Tuple
@@ -17,10 +19,12 @@ def pool_tokens(hidden_states: torch.Tensor) -> torch.Tensor:
 
 
 def normalize_embeddings(embeddings: torch.Tensor) -> torch.Tensor:
+    """L2-normalise embedding vectors along the last dimension."""
     return torch.nn.functional.normalize(embeddings.float(), p=2, dim=-1)
 
 
 def cosine_similarity(a: torch.Tensor, b: torch.Tensor) -> float:
+    """Return the cosine similarity between two 1-D tensors."""
     return torch.nn.functional.cosine_similarity(a.unsqueeze(0), b.unsqueeze(0)).item()
 
 
@@ -28,6 +32,7 @@ def compute_scene_bounds(
     pooled_vectors: List[torch.Tensor],
     threshold: float,
 ) -> List[Tuple[int, int]]:
+    """Detect scene boundaries by comparing consecutive embedding similarities."""
     if not pooled_vectors:
         return []
 
@@ -51,6 +56,7 @@ def bounds_to_times(
     timestamps: List[float],
     duration: float,
 ) -> List[Tuple[float, float]]:
+    """Convert frame-index bounds to (start_seconds, end_seconds) intervals."""
     times: List[Tuple[float, float]] = []
     if not bounds:
         return times

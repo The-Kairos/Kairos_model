@@ -21,7 +21,18 @@ _CATEGORY_RANK = {"short": 1, "medium": 2, "long": 3, "extra": 4}
 
 
 def sanitize_filename(name: str) -> str:
-    """Clean a raw blob name into a safe filesystem filename."""
+    """Clean a raw blob name into a safe filesystem filename.
+
+    Percent-encoded sequences are decoded, invalid characters are replaced
+    with spaces, and redundant whitespace is collapsed.
+
+    Args:
+        name: The raw blob or URL-derived filename to sanitize.
+
+    Returns:
+        A sanitized filename string.  Falls back to ``"video"`` if the
+        result would otherwise be empty.
+    """
     name = unquote(name)
     name = _INVALID_CHARS.sub(" ", name)
     name = _WHITESPACE.sub(" ", name).rstrip(" .")
@@ -29,7 +40,16 @@ def sanitize_filename(name: str) -> str:
 
 
 def parse_link_expire(url: str) -> str | None:
-    """Extract the ``se`` (expiry) query parameter from a SAS URL."""
+    """Extract the ``se`` (expiry) query parameter from a SAS URL.
+
+    Args:
+        url: A Shared Access Signature URL that may contain an ``se``
+            query parameter indicating the expiry date/time.
+
+    Returns:
+        The expiry string if present, or ``None`` if it cannot be
+        extracted.
+    """
     try:
         query = urlparse(url).query
         params = parse_qs(query)
@@ -41,7 +61,18 @@ def parse_link_expire(url: str) -> str | None:
 def probe_video_metadata(
     path: Path,
 ) -> tuple[float | None, list[int] | None]:
-    """Return ``(duration_seconds, [width, height])`` for a video file."""
+    """Return duration and resolution for a video file.
+
+    Probes the file using ``ffprobe`` first, falling back to OpenCV and
+    then ``moviepy`` if earlier methods are unavailable or fail.
+
+    Args:
+        path: Filesystem path to the video file.
+
+    Returns:
+        A tuple ``(duration_seconds, [width, height])``.  Either element
+        may be ``None`` if it could not be determined.
+    """
     if not path.exists():
         return None, None
 
@@ -130,7 +161,21 @@ def probe_video_metadata(
 def normalize_downloads(
     record: object,
 ) -> tuple[dict, list[dict]]:
-    """Normalize legacy log formats into ``(metadata, downloads)``."""
+    """Normalize legacy log formats into ``(metadata, downloads)``.
+
+    Handles both the legacy list-of-dicts format and the current
+    dict-with-``downloads``-key format.  The ``downloaded_at`` key is
+    renamed to ``timestamp`` for consistency.
+
+    Args:
+        record: A raw log record, which may be a ``list``, ``dict``, or
+            any other type.
+
+    Returns:
+        A two-element tuple ``(metadata_dict, downloads_list)``.
+        *metadata_dict* is a dict of top-level fields (may be empty);
+        *downloads_list* is a list of individual download-event dicts.
+    """
     if isinstance(record, list):
         downloads = []
         for item in record:
@@ -149,7 +194,19 @@ def normalize_downloads(
 
 
 def order_record(record: dict) -> dict:
-    """Return *record* with ``video_length`` and ``downloads`` first."""
+    """Return *record* with ``video_length`` and ``downloads`` first.
+
+    Creates a new dictionary with a deterministic key order: the
+    ``video_length`` and ``downloads`` keys appear first, followed by
+    all remaining keys in their original order.
+
+    Args:
+        record: A log record dictionary to reorder.
+
+    Returns:
+        A new dictionary with ``video_length`` and ``downloads`` as the
+        first two keys.
+    """
     ordered: dict = {}
     ordered["video_length"] = record.get("video_length")
     ordered["downloads"] = record.get("downloads", [])
@@ -160,12 +217,29 @@ def order_record(record: dict) -> dict:
 
 
 def _bash_escape(value: str) -> str:
+    """Escape a string for safe inclusion inside double-quoted Bash arguments.
+
+    Args:
+        value: The raw string to escape.
+
+    Returns:
+        The escaped string wrapped in double quotes.
+    """
     escaped = value.replace("\\", "\\\\").replace('"', '\\"')
     escaped = escaped.replace("$", "\\$").replace("`", "\\`")
     return f'"{escaped}"'
 
 
 def _format_duration(seconds: float | int | None) -> str:
+    """Format a duration in seconds as an ``Hh:Mm:Ss`` string.
+
+    Args:
+        seconds: Duration in seconds, or ``None`` / non-positive values.
+
+    Returns:
+        A formatted duration string (e.g. ``"0h:5m:30s"``), or
+        ``"unknown"`` when the input is invalid.
+    """
     if not isinstance(seconds, (int, float)) or seconds <= 0:
         return "unknown"
     total = round(seconds)
@@ -176,7 +250,16 @@ def _format_duration(seconds: float | int | None) -> str:
 
 
 def write_run_cheatsheet(videos: list[dict], path: Path) -> None:
-    """Generate a CLI cheatsheet markdown file from a video catalog."""
+    """Generate a CLI cheatsheet markdown file from a video catalog.
+
+    The cheatsheet includes commands for processing all videos,
+    filtering by length, processing individual videos, redoing
+    pipeline steps, and launching RAG sessions.
+
+    Args:
+        videos: List of video-entry dicts from the catalog.
+        path: Destination path for the generated markdown file.
+    """
     blobs = [v.get("blob") for v in videos if isinstance(v, dict) and v.get("blob")]
 
     lines: list[str] = [
@@ -324,7 +407,20 @@ def write_run_cheatsheet(videos: list[dict], path: Path) -> None:
 
 
 def _load_catalog(data_path: Path) -> list[dict]:
-    """Load the video catalog JSON, supporting legacy formats."""
+    """Load the video catalog JSON, supporting legacy formats.
+
+    Falls back to a ``videos.json`` sibling file when the primary
+    catalog file does not exist.
+
+    Args:
+        data_path: Path to the primary ``_all_videos.json`` catalog file.
+
+    Returns:
+        A list of video-entry dictionaries.
+
+    Raises:
+        ValueError: If the loaded JSON is not a list of video objects.
+    """
     if data_path.exists():
         with open(data_path) as f:
             data = json.load(f)
@@ -343,6 +439,15 @@ def _load_catalog(data_path: Path) -> list[dict]:
 
 
 def _load_logs(log_path: Path) -> dict:
+    """Load the download-log JSON file.
+
+    Args:
+        log_path: Path to the ``_logs.json`` file.
+
+    Returns:
+        A dictionary of per-filename log records.  Returns an empty dict
+        when the file does not exist or contains invalid JSON.
+    """
     if log_path.exists():
         try:
             with open(log_path) as f:
@@ -353,6 +458,19 @@ def _load_logs(log_path: Path) -> dict:
 
 
 def _get_log_record(name: str, logs: dict) -> dict:
+    """Retrieve or create a normalised log record for a video filename.
+
+    If a record already exists in *logs*, it is normalised via
+    :func:`normalize_downloads` and :func:`order_record`.  If not, a
+    fresh record is created.
+
+    Args:
+        name: The sanitized video filename used as the log key.
+        logs: The mutable logs dictionary (updated in place).
+
+    Returns:
+        The normalised log record for *name*.
+    """
     record = logs.get(name)
     record, downloads = normalize_downloads(record)
     record["downloads"] = downloads
@@ -362,7 +480,16 @@ def _get_log_record(name: str, logs: dict) -> dict:
 
 
 def main() -> None:
-    """Interactive CLI for downloading test videos."""
+    """Interactive CLI for downloading test videos.
+
+    Presents a menu for selecting videos by length category, downloads
+    selected videos, probes their metadata, updates the catalog and log
+    files, and generates a CLI cheatsheet.
+
+    Raises:
+        SystemExit: When the user selects the cheatsheet-only option or
+            when no videos match the selected criteria.
+    """
     base_dir = Path("data/videos")
     data_path = base_dir / "_all_videos.json"
     log_path = base_dir / "_logs.json"

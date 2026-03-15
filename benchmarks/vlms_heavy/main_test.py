@@ -1,3 +1,10 @@
+"""Heavy VLM benchmark: end-to-end pipeline replacing BLIP with heavy VLMs.
+
+Runs scene detection, audio processing, YOLO, VLM captioning, LLM fusion,
+and saves per-video results and aggregate metrics for each heavy VLM
+(LLaVA, InternVL, Qwen-VL).
+"""
+
 import os
 import sys
 import time
@@ -28,6 +35,7 @@ from src.system_metrics import get_system_usage
 
 # VLM Module Imports (Delayed to avoid VRAM issues during init)
 def get_vlm_module(vlm_name):
+    """Lazily import and return the module for the specified heavy VLM."""
     if vlm_name == "llava":
         import test_heavy_vlms.test_llava_1_6 as vlm
     elif vlm_name == "internvl":
@@ -39,9 +47,7 @@ def get_vlm_module(vlm_name):
     return vlm
 
 def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
-    """
-    Runs the full pipeline replacing BLIP with the specified VLM.
-    """
+    """Run the full pipeline replacing BLIP with the specified heavy VLM."""
     video_name = Path(video_path).stem
     output_dir = results_dir / vlm_name / video_name
     output_dir.mkdir(parents=True, exist_ok=True)

@@ -1,3 +1,5 @@
+"""Run all scene-splitting benchmark tests and produce result tables and contact sheets."""
+
 from __future__ import annotations
 
 import argparse
@@ -26,8 +28,9 @@ TABLE_PATH = LOCAL_DIR / "_test_results.md"
 
 
 def _summarize(result: dict) -> dict:
+    """Compute summary statistics (scene count, durations, elapsed) from a test result."""
     scenes = result.get("scenes", []) if isinstance(result, dict) else []
-    durations = []
+    durations: list[float] = []
     for scene in scenes:
         if "duration_seconds" in scene:
             durations.append(scene["duration_seconds"])
@@ -52,6 +55,7 @@ def _summarize(result: dict) -> dict:
 
 
 def run_all(video_path: str | Path = DEFAULT_VIDEO) -> dict:
+    """Execute every registered scene-splitting test on a single video."""
     tests = [
         ("pyscene_base", pyscene_base.run),
         ("vit_scene", vit_scene.run),
@@ -81,6 +85,7 @@ def run_all(video_path: str | Path = DEFAULT_VIDEO) -> dict:
 
 
 def _iter_video_results(results: dict) -> list[dict]:
+    """Yield per-video result dicts from the top-level results structure."""
     if isinstance(results, dict) and isinstance(results.get("videos"), list):
         return [r for r in results["videos"] if isinstance(r, dict)]
     if isinstance(results, dict):
@@ -89,6 +94,7 @@ def _iter_video_results(results: dict) -> list[dict]:
 
 
 def _load_existing_results() -> dict:
+    """Load previously saved JSON results, returning a normalised wrapper."""
     if not RESULTS_PATH.exists():
         return {"videos": []}
     try:
@@ -103,13 +109,14 @@ def _load_existing_results() -> dict:
 
 
 def _merge_results(existing: list[dict], new: list[dict]) -> list[dict]:
-    new_by_video = {}
+    """Merge new video results into the existing list, replacing by video path."""
+    new_by_video: dict[str, dict] = {}
     for entry in new:
         if isinstance(entry, dict) and entry.get("video"):
             new_by_video[str(entry["video"])] = entry
 
     merged: list[dict] = []
-    seen = set()
+    seen: set[str] = set()
     for entry in existing:
         if not isinstance(entry, dict) or not entry.get("video"):
             continue
@@ -127,7 +134,8 @@ def _merge_results(existing: list[dict], new: list[dict]) -> list[dict]:
 
 
 def _write_table(results: dict) -> None:
-    lines = []
+    """Write a Markdown summary table for all video results."""
+    lines: list[str] = []
     for video_result in _iter_video_results(results):
         video_label = Path(str(video_result.get("video", ""))).name or "unknown"
         lines.append(f"## {video_label}")
@@ -159,6 +167,7 @@ def _write_table(results: dict) -> None:
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments for video paths."""
     parser = argparse.ArgumentParser(description="Run scene tests on one or more videos.")
     parser.add_argument(
         "--video",
@@ -169,6 +178,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """CLI entry-point: run all tests, save JSON results, table, and contact sheets."""
     args = parse_args()
     videos = args.video if args.video else [str(DEFAULT_VIDEO)]
     existing = _load_existing_results()
