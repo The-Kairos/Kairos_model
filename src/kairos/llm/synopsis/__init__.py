@@ -3,7 +3,7 @@
 Scene summarization and structured synopsis generation.
 """
 
-from kairos.llm.synopsis.synthesis import (  # noqa: F401
+from kairos.llm.synopsis.synthesis import (
     call_gpt,
     call_gpt_safe,
     summarize_scenes,

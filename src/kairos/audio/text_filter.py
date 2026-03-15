@@ -56,7 +56,7 @@ def clean_repetitive_text(text: str) -> str:
     return " ".join(cleaned_words)
 
 
-def filter_hallucinations(segments: list, primary_lang: str = None) -> list:
+def filter_hallucinations(segments: list, primary_lang: str | None = None) -> list:
     final = []
     seen_texts = set()
     for seg in segments:

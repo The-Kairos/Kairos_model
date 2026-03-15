@@ -1,7 +1,6 @@
 """Frame sampling from video scenes at fixed counts or FPS."""
 
 import os
-from typing import Optional
 
 import cv2
 import numpy as np
@@ -73,15 +72,15 @@ def sample_from_clip(
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     cap.release()
 
-    start_frame = max(0, min(int(round(start_seconds * fps)), total_frames - 1))
-    end_frame = max(0, min(int(round(end_seconds * fps)), total_frames - 1))
+    start_frame = max(0, min(round(start_seconds * fps), total_frames - 1))
+    end_frame = max(0, min(round(end_seconds * fps), total_frames - 1))
 
     if end_frame <= start_frame or num_frames <= 1:
         frame_positions = [start_frame]
     else:
         total_range = end_frame - start_frame
         gap = total_range / (num_frames + 1)
-        frame_positions = [int(round(start_frame + i * gap)) for i in range(num_frames)]
+        frame_positions = [round(start_frame + i * gap) for i in range(num_frames)]
 
     return _read_frames_at_positions(input_video_path, frame_positions, new_size)
 
@@ -101,8 +100,8 @@ def sample_from_clip_fps(
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     cap.release()
 
-    start_frame = max(0, min(int(round(start_seconds * video_fps)), total_frames - 1))
-    end_frame = max(0, min(int(round(end_seconds * video_fps)), total_frames - 1))
+    start_frame = max(0, min(round(start_seconds * video_fps), total_frames - 1))
+    end_frame = max(0, min(round(end_seconds * video_fps), total_frames - 1))
 
     if end_frame <= start_frame or fps <= 0:
         frame_positions = [start_frame]
@@ -111,7 +110,7 @@ def sample_from_clip_fps(
         times = list(np.arange(start_seconds, end_seconds, step))
         if not times:
             times = [start_seconds]
-        frame_positions = [int(round(t * video_fps)) for t in times]
+        frame_positions = [round(t * video_fps) for t in times]
 
     frames = _read_frames_at_positions(input_video_path, frame_positions, new_size)
 
@@ -133,7 +132,7 @@ def sample_frames(
     scenes: list[dict],
     num_frames: int = 4,
     new_size: int = 320,
-    output_dir: Optional[str] = None,
+    output_dir: str | None = None,
 ) -> list[dict]:
     """Loop over scenes and attach sampled frames to each."""
     if output_dir is not None:
@@ -170,7 +169,7 @@ def sample_fps(
     scenes: list[dict],
     fps: float = 4.0,
     new_size: int = 320,
-    output_dir: Optional[str] = None,
+    output_dir: str | None = None,
     frames_key: str = "frames",
     frame_paths_key: str = "frame_paths",
     store_paths: bool = False,
@@ -206,7 +205,7 @@ def sample_fps(
             frame_indices = None
             frame_timestamps = None
 
-        frame_paths: Optional[list[str]] = None
+        frame_paths: list[str] | None = None
         if output_dir is not None:
             saved_paths = _save_scene_frames(frames, scene["scene_index"], output_dir)
             if store_paths:

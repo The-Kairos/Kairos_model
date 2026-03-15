@@ -57,7 +57,7 @@ def test_apply_redo_only_no_cascade(sample_scenes):
         "scenes": list(sample_scenes),
         "steps": {"describe_scenes": {"wall_time_sec": 5}},
     }
-    result, info = apply_redo(checkpoint, None, ["llm"], redo_only=True)
+    _result, info = apply_redo(checkpoint, None, ["llm"], redo_only=True)
     assert "llm" in info["redo_set"]
     # redo_only=True should NOT cascade to narrative/synopsis/rag
     assert "narrative" not in info["redo_set"]
@@ -66,7 +66,7 @@ def test_apply_redo_only_no_cascade(sample_scenes):
 
 def test_apply_redo_empty_steps():
     checkpoint = {"scenes": [], "steps": {}}
-    result, info = apply_redo(checkpoint, None, [])
+    _result, info = apply_redo(checkpoint, None, [])
     assert info["changed"] is False
 
 

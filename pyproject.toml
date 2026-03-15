@@ -62,6 +62,7 @@ dev = [
 test = [
     "pytest>=9.0",
     "pytest-mock>=3.14",
+    "pytest-cov>=6.0",
 ]
 
 [project.scripts]
@@ -92,7 +93,16 @@ src = ["src"]
 exclude = ["benchmarks", "data", "logs"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "W"]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "I",    # isort
+    "W",    # pycodestyle warnings
+    "UP",   # pyupgrade — modernize syntax for 3.10+
+    "B",    # bugbear — common pitfalls
+    "SIM",  # simplify — cleaner constructs
+    "RUF",  # ruff-specific rules
+]
 
 [tool.ruff.format]
 quote-style = "double"

@@ -25,7 +25,7 @@ def describe_flash_scene(
     """Generate an LLM summary for a single scene."""
     if prompt_path is None:
         prompt_path = str(PROMPTS_DIR / "describe_scene.txt")
-    with open(prompt_path, "r", encoding="utf-8") as f:
+    with open(prompt_path, encoding="utf-8") as f:
         template = f.read()
 
     normalized_text = apply_gpt_normalization(scene_text)
@@ -65,7 +65,7 @@ def format_single_description(captions: list, yolo) -> str:
         return "\n".join(lines)
 
     # Legacy per-frame yolo dict format
-    frame_count = max(len(captions), max((int(k) for k in yolo.keys()), default=-1) + 1)
+    frame_count = max(len(captions), max((int(k) for k in yolo), default=-1) + 1)
     for idx in range(frame_count):
         lines.append(f"Frame {idx}:")
         if captions and idx < len(captions):
@@ -318,7 +318,7 @@ def describe_scenes(
     )
 
     updated = []
-    for idx, (scene, summary) in enumerate(zip(scenes, final_summaries)):
+    for idx, (scene, summary) in enumerate(zip(scenes, final_summaries, strict=False)):
         if not summary:
             continue
         new_scene = dict(scene)

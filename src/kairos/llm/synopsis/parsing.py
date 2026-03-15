@@ -107,7 +107,7 @@ def _split_time_range(text: str) -> tuple[str, str]:
     if not isinstance(text, str) or not text.strip():
         return NOT_STATED, NOT_STATED
     raw = text.strip()
-    for sep in (" - ", " – ", " — ", " to ", "-"):
+    for sep in (" - ", " – ", " — ", " to ", "-"):  # noqa: RUF001
         if sep in raw:
             left, right = raw.split(sep, 1)
             left = left.strip() if left.strip() else NOT_STATED

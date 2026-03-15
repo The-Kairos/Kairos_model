@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import copy
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any
 
 import numpy as np
 
@@ -28,15 +28,15 @@ class Scene:
     end_timecode: str = "00:00:00.000"
 
     # ---- Video clip (set by save_clips) ----------------------------------
-    clip_path: Optional[str] = None
+    clip_path: str | None = None
 
     # ---- Frame sampling (set by sample_frames / sample_fps) ---------------
     frames: list[np.ndarray] = field(default_factory=list, repr=False)
-    frame_paths: Optional[list[str]] = None
+    frame_paths: list[str] | None = None
 
     # ---- YOLO-specific frames (set by sample_fps for YOLO) ---------------
     yolo_frames: list[np.ndarray] = field(default_factory=list, repr=False)
-    yolo_frame_paths: Optional[list[str]] = None
+    yolo_frame_paths: list[str] | None = None
 
     # ---- BLIP captioning (set by caption_frames) -------------------------
     frame_captions: list[str] = field(default_factory=list)

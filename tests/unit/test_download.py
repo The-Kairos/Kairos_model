@@ -84,7 +84,7 @@ class TestNormalizeDownloads:
         assert len(downloads) == 1
 
     def test_dict_missing_downloads(self):
-        meta, downloads = normalize_downloads({"video_length": 50})
+        _meta, downloads = normalize_downloads({"video_length": 50})
         assert downloads == []
 
     def test_invalid_type(self):

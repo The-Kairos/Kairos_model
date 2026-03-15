@@ -1,6 +1,5 @@
 """BLIP frame captioning with lazy model loading."""
 
-from typing import Optional
 
 import cv2
 import numpy as np
@@ -47,7 +46,7 @@ def blip_frame(
     image,
     model=None,
     processor=None,
-    prompt: Optional[str] = None,
+    prompt: str | None = None,
     **generate_kwargs,
 ) -> str:
     """Generate a BLIP caption for a single frame.

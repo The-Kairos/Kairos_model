@@ -19,7 +19,7 @@ def detect_object_yolo(
     model=None,
     conf: float = 0.5,
     iou: float = 0.45,
-    output_dir: str = None,
+    output_dir: str | None = None,
     use_bytetrack: bool = True,
     tracker: str = "bytetrack.yaml",
     fallback_iou: float = 0.3,

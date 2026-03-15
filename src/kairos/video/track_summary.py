@@ -88,7 +88,7 @@ def format_track_summary(summary: dict, style: str = "compact") -> str:
             else f"{label} #{track_id} is {movement_phrase} to {end_pos}"
         )
         relation_phrases = [f"{label} #{track_id} is {rel}" for rel in relations]
-        return "; ".join([base] + relation_phrases) if relation_phrases else base
+        return "; ".join([base, *relation_phrases]) if relation_phrases else base
 
     base = f"{label} #{track_id}: {start_pos} -> {end_pos}, {movement}"
     if relations:

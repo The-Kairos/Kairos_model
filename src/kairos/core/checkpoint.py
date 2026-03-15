@@ -34,7 +34,7 @@ def read_json(json_path: str | Path) -> dict:
         return {}
 
     print_prefixed("(Checkpoint)", f"Reading JSON from {json_path}")
-    with open(json_path, "r", encoding="utf-8") as f:
+    with open(json_path, encoding="utf-8") as f:
         checkpoint = json.load(f)
         if isinstance(checkpoint, list):
             return {"scenes": checkpoint}
@@ -97,7 +97,7 @@ def save_clips(video_path: str, scenes: list, output_dir: str) -> list:
                 "(save_clips)", f"Skipping existing clip: {clip_filename}", indent=4
             )
         else:
-            subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(cmd, capture_output=True)
 
         scene_new = dict(scene)
         scene_new["clip_path"] = str(clip_path)

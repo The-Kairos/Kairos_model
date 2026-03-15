@@ -74,7 +74,7 @@ def main() -> None:
             max_scenes = 0
 
             for filepath in group_files:
-                with open(filepath, "r", encoding="utf-8") as f:
+                with open(filepath, encoding="utf-8") as f:
                     log = json.load(f)
 
                 scenes = log.get("scenes", [])
@@ -89,7 +89,7 @@ def main() -> None:
             for col in data:
                 data[col] += [""] * (max_scenes - len(data[col]))
 
-            with open(group_files[-1], "r", encoding="utf-8") as f:
+            with open(group_files[-1], encoding="utf-8") as f:
                 shared_log = json.load(f)
 
             shared_scenes = shared_log.get("scenes", [])

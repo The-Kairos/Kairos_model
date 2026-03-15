@@ -20,7 +20,7 @@ def get_color_for_label(label: str):
 
 
 def debug_draw_yolo(
-    frame: np.ndarray, detections: list, save_path: str = None
+    frame: np.ndarray, detections: list, save_path: str | None = None
 ) -> np.ndarray:
     """Draw YOLO detections on a frame for debugging."""
     pad = 20

@@ -8,9 +8,9 @@ from kairos.core.models import ModelRegistry
 from kairos.core.scene import Scene
 
 __all__ = [
-    "PipelineConfig",
     "KairosError",
     "ModelRegistry",
+    "PipelineConfig",
     "Scene",
     "__version__",
 ]

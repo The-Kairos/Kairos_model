@@ -117,7 +117,7 @@ def main() -> None:
     json_files = glob.glob(os.path.join(log_dir, "*.json"))
 
     for file_path in json_files:
-        with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+        with open(file_path, encoding="utf-8", errors="replace") as f:
             document = json.load(f)
 
         video_path = document.get("video_path", "unknown")
@@ -170,9 +170,8 @@ def main() -> None:
                         "asr_timings",
                     )
                     and metric != "wall_time_%"
-                ):
-                    if isinstance(row[metric], (int, float)):
-                        row[metric] *= 60
+                ) and isinstance(row[metric], (int, float)):
+                    row[metric] *= 60
 
             rows.append(row)
 

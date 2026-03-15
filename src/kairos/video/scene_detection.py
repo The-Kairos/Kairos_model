@@ -1,4 +1,3 @@
-from typing import Dict, List
 
 import cv2
 from scenedetect import SceneManager, open_video
@@ -14,7 +13,7 @@ def get_scene_list(
     frame_skip: int = 3,
     retry_threshold_factor: float = 0.5,
     fallback_interval_sec: int = 20,
-) -> List[Dict]:
+) -> list[dict]:
     """
     Detect scenes in a video using PySceneDetect and return structured metadata.
 
@@ -73,7 +72,7 @@ def get_scene_list(
         fps = 30.0
 
     # Getting the min_scene_len based on fps
-    min_scene_len = max(1, int(round(fps * min_scene_sec)))
+    min_scene_len = max(1, round(fps * min_scene_sec))
 
     scene_list = detect_scenes_with_threshold(threshold)
     if not scene_list:

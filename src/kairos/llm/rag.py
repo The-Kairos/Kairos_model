@@ -188,7 +188,7 @@ def find_optimal_k_elbow(
 
 
 def compute_kmeans_clusters(
-    embeddings: list, num_clusters: int = None, random_state: int = 42
+    embeddings: list, num_clusters: int | None = None, random_state: int = 42
 ) -> dict:
     from sklearn.cluster import KMeans
 
@@ -311,7 +311,7 @@ def save_rag_embeddings(
 def load_rag_embeddings(path):
     if not os.path.exists(path):
         raise FileNotFoundError(f"RAG embedding file not found: {path}")
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 

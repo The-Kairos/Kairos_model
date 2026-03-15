@@ -9,7 +9,7 @@ New modules added by the enhancement pass:
 - :mod:`kairos.core.timing` — ``@timed_stage`` decorator and timing reports
 """
 
-from kairos.core.exceptions import (  # noqa: F401
+from kairos.core.exceptions import (
     KairosConfigError,
     KairosError,
     KairosIOError,
@@ -17,12 +17,12 @@ from kairos.core.exceptions import (  # noqa: F401
     KairosModelError,
     KairosRAGError,
 )
-from kairos.core.models import ModelRegistry  # noqa: F401
-from kairos.core.scene import Scene  # noqa: F401
+from kairos.core.models import ModelRegistry
+from kairos.core.scene import Scene
 
 __all__ = [
-    "KairosError",
     "KairosConfigError",
+    "KairosError",
     "KairosIOError",
     "KairosLLMError",
     "KairosModelError",

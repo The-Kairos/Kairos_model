@@ -1,5 +1,6 @@
 """Whisper API client: lazy singleton for Azure OpenAI Whisper transcription."""
 
+import contextlib
 import os
 import tempfile
 from pathlib import Path
@@ -32,7 +33,7 @@ def _ensure_whisper_client():
 
 
 def transcribe_via_api(
-    audio_np: np.ndarray, sr: int, language: str = None, client=None
+    audio_np: np.ndarray, sr: int, language: str | None = None, client=None
 ) -> list:
     if client is None:
         client = _ensure_whisper_client()
@@ -56,10 +57,8 @@ def transcribe_via_api(
                 response_format="verbose_json",
             )
     finally:
-        try:
+        with contextlib.suppress(Exception):
             os.remove(tmp_path)
-        except Exception:
-            pass
     segments = getattr(response, "segments", [])
     if segments and not isinstance(segments[0], dict):
         segments = [

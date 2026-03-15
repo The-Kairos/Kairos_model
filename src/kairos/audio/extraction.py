@@ -26,7 +26,7 @@ def _load_audio_ffmpeg(video_path: str, target_sr: int = 16000):
         "-",
     ]
     proc = subprocess.run(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False
+        cmd, capture_output=True, check=False
     )
     if proc.returncode != 0:
         err = proc.stderr.decode("utf-8", errors="ignore").strip()

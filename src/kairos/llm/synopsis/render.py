@@ -28,7 +28,7 @@ def _timecode_to_seconds(timecode: str | None):
         m = int(float(minutes))
         s = float(seconds)
         total = (h * 3600) + (m * 60) + s
-        return int(round(total))
+        return round(total)
     except ValueError:
         return None
 

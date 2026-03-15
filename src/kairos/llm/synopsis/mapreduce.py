@@ -226,8 +226,8 @@ def parallel_reduce_summaries(
         ]
         reduced = [None] * len(groups)
 
-        def _task(group_idx: int, group_items: list[dict]):
-            prompt = _build_reduce_prompt(group_items, round_idx)
+        def _task(group_idx: int, group_items: list[dict], _round=round_idx):
+            prompt = _build_reduce_prompt(group_items, _round)
             try:
                 merged = call_gpt_fn(prompt).strip()
             except Exception as exc:

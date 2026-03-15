@@ -261,7 +261,7 @@ def extract_speech_singlecall(
     scan_result: dict,
     model_size: str = "small",
     use_vad: bool = True,
-    language: str = None,
+    language: str | None = None,
     parallel: bool = False,
     use_api: bool = True,
     force_cpu: bool = False,

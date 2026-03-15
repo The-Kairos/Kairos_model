@@ -121,10 +121,7 @@ def probe_video_metadata(
 
         with VideoFileClip(str(path)) as clip:
             duration = float(clip.duration) if clip.duration else None
-            if clip.w and clip.h:
-                resolution = [int(clip.w), int(clip.h)]
-            else:
-                resolution = None
+            resolution = [int(clip.w), int(clip.h)] if clip.w and clip.h else None
         return duration, resolution
     except Exception:
         return None, None
@@ -171,7 +168,7 @@ def _bash_escape(value: str) -> str:
 def _format_duration(seconds: float | int | None) -> str:
     if not isinstance(seconds, (int, float)) or seconds <= 0:
         return "unknown"
-    total = int(round(seconds))
+    total = round(seconds)
     hours = total // 3600
     minutes = (total % 3600) // 60
     secs = total % 60

@@ -178,7 +178,7 @@ def _compute_track_velocities(tracks):
     for tid, positions in track_positions.items():
         positions = sorted(positions, key=lambda p: p[0])
         for i in range(1, len(positions)):
-            f_prev, x_prev, y_prev = positions[i - 1]
+            _f_prev, x_prev, y_prev = positions[i - 1]
             f_curr, x_curr, y_curr = positions[i]
             track_vel.setdefault(tid, {})[f_curr] = (x_curr - x_prev, y_curr - y_prev)
     return track_vel

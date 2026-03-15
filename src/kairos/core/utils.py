@@ -29,7 +29,7 @@ def format_timecode(seconds: float | None) -> str:
     if seconds is None:
         return "??:??:??.???"
     try:
-        ms_total = int(round(float(seconds) * 1000))
+        ms_total = round(float(seconds) * 1000)
     except (TypeError, ValueError):
         return "??:??:??.???"
     sec_total, ms = divmod(ms_total, 1000)
@@ -50,7 +50,7 @@ def apply_gpt_normalization(
     if not path.exists():
         return text
 
-    with open(path, "r", encoding="utf-8-sig") as f:
+    with open(path, encoding="utf-8-sig") as f:
         mapping = json.load(f)
 
     for src, dst in mapping.items():
