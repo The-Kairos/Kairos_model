@@ -2,8 +2,12 @@ name: Tests
 
 on:
   push:
-    branches: [main, code_structuring]
+    branches: [main]
   pull_request:
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   unit-tests:
