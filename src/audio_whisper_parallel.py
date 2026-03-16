@@ -468,17 +468,13 @@ def transcribe_full_video(
     debug: bool = False,
     silero_model=None,
     get_speech_ts_fn=None,
+    use_api: bool = False,
+    language: str = None,
 ) -> dict:
     """
     Run Whisper once on the entire video audio.
     """
     t_start = time.time()
-
-    if debug:
-        print(f"[WhisperSingle] Loading Whisper model: {model_size}")
-
-    device = "cpu" if force_cpu else None
-    model = whisper.load_model(model_size, device=device)
 
     if debug:
         print(f"[WhisperSingle] Cleaning audio ({len(audio)} samples)...")
@@ -508,7 +504,23 @@ def transcribe_full_video(
         print(f"[WhisperSingle] Audio cleaned in {t_clean - t_start:.2f}s")
         print(f"[WhisperSingle] Transcribing full audio ({len(cleaned) / sr:.1f}s)...")
 
-    result = model.transcribe(cleaned, fp16=False, verbose=None)
+    result = None
+    if use_api:
+        if debug:
+            print("[WhisperSingle] Using Azure Whisper API")
+        try:
+            segments = transcribe_via_api(cleaned, sr, language=language)
+            result = {"segments": segments, "text": " ".join([s.get("text", "") for s in segments])}
+        except Exception as e:
+            if debug:
+                print(f"[WhisperSingle] API Error: {e}. Falling back to local model.")
+                
+    if result is None:
+        if debug:
+            print(f"[WhisperSingle] Loading local Whisper model: {model_size}")
+        device = "cpu" if force_cpu else None
+        model = whisper.load_model(model_size, device=device)
+        result = model.transcribe(cleaned, fp16=False, verbose=None, language=language)
 
     t_transcribe = time.time()
     if debug:
@@ -603,6 +615,8 @@ def extract_speech_singlecall(
             debug=debug,
             silero_model=_silero_model,
             get_speech_ts_fn=get_ts,
+            use_api=use_api,
+            language=language,
         )
 
     scene_texts = map_segments_to_scenes(whisper_result["segments"], scenes)

@@ -340,7 +340,7 @@ def main():
                 language=None,
                 parallel=True,
                 use_api=True,
-                force_cpu=False,
+                force_cpu=True,
                 debug=True,
             )
             time.sleep(10)
