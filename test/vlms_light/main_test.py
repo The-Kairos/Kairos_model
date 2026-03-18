@@ -5,9 +5,16 @@ Run: python test_light_vlms/main_test.py  (from project root)
 """
 import os
 import sys
+
+# Configure CPU threading BEFORE importing torch/numpy (they read these at import time)
+_n_cpu = os.cpu_count() or 4
+for _k in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS", "NUMEXPR_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"):
+    os.environ.setdefault(_k, str(_n_cpu))
+
 import time
 import json
 import argparse
+from concurrent.futures import ProcessPoolExecutor, as_completed
 import torch
 import cv2
 from pathlib import Path
@@ -35,80 +42,120 @@ try:
 except ImportError:
     from test_light_vlms.benchmark_utils import get_system_usage
 
+# PyTorch: use all CPU threads, enable cuDNN auto-tuning for faster conv layers
+torch.set_num_threads(_n_cpu)
+if torch.cuda.is_available():
+    torch.backends.cudnn.benchmark = True
+
 # Light VLM registry (same interface: load_vlm_model, caption_image)
 def get_vlm_module(vlm_name):
     if vlm_name == "blip2":
         import test_light_vlms.test_blip2 as vlm
-    elif vlm_name == "instructblip":
-        import test_light_vlms.test_instructblip as vlm
-    elif vlm_name == "llava_mistral":
-        import test_light_vlms.test_llava_mistral as vlm
-    elif vlm_name == "phi3_vision":
-        import test_light_vlms.test_phi3_vision as vlm
     elif vlm_name == "siglip":
         import test_light_vlms.test_siglip as vlm
+    elif vlm_name == "mobilevlm":
+        import test_light_vlms.test_mobilevlm as vlm
+    elif vlm_name == "tinyllava":
+        import test_light_vlms.test_tinyllava as vlm
     else:
         raise ValueError(f"Unknown light VLM: {vlm_name}")
     return vlm
 
-# Same Videos dir as heavy VLMs for comparable benchmarks
+# Paths: all results stored under vlms_light/results/ for each (vlm, video) pair
 VIDEOS_DIR = PROJECT_ROOT / "Videos"
-RESULTS_DIR = Path(__file__).parent / "results"
-SUMMARY_PATH = Path(__file__).parent / "light_vlm_metrics.json"
-SUMMARY_TABLE_PATH = Path(__file__).parent / "results" / "summary_table.md"
+VLMS_LIGHT_DIR = Path(__file__).parent  # vlms_light folder
+RESULTS_DIR = VLMS_LIGHT_DIR / "results"
+CACHE_DIR = VLMS_LIGHT_DIR / "cache"
+SUMMARY_PATH = VLMS_LIGHT_DIR / "light_vlm_metrics.json"
+SUMMARY_TABLE_PATH = RESULTS_DIR / "summary_table.md"
+SUMMARY_PIVOT_PATH = RESULTS_DIR / "summary_pivot.md"  # Videos × VLMs comparison
+BY_VIDEO_DIR = RESULTS_DIR / "by_video"  # Per-video aggregated metrics
+
+
+def _preproc_one_video(video_path_str):
+    """Worker: pre-process one video. Used with ProcessPoolExecutor."""
+    from src.frame_sampling import sample_fps
+    video = Path(video_path_str)
+    video_name = video.stem
+    cache_path = CACHE_DIR / f"{video_name}_preproc.json"
+    if cache_path.exists():
+        return video_name, True  # already cached
+
+    cache_audio_dir = CACHE_DIR / "audio"
+    video_audio_dir = cache_audio_dir / video_name
+    video_audio_dir.mkdir(parents=True, exist_ok=True)
+
+    scenes = get_scene_list(str(video))
+    for scene in scenes:
+        idx = scene["scene_index"]
+        start, end = scene["start_seconds"], scene["end_seconds"]
+        wav_path = video_audio_dir / f"scene_{idx:02d}.wav"
+        extract_scene_audio_ffmpeg(str(video), str(wav_path), start, end)
+        speech, _ = extract_speech_asr_api(str(wav_path), enable_logs=False)
+        scene["audio_speech"] = speech
+    extract_sounds(str(video), scenes, debug=False)
+    scenes = sample_fps(str(video), scenes, fps=1.0, new_size=320, store_meta=True)
+    scenes = detect_object_yolo(scenes, model_size="model/yolov8s.pt", summary_key="yolo_detections")
+
+    cached_scenes = clear_frames(scenes)
+    with open(cache_path, "w", encoding="utf-8") as f:
+        json.dump(cached_scenes, f, indent=2)
+    return video_name, False
+
+
+def ensure_preproc_cache(videos, workers=1):
+    """
+    Pre-compute scene detection, audio (ASR + AST), and YOLO for all videos.
+    Saves to vlms_light/cache/ so the same pre-processing is reused across all light VLMs.
+    workers: parallel workers for cache building (default 1; >1 uses more GPU for YOLO).
+    """
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    (CACHE_DIR / "audio").mkdir(parents=True, exist_ok=True)
+
+    to_process = [v for v in videos if not (CACHE_DIR / f"{Path(v).stem}_preproc.json").exists()]
+    if not to_process:
+        print("[CACHE] All videos already cached.")
+        return
+
+    if workers <= 1:
+        for video in to_process:
+            video_name = Path(video).stem
+            print(f"\n[CACHE] Pre-processing {video_name} (scene detection + audio + YOLO)...")
+            name, skipped = _preproc_one_video(str(video))
+            if not skipped:
+                print(f"  Saved cache: {name}_preproc.json")
+    else:
+        print(f"\n[CACHE] Pre-processing {len(to_process)} video(s) with {workers} workers...")
+        with ProcessPoolExecutor(max_workers=workers) as ex:
+            futures = {ex.submit(_preproc_one_video, str(v)): v for v in to_process}
+            for fut in as_completed(futures):
+                name, skipped = fut.result()
+                if not skipped:
+                    print(f"  Saved cache: {name}_preproc.json")
+    print("")
+
 
 def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
-    """Run full pipeline with the given light VLM. Same steps as heavy."""
+    """Run full pipeline with the given light VLM. Uses cached pre-processing."""
     video_name = Path(video_path).stem
     output_dir = results_dir / vlm_name / video_name
     output_dir.mkdir(parents=True, exist_ok=True)
-
-    audio_dir = output_dir / "audio"
-    audio_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"\n>>> PROCESSING: {video_name} | Light VLM: {vlm_name}")
 
     pipeline_metrics = {}
     t_start = time.time()
 
-    # Shared pre-processing cache (scene cuts, audio, AST, YOLO) per video.
-    cache_dir = Path(__file__).parent / "cache"
-    cache_dir.mkdir(parents=True, exist_ok=True)
-    cache_path = cache_dir / f"{video_name}_preproc.json"
-
-    if cache_path.exists():
-        print("  [Shared] Loading cached scenes + audio + YOLO...")
-        with open(cache_path, "r", encoding="utf-8") as f:
-            scenes = json.load(f)
-        pipeline_metrics["scene_count"] = len(scenes)
-    else:
-        # 1. Scene Detection
-        print("  [Step 1/6] Scene Detection...")
-        scenes = get_scene_list(str(video_path))
-        pipeline_metrics["scene_count"] = len(scenes)
-
-        # 2. Audio (ASR & AST)
-        print("  [Step 2/6] Audio Processing (ASR + Local AST)...")
-        for scene in scenes:
-            idx = scene["scene_index"]
-            start, end = scene["start_seconds"], scene["end_seconds"]
-            wav_path = audio_dir / f"scene_{idx:02d}.wav"
-            extract_scene_audio_ffmpeg(str(video_path), str(wav_path), start, end)
-            speech, _ = extract_speech_asr_api(str(wav_path), enable_logs=False)
-            scene["audio_speech"] = speech
-        extract_sounds(str(video_path), scenes, debug=False)
-
-        # 3. YOLO
-        print("  [Step 3/6] YOLO Object Detection...")
-        from src.frame_sampling import sample_fps
-        scenes = sample_fps(str(video_path), scenes, fps=1.0, new_size=320, store_meta=True)
-        scenes = detect_object_yolo(scenes, model_size="model/yolov8s.pt", summary_key="yolo_detections")
-
-        # Save a lightweight, JSON-serializable version of scenes for reuse.
-        cached_scenes = clear_frames(scenes)
-        with open(cache_path, "w", encoding="utf-8") as f:
-            json.dump(cached_scenes, f, indent=2)
-
+    cache_path = CACHE_DIR / f"{video_name}_preproc.json"
+    if not cache_path.exists():
+        raise FileNotFoundError(
+            f"Pre-processing cache not found for {video_name}. "
+            "Run with the same videos to ensure cache is built first."
+        )
+    with open(cache_path, "r", encoding="utf-8") as f:
+        scenes = json.load(f)
+    pipeline_metrics["scene_count"] = len(scenes)
+    print("  [Cache] Loaded scenes + audio + YOLO from cache")
 
     # 4. Light VLM Captioning
     print(f"  [Step 4/6] Light VLM Captioning ({vlm_name})...")
@@ -170,9 +217,26 @@ def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
     return pipeline_metrics
 
 
+def _fmt_metric(m, key, fmt=None, default="-"):
+    """Extract and format a metric, handling errors."""
+    if isinstance(m, dict) and "error" in m:
+        return "FAILED"
+    val = m.get(key) if isinstance(m, dict) else None
+    if val is None:
+        return default
+    if fmt == "float":
+        return f"{float(val):.1f}"
+    if fmt == "int":
+        return str(int(val))
+    return str(val)
+
+
 def build_summary_table(metrics_path, table_path):
-    """Build a Markdown summary table from light_vlm_metrics.json."""
+    """Build a Markdown summary table with all saved metrics (duration, scenes, GPU, CPU, memory)."""
+    table_path.parent.mkdir(parents=True, exist_ok=True)
     if not metrics_path.exists():
+        with open(table_path, "w", encoding="utf-8") as f:
+            f.write("# Light VLM Benchmark Summary\n\nNo metrics yet. Run the pipeline to populate.\n")
         return
     with open(metrics_path, "r", encoding="utf-8") as f:
         all_metrics = json.load(f)
@@ -180,20 +244,69 @@ def build_summary_table(metrics_path, table_path):
     rows = []
     for vlm, videos in all_metrics.items():
         for video, m in videos.items():
-            duration = m.get("total_duration_sec", 0)
-            scenes = m.get("scene_count", 0)
-            sys_use = m.get("system_usage") or {}
-            gpu_mb = sys_use.get("gpu_memory_mb", "")
-            rows.append((vlm, video, f"{duration:.1f}", scenes, str(gpu_mb)))
+            duration = _fmt_metric(m, "total_duration_sec", "float") if "error" not in (m or {}) else "FAILED"
+            scenes = _fmt_metric(m, "scene_count", "int") if "error" not in (m or {}) else "-"
+            sys_use = (m or {}).get("system_usage") or {}
+            gpu_mb = _fmt_metric(sys_use, "gpu_memory_mb", default="-")
+            cpu_pct = _fmt_metric(sys_use, "cpu_percent", default="-")
+            mem_mb = _fmt_metric(sys_use, "memory_mb", "float") if sys_use.get("memory_mb") is not None else "-"
+            rows.append((vlm, video, duration, scenes, gpu_mb, cpu_pct, mem_mb))
 
-    table_path.parent.mkdir(parents=True, exist_ok=True)
     with open(table_path, "w", encoding="utf-8") as f:
         f.write("# Light VLM Benchmark Summary\n\n")
-        f.write("| VLM | Video | Duration (s) | Scenes | GPU (MB) |\n")
-        f.write("|-----|-------|--------------|--------|----------|\n")
+        f.write("| VLM | Video | Duration (s) | Scenes | GPU (MB) | CPU (%) | Memory (MB) |\n")
+        f.write("|-----|-------|--------------|--------|----------|---------|-------------|\n")
         for r in rows:
             f.write("| " + " | ".join(str(x) for x in r) + " |\n")
         f.write("\n*Same videos and pipeline as test_heavy_vlms for comparison.*\n")
+
+
+def build_pivot_table(metrics_path, pivot_path, vlms_list, videos_list):
+    """Build a pivot table: rows=videos, columns=VLMs, cells=duration for easy comparison."""
+    pivot_path.parent.mkdir(parents=True, exist_ok=True)
+    if not metrics_path.exists():
+        with open(pivot_path, "w", encoding="utf-8") as f:
+            f.write("# Light VLM Pivot Comparison (Duration in seconds)\n\nNo metrics yet.\n")
+        return
+    with open(metrics_path, "r", encoding="utf-8") as f:
+        all_metrics = json.load(f)
+
+    header = "| Video | " + " | ".join(vlms_list) + " |\n"
+    sep = "|-------|" + "|".join(["--------"] * len(vlms_list)) + "|\n"
+    lines = [header, sep]
+    for video in videos_list:
+        cells = [video]
+        for vlm in vlms_list:
+            m = (all_metrics.get(vlm) or {}).get(video)
+            if m and "error" in m:
+                cells.append("FAILED")
+            elif m:
+                d = m.get("total_duration_sec")
+                cells.append(f"{d:.1f}" if d is not None else "-")
+            else:
+                cells.append("-")
+        lines.append("| " + " | ".join(cells) + " |\n")
+    with open(pivot_path, "w", encoding="utf-8") as f:
+        f.write("# Light VLM Pivot Comparison (Duration in seconds)\n\n")
+        f.write("Videos as rows, VLMs as columns. Compare models side-by-side per video.\n\n")
+        f.writelines(lines)
+
+
+def write_per_video_aggregates(all_metrics, by_video_dir, videos_list):
+    """Write per-video aggregated JSON: results/by_video/<video>/all_metrics.json for each video."""
+    by_video_dir.mkdir(parents=True, exist_ok=True)
+    for video in videos_list:
+        video_stem = Path(video).stem if hasattr(video, "stem") else Path(str(video)).stem
+        video_name = video if isinstance(video, str) else getattr(video, "name", str(video))
+        agg = {}
+        for vlm, videos in all_metrics.items():
+            if video_name in videos:
+                agg[vlm] = videos[video_name]
+        if agg:
+            out_dir = by_video_dir / video_stem
+            out_dir.mkdir(parents=True, exist_ok=True)
+            with open(out_dir / "all_metrics.json", "w", encoding="utf-8") as f:
+                json.dump(agg, f, indent=2)
 
 
 def parse_args():
@@ -205,7 +318,7 @@ def parse_args():
         default="",
         help=(
             "Comma-separated VLM names to run (default: all). "
-            "Available: blip2,instructblip,llava_mistral,phi3_vision,siglip"
+            "Available: blip2,siglip,mobilevlm,tinyllava"
         ),
     )
     parser.add_argument(
@@ -214,12 +327,24 @@ def parse_args():
         default="",
         help="Comma-separated video stems or filenames to include (default: all).",
     )
+    parser.add_argument(
+        "--cache-workers",
+        type=int,
+        default=1,
+        help="Parallel workers for cache pre-processing (default: 1). Use 2+ for multiple videos; each worker loads YOLO so requires GPU memory.",
+    )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     args = parse_args()
+
+    print(f"[Resources] CPU threads: {_n_cpu} (OMP/MKL/etc)")
+    if torch.cuda.is_available():
+        print(f"[Resources] GPU: {torch.cuda.get_device_name(0)}")
+    else:
+        print("[Resources] No GPU detected, using CPU")
 
     videos = [v for v in VIDEOS_DIR.glob("*.mp4") if not v.name.startswith("_")]
     if args.videos:
@@ -230,16 +355,22 @@ if __name__ == "__main__":
         print("No videos in Videos/. Add .mp4 files to run benchmarks.")
         sys.exit(0)
 
-    VLMS = ["blip2", "instructblip", "llava_mistral", "phi3_vision", "siglip"]
+    VLMS = ["blip2", "siglip", "mobilevlm", "tinyllava"]
     if args.vlms:
         requested = [x.strip() for x in args.vlms.split(",") if x.strip()]
         VLMS = [v for v in VLMS if v in requested]
 
     if not VLMS:
-        print("No VLMs selected. Use --vlms to choose from: blip2,instructblip,llava_mistral,phi3_vision,siglip")
+        print("No VLMs selected. Use --vlms to choose from: blip2,siglip,mobilevlm,tinyllava")
         sys.exit(0)
 
     GCLOUD_JSON = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
+    print(f"[Resources] CPU threads: {_n_cpu} | GPU: {'yes' if torch.cuda.is_available() else 'no'} | Cache workers: {getattr(args, 'cache_workers', 1)}")
+
+    # Pre-compute shared cache (scene detection + audio + YOLO) for all videos.
+    # Reused across all light VLMs so we don't redo it when testing different models.
+    ensure_preproc_cache(videos, workers=getattr(args, "cache_workers", 1))
 
     # If a previous metrics file exists, load it so we can reuse metrics
     # for already-processed (vlm, video) pairs that we skip.
@@ -284,7 +415,12 @@ if __name__ == "__main__":
         json.dump(all_metrics, f, indent=2)
 
     build_summary_table(SUMMARY_PATH, SUMMARY_TABLE_PATH)
+    build_pivot_table(SUMMARY_PATH, SUMMARY_PIVOT_PATH, VLMS, [v.name for v in videos])
+    write_per_video_aggregates(all_metrics, BY_VIDEO_DIR, videos)
+
     print("\n\nLight VLM benchmarking complete.")
-    print("  Per-video results: test_light_vlms/results/<vlm>/<video>/pipeline_results.json")
-    print("  Metrics summary:  test_light_vlms/light_vlm_metrics.json")
-    print("  Table summary:    test_light_vlms/results/summary_table.md")
+    print("  Per-video results:    vlms_light/results/<vlm>/<video>/pipeline_results.json")
+    print("  Per-video aggregates: vlms_light/results/by_video/<video>/all_metrics.json")
+    print("  Metrics summary:      vlms_light/light_vlm_metrics.json")
+    print("  Summary table:        vlms_light/results/summary_table.md")
+    print("  Pivot comparison:     vlms_light/results/summary_pivot.md")

@@ -21,32 +21,26 @@ from test_light_vlms.benchmark_utils import benchmark_inference
 
 def load_vlm(model_name):
     """Load one of the light VLMs (same interface as heavy: returns infer(image) -> caption)."""
-    if model_name == "blip2":
-        import test_light_vlms.test_blip2 as m
-        model, processor = m.load_vlm_model()
-        def infer(image):
-            return m.caption_image(model, processor, image)
-        return infer
-    elif model_name == "instructblip":
-        import test_light_vlms.test_instructblip as m
-        model, processor = m.load_vlm_model()
-        def infer(image):
-            return m.caption_image(model, processor, image)
-        return infer
-    elif model_name == "llava_mistral":
-        import test_light_vlms.test_llava_mistral as m
-        model, processor = m.load_vlm_model()
-        def infer(image):
-            return m.caption_image(model, processor, image)
-        return infer
-    elif model_name == "phi3_vision":
-        import test_light_vlms.test_phi3_vision as m
-        model, processor = m.load_vlm_model()
-        def infer(image):
-            return m.caption_image(model, processor, image)
-        return infer
-    elif model_name == "siglip":
+    if model_name == "siglip":
         import test_light_vlms.test_siglip as m
+        model, processor = m.load_vlm_model()
+        def infer(image):
+            return m.caption_image(model, processor, image)
+        return infer
+    elif model_name == "mobilevlm":
+        import test_light_vlms.test_mobilevlm as m
+        model, processor = m.load_vlm_model()
+        def infer(image):
+            return m.caption_image(model, processor, image)
+        return infer
+    elif model_name == "tinyllava":
+        import test_light_vlms.test_tinyllava as m
+        model, processor = m.load_vlm_model()
+        def infer(image):
+            return m.caption_image(model, processor, image)
+        return infer
+    elif model_name == "blip2":
+        import test_light_vlms.test_blip2 as m
         model, processor = m.load_vlm_model()
         def infer(image):
             return m.caption_image(model, processor, image)
@@ -88,7 +82,7 @@ if __name__ == "__main__":
         print("No videos found in Videos/ directory.")
     else:
         target_video = videos[0]
-        model_to_test = "blip2"
+        model_to_test = "siglip"
         try:
             test_results = run_video_test(target_video, model_to_test)
             print("\nFinal Results Summary:")
