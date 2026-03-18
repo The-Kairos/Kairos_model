@@ -6,11 +6,10 @@ Same code structure and pipeline as `test_heavy_vlms`, but uses **light** VLMs f
 
 | Name (id) | Description |
 |-----------|-------------|
-| **BLIP-2** (`blip2`) | Salesforce BLIP-2 OPT 2.7B image captioning |
-| **InstructBLIP** (`instructblip`) | Instruction-following captioning (flan-t5-xl) |
-| **LLaVA v1.6 Mistral 7B** (`llava_mistral`) | LLaVA with Mistral 7B backend |
-| **Phi-3.5 Vision** (`phi3_vision`) | Microsoft Phi-3.5 vision (OCR-oriented prompts) |
 | **SigLIP** (`siglip`) | Retrieval-first: best-matching template description |
+| **BLIP-2 (OPT small)** (`blip2`) | Salesforce BLIP-2 OPT 1.3B image captioning |
+| **MobileVLM** (`mobilevlm`) | Mobile-friendly captioning VLM for general scenes |
+| **TinyLLaVA** (`tinyllava`) | Tiny LLaVA-style multimodal captioning model |
 
 ## Videos
 
@@ -51,39 +50,37 @@ python test_light_vlms/main_test.py
 This will:
 
 - Run the full pipeline (scene detection → audio → YOLO → **light VLM** captioning → LLM fusion) for each **video × light VLM** pair.
-- Write **per-video results** under `test_light_vlms/results/<vlm_name>/<video_name>/pipeline_results.json`.
-- Write **aggregate metrics** to `test_light_vlms/light_vlm_metrics.json`.
-- Build a **summary table** at `test_light_vlms/results/summary_table.md` (duration, scene count, GPU usage per run).
+- Write **per-video results** under `vlms_light/results/<vlm_name>/<video_name>/pipeline_results.json`.
+- Write **aggregate metrics** to `vlms_light/results/light_vlm_metrics.json`.
+- Build a **summary table** at `vlms_light/results/summary_table.md` (duration, scenes, GPU, CPU, memory per run, plus by-video VLM comparison).
 
 ## Results layout
 
 ```
-test_light_vlms/
+vlms_light/
   results/
-    blip2/
+    <vlm_name>/
       <video1>/
         pipeline_results.json
       <video2>/
         pipeline_results.json
-    instructblip/
-      ...
-    summary_table.md      # Table summary of all runs
-  light_vlm_metrics.json  # Full metrics JSON
+    light_vlm_metrics.json  # Aggregate metrics JSON
+    summary_table.md       # Summary table (all runs + by-video VLM comparison)
 ```
 
 ## Quick single-video test
 
-To test one light VLM on one video (first few scenes only, no full pipeline):
+To test the light VLM on one video (first few scenes only, no full pipeline):
 
 ```bash
 python test_light_vlms/test_videos.py
 ```
 
-Edit the script to change `target_video` and `model_to_test` (`blip2`, `instructblip`, `llava_mistral`, `phi3_vision`, `siglip`).
+Edit the script to change `target_video` and `model_to_test` (`siglip`, `mobilevlm`, `tinyllava`, `blip2`).
 
 ## Comparing with heavy VLMs
 
 - **Heavy results:** `test_heavy_vlms/results/`, `test_heavy_vlms/vlm_metrics.json`
-- **Light results:** `test_light_vlms/results/`, `test_light_vlms/light_vlm_metrics.json`, `test_light_vlms/results/summary_table.md`
+- **Light results:** `vlms_light/results/` (per-video JSON, `light_vlm_metrics.json`, `summary_table.md`)
 
 Use the same videos in `Videos/` and compare duration, GPU usage, and scene counts across the two suites.

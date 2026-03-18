@@ -4,12 +4,25 @@ Uses the same Videos folder and benchmarks; writes per-video results and a summa
 Run: python test_light_vlms/main_test.py  (from project root)
 """
 import os
+
+# Set threading env vars before any numpy/torch imports so they use all CPU cores
+_CPU_COUNT = os.cpu_count() or 8
+os.environ.setdefault("OMP_NUM_THREADS", str(_CPU_COUNT))
+os.environ.setdefault("MKL_NUM_THREADS", str(_CPU_COUNT))
+os.environ.setdefault("OPENBLAS_NUM_THREADS", str(_CPU_COUNT))
+os.environ.setdefault("NUMEXPR_NUM_THREADS", str(_CPU_COUNT))
+
 import sys
 import time
 import json
 import argparse
 import torch
 import cv2
+
+# PyTorch: use all CPU threads and enable cudnn benchmark for faster GPU convs
+torch.set_num_threads(_CPU_COUNT)
+if torch.cuda.is_available():
+    torch.backends.cudnn.benchmark = True
 from pathlib import Path
 from PIL import Image
 from dotenv import load_dotenv
@@ -37,25 +50,25 @@ except ImportError:
 
 # Light VLM registry (same interface: load_vlm_model, caption_image)
 def get_vlm_module(vlm_name):
-    if vlm_name == "blip2":
-        import test_light_vlms.test_blip2 as vlm
-    elif vlm_name == "instructblip":
-        import test_light_vlms.test_instructblip as vlm
-    elif vlm_name == "llava_mistral":
-        import test_light_vlms.test_llava_mistral as vlm
-    elif vlm_name == "phi3_vision":
-        import test_light_vlms.test_phi3_vision as vlm
-    elif vlm_name == "siglip":
+    if vlm_name == "siglip":
         import test_light_vlms.test_siglip as vlm
+    elif vlm_name == "mobilevlm":
+        import test_light_vlms.test_mobilevlm as vlm
+    elif vlm_name == "tinyllava":
+        import test_light_vlms.test_tinyllava as vlm
+    elif vlm_name == "blip2":
+        import test_light_vlms.test_blip2 as vlm
     else:
         raise ValueError(f"Unknown light VLM: {vlm_name}")
     return vlm
 
 # Same Videos dir as heavy VLMs for comparable benchmarks
+# All outputs go under vlms_light/results/
+VLMS_LIGHT_DIR = Path(__file__).resolve().parent
 VIDEOS_DIR = PROJECT_ROOT / "Videos"
-RESULTS_DIR = Path(__file__).parent / "results"
-SUMMARY_PATH = Path(__file__).parent / "light_vlm_metrics.json"
-SUMMARY_TABLE_PATH = Path(__file__).parent / "results" / "summary_table.md"
+RESULTS_DIR = VLMS_LIGHT_DIR / "results"
+SUMMARY_PATH = RESULTS_DIR / "light_vlm_metrics.json"
+SUMMARY_TABLE_PATH = RESULTS_DIR / "summary_table.md"
 
 def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
     """Run full pipeline with the given light VLM. Same steps as heavy."""
@@ -71,8 +84,9 @@ def run_pipeline_with_vlm(video_path, vlm_name, results_dir, gcloud_json):
     pipeline_metrics = {}
     t_start = time.time()
 
-    # Shared pre-processing cache (scene cuts, audio, AST, YOLO) per video.
-    cache_dir = Path(__file__).parent / "cache"
+    # Shared pre-processing cache (scene cuts, audio, AST, YOLO) per video,
+    # stored at project root so all light VLM runs can reuse it.
+    cache_dir = PROJECT_ROOT / "cache_preproc"
     cache_dir.mkdir(parents=True, exist_ok=True)
     cache_path = cache_dir / f"{video_name}_preproc.json"
 
@@ -177,6 +191,9 @@ def build_summary_table(metrics_path, table_path):
     with open(metrics_path, "r", encoding="utf-8") as f:
         all_metrics = json.load(f)
 
+    def _fmt(val):
+        return "" if val in (None, "") else f"{val:.1f}" if isinstance(val, (int, float)) else str(val)
+
     rows = []
     for vlm, videos in all_metrics.items():
         for video, m in videos.items():
@@ -184,15 +201,55 @@ def build_summary_table(metrics_path, table_path):
             scenes = m.get("scene_count", 0)
             sys_use = m.get("system_usage") or {}
             gpu_mb = sys_use.get("gpu_memory_mb", "")
-            rows.append((vlm, video, f"{duration:.1f}", scenes, str(gpu_mb)))
+            cpu_pct = sys_use.get("cpu_percent", "")
+            mem_mb = sys_use.get("memory_mb", "")
+            rows.append((
+                vlm, video,
+                f"{duration:.1f}" if isinstance(duration, (int, float)) else str(duration),
+                scenes,
+                _fmt(gpu_mb),
+                _fmt(cpu_pct),
+                _fmt(mem_mb),
+            ))
 
     table_path.parent.mkdir(parents=True, exist_ok=True)
     with open(table_path, "w", encoding="utf-8") as f:
         f.write("# Light VLM Benchmark Summary\n\n")
-        f.write("| VLM | Video | Duration (s) | Scenes | GPU (MB) |\n")
-        f.write("|-----|-------|--------------|--------|----------|\n")
+        f.write("## All runs (VLM × Video)\n\n")
+        f.write("| VLM | Video | Duration (s) | Scenes | GPU (MB) | CPU (%) | Memory (MB) |\n")
+        f.write("|-----|-------|--------------|--------|----------|---------|-------------|\n")
         for r in rows:
             f.write("| " + " | ".join(str(x) for x in r) + " |\n")
+
+        # By-video comparison: for each video, compare all VLMs side by side
+        videos_seen = set()
+        for vlm, videos in all_metrics.items():
+            for video in videos:
+                videos_seen.add(video)
+
+        if videos_seen:
+            f.write("\n## By video (compare VLMs)\n\n")
+            for video in sorted(videos_seen):
+                f.write(f"### {video}\n\n")
+                vlm_rows = []
+                for vlm in all_metrics:
+                    m = (all_metrics.get(vlm) or {}).get(video) or {}
+                    duration = m.get("total_duration_sec", 0)
+                    scenes = m.get("scene_count", 0)
+                    sys_use = m.get("system_usage") or {}
+                    gpu_mb = sys_use.get("gpu_memory_mb", "")
+                    vlm_rows.append((
+                        vlm,
+                        f"{duration:.1f}" if isinstance(duration, (int, float)) else str(duration),
+                        scenes,
+                        _fmt(gpu_mb),
+                    ))
+                f.write("| VLM | Duration (s) | Scenes | GPU (MB) |\n")
+                f.write("|-----|--------------|--------|----------|\n")
+                for r in vlm_rows:
+                    f.write("| " + " | ".join(str(x) for x in r) + " |\n")
+                f.write("\n")
+
         f.write("\n*Same videos and pipeline as test_heavy_vlms for comparison.*\n")
 
 
@@ -205,7 +262,7 @@ def parse_args():
         default="",
         help=(
             "Comma-separated VLM names to run (default: all). "
-            "Available: blip2,instructblip,llava_mistral,phi3_vision,siglip"
+            "Available: siglip,mobilevlm,tinyllava,blip2"
         ),
     )
     parser.add_argument(
@@ -230,13 +287,13 @@ if __name__ == "__main__":
         print("No videos in Videos/. Add .mp4 files to run benchmarks.")
         sys.exit(0)
 
-    VLMS = ["blip2", "instructblip", "llava_mistral", "phi3_vision", "siglip"]
+    VLMS = ["siglip", "mobilevlm", "tinyllava", "blip2"]
     if args.vlms:
         requested = [x.strip() for x in args.vlms.split(",") if x.strip()]
         VLMS = [v for v in VLMS if v in requested]
 
     if not VLMS:
-        print("No VLMs selected. Use --vlms to choose from: blip2,instructblip,llava_mistral,phi3_vision,siglip")
+        print("No VLMs selected. Use --vlms to choose from: siglip,mobilevlm,tinyllava,blip2")
         sys.exit(0)
 
     GCLOUD_JSON = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
@@ -285,6 +342,7 @@ if __name__ == "__main__":
 
     build_summary_table(SUMMARY_PATH, SUMMARY_TABLE_PATH)
     print("\n\nLight VLM benchmarking complete.")
-    print("  Per-video results: test_light_vlms/results/<vlm>/<video>/pipeline_results.json")
-    print("  Metrics summary:  test_light_vlms/light_vlm_metrics.json")
-    print("  Table summary:    test_light_vlms/results/summary_table.md")
+    print("  All outputs in vlms_light/results/")
+    print("  Per-video:  results/<vlm>/<video>/pipeline_results.json")
+    print("  Metrics:    results/light_vlm_metrics.json")
+    print("  Summary:    results/summary_table.md")
