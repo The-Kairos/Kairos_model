@@ -363,9 +363,33 @@ if __name__ == "__main__":
         requested = [x.strip() for x in args.vlms.split(",") if x.strip()]
         VLMS = [v for v in VLMS if v in requested]
 
+    # Filter out VLMs that fail to import (e.g. MobileVLM when repo not installed)
+    _available = []
+    for v in VLMS:
+        try:
+            get_vlm_module(v)
+            _available.append(v)
+        except Exception as e:
+            print(f"[SKIP] {v}: not available ({e})")
+    VLMS = _available
+
     if not VLMS:
         print("No VLMs selected. Use --vlms to choose from: blip2,siglip,mobilevlm,tinyllava")
         sys.exit(0)
+
+    # Skip VLMs that fail to import (e.g. MobileVLM when repo not installed)
+    _available = []
+    for v in VLMS:
+        try:
+            get_vlm_module(v)
+            _available.append(v)
+        except Exception as e:
+            print(f"[SKIP VLM] {v}: {e}")
+    if not _available:
+        print("No VLMs could be loaded. Install dependencies (protobuf, MobileVLM, etc.) and retry.")
+        sys.exit(1)
+    VLMS = _available
+    print(f"[VLMs] Running: {', '.join(VLMS)}")
 
     GCLOUD_JSON = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 

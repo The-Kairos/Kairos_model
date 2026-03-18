@@ -43,10 +43,13 @@ noisereduce
 soundfile
 scipy>=1.10
 openai>=1.0  # Optional: for Azure Whisper API; pipeline falls back to local Whisper if missing
+protobuf>=3.20  # Required by SigLIP / sentencepiece
 
 # Utils (debug_utils, etc.)
 pandas
 tqdm
+
+# Optional: MobileVLM (pip install git+https://github.com/Meituan-AutoML/MobileVLM.git)
 
 # Optional GPU monitoring
 nvidia-ml-py

@@ -14,12 +14,18 @@ def load_vlm_model(model_id="tinyllava/TinyLLaVA-Phi-2-SigLIP-3.1B"):
     from transformers import AutoTokenizer, AutoModelForCausalLM
     import torch
     print(f"Loading {model_id}...")
+    # attn_implementation="eager" avoids _supports_sdpa compatibility issue with custom model
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
         trust_remote_code=True,
         torch_dtype=torch.float16,
-        device_map="auto"
-    ).eval()
+        device_map="auto",
+        attn_implementation="eager",
+    )
+    # TinyLLaVA custom model may lack _supports_sdpa; set to avoid AttributeError during generation
+    if not hasattr(model, "_supports_sdpa"):
+        model._supports_sdpa = False
+    model = model.eval()
     config = model.config
     tokenizer = AutoTokenizer.from_pretrained(
         model_id,
