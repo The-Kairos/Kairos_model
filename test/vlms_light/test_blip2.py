@@ -13,11 +13,14 @@ def load_vlm_model(model_id="Salesforce/blip2-opt-2.7b"):
     """Load BLIP-2 OPT 2.7B (small). Returns (model, processor)."""
     print(f"Loading {model_id}...")
     processor = Blip2Processor.from_pretrained(model_id)
+    # Avoid meta device error (lm_head missing from checkpoint): load without device_map then move
     model = Blip2ForConditionalGeneration.from_pretrained(
         model_id,
         torch_dtype=torch.float16,
-        device_map="auto"
-    ).eval()
+        low_cpu_mem_usage=False,  # avoids meta device when lm_head is newly initialized
+    )
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = model.to(device).eval()
     return model, processor
 
 
