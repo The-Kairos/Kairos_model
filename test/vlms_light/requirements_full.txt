@@ -41,6 +41,8 @@ librosa>=0.10
 openai-whisper
 noisereduce
 soundfile
+scipy>=1.10
+openai>=1.0  # Optional: for Azure Whisper API; pipeline falls back to local Whisper if missing
 
 # Utils (debug_utils, etc.)
 pandas

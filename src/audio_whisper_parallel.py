@@ -17,7 +17,10 @@ import re
 import unicodedata
 import tempfile
 import scipy.io.wavfile as wav
-from openai import AzureOpenAI
+try:
+    from openai import AzureOpenAI
+except ImportError:
+    AzureOpenAI = None  # Use local Whisper when openai package not installed
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -103,7 +106,7 @@ AZURE_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
 AZURE_DEPLOYMENT = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
 AZURE_API_VERSION = os.environ.get("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
 
-if AZURE_KEY and AZURE_ENDPOINT:
+if AZURE_KEY and AZURE_ENDPOINT and AzureOpenAI is not None:
     base_endpoint = AZURE_ENDPOINT.split("/openai")[0]
     _azure_client = AzureOpenAI(
         api_key=AZURE_KEY,
