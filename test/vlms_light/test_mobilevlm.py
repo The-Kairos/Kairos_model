@@ -12,14 +12,31 @@ DEFAULT_PROMPT = "Describe the scene in detail. Focus on what is visually observ
 
 def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
     """Load MobileVLM model. Returns (model, processor_dict) with tokenizer, image_processor."""
+    import sys
+    from pathlib import Path
     try:
         from mobilevlm.model.mobilevlm import load_pretrained_model
-    except ImportError as e:
-        raise ImportError(
-            "MobileVLM requires the MobileVLM repo. Install with:\n"
-            "  pip install git+https://github.com/Meituan-AutoML/MobileVLM.git\n"
-            "Or clone and add to PYTHONPATH."
-        ) from e
+    except ImportError:
+        # Try adding project-level MobileVLM clone to path (from install_mobilevlm.py)
+        project_root = Path(__file__).resolve().parent.parent.parent
+        mobilevlm_dir = project_root / "MobileVLM"
+        if mobilevlm_dir.exists() and (mobilevlm_dir / "mobilevlm").exists():
+            if str(mobilevlm_dir) not in sys.path:
+                sys.path.insert(0, str(mobilevlm_dir))
+            try:
+                from mobilevlm.model.mobilevlm import load_pretrained_model
+            except ImportError as e:
+                raise ImportError(
+                    "MobileVLM cloned but import failed. Install with:\n"
+                    "  python test/vlms_light/install_mobilevlm.py\n"
+                    "Or: pip install git+https://github.com/Meituan-AutoML/MobileVLM.git"
+                ) from e
+        else:
+            raise ImportError(
+                "MobileVLM requires the MobileVLM repo. Install with:\n"
+                "  python test/vlms_light/install_mobilevlm.py\n"
+                "Or: pip install git+https://github.com/Meituan-AutoML/MobileVLM.git"
+            ) from None
     print(f"Loading {model_id}...")
     tokenizer, model, image_processor, _ = load_pretrained_model(
         model_path=model_id,
