@@ -28,6 +28,8 @@ load_dotenv(PROJECT_ROOT / ".env")
 
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
+VLMS_LIGHT_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(VLMS_LIGHT_DIR))
 
 # Pipeline imports (same as heavy)
 from src.scene_cutting import get_scene_list
@@ -41,7 +43,7 @@ from src.debug_utils import clear_frames
 try:
     from src.system_metrics import get_system_usage
 except ImportError:
-    from test_light_vlms.benchmark_utils import get_system_usage
+    from benchmark_utils import get_system_usage
 
 # PyTorch: use all CPU threads, enable cuDNN auto-tuning for faster conv layers
 torch.set_num_threads(_n_cpu)
@@ -51,13 +53,13 @@ if torch.cuda.is_available():
 # Light VLM registry (same interface: load_vlm_model, caption_image)
 def get_vlm_module(vlm_name):
     if vlm_name == "blip2":
-        import test_light_vlms.test_blip2 as vlm
+        import test_blip2 as vlm
     elif vlm_name == "siglip":
-        import test_light_vlms.test_siglip as vlm
+        import test_siglip as vlm
     elif vlm_name == "mobilevlm":
-        import test_light_vlms.test_mobilevlm as vlm
+        import test_mobilevlm as vlm
     elif vlm_name == "tinyllava":
-        import test_light_vlms.test_tinyllava as vlm
+        import test_tinyllava as vlm
     else:
         raise ValueError(f"Unknown light VLM: {vlm_name}")
     return vlm
