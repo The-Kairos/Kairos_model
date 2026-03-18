@@ -370,20 +370,6 @@ if __name__ == "__main__":
             get_vlm_module(v)
             _available.append(v)
         except Exception as e:
-            print(f"[SKIP] {v}: not available ({e})")
-    VLMS = _available
-
-    if not VLMS:
-        print("No VLMs selected. Use --vlms to choose from: blip2,siglip,mobilevlm,tinyllava")
-        sys.exit(0)
-
-    # Skip VLMs that fail to import (e.g. MobileVLM when repo not installed)
-    _available = []
-    for v in VLMS:
-        try:
-            get_vlm_module(v)
-            _available.append(v)
-        except Exception as e:
             print(f"[SKIP VLM] {v}: {e}")
     if not _available:
         print("No VLMs could be loaded. Install dependencies (protobuf, MobileVLM, etc.) and retry.")
@@ -438,12 +424,19 @@ if __name__ == "__main__":
                 print(f"FAILED: {vlm} on {video_name} | Error: {e}")
                 all_metrics[vlm][video_name] = {"error": str(e)}
 
-    with open(SUMMARY_PATH, "w", encoding="utf-8") as f:
-        json.dump(all_metrics, f, indent=2)
+    # Merge with existing metrics so we preserve prior results for VLMs/videos not run this round
+    final_metrics = dict(existing_metrics)
+    for vlm in all_metrics:
+        final_metrics[vlm] = {**final_metrics.get(vlm, {}), **all_metrics[vlm]}
 
+    with open(SUMMARY_PATH, "w", encoding="utf-8") as f:
+        json.dump(final_metrics, f, indent=2)
+
+    all_vlms = sorted(set(final_metrics))
+    all_videos = sorted({vid for m in final_metrics.values() for vid in m})
     build_summary_table(SUMMARY_PATH, SUMMARY_TABLE_PATH)
-    build_pivot_table(SUMMARY_PATH, SUMMARY_PIVOT_PATH, VLMS, [v.name for v in videos])
-    write_per_video_aggregates(all_metrics, BY_VIDEO_DIR, videos)
+    build_pivot_table(SUMMARY_PATH, SUMMARY_PIVOT_PATH, all_vlms, all_videos)
+    write_per_video_aggregates(final_metrics, BY_VIDEO_DIR, videos)
 
     print("\n\nLight VLM benchmarking complete.")
     print("  Per-video results:    vlms_light/results/<vlm>/<video>/pipeline_results.json")
