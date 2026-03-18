@@ -22,7 +22,8 @@ from PIL import Image
 from dotenv import load_dotenv
 
 # Load .env from project root before ANY other imports
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# Script is at test/vlms_light/main_test.py -> need 3 parents to reach project root
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 load_dotenv(PROJECT_ROOT / ".env")
 
 sys.path.insert(0, str(PROJECT_ROOT))
