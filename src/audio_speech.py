@@ -29,6 +29,10 @@ def extract_speech_asr_api(wav_path: str, enable_logs: bool = False) -> tuple:
     if len(audio_np) < sr * 0.1:  # < 0.1 s
         return "", {"total_time_sec": 0, "transcribe_time_sec": 0}
 
+    # Sanitize NaN/inf (e.g. from corrupted WAV or edge cases)
+    if not np.isfinite(audio_np).all():
+        audio_np = np.nan_to_num(audio_np, nan=0.0, posinf=0.0, neginf=0.0, copy=False)
+
     from src.audio_whisper_parallel import transcribe_full_video
 
     use_api = True  # Prefer Azure when credentials exist

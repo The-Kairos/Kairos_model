@@ -502,6 +502,9 @@ def transcribe_full_video(
     if use_vad:
         cleaned = clean_audio(cleaned, sr, silero_model, get_speech_ts_fn)
 
+    # Sanitize NaNs/inf from noisereduce (can occur with very quiet, silent, or crowd-noise segments)
+    cleaned = np.nan_to_num(cleaned, nan=0.0, posinf=0.0, neginf=0.0, copy=False)
+
     t_clean = time.time()
     if debug:
         print(f"[WhisperSingle] Audio cleaned in {t_clean - t_start:.2f}s")
