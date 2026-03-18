@@ -7,7 +7,7 @@ Run from project root:
 
 It will:
 - List all videos under Videos/ (excluding files starting with "_").
-- For each VLM (blip2, instructblip, llava_mistral, phi3_vision, siglip),
+- For each VLM (siglip, mobilevlm, tinyllava, blip2),
   check for test_light_vlms/results/<vlm>/<video_stem>/pipeline_results.json.
 - Print a summary of OK vs MISSING, and suggested rerun commands.
 """
@@ -19,7 +19,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 VIDEOS_DIR = PROJECT_ROOT / "Videos"
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 
-VLMS = ["blip2", "instructblip", "llava_mistral", "phi3_vision", "siglip"]
+VLMS = ["siglip", "mobilevlm", "tinyllava", "blip2"]
 
 
 def main():
