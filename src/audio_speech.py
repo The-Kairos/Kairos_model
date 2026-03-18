@@ -37,7 +37,7 @@ def extract_speech_asr_api(wav_path: str, enable_logs: bool = False) -> tuple:
         sr,
         model_size="base",
         use_vad=False,
-        force_cpu=True,
+        force_cpu=False,  # Use GPU when available (was True, caused "inference on CPU when CUDA available" warning)
         debug=enable_logs,
         silero_model=None,
         get_speech_ts_fn=None,
