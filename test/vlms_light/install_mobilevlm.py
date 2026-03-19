@@ -35,15 +35,17 @@ def main():
         )
     if (clone_dir / "mobilevlm").exists():
         print(f"\nMobileVLM cloned to {clone_dir}")
-        reqs = clone_dir / "requirements.txt"
-        if reqs.exists():
-            print("Installing MobileVLM dependencies...")
-            subprocess.run(
-                [sys.executable, "-m", "pip", "install", "-r", str(reqs)],
-                check=False,
-                capture_output=False,
-            )
-        print("Add to PYTHONPATH before running:")
+        # MobileVLM's full requirements.txt pins torch/transformers and needs flash-attn (fails to build).
+        # Install only the minimal extras your env is likely missing (timm, einops, etc.) without downgrading.
+        minimal_deps = ["timm", "einops", "einops-exts", "shortuuid"]
+        print("Installing minimal MobileVLM dependencies (timm, einops, etc.)...")
+        r = subprocess.run(
+            [sys.executable, "-m", "pip", "install", *minimal_deps],
+            capture_output=False,
+        )
+        if r.returncode != 0:
+            print("Warning: some minimal deps failed. Try: pip install timm einops einops-exts shortuuid")
+        print("\nAdd to PYTHONPATH before running:")
         print(f"  export PYTHONPATH={clone_dir}:$PYTHONPATH   # Linux/Mac")
         print(f"  set PYTHONPATH={clone_dir};%PYTHONPATH%   # Windows")
         print("\nOr run the pipeline from this directory with PYTHONPATH set.")
