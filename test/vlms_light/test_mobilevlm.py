@@ -123,7 +123,10 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
         PreTrainedModel.from_pretrained = _orig
 
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
-    model = model.to(device)
+    # Use float16 for model + image to avoid "mat1 and mat2 dtype mismatch" (Float vs Half)
+    dtype = torch.float16
+    model = model.to(device, dtype)
+    model = model.half()  # Belt-and-suspenders: ensure all parameters/buffers in float16
     processor = {"tokenizer": tokenizer, "image_processor": image_processor}
     return model, processor
 
@@ -145,7 +148,9 @@ def caption_image(model, processor, image, prompt=None):
         img = image
     else:
         img = Image.open(image).convert("RGB")
-    image_tensor = process_images([img], image_processor, model.config).to(model.device)
+    image_tensor = process_images([img], image_processor, model.config)
+    # Match model dtype (float16) to avoid "mat1 and mat2 must have the same dtype" (Float vs Half)
+    image_tensor = image_tensor.to(device=model.device, dtype=torch.float16)
     input_ids = tokenizer_image_token(question, tokenizer, IMAGE_TOKEN_INDEX, return_tensors="pt")
     input_ids = input_ids.unsqueeze(0).to(model.device)
     output_ids = model.generate(
