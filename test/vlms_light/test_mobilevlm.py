@@ -63,12 +63,24 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
     print(f"Loading {model_id}...")
     import torch
 
-    tokenizer, model, image_processor, _ = load_pretrained_model(
-        model_path=model_id,
-        load_8bit=False,
-        load_4bit=False,
-        device_map=None,
-    )
+    # Force low_cpu_mem_usage=False for ALL from_pretrained calls during load (main model + vision tower).
+    from transformers.modeling_utils import PreTrainedModel
+    _orig = PreTrainedModel.from_pretrained
+
+    def _patched(cls, *args, low_cpu_mem_usage=True, **kwargs):
+        return _orig.__func__(cls, *args, low_cpu_mem_usage=False, **kwargs)
+
+    PreTrainedModel.from_pretrained = classmethod(_patched)
+    try:
+        tokenizer, model, image_processor, _ = load_pretrained_model(
+            model_path=model_id,
+            load_8bit=False,
+            load_4bit=False,
+            device_map=None,
+        )
+    finally:
+        PreTrainedModel.from_pretrained = _orig
+
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     model = model.to(device)
     processor = {"tokenizer": tokenizer, "image_processor": image_processor}
