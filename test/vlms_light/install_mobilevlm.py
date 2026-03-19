@@ -35,8 +35,19 @@ def main():
         )
     if (clone_dir / "mobilevlm").exists():
         print(f"\nMobileVLM cloned to {clone_dir}")
-        # MobileVLM's full requirements.txt pins torch/transformers and needs flash-attn (fails to build).
-        # Install only the minimal extras your env is likely missing (timm, einops, etc.) without downgrading.
+        # Patch: low_cpu_mem_usage=True + device_map triggers meta device error with newer transformers.
+        # Change to False so model loads normally (then test_mobilevlm moves to GPU).
+        mobilevlm_py = clone_dir / "mobilevlm" / "model" / "mobilevlm.py"
+        if mobilevlm_py.exists():
+            text = mobilevlm_py.read_text(encoding="utf-8")
+            if "low_cpu_mem_usage=True" in text and "low_cpu_mem_usage=False" not in text.split("from_pretrained")[1].split("\n")[0]:
+                text = text.replace(
+                    "model = MobileLlamaForCausalLM.from_pretrained(model_path, low_cpu_mem_usage=True, **kwargs)",
+                    "model = MobileLlamaForCausalLM.from_pretrained(model_path, low_cpu_mem_usage=False, **kwargs)",
+                )
+                mobilevlm_py.write_text(text, encoding="utf-8")
+                print("Patched mobilevlm.py: low_cpu_mem_usage=False (avoids meta device error)")
+        # Install minimal deps (timm, einops, etc.) - full requirements has flash-attn which fails to build.
         minimal_deps = ["timm", "einops", "einops-exts", "shortuuid"]
         print("Installing minimal MobileVLM dependencies (timm, einops, etc.)...")
         r = subprocess.run(
