@@ -40,10 +40,9 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
     print(f"Loading {model_id}...")
     tokenizer, model, image_processor, _ = load_pretrained_model(
         model_path=model_id,
-        model_base=None,
         load_8bit=False,
         load_4bit=False,
-        device_map="cuda:0",  # single device to avoid multi-GPU tensor mismatch
+        device_map="cuda:0",
     )
     processor = {"tokenizer": tokenizer, "image_processor": image_processor}
     return model, processor
