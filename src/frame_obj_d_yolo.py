@@ -6,6 +6,10 @@ import os
 import random
 import cv2
 import numpy as np
+import gc
+import torch
+import psutil
+from src.path_utils import is_low_mem
 
 
 def run_yolo_on_frame(
@@ -78,8 +82,8 @@ def run_yolo_track_on_frames(
             iou=iou,
             tracker=tracker,
             persist=True,
-            stream=True,
             verbose=False,
+            stream=True,
         )
         return results
     except Exception:
@@ -695,6 +699,32 @@ def detect_object_yolo(
                     print_prefixed("(YOLOv8)", line, indent=4)
             else:
                 print_prefixed("(YOLOv8)", "none detected", indent=4)
+        
+        # Clear memory after each scene to prevent OOM / Access Violations
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        gc.collect()
+
+        # Frame Purging: Delete raw frames to free up system RAM
+        # We don't need them anymore for following stages.
+        if frame_key in scene:
+            del scene[frame_key]
+        if frame_key in new_scene:
+            del new_scene[frame_key]
+
+        # Memory Logging
+        mem = psutil.Process().memory_info().rss / (1024 * 1024)
+        print_prefixed("(YOLOv8)", f"Memory usage: {mem:.2f} MB", indent=4)
+
+    # Explicit Model Unload (Only if Low Memory Mode is active)
+    if is_low_mem():
+        del model
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        print_prefixed("(YOLOv8)", "Model unloaded from memory (LowMem mode).")
+    else:
+        print_prefixed("(YOLOv8)", "Model kept in memory (HighPerf mode).")
 
     return results_scenes
 

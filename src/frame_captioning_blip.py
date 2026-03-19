@@ -5,17 +5,43 @@ import numpy as np
 import torch
 from typing import Optional
 from PIL import Image
+from src.path_utils import is_low_mem
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # ======================================================================
 # Load BLIP model and processor
 from transformers import BlipProcessor, BlipForConditionalGeneration
-model = BlipForConditionalGeneration.from_pretrained(
-    "Salesforce/blip-image-captioning-base"
-).to(device)
-processor = BlipProcessor.from_pretrained(
-    "Salesforce/blip-image-captioning-base", use_fast=True)
+_blip_model = None
+_blip_processor = None
+
+def _get_blip_model():
+    """
+    Lazy load BLIP model only when needed.
+    """
+    global _blip_model, _blip_processor
+    if _blip_model is None:
+        _blip_model = BlipForConditionalGeneration.from_pretrained(
+            "Salesforce/blip-image-captioning-base"
+        ).to(device)
+        _blip_processor = BlipProcessor.from_pretrained(
+            "Salesforce/blip-image-captioning-base", use_fast=True
+        )
+    return _blip_model, _blip_processor
+
+def unload_blip():
+    """Explicitly unload BLIP from memory/GPU only if LOW_MEM_MODE is True."""
+    global _blip_model, _blip_processor
+    if _blip_model is not None and is_low_mem():
+        del _blip_model
+        del _blip_processor
+        _blip_model = None
+        _blip_processor = None
+        import gc
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        print("[BLIP] Model unloaded from memory (LowMem mode).")
 # ======================================================================
 # # Load BLIP2 model and processor
 # from transformers import Blip2Processor, Blip2ForConditionalGeneration
@@ -30,8 +56,8 @@ processor = BlipProcessor.from_pretrained(
 
 def blip_frame(
     image,
-    model: BlipForConditionalGeneration,
-    processor: BlipProcessor,
+    model: Optional[BlipForConditionalGeneration] = None,
+    processor: Optional[BlipProcessor] = None,
     prompt: Optional[str] = None,
     max_length: int = 50,
     min_length: int = 20,
@@ -81,6 +107,9 @@ def blip_frame(
     str
         Generated caption.
     """
+    if model is None or processor is None:
+        model, processor = _get_blip_model()
+
     # --- Normalize image to RGB PIL.Image ---
     if isinstance(image, Image.Image):
         pil_image = image.convert("RGB")
@@ -134,8 +163,8 @@ def blip_frame(
 
 def caption_frames(
     scenes: List[Dict],
-    model: BlipForConditionalGeneration = model,
-    processor: BlipProcessor = processor,
+    model: Optional[BlipForConditionalGeneration] = None,
+    processor: Optional[BlipProcessor] = None,
     prompt: Optional[str] = None,
     max_length: int = 50,
     min_length: int = 20,
@@ -188,7 +217,13 @@ def caption_frames(
             "frame_captions": List[str]
         aligned 1:1 with the "frames" list.
     """
+    import gc
+    import psutil
+
     enriched_scenes: List[Dict] = []
+
+    # Lazy load BLIP once for the entire batch
+    model, processor = _get_blip_model()
 
     for scene in scenes:
         if debug:
@@ -219,7 +254,22 @@ def caption_frames(
 
         new_scene = dict(scene)  # shallow copy so we don't mutate original reference
         new_scene["frame_captions"] = captions
+        
+        # Frame Purging: Free up memory after processing
+        if "frames" in scene:
+            del scene["frames"]
+        if "frames" in new_scene:
+            del new_scene["frames"]
+        gc.collect()
+
+        if debug:
+            mem = psutil.Process().memory_info().rss / (1024 * 1024)
+            print_prefixed("(BLIP)", f"Memory usage: {mem:.2f} MB", indent=4)
+
         enriched_scenes.append(new_scene)
+
+    # Explicitly unload after the entire batch is done
+    unload_blip()
 
     return enriched_scenes
 

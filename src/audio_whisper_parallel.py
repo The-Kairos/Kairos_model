@@ -18,12 +18,11 @@ import unicodedata
 import tempfile
 import scipy.io.wavfile as wav
 from openai import AzureOpenAI
-from dotenv import load_dotenv
 from pathlib import Path
+from src.path_utils import load_kairos_env
 
-# Load credentials from .env in project root
-load_dotenv(Path(__file__).parent.parent / ".env")
-
+# Load environment variables from project root dynamically
+load_kairos_env(override=True)
 
 # =========================================================
 # 1. Audio Preprocessing

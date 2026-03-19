@@ -6,9 +6,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import quote
 from openai import AzureOpenAI
-from dotenv import load_dotenv
+from src.path_utils import load_kairos_env
 
-load_dotenv()
+# Load environment variables from project root dynamically
+load_kairos_env(override=True)
 
 CHUNK_SIZE = 7000
 FINAL_CHUNK_SIZE = CHUNK_SIZE * 5
@@ -293,6 +294,23 @@ def _parse_timeline_nonjson(text: str, min_count: int, max_count: int) -> tuple[
     return {"video_timeline": items}, ok
 
 
+def _parse_clips_nonjson(text: str, min_count: int, max_count: int) -> tuple[dict, bool]:
+    pairs = _parse_pipe_pairs(text)
+    items = []
+    for left, right in pairs:
+        ts = left.strip() if left else "Not explicitly stated"
+        value = right.strip() if right else "Not explicitly stated."
+        if not ts:
+            ts = "Not explicitly stated"
+        if not value:
+            value = "Not explicitly stated."
+        items.append({"timestamp": ts, "description": value})
+    if len(items) > max_count:
+        items = items[:max_count]
+    ok = min_count <= len(items) <= max_count
+    return {"suggested_clips": items}, ok
+
+
 def _parse_questions_nonjson(text: str, expected_count: int) -> tuple[dict, bool]:
     pairs = _parse_qna_pairs(text)
     ok = len(pairs) >= expected_count
@@ -336,6 +354,15 @@ def _validate_timeline_payload(payload: dict, min_count: int, max_count: int) ->
     if not isinstance(payload, dict):
         return False
     items = payload.get("video_timeline")
+    if not isinstance(items, list):
+        return False
+    return min_count <= len(items) <= max_count
+
+
+def _validate_clips_payload(payload: dict, min_count: int, max_count: int) -> bool:
+    if not isinstance(payload, dict):
+        return False
+    items = payload.get("suggested_clips")
     if not isinstance(items, list):
         return False
     return min_count <= len(items) <= max_count
@@ -386,6 +413,13 @@ def _build_repair_prompt(
             '{ "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ] }\n'
             "Rules:\n"
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
+        )
+    elif section == "clips":
+        schema = (
+            "Use this exact schema and key names:\n"
+            '{ "suggested_clips": [ { "timestamp": "00:00:00", "description": "Clip description." } ] }\n'
+            "Rules:\n"
+            f"- \"suggested_clips\" must contain between {highlight_min} and {highlight_max} items ({highlight_label}).\n"
         )
     elif section == "qna_predefined":
         schema = (
@@ -780,6 +814,29 @@ def _normalize_timeline(payload: dict, min_count: int, max_count: int) -> list[d
     return items
 
 
+def _normalize_clips(payload: dict, min_count: int, max_count: int) -> list[dict]:
+    raw = payload.get("suggested_clips", []) if isinstance(payload, dict) else []
+    items = []
+    if isinstance(raw, list):
+        for entry in raw:
+            ts = desc = None
+            if isinstance(entry, dict):
+                ts = entry.get("timestamp")
+                desc = entry.get("description")
+            elif isinstance(entry, str):
+                desc = entry
+            if not isinstance(ts, str) or not ts.strip():
+                ts = "Not explicitly stated"
+            if not isinstance(desc, str) or not desc.strip():
+                desc = "Not explicitly stated."
+            items.append({"timestamp": ts.strip(), "description": desc.strip()})
+    if len(items) > max_count:
+        items = items[:max_count]
+    while len(items) < min_count:
+        items.append({"timestamp": "Not explicitly stated", "description": "Not explicitly stated."})
+    return items
+
+
 def _normalize_summary_fields(payload: dict) -> tuple[str, str]:
     chat_name = payload.get("chat_name") if isinstance(payload, dict) else None
     summary = payload.get("summary") if isinstance(payload, dict) else None
@@ -974,7 +1031,8 @@ def call_gpt(client, deployment, prompt, retries: int = GPT_MAX_RETRIES, retry_b
                 max_tokens=16384,  # apparently the max for gpt4o
                 temperature=0.2,
                 top_p=1.0,
-                model=deployment
+                model=deployment,
+                timeout=120.0,
             )
             message = response.choices[0].message
             content = message.content
@@ -1047,6 +1105,7 @@ SYNOPSIS_HIGHLIGHTS_PROMPT = load_prompt("synopsis_highlight.txt")
 SYNOPSIS_TIMELINE_PROMPT = load_prompt("synopsis_timeline.txt")
 SYNOPSIS_QNA_PREDEFINED_PROMPT = load_prompt("synopsis_qna_predefined.txt")
 SYNOPSIS_QNA_GENERATED_PROMPT = load_prompt("synopsis_qna_generated.txt")
+SYNOPSIS_CLIPS_PROMPT = load_prompt("synopsis_clips.txt")
 
 
 def _build_safe_section_prompt(
@@ -1092,6 +1151,14 @@ def _build_safe_section_prompt(
             "Rules:\n"
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
             "- Events must be 3-5 words, chronological order.\n"
+            "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
+        )
+    elif section == "clips":
+        schema = (
+            "Use this exact schema and key names:\n"
+            '{ "suggested_clips": [ { "timestamp": "00:00:00", "description": "Clip description." } ] }\n'
+            "Rules:\n"
+            f"- \"suggested_clips\" must contain between {highlight_min} and {highlight_max} items ({highlight_label}).\n"
             "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
     elif section == "qna_predefined":
@@ -1486,6 +1553,10 @@ def synthesize_synopsis(
             extra_questions_count=extra_questions_count,
             required_questions_block=required_block,
         ),
+        "clips": SYNOPSIS_CLIPS_PROMPT.format(
+            text=narrative_text,
+            clips_count=highlight_label,
+        ),
     }
 
     raw_outputs = {}
@@ -1498,6 +1569,7 @@ def synthesize_synopsis(
             "qna_predefined_a": '{"questions":[]}',
             "qna_predefined_b": '{"questions":[]}',
             "qna_generated": '{"questions":[]}',
+            "clips": '{"suggested_clips":[]}',
         }
         safe_section_name = "qna_predefined" if name.startswith("qna_predefined_") else name
         safe_required_block = required_block_a if name == "qna_predefined_a" else required_block_b if name == "qna_predefined_b" else required_block
@@ -1616,6 +1688,18 @@ def synthesize_synopsis(
             qna_generated_payload = json_payload
             qna_generated_ok = True
 
+    clips_text = raw_outputs.get("clips", "")
+    clips_payload, clips_ok = _parse_clips_nonjson(
+        clips_text,
+        highlight_min,
+        highlight_max,
+    )
+    if not clips_ok:
+        json_payload = _parse_json_object(clips_text, debug=debug, context="clips_json_fallback")
+        if _validate_clips_payload(json_payload, highlight_min, highlight_max):
+            clips_payload = json_payload
+            clips_ok = True
+
     repair_requests = {}
     if not summary_ok:
         repair_requests["summary"] = summary_text
@@ -1629,6 +1713,8 @@ def synthesize_synopsis(
         repair_requests["qna_predefined_b"] = qna_predefined_b_text
     if not qna_generated_ok:
         repair_requests["qna_generated"] = qna_generated_text
+    if not clips_ok:
+        repair_requests["clips"] = clips_text
 
     if repair_requests:
         had_errors = True
@@ -1667,6 +1753,7 @@ def synthesize_synopsis(
                 "qna_predefined_a": '{"questions":[]}',
                 "qna_predefined_b": '{"questions":[]}',
                 "qna_generated": '{"questions":[]}',
+                "clips": '{"suggested_clips":[]}',
             }
             text = call_gpt_safe(
                 client,
@@ -1702,12 +1789,15 @@ def synthesize_synopsis(
                 elif name == "qna_generated" and _validate_questions_payload(payload, extra_questions_count):
                     qna_generated_payload = payload
                     qna_generated_ok = True
+                elif name == "clips" and _validate_clips_payload(payload, highlight_min, highlight_max):
+                    clips_payload = payload
+                    clips_ok = True
 
     base_ok = summary_ok and highlights_ok and timeline_ok
     if not base_ok:
         had_errors = True
         _debug_print(debug, "synthesize_synopsis: falling back to monolithic synopsis for base sections")
-        monolith_fallback = '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated.","video_highlights":[],"video_timeline":[]}'
+        monolith_fallback = '{"chat_name":"Not explicitly stated","summary":"Not explicitly stated.","video_highlights":[],"video_timeline":[],"suggested_clips":[]}'
         monolith_prompt = (
             "You are a story detective.\n"
             "Return ONE valid JSON object only. No markdown, no extra text.\n"
@@ -1716,9 +1806,11 @@ def synthesize_synopsis(
             '  "chat_name": "3-5 word title",\n'
             '  "summary": "Single coherent paragraph.",\n'
             '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
-            '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ]\n'
+            '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
+            '  "suggested_clips": [ { "timestamp": "00:00:00", "description": "Clip description." } ]\n'
             "}\n"
             "Rules:\n"
+            "- Extract exact timestamps from the narrative for timeline and clips.\n"
             "- \"chat_name\" must be 3-5 words and concrete, not creative.\n"
             f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
             f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
@@ -1751,11 +1843,13 @@ def synthesize_synopsis(
         summary_payload = {"chat_name": monolith.get("chat_name"), "summary": monolith.get("summary")}
         highlights_payload = {"video_highlights": monolith.get("video_highlights", [])}
         timeline_payload = {"video_timeline": monolith.get("video_timeline", [])}
-        summary_ok = highlights_ok = timeline_ok = True
+        clips_payload = {"suggested_clips": monolith.get("suggested_clips", [])}
+        summary_ok = highlights_ok = timeline_ok = clips_ok = True
 
     chat_name, summary = _normalize_summary_fields(summary_payload)
     video_highlights = _normalize_highlights(highlights_payload, highlight_min, highlight_max)
     video_timeline = _normalize_timeline(timeline_payload, timeline_min, timeline_max)
+    suggested_clips = _normalize_clips(clips_payload, highlight_min, highlight_max)
 
     predefined_questions = _normalize_predefined_questions(
         _extract_questions(qna_predefined_a_payload),
@@ -1858,6 +1952,7 @@ def synthesize_synopsis(
         "summary": summary,
         "video_highlights": video_highlights,
         "video_timeline": video_timeline,
+        "suggested_clips": suggested_clips,
         "questions": questions,
     }
 
@@ -1876,9 +1971,11 @@ def synthesize_synopsis(
                 '  "summary": "Single coherent paragraph.",\n'
                 '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
                 '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
+                '  "suggested_clips": [ { "timestamp": "00:00:00", "description": "Clip description." } ],\n'
                 '  "questions": [ { "question": "Question text", "answer": "Answer text" } ]\n'
                 "}\n"
                 "Rules:\n"
+                "- Extract exact timestamps from the narrative for timeline and clips.\n"
                 f"{_highlight_count_rule(highlight_min, highlight_max, highlight_label)}"
                 f"{_timeline_count_rule(timeline_min, timeline_max, timeline_label)}"
                 f"- \"questions\" must contain exactly {len(REQUIRED_QUESTIONS) + extra_questions_count} items.\n"
@@ -1908,6 +2005,7 @@ def synthesize_synopsis(
             c_chat_name, c_summary = _normalize_summary_fields(consistency_payload)
             c_highlights = _normalize_highlights(consistency_payload, highlight_min, highlight_max)
             c_timeline = _normalize_timeline(consistency_payload, timeline_min, timeline_max)
+            c_clips = _normalize_clips(consistency_payload, highlight_min, highlight_max)
             c_questions = _extract_questions(consistency_payload)
             c_predefined = _normalize_predefined_questions(c_questions, REQUIRED_QUESTIONS)
             c_generated = _normalize_generated_questions(c_questions, REQUIRED_QUESTIONS, extra_questions_count)
@@ -1916,6 +2014,7 @@ def synthesize_synopsis(
                 "summary": c_summary,
                 "video_highlights": c_highlights,
                 "video_timeline": c_timeline,
+                "suggested_clips": c_clips,
                 "questions": c_predefined + c_generated,
             }
         except Exception as exc:
@@ -1931,18 +2030,14 @@ def synthesize_synopsis(
     if output_dir:
         out_dir = Path(output_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
-        ext = synopsis_ext.lstrip(".") if synopsis_ext else "md"
-        synopsis_path = out_dir / f"synopsis.{ext}"
-        if ext.lower() == "md":
-            synopsis_path.write_text(synopsis_md, encoding="utf-8")
-        elif ext.lower() == "json":
-            synopsis_path.write_text(
-                json.dumps(synopsis_json, indent=2, ensure_ascii=False),
-                encoding="utf-8",
-            )
-        else:
-            synopsis_path.write_text(synopsis_text, encoding="utf-8")
-        _debug_print(debug, f"synopsis is saved in {synopsis_path}")
+        # Always save both formats if possible for maximum compatibility
+        json_path = out_dir / "synopsis.json"
+        md_path = out_dir / "synopsis.md"
+        
+        json_path.write_text(json.dumps(synopsis_json, indent=2, ensure_ascii=False), encoding="utf-8")
+        md_path.write_text(synopsis_md, encoding="utf-8")
+        
+        _debug_print(debug, f"synopsis is saved in {json_path} and {md_path}")
 
     return {
         "scenes": data.get("scenes", []),

@@ -36,6 +36,7 @@ dotenv==0.9.9
 
 # Object Detection - YOLOv8
 ultralytics==8.3.230
+lap>=0.5.12
 
 # System monitoring / profiling
 psutil>=5.9.0
@@ -66,7 +67,7 @@ protobuf>=4.24.0
 # Audio/Video decoding and analysis
 av==12.0.0
 librosa==0.10.1
-torchaudio>=2.5.0
+torchaudio==2.9.1
 
 # Progress bars / helpers
 tqdm>=4.66.1

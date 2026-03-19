@@ -8,6 +8,7 @@ Runs MIT AST per scene, but:
 """
 
 import time
+import gc
 import numpy as np
 import torch
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
@@ -64,6 +65,13 @@ def classify_scene_audio(audio_slice: np.ndarray, sr: int, threshold: float = 0.
         f"{labels[i].lower().replace('_', ' ')} (conf={scores[i]:.2f})"
         for i in range(len(labels))
     ]
+    
+    # Cleanup memory after inference
+    inputs = inputs.to("cpu")
+    del inputs, outputs, labels, scores
+    gc.collect()
+    if torch.cuda.is_available(): torch.cuda.empty_cache()
+    
     return ", ".join(out)
 
 

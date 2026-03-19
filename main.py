@@ -1,5 +1,7 @@
-from dotenv import load_dotenv
-load_dotenv()
+from src.path_utils import load_kairos_env
+
+# Load environment variables from project root dynamically
+load_kairos_env(override=True)
 
 from src.debug_utils import *
 from src.log_utils import *
@@ -7,7 +9,33 @@ from src.redo_utils import apply_redo, REDO_CHOICES
 import argparse
 import os
 import time
+import logging
+import warnings
 from pathlib import Path
+
+# --- Mute harmless native warnings (FFmpeg / H264 / OpenCV) ---
+os.environ["OPENCV_LOG_LEVEL"] = "OFF"
+os.environ["AV_LOG_LEVEL"] = "quiet"
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", message=".*mmco: unref short failure.*")
+
+import gc
+import torch
+import psutil
+from src.path_utils import load_kairos_env, is_low_mem
+
+# --- Resource Policy Detection ---
+LOW_MEM_MODE = is_low_mem()
+
+def purge_memory(force=False):
+    """Clear RAM and GPU VRAM if in low memory mode or forced."""
+    if not LOW_MEM_MODE and not force:
+        return
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        torch.cuda.ipc_collect()
+    print(f"[Kairos] Resource purge completed (LowMem: {LOW_MEM_MODE})")
 
 use_gemini = False
 if use_gemini:
@@ -253,6 +281,7 @@ def main():
                 output_dir=f"{output_dir}/.clips",
             )
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            purge_memory()
 
         if "frame_captions" not in checkpoint["scenes"][-1].keys():
             print(f"Saving sampled frames in: {output_dir}/.frames")
@@ -283,6 +312,7 @@ def main():
             )
             time.sleep(10)
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            purge_memory()
         
 
         if "yolo_detections" not in checkpoint["scenes"][-1].keys():
@@ -314,6 +344,7 @@ def main():
             )
             time.sleep(10)
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            purge_memory()
 
         scan_result = None
         def get_scan_result():
@@ -345,21 +376,35 @@ def main():
             )
             time.sleep(10)
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            purge_memory()
 
         if "audio_natural" not in checkpoint["scenes"][-1].keys():
             if scan_result is None: scan_result = get_scan_result()
+
+            # Dynamic Resource Scaling: Standardized via Environment Variables
+            # Use MAX_KAIROS_WORKERS from .env.local to control concurrency.
+            # Default to 2 for safety; scale up to 4+ on high-performance VMs.
+            env_workers = os.environ.get("MAX_KAIROS_WORKERS")
+            ast_workers = int(env_workers) if env_workers else 2
+
+            if env_workers:
+                print(f"[Kairos] Using {ast_workers} workers from environment override.")
+            else:
+                print(f"[Kairos] MAX_KAIROS_WORKERS not set. Defaulting to safe value: {ast_workers}")
+
             print("")
             print_section("Running MIT AST (Parallel)...")
             checkpoint["scenes"], step['ast_timings'] = extract_sounds_log(
                 scenes=checkpoint["scenes"],
                 scan_result=scan_result,
-                max_workers=4,
+                max_workers=ast_workers,
                 use_processes=True,
                 force_cpu=False,
                 debug=True,
             )
             time.sleep(10)
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            purge_memory()
 
         if "llm_scene_description" not in checkpoint["scenes"][-1].keys():
             print("")
@@ -381,6 +426,8 @@ def main():
             )
             time.sleep(10)
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            purge_memory()
+            
 
         if "narratives" not in checkpoint:
             print("")
@@ -409,7 +456,7 @@ def main():
                 deployment=deployment,
                 data=checkpoint,
                 debug=True,
-                output_dir=output_dir,
+                output_dir=output_dir
             )
             save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
 

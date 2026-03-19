@@ -55,7 +55,8 @@ def describe_flash_scene(
             max_tokens=2048,
             temperature=gpt_temperature,
             top_p=1.0,
-            model=gpt_deployment
+            model=gpt_deployment,
+            timeout=60.0,
         )
         answer = response.choices[0].message.content
 
@@ -123,6 +124,16 @@ def describe_scenes(
         )
         return any(marker in err_text for marker in rate_limit_markers)
 
+    def _is_responsible_ai_error(exc: Exception) -> bool:
+        err_text = f"{type(exc).__name__}: {exc}".lower()
+        return (
+            "content_filter" in err_text
+            or "content filter" in err_text
+            or "responsible ai" in err_text
+            or "safety system" in err_text
+            or "policy_violation" in err_text
+        )
+
     def _call_with_rate_limit_retry(scene_idx: int, scene_text: str, prompt_used: str):
         attempt = 0
         while True:
@@ -135,6 +146,11 @@ def describe_scenes(
                     video_path=video_path,
                 )
             except Exception as exc:
+                if _is_responsible_ai_error(exc):
+                    if debug:
+                        print_prefixed("(WARN)", f"Scene {scene_idx} blocked by Azure Content Filter. Skipping.")
+                    return "Scene omitted due to content filter."
+                
                 if _is_rate_limit_error(exc) and attempt < max_rate_limit_retries:
                     backoff = rate_limit_cooldown_sec * (2 ** attempt)
                     jitter = random.uniform(0.0, 1.0)

@@ -4,10 +4,11 @@ import time
 import textwrap
 import numpy as np
 from src.debug_utils import load_prompt
-from dotenv import load_dotenv
+from src.path_utils import load_kairos_env
 from google import genai
 
-load_dotenv("././.env")
+# Load environment variables from project root dynamically
+load_kairos_env(override=True)
 
 EMBEDDING_MODEL = "gemini-embedding-001"
 GENERATION_MODEL = "gemini-2.5-pro"

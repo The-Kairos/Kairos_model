@@ -1,0 +1,1854 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4",
+  "video_length": "00:04:33.473",
+  "total_process_sec": 1147.07748,
+  "scene_number": 22,
+  "start_process": "2026-03-18 08:03:23",
+  "end_process": "2026-03-18 08:24:08",
+  "computer": {
+    "os_info": {
+      "os": "Windows 10",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "Tehreem-LapTop",
+      "python_version": "3.11.5"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 154 Stepping 4, GenuineIntel",
+      "cpu_physical_cores": 10,
+      "cpu_logical_cores": 12,
+      "cpu_frequency_MHz": {
+        "current": 1700.0,
+        "min": 0.0,
+        "max": 1700.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.68,
+      "available_RAM_GB": 1.02,
+      "used_RAM_GB": 14.66,
+      "RAM_usage_percent": 93.5
+    },
+    "disk_info": {
+      "disk_total_GB": 475.76,
+      "disk_used_GB": 429.76,
+      "disk_free_GB": 46.0,
+      "disk_usage_percent": 90.3
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce MX550",
+      "gpu_memory_total_MB": 2048,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "581.83"
+    }
+  },
+  "params": {
+    "improve_motion_detection": false,
+    "prioritize_speed": false,
+    "process_static_videos": false,
+    "pyscene_threshold": 27,
+    "pyscene_shortest": 2,
+    "frames_per_scene": 3,
+    "frame_resolution": 320,
+    "blip_start_prompt": "a video frame of",
+    "blip_caption_len": 50,
+    "blip_min_length": 15,
+    "blip_num_beams": 1,
+    "blip_do_sample": true,
+    "blip_top_p": 0.85,
+    "blip_temperature": 0.65,
+    "blip_length_penalty": 1.0,
+    "blip_no_repeat_ngram_size": 3,
+    "blip_repetition_penalty": 1.1,
+    "yolo_conf_thres": 0.8,
+    "yolo_iou_thres": 0.5,
+    "ast_target_sr": 16000,
+    "asr_model_size": "medium",
+    "asr_use_vad": true,
+    "asr_target_sr": 16000,
+    "llm_scene_history": 5,
+    "llm_chunk_len": 20000,
+    "llm_summary_len": 50000,
+    "llm_cooldown_sec": 0,
+    "rag_top_k_context": 10
+  },
+  "steps": {
+    "audio_scan": {
+      "step": "scan_audio_log",
+      "wall_time_sec": 83.06421,
+      "cpu_time_sec": 60.48438,
+      "ram_before_MB": 276,
+      "ram_after_MB": 857,
+      "ram_used_MB": 581,
+      "io_read_MB": 672.7783670425415,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "get_scene_list": {
+      "step": "get_scene_list_log",
+      "wall_time_sec": 6.72124,
+      "cpu_time_sec": 21.3125,
+      "ram_before_MB": 494,
+      "ram_after_MB": 507,
+      "ram_used_MB": 13,
+      "io_read_MB": 386.8367395401001,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "step": "save_clips_log",
+      "wall_time_sec": 2.62781,
+      "cpu_time_sec": 0.125,
+      "ram_before_MB": 507,
+      "ram_after_MB": 507,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.07377052307128906,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "step": "sample_frames_log",
+      "wall_time_sec": 3.78212,
+      "cpu_time_sec": 15.92188,
+      "ram_before_MB": 507,
+      "ram_after_MB": 555,
+      "ram_used_MB": 48,
+      "io_read_MB": 243.4900360107422,
+      "io_write_MB": 1.261357307434082,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "step": "caption_frames_log",
+      "wall_time_sec": 156.52379,
+      "cpu_time_sec": 1222.89062,
+      "ram_before_MB": 555,
+      "ram_after_MB": 648,
+      "ram_used_MB": 93,
+      "io_read_MB": 948.9846715927124,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_fps": {
+      "step": "sample_fps_log",
+      "wall_time_sec": 94.49884,
+      "cpu_time_sec": 546.54688,
+      "ram_before_MB": 648,
+      "ram_after_MB": 779,
+      "ram_used_MB": 131,
+      "io_read_MB": 4510.158432006836,
+      "io_write_MB": 15.629913330078125,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "step": "detect_object_yolo_log",
+      "wall_time_sec": 531.41173,
+      "cpu_time_sec": 1947.71875,
+      "ram_before_MB": 779,
+      "ram_after_MB": 168,
+      "ram_used_MB": -611,
+      "io_read_MB": 22.19679355621338,
+      "io_write_MB": 21.3423490524292,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 196,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "step": "extract_speech_log",
+      "wall_time_sec": 40.33503,
+      "cpu_time_sec": 11.71875,
+      "ram_before_MB": 857,
+      "ram_after_MB": 848,
+      "ram_used_MB": -9,
+      "io_read_MB": 9.626133918762207,
+      "io_write_MB": 8.34755802154541,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "step": "extract_sounds_log",
+      "wall_time_sec": 134.69542,
+      "cpu_time_sec": 0.125,
+      "ram_before_MB": 848,
+      "ram_after_MB": 169,
+      "ram_used_MB": -679,
+      "io_read_MB": 0.009020805358886719,
+      "io_write_MB": 16.70242691040039,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "step": "describe_scenes_log",
+      "wall_time_sec": 33.49698,
+      "cpu_time_sec": 0.34375,
+      "ram_before_MB": 351,
+      "ram_after_MB": 333,
+      "ram_used_MB": -18,
+      "io_read_MB": 0.05962848663330078,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "summarize_scenes": {
+      "step": "summarize_scenes_log",
+      "wall_time_sec": 25.73779,
+      "cpu_time_sec": 0.09375,
+      "ram_before_MB": 333,
+      "ram_after_MB": 333,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "synthesize_synopsis": {
+      "step": "synthesize_synopsis_log",
+      "wall_time_sec": 14.52081,
+      "cpu_time_sec": 0.04688,
+      "ram_before_MB": 333,
+      "ram_after_MB": 334,
+      "ram_used_MB": 1,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.007920265197753906,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "make_embedding": {
+      "step": "make_embedding_log",
+      "wall_time_sec": 19.66171,
+      "cpu_time_sec": 12.75,
+      "ram_before_MB": 334,
+      "ram_after_MB": 361,
+      "ram_used_MB": 27,
+      "io_read_MB": 3.518399238586426,
+      "io_write_MB": 2.6611928939819336,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce MX550",
+          "memory_used_MB": 141,
+          "memory_total_MB": 2048,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:15.883",
+      "start_seconds": 0.0,
+      "end_seconds": 15.882533333333333,
+      "duration_seconds": 15.882533333333333,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0000.mp4",
+      "frame_captions": [
+        "a video frame of a woman in pink head scarf speaking at a podium",
+        "a video frame of malala addressing a press conference in new delhi, india",
+        "a video frame of mala muzai speaking at the podium with the words mala muzari in red"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.902,
+          "start_frame": 0,
+          "end_frame": 63,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, looping/circling",
+          "path_length": 82.564,
+          "net_displacement": 9.107,
+          "direction_change_var": 1.9058,
+          "relations": []
+        }
+      ],
+      "audio_speech": "I'm proud, well in fact I'm very proud, to be the first Pashtun, the first Pakistani and the youngest person to receive this award.",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene captures Malala Yousafzai delivering her Nobel Peace Prize acceptance speech. She is seen wearing a pink headscarf and speaking confidently at a podium. The audio confirms her pride in being the first Pashtun, the first Pakistani, and the youngest recipient of the award. Visual captions contain inconsistencies, incorrectly identifying her location and name in some frames. The setting appears formal, with Malala addressing an audience, though no audience sounds are audible.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and speaker  \n\nKey Dialogue:\nSpeaker: Malala Yousafzai  \nCause: Expressing gratitude and pride for receiving the Nobel Peace Prize  \n\nCausal Relationships:\nEmotion or action: Pride  \nCause: Being the first Pashtun, the first Pakistani, and the youngest Nobel Peace Prize recipient  \nEvidence: Explicit statement in the audio transcript  \n\nObjects and Setting:\nObject or environment: Podium  \nContext relevance: Central to the formal delivery of Malala's acceptance speech  \n\nCross-Scene Continuity:\nOngoing conflict: Advocacy for education and peace (inferred from Malala's known activism)  \nCharacter development: Malala's recognition as a global advocate for education and peace, highlighted by her historic Nobel Peace Prize achievement  "
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:15.883",
+      "end_timecode": "00:00:21.755",
+      "start_seconds": 15.882533333333333,
+      "end_seconds": 21.755066666666668,
+      "duration_seconds": 5.872533333333335,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0001.mp4",
+      "frame_captions": [
+        "a video frame of the funeral of a pakistani girl who was killed in an accident",
+        "a video frame of a crowd in islamabad, pakistan, as the president said to the media on thursday",
+        "a video frame of the people who are sitting in a chair and clapping"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.88,
+          "start_frame": 0,
+          "end_frame": 23,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting farther",
+          "path_length": 19.693,
+          "net_displacement": 14.321,
+          "direction_change_var": 3.5307,
+          "relations": [
+            "left-of person #3",
+            "left-of person #5",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 2,
+          "end_frame": 23,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 29.739,
+          "net_displacement": 0.359,
+          "direction_change_var": 2.1714,
+          "relations": [
+            "left-of person #5",
+            "right-of person #1",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.857,
+          "start_frame": 4,
+          "end_frame": 21,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 18.913,
+          "net_displacement": 3.12,
+          "direction_change_var": 5.6079,
+          "relations": [
+            "left-of person #1",
+            "left-of person #3",
+            "left-of person #5"
+          ]
+        },
+        {
+          "track_id": 5,
+          "label": "person",
+          "confidence_avg": 0.821,
+          "start_frame": 4,
+          "end_frame": 13,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 1.793,
+          "net_displacement": 0.982,
+          "direction_change_var": 0.1065,
+          "relations": [
+            "right-of person #1",
+            "right-of person #3",
+            "right-of person #4"
+          ]
+        }
+      ],
+      "audio_speech": "and the youngest person to receive this award.",
+      "audio_natural": "applause (conf=0.66)",
+      "llm_scene_description": "This scene captures a moment during Malala Yousafzai's Nobel Peace Prize acceptance event. The video shows an audience seated and clapping, indicating a celebratory and formal atmosphere. The audio confirms Malala's recognition as the youngest recipient of the Nobel Peace Prize, accompanied by applause. The visual captions appear inconsistent, referencing unrelated events, but the audio provides reliable context.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient, speaker  \n\nName: Audience  \nRole: Supporters, attendees  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Her acknowledgment as the youngest Nobel Peace Prize recipient  \n\nCausal Relationships:  \nEmotion or action: Applause and clapping  \nCause: Malala's recognition and speech  \nEvidence: Audio transcript and sounds  \n\nObjects and Setting:  \nObject or environment: Chairs, formal seating arrangement  \nContext relevance: Indicates a structured event setting  \n\nCross-Scene Continuity:  \nOngoing conflict: Malala's advocacy for education and peace continues to be highlighted through her speech and recognition.  \nCharacter development: Malala's achievements as a young activist are celebrated, reinforcing her role as a global symbol of resilience and advocacy.  "
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:21.755",
+      "end_timecode": "00:00:25.893",
+      "start_seconds": 21.755066666666668,
+      "end_seconds": 25.892533333333333,
+      "duration_seconds": 4.137466666666665,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0002.mp4",
+      "frame_captions": [
+        "a video frame of a crowd of people at an event in the desert",
+        "a video frame of people on stage during a speech by the president of the united states",
+        "a video frame of people at a convention hall with a man standing behind them"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "and the youngest person to receive this award.",
+      "audio_natural": "applause (conf=0.70)",
+      "llm_scene_description": "This scene captures a moment during Malala Yousafzai's Nobel Peace Prize acceptance speech. The audio confirms her recognition as the youngest recipient of the prestigious award, followed by applause, indicating audience approval and celebration. Visual captions are inconsistent, mentioning unrelated events such as a convention hall or a speech by the U.S. president, but these do not align with the audio or prior context. The setting is formal and celebratory, consistent with the nature of a Nobel Prize ceremony.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and speaker  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: She acknowledges her achievement as the youngest recipient of the Nobel Peace Prize.  \n\nCausal Relationships:  \nEmotion or action: Audience applause  \nCause: Recognition of Malala's achievement as stated in her speech  \nEvidence: Audio transcript and applause sounds  \n\nObjects and Setting:  \nObject or environment: Formal event setting, likely a convention hall  \nContext relevance: Supports the celebratory nature of the Nobel Peace Prize ceremony  \n\nCross-Scene Continuity:  \nOngoing conflict: None explicitly mentioned in this scene  \nCharacter development: Malala's speech reinforces her role as a symbol of youth empowerment and global recognition for her advocacy work"
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:25.893",
+      "end_timecode": "00:00:28.562",
+      "start_seconds": 25.892533333333333,
+      "end_seconds": 28.561866666666667,
+      "duration_seconds": 2.6693333333333342,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0003.mp4",
+      "frame_captions": [
+        "a video frame of queen elizabeth on the second day of her visit to the united states",
+        "a video frame of the queen ' s speech at westminster palace, london",
+        "a video frame of queen elizabeth, prince and princess of wales on the royal wedding"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.847,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 5.127,
+          "net_displacement": 3.225,
+          "direction_change_var": 3.2181,
+          "relations": [
+            "left-of person #3",
+            "left-of person #5",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.892,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 3.247,
+          "net_displacement": 1.603,
+          "direction_change_var": 1.4587,
+          "relations": [
+            "left-of person #5",
+            "right-of person #1",
+            "right-of person #4"
+          ]
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.93,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 4.337,
+          "net_displacement": 3.448,
+          "direction_change_var": 1.2035,
+          "relations": [
+            "left-of person #1",
+            "left-of person #3",
+            "left-of person #5"
+          ]
+        },
+        {
+          "track_id": 5,
+          "label": "person",
+          "confidence_avg": 0.904,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 4.963,
+          "net_displacement": 4.627,
+          "direction_change_var": 0.4536,
+          "relations": [
+            "right-of person #1",
+            "right-of person #3",
+            "right-of person #4"
+          ]
+        }
+      ],
+      "audio_speech": "and the youngest person to receive this award.",
+      "audio_natural": "applause (conf=0.71)",
+      "llm_scene_description": "This scene focuses on Malala Yousafzai's Nobel Peace Prize acceptance speech, highlighting her recognition as the youngest recipient of the award. The audio explicitly mentions this achievement, followed by applause, indicating audience approval and celebration. The visuals, while inconsistent in captions, show a formal setting with multiple individuals present, likely part of the ceremony.\n\nCharacters:  \nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and speaker  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai (audio transcript)  \nCause: Recognition as the youngest recipient of the Nobel Peace Prize  \n\nCausal Relationships:  \nEmotion or action: Pride and celebration  \nCause: Malala's historic achievement as the youngest Nobel Peace Prize recipient  \nEvidence: Audio transcript explicitly mentions her being the youngest recipient, followed by applause  \n\nObjects and Setting:  \nObject or environment: Formal event setting with audience applause  \nContext relevance: Highlights the celebratory and official nature of the Nobel Peace Prize ceremony  \n\nCross-Scene Continuity:  \nOngoing conflict: Malala's advocacy for education and peace, which led to her recognition  \nCharacter development: Malala's journey as a young activist culminates in this historic achievement, reinforcing her role as a global advocate for education and equality  "
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:28.562",
+      "end_timecode": "00:00:52.185",
+      "start_seconds": 28.561866666666667,
+      "end_seconds": 52.18546666666667,
+      "duration_seconds": 23.623600000000003,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0004.mp4",
+      "frame_captions": [
+        "a video frame of a woman speaking on stage wearing a pink veil, and a microphone in front",
+        "a video frame of a woman in a pink shawr standing at a podium",
+        "a video frame of mala mufti giving a speech on the occasion"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.909,
+          "start_frame": 0,
+          "end_frame": 94,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting closer, looping/circling",
+          "path_length": 190.486,
+          "net_displacement": 3.589,
+          "direction_change_var": 3.1285,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Along with that, I'm pretty certain that I'm also the first recipient of the Nobel Peace Prize who still fights with her younger brothers. I want there to be peace everywhere, but my brothers and I are still working on that.",
+      "audio_natural": "silence (conf=0.46)",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering a portion of her Nobel Peace Prize acceptance speech. She is standing at a podium, wearing a pink headscarf, and addressing the audience with a lighthearted tone. She humorously mentions being the first Nobel Peace Prize recipient who still fights with her younger brothers, juxtaposing her global advocacy for peace with her personal sibling dynamics. The setting remains formal and celebratory, consistent with a prestigious award ceremony.\n\nCharacters:  \nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and speaker  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Malala humorously reflects on her personal life, mentioning her ongoing sibling disputes, while advocating for peace on a global scale.  \n\nCausal Relationships:  \nEmotion or action: Humor and relatability  \nCause: Malala’s mention of her sibling fights adds a personal and lighthearted touch to her otherwise formal and serious speech.  \nEvidence: Audio transcript confirms her statement about fighting with her brothers despite her peace advocacy.  \n\nObjects and Setting:  \nObject or environment: Podium and microphone  \nContext relevance: Central to the formal delivery of Malala’s speech during the Nobel Peace Prize ceremony.  \n\nCross-Scene Continuity:  \nOngoing conflict: Malala’s advocacy for peace contrasts with her humorous acknowledgment of sibling disputes, showcasing her relatability and multidimensional personality.  \nCharacter development: Malala continues to demonstrate humility and humor, balancing her global achievements with personal anecdotes, making her message more impactful and relatable.  "
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:52.185",
+      "end_timecode": "00:00:56.590",
+      "start_seconds": 52.18546666666667,
+      "end_seconds": 56.589866666666666,
+      "duration_seconds": 4.404399999999995,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0005.mp4",
+      "frame_captions": [
+        "a video frame of the audience watching the speech by pakistani prime minister naji",
+        "a video frame of president mam hussainat speaking to the crowd in kabul",
+        "a video frame of a crowd at the event in lahore, pakistan, with a man wearing a suit"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.844,
+          "start_frame": 13,
+          "end_frame": 17,
+          "start_pos": "middle-center",
+          "end_pos": "bottom-center",
+          "movement": "moving right",
+          "path_length": 9.199,
+          "net_displacement": 9.048,
+          "direction_change_var": 0.0794,
+          "relations": [
+            "left-of person #15",
+            "left-of person #9",
+            "right-of tie #14"
+          ]
+        },
+        {
+          "track_id": 9,
+          "label": "person",
+          "confidence_avg": 0.911,
+          "start_frame": 1,
+          "end_frame": 17,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.997,
+          "net_displacement": 0.604,
+          "direction_change_var": 1.9383,
+          "relations": [
+            "right-of person #1",
+            "right-of person #10",
+            "right-of person #15",
+            "right-of tie #14"
+          ]
+        },
+        {
+          "track_id": 10,
+          "label": "person",
+          "confidence_avg": 0.837,
+          "start_frame": 1,
+          "end_frame": 11,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 6.462,
+          "net_displacement": 3.214,
+          "direction_change_var": 3.3514,
+          "relations": [
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 14,
+          "label": "tie",
+          "confidence_avg": 0.831,
+          "start_frame": 5,
+          "end_frame": 16,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 1.375,
+          "net_displacement": 0.816,
+          "direction_change_var": 3.0081,
+          "relations": [
+            "left-of person #1",
+            "left-of person #15",
+            "left-of person #9"
+          ]
+        },
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.845,
+          "start_frame": 11,
+          "end_frame": 15,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 1.131,
+          "net_displacement": 0.601,
+          "direction_change_var": 2.8866,
+          "relations": [
+            "left-of person #9",
+            "right-of person #1",
+            "right-of tie #14"
+          ]
+        }
+      ],
+      "audio_speech": "I want there to be peace everywhere, but my brothers and I are still working on that.",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene shows a continuation of Malala Yousafzai's Nobel Peace Prize acceptance speech. The audio captures Malala expressing her desire for global peace while humorously mentioning her ongoing efforts with her brothers, maintaining a personal and relatable tone. The visuals, however, are inconsistent and do not align with the audio, displaying captions about unrelated figures and events. The setting remains formal, with an audience likely present, inferred from prior scenes.\n\nCharacters:  \nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and speaker  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Malala expresses her wish for peace everywhere and humorously mentions her brothers, tying personal anecdotes to her broader message of peace.  \n\nCausal Relationships:  \nEmotion or action: Hopeful and humorous tone  \nCause: Malala's desire for peace and her relatable mention of her brothers  \nEvidence: Audio transcript  \n\nObjects and Setting:  \nObject or environment: Formal event setting  \nContext relevance: Reinforces the significance of the Nobel Peace Prize ceremony  \n\nCross-Scene Continuity:  \nOngoing conflict: Malala's advocacy for peace and her personal connection to her message  \nCharacter development: Malala continues to blend her global vision with personal anecdotes, making her message relatable and impactful  "
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:56.590",
+      "end_timecode": "00:00:59.526",
+      "start_seconds": 56.589866666666666,
+      "end_seconds": 59.526133333333334,
+      "duration_seconds": 2.9362666666666684,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0006.mp4",
+      "frame_captions": [
+        "a video frame of a crowd of people in a town, with the camera in focus",
+        "a video frame of a man on stage giving a speech to a crowd",
+        "a video frame of a large crowd at a business meeting with people seated on the stage"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "I'm also honoured to receive this award together with Kailash Satyarthi, who has been a champion",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering her Nobel Peace Prize acceptance speech. She expresses gratitude for receiving the award alongside Kailash Satyarthi, acknowledging his work as a champion for children's rights. The audio confirms the formal and celebratory tone of the event, while the visuals inconsistently describe the setting as a crowd or business meeting, which does not align with the context of a Nobel ceremony. The focus remains on Malala's acknowledgment of shared efforts for peace and justice.\n\nCharacters:  \nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and speaker  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Expressing gratitude for receiving the award and recognizing Kailash Satyarthi's contributions.  \n\nCausal Relationships:  \nEmotion or action: Gratitude and respect  \nCause: Receiving the Nobel Peace Prize and sharing the honor with Kailash Satyarthi  \nEvidence: Audio transcript of Malala's speech  \n\nObjects and Setting:  \nObject or environment: Stage and seated audience  \nContext relevance: Indicates a formal event, likely the Nobel Peace Prize ceremony  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for global peace and justice  \nCharacter development: Malala continues to emphasize collaboration and shared efforts in achieving peace, reinforcing her role as a global advocate for education and human rights.  "
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:59.526",
+      "end_timecode": "00:01:03.530",
+      "start_seconds": 59.526133333333334,
+      "end_seconds": 63.53013333333333,
+      "duration_seconds": 4.003999999999998,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0007.mp4",
+      "frame_captions": [
+        "a video frame of a woman wearing a red hijab speaking at an event",
+        "a video frame of a woman wearing a red hijab on the podium",
+        "a video frame of mala mullahn addressing the national day parade in pakistan"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer",
+          "path_length": 67.86,
+          "net_displacement": 29.463,
+          "direction_change_var": 3.9685,
+          "relations": []
+        }
+      ],
+      "audio_speech": "I'm also honoured to receive this award together with Kailash Satyarthi, who has been a champion",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering her Nobel Peace Prize acceptance speech. She is wearing a red hijab and standing at a podium in a formal event setting. Malala expresses gratitude for receiving the award alongside Kailash Satyarthi, whom she acknowledges as a champion for his work. The atmosphere is solemn and respectful, with no background sounds or interruptions.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and speaker  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Expressing gratitude for the honor of receiving the Nobel Peace Prize and recognizing Kailash Satyarthi's contributions.  \n\nCausal Relationships:  \nEmotion or action: Gratitude and respect  \nCause: Receiving the Nobel Peace Prize and sharing the honor with Kailash Satyarthi  \nEvidence: Audio transcript  \n\nObjects and Setting:  \nObject or environment: Podium, formal event setting  \nContext relevance: Indicates the ceremonial nature of the event and Malala's role as a speaker  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for global peace and recognition of efforts to support children’s rights  \nCharacter development: Malala continues to demonstrate humility and a collaborative spirit, acknowledging others' contributions while emphasizing her commitment to peace and education.  "
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:01:03.530",
+      "end_timecode": "00:01:11.271",
+      "start_seconds": 63.53013333333333,
+      "end_seconds": 71.27120000000001,
+      "duration_seconds": 7.741066666666676,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0008.mp4",
+      "frame_captions": [
+        "a video frame of an indian pm and his wife on the left, in a video",
+        "a video frame of president pradhbandi and pm modi",
+        "a video frame of the president and prime minister of india, maha mahaji"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.949,
+          "start_frame": 0,
+          "end_frame": 30,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 9.06,
+          "net_displacement": 3.369,
+          "direction_change_var": 1.143,
+          "relations": []
+        }
+      ],
+      "audio_speech": "I'm also honoured to receive this award together with Kailash Satyarthi, who has been a champion for children's rights for a long time, twice as long in fact than I have been alive.",
+      "audio_natural": "clang (conf=0.43)",
+      "llm_scene_description": "This scene shows Malala Yousafzai delivering her Nobel Peace Prize acceptance speech. She expresses gratitude for receiving the award alongside Kailash Satyarthi, highlighting his long-standing dedication to children's rights, which she humorously notes is twice as long as her own lifetime. The atmosphere remains formal and respectful, with the focus on her message of appreciation and advocacy. Visual captions inaccurately reference Indian political figures, which do not align with the audio content or the event's context.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient, advocate for education and peace  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: She acknowledges Kailash Satyarthi's contributions to children's rights and expresses gratitude for sharing the honor with him.  \n\nCausal Relationships:  \nEmotion or action: Gratitude and admiration  \nCause: Malala recognizes Kailash Satyarthi's extensive work for children's rights and emphasizes the significance of their shared award.  \nEvidence: Explicit statement in the audio transcript  \n\nObjects and Setting:  \nObject or environment: Podium, formal event setting  \nContext relevance: Reinforces the scene's focus on Malala's speech during the Nobel Peace Prize ceremony  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for global peace and children's rights  \nCharacter development: Malala continues to demonstrate humility, humor, and respect for fellow advocates, reinforcing her role as a determined and inspiring leader.  "
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:01:11.271",
+      "end_timecode": "00:01:18.478",
+      "start_seconds": 71.27120000000001,
+      "end_seconds": 78.47840000000001,
+      "duration_seconds": 7.2072,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0009.mp4",
+      "frame_captions": [
+        "a video frame of a woman speaking from a podium with a microphone in her hand",
+        "a video frame of a woman speaking from the podium in front of a crowd",
+        "a video frame of mala ' s speech at the un human rights day"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.925,
+          "start_frame": 0,
+          "end_frame": 28,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up-left, looping/circling",
+          "path_length": 66.926,
+          "net_displacement": 9.615,
+          "direction_change_var": 2.2008,
+          "relations": []
+        }
+      ],
+      "audio_speech": "for children's rights for a long time, twice as long in fact than I have been alive. I'm proud that we can work together, we can work together and show the world that an Indian",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering a portion of her Nobel Peace Prize acceptance speech. She is standing at a podium, addressing an audience. The audio transcript reveals her discussing children's rights, emphasizing the long-standing efforts in this area, and expressing pride in collaborative work to inspire global change. The visual captions suggest she is speaking in a formal setting, though some captions contain errors or inconsistencies, such as referencing \"UN Human Rights Day,\" which does not align with the Nobel Peace Prize context. The atmosphere remains formal and focused on her message.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize laureate, advocate for children's rights  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: She highlights the enduring struggle for children's rights and the importance of collective action to inspire change.  \n\nCausal Relationships:  \nEmotion or action: Pride and determination  \nCause: Malala reflects on the long history of advocating for children's rights and expresses confidence in the power of collaboration.  \nEvidence: Explicit statements in the audio transcript  \n\nObjects and Setting:  \nObject or environment: Podium and microphone  \nContext relevance: These elements indicate a formal speech delivery setting, consistent with the Nobel Peace Prize ceremony.  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for children's rights and global peace remains the central theme of Malala's speech.  \nCharacter development: Malala continues to emphasize collaboration and perseverance, reinforcing her role as a determined and inspiring advocate for change.  "
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:01:18.478",
+      "end_timecode": "00:01:33.694",
+      "start_seconds": 78.47840000000001,
+      "end_seconds": 93.6936,
+      "duration_seconds": 15.215199999999996,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0010.mp4",
+      "frame_captions": [
+        "a video frame of pm modi modis and pm shrian singh",
+        "a video frame of pm modi and modi in conversation with the prime minister",
+        "a video frame of prime naji modi and his wife, sonia sonia"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.95,
+          "start_frame": 0,
+          "end_frame": 60,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 26.729,
+          "net_displacement": 6.74,
+          "direction_change_var": 2.4257,
+          "relations": [
+            "right-of person #16"
+          ]
+        },
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.815,
+          "start_frame": 1,
+          "end_frame": 60,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 7.568,
+          "net_displacement": 1.827,
+          "direction_change_var": 2.1362,
+          "relations": [
+            "left-of person #15"
+          ]
+        }
+      ],
+      "audio_speech": "I'm proud that we can work together, we can work together and show the world that an Indian and a Pakistani, they can work together and achieve their goals of children's rights.",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene features a segment from the video \"Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4,\" where two individuals, one Indian and one Pakistani, are highlighted as collaborating for children's rights. The audio transcript emphasizes unity and cooperation across national boundaries, while the visual captions are inconsistent and do not align with the audio content. The setting remains formal, likely part of the event surrounding Malala's Nobel Peace Prize acceptance.\n\nCharacters:\nName: Unnamed Indian individual  \nRole: Likely a representative or leader symbolizing collaboration.\n\nName: Unnamed Pakistani individual  \nRole: Likely a representative or leader symbolizing collaboration.\n\nKey Dialogue:\nSpeaker: Unidentified speaker  \nCause: The speaker emphasizes the importance of unity between India and Pakistan to achieve goals related to children's rights.\n\nCausal Relationships:\nEmotion or action: Pride and determination  \nCause: The speaker's assertion that Indians and Pakistanis can work together to achieve shared goals.  \nEvidence: Audio transcript stating, \"I'm proud that we can work together, we can work together and show the world that an Indian and a Pakistani, they can work together and achieve their goals of children's rights.\"\n\nObjects and Setting:\nObject or environment: Formal event setting  \nContext relevance: The setting aligns with the overarching theme of Malala's Nobel Peace Prize acceptance, focusing on global collaboration and children's rights.\n\nCross-Scene Continuity:\nOngoing conflict: The broader theme of advocating for children's rights and fostering international collaboration continues.  \nCharacter development: The scene reinforces the message of unity and collaboration, complementing Malala's speech themes of peace and determination."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:01:33.694",
+      "end_timecode": "00:01:36.363",
+      "start_seconds": 93.6936,
+      "end_seconds": 96.36293333333333,
+      "duration_seconds": 2.669333333333327,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0011.mp4",
+      "frame_captions": [
+        "a video frame of a woman speaking from behind a podium in front of a blue wall",
+        "a video frame of mala ' s speech on the occasion of the day",
+        "a video frame of malala giving her speech at the inauguration of the nobel medal ceremony"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.879,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting farther",
+          "path_length": 17.446,
+          "net_displacement": 15.069,
+          "direction_change_var": 1.075,
+          "relations": []
+        }
+      ],
+      "audio_speech": "and a Pakistani, they can work together and achieve their goals of children's rights.",
+      "audio_natural": "applause (conf=0.72)",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering her Nobel Peace Prize acceptance speech from behind a podium, addressing an audience in a formal setting. She emphasizes the importance of collaboration between individuals from different nations, specifically mentioning an Indian and a Pakistani working together to achieve children's rights. The audience responds with applause, indicating agreement or appreciation for her message. The setting includes a blue wall as the backdrop, consistent with a formal award ceremony.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize laureate and speaker advocating for children's rights.\n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: She highlights the potential for collaboration between an Indian and a Pakistani to achieve shared goals related to children's rights.\n\nCausal Relationships:  \nEmotion or action: Applause from the audience.  \nCause: Malala's statement about unity and collaboration across national boundaries.  \nEvidence: Audio transcript and applause sound.\n\nObjects and Setting:  \nObject or environment: Podium and blue wall.  \nContext relevance: Indicates a formal event, aligning with the Nobel Peace Prize ceremony.\n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for children's rights and the need for international collaboration to address these issues.  \nCharacter development: Malala continues to emphasize unity and shared responsibility, reinforcing her role as a global advocate for education and peace."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:01:36.363",
+      "end_timecode": "00:01:38.765",
+      "start_seconds": 96.36293333333333,
+      "end_seconds": 98.76533333333333,
+      "duration_seconds": 2.4024,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0012.mp4",
+      "frame_captions": [
+        "a video frame of a crowd clapping and greeting each other people at the convention",
+        "a video frame of a woman wearing a hijaa and a headscar",
+        "a video frame of the crowd at a rally in san on april 20, 2014"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.835,
+          "start_frame": 0,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 69.148,
+          "net_displacement": 69.029,
+          "direction_change_var": 0.0276,
+          "relations": []
+        },
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.83,
+          "start_frame": 2,
+          "end_frame": 9,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 3.985,
+          "net_displacement": 3.004,
+          "direction_change_var": 0.561,
+          "relations": []
+        }
+      ],
+      "audio_speech": "and a Pakistani, they can work together and achieve their goals of children's rights.",
+      "audio_natural": "applause (conf=0.69)",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering a speech, likely part of her Nobel Peace Prize acceptance ceremony. She emphasizes collaboration between individuals from different nations, specifically mentioning an Indian and a Pakistani working together to achieve shared goals related to children's rights. The audience responds with applause, indicating support for her message. Visual captions provide inconsistent information, but the audio transcript confirms the focus on unity and children's rights.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Speaker, Nobel Peace Prize laureate advocating for children's rights  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Advocating for collaboration between nations to promote children's rights  \n\nCausal Relationships:  \nEmotion or action: Audience applause  \nCause: Support for Malala's message on unity and shared goals  \nEvidence: Audio transcript and applause sounds  \n\nObjects and Setting:  \nObject or environment: Formal event setting, likely a Nobel Peace Prize ceremony  \nContext relevance: Reinforces the significance of the speech and its global impact  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for children's rights and global collaboration  \nCharacter development: Malala continues to emphasize unity and shared responsibility, reinforcing her role as a global advocate for education and peace  "
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:01:38.765",
+      "end_timecode": "00:01:42.502",
+      "start_seconds": 98.76533333333333,
+      "end_seconds": 102.50240000000001,
+      "duration_seconds": 3.737066666666678,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0013.mp4",
+      "frame_captions": [
+        "a video frame of an audience watching a speech at the international convention in moscow",
+        "a video frame of the funeral of frs at st paul ' s cathedral in toronto",
+        "a video frame of the funeral of an israeli soldier at the israel ' s church in the west bank of israel"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "and a Pakistani, they can work together and achieve their goals of children's rights.",
+      "audio_natural": "applause (conf=0.70)",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering her Nobel Peace Prize acceptance speech, continuing her emphasis on collaboration between nations, specifically mentioning Pakistan, to achieve children's rights. The audio transcript highlights her belief in unity and shared goals, with applause from the audience indicating strong support for her message. Visual captions are inconsistent and unrelated to the speech's content, suggesting errors in frame descriptions.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize laureate, advocate for children's rights  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: She emphasizes collaboration between nations, particularly Pakistan, to achieve shared goals for children's rights.\n\nCausal Relationships:  \nEmotion or action: Audience applause  \nCause: Support for Malala's message on unity and collaboration  \nEvidence: Audio transcript mentioning collaboration and applause sounds with 70% confidence  \n\nObjects and Setting:  \nObject or environment: Formal award ceremony setting  \nContext relevance: Supports the context of Malala's Nobel Peace Prize acceptance speech  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for children's rights and the need for international collaboration  \nCharacter development: Malala continues to highlight unity and shared efforts, reinforcing her role as a global advocate for education and children's rights."
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:42.502",
+      "end_timecode": "00:02:24.544",
+      "start_seconds": 102.50240000000001,
+      "end_seconds": 144.5444,
+      "duration_seconds": 42.04199999999999,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0014.mp4",
+      "frame_captions": [
+        "a video frame of a woman in red dress and some people in background",
+        "a video frame of the woman wearing a pink hina on a podium",
+        "a video frame of malala speaking at the conference, with the woman in pink scarf"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.903,
+          "start_frame": 2,
+          "end_frame": 168,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 315.144,
+          "net_displacement": 54.641,
+          "direction_change_var": 1.0741,
+          "relations": []
+        }
+      ],
+      "audio_speech": "and a Pakistani, they can work together and achieve their goals of children's rights. Dear brothers and sisters, I was named after the inspirational Malalai of my one, who is a Pashtun Joan of Arc. The word Malala means grief-stricken, sad, but in order to lend some happiness to it, my grandfather would always call me Malala, the happiest girl in the world. And today, I'm very happy that we are together fighting for an important cause.",
+      "audio_natural": "applause (conf=0.81)",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering her Nobel Peace Prize acceptance speech from a podium. She is wearing a pink scarf and addressing an audience. In her speech, she reflects on her name's origin, sharing a personal anecdote about being named after Malalai, a Pashtun heroine, and how her grandfather called her \"the happiest girl in the world\" to bring joy to her name. She expresses happiness about uniting with others to fight for children's rights. The audience responds with applause, indicating their support and agreement with her message. The setting remains formal, consistent with an international recognition event.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and advocate for children's rights  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: She shares a personal story about her name and expresses joy in uniting with others for an important cause.  \n\nCausal Relationships:  \nEmotion or action: Happiness and gratitude  \nCause: Malala reflects on her name's meaning and emphasizes unity in fighting for children's rights.  \nEvidence: Malala's speech explicitly mentions her happiness and the applause from the audience supports the positive reception.  \n\nObjects and Setting:  \nObject or environment: Podium, formal event setting  \nContext relevance: Indicates the significance of the event, likely the Nobel Peace Prize ceremony.  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for children's rights and global collaboration to achieve these goals.  \nCharacter development: Malala continues to emphasize unity and shares personal reflections, deepening her connection with the audience and reinforcing her role as an inspirational leader.  "
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:02:24.544",
+      "end_timecode": "00:02:28.548",
+      "start_seconds": 144.5444,
+      "end_seconds": 148.54840000000002,
+      "duration_seconds": 4.004000000000019,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0015.mp4",
+      "frame_captions": [
+        "a video frame of the pakistani prime minister as she was introduced by the media",
+        "a video frame of the prime of pakistan, sheikh sheikh sheikh, in a speech",
+        "a video frame of a woman smiling and wearing a green hijaa"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.928,
+          "start_frame": 0,
+          "end_frame": 16,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 19.668,
+          "net_displacement": 3.587,
+          "direction_change_var": 1.4499,
+          "relations": [
+            "below person #22",
+            "left-of person #21",
+            "left-of person #23",
+            "left-of person #24",
+            "right-of person #20"
+          ]
+        },
+        {
+          "track_id": 20,
+          "label": "person",
+          "confidence_avg": 0.852,
+          "start_frame": 0,
+          "end_frame": 15,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 12.141,
+          "net_displacement": 0.989,
+          "direction_change_var": 2.39,
+          "relations": [
+            "below person #22",
+            "left-of person #18",
+            "left-of person #21",
+            "left-of person #23",
+            "left-of person #24"
+          ]
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.918,
+          "start_frame": 1,
+          "end_frame": 16,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 7.92,
+          "net_displacement": 0.856,
+          "direction_change_var": 2.8196,
+          "relations": [
+            "left-of person #24",
+            "right-of person #18",
+            "right-of person #20",
+            "right-of person #22",
+            "right-of person #23"
+          ]
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.858,
+          "start_frame": 2,
+          "end_frame": 16,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 12.764,
+          "net_displacement": 1.091,
+          "direction_change_var": 2.7037,
+          "relations": [
+            "above person #18",
+            "above person #20",
+            "left-of person #21",
+            "left-of person #23",
+            "left-of person #24"
+          ]
+        },
+        {
+          "track_id": 23,
+          "label": "person",
+          "confidence_avg": 0.823,
+          "start_frame": 3,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer",
+          "path_length": 8.981,
+          "net_displacement": 8.084,
+          "direction_change_var": 2.4967,
+          "relations": [
+            "left-of person #21",
+            "right-of person #18",
+            "right-of person #20",
+            "right-of person #22"
+          ]
+        },
+        {
+          "track_id": 24,
+          "label": "person",
+          "confidence_avg": 0.804,
+          "start_frame": 7,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.687,
+          "net_displacement": 0.687,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #18",
+            "right-of person #20",
+            "right-of person #21",
+            "right-of person #22"
+          ]
+        }
+      ],
+      "audio_speech": "And today, I'm very happy that we are together fighting for an important cause. This award is not just for me.",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering her Nobel Peace Prize acceptance speech. She is wearing a green hijab and smiles warmly while speaking about unity and the shared fight for an important cause. Her words emphasize collaboration and the collective nature of the award, stating, \"This award is not just for me.\" The audience listens attentively, and there is no background noise or additional sounds, indicating a formal and focused setting.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and speaker advocating for children's rights and global unity.\n\nKey Dialogue:\nSpeaker: Malala Yousafzai  \nCause: She expresses gratitude and highlights the importance of collaboration in achieving shared goals related to children's rights.\n\nCausal Relationships:\nEmotion or action: Gratitude and happiness  \nCause: Malala's acknowledgment of the collective effort behind the award and her commitment to the cause.  \nEvidence: Audio transcript explicitly mentions her happiness and the collaborative nature of the fight.\n\nObjects and Setting:\nObject or environment: Podium, formal event setting  \nContext relevance: Indicates the official nature of the speech and the importance of the occasion.\n\nCross-Scene Continuity:\nOngoing conflict: Advocacy for children's rights and global collaboration.  \nCharacter development: Malala consistently emphasizes unity, gratitude, and the shared responsibility for achieving progress, reinforcing her role as a global advocate."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:02:28.548",
+      "end_timecode": "00:03:24.337",
+      "start_seconds": 148.54840000000002,
+      "end_seconds": 204.33746666666667,
+      "duration_seconds": 55.789066666666656,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0016.mp4",
+      "frame_captions": [
+        "a video frame of a woman speaking in front of a crowd of people",
+        "a video frame of mala mushai addressing the national day celebrations in islamabad",
+        "a video frame of the prime minister of bangladesh speaking at a press conference"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.916,
+          "start_frame": 0,
+          "end_frame": 222,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting farther, moving in a loop",
+          "path_length": 534.042,
+          "net_displacement": 43.312,
+          "direction_change_var": 1.5122,
+          "relations": []
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.893,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 22,
+          "label": "person",
+          "confidence_avg": 0.828,
+          "start_frame": 0,
+          "end_frame": 0,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "This award is not just for me. It is for those forgotten children who want education. It is for those frightened children who want peace. It is for those voiceless children who want change. I'm here to stand up for their rights, to raise their voice. It is not time to pity them. It is time to take action. So it becomes the last time, the last time. So it becomes the last time that we see a child deprived of education.",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene features Malala Yousafzai delivering a portion of her Nobel Peace Prize acceptance speech. She stands at a podium, addressing an audience. Her speech emphasizes the importance of education, peace, and change for children worldwide, particularly those who are forgotten, frightened, or voiceless. She passionately calls for action rather than pity, urging the audience to ensure that no child is deprived of education again. The setting appears formal, with a supportive audience listening attentively.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize laureate, advocate for children's rights and education  \n\nKey Dialogue:\nSpeaker: Malala Yousafzai  \nCause: She emphasizes the collective responsibility to take action for children's education and rights, framing her award as a symbol of this shared mission.  \n\nCausal Relationships:\nEmotion or action: Passionate advocacy for children's rights  \nCause: Malala's commitment to education and peace, as well as her personal experiences and global advocacy work  \nEvidence: Audio transcript of her speech  \n\nObjects and Setting:\nObject or environment: Podium and formal event setting  \nContext relevance: Indicates the official and significant nature of the occasion, reinforcing the importance of her message  \n\nCross-Scene Continuity:\nOngoing conflict: The global struggle for children's education and rights, particularly in regions affected by poverty, conflict, or discrimination  \nCharacter development: Malala consistently demonstrates her role as a determined and articulate advocate for children's rights, using her platform to inspire action and unity  "
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:03:24.337",
+      "end_timecode": "00:03:27.674",
+      "start_seconds": 204.33746666666667,
+      "end_seconds": 207.67413333333334,
+      "duration_seconds": 3.336666666666673,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0017.mp4",
+      "frame_captions": [
+        "a video frame of a crowd clapping to a speaker at an event in new orleans, mississippi",
+        "a video frame of a crowd clapping and celebrating in a church, with the words ' you can be here, '",
+        "a video frame of the first lady of texas is displayed during a town hall meeting on april 1, 2017"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.838,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 6.727,
+          "net_displacement": 6.727,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.843,
+          "start_frame": 8,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.595,
+          "net_displacement": 0.595,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 3,
+          "label": "person",
+          "confidence_avg": 0.825,
+          "start_frame": 11,
+          "end_frame": 11,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "So it becomes the last time that we see a child deprived of education.",
+      "audio_natural": "applause (conf=0.73)",
+      "llm_scene_description": "This scene captures a moment during Malala Yousafzai's Nobel Peace Prize acceptance speech, where she delivers a powerful message advocating for children's rights to education and calling for an end to deprivation. The audio transcript highlights her statement, \"So it becomes the last time that we see a child deprived of education,\" emphasizing her commitment to actionable change. The audience responds with applause, indicating agreement and support for her message. The visual captions contain inconsistencies, incorrectly suggesting locations such as New Orleans or Texas, which are not relevant to the event. The setting remains consistent with prior scenes, showing a formal international event with an attentive audience.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and advocate for children's rights  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Advocacy for ending educational deprivation among children  \n\nCausal Relationships:  \nEmotion or action: Applause from the audience  \nCause: Agreement with Malala's call to action for children's education rights  \nEvidence: Audio transcript and applause sounds  \n\nObjects and Setting:  \nObject or environment: Formal event setting, audience clapping  \nContext relevance: Reinforces the supportive and formal nature of the event  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for children's rights and educational equality  \nCharacter development: Malala continues to emphasize actionable change, showcasing her unwavering commitment to her cause"
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:03:27.674",
+      "end_timecode": "00:03:30.210",
+      "start_seconds": 207.67413333333334,
+      "end_seconds": 210.21,
+      "duration_seconds": 2.5358666666666636,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0018.mp4",
+      "frame_captions": [
+        "a video frame of prince albert ii and princess elizabeth in stockholm during their meeting",
+        "a video frame of queen elizabeth, princess of wales and prince albert of edinburgh at the wedding of their son",
+        "a video frame of a woman sitting on chairs, surrounded by two men in suits and ties"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.863,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, getting farther",
+          "path_length": 2.859,
+          "net_displacement": 1.131,
+          "direction_change_var": 2.0999,
+          "relations": [
+            "left-of person #31",
+            "left-of person #32",
+            "right-of person #30"
+          ]
+        },
+        {
+          "track_id": 30,
+          "label": "person",
+          "confidence_avg": 0.918,
+          "start_frame": 1,
+          "end_frame": 10,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 1.723,
+          "net_displacement": 0.318,
+          "direction_change_var": 4.4395,
+          "relations": [
+            "left-of person #18",
+            "left-of person #31",
+            "left-of person #32"
+          ]
+        },
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.914,
+          "start_frame": 1,
+          "end_frame": 10,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.962,
+          "net_displacement": 0.441,
+          "direction_change_var": 3.3749,
+          "relations": [
+            "right-of person #18",
+            "right-of person #30",
+            "right-of person #32"
+          ]
+        },
+        {
+          "track_id": 32,
+          "label": "person",
+          "confidence_avg": 0.894,
+          "start_frame": 1,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 2.389,
+          "net_displacement": 0.74,
+          "direction_change_var": 2.5803,
+          "relations": [
+            "left-of person #31",
+            "right-of person #18",
+            "right-of person #30"
+          ]
+        }
+      ],
+      "audio_speech": "So it becomes the last time that we see a child deprived of education.",
+      "audio_natural": "applause (conf=0.66)",
+      "llm_scene_description": "This scene shows Malala Yousafzai continuing her Nobel Peace Prize acceptance speech, delivering a powerful statement about ensuring that no child is deprived of education. She is seated between two men in suits, suggesting a formal setting. The audience responds with applause, though the sound is somewhat faint. The visual captions inaccurately describe royalty and unrelated events, which do not align with the audio or prior context.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient and advocate for children's education  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Advocating for the universal right to education  \n\nCausal Relationships:  \nEmotion or action: Applause from the audience  \nCause: Malala's impactful statement about ending educational deprivation for children  \nEvidence: Audio transcript and applause sound  \n\nObjects and Setting:  \nObject or environment: Formal event setting, likely an international venue  \nContext relevance: Reflects the gravity and importance of Malala's speech  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for children's education and addressing global inequalities  \nCharacter development: Malala remains composed and passionate, reinforcing her role as a determined and inspirational figure advocating for change  "
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:03:30.210",
+      "end_timecode": "00:03:33.413",
+      "start_seconds": 210.21,
+      "end_seconds": 213.41320000000002,
+      "duration_seconds": 3.2032000000000096,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0019.mp4",
+      "frame_captions": [
+        "a video frame of two men sitting in chairs and one is clapping the other man",
+        "a video frame of two men, one of whomt and the other man, sitting in chairs",
+        "a video frame of the prime minister maha mahaji and his successor shrian"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 18,
+          "label": "person",
+          "confidence_avg": 0.941,
+          "start_frame": 0,
+          "end_frame": 12,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "moving left, getting closer",
+          "path_length": 18.58,
+          "net_displacement": 13.953,
+          "direction_change_var": 0.4512,
+          "relations": [
+            "left-of person #31"
+          ]
+        },
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.955,
+          "start_frame": 0,
+          "end_frame": 12,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, getting closer",
+          "path_length": 19.342,
+          "net_displacement": 15.276,
+          "direction_change_var": 2.7934,
+          "relations": [
+            "right-of person #18"
+          ]
+        }
+      ],
+      "audio_speech": "So it becomes the last time that we see a child deprived of education.",
+      "audio_natural": "applause (conf=0.70)",
+      "llm_scene_description": "This scene shows Malala Yousafzai continuing her Nobel Peace Prize acceptance speech. The audio reveals her advocating for an end to children being deprived of education, emphasizing the importance of action to address this issue. The audience responds with applause, indicating agreement and support for her message. The visual captions inaccurately describe two men sitting and clapping, which does not align with the audio or prior context. The setting remains a formal event, consistent with previous scenes.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient, education advocate  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Advocating for children's rights to education  \n\nCausal Relationships:  \nEmotion or action: Applause from the audience  \nCause: Agreement with Malala's message about ending educational deprivation  \nEvidence: Audio transcript and applause sound  \n\nObjects and Setting:  \nObject or environment: Formal event setting  \nContext relevance: Reinforces the significance of the speech and audience engagement  \n\nCross-Scene Continuity:  \nOngoing conflict: Advocacy for children's education and rights  \nCharacter development: Malala continues to deliver a passionate and impactful speech, maintaining her focus on unity and action"
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:03:33.413",
+      "end_timecode": "00:03:36.750",
+      "start_seconds": 213.41320000000002,
+      "end_seconds": 216.74986666666666,
+      "duration_seconds": 3.3366666666666447,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0020.mp4",
+      "frame_captions": [
+        "a video frame of a man speaking at a podium on stage surrounded by audience",
+        "a video frame of the audience at a public event in front of a stage",
+        "a video frame of the audience at a conference in london, with a large crowd"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "So it becomes the last time that we see a child deprived of education.",
+      "audio_natural": "applause (conf=0.65)",
+      "llm_scene_description": "This scene captures a moment during Malala Yousafzai's Nobel Peace Prize acceptance speech. The video shows an audience gathered at a public event, possibly in London, though the captions about location are inconsistent. Malala continues to advocate for children's right to education, delivering a powerful statement: \"So it becomes the last time that we see a child deprived of education.\" The audio transcript is clear, and applause follows her words, indicating audience support for her message. The visual frames focus on the audience and stage, but do not directly show Malala speaking.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize recipient, advocate for education and children's rights  \n\nKey Dialogue:\nSpeaker: Malala Yousafzai  \nCause: Advocating for an end to children being deprived of education  \n\nCausal Relationships:\nEmotion or action: Audience applause  \nCause: Malala's impactful statement about ensuring education for all children  \nEvidence: Audio transcript and applause sound  \n\nObjects and Setting:\nObject or environment: Audience at a public event  \nContext relevance: Indicates support for Malala's message and the formal nature of the occasion  \n\nCross-Scene Continuity:\nOngoing conflict: Advocacy for universal education and children's rights  \nCharacter development: Malala consistently delivers a passionate and determined message, emphasizing action and collective responsibility"
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:03:36.750",
+      "end_timecode": "00:04:33.473",
+      "start_seconds": 216.74986666666666,
+      "end_seconds": 273.4732,
+      "duration_seconds": 56.72333333333336,
+      "clip_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4\\.clips\\scene_0021.mp4",
+      "frame_captions": [
+        "a video frame of a woman speaking into a microphone in front of a crowd",
+        "a video frame of an indian woman speaking at a podium with a pink scarf on",
+        "a video frame of the prime minister ' s speech at the women ' s conference in new delhi"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 31,
+          "label": "person",
+          "confidence_avg": 0.907,
+          "start_frame": 1,
+          "end_frame": 226,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 260.597,
+          "net_displacement": 2.679,
+          "direction_change_var": 1.3156,
+          "relations": []
+        }
+      ],
+      "audio_speech": "So it becomes the last time that we see a child deprived of education. I have found that people describe me in many different ways. Some people call me the girl who was shot by the Taliban. And some, the girl who fought for her rights. Some people call me a Nobel Laureate now. However, my brother still called me that annoying bossy sister. As far as I know, I'm just a committed and even stubborn person who wants to see every child getting quality education, who wants to see women having equal rights, and who wants peace in every corner of the world.",
+      "audio_natural": "speech (conf=0.74)",
+      "llm_scene_description": "This scene shows Malala Yousafzai delivering her Nobel Peace Prize acceptance speech. She speaks passionately about her vision for a world where no child is deprived of education, emphasizing her determination to fight for children's rights, women's equality, and global peace. She humorously contrasts how others perceive her—such as \"the girl who was shot by the Taliban\" or \"a Nobel Laureate\"—with her brother's playful description of her as an \"annoying bossy sister.\" Her tone is both heartfelt and lighthearted, reflecting her commitment to her cause and her grounded personality. The audience appears attentive, though no explicit reactions like applause are noted in this specific scene.\n\nCharacters:\nName: Malala Yousafzai  \nRole: Nobel Peace Prize Laureate, advocate for education and equality  \n\nKey Dialogue:  \nSpeaker: Malala Yousafzai  \nCause: Advocating for education, equality, and peace while sharing personal reflections on how she is perceived by others  \n\nCausal Relationships:  \nEmotion or action: Passionate advocacy and humor  \nCause: Malala's dedication to her mission and her ability to connect with the audience through personal anecdotes  \nEvidence: Audio transcript of her speech  \n\nObjects and Setting:  \nObject or environment: Podium, microphone, formal event setting  \nContext relevance: Indicates the official nature of her speech and her role as a speaker addressing a significant audience  \n\nCross-Scene Continuity:  \nOngoing conflict: The global issue of children's deprivation of education and gender inequality  \nCharacter development: Malala continues to assert her identity as a determined advocate for education and peace, balancing her serious mission with a relatable and humorous side"
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 6826,
+      "chunk_len": 2,
+      "narrative": "### Chronological Summary of Scenes 0 to 12 (00:00:00.000 to 00:01:38.765)\n\n1. **00:00:00.000**: Malala Yousafzai begins her Nobel Peace Prize acceptance speech, wearing a pink headscarf and standing at a podium. She confidently expresses pride in being the first Pashtun, the first Pakistani, and the youngest recipient of the award. The setting is formal, with no audible audience sounds. Visual captions are inconsistent, misidentifying her location and name.\n\n2. **00:00:15.883**: The audience is shown seated and clapping, creating a celebratory atmosphere. Malala reiterates her recognition as the youngest Nobel Peace Prize recipient, confirmed by the audio. Visual captions remain inconsistent.\n\n3. **00:00:21.755**: Malala continues her speech, emphasizing her historic achievement as the youngest recipient. Audience applause follows, affirming the celebratory tone. Visual captions incorrectly reference unrelated events.\n\n4. **00:00:25.893**: Malala highlights her recognition as the youngest Nobel Peace Prize recipient. Applause from the audience underscores the formal and celebratory nature of the event.\n\n5. **00:00:28.562**: Malala humorously mentions being the first Nobel laureate who still fights with her younger brothers, adding a personal and relatable touch to her speech. She contrasts her global peace advocacy with her sibling dynamics, maintaining a lighthearted tone.\n\n6. **00:00:52.185**: Malala reiterates her wish for global peace while humorously referencing her ongoing sibling disputes. The formal setting remains consistent, though visual captions continue to misalign with the audio.\n\n7. **00:00:56.590**: Malala expresses gratitude for receiving the award alongside Kailash Satyarthi, acknowledging his contributions to children's rights. The atmosphere is solemn and respectful, despite inconsistent visual captions.\n\n8. **00:00:59.526**: Malala, now described as wearing a red hijab, continues to express gratitude for sharing the honor with Kailash Satyarthi. She highlights his long-standing dedication to children's rights.\n\n9. **00:01:03.530**: Malala humorously notes that Kailash Satyarthi's advocacy for children's rights has lasted twice as long as her lifetime. She emphasizes their shared commitment to global change.\n\n10. **00:01:11.271**: Malala discusses the enduring struggle for children's rights and the importance of collective action. She expresses pride in collaborative efforts to inspire global change, despite visual captions inaccurately referencing unrelated events.\n\n11. **00:01:18.478**: Malala highlights unity between an Indian and a Pakistani working together for children's rights. The audio emphasizes collaboration across national boundaries, while visual captions remain inconsistent.\n\n12. **00:01:33.694 to 00:01:38.765**: Malala concludes by reiterating the importance of collaboration between nations, specifically mentioning an Indian and a Pakistani achieving shared goals for children's rights. The audience applauds, affirming support for her message. The formal setting includes a blue wall backdrop, consistent with the Nobel Peace Prize ceremony.\n\n### Key Themes:\n- **Advocacy for Peace and Education**: Malala emphasizes her historic achievement and her ongoing commitment to global peace and children's rights.\n- **Collaboration and Unity**: She highlights the importance of working across national boundaries, particularly between India and Pakistan, to achieve shared goals.\n- **Personal Touch**: Malala balances her formal speech with humor and personal anecdotes, making her message relatable and impactful.\n### Chronological Summary of Scenes 13 to 21 (00:01:38.765 to 00:04:33.473)\n\n1. **00:01:38.765**:  \n   Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, emphasizing collaboration between nations, particularly Pakistan, to achieve children's rights. The audience applauds, showing strong support for her message. Visual captions are inconsistent and unrelated to the speech.\n\n2. **00:01:42.502**:  \n   Malala, wearing a pink scarf, reflects on her name's origin, sharing a personal anecdote about being named after Malalai, a Pashtun heroine. Her grandfather called her \"the happiest girl in the world\" to bring joy to her name. She expresses happiness about uniting with others to fight for children's rights. The audience applauds.\n\n3. **00:02:24.544**:  \n   Malala, now wearing a green hijab, smiles warmly as she emphasizes the collective nature of the Nobel Prize, stating, \"This award is not just for me.\" She highlights unity and shared efforts for children's rights. The audience listens attentively in the formal setting.\n\n4. **00:02:28.548**:  \n   Malala passionately calls for action to ensure no child is deprived of education, focusing on forgotten, frightened, and voiceless children. She urges the audience to act rather than pity, stating, \"It is not time to pity them. It is time to take action.\" The audience listens attentively.\n\n5. **00:03:24.337**:  \n   Malala delivers a powerful statement: \"So it becomes the last time that we see a child deprived of education.\" The audience applauds, showing agreement and support. Visual captions inaccurately suggest unrelated locations like New Orleans or Texas.\n\n6. **00:03:27.674**:  \n   Malala continues her speech, seated between two men in suits. She reiterates her call to end educational deprivation. The audience applauds faintly. Visual captions inaccurately describe royalty and unrelated events.\n\n7. **00:03:30.210**:  \n   Malala emphasizes the importance of action to address children's educational deprivation. The audience applauds again, showing support. Visual captions inaccurately describe unrelated actions, such as two men clapping.\n\n8. **00:03:33.413**:  \n   Malala repeats her statement about ending educational deprivation: \"So it becomes the last time that we see a child deprived of education.\" The audience applauds. Visual frames focus on the audience and stage but do not show Malala speaking.\n\n9. **00:03:36.750**:  \n   Malala humorously contrasts how others perceive her—\"the girl who was shot by the Taliban\" or \"a Nobel Laureate\"—with her brother's playful description of her as an \"annoying bossy sister.\" She reaffirms her mission to fight for children's education, women's equality, and global peace. The audience remains attentive, though no explicit applause is noted.\n\n### Key Themes Across Scenes:\n- **Advocacy**: Malala consistently emphasizes children's rights, education, and global collaboration.  \n- **Personal Connection**: She shares personal anecdotes to connect with the audience.  \n- **Audience Engagement**: Applause and attentive listening reflect strong support for her message.  \n- **Formal Setting**: The event's significance is reinforced by the formal environment and Malala's composed delivery."
+    }
+  ],
+  "synopsis": {
+    "chat_name": "Malala Nobel Speech",
+    "summary": "Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, emphasizing her historic achievement, global peace advocacy, collaboration across nations, and the urgent need to ensure education for all children, blending formal discourse with personal anecdotes.",
+    "video_highlights": [
+      {
+        "start": "00:00:00.000",
+        "end": "00:00:15.883",
+        "highlight": "Malala begins her Nobel Peace Prize speech, expressing pride in her historic achievements as the youngest recipient and first Pashtun and Pakistani honoree."
+      },
+      {
+        "start": "00:00:28.562",
+        "end": "00:00:52.185",
+        "highlight": "Malala humorously contrasts her global peace advocacy with sibling disputes, adding a personal and relatable touch to her formal speech."
+      },
+      {
+        "start": "00:01:18.478",
+        "end": "00:01:33.694",
+        "highlight": "Malala highlights unity between India and Pakistan in the fight for children's rights, emphasizing collaboration across national boundaries."
+      },
+      {
+        "start": "00:02:28.548",
+        "end": "00:03:24.337",
+        "highlight": "Malala passionately calls for action to end educational deprivation, urging the audience to act rather than pity."
+      },
+      {
+        "start": "00:03:36.750",
+        "end": "Not explicitly stated",
+        "highlight": "Malala humorously contrasts public perceptions of her with her brother's playful description, reaffirming her mission for education and equality."
+      }
+    ],
+    "video_timeline": [
+      {
+        "timestamp": "00:00:00",
+        "event": "Malala's Speech"
+      },
+      {
+        "timestamp": "00:00:28",
+        "event": "Humor and Dynamics"
+      },
+      {
+        "timestamp": "00:00:56",
+        "event": "Gratitude for Kailash"
+      },
+      {
+        "timestamp": "00:01:18",
+        "event": "Unity Across Nations"
+      },
+      {
+        "timestamp": "00:03:24",
+        "event": "End Deprivation Call"
+      },
+      {
+        "timestamp": "00:03:36",
+        "event": "Personal Reflections"
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is happening in the video?",
+        "answer": "Malala Yousafzai delivers her Nobel Peace Prize acceptance speech, emphasizing peace, education, and collaboration, while sharing personal anecdotes and humor."
+      },
+      {
+        "question": "What are the key events?",
+        "answer": "Malala accepts the Nobel Prize, highlights her achievements, acknowledges Kailash Satyarthi, calls for global action on education, and emphasizes unity between nations."
+      },
+      {
+        "question": "What are the key actions and who performed them?",
+        "answer": "Malala delivers a speech, shares personal stories, advocates for children's rights, and humorously contrasts her global role with her family dynamics."
+      },
+      {
+        "question": "What are the main conflicts and problems encountered?",
+        "answer": "The global issue of children's deprivation of education and the need for collective action to address it."
+      },
+      {
+        "question": "Who is the main character? Describe their journey.",
+        "answer": "Malala Yousafzai, a young Pakistani advocate, reflects on her journey from being a victim of violence to becoming a global symbol for education and peace."
+      },
+      {
+        "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
+        "answer": "Malala: Wears pink, red, and green hijabs; confident, humorous, and inspiring; main speaker and advocate. Kailash Satyarthi: Mentioned as a co-recipient for his work on children's rights."
+      },
+      {
+        "question": "What are some significant quotes from the video and who said them?",
+        "answer": "\"This award is not just for me.\" - Malala. \"It is not time to pity them. It is time to take action.\" - Malala. \"So it becomes the last time that we see a child deprived of education.\" - Malala."
+      },
+      {
+        "question": "What is the setting? Did it change? How is it related to the story?",
+        "answer": "The formal Nobel Peace Prize ceremony with a blue wall backdrop; it remains consistent, emphasizing the event's significance."
+      },
+      {
+        "question": "How did the video start? Explain the start.",
+        "answer": "Malala begins her speech, expressing pride in her achievements and humorously mentioning her sibling disputes."
+      },
+      {
+        "question": "How did the video end? Explain the ending.",
+        "answer": "Malala concludes by reiterating the importance of collaboration between nations for children's rights, receiving applause from the audience."
+      },
+      {
+        "question": "What objects are central to the video and when do they appear?",
+        "answer": "The Nobel Peace Prize podium, Malala's hijabs, and the formal stage appear throughout, symbolizing the event's gravity."
+      },
+      {
+        "question": "What is the most important thing said or heard?",
+        "answer": "\"So it becomes the last time that we see a child deprived of education.\""
+      },
+      {
+        "question": "What is different at the end vs the beginning?",
+        "answer": "Malala transitions from emphasizing her personal achievements to a broader call for global action on children's rights."
+      },
+      {
+        "question": "What type of video is this?",
+        "answer": "A formal speech at the Nobel Peace Prize ceremony."
+      },
+      {
+        "question": "What is the goal or intent or theme of the video?",
+        "answer": "Advocacy for children's education, global peace, and collaboration across nations."
+      },
+      {
+        "question": "List the moods and tones present, explain each one.",
+        "answer": "Celebratory (audience applause for achievements), solemn (discussion of global issues), humorous (personal anecdotes about siblings), and inspirational (calls to action for education)."
+      },
+      {
+        "question": "What context is missing or assumed? What would require outside knowledge?",
+        "answer": "Details about Malala's background, the Nobel Peace Prize process, and Kailash Satyarthi's work."
+      },
+      {
+        "question": "What are key visual descriptions?",
+        "answer": "Malala wears pink, red, and green scarves; a formal setting with a blue wall backdrop; audience seated and clapping."
+      },
+      {
+        "question": "What are key audio descriptions?",
+        "answer": "Malala's confident tone, audience applause, and her humorous and solemn delivery."
+      },
+      {
+        "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
+        "answer": "No, visual captions are inconsistent and often misaligned with the audio content."
+      },
+      {
+        "question": "What are prominent visual cues and audio cues noticed throughout the video?",
+        "answer": "Visual: Malala's attire, audience reactions, formal stage. Audio: Applause, Malala's speech delivery, and tonal shifts."
+      },
+      {
+        "question": "Does the video contain any live action, animation, or special effects?",
+        "answer": "Live action."
+      },
+      {
+        "question": "What is Malala wearing during her speech?",
+        "answer": "She is described as wearing a pink headscarf initially, later a red hijab, and then a green hijab."
+      },
+      {
+        "question": "What does Malala say about her brothers?",
+        "answer": "She humorously mentions fighting with her younger brothers and being called \"an annoying bossy sister.\""
+      },
+      {
+        "question": "What does Malala emphasize about Kailash Satyarthi?",
+        "answer": "She highlights his long-standing dedication to children's rights and their shared commitment to global change."
+      },
+      {
+        "question": "How does Malala describe the Nobel Prize?",
+        "answer": "She states that the award is not just for her but represents collective efforts for children's rights."
+      },
+      {
+        "question": "What does Malala say about pitying children?",
+        "answer": "She urges action instead of pity, stating, \"It is not time to pity them. It is time to take action.\""
+      },
+      {
+        "question": "What personal anecdote does Malala share about her name?",
+        "answer": "She reflects on being named after Malalai, a Pashtun heroine, and her grandfather calling her \"the happiest girl in the world.\""
+      },
+      {
+        "question": "What is Malala’s key message about education?",
+        "answer": "She calls for ensuring no child is deprived of education and emphasizes ending educational deprivation."
+      },
+      {
+        "question": "How does the audience react to Malala’s speech?",
+        "answer": "The audience frequently applauds, showing strong support for her message."
+      },
+      {
+        "question": "What does Malala say about collaboration between nations?",
+        "answer": "She highlights unity, particularly between India and Pakistan, to achieve shared goals for children's rights."
+      },
+      {
+        "question": "What humorous contrast does Malala make about her identity?",
+        "answer": "She contrasts being seen as \"the girl who was shot by the Taliban\" or \"a Nobel Laureate\" with her brother's view of her as \"an annoying bossy sister.\""
+      },
+      {
+        "question": "What does Malala say about her mission?",
+        "answer": "She reaffirms her commitment to fighting for children's education, women's equality, and global peace."
+      },
+      {
+        "question": "What is the setting of Malala’s speech?",
+        "answer": "The setting is formal, with a blue wall backdrop consistent with the Nobel Peace Prize ceremony."
+      },
+      {
+        "question": "What does Malala say about forgotten children?",
+        "answer": "She emphasizes the need to focus on forgotten, frightened, and voiceless children."
+      },
+      {
+        "question": "What is the tone of Malala’s speech?",
+        "answer": "The tone balances solemn advocacy with humor and personal anecdotes."
+      },
+      {
+        "question": "What is inconsistent about the visual captions?",
+        "answer": "The captions frequently misidentify locations, events, and actions unrelated to Malala’s speech."
+      }
+    ]
+  },
+  "rag_embedding": {
+    "rag_path": "_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4/rag_embedding.json",
+    "context_count": 26,
+    "embedding_dim": 3072,
+    "model": "gemini-embedding-001"
+  }
+}

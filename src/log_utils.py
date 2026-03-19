@@ -160,8 +160,14 @@ def log_step():
             # --- CPU / RAM / GPU / IO before ---
             cpu_before = time.process_time()
             ram_before = process.memory_info().rss // (1024 ** 2)
-            io_before = process.io_counters()
-            gpu_before = get_gpu_stats()
+            try:
+                io_before = process.io_counters()
+            except Exception:
+                io_before = None
+            try:
+                gpu_before = get_gpu_stats()
+            except Exception:
+                gpu_before = None
 
             # CUDA memory before
             if torch.cuda.is_available():
@@ -181,8 +187,14 @@ def log_step():
             # --- CPU / RAM / GPU / IO after ---
             cpu_after = time.process_time()
             ram_after = process.memory_info().rss // (1024 ** 2)
-            io_after = process.io_counters()
-            gpu_after = get_gpu_stats()
+            try:
+                io_after = process.io_counters()
+            except Exception:
+                io_after = None
+            try:
+                gpu_after = get_gpu_stats()
+            except Exception:
+                gpu_after = None
 
             # CUDA memory after + peak
             if torch.cuda.is_available():
@@ -198,14 +210,20 @@ def log_step():
                 cuda_after = cuda_peak = None
 
             # Build log entry
+            # Calculate IO usage
+            io_read = (io_after.read_bytes - io_before.read_bytes) / (1024 ** 2) if (io_after and io_before) else 0
+            io_write = (io_after.write_bytes - io_before.write_bytes) / (1024 ** 2) if (io_after and io_before) else 0
+
+            # Step log (Backwards compatible keys)
             log_entry = {
+                "step": func.__name__,
                 "wall_time_sec": round(t1 - t0, 5),
                 "cpu_time_sec": round(cpu_after - cpu_before, 5),
                 "ram_before_MB": ram_before,
                 "ram_after_MB": ram_after,
                 "ram_used_MB": ram_after - ram_before,
-                "io_read_MB": (io_after.read_bytes - io_before.read_bytes) / (1024**2),
-                "io_write_MB": (io_after.write_bytes - io_before.write_bytes) / (1024**2),
+                "io_read_MB": io_read,
+                "io_write_MB": io_write,
                 "gpu_before": gpu_before,
                 "gpu_after": gpu_after,
                 "cuda_before_MB": cuda_before,

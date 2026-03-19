@@ -16,14 +16,38 @@ import torch
 import librosa
 import av
 import whisper
+from src.path_utils import is_low_mem
 
 
-_silero_model, _utils = torch.hub.load(
-    repo_or_dir="snakers4/silero-vad",
-    model="silero_vad",
-    force_reload=False,
-)
-_get_speech_ts = _utils[0]
+_silero_model = None
+_utils = None
+
+
+def _get_vad_model():
+    """
+    Lazy load Silero VAD model only when needed.
+    """
+    global _silero_model, _utils
+    if _silero_model is None:
+        _silero_model, _utils = torch.hub.load(
+            repo_or_dir="snakers4/silero-vad",
+            model="silero_vad",
+            force_reload=False,
+        )
+    return _silero_model, _utils
+
+def unload_vad():
+    """Unload VAD if in low memory mode."""
+    global _silero_model, _utils
+    if _silero_model is not None and is_low_mem():
+        del _silero_model
+        del _utils
+        _silero_model = None
+        _utils = None
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        print("[AudioDetector] VAD unloaded (LowMem mode).")
 
 
 # =========================================================
@@ -209,9 +233,13 @@ def detect_speech_regions(audio: np.ndarray, sr: int, thresholds: dict) -> list:
         audio = audio.copy()
     audio_tensor = torch.from_numpy(audio).float()
 
-    speech_ts = _get_speech_ts(
+    # Lazy load VAD
+    model, utils = _get_vad_model()
+    get_speech_ts = utils[0]
+
+    speech_ts = get_speech_ts(
         audio_tensor,
-        _silero_model,
+        model,
         sampling_rate=sr,
         threshold=thresholds["VAD_THRESHOLD"],
         min_speech_duration_ms=thresholds["MIN_SPEECH_DURATION_MS"],
@@ -430,3 +458,6 @@ def scan_audio(video_path: str, scenes: list, target_sr: int = 16000, debug: boo
         "thresholds_used": thresholds,
         "scan_time_sec": elapsed,
     }
+
+    # Final Cleanup
+    unload_vad()

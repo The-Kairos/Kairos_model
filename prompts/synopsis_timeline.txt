@@ -2,7 +2,7 @@ You are a story detective.
 Given the video narrative, produce video chapter titles.
 
 Return {timeline_count} lines in this format:
-<timestamp> | <event>
+00:00:15 | <event>
 
 Rules:
 - No JSON, no markdown, no bullets, no numbering, no extra text.
@@ -10,7 +10,7 @@ Rules:
 - Events must be ideally be 1 word but you can use upto 3 if really needed.
 - Keep chronological order.
 - Use only the narrative text.
-- If timestamp is missing, set it to "Not explicitly stated".
+- You MUST extract the exact 'timestamp' for the event from the narrative. Do not use 00:00:00 as a placeholder.
 - If detail is missing, set text to "Not explicitly stated."
 
 INPUT NARRATIVE:
