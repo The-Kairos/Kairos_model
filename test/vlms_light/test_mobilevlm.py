@@ -20,18 +20,31 @@ DEFAULT_PROMPT = "Describe the scene in detail. Focus on what is visually observ
 
 
 def _apply_mobilevlm_patch(mobilevlm_dir):
-    """Patch mobilevlm.py: low_cpu_mem_usage=True -> False to avoid meta device error."""
+    """Patch mobilevlm: low_cpu_mem_usage and mm_utils shim."""
+    # 1. Patch mobilevlm.py: low_cpu_mem_usage=True -> False to avoid meta device error.
     path = mobilevlm_dir / "mobilevlm" / "model" / "mobilevlm.py"
-    if not path.exists():
-        return
-    try:
-        txt = path.read_text(encoding="utf-8")
-        if "low_cpu_mem_usage=True" in txt and "low_cpu_mem_usage=False" not in txt:
-            txt = txt.replace("low_cpu_mem_usage=True", "low_cpu_mem_usage=False")
-            path.write_text(txt, encoding="utf-8")
-            print("[MobileVLM] Patched mobilevlm.py: low_cpu_mem_usage=False")
-    except Exception:
-        pass
+    if path.exists():
+        try:
+            txt = path.read_text(encoding="utf-8")
+            if "low_cpu_mem_usage=True" in txt and "low_cpu_mem_usage=False" not in txt:
+                txt = txt.replace("low_cpu_mem_usage=True", "low_cpu_mem_usage=False")
+                path.write_text(txt, encoding="utf-8")
+                print("[MobileVLM] Patched mobilevlm.py: low_cpu_mem_usage=False")
+        except Exception:
+            pass
+
+    # 2. Create mm_utils.py if missing (some code expects LLaVA-style mm_utils; MobileVLM uses utils).
+    mm_utils_path = mobilevlm_dir / "mobilevlm" / "mm_utils.py"
+    if mm_utils_path.parent.exists() and not mm_utils_path.exists():
+        try:
+            mm_utils_path.write_text(
+                '"""Shim: re-export from utils (some code expects LLaVA-style mm_utils)."""\n'
+                "from mobilevlm.utils import *  # noqa: F401, F403\n",
+                encoding="utf-8",
+            )
+            print("[MobileVLM] Created mm_utils.py shim")
+        except Exception:
+            pass
 
 
 def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
@@ -47,6 +60,18 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
 
     if mobilevlm_dir.exists() and str(mobilevlm_dir) not in sys.path:
         sys.path.insert(0, str(mobilevlm_dir))
+
+    # Some MobileVLM code paths expect mobilevlm.mm_utils (LLaVA-style); MobileVLM provides utils.
+    # Register a lazy mm_utils BEFORE any mobilevlm import so imports succeed.
+    import types
+    class _LazyMMUtils(types.ModuleType):
+        _resolved = None
+        def __getattr__(self, name):
+            if self._resolved is None:
+                import mobilevlm.utils as u
+                self._resolved = u
+            return getattr(self._resolved, name)
+    sys.modules["mobilevlm.mm_utils"] = _LazyMMUtils("mobilevlm.mm_utils")
 
     try:
         from mobilevlm.model.mobilevlm import load_pretrained_model
@@ -109,7 +134,7 @@ def caption_image(model, processor, image, prompt=None):
     image: PIL Image
     processor: dict with 'tokenizer' and 'image_processor'
     """
-    from mobilevlm.mm_utils import process_images, tokenizer_image_token
+    from mobilevlm.utils import process_images, tokenizer_image_token
     from mobilevlm.constants import IMAGE_TOKEN_INDEX
     if prompt is None:
         prompt = DEFAULT_PROMPT
