@@ -27,8 +27,8 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
                 from mobilevlm.model.mobilevlm import load_pretrained_model
             except ImportError as e:
                 raise ImportError(
-                    "MobileVLM cloned but import failed. Install with:\n"
-                    "  python test/vlms_light/install_mobilevlm.py\n"
+                    f"MobileVLM cloned but import failed: {e}\n"
+                    "Install with: python test/vlms_light/install_mobilevlm.py\n"
                     "Or: pip install git+https://github.com/Meituan-AutoML/MobileVLM.git"
                 ) from e
         else:
@@ -43,7 +43,7 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
         model_base=None,
         load_8bit=False,
         load_4bit=False,
-        device_map="auto",
+        device_map="cuda:0",  # single device to avoid multi-GPU tensor mismatch
     )
     processor = {"tokenizer": tokenizer, "image_processor": image_processor}
     return model, processor
