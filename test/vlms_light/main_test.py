@@ -49,6 +49,12 @@ except ImportError:
 torch.set_num_threads(_n_cpu)
 if torch.cuda.is_available():
     torch.backends.cudnn.benchmark = True
+# Reset any global meta device early (MobileVLM + newer transformers fail if default device is meta)
+if hasattr(torch, "set_default_device"):
+    try:
+        torch.set_default_device("cpu")
+    except Exception:
+        pass
 
 # Light VLM registry (same interface: load_vlm_model, caption_image)
 def get_vlm_module(vlm_name):
@@ -421,8 +427,13 @@ if __name__ == "__main__":
                 metrics = run_pipeline_with_vlm(video, vlm, RESULTS_DIR, GCLOUD_JSON)
                 all_metrics[vlm][video_name] = metrics
             except Exception as e:
+                err_str = str(e)
                 print(f"FAILED: {vlm} on {video_name} | Error: {e}")
-                all_metrics[vlm][video_name] = {"error": str(e)}
+                if vlm == "mobilevlm" and "meta device" in err_str.lower():
+                    print("  Tip: MobileVLM clashes with newer transformers. Either run without it:")
+                    print("    python test/vlms_light/main_test.py --vlms blip2,siglip,tinyllava")
+                    print("  Or try: pip install transformers==4.33.1  # MobileVLM's tested version")
+                all_metrics[vlm][video_name] = {"error": err_str}
 
     # Merge with existing metrics so we preserve prior results for VLMs/videos not run this round
     final_metrics = dict(existing_metrics)

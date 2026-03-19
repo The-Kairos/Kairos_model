@@ -7,6 +7,15 @@ Or: git clone https://github.com/Meituan-AutoML/MobileVLM && export PYTHONPATH=/
 import os
 from PIL import Image
 
+# Reset meta device as early as possible (meta breaks from_pretrained).
+# Unconditionally set to cpu so from_pretrained loads into real memory.
+import torch
+if hasattr(torch, "set_default_device"):
+    try:
+        torch.set_default_device("cpu")
+    except Exception:
+        pass
+
 DEFAULT_PROMPT = "Describe the scene in detail. Focus on what is visually observable."
 
 
@@ -63,6 +72,11 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
     print(f"Loading {model_id}...")
     import torch
 
+    # Reset any global meta device (torch.set_default_device("meta")) that breaks from_pretrained.
+    # Use "cpu" during load since we load with device_map=None; move to GPU after.
+    if hasattr(torch, "set_default_device"):
+        torch.set_default_device("cpu")
+
     # Force low_cpu_mem_usage=False for ALL from_pretrained calls during load (main model + vision tower).
     from transformers.modeling_utils import PreTrainedModel
     _orig = PreTrainedModel.from_pretrained
@@ -72,12 +86,14 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
 
     PreTrainedModel.from_pretrained = classmethod(_patched)
     try:
-        tokenizer, model, image_processor, _ = load_pretrained_model(
-            model_path=model_id,
-            load_8bit=False,
-            load_4bit=False,
-            device_map=None,
-        )
+        # Explicit cpu context: avoids "meta device context manager" error (PyTorch 2.6+)
+        with torch.device("cpu"):
+            tokenizer, model, image_processor, _ = load_pretrained_model(
+                model_path=model_id,
+                load_8bit=False,
+                load_4bit=False,
+                device_map=None,
+            )
     finally:
         PreTrainedModel.from_pretrained = _orig
 
