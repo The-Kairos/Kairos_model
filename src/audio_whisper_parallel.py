@@ -102,7 +102,7 @@ AZURE_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
 AZURE_DEPLOYMENT = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
 AZURE_API_VERSION = os.environ.get("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
 
-if AZURE_KEY and AZURE_ENDPOINT:
+if AZURE_KEY and AZURE_ENDPOINT and AzureOpenAI is not None:
     base_endpoint = AZURE_ENDPOINT.split("/openai")[0]
     _azure_client = AzureOpenAI(
         api_key=AZURE_KEY,
@@ -497,6 +497,9 @@ def transcribe_full_video(
 
     if use_vad:
         cleaned = clean_audio(cleaned, sr, silero_model, get_speech_ts_fn)
+
+    # Sanitize NaNs/inf from noisereduce (can occur with very quiet, silent, or crowd-noise segments)
+    cleaned = np.nan_to_num(cleaned, nan=0.0, posinf=0.0, neginf=0.0, copy=False)
 
     t_clean = time.time()
     if debug:

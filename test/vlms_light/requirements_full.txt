@@ -21,8 +21,9 @@ torchvision
 torchaudio
 Pillow>=10.0
 
-# Transformers & VLMs (BLIP2, InstructBLIP, LLaVA, Phi-3, SigLIP)
+# Transformers & VLMs (BLIP-2, SigLIP, TinyLLaVA; MobileVLM via git install)
 transformers>=4.40.0
+requests
 accelerate
 bitsandbytes
 sentencepiece
@@ -40,10 +41,15 @@ librosa>=0.10
 openai-whisper
 noisereduce
 soundfile
+scipy>=1.10
+openai>=1.0  # Optional: for Azure Whisper API; pipeline falls back to local Whisper if missing
+protobuf>=3.20  # Required by SigLIP / sentencepiece
 
 # Utils (debug_utils, etc.)
 pandas
 tqdm
+
+# Optional: MobileVLM (pip install git+https://github.com/Meituan-AutoML/MobileVLM.git)
 
 # Optional GPU monitoring
 nvidia-ml-py
