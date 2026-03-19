@@ -1,0 +1,1917 @@
+[
+  {
+    "scene_index": 0,
+    "start_timecode": "00:00:00.000",
+    "end_timecode": "00:00:06.500",
+    "start_seconds": 0.0,
+    "end_seconds": 6.5,
+    "duration_seconds": 6.5,
+    "audio_speech": "Today I'm showing you all how to make a simple recipe for a basic homemade pasta dough.",
+    "audio_natural": "music (conf=0.74)",
+    "yolo_detections": [
+      {
+        "track_id": 1,
+        "label": "donut",
+        "confidence_avg": 0.889,
+        "start_frame": 0,
+        "end_frame": 0,
+        "start_pos": "bottom-left",
+        "end_pos": "bottom-left",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 1,
+    "start_timecode": "00:00:06.500",
+    "end_timecode": "00:00:11.667",
+    "start_seconds": 6.5,
+    "end_seconds": 11.666666666666666,
+    "duration_seconds": 5.166666666666666,
+    "audio_speech": "I'm not making the fanciest or the best or the most luxurious recipe, but it's easy and",
+    "audio_natural": "silence (conf=0.51)",
+    "yolo_detections": [
+      {
+        "track_id": 1,
+        "label": "hot dog",
+        "confidence_avg": 0.621,
+        "start_frame": 4,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 2,
+    "start_timecode": "00:00:11.667",
+    "end_timecode": "00:00:14.333",
+    "start_seconds": 11.666666666666666,
+    "end_seconds": 14.333333333333334,
+    "duration_seconds": 2.666666666666668,
+    "audio_speech": "you probably already have all the ingredients in your house.",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 4,
+        "label": "bowl",
+        "confidence_avg": 0.759,
+        "start_frame": 1,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.074,
+        "net_displacement": 0.074,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 3,
+    "start_timecode": "00:00:14.333",
+    "end_timecode": "00:00:18.167",
+    "start_seconds": 14.333333333333334,
+    "end_seconds": 18.166666666666668,
+    "duration_seconds": 3.833333333333334,
+    "audio_speech": "So if the past aisle at your grocery store is empty, don't panic.",
+    "audio_natural": "silence (conf=0.44)",
+    "yolo_detections": [
+      {
+        "track_id": 4,
+        "label": "bowl",
+        "confidence_avg": 0.778,
+        "start_frame": 0,
+        "end_frame": 3,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving up-right, getting farther",
+        "path_length": 49.655,
+        "net_displacement": 48.785,
+        "direction_change_var": 0.2306,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 4,
+    "start_timecode": "00:00:18.167",
+    "end_timecode": "00:00:22.833",
+    "start_seconds": 18.166666666666668,
+    "end_seconds": 22.833333333333332,
+    "duration_seconds": 4.666666666666664,
+    "audio_speech": "have no fear. It's the reason to make it home. First things first for God's sake.",
+    "audio_natural": "silence (conf=0.48)",
+    "yolo_detections": [
+      {
+        "track_id": 4,
+        "label": "person",
+        "confidence_avg": 0.854,
+        "start_frame": 1,
+        "end_frame": 4,
+        "start_pos": "middle-right",
+        "end_pos": "middle-right",
+        "movement": "mostly stationary",
+        "path_length": 15.468,
+        "net_displacement": 5.19,
+        "direction_change_var": 0.5672,
+        "relations": [
+          "right-of bottle #5",
+          "right-of sink #6"
+        ]
+      },
+      {
+        "track_id": 5,
+        "label": "bottle",
+        "confidence_avg": 0.803,
+        "start_frame": 2,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.462,
+        "net_displacement": 0.336,
+        "direction_change_var": 0.0,
+        "relations": [
+          "left-of person #4",
+          "left-of sink #6"
+        ]
+      },
+      {
+        "track_id": 6,
+        "label": "sink",
+        "confidence_avg": 0.706,
+        "start_frame": 2,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 2.272,
+        "net_displacement": 1.857,
+        "direction_change_var": 0.0,
+        "relations": [
+          "left-of person #4",
+          "right-of bottle #5"
+        ]
+      }
+    ]
+  },
+  {
+    "scene_index": 5,
+    "start_timecode": "00:00:22.833",
+    "end_timecode": "00:00:26.667",
+    "start_seconds": 22.833333333333332,
+    "end_seconds": 26.666666666666668,
+    "duration_seconds": 3.8333333333333357,
+    "audio_speech": "Wash your hands, people, and sanitize your work surface.",
+    "audio_natural": "silence (conf=0.44)",
+    "yolo_detections": [
+      {
+        "track_id": 6,
+        "label": "person",
+        "confidence_avg": 0.868,
+        "start_frame": 1,
+        "end_frame": 3,
+        "start_pos": "middle-center",
+        "end_pos": "middle-left",
+        "movement": "moving left",
+        "path_length": 55.894,
+        "net_displacement": 53.611,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 6,
+    "start_timecode": "00:00:26.667",
+    "end_timecode": "00:00:31.833",
+    "start_seconds": 26.666666666666668,
+    "end_seconds": 31.833333333333332,
+    "duration_seconds": 5.166666666666664,
+    "audio_speech": "Then you'll need two cups of flour.",
+    "audio_natural": "music (conf=0.78)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "dining table",
+        "confidence_avg": 0.635,
+        "start_frame": 0,
+        "end_frame": 5,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 9.43,
+        "net_displacement": 7.338,
+        "direction_change_var": 2.4674,
+        "relations": [
+          "left-of cup #9"
+        ]
+      },
+      {
+        "track_id": 9,
+        "label": "cup",
+        "confidence_avg": 0.879,
+        "start_frame": 1,
+        "end_frame": 5,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 5.005,
+        "net_displacement": 1.681,
+        "direction_change_var": 1.1656,
+        "relations": [
+          "right-of dining table #8"
+        ]
+      }
+    ]
+  },
+  {
+    "scene_index": 7,
+    "start_timecode": "00:00:31.833",
+    "end_timecode": "00:00:36.000",
+    "start_seconds": 31.833333333333332,
+    "end_seconds": 36.0,
+    "duration_seconds": 4.166666666666668,
+    "audio_speech": "Dump the flower onto your clean work surface and create a little",
+    "audio_natural": "music (conf=0.78)",
+    "yolo_detections": [
+      {
+        "track_id": 9,
+        "label": "donut",
+        "confidence_avg": 0.74,
+        "start_frame": 2,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 8,
+    "start_timecode": "00:00:36.000",
+    "end_timecode": "00:00:40.667",
+    "start_seconds": 36.0,
+    "end_seconds": 40.666666666666664,
+    "duration_seconds": 4.666666666666664,
+    "audio_speech": "well in the center.",
+    "audio_natural": "music (conf=0.61)",
+    "yolo_detections": [
+      {
+        "track_id": 11,
+        "label": "person",
+        "confidence_avg": 0.797,
+        "start_frame": 1,
+        "end_frame": 4,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "moving left",
+        "path_length": 22.529,
+        "net_displacement": 17.67,
+        "direction_change_var": 1.2337,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 9,
+    "start_timecode": "00:00:40.667",
+    "end_timecode": "00:00:45.000",
+    "start_seconds": 40.666666666666664,
+    "end_seconds": 45.0,
+    "duration_seconds": 4.333333333333336,
+    "audio_speech": "Then crack in 3x.",
+    "audio_natural": "music (conf=0.74)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "dining table",
+        "confidence_avg": 0.588,
+        "start_frame": 0,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 3.304,
+        "net_displacement": 0.377,
+        "direction_change_var": 0.0,
+        "relations": [
+          "left-of person #11",
+          "right-of cake #9"
+        ]
+      },
+      {
+        "track_id": 9,
+        "label": "cake",
+        "confidence_avg": 0.738,
+        "start_frame": 0,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary, moving in a loop",
+        "path_length": 2.531,
+        "net_displacement": 0.583,
+        "direction_change_var": 3.6689,
+        "relations": [
+          "left-of dining table #8",
+          "left-of person #11"
+        ]
+      },
+      {
+        "track_id": 11,
+        "label": "person",
+        "confidence_avg": 0.792,
+        "start_frame": 0,
+        "end_frame": 3,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "mostly stationary, moving in a loop",
+        "path_length": 9.133,
+        "net_displacement": 2.809,
+        "direction_change_var": 0.8903,
+        "relations": [
+          "right-of cake #9",
+          "right-of dining table #8"
+        ]
+      }
+    ]
+  },
+  {
+    "scene_index": 10,
+    "start_timecode": "00:00:45.000",
+    "end_timecode": "00:00:48.500",
+    "start_seconds": 45.0,
+    "end_seconds": 48.5,
+    "duration_seconds": 3.5,
+    "audio_speech": "",
+    "audio_natural": "music (conf=0.48)",
+    "yolo_detections": []
+  },
+  {
+    "scene_index": 11,
+    "start_timecode": "00:00:48.500",
+    "end_timecode": "00:00:53.833",
+    "start_seconds": 48.5,
+    "end_seconds": 53.833333333333336,
+    "duration_seconds": 5.333333333333336,
+    "audio_speech": "",
+    "audio_natural": "music (conf=0.43)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "person",
+        "confidence_avg": 0.583,
+        "start_frame": 4,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 12,
+    "start_timecode": "00:00:53.833",
+    "end_timecode": "00:00:56.833",
+    "start_seconds": 53.833333333333336,
+    "end_seconds": 56.833333333333336,
+    "duration_seconds": 3.0,
+    "audio_speech": "Add in a tablespoon of olive oil.",
+    "audio_natural": "music (conf=0.70)",
+    "yolo_detections": []
+  },
+  {
+    "scene_index": 13,
+    "start_timecode": "00:00:56.833",
+    "end_timecode": "00:01:00.167",
+    "start_seconds": 56.833333333333336,
+    "end_seconds": 60.166666666666664,
+    "duration_seconds": 3.3333333333333286,
+    "audio_speech": "and a teaspoon of salt.",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 11,
+        "label": "cake",
+        "confidence_avg": 0.707,
+        "start_frame": 0,
+        "end_frame": 3,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "mostly stationary, moving in a loop",
+        "path_length": 1.126,
+        "net_displacement": 0.357,
+        "direction_change_var": 7.9305,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 14,
+    "start_timecode": "00:01:00.167",
+    "end_timecode": "00:01:12.667",
+    "start_seconds": 60.166666666666664,
+    "end_seconds": 72.66666666666667,
+    "duration_seconds": 12.500000000000007,
+    "audio_speech": "Then using a fork, whisk together the eggs and begin to slowly incorporate the flour from around the sides of the well.",
+    "audio_natural": "music (conf=0.70), silence (conf=0.49)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "dining table",
+        "confidence_avg": 0.652,
+        "start_frame": 1,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 4.695,
+        "net_displacement": 3.311,
+        "direction_change_var": 1.0402,
+        "relations": [
+          "above cake #9",
+          "below person #11"
+        ]
+      },
+      {
+        "track_id": 9,
+        "label": "cake",
+        "confidence_avg": 0.604,
+        "start_frame": 1,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.563,
+        "net_displacement": 0.563,
+        "direction_change_var": 0.0,
+        "relations": [
+          "below dining table #8",
+          "below person #11"
+        ]
+      },
+      {
+        "track_id": 11,
+        "label": "person",
+        "confidence_avg": 0.75,
+        "start_frame": 0,
+        "end_frame": 12,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "moving left, getting closer, looping/circling",
+        "path_length": 129.469,
+        "net_displacement": 10.829,
+        "direction_change_var": 2.8729,
+        "relations": [
+          "above cake #9",
+          "above dining table #8"
+        ]
+      }
+    ]
+  },
+  {
+    "scene_index": 15,
+    "start_timecode": "00:01:12.667",
+    "end_timecode": "00:01:21.000",
+    "start_seconds": 72.66666666666667,
+    "end_seconds": 81.0,
+    "duration_seconds": 8.333333333333329,
+    "audio_speech": "Continue bringing the flower and",
+    "audio_natural": "music (conf=0.74)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "person",
+        "confidence_avg": 0.624,
+        "start_frame": 1,
+        "end_frame": 1,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 9,
+        "label": "cake",
+        "confidence_avg": 0.563,
+        "start_frame": 1,
+        "end_frame": 7,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 5.506,
+        "net_displacement": 5.008,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 16,
+        "label": "person",
+        "confidence_avg": 0.629,
+        "start_frame": 2,
+        "end_frame": 8,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "moving down-left, getting closer",
+        "path_length": 31.009,
+        "net_displacement": 16.707,
+        "direction_change_var": 3.1679,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 16,
+    "start_timecode": "00:01:21.000",
+    "end_timecode": "00:01:25.000",
+    "start_seconds": 81.0,
+    "end_seconds": 85.0,
+    "duration_seconds": 4.0,
+    "audio_speech": "the center like this until the dough has pulled together enough to be worked by hand.",
+    "audio_natural": "silence (conf=0.43)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "person",
+        "confidence_avg": 0.914,
+        "start_frame": 0,
+        "end_frame": 3,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving right",
+        "path_length": 10.212,
+        "net_displacement": 10.19,
+        "direction_change_var": 0.0012,
+        "relations": [
+          "right-of dining table #9"
+        ]
+      },
+      {
+        "track_id": 9,
+        "label": "dining table",
+        "confidence_avg": 0.784,
+        "start_frame": 0,
+        "end_frame": 3,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving left",
+        "path_length": 25.524,
+        "net_displacement": 10.46,
+        "direction_change_var": 4.812,
+        "relations": [
+          "left-of person #8"
+        ]
+      }
+    ]
+  },
+  {
+    "scene_index": 17,
+    "start_timecode": "00:01:25.000",
+    "end_timecode": "00:01:31.333",
+    "start_seconds": 85.0,
+    "end_seconds": 91.33333333333333,
+    "duration_seconds": 6.333333333333329,
+    "audio_speech": "From here you'll want to bring the dough together to form a shaggy ball.",
+    "audio_natural": "music (conf=0.76)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "bottle",
+        "confidence_avg": 0.68,
+        "start_frame": 1,
+        "end_frame": 6,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary, looping/circling",
+        "path_length": 75.862,
+        "net_displacement": 5.295,
+        "direction_change_var": 6.3579,
+        "relations": []
+      },
+      {
+        "track_id": 9,
+        "label": "donut",
+        "confidence_avg": 0.617,
+        "start_frame": 2,
+        "end_frame": 2,
+        "start_pos": "bottom-center",
+        "end_pos": "bottom-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 18,
+    "start_timecode": "00:01:31.333",
+    "end_timecode": "00:01:36.833",
+    "start_seconds": 91.33333333333333,
+    "end_seconds": 96.83333333333333,
+    "duration_seconds": 5.5,
+    "audio_speech": "If it's too dry like mine was here, then you can just add a touch of water.",
+    "audio_natural": "music (conf=0.62)",
+    "yolo_detections": []
+  },
+  {
+    "scene_index": 19,
+    "start_timecode": "00:01:36.833",
+    "end_timecode": "00:01:51.167",
+    "start_seconds": 96.83333333333333,
+    "end_seconds": 111.16666666666667,
+    "duration_seconds": 14.333333333333343,
+    "audio_speech": "and if it's too wet then all you have to do is add in a little bit more flour. Once the dough has completely pulled together you'll need to knead the dough for about 10 minutes.",
+    "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "person",
+        "confidence_avg": 0.706,
+        "start_frame": 2,
+        "end_frame": 14,
+        "start_pos": "top-right",
+        "end_pos": "middle-center",
+        "movement": "moving down-left, getting closer, moving in a loop",
+        "path_length": 192.303,
+        "net_displacement": 49.548,
+        "direction_change_var": 2.1153,
+        "relations": [
+          "right-of person #20"
+        ]
+      },
+      {
+        "track_id": 11,
+        "label": "bottle",
+        "confidence_avg": 0.637,
+        "start_frame": 0,
+        "end_frame": 12,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "moving left, getting farther",
+        "path_length": 44.295,
+        "net_displacement": 44.295,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 20,
+        "label": "person",
+        "confidence_avg": 0.702,
+        "start_frame": 4,
+        "end_frame": 12,
+        "start_pos": "middle-left",
+        "end_pos": "middle-left",
+        "movement": "moving up-left, getting farther, moving in a loop",
+        "path_length": 104.955,
+        "net_displacement": 19.009,
+        "direction_change_var": 5.1099,
+        "relations": [
+          "left-of person #8"
+        ]
+      }
+    ]
+  },
+  {
+    "scene_index": 20,
+    "start_timecode": "00:01:51.167",
+    "end_timecode": "00:01:53.500",
+    "start_seconds": 111.16666666666667,
+    "end_seconds": 113.5,
+    "duration_seconds": 2.3333333333333286,
+    "audio_speech": "",
+    "audio_natural": "music (conf=0.47)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "dining table",
+        "confidence_avg": 0.719,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 7.182,
+        "net_displacement": 7.182,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 22,
+        "label": "person",
+        "confidence_avg": 0.904,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving left, getting closer",
+        "path_length": 24.926,
+        "net_displacement": 22.344,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 21,
+    "start_timecode": "00:01:53.500",
+    "end_timecode": "00:02:01.000",
+    "start_seconds": 113.5,
+    "end_seconds": 121.0,
+    "duration_seconds": 7.5,
+    "audio_speech": "The dough will go from looking shaggy and rough to smooth and taut and you'll know it's done when you push a finger into the dough and the dough spring.",
+    "audio_natural": "music (conf=0.71)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "dining table",
+        "confidence_avg": 0.82,
+        "start_frame": 0,
+        "end_frame": 7,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving right, getting farther",
+        "path_length": 92.017,
+        "net_displacement": 51.646,
+        "direction_change_var": 3.0507,
+        "relations": [
+          "left-of person #22"
+        ]
+      },
+      {
+        "track_id": 22,
+        "label": "person",
+        "confidence_avg": 0.899,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving down-left, getting closer",
+        "path_length": 19.443,
+        "net_displacement": 19.425,
+        "direction_change_var": 0.0,
+        "relations": [
+          "right-of dining table #8"
+        ]
+      }
+    ]
+  },
+  {
+    "scene_index": 22,
+    "start_timecode": "00:02:01.000",
+    "end_timecode": "00:02:04.000",
+    "start_seconds": 121.0,
+    "end_seconds": 124.0,
+    "duration_seconds": 3.0,
+    "audio_speech": "aks back.",
+    "audio_natural": "music (conf=0.75)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "person",
+        "confidence_avg": 0.682,
+        "start_frame": 0,
+        "end_frame": 0,
+        "start_pos": "top-right",
+        "end_pos": "top-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 22,
+        "label": "person",
+        "confidence_avg": 0.884,
+        "start_frame": 1,
+        "end_frame": 1,
+        "start_pos": "bottom-right",
+        "end_pos": "bottom-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 23,
+        "label": "donut",
+        "confidence_avg": 0.675,
+        "start_frame": 1,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.171,
+        "net_displacement": 0.171,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 23,
+    "start_timecode": "00:02:04.000",
+    "end_timecode": "00:02:14.833",
+    "start_seconds": 124.0,
+    "end_seconds": 134.83333333333334,
+    "duration_seconds": 10.833333333333343,
+    "audio_speech": "Wrap up your dough in cling film and then let it rest for a minimum of 30 minutes.",
+    "audio_natural": "music (conf=0.75)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "person",
+        "confidence_avg": 0.848,
+        "start_frame": 2,
+        "end_frame": 7,
+        "start_pos": "top-right",
+        "end_pos": "top-right",
+        "movement": "moving down, getting closer",
+        "path_length": 29.284,
+        "net_displacement": 12.384,
+        "direction_change_var": 4.3762,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 24,
+    "start_timecode": "00:02:14.833",
+    "end_timecode": "00:02:17.000",
+    "start_seconds": 134.83333333333334,
+    "end_seconds": 137.0,
+    "duration_seconds": 2.166666666666657,
+    "audio_speech": "Once the dough has rested, cut it in...",
+    "audio_natural": "music (conf=0.63)",
+    "yolo_detections": [
+      {
+        "track_id": 8,
+        "label": "knife",
+        "confidence_avg": 0.529,
+        "start_frame": 0,
+        "end_frame": 0,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 23,
+        "label": "hot dog",
+        "confidence_avg": 0.873,
+        "start_frame": 2,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 24,
+        "label": "person",
+        "confidence_avg": 0.664,
+        "start_frame": 2,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 25,
+    "start_timecode": "00:02:17.000",
+    "end_timecode": "00:02:19.333",
+    "start_seconds": 137.0,
+    "end_seconds": 139.33333333333334,
+    "duration_seconds": 2.333333333333343,
+    "audio_speech": "half so that you have more manageable portions to work with.",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 24,
+        "label": "hot dog",
+        "confidence_avg": 0.596,
+        "start_frame": 0,
+        "end_frame": 1,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary, getting closer",
+        "path_length": 6.104,
+        "net_displacement": 6.104,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 26,
+    "start_timecode": "00:02:19.333",
+    "end_timecode": "00:02:24.167",
+    "start_seconds": 139.33333333333334,
+    "end_seconds": 144.16666666666666,
+    "duration_seconds": 4.833333333333314,
+    "audio_speech": "Lightly flower your work surface and start rolling out your pasta dough.",
+    "audio_natural": "music (conf=0.70), television (conf=0.31)",
+    "yolo_detections": [
+      {
+        "track_id": 25,
+        "label": "person",
+        "confidence_avg": 0.872,
+        "start_frame": 2,
+        "end_frame": 2,
+        "start_pos": "middle-right",
+        "end_pos": "middle-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 26,
+        "label": "donut",
+        "confidence_avg": 0.538,
+        "start_frame": 4,
+        "end_frame": 4,
+        "start_pos": "middle-right",
+        "end_pos": "middle-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 27,
+    "start_timecode": "00:02:24.167",
+    "end_timecode": "00:02:29.333",
+    "start_seconds": 144.16666666666666,
+    "end_seconds": 149.33333333333334,
+    "duration_seconds": 5.166666666666686,
+    "audio_speech": "Such a 4-hour coffee and 10 point for rolls and stir. Here I will try through all the ingredients produced at Cal ether. And mix them up. Well, I am only going to be a little more",
+    "audio_natural": "music (conf=0.73)",
+    "yolo_detections": [
+      {
+        "track_id": 24,
+        "label": "person",
+        "confidence_avg": 0.832,
+        "start_frame": 0,
+        "end_frame": 5,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving down-left, getting closer, moving in a loop",
+        "path_length": 70.825,
+        "net_displacement": 21.525,
+        "direction_change_var": 5.612,
+        "relations": []
+      },
+      {
+        "track_id": 25,
+        "label": "person",
+        "confidence_avg": 0.877,
+        "start_frame": 2,
+        "end_frame": 2,
+        "start_pos": "middle-right",
+        "end_pos": "middle-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 28,
+    "start_timecode": "00:02:29.333",
+    "end_timecode": "00:02:31.667",
+    "start_seconds": 149.33333333333334,
+    "end_seconds": 151.66666666666666,
+    "duration_seconds": 2.3333333333333144,
+    "audio_speech": "Now we're going to eliminate the dough three times.",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 23,
+        "label": "person",
+        "confidence_avg": 0.761,
+        "start_frame": 0,
+        "end_frame": 0,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 24,
+        "label": "person",
+        "confidence_avg": 0.885,
+        "start_frame": 1,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving left",
+        "path_length": 11.358,
+        "net_displacement": 11.358,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 29,
+    "start_timecode": "00:02:31.667",
+    "end_timecode": "00:02:38.333",
+    "start_seconds": 151.66666666666666,
+    "end_seconds": 158.33333333333334,
+    "duration_seconds": 6.666666666666686,
+    "audio_speech": "So all that means is we're going to fold it in thirds like this, then roll it out.",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 24,
+        "label": "person",
+        "confidence_avg": 0.773,
+        "start_frame": 0,
+        "end_frame": 6,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving down",
+        "path_length": 29.663,
+        "net_displacement": 12.547,
+        "direction_change_var": 2.1447,
+        "relations": []
+      },
+      {
+        "track_id": 29,
+        "label": "person",
+        "confidence_avg": 0.725,
+        "start_frame": 2,
+        "end_frame": 5,
+        "start_pos": "top-left",
+        "end_pos": "top-left",
+        "movement": "moving right, getting closer",
+        "path_length": 27.162,
+        "net_displacement": 27.162,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 30,
+    "start_timecode": "00:02:38.333",
+    "end_timecode": "00:02:40.833",
+    "start_seconds": 158.33333333333334,
+    "end_seconds": 160.83333333333334,
+    "duration_seconds": 2.5,
+    "audio_speech": "Fold it in thirds again, then roll it out.",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 24,
+        "label": "person",
+        "confidence_avg": 0.663,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-left",
+        "end_pos": "middle-center",
+        "movement": "moving up, getting farther",
+        "path_length": 33.179,
+        "net_displacement": 28.785,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 31,
+    "start_timecode": "00:02:40.833",
+    "end_timecode": "00:03:00.500",
+    "start_seconds": 160.83333333333334,
+    "end_seconds": 180.5,
+    "duration_seconds": 19.666666666666657,
+    "audio_speech": "and then repeat this process one more time. From there we want to roll out our dough into a large rectangle. If you find your dough is shrinking back, leave it for a few minutes to let the gluten relax, then go back in. Once it's completely rolled out...",
+    "audio_natural": "music (conf=0.46)",
+    "yolo_detections": [
+      {
+        "track_id": 24,
+        "label": "person",
+        "confidence_avg": 0.832,
+        "start_frame": 2,
+        "end_frame": 19,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "moving right, moving in a loop",
+        "path_length": 250.291,
+        "net_displacement": 11.585,
+        "direction_change_var": 3.6063,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 32,
+    "start_timecode": "00:03:00.500",
+    "end_timecode": "00:03:05.167",
+    "start_seconds": 180.5,
+    "end_seconds": 185.16666666666666,
+    "duration_seconds": 4.666666666666657,
+    "audio_speech": "we want it to be thin enough to see the color of our fingers through it. From here you can come...",
+    "audio_natural": "silence (conf=0.48)",
+    "yolo_detections": [
+      {
+        "track_id": 24,
+        "label": "person",
+        "confidence_avg": 0.735,
+        "start_frame": 1,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 6.833,
+        "net_displacement": 6.833,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 33,
+    "start_timecode": "00:03:05.167",
+    "end_timecode": "00:03:11.000",
+    "start_seconds": 185.16666666666666,
+    "end_seconds": 191.0,
+    "duration_seconds": 5.833333333333343,
+    "audio_speech": "the pasta dough into whatever shape you like and today I'm just doing some long take the Italian style pasta.",
+    "audio_natural": "silence (conf=0.55)",
+    "yolo_detections": [
+      {
+        "track_id": 24,
+        "label": "person",
+        "confidence_avg": 0.752,
+        "start_frame": 0,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-right",
+        "movement": "moving right, getting farther",
+        "path_length": 26.184,
+        "net_displacement": 26.15,
+        "direction_change_var": 0.0036,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 34,
+    "start_timecode": "00:03:11.000",
+    "end_timecode": "00:03:13.667",
+    "start_seconds": 191.0,
+    "end_seconds": 193.66666666666666,
+    "duration_seconds": 2.666666666666657,
+    "audio_speech": "to make this style of pasta that I'm making just like-",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 1,
+        "label": "person",
+        "confidence_avg": 0.716,
+        "start_frame": 0,
+        "end_frame": 0,
+        "start_pos": "middle-right",
+        "end_pos": "middle-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 2,
+        "label": "person",
+        "confidence_avg": 0.638,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving up, getting closer",
+        "path_length": 23.356,
+        "net_displacement": 23.356,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 35,
+    "start_timecode": "00:03:13.667",
+    "end_timecode": "00:03:23.500",
+    "start_seconds": 193.66666666666666,
+    "end_seconds": 203.5,
+    "duration_seconds": 9.833333333333343,
+    "audio_speech": "leaf flower the surface of the dough and fold it up into a rectangle.",
+    "audio_natural": "music (conf=0.82), silence (conf=0.66)",
+    "yolo_detections": [
+      {
+        "track_id": 40,
+        "label": "person",
+        "confidence_avg": 0.731,
+        "start_frame": 5,
+        "end_frame": 9,
+        "start_pos": "middle-center",
+        "end_pos": "top-center",
+        "movement": "moving left, getting farther",
+        "path_length": 100.135,
+        "net_displacement": 63.212,
+        "direction_change_var": 2.4546,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 36,
+    "start_timecode": "00:03:23.500",
+    "end_timecode": "00:03:31.667",
+    "start_seconds": 203.5,
+    "end_seconds": 211.66666666666666,
+    "duration_seconds": 8.166666666666657,
+    "audio_speech": "then gently slice it into strips.",
+    "audio_natural": "music (conf=0.71)",
+    "yolo_detections": [
+      {
+        "track_id": 40,
+        "label": "person",
+        "confidence_avg": 0.769,
+        "start_frame": 0,
+        "end_frame": 0,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 37,
+    "start_timecode": "00:03:31.667",
+    "end_timecode": "00:03:41.500",
+    "start_seconds": 211.66666666666666,
+    "end_seconds": 221.5,
+    "duration_seconds": 9.833333333333343,
+    "audio_speech": "Once you've unraveled your pasta, toss it in a dusting of flour to stop it from sticking to itself. And then from here you can pour...",
+    "audio_natural": "music (conf=0.80)",
+    "yolo_detections": [
+      {
+        "track_id": 40,
+        "label": "person",
+        "confidence_avg": 0.704,
+        "start_frame": 0,
+        "end_frame": 7,
+        "start_pos": "top-right",
+        "end_pos": "top-center",
+        "movement": "moving left, getting closer",
+        "path_length": 80.348,
+        "net_displacement": 50.287,
+        "direction_change_var": 2.1182,
+        "relations": [
+          "right-of dining table #45"
+        ]
+      },
+      {
+        "track_id": 45,
+        "label": "dining table",
+        "confidence_avg": 0.626,
+        "start_frame": 0,
+        "end_frame": 7,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary, moving in a loop",
+        "path_length": 4.526,
+        "net_displacement": 1.172,
+        "direction_change_var": 3.9471,
+        "relations": [
+          "left-of person #40"
+        ]
+      }
+    ]
+  },
+  {
+    "scene_index": 38,
+    "start_timecode": "00:03:41.500",
+    "end_timecode": "00:03:48.167",
+    "start_seconds": 221.5,
+    "end_seconds": 228.16666666666666,
+    "duration_seconds": 6.666666666666657,
+    "audio_speech": "it, wrap it and freeze it or refrigerate it.",
+    "audio_natural": "music (conf=0.86), silence (conf=0.35)",
+    "yolo_detections": [
+      {
+        "track_id": 40,
+        "label": "person",
+        "confidence_avg": 0.664,
+        "start_frame": 2,
+        "end_frame": 2,
+        "start_pos": "top-right",
+        "end_pos": "top-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 45,
+        "label": "person",
+        "confidence_avg": 0.796,
+        "start_frame": 3,
+        "end_frame": 3,
+        "start_pos": "bottom-center",
+        "end_pos": "bottom-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 39,
+    "start_timecode": "00:03:48.167",
+    "end_timecode": "00:03:52.333",
+    "start_seconds": 228.16666666666666,
+    "end_seconds": 232.33333333333334,
+    "duration_seconds": 4.166666666666686,
+    "audio_speech": "Nope. Alright.",
+    "audio_natural": "music (conf=0.45)",
+    "yolo_detections": [
+      {
+        "track_id": 48,
+        "label": "person",
+        "confidence_avg": 0.842,
+        "start_frame": 0,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "top-left",
+        "movement": "moving left, getting farther",
+        "path_length": 60.401,
+        "net_displacement": 55.187,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 40,
+    "start_timecode": "00:03:52.333",
+    "end_timecode": "00:03:56.833",
+    "start_seconds": 232.33333333333334,
+    "end_seconds": 236.83333333333334,
+    "duration_seconds": 4.5,
+    "audio_speech": "If you're hungry like me, you can cook it straight away. Just remember that",
+    "audio_natural": "music (conf=0.55)",
+    "yolo_detections": [
+      {
+        "track_id": 1,
+        "label": "donut",
+        "confidence_avg": 0.846,
+        "start_frame": 0,
+        "end_frame": 0,
+        "start_pos": "bottom-left",
+        "end_pos": "bottom-left",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      },
+      {
+        "track_id": 2,
+        "label": "dining table",
+        "confidence_avg": 0.539,
+        "start_frame": 4,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 41,
+    "start_timecode": "00:03:56.833",
+    "end_timecode": "00:04:01.333",
+    "start_seconds": 236.83333333333334,
+    "end_seconds": 241.33333333333334,
+    "duration_seconds": 4.5,
+    "audio_speech": "fresh pasta cooks quickly and will probably only need about 2-3 minutes in salted boiling water.",
+    "audio_natural": "silence (conf=0.48)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "vase",
+        "confidence_avg": 0.667,
+        "start_frame": 0,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving right, getting closer",
+        "path_length": 40.224,
+        "net_displacement": 40.193,
+        "direction_change_var": 0.0118,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 42,
+    "start_timecode": "00:04:01.333",
+    "end_timecode": "00:04:04.000",
+    "start_seconds": 241.33333333333334,
+    "end_seconds": 244.0,
+    "duration_seconds": 2.666666666666657,
+    "audio_speech": "Inter\uc0ac .",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.692,
+        "start_frame": 0,
+        "end_frame": 1,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 4.911,
+        "net_displacement": 4.911,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 43,
+    "start_timecode": "00:04:04.000",
+    "end_timecode": "00:04:08.333",
+    "start_seconds": 244.0,
+    "end_seconds": 248.33333333333334,
+    "duration_seconds": 4.333333333333343,
+    "audio_speech": "I'm stirring mine with my simple tomato sauce, which is super easy to make.",
+    "audio_natural": "music (conf=0.37)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.731,
+        "start_frame": 0,
+        "end_frame": 3,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving right",
+        "path_length": 16.167,
+        "net_displacement": 14.811,
+        "direction_change_var": 0.0004,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 44,
+    "start_timecode": "00:04:08.333",
+    "end_timecode": "00:04:11.500",
+    "start_seconds": 248.33333333333334,
+    "end_seconds": 251.5,
+    "duration_seconds": 3.166666666666657,
+    "audio_speech": "I'll leave the link to that on the screen and also in the description box.",
+    "audio_natural": "silence (conf=0.33)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bottle",
+        "confidence_avg": 0.859,
+        "start_frame": 2,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 45,
+    "start_timecode": "00:04:11.500",
+    "end_timecode": "00:04:16.333",
+    "start_seconds": 251.5,
+    "end_seconds": 256.3333333333333,
+    "duration_seconds": 4.833333333333314,
+    "audio_speech": "color, this is not cakes now",
+    "audio_natural": "music (conf=0.70)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "orange",
+        "confidence_avg": 0.792,
+        "start_frame": 0,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving down",
+        "path_length": 31.137,
+        "net_displacement": 30.041,
+        "direction_change_var": 1.3516,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 46,
+    "start_timecode": "00:04:16.333",
+    "end_timecode": "00:04:19.000",
+    "start_seconds": 256.3333333333333,
+    "end_seconds": 259.0,
+    "duration_seconds": 2.6666666666666856,
+    "audio_speech": "",
+    "audio_natural": "music (conf=0.62), television (conf=0.41)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.833,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary, getting closer",
+        "path_length": 3.988,
+        "net_displacement": 3.961,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 47,
+    "start_timecode": "00:04:19.000",
+    "end_timecode": "00:04:22.500",
+    "start_seconds": 259.0,
+    "end_seconds": 262.5,
+    "duration_seconds": 3.5,
+    "audio_speech": "",
+    "audio_natural": "music (conf=0.60)",
+    "yolo_detections": [
+      {
+        "track_id": 1,
+        "label": "person",
+        "confidence_avg": 0.617,
+        "start_frame": 3,
+        "end_frame": 3,
+        "start_pos": "top-right",
+        "end_pos": "top-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 48,
+    "start_timecode": "00:04:22.500",
+    "end_timecode": "00:04:26.333",
+    "start_seconds": 262.5,
+    "end_seconds": 266.3333333333333,
+    "duration_seconds": 3.8333333333333144,
+    "audio_speech": "and I just added in some arugula that we needed to use up and a little bit",
+    "audio_natural": "silence (conf=0.44)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.847,
+        "start_frame": 0,
+        "end_frame": 3,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 10.88,
+        "net_displacement": 4.486,
+        "direction_change_var": 5.2133,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 49,
+    "start_timecode": "00:04:26.333",
+    "end_timecode": "00:04:29.500",
+    "start_seconds": 266.3333333333333,
+    "end_seconds": 269.5,
+    "duration_seconds": 3.1666666666666856,
+    "audio_speech": "of old Parmesan that was just chilling in the fridge and then topped it off.",
+    "audio_natural": "silence (conf=0.33)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "dining table",
+        "confidence_avg": 0.615,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving down",
+        "path_length": 25.546,
+        "net_displacement": 8.159,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 50,
+    "start_timecode": "00:04:29.500",
+    "end_timecode": "00:04:32.167",
+    "start_seconds": 269.5,
+    "end_seconds": 272.1666666666667,
+    "duration_seconds": 2.6666666666666856,
+    "audio_speech": "for some olive oil. There you go.",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.92,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 5.122,
+        "net_displacement": 5.106,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 51,
+    "start_timecode": "00:04:32.167",
+    "end_timecode": "00:04:36.667",
+    "start_seconds": 272.1666666666667,
+    "end_seconds": 276.6666666666667,
+    "duration_seconds": 4.5,
+    "audio_speech": "And no need to panic if there isn't pasta at the store. It's super easy to make your own.",
+    "audio_natural": "silence (conf=0.48)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.798,
+        "start_frame": 0,
+        "end_frame": 4,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 3.571,
+        "net_displacement": 3.33,
+        "direction_change_var": 0.3809,
+        "relations": []
+      },
+      {
+        "track_id": 57,
+        "label": "person",
+        "confidence_avg": 0.749,
+        "start_frame": 1,
+        "end_frame": 1,
+        "start_pos": "top-center",
+        "end_pos": "top-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 52,
+    "start_timecode": "00:04:36.667",
+    "end_timecode": "00:04:42.667",
+    "start_seconds": 276.6666666666667,
+    "end_seconds": 282.6666666666667,
+    "duration_seconds": 6.0,
+    "audio_speech": "It may be a little bit more time consuming, but let's be real. We all have more time on our hands than normal right now. So really.",
+    "audio_natural": "silence (conf=0.55)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.914,
+        "start_frame": 0,
+        "end_frame": 5,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 4.019,
+        "net_displacement": 1.852,
+        "direction_change_var": 2.3521,
+        "relations": []
+      },
+      {
+        "track_id": 58,
+        "label": "fork",
+        "confidence_avg": 0.886,
+        "start_frame": 1,
+        "end_frame": 1,
+        "start_pos": "bottom-right",
+        "end_pos": "bottom-right",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 53,
+    "start_timecode": "00:04:42.667",
+    "end_timecode": "00:04:50.167",
+    "start_seconds": 282.6666666666667,
+    "end_seconds": 290.1666666666667,
+    "duration_seconds": 7.5,
+    "audio_speech": "No excuse. I'll probably be posting past the videos every day this week So if you like this video and haven't already consider subscribing",
+    "audio_natural": "silence (conf=0.63)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.672,
+        "start_frame": 0,
+        "end_frame": 7,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 7.037,
+        "net_displacement": 5.312,
+        "direction_change_var": 0.9218,
+        "relations": []
+      },
+      {
+        "track_id": 60,
+        "label": "fork",
+        "confidence_avg": 0.621,
+        "start_frame": 3,
+        "end_frame": 3,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.0,
+        "net_displacement": 0.0,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 54,
+    "start_timecode": "00:04:50.167",
+    "end_timecode": "00:05:03.833",
+    "start_seconds": 290.1666666666667,
+    "end_seconds": 303.8333333333333,
+    "duration_seconds": 13.666666666666629,
+    "audio_speech": "and connect with me on Instagram at ChefStudio underscore if you want to reach out to me there. Also, if you have any questions or want to hear my thoughts on literally anything at all, leave them in the comment section below.",
+    "audio_natural": "music (conf=0.87), silence (conf=0.69)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.866,
+        "start_frame": 0,
+        "end_frame": 13,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "moving left, moving in a loop",
+        "path_length": 38.998,
+        "net_displacement": 9.667,
+        "direction_change_var": 2.4395,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 55,
+    "start_timecode": "00:05:03.833",
+    "end_timecode": "00:05:19.500",
+    "start_seconds": 303.8333333333333,
+    "end_seconds": 319.5,
+    "duration_seconds": 15.666666666666686,
+    "audio_speech": "because I'm saving a little bit of Pasadot from every video and I'm gonna do like a little chef's studio chat slash answer questions slash talk nonsense while I'm learning to shape different kinds of pasta at the end of the week so yeah leave me a question if you have any uh...",
+    "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.608,
+        "start_frame": 2,
+        "end_frame": 15,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary, moving in a loop",
+        "path_length": 5.299,
+        "net_displacement": 1.568,
+        "direction_change_var": 2.1964,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 56,
+    "start_timecode": "00:05:19.500",
+    "end_timecode": "00:05:21.833",
+    "start_seconds": 319.5,
+    "end_seconds": 321.8333333333333,
+    "duration_seconds": 2.3333333333333144,
+    "audio_speech": "until then yeah keeps",
+    "audio_natural": "none",
+    "yolo_detections": [
+      {
+        "track_id": 51,
+        "label": "bowl",
+        "confidence_avg": 0.648,
+        "start_frame": 0,
+        "end_frame": 2,
+        "start_pos": "middle-center",
+        "end_pos": "middle-center",
+        "movement": "mostly stationary",
+        "path_length": 0.396,
+        "net_displacement": 0.382,
+        "direction_change_var": 0.0,
+        "relations": []
+      }
+    ]
+  },
+  {
+    "scene_index": 57,
+    "start_timecode": "00:05:21.833",
+    "end_timecode": "00:05:28.000",
+    "start_seconds": 321.8333333333333,
+    "end_seconds": 328.0,
+    "duration_seconds": 6.166666666666686,
+    "audio_speech": "Stay safe kids, and we'll see you tomorrow.",
+    "audio_natural": "music (conf=0.74)",
+    "yolo_detections": []
+  }
+]

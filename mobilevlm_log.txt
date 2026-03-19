@@ -1,0 +1,50 @@
+Using cache found in /home/usr_60107070_udst_edu_qa/.cache/torch/hub/snakers4_silero-vad_master
+/home/usr_60107070_udst_edu_qa/Kairos_model/venv_mobilevlm/lib/python3.10/site-packages/transformers/utils/generic.py:311: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+/home/usr_60107070_udst_edu_qa/Kairos_model/venv_mobilevlm/lib/python3.10/site-packages/transformers/utils/generic.py:311: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+/home/usr_60107070_udst_edu_qa/Kairos_model/venv_mobilevlm/lib/python3.10/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+You are resizing the embedding layer without providing a `pad_to_multiple_of` parameter. This means that the new embedding dimension will be 32000. This might induce some performance reduction as *Tensor Cores* will not be available. For more details about this, or help on choosing the correct value for resizing, refer to this guide: https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html#requirements-tc
+/home/usr_60107070_udst_edu_qa/Kairos_model/venv_mobilevlm/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:362: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+You are resizing the embedding layer without providing a `pad_to_multiple_of` parameter. This means that the new embedding dimension will be 32000. This might induce some performance reduction as *Tensor Cores* will not be available. For more details about this, or help on choosing the correct value for resizing, refer to this guide: https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html#requirements-tc
+You are resizing the embedding layer without providing a `pad_to_multiple_of` parameter. This means that the new embedding dimension will be 32000. This might induce some performance reduction as *Tensor Cores* will not be available. For more details about this, or help on choosing the correct value for resizing, refer to this guide: https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html#requirements-tc
+You are resizing the embedding layer without providing a `pad_to_multiple_of` parameter. This means that the new embedding dimension will be 32000. This might induce some performance reduction as *Tensor Cores* will not be available. For more details about this, or help on choosing the correct value for resizing, refer to this guide: https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html#requirements-tc
+[Resources] CPU threads: 48 (OMP/MKL/etc)
+[Resources] GPU: NVIDIA L4
+[VLMs] Running: mobilevlm
+[Resources] CPU threads: 48 | GPU: yes | Cache workers: 1
+[CACHE] All videos already cached.
+
+>>> PROCESSING: Young Sheldon - First Day of High School | Light VLM: mobilevlm
+  [Cache] Loaded scenes + audio + YOLO from cache
+  [Step 4/6] Light VLM Captioning (mobilevlm)...
+Loading mtgv/MobileVLM_V2-1.7B...
+FAILED: mobilevlm on Young Sheldon - First Day of High School.mp4 | Error: mat1 and mat2 must have the same dtype, but got Float and Half
+
+>>> PROCESSING: Argentina v France Full Penalty Shoot-out | Light VLM: mobilevlm
+  [Cache] Loaded scenes + audio + YOLO from cache
+  [Step 4/6] Light VLM Captioning (mobilevlm)...
+Loading mtgv/MobileVLM_V2-1.7B...
+FAILED: mobilevlm on Argentina v France Full Penalty Shoot-out.mp4 | Error: mat1 and mat2 must have the same dtype, but got Float and Half
+
+>>> PROCESSING: Watch Malala Yousafzai's Nobel Peace Prize acceptance speech | Light VLM: mobilevlm
+  [Cache] Loaded scenes + audio + YOLO from cache
+  [Step 4/6] Light VLM Captioning (mobilevlm)...
+Loading mtgv/MobileVLM_V2-1.7B...
+FAILED: mobilevlm on Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4 | Error: mat1 and mat2 must have the same dtype, but got Float and Half
+
+>>> PROCESSING: How to Make Pasta - Without a Machine | Light VLM: mobilevlm
+  [Cache] Loaded scenes + audio + YOLO from cache
+  [Step 4/6] Light VLM Captioning (mobilevlm)...
+Loading mtgv/MobileVLM_V2-1.7B...
+FAILED: mobilevlm on How to Make Pasta - Without a Machine.mp4 | Error: mat1 and mat2 must have the same dtype, but got Float and Half
+
+
+Light VLM benchmarking complete.
+  Per-video results:    vlms_light/results/<vlm>/<video>/pipeline_results.json
+  Per-video aggregates: vlms_light/results/by_video/<video>/all_metrics.json
+  Metrics summary:      vlms_light/light_vlm_metrics.json
+  Summary table:        vlms_light/results/summary_table.md
+  Pivot comparison:     vlms_light/results/summary_pivot.md
