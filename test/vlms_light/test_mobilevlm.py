@@ -10,16 +10,38 @@ from PIL import Image
 DEFAULT_PROMPT = "Describe the scene in detail. Focus on what is visually observable."
 
 
+def _apply_mobilevlm_patch(mobilevlm_dir):
+    """Patch mobilevlm.py: low_cpu_mem_usage=True -> False to avoid meta device error."""
+    path = mobilevlm_dir / "mobilevlm" / "model" / "mobilevlm.py"
+    if not path.exists():
+        return
+    try:
+        txt = path.read_text(encoding="utf-8")
+        if "low_cpu_mem_usage=True" in txt and "low_cpu_mem_usage=False" not in txt:
+            txt = txt.replace("low_cpu_mem_usage=True", "low_cpu_mem_usage=False")
+            path.write_text(txt, encoding="utf-8")
+            print("[MobileVLM] Patched mobilevlm.py: low_cpu_mem_usage=False")
+    except Exception:
+        pass
+
+
 def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
     """Load MobileVLM model. Returns (model, processor_dict) with tokenizer, image_processor."""
     import sys
     from pathlib import Path
+
+    project_root = Path(__file__).resolve().parent.parent.parent
+    mobilevlm_dir = project_root / "MobileVLM"
+
+    # Patch source BEFORE import (avoids meta device error with newer transformers)
+    _apply_mobilevlm_patch(mobilevlm_dir)
+
+    if mobilevlm_dir.exists() and str(mobilevlm_dir) not in sys.path:
+        sys.path.insert(0, str(mobilevlm_dir))
+
     try:
         from mobilevlm.model.mobilevlm import load_pretrained_model
     except ImportError:
-        # Try adding project-level MobileVLM clone to path (from install_mobilevlm.py)
-        project_root = Path(__file__).resolve().parent.parent.parent
-        mobilevlm_dir = project_root / "MobileVLM"
         if mobilevlm_dir.exists() and (mobilevlm_dir / "mobilevlm").exists():
             if str(mobilevlm_dir) not in sys.path:
                 sys.path.insert(0, str(mobilevlm_dir))
@@ -37,28 +59,18 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
                 "  python test/vlms_light/install_mobilevlm.py\n"
                 "Or: pip install git+https://github.com/Meituan-AutoML/MobileVLM.git"
             ) from None
+
     print(f"Loading {model_id}...")
     import torch
-    # Meta device error: MobileVLM uses low_cpu_mem_usage=True+device_map, which triggers
-    # accelerate's meta device loading (incompatible with newer versions). Patch to force
-    # low_cpu_mem_usage=False so weights load normally.
-    from mobilevlm.model import mobilellama
-    _orig_fp = mobilellama.MobileLlamaForCausalLM.from_pretrained
 
-    def _patched_from_pretrained(*args, low_cpu_mem_usage=True, **kwargs):
-        return _orig_fp(*args, low_cpu_mem_usage=False, **kwargs)
-
-    mobilellama.MobileLlamaForCausalLM.from_pretrained = _patched_from_pretrained
-    try:
-        tokenizer, model, image_processor, _ = load_pretrained_model(
-            model_path=model_id,
-            load_8bit=False,
-            load_4bit=False,
-            device_map="cuda:0",  # single GPU
-        )
-    finally:
-        mobilellama.MobileLlamaForCausalLM.from_pretrained = _orig_fp
-
+    tokenizer, model, image_processor, _ = load_pretrained_model(
+        model_path=model_id,
+        load_8bit=False,
+        load_4bit=False,
+        device_map=None,
+    )
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    model = model.to(device)
     processor = {"tokenizer": tokenizer, "image_processor": image_processor}
     return model, processor
 
