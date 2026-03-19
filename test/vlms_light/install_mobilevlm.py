@@ -35,6 +35,14 @@ def main():
         )
     if (clone_dir / "mobilevlm").exists():
         print(f"\nMobileVLM cloned to {clone_dir}")
+        reqs = clone_dir / "requirements.txt"
+        if reqs.exists():
+            print("Installing MobileVLM dependencies...")
+            subprocess.run(
+                [sys.executable, "-m", "pip", "install", "-r", str(reqs)],
+                check=False,
+                capture_output=False,
+            )
         print("Add to PYTHONPATH before running:")
         print(f"  export PYTHONPATH={clone_dir}:$PYTHONPATH   # Linux/Mac")
         print(f"  set PYTHONPATH={clone_dir};%PYTHONPATH%   # Windows")

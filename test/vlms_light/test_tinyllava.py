@@ -35,11 +35,12 @@ def load_vlm_model(model_id="tinyllava/TinyLLaVA-Phi-2-SigLIP-3.1B"):
     builtins.exec = _patched_exec
     try:
         print(f"Loading {model_id}...")
+        # Use single device to avoid "tensors on different devices" when multiple GPUs exist
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             trust_remote_code=True,
             torch_dtype=torch.float16,
-            device_map="auto",
+            device_map="cuda:0",
             attn_implementation="eager",
         )
     finally:
