@@ -38,12 +38,27 @@ def load_vlm_model(model_id="mtgv/MobileVLM_V2-1.7B"):
                 "Or: pip install git+https://github.com/Meituan-AutoML/MobileVLM.git"
             ) from None
     print(f"Loading {model_id}...")
-    tokenizer, model, image_processor, _ = load_pretrained_model(
-        model_path=model_id,
-        load_8bit=False,
-        load_4bit=False,
-        device_map="cuda:0",
-    )
+    import torch
+    # Meta device error: MobileVLM uses low_cpu_mem_usage=True+device_map, which triggers
+    # accelerate's meta device loading (incompatible with newer versions). Patch to force
+    # low_cpu_mem_usage=False so weights load normally.
+    from mobilevlm.model import mobilellama
+    _orig_fp = mobilellama.MobileLlamaForCausalLM.from_pretrained
+
+    def _patched_from_pretrained(*args, low_cpu_mem_usage=True, **kwargs):
+        return _orig_fp(*args, low_cpu_mem_usage=False, **kwargs)
+
+    mobilellama.MobileLlamaForCausalLM.from_pretrained = _patched_from_pretrained
+    try:
+        tokenizer, model, image_processor, _ = load_pretrained_model(
+            model_path=model_id,
+            load_8bit=False,
+            load_4bit=False,
+            device_map="cuda:0",  # single GPU
+        )
+    finally:
+        mobilellama.MobileLlamaForCausalLM.from_pretrained = _orig_fp
+
     processor = {"tokenizer": tokenizer, "image_processor": image_processor}
     return model, processor
 
