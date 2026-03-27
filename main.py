@@ -186,8 +186,9 @@ def main():
     CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
     PROCESSED_ROOT = Path("_processed")
     args = parse_args()
-    redo_only_flag = args.redo_only is not None
-    redo_only_steps = args.redo_only or []
+    redo_only_raw = getattr(args, "redo_only", None)
+    redo_only_flag = redo_only_raw is not None
+    redo_only_steps = redo_only_raw or []
     redo_steps = []
 
     def _flatten(values):
