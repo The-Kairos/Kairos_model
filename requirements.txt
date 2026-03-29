@@ -81,3 +81,6 @@ emoji
 # RAG chunking methods
 umap-learn
 hdbscan
+
+# MongoDB Driver
+pymongo>=4.0.0
