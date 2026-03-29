@@ -6,12 +6,17 @@ import subprocess
 from flask import Flask, request, jsonify, Response
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from werkzeug.utils import secure_filename
+from src.path_utils import load_kairos_env
+
+# Load project environment variables from .env
+load_kairos_env(override=True)
 
 app = Flask(__name__)
 
 # Load configuration from environment
-MONGODB_URI = os.environ.get("MONGODB_URI")
-MODEL_CWD = os.environ.get("KAIROS_MODEL_CWD", os.getcwd())
+MONGODB_URI = os.getenv("MONGODB_URI")
+MODEL_CWD = os.getenv("KAIROS_MODEL_CWD", os.getcwd())
 
 # One concurrent job for GPU safety
 executor = ThreadPoolExecutor(max_workers=1)
@@ -45,7 +50,10 @@ def process_video():
     run_id = str(uuid.uuid4())
     temp_dir = Path(f"/tmp/kairos/jobs/{run_id}")
     temp_dir.mkdir(parents=True, exist_ok=True)
-    video_path = temp_dir / "input.mp4"
+    
+    # Use original filename (sanitized) instead of 'input.mp4'
+    raw_filename = secure_filename(video_file.filename) or "input.mp4"
+    video_path = temp_dir / raw_filename
     video_file.save(str(video_path))
 
     # Initialize job state
@@ -123,6 +131,12 @@ def run_pipeline_task(run_id, video_path, chat_id):
     if MONGODB_URI:
         cmd.extend(["--mongo-uri", MONGODB_URI])
 
+    # Ensure subprocess has the correct environment (MONGODB_URI, PYTHONPATH)
+    sub_env = os.environ.copy()
+    sub_env["PYTHONPATH"] = sub_env.get("PYTHONPATH", "") + f":{MODEL_CWD}"
+    if MONGODB_URI:
+        sub_env["MONGODB_URI"] = MONGODB_URI
+
     try:
         # Start subprocess and capture output line-by-line to extract stage updates
         process = subprocess.Popen(
@@ -130,6 +144,7 @@ def run_pipeline_task(run_id, video_path, chat_id):
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             cwd=MODEL_CWD,
+            env=sub_env,
             universal_newlines=True
         )
 
