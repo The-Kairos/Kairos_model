@@ -526,27 +526,45 @@ def main():
 
         rag_path = Path(output_dir) / "rag_embedding.json"
         
-        # 1. Generate embeddings if they don't exist
+        # 1. Load or Generate embeddings
+        reproduce_embedding = False
         if not rag_path.exists():
+            reproduce_embedding = True
+        else:
+            if "rag_embedding" not in checkpoint:
+                try:
+                    with open(rag_path, 'r') as f:
+                        data = json.load(f)
+                        if isinstance(data, dict) and "embeddings" in data:
+                            checkpoint["rag_embedding"] = data
+                        else:
+                            print(f"[Kairos] {rag_path} exists but has unexpected format. Reproducing.")
+                            reproduce_embedding = True
+                except (json.JSONDecodeError, Exception):
+                    print(f"[Kairos] {rag_path} is invalid or an LFS pointer. Reproducing.")
+                    reproduce_embedding = True
+
+        if reproduce_embedding:
             checkpoint["rag_embedding"], step['make_embedding'] = make_embedding_log(
                 checkpoint=checkpoint,
                 output_path=str(rag_path),
             )
-        else:
-            # 2. Load existing embeddings for sync if not already in memory
-            if "rag_embedding" not in checkpoint:
-                try:
-                    with open(rag_path, 'r') as f:
-                        checkpoint["rag_embedding"] = json.load(f)
-                except:
-                    checkpoint["rag_embedding"] = []
 
-        # 3. ALWAYS SYNC TO MONGODB IF CHAT_ID IS PROVIDED
+        # 2. ALWAYS SYNC TO MONGODB IF CHAT_ID IS PROVIDED
         # This ensures that even if the video was already processed, the state is updated in DB
         if storage_manager.is_remote:
+            # We need the full data (contexts/embeddings) for storage, not just the summary in checkpoint
+            full_rag_data = None
+            if rag_path.exists():
+                try:
+                    with open(rag_path, 'r') as f:
+                        full_rag_data = json.load(f)
+                except:
+                    full_rag_data = checkpoint.get("rag_embedding")
+            
             storage_manager.save_final_results(
                 checkpoint=checkpoint, 
-                rag_embedding=checkpoint.get("rag_embedding")
+                rag_embedding=full_rag_data
             )
 
         # Final logs and checkpoint sync

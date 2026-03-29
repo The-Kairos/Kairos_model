@@ -85,3 +85,12 @@ hdbscan
 # MongoDB Driver
 pymongo>=4.0.0
 dnspython>=2.0.0
+
+# ===============================================
+# SYSTEM DEPENDENCIES (Not installable via pip):
+# (1) FFmpeg: Required for video/audio processing. 
+# (2) Git: Required for version control.
+# (3) Git LFS (Optional): If missing, the pipeline 
+#     automatically regenerates LFS pointer files 
+#     via the Gemini API (self-healing).
+# ===============================================

@@ -118,16 +118,29 @@ class StorageManager:
             # 1. Prepare chat_chunks
             chunks = []
             scenes = checkpoint.get("scenes", [])
+            
+            # Decide how to access contexts/embeddings (handle full dict or just list)
+            embed_list = []
+            context_list = []
+            if isinstance(rag_embedding, dict):
+                embed_list = rag_embedding.get("embeddings", [])
+                context_list = rag_embedding.get("contexts", [])
+            elif isinstance(rag_embedding, list):
+                embed_list = rag_embedding
+                # If it's a list, we might not have the contexts here, but we can assume scenes match
+            
+            # 1a. Fill scenes (Chunks 0 to N-1)
             for i, scene in enumerate(scenes):
                 # Retrieve embedding for this scene if available
                 embedding = None
-                if isinstance(rag_embedding, list) and i < len(rag_embedding):
-                    embedding = rag_embedding[i]
+                if i < len(embed_list):
+                    embedding = embed_list[i]
 
                 chunk = {
                     "chatId": self._to_oid(self.chat_id),
                     "chunkIndex": i,
-                    "sceneIndex": i, # Assuming 1:1 for now
+                    "sceneIndex": i,
+                    "type": "scene",
                     "startSec": scene.get("start_seconds"), 
                     "endSec": scene.get("end_seconds"),
                     "startTimecode": scene.get("start_timecode"),
@@ -141,6 +154,31 @@ class StorageManager:
                     "createdAt": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime())
                 }
                 chunks.append(chunk)
+
+            # 1b. Fill meta-chunks (synopsis items: summary, highlights, etc.)
+            # These are usually stored after the scene contexts in build_contexts()
+            num_scenes = len(scenes)
+            if len(context_list) > num_scenes:
+                for j in range(num_scenes, len(context_list)):
+                    ctx_str = context_list[j]
+                    embedding = embed_list[j] if j < len(embed_list) else None
+                    
+                    # Split "key: value" (e.g., "summary: Sheldon is...")
+                    meta_type = "metadata"
+                    meta_value = ctx_str
+                    if ": " in ctx_str:
+                        meta_type, meta_value = ctx_str.split(": ", 1)
+                    
+                    meta_chunk = {
+                        "chatId": self._to_oid(self.chat_id),
+                        "chunkIndex": j,
+                        "sceneIndex": None,
+                        "type": meta_type,
+                        "context": meta_value,
+                        "embedding": embedding,
+                        "createdAt": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime())
+                    }
+                    chunks.append(meta_chunk)
 
             if chunks:
                 # Delete existing chunks for this chat to avoid duplicates on re-run

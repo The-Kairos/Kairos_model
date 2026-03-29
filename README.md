@@ -36,3 +36,14 @@ python _download_videos.py          # download videos
 python main.py                      # process the videos
 python log_reports\_print_logs.py   # see hardware metrics of video processing
 ```
+
+---
+
+## System Dependencies
+
+The Kairos pipeline relies on several system-level tools. Ensure these are installed on your machine:
+
+1.  **FFmpeg**: High-performance video/audio processing. (Required for cutting clips and audio analysis).
+2.  **Git**: For version control.
+3.  **Git LFS** (Optional): Large File Storage. 
+    - **Note**: If `git-lfs` is not installed on your system, the project includes a **self-healing logic** that detects LFS pointers and automatically regenerates the required embedding data (`rag_embedding.json`) via the Gemini API. This ensures the project remains functional even in environments without LFS support.
