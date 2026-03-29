@@ -2,13 +2,7 @@
 __pycache__/
 *.py[codz]
 *$py.class
-
-# Data / Processed Files
-Videos/
-logs/
-model/*.pt
-tmp_whisper/
-**/rag_embedding.json
+.*
 
 # C extensions
 *.so

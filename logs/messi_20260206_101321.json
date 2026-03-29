@@ -1,0 +1,2024 @@
+{
+  "run_description": "Test run for video processing pipeline.",
+  "video_path": "Videos\\Argentina v France Full Penalty Shoot-out.mp4",
+  "video_length": "00:07:39.000",
+  "total_process_sec": 2376.4105799999998,
+  "scene_number": 79,
+  "start_process": "2026-02-06 09:32:33",
+  "end_process": "2026-02-06 10:13:20",
+  "computer": {
+    "os_info": {
+      "os": "Windows 11",
+      "os_version": "10.0.26200",
+      "machine_type": "AMD64",
+      "hostname": "the-Kewl-Laptop",
+      "python_version": "3.12.1"
+    },
+    "cpu_info": {
+      "cpu_model": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+      "cpu_physical_cores": 8,
+      "cpu_logical_cores": 16,
+      "cpu_frequency_MHz": {
+        "current": 2208.0,
+        "min": 0.0,
+        "max": 2208.0
+      }
+    },
+    "ram_info": {
+      "total_RAM_GB": 15.84,
+      "available_RAM_GB": 4.74,
+      "used_RAM_GB": 11.1,
+      "RAM_usage_percent": 70.1
+    },
+    "disk_info": {
+      "disk_total_GB": 932.98,
+      "disk_used_GB": 469.03,
+      "disk_free_GB": 463.94,
+      "disk_usage_percent": 50.3
+    },
+    "gpu_info": {
+      "gpu_model": "NVIDIA GeForce GTX 1660 Ti",
+      "gpu_memory_total_MB": 6144,
+      "gpu_memory_used_MB": 0,
+      "gpu_driver_version": "572.16"
+    }
+  },
+  "steps": {
+    "get_scene_list": {
+      "wall_time_sec": 2.2228,
+      "cpu_time_sec": 14.17188,
+      "ram_before_MB": 2109,
+      "ram_after_MB": 2116,
+      "ram_used_MB": 7,
+      "io_read_MB": 39.26701354980469,
+      "io_write_MB": 0.0,
+      "gpu_before": [
+        {
+          "id": 0,
+          "name": "NVIDIA GeForce GTX 1660 Ti",
+          "memory_used_MB": 178,
+          "memory_total_MB": 6144,
+          "gpu_util_percent": 0,
+          "mem_util_percent": 0
+        }
+      ],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "save_clips": {
+      "wall_time_sec": 6.1265,
+      "cpu_time_sec": 0.26562,
+      "ram_before_MB": 2116,
+      "ram_after_MB": 2116,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.25423336029052734,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "sample_frames": {
+      "wall_time_sec": 5.58176,
+      "cpu_time_sec": 22.76562,
+      "ram_before_MB": 2116,
+      "ram_after_MB": 2180,
+      "ram_used_MB": 64,
+      "io_read_MB": 84.12333106994629,
+      "io_write_MB": 5.356715202331543,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "caption_frames": {
+      "wall_time_sec": 597.89465,
+      "cpu_time_sec": 596.04688,
+      "ram_before_MB": 2180,
+      "ram_after_MB": 2027,
+      "ram_used_MB": -153,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "detect_object_yolo": {
+      "wall_time_sec": 0.03168,
+      "cpu_time_sec": 0.04688,
+      "ram_before_MB": 1986,
+      "ram_after_MB": 1987,
+      "ram_used_MB": 1,
+      "io_read_MB": 21.875014305114746,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "ast_timings": {
+      "wall_time_sec": 199.4175,
+      "cpu_time_sec": 198.75,
+      "ram_before_MB": 1987,
+      "ram_after_MB": 1910,
+      "ram_used_MB": -77,
+      "io_read_MB": 39.07350826263428,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "asr_timings": {
+      "wall_time_sec": 828.54418,
+      "cpu_time_sec": 826.70312,
+      "ram_before_MB": 1910,
+      "ram_after_MB": 2413,
+      "ram_used_MB": 503,
+      "io_read_MB": 961.7662305831909,
+      "io_write_MB": 9.5367431640625e-07,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "describe_scenes": {
+      "wall_time_sec": 622.54902,
+      "cpu_time_sec": 0.45312,
+      "ram_before_MB": 2413,
+      "ram_after_MB": 2397,
+      "ram_used_MB": -16,
+      "io_read_MB": 0.06569671630859375,
+      "io_write_MB": 0.0,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "summarize_scenes": {
+      "wall_time_sec": 96.39767,
+      "cpu_time_sec": 0.03125,
+      "ram_before_MB": 2397,
+      "ram_after_MB": 2397,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.015244483947753906,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    },
+    "synthesize_synopsis": {
+      "wall_time_sec": 17.64482,
+      "cpu_time_sec": 0.0,
+      "ram_before_MB": 2397,
+      "ram_after_MB": 2397,
+      "ram_used_MB": 0,
+      "io_read_MB": 0.0,
+      "io_write_MB": 0.0043697357177734375,
+      "gpu_before": [],
+      "gpu_after": [],
+      "cuda_before_MB": null,
+      "cuda_after_MB": null,
+      "cuda_peak_MB": null
+    }
+  },
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:04.800",
+      "start_seconds": 0.0,
+      "end_seconds": 4.8,
+      "duration_seconds": 4.8,
+      "clip_path": ".runs\\messi\\clips\\scene_0000.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_000\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_000\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_000\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer stadium",
+        "a video frame of a soccer stadium",
+        "a video frame of a soccer stadium"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "vehicle (conf=0.51)",
+      "audio_speech": " Last bit french",
+      "llm_scene_description": "The scene takes place in a soccer stadium, likely during a calm moment with no visible players or action on the field. The audio includes faint, unclear sounds, possibly background noise or distant conversation, with a hint of French being spoken. The setting suggests a focus on the environment rather than specific activities or individuals."
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:04.800",
+      "end_timecode": "00:00:11.040",
+      "start_seconds": 4.8,
+      "end_seconds": 11.04,
+      "duration_seconds": 6.239999999999999,
+      "clip_path": ".runs\\messi\\clips\\scene_0001.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_001\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_001\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_001\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player",
+        "a video frame of a man in a blue shirt",
+        "a video frame of a soccer player"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " out was that the European championships last summer and they lost to",
+      "llm_scene_description": "The scene appears to take place in a soccer-related context, possibly during or after a match. A man, likely associated with the game, is briefly visible wearing a blue shirt. The setting and references to soccer players suggest a continuation of the stadium environment from the previous scene, though no active gameplay or crowd activity is evident. The audio hints at a discussion about a past European championship, adding context to the setting. The focus remains on the broader soccer theme rather than specific actions or events."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:11.040",
+      "end_timecode": "00:00:16.800",
+      "start_seconds": 11.04,
+      "end_seconds": 16.8,
+      "duration_seconds": 5.760000000000002,
+      "clip_path": ".runs\\messi\\clips\\scene_0002.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_002\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_002\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_002\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Switzerland because Kylian Mbappe failed against Jan Sommer with their...",
+      "llm_scene_description": "The scene takes place in a soccer stadium, maintaining the same setting as previous scenes. The focus appears to be on the ongoing soccer match, though no specific players or actions are visible in the frames. The audio suggests commentary or discussion related to a notable moment involving Kylian Mbappe and Jan Sommer, referencing Switzerland, possibly in the context of a past or current game. The atmosphere reflects the soccer theme, emphasizing the environment and context rather than detailed gameplay or crowd activity."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:16.800",
+      "end_timecode": "00:00:20.640",
+      "start_seconds": 16.8,
+      "end_seconds": 20.64,
+      "duration_seconds": 3.84,
+      "clip_path": ".runs\\messi\\clips\\scene_0003.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_003\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_003\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_003\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player on the field",
+        "a video frame of a soccer player on the field",
+        "a video frame of a soccer player standing in front of the goal"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " final penalty. This time having twice",
+      "llm_scene_description": "The scene takes place in a soccer stadium, continuing the established setting from previous segments. A soccer player is visible on the field, with the focus shifting to them standing in front of the goal, suggesting a pivotal moment in the match, such as a penalty kick or decisive play. The audio references a \"final penalty,\" reinforcing the idea of a critical event in the game. The atmosphere remains consistent with the soccer theme, emphasizing the tension and importance of the moment while maintaining a calm and focused environment."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:20.640",
+      "end_timecode": "00:00:24.800",
+      "start_seconds": 20.64,
+      "end_seconds": 24.8,
+      "duration_seconds": 4.16,
+      "clip_path": ".runs\\messi\\clips\\scene_0004.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_004\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_004\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_004\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man in a blue shirt",
+        "a video frame of a soccer player",
+        "a video frame of a soccer player"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " already stored from the spot and three times at all having",
+      "llm_scene_description": "The scene continues in a soccer-related context, likely within a stadium setting. A man in a blue shirt is briefly visible, suggesting he may be associated with the game, such as a coach, official, or spectator. The focus shifts to a soccer player, reinforcing the ongoing theme of the sport. While no active gameplay or crowd activity is evident, the atmosphere suggests a connection to a match or event, possibly involving significant moments or discussions about past games. The setting remains consistent with the established soccer environment, emphasizing the players and the broader context of the sport."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:24.800",
+      "end_timecode": "00:00:30.560",
+      "start_seconds": 24.8,
+      "end_seconds": 30.56,
+      "duration_seconds": 5.759999999999998,
+      "clip_path": ".runs\\messi\\clips\\scene_0005.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_005\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_005\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_005\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " on Bap-Hoe steps up first. Hang on Bap-Hoe!",
+      "llm_scene_description": "The scene takes place in a soccer stadium, maintaining the established setting from previous segments. The focus remains on the ongoing soccer match, though specific players, actions, or gameplay are not visible. The audio suggests commentary related to a notable moment, possibly involving a player stepping up for a critical play, such as a penalty kick or decisive action. The atmosphere reflects the tension and anticipation of the game, emphasizing the soccer theme and the importance of the moment within the match."
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:30.560",
+      "end_timecode": "00:00:33.280",
+      "start_seconds": 30.56,
+      "end_seconds": 33.28,
+      "duration_seconds": 2.7200000000000024,
+      "clip_path": ".runs\\messi\\clips\\scene_0006.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_006\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_006\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_006\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player on the field",
+        "a video frame of a soccer player in action",
+        "a video frame of a soccer player on the field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.74)",
+      "audio_speech": " I ratchets it in.",
+      "llm_scene_description": "The scene takes place on a soccer field, continuing the established setting of a match in progress. A soccer player is prominently featured, suggesting they are actively involved in the game, possibly preparing for or executing a significant play. The atmosphere remains focused and tense, consistent with the importance of the moment in the match. While no specific gameplay or crowd activity is depicted, the scene emphasizes the player's presence and the broader context of the soccer event."
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:33.280",
+      "end_timecode": "00:00:36.960",
+      "start_seconds": 33.28,
+      "end_seconds": 36.96,
+      "duration_seconds": 3.6799999999999997,
+      "clip_path": ".runs\\messi\\clips\\scene_0007.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_007\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_007\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_007\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a tennis player holding a ball in the air",
+        "a video frame of a crowd of people holding up their hands",
+        "a video frame of a tennis player holding up his fist"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " on his day of no error.",
+      "llm_scene_description": "The scene transitions from a soccer-focused setting to a tennis-related context. A tennis player is seen holding a ball in preparation for a serve, suggesting the start of a match or a key moment in gameplay. The focus briefly shifts to a cheering crowd, indicating an engaged audience reacting to the action. The tennis player is later shown raising his fist, likely celebrating a successful play or expressing determination. The atmosphere conveys the excitement and intensity of a competitive tennis event, with the player's actions and the crowd's reactions emphasizing the significance of the moment."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:00:36.960",
+      "end_timecode": "00:00:42.400",
+      "start_seconds": 36.96,
+      "end_seconds": 42.4,
+      "duration_seconds": 5.439999999999998,
+      "clip_path": ".runs\\messi\\clips\\scene_0008.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_008\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_008\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_008\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player in the goal",
+        "a video frame of a soccer player catching a ball in the goal",
+        "a video frame of a soccer player catching a ball"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " When you hit it that hard even though the keeper guesses the right way, it's got to be a difficult one.",
+      "llm_scene_description": "The scene takes place in a soccer stadium, continuing the focus on an ongoing match. A soccer player is positioned in the goal and is seen catching a ball, suggesting a critical defensive play, such as a save during a penalty or an important shot on goal. The audio commentary highlights the difficulty of the situation, emphasizing the power and precision of the shot and the goalkeeper's effort to make the save. The atmosphere remains tense and focused, reflecting the high stakes and intensity of the game."
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:00:42.400",
+      "end_timecode": "00:00:49.440",
+      "start_seconds": 42.4,
+      "end_seconds": 49.44,
+      "duration_seconds": 7.039999999999999,
+      "clip_path": ".runs\\messi\\clips\\scene_0009.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_009\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_009\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_009\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer match in a stadium",
+        "a video frame of a soccer match",
+        "a video frame of a soccer match"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " That's a decent touch on it, but we're near enough. Interesting that the two top men are going first.",
+      "llm_scene_description": "The scene takes place in a soccer stadium, continuing the focus on an ongoing match. The video frames depict a general view of the game in progress, with no specific players or actions highlighted. The audio commentary suggests a strategic moment involving key players, possibly indicating the start of a significant play or decision. The atmosphere remains consistent with the intensity and focus of a competitive soccer match, emphasizing the importance of the moment within the game."
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:00:49.440",
+      "end_timecode": "00:00:55.200",
+      "start_seconds": 49.44,
+      "end_seconds": 55.2,
+      "duration_seconds": 5.760000000000005,
+      "clip_path": ".runs\\messi\\clips\\scene_0010.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_010\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_010\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_010\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player",
+        "a video frame of a soccer player with a beard",
+        "a video frame of a soccer player on the field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " He went first against the Netherlands. He went first also in last summer's Coppa America.",
+      "llm_scene_description": "The scene takes place on a soccer field, focusing on a soccer player, likely a key figure in the match. The player is depicted in multiple frames, emphasizing their presence and importance. The audio mentions past performances against notable teams, suggesting the player's experience and significance in high-stakes games. The atmosphere aligns with the context of a competitive soccer match, maintaining a sense of focus and anticipation."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:00:55.200",
+      "end_timecode": "00:00:57.920",
+      "start_seconds": 55.2,
+      "end_seconds": 57.92,
+      "duration_seconds": 2.719999999999999,
+      "clip_path": ".runs\\messi\\clips\\scene_0011.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_011\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_011\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_011\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player with a beard",
+        "a video frame of a soccer player",
+        "a video frame of a soccer player wearing a blue and white shirt"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "emergency vehicle (conf=0.42), siren (conf=0.34)",
+      "audio_speech": " shoots out in Brazil.",
+      "llm_scene_description": "The scene continues in the context of a soccer match, focusing on a player wearing a blue and white shirt, likely a key figure in the game. The player is prominently featured, suggesting their involvement in an important moment of the match. The setting remains consistent with a soccer stadium, maintaining the competitive and intense atmosphere established in previous scenes. Background audio hints at ambient sounds, such as distant sirens, but these do not appear directly relevant to the ongoing match. The focus remains on the player and the unfolding game."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:00:57.920",
+      "end_timecode": "00:01:20.960",
+      "start_seconds": 57.92,
+      "end_seconds": 80.96,
+      "duration_seconds": 23.039999999999992,
+      "clip_path": ".runs\\messi\\clips\\scene_0012.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_012\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_012\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_012\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player with his head in his hands",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.39)",
+      "audio_speech": " against Columbia in the semi-final. And on both occasions he scored. Missy, red sash, immatuate boys.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the competitive and intense atmosphere established in previous segments. The focus shifts between the general gameplay and a specific player, who is depicted with his head in his hands, possibly reacting to a missed opportunity or a significant moment in the match. The audio commentary references past performances and key moments, adding context to the player's importance and the stakes of the game. The visuals and audio together emphasize the emotional and strategic dynamics of the match, highlighting its significance within the broader competition."
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:01:20.960",
+      "end_timecode": "00:01:23.200",
+      "start_seconds": 80.96,
+      "end_seconds": 83.2,
+      "duration_seconds": 2.240000000000009,
+      "clip_path": ".runs\\messi\\clips\\scene_0013.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_013\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_013\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_013\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game being played",
+        "a video frame of a soccer game being played in a stadium",
+        "a video frame of a soccer game being played"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "JR東日本E231系電車",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the competitive atmosphere established in previous segments. The focus remains on the game itself, with players actively engaged in gameplay on the field. The setting emphasizes the scale and excitement of the event, with the stadium providing a backdrop for the action. While no specific players or actions are highlighted in this segment, the context suggests the continuation of a high-stakes match. Ambient audio, unrelated to the game, briefly features train sounds, but this does not detract from the primary focus on the soccer match."
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:23.200",
+      "end_timecode": "00:01:29.920",
+      "start_seconds": 83.2,
+      "end_seconds": 89.92,
+      "duration_seconds": 6.719999999999999,
+      "clip_path": ".runs\\messi\\clips\\scene_0014.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_014\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_014\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_014\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a tennis player in a crowd",
+        "a video frame of a soccer game in the middle of the pitch",
+        "a video frame of a soccer game with a goal in the middle"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " How do you do that? How do you do this in these circumstances?",
+      "llm_scene_description": "The scene unfolds in a soccer stadium during an ongoing match, maintaining the competitive and intense atmosphere established in previous segments. The focus alternates between the general gameplay and key moments involving the players on the field. The setting emphasizes the scale and excitement of the event, with the stadium and crowd providing a dynamic backdrop. While specific actions or players are not clearly identified in this segment, the context suggests the continuation of a high-stakes match, with ambient audio hinting at reactions or commentary related to the challenges faced during the game. The scene reinforces the importance of the match and the emotional investment of those involved."
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:01:29.920",
+      "end_timecode": "00:01:39.040",
+      "start_seconds": 89.92,
+      "end_seconds": 99.04,
+      "duration_seconds": 9.120000000000005,
+      "clip_path": ".runs\\messi\\clips\\scene_0015.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_015\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_015\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_015\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer stadium",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.41)",
+      "audio_speech": " Next up is Kingsley Coleman.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the competitive and energetic atmosphere established in previous segments. The focus remains on the gameplay, with the stadium providing a lively backdrop for the action. While specific players or actions are not clearly highlighted, the context suggests the match is progressing, with commentary hinting at upcoming moments or key players, such as Kingsley Coleman. The visuals and audio together emphasize the scale and significance of the event, maintaining the tension and excitement of the high-stakes competition."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:01:39.040",
+      "end_timecode": "00:01:45.440",
+      "start_seconds": 99.04,
+      "end_seconds": 105.44,
+      "duration_seconds": 6.3999999999999915,
+      "clip_path": ".runs\\messi\\clips\\scene_0016.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_016\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_016\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_016\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player on the field",
+        "a video frame of a soccer game with a player on the field",
+        "a video frame of a soccer game with a player on the field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "JR東日本E231系電車",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the competitive atmosphere established in previous segments. The focus remains on the gameplay, with players actively engaged on the field. The stadium serves as a lively backdrop, emphasizing the scale and excitement of the event. While specific actions or players are not distinctly highlighted, the context suggests the match is progressing, maintaining the tension and energy of the competition. Ambient audio briefly features train sounds, but this does not detract from the primary focus on the soccer game."
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:01:45.440",
+      "end_timecode": "00:01:48.000",
+      "start_seconds": 105.44,
+      "end_seconds": 108.0,
+      "duration_seconds": 2.5600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0017.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_017\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_017\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_017\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player talking to a referee",
+        "a video frame of a soccer player wearing a red shirt",
+        "a video frame of a soccer player"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " ear splitting whistles",
+      "llm_scene_description": "The scene occurs in a soccer stadium during an ongoing match, maintaining the competitive and energetic atmosphere of previous segments. The focus shifts momentarily to a soccer player in a red shirt interacting with a referee, suggesting a brief pause in gameplay, possibly to address a decision or issue on the field. The piercing sound of whistles underscores the intensity of the moment, hinting at the significance of the interaction. The stadium remains a lively and dynamic backdrop, reinforcing the high-stakes nature of the match and the emotional investment of players and spectators."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:01:48.000",
+      "end_timecode": "00:01:55.040",
+      "start_seconds": 108.0,
+      "end_seconds": 115.04,
+      "duration_seconds": 7.040000000000006,
+      "clip_path": ".runs\\messi\\clips\\scene_0018.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_018\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_018\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_018\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer match",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Iya is icing unique",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the energetic and competitive atmosphere established in previous segments. The focus remains on the gameplay, with the stadium serving as a lively backdrop to the action. While specific players or actions are not distinctly highlighted, the context suggests the match is progressing, maintaining the tension and excitement of the event. Ambient audio and visuals reinforce the scale and significance of the competition, emphasizing the dynamic environment of the soccer game."
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:01:55.040",
+      "end_timecode": "00:01:58.400",
+      "start_seconds": 115.04,
+      "end_seconds": 118.4,
+      "duration_seconds": 3.3599999999999994,
+      "clip_path": ".runs\\messi\\clips\\scene_0019.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_019\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_019\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_019\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player kicking a ball",
+        "a video frame of a soccer player kicking a ball",
+        "a video frame of a crowd of people"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.80)",
+      "audio_speech": " My team has his punch in the air again!",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the lively and competitive atmosphere established in previous segments. The focus briefly highlights a soccer player kicking the ball, suggesting active gameplay and a pivotal moment in the match. The stadium remains filled with an energetic crowd, emphasizing the excitement and scale of the event. The audio hints at celebratory reactions, possibly indicating a successful play or goal, reinforcing the emotional investment of players and spectators alike."
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:01:58.400",
+      "end_timecode": "00:02:05.280",
+      "start_seconds": 118.4,
+      "end_seconds": 125.28,
+      "duration_seconds": 6.8799999999999955,
+      "clip_path": ".runs\\messi\\clips\\scene_0020.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_020\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_020\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_020\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player in action",
+        "a video frame of a soccer player wearing a green shirt",
+        "a video frame of a soccer player"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.81)",
+      "audio_speech": " massive character, massive moment.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the energetic and competitive atmosphere established in previous segments. The focus shifts to a soccer player, likely involved in active gameplay, wearing a green shirt. The player's actions suggest a pivotal moment in the match, aligning with the dynamic and high-stakes nature of the event. The stadium remains lively, with ambient sounds and visuals reinforcing the scale and significance of the competition. The audio hints at a moment of importance, emphasizing the emotional engagement of players and spectators."
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:02:05.280",
+      "end_timecode": "00:02:08.160",
+      "start_seconds": 125.28,
+      "end_seconds": 128.16,
+      "duration_seconds": 2.8799999999999955,
+      "clip_path": ".runs\\messi\\clips\\scene_0021.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_021\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_021\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_021\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer goal",
+        "a video frame of a soccer goal",
+        "a video frame of a soccer goal in the middle of the pitch"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " That's twice his guess right.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the lively and competitive atmosphere established in previous segments. The focus is on the soccer goal positioned in the middle of the pitch, suggesting its importance in the gameplay. While specific players or actions are not visible, the context implies the match is progressing, with the goal serving as a central element in the competition. Ambient sounds and visuals reinforce the dynamic environment of the game, emphasizing the significance of the event and the emotional engagement of those involved."
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:02:08.160",
+      "end_timecode": "00:02:11.040",
+      "start_seconds": 128.16,
+      "end_seconds": 131.04,
+      "duration_seconds": 2.8799999999999955,
+      "clip_path": ".runs\\messi\\clips\\scene_0022.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_022\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_022\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_022\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game in a stadium"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the dynamic and competitive atmosphere established in previous segments. The focus remains on the game itself, with the stadium setting and energetic crowd providing a lively backdrop. While specific players or actions are not clearly visible, the context suggests active gameplay is underway, maintaining the excitement and significance of the event. The scene emphasizes the scale and emotional engagement of the match, consistent with the high-stakes nature of the competition."
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:02:11.040",
+      "end_timecode": "00:02:14.400",
+      "start_seconds": 131.04,
+      "end_seconds": 134.4,
+      "duration_seconds": 3.3600000000000136,
+      "clip_path": ".runs\\messi\\clips\\scene_0023.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_023\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_023\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_023\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game with a goal in the background",
+        "a video frame of a soccer game with a goal"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " about it he could with this one the big lad he's got",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the lively and competitive atmosphere established in previous segments. The focus is on the soccer game, with a goal visible in the background, suggesting its importance in the gameplay. While specific players or actions are not clearly visible, the context implies active gameplay is unfolding, with the goal serving as a key element in the match. The ambient sounds and visuals reinforce the dynamic and high-stakes nature of the event, emphasizing the emotional engagement of players and spectators alike."
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:02:14.400",
+      "end_timecode": "00:02:40.640",
+      "start_seconds": 134.4,
+      "end_seconds": 160.64,
+      "duration_seconds": 26.23999999999998,
+      "clip_path": ".runs\\messi\\clips\\scene_0024.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_024\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_024\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_024\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player with his arms in the air",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.69)",
+      "audio_speech": " a long reach well for Argentina Paulo de Bala came off the bench with this kick of a ball in mind de Bala down the middle some comparing watch yeah",
+      "llm_scene_description": "The scene unfolds in a soccer stadium during an ongoing match, maintaining the lively and competitive atmosphere established in previous segments. The focus shifts momentarily to a soccer player raising his arms, potentially celebrating or signaling during the game. The match continues actively, with gameplay centered around the field and the goal, suggesting a pivotal moment in the competition. Ambient sounds and commentary hint at a significant play involving an Argentine player, adding to the excitement and importance of the event. The dynamic environment, filled with energy and anticipation, underscores the high stakes and emotional engagement of the match for players and spectators alike."
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:02:40.640",
+      "end_timecode": "00:02:43.040",
+      "start_seconds": 160.64,
+      "end_seconds": 163.04,
+      "duration_seconds": 2.4000000000000057,
+      "clip_path": ".runs\\messi\\clips\\scene_0025.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_025\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_025\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_025\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game in the middle of the pitch"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.75)",
+      "audio_speech": " Easy, when you've only been on the pitch a few minutes.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the lively and competitive atmosphere established in previous segments. The focus remains on the game, with the action centered on the middle of the pitch. While specific players or actions are not clearly visible, the context suggests active gameplay is unfolding, supported by ambient sounds and commentary that hint at the dynamic nature of the match. The energetic environment, filled with anticipation, highlights the emotional engagement of players and spectators, emphasizing the high stakes and significance of the event."
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:02:43.040",
+      "end_timecode": "00:02:49.600",
+      "start_seconds": 163.04,
+      "end_seconds": 169.6,
+      "duration_seconds": 6.560000000000002,
+      "clip_path": ".runs\\messi\\clips\\scene_0026.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_026\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_026\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_026\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player in action",
+        "a video frame of a soccer player kicking a ball",
+        "a video frame of a soccer player with a crowd in the background"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " as he has an easy situation that, Martin Mow perhaps sitting down the middle.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the lively and competitive atmosphere established in previous segments. The focus is on a soccer player actively engaged in gameplay, kicking the ball amidst the action on the field. The presence of a crowd in the background reinforces the dynamic and energetic environment, with spectators adding to the excitement of the match. The visuals and context suggest the player is involved in a pivotal moment, contributing to the intensity and high stakes of the game. The scene highlights the emotional engagement and anticipation shared by players and fans alike."
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:02:49.600",
+      "end_timecode": "00:02:54.880",
+      "start_seconds": 169.6,
+      "end_seconds": 174.88,
+      "duration_seconds": 5.280000000000001,
+      "clip_path": ".runs\\messi\\clips\\scene_0027.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_027\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_027\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_027\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game with two players on the field",
+        "a video frame of the match between argentina and real madrid",
+        "a video frame of the match between argentina and argentina"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "ウスェレン fast",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the lively and competitive atmosphere established in previous segments. The focus remains on the game, with two players actively engaged on the field. The match appears to involve a high-profile competition, potentially featuring teams like Argentina and Real Madrid, though some details may be unclear. The dynamic environment, filled with energy and anticipation, underscores the importance of the event for both players and spectators. The scene captures the intensity and excitement of the game, emphasizing the emotional engagement and high stakes of the match."
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:02:54.880",
+      "end_timecode": "00:02:57.920",
+      "start_seconds": 174.88,
+      "end_seconds": 177.92,
+      "duration_seconds": 3.039999999999992,
+      "clip_path": ".runs\\messi\\clips\\scene_0028.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_028\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_028\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_028\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "ご視聴ありがとうございました",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the lively and competitive atmosphere established in previous segments. The focus remains on the game, with the action centered on the field, though specific players or movements are not clearly visible. The energetic environment, supported by ambient sounds and crowd engagement, emphasizes the excitement and significance of the event. While the visuals lack detailed clarity, the context suggests active gameplay is continuing, contributing to the dynamic and high-stakes nature of the match. The scene captures the emotional involvement of players and spectators, reinforcing the importance of the event."
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:02:57.920",
+      "end_timecode": "00:03:02.560",
+      "start_seconds": 177.92,
+      "end_seconds": 182.56,
+      "duration_seconds": 4.640000000000015,
+      "clip_path": ".runs\\messi\\clips\\scene_0029.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_029\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_029\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_029\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player",
+        "a video frame of a soccer player",
+        "a video frame of a soccer player"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the dynamic and competitive atmosphere established in previous segments. The focus is on a soccer player actively involved in the game, though specific actions or movements are not clearly detailed. The energetic environment, supported by the implied presence of a lively crowd, highlights the excitement and intensity of the match. The scene captures the emotional engagement and high stakes of the event, emphasizing the shared anticipation of players and spectators."
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:03:02.560",
+      "end_timecode": "00:03:05.600",
+      "start_seconds": 182.56,
+      "end_seconds": 185.6,
+      "duration_seconds": 3.039999999999992,
+      "clip_path": ".runs\\messi\\clips\\scene_0030.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_030\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_030\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_030\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player",
+        "a video frame of a soccer player wearing a green shirt",
+        "a video frame of a soccer player wearing a green shirt"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " to this competition against England in the quarter finals.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing high-profile match, maintaining the lively and competitive atmosphere established in previous segments. The focus is on a soccer player wearing a green shirt, actively participating in the game. The context suggests this is part of a significant competition, possibly a quarterfinal match involving England. The dynamic environment, filled with energy and anticipation, underscores the emotional engagement of players and spectators, highlighting the intensity and importance of the event."
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:03:05.600",
+      "end_timecode": "00:03:08.800",
+      "start_seconds": 185.6,
+      "end_seconds": 188.8,
+      "duration_seconds": 3.200000000000017,
+      "clip_path": ".runs\\messi\\clips\\scene_0031.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_031\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_031\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_031\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer stadium",
+        "a video frame of a soccer stadium",
+        "a video frame of a soccer stadium"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Martinez is trying to get in his head.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the lively and competitive atmosphere established in previous segments. The focus remains on the game, with the stadium setting and the energetic environment reinforcing the high stakes and excitement of the event. While specific players or actions are not clearly visible, the context suggests active gameplay is underway, accompanied by the emotional involvement of players and spectators. The audio implies a moment of psychological strategy or tension, adding to the intensity of the match. The scene captures the shared anticipation and engagement of everyone present, emphasizing the significance of the competition."
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:03:08.800",
+      "end_timecode": "00:03:11.360",
+      "start_seconds": 188.8,
+      "end_seconds": 191.36,
+      "duration_seconds": 2.5600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0032.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_032\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_032\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_032\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player wearing a green shirt",
+        "a video frame of a soccer player standing in front of the goal",
+        "a video frame of a soccer player standing in front of the goal"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " The pass and tell us with the return of the ball.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the lively and competitive atmosphere established in previous segments. The focus is on a soccer player wearing a green shirt, positioned near the goal, suggesting a pivotal moment in the game. The environment remains dynamic and energetic, with the implied presence of a crowd adding to the excitement. The audio hints at gameplay involving a pass and return of the ball, reinforcing the sense of active participation and strategy. The scene captures the intensity and anticipation of the match, emphasizing the shared engagement of players and spectators."
+    },
+    {
+      "scene_index": 33,
+      "start_timecode": "00:03:11.360",
+      "end_timecode": "00:03:16.640",
+      "start_seconds": 191.36,
+      "end_seconds": 196.64,
+      "duration_seconds": 5.279999999999973,
+      "clip_path": ".runs\\messi\\clips\\scene_0033.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_033\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_033\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_033\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " He will do what it takes.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the high-energy atmosphere established in previous segments. The focus remains on the game, with players actively engaged in gameplay as part of a significant competition. While specific actions or players are not clearly visible, the context suggests a moment of strategic importance, with the audio hinting at determination and effort. The dynamic environment, filled with anticipation and emotional involvement from both players and spectators, underscores the intensity and significance of the event."
+    },
+    {
+      "scene_index": 34,
+      "start_timecode": "00:03:16.640",
+      "end_timecode": "00:03:18.720",
+      "start_seconds": 196.64,
+      "end_seconds": 198.72,
+      "duration_seconds": 2.0800000000000125,
+      "clip_path": ".runs\\messi\\clips\\scene_0034.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_034\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_034\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_034\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player during a game",
+        "a video frame of a soccer player in action",
+        "a video frame of a soccer player"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "ご視聴ありがとうございました",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the energetic and competitive atmosphere established in previous segments. The focus is on a soccer player actively participating in the game, suggesting a moment of engagement and strategy within the match. While specific actions or players are not distinctly visible, the context implies continued gameplay and the shared anticipation of players and spectators. The lively stadium setting reinforces the excitement and significance of the event, capturing the dynamic and collaborative spirit of the competition."
+    },
+    {
+      "scene_index": 35,
+      "start_timecode": "00:03:18.720",
+      "end_timecode": "00:03:21.920",
+      "start_seconds": 198.72,
+      "end_seconds": 201.92,
+      "duration_seconds": 3.1999999999999886,
+      "clip_path": ".runs\\messi\\clips\\scene_0035.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_035\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_035\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_035\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man in a blue jacket",
+        "a video frame of a soccer player with his head in his hands",
+        "a video frame of a soccer player being hugged by a coach"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "ご視聴ありがとうございました",
+      "llm_scene_description": "The scene takes place in a soccer stadium, continuing the emotional and competitive atmosphere of the ongoing match. A soccer player, likely central to the game, is shown experiencing a moment of intense emotion, first with his head in his hands, suggesting disappointment or reflection, and then being comforted by a coach through a supportive hug. The focus shifts from the action of the match to the personal and emotional connection between the player and the coach, emphasizing themes of teamwork, resilience, and encouragement in the face of challenges. The stadium setting and prior context suggest this moment follows a significant event in the game, highlighting the human side of sports and the bond between players and their mentors."
+    },
+    {
+      "scene_index": 36,
+      "start_timecode": "00:03:21.920",
+      "end_timecode": "00:03:32.640",
+      "start_seconds": 201.92,
+      "end_seconds": 212.64,
+      "duration_seconds": 10.719999999999999,
+      "clip_path": ".runs\\messi\\clips\\scene_0036.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_036\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_036\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_036\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game in a stadium",
+        "a video frame of a soccer game being played in a stadium"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "fixed-wing aircraft, airplane (conf=0.39)",
+      "audio_speech": " Not a nail left to be chewed.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the high-energy and competitive atmosphere established in previous segments. The focus remains on the game, with players actively engaged in gameplay, suggesting a critical moment in the match. While specific actions or players are not distinctly visible, the context implies a continuation of the intense competition, with both players and spectators deeply invested in the outcome. The stadium setting reinforces the excitement and importance of the event, capturing the dynamic and emotionally charged environment of a significant soccer game."
+    },
+    {
+      "scene_index": 37,
+      "start_timecode": "00:03:32.640",
+      "end_timecode": "00:03:37.120",
+      "start_seconds": 212.64,
+      "end_seconds": 217.12,
+      "duration_seconds": 4.480000000000018,
+      "clip_path": ".runs\\messi\\clips\\scene_0037.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_037\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_037\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_037\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player wearing a blue jersey",
+        "a video frame of a soccer player in action",
+        "a video frame of a football player talking to another player"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.72)",
+      "audio_speech": " And he extracts it wide!",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the competitive and energetic atmosphere established in previous segments. The focus is on a soccer player wearing a blue jersey, actively participating in the game. The player appears to be engaged in gameplay, possibly interacting with another player, suggesting a moment of strategy or communication during the match. The audio hints at a missed opportunity or wide shot, adding to the tension and excitement of the event. The stadium setting reinforces the dynamic and collaborative spirit of the competition, capturing the anticipation and emotional investment of players and spectators alike."
+    },
+    {
+      "scene_index": 38,
+      "start_timecode": "00:03:37.120",
+      "end_timecode": "00:03:41.920",
+      "start_seconds": 217.12,
+      "end_seconds": 221.92,
+      "duration_seconds": 4.799999999999983,
+      "clip_path": ".runs\\messi\\clips\\scene_0038.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_038\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_038\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_038\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of two soccer players on the field",
+        "a video frame of a soccer game with two players on the field",
+        "a video frame of a group of men standing on a soccer field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.84)",
+      "audio_speech": " And Argentina are on the cusp.",
+      "llm_scene_description": "The scene takes place on a soccer field during an ongoing match, continuing the competitive and emotionally charged atmosphere established earlier. Two players are prominently featured on the field, suggesting a moment of focus within the game. The context implies a critical juncture, with the audio hinting at a pivotal moment for Argentina. The presence of additional players in the background reinforces the active nature of the match, while the stadium setting underscores the significance of the event. The scene highlights the intensity and shared effort of the players as they navigate this crucial phase of the game."
+    },
+    {
+      "scene_index": 39,
+      "start_timecode": "00:03:41.920",
+      "end_timecode": "00:03:45.440",
+      "start_seconds": 221.92,
+      "end_seconds": 225.44,
+      "duration_seconds": 3.5200000000000102,
+      "clip_path": ".runs\\messi\\clips\\scene_0039.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_039\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_039\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_039\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a football game with players clapping",
+        "a video frame of a soccer player",
+        "a video frame of a man talking on a cell"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the energetic and competitive atmosphere established in previous segments. Players are actively involved in the game, with brief moments suggesting clapping and communication among them, possibly indicating teamwork or a pause in play. The focus shifts momentarily to a man talking on a cell phone, suggesting he might be a spectator or someone involved in the event, though his role remains unclear. The stadium setting continues to emphasize the importance and excitement of the match, capturing the dynamic environment of a significant soccer game."
+    },
+    {
+      "scene_index": 40,
+      "start_timecode": "00:03:45.440",
+      "end_timecode": "00:03:48.960",
+      "start_seconds": 225.44,
+      "end_seconds": 228.96,
+      "duration_seconds": 3.5200000000000102,
+      "clip_path": ".runs\\messi\\clips\\scene_0040.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_040\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_040\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_040\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game with a goal"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Easy to say now, but never looked in top...",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the dynamic and competitive atmosphere of previous segments. The focus remains on the game, with players actively engaged on the field. A goal appears to have been scored, marking a pivotal moment in the match and adding to the excitement. The stadium setting reinforces the significance of the event, capturing the energy and anticipation of both players and spectators. The audio suggests reflective commentary, possibly related to the gameplay or the goal, contributing to the overall intensity and emotional investment in the scene."
+    },
+    {
+      "scene_index": 41,
+      "start_timecode": "00:03:48.960",
+      "end_timecode": "00:03:51.200",
+      "start_seconds": 228.96,
+      "end_seconds": 231.2,
+      "duration_seconds": 2.2399999999999807,
+      "clip_path": ".runs\\messi\\clips\\scene_0041.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_041\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_041\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_041\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player on the field",
+        "a video frame of a soccer player with his head in the air",
+        "a video frame of a soccer player with his head in the air"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Are they confident waiting for that?",
+      "llm_scene_description": "The scene takes place on a soccer field during an ongoing match, maintaining the competitive and focused atmosphere established earlier. A soccer player is prominently featured, appearing to be actively engaged in the game, possibly looking upward in anticipation or tracking the ball. The lack of additional players or objects detected suggests the moment centers on this individual, highlighting a critical or reflective juncture in the match. The audio hints at a sense of anticipation or decision-making, aligning with the player's focused demeanor. The stadium setting continues to underscore the significance of the event, capturing the intensity and shared effort of the game."
+    },
+    {
+      "scene_index": 42,
+      "start_timecode": "00:03:51.200",
+      "end_timecode": "00:04:04.640",
+      "start_seconds": 231.2,
+      "end_seconds": 244.64,
+      "duration_seconds": 13.439999999999998,
+      "clip_path": ".runs\\messi\\clips\\scene_0042.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_042\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_042\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_042\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game with two players talking"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.37)",
+      "audio_speech": " He flies on these situations Martinez. He really does. Paredes to take Argentina to match point.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the energetic and competitive atmosphere established in previous segments. The focus briefly shifts to two players on the field, appearing to communicate, possibly strategizing or discussing the game. The commentary suggests a critical moment in the match, with references to a player and a potential decisive play. The stadium setting continues to emphasize the significance of the event, capturing the intensity and anticipation shared by players and spectators alike."
+    },
+    {
+      "scene_index": 43,
+      "start_timecode": "00:04:04.640",
+      "end_timecode": "00:04:08.320",
+      "start_seconds": 244.64,
+      "end_seconds": 248.32,
+      "duration_seconds": 3.680000000000007,
+      "clip_path": ".runs\\messi\\clips\\scene_0043.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_043\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_043\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_043\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player with his head in his hands",
+        "a video frame of a football player in action",
+        "a video frame of a soccer player"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the dynamic and competitive atmosphere of earlier segments. The focus alternates between a soccer player displaying visible frustration, possibly after a missed opportunity or critical moment, and general gameplay action. The player's reaction suggests emotional investment in the match, while the broader context implies the game is still in progress. The stadium setting reinforces the high stakes and intensity of the event, capturing the shared anticipation and energy of players and spectators alike."
+    },
+    {
+      "scene_index": 44,
+      "start_timecode": "00:04:08.320",
+      "end_timecode": "00:04:17.920",
+      "start_seconds": 248.32,
+      "end_seconds": 257.92,
+      "duration_seconds": 9.600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0044.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_044\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_044\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_044\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " That.",
+      "llm_scene_description": "The scene takes place on a soccer field during an ongoing match, maintaining the competitive and focused atmosphere established in previous segments. The game continues with players actively engaged, though specific actions or individuals are not clearly discernible in this moment. The setting emphasizes the significance of the event, with the stadium backdrop underscoring the intensity and shared effort of the match. The lack of detected objects or dialogue suggests a transitional or neutral moment in the game, where the focus remains on the broader context of the match rather than specific plays or interactions."
+    },
+    {
+      "scene_index": 45,
+      "start_timecode": "00:04:17.920",
+      "end_timecode": "00:04:20.480",
+      "start_seconds": 257.92,
+      "end_seconds": 260.48,
+      "duration_seconds": 2.5600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0045.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_045\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_045\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_045\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player on the field",
+        "a video frame of a soccer player kicking the ball",
+        "a video frame of a soccer player on the field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.63)",
+      "audio_speech": " hello Tilly Lynetteия Zmm you",
+      "llm_scene_description": "The scene takes place on a soccer field during an ongoing match, continuing the energetic and competitive atmosphere established in previous segments. The focus briefly shifts to a player actively engaged in gameplay, including kicking the ball, suggesting a moment of action within the match. The stadium setting reinforces the significance of the event, capturing the shared intensity and anticipation of players and spectators. While dialogue is present, its context remains ambiguous and does not detract from the primary focus on the game. The scene highlights the dynamic nature of the match while maintaining a consistent emphasis on the broader competitive environment."
+    },
+    {
+      "scene_index": 46,
+      "start_timecode": "00:04:20.480",
+      "end_timecode": "00:04:23.040",
+      "start_seconds": 260.48,
+      "end_seconds": 263.04,
+      "duration_seconds": 2.5600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0046.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_046\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_046\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_046\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player with his head in the air",
+        "a video frame of a soccer player sitting on the ground with his head in his hands",
+        "a video frame of a soccer player with his hands on his face"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.42)",
+      "audio_speech": " So very nearly there!",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, focusing on a player experiencing visible frustration. The player is shown sitting on the ground with his head in his hands, suggesting disappointment or emotional response to a critical moment in the game. The atmosphere remains consistent with the high stakes and intensity of the match, as the stadium setting reinforces the shared anticipation and energy of the event. While the dialogue and specific gameplay are ambiguous, the player's reaction highlights the emotional investment and competitive nature of the match."
+    },
+    {
+      "scene_index": 47,
+      "start_timecode": "00:04:23.040",
+      "end_timecode": "00:04:29.440",
+      "start_seconds": 263.04,
+      "end_seconds": 269.44,
+      "duration_seconds": 6.399999999999977,
+      "clip_path": ".runs\\messi\\clips\\scene_0047.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_047\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_047\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_047\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer match between argentina and argentina",
+        "a video frame of a soccer player on the field",
+        "a video frame of a soccer player on the field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place on a soccer field during an ongoing match, maintaining the competitive and focused atmosphere established in previous segments. The setting emphasizes the significance of the event, with players actively engaged on the field. While specific actions or interactions are not clearly discernible, the scene continues to highlight the dynamic nature of the game within the broader context of the match. The lack of dialogue or detected objects suggests a transitional moment, keeping the focus on the overall intensity and shared effort of the competition."
+    },
+    {
+      "scene_index": 48,
+      "start_timecode": "00:04:29.440",
+      "end_timecode": "00:04:31.840",
+      "start_seconds": 269.44,
+      "end_seconds": 271.84,
+      "duration_seconds": 2.3999999999999773,
+      "clip_path": ".runs\\messi\\clips\\scene_0048.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_048\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_048\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_048\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of the match between argentina and argentina",
+        "a video frame of the match between argentina and real madrid",
+        "a video frame of a soccer match between argentina and uruguay"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " gets a touch on it, Oogalooese.",
+      "llm_scene_description": "The scene takes place on a soccer field during an ongoing match, maintaining the competitive and energetic atmosphere established in previous segments. The focus remains on the broader context of the game, with players actively engaged in gameplay. Although specific teams mentioned in captions vary, the consistent setting and tone suggest a high-stakes match between skilled opponents. The stadium environment reinforces the significance of the event, capturing the shared anticipation and intensity of players and spectators alike. While audio and captions provide limited clarity, the scene continues to emphasize the dynamic and focused nature of the match, highlighting the collective effort and competitive spirit of the game."
+    },
+    {
+      "scene_index": 49,
+      "start_timecode": "00:04:31.840",
+      "end_timecode": "00:04:35.840",
+      "start_seconds": 271.84,
+      "end_seconds": 275.84,
+      "duration_seconds": 4.0,
+      "clip_path": ".runs\\messi\\clips\\scene_0049.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_049\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_049\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_049\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.76)",
+      "audio_speech": " get some touch on it.",
+      "llm_scene_description": "The scene takes place during an ongoing soccer match in a stadium, maintaining the high-energy and competitive atmosphere established in previous segments. The focus remains on the broader context of the game, with the action and intensity of the match implied through the setting and audio. While specific gameplay details or visible objects are not discernible, the scene reinforces the dynamic and emotionally charged nature of the event, consistent with the stakes and shared investment of players and spectators. The audio suggests active gameplay, emphasizing the fluid and engaging progression of the match."
+    },
+    {
+      "scene_index": 50,
+      "start_timecode": "00:04:35.840",
+      "end_timecode": "00:04:46.080",
+      "start_seconds": 275.84,
+      "end_seconds": 286.08,
+      "duration_seconds": 10.240000000000009,
+      "clip_path": ".runs\\messi\\clips\\scene_0050.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_050\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_050\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_050\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player with his head in the net",
+        "a video frame of a soccer stadium",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "vehicle (conf=0.53)",
+      "audio_speech": " almost undo his body under the outstretched palm. And France's margin for error is...",
+      "llm_scene_description": "The segment takes place during an ongoing soccer match in a stadium, continuing the high-energy and competitive atmosphere established in previous scenes. The focus remains on the broader context of the game, with the setting and audio suggesting active gameplay and the intensity of the event. While specific actions or objects are not clearly visible, the scene emphasizes the dynamic nature of the match, capturing the shared effort and anticipation of players and spectators. The imagery of a player near the net and the stadium setting reinforces the significance of the moment within the flow of the game."
+    },
+    {
+      "scene_index": 51,
+      "start_timecode": "00:04:46.080",
+      "end_timecode": "00:04:52.960",
+      "start_seconds": 286.08,
+      "end_seconds": 292.96,
+      "duration_seconds": 6.8799999999999955,
+      "clip_path": ".runs\\messi\\clips\\scene_0051.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_051\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_051\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_051\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game with two players on the field",
+        "a video frame of the match between argentina and real madrid",
+        "a video frame of argentina ' s players celebrating their goal"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " It smells here. Here we go. It's pouring everything down. Let's see if it's...",
+      "llm_scene_description": "The segment takes place during an ongoing soccer match in a stadium, continuing the high-energy and competitive atmosphere established in previous scenes. The focus shifts briefly to a celebratory moment, suggesting that one team, likely Argentina, has scored a goal. The scene captures the dynamic nature of the match, with players actively engaged and the intensity of the event reflected in the setting. While specific gameplay details remain unclear, the celebratory tone highlights a pivotal moment in the game, reinforcing the shared excitement and emotional investment of players and spectators alike."
+    },
+    {
+      "scene_index": 52,
+      "start_timecode": "00:04:52.960",
+      "end_timecode": "00:04:55.200",
+      "start_seconds": 292.96,
+      "end_seconds": 295.2,
+      "duration_seconds": 2.240000000000009,
+      "clip_path": ".runs\\messi\\clips\\scene_0052.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_052\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_052\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_052\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man with a beard sitting in a crowd",
+        "a video frame of a man with a beard sitting in a crowd",
+        "a video frame of a man sitting in the stands with his head in his hands"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " I'm going to work with this man.",
+      "llm_scene_description": "The scene takes place in a stadium during an ongoing soccer match, maintaining the emotionally charged atmosphere established in previous segments. The focus shifts momentarily to a man with a beard sitting in the crowd, appearing distressed with his head in his hands. This suggests a moment of tension or disappointment, likely tied to the events of the game. The broader context of the match remains present, with the man's reaction reflecting the emotional stakes and investment of the spectators. The scene emphasizes the personal and collective experiences of the crowd during the high-stakes event."
+    },
+    {
+      "scene_index": 53,
+      "start_timecode": "00:04:55.200",
+      "end_timecode": "00:04:58.080",
+      "start_seconds": 295.2,
+      "end_seconds": 298.08,
+      "duration_seconds": 2.8799999999999955,
+      "clip_path": ".runs\\messi\\clips\\scene_0053.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_053\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_053\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_053\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a football game with a crowd in the background",
+        "a video frame of a basketball game with a crowd in the background",
+        "a video frame of a crowd of people at a basketball game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " They're pushing it back. This is Colin Mulwani.",
+      "llm_scene_description": "The segment takes place in a sports arena with a large crowd in the background, maintaining the energetic and competitive atmosphere established in previous scenes. While the frame captions and object detections are inconsistent, the context suggests the setting is still a soccer match in a stadium, as established earlier. The focus remains on the collective experience of the event, with the crowd's presence emphasizing the shared excitement and intensity of the game. The audio, though unclear, reinforces the active and dynamic nature of the ongoing match."
+    },
+    {
+      "scene_index": 54,
+      "start_timecode": "00:04:58.080",
+      "end_timecode": "00:05:09.440",
+      "start_seconds": 298.08,
+      "end_seconds": 309.44,
+      "duration_seconds": 11.360000000000014,
+      "clip_path": ".runs\\messi\\clips\\scene_0054.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_054\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_054\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_054\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player",
+        "a video frame of a soccer game",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "vehicle (conf=0.34), fixed-wing aircraft, airplane (conf=0.48)",
+      "audio_speech": " Yes it is. Nowhere to hide. He must. He has.",
+      "llm_scene_description": "The segment takes place during an ongoing soccer match in a stadium, continuing the high-energy and competitive atmosphere established in previous scenes. The focus remains on the game itself, with players actively engaged on the field as the match unfolds. While specific gameplay details are unclear, the context suggests the match is intense and emotionally charged, with the crowd's reactions reflecting the stakes of the event. The audio hints at dialogue or commentary, but its meaning remains ambiguous, further emphasizing the dynamic and immersive nature of the scene. The setting and actions reinforce the shared excitement and tension of the players and spectators alike during this pivotal moment in the match."
+    },
+    {
+      "scene_index": 55,
+      "start_timecode": "00:05:09.440",
+      "end_timecode": "00:05:11.680",
+      "start_seconds": 309.44,
+      "end_seconds": 311.68,
+      "duration_seconds": 2.240000000000009,
+      "clip_path": ".runs\\messi\\clips\\scene_0055.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_055\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_055\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_055\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer match",
+        "a video frame of a soccer match",
+        "a video frame of a soccer game with players in the stands"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " If it don't",
+      "llm_scene_description": "The segment takes place in a stadium during an ongoing soccer match, continuing the high-energy and emotionally charged atmosphere established in previous scenes. The focus remains on the collective experience of the event, with the crowd's presence and reactions emphasizing the shared excitement and tension of the game. While specific gameplay details are not visible, the context suggests the match is unfolding dynamically, with the audience deeply invested in the outcome. The scene highlights the communal nature of the event, capturing the intensity and anticipation shared by players and spectators alike."
+    },
+    {
+      "scene_index": 56,
+      "start_timecode": "00:05:11.680",
+      "end_timecode": "00:05:15.040",
+      "start_seconds": 311.68,
+      "end_seconds": 315.04,
+      "duration_seconds": 3.3600000000000136,
+      "clip_path": ".runs\\messi\\clips\\scene_0056.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_056\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_056\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_056\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player wearing a blue jersey",
+        "a video frame of a soccer player on the field",
+        "a video frame of a soccer player on the field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " looked through it.",
+      "llm_scene_description": "The segment takes place in a stadium during an ongoing soccer match, maintaining the high-energy and competitive atmosphere established in previous scenes. The focus is on a soccer player wearing a blue jersey, positioned on the field as part of the active gameplay. While specific actions or gameplay details are unclear, the context suggests the match is continuing dynamically, with the player likely involved in the unfolding events. The scene emphasizes the intensity and shared excitement of the game, reflecting the collective experience of players and spectators in the stadium."
+    },
+    {
+      "scene_index": 57,
+      "start_timecode": "00:05:15.040",
+      "end_timecode": "00:05:34.080",
+      "start_seconds": 315.04,
+      "end_seconds": 334.08,
+      "duration_seconds": 19.039999999999964,
+      "clip_path": ".runs\\messi\\clips\\scene_0057.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_057\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_057\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_057\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of two men standing next to each other man",
+        "a video frame of a soccer match",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.44)",
+      "audio_speech": "story to elasticity, a long, lonely walk End of presentation. Pass According to the",
+      "llm_scene_description": "The segment takes place in a stadium during an ongoing soccer match, continuing the high-energy and competitive atmosphere established in previous scenes. The focus shifts between the players actively engaged on the field and the collective experience of the event, with the crowd's reactions reflecting the intensity and stakes of the match. While specific gameplay details are unclear, the context suggests the match is unfolding dynamically, with the players and spectators deeply invested in the outcome. The scene captures the shared excitement, tension, and communal nature of the event, emphasizing the immersive and emotionally charged environment of the soccer match."
+    },
+    {
+      "scene_index": 58,
+      "start_timecode": "00:05:34.080",
+      "end_timecode": "00:05:40.320",
+      "start_seconds": 334.08,
+      "end_seconds": 340.32,
+      "duration_seconds": 6.240000000000009,
+      "clip_path": ".runs\\messi\\clips\\scene_0058.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_058\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_058\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_058\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game in the middle of the pitch",
+        "a video frame of a soccer game with a goal in the middle"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Montiel Didn't start the game He could finish it",
+      "llm_scene_description": "The segment takes place in a stadium during an ongoing soccer match, maintaining the high-energy and competitive atmosphere established in previous scenes. The focus remains on the game unfolding on the field, with the action centered around the middle of the pitch and possibly near a goal. While specific gameplay details are unclear, the context suggests a pivotal moment in the match, with the crowd and players deeply engaged. The scene captures the shared anticipation and intensity of the event, emphasizing the communal excitement and emotional investment of both spectators and participants."
+    },
+    {
+      "scene_index": 59,
+      "start_timecode": "00:05:40.320",
+      "end_timecode": "00:05:42.720",
+      "start_seconds": 340.32,
+      "end_seconds": 342.72,
+      "duration_seconds": 2.400000000000034,
+      "clip_path": ".runs\\messi\\clips\\scene_0059.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_059\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_059\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_059\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player looking at the goal",
+        "a video frame of a soccer player looking at the goal",
+        "a video frame of a soccer player looking at the goal"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "ご視聴ありがとうございました",
+      "llm_scene_description": "The segment takes place in a stadium during an ongoing soccer match, maintaining the high-energy and competitive atmosphere of the previous scenes. The focus is on a soccer player in a blue jersey, positioned on the field and looking toward the goal, suggesting a moment of focus or preparation during gameplay. While specific actions are not shown, the context implies the player is engaged in a critical phase of the match. The scene highlights the intensity and anticipation of the game, reflecting the shared excitement and emotional investment of players and spectators alike."
+    },
+    {
+      "scene_index": 60,
+      "start_timecode": "00:05:42.720",
+      "end_timecode": "00:05:47.520",
+      "start_seconds": 342.72,
+      "end_seconds": 347.52,
+      "duration_seconds": 4.7999999999999545,
+      "clip_path": ".runs\\messi\\clips\\scene_0060.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_060\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_060\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_060\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player in a stadium",
+        "a video frame of a soccer game",
+        "a video frame of a soccer player in action"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The segment takes place in a stadium during an ongoing soccer match, continuing the dynamic and high-energy atmosphere of previous scenes. The focus alternates between the players actively engaged on the field and the overall context of the game, emphasizing the competitive and immersive nature of the event. While specific gameplay details remain unclear, the scene suggests moments of action and intensity, with players in motion and the crowd likely reacting to the unfolding match. The segment captures the shared excitement, focus, and communal energy of the soccer game."
+    },
+    {
+      "scene_index": 61,
+      "start_timecode": "00:05:47.520",
+      "end_timecode": "00:05:53.600",
+      "start_seconds": 347.52,
+      "end_seconds": 353.6,
+      "duration_seconds": 6.080000000000041,
+      "clip_path": ".runs\\messi\\clips\\scene_0061.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_061\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_061\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_061\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game in a stadium",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Michelle!",
+      "llm_scene_description": "The segment takes place in a stadium during an ongoing soccer match, continuing the high-energy and competitive atmosphere established in previous scenes. The focus remains on the game, with players actively engaged on the field and the crowd likely reacting to the unfolding action. While specific gameplay details are unclear, the scene conveys the intensity and anticipation of the match, emphasizing the shared excitement and emotional investment of both players and spectators. The setting and context suggest a pivotal or engaging moment in the game, maintaining the communal energy of the event."
+    },
+    {
+      "scene_index": 62,
+      "start_timecode": "00:05:53.600",
+      "end_timecode": "00:05:57.280",
+      "start_seconds": 353.6,
+      "end_seconds": 357.28,
+      "duration_seconds": 3.67999999999995,
+      "clip_path": ".runs\\messi\\clips\\scene_0062.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_062\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_062\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_062\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player celebrating a goal",
+        "a video frame of a man catching a soccer ball",
+        "a video frame of a shirtless man on a soccer field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.64)",
+      "audio_speech": " Argentina! Champions of...",
+      "llm_scene_description": "The segment takes place in a stadium during a soccer match, capturing the high-energy and celebratory atmosphere of a pivotal moment in the game. A soccer player is seen celebrating a goal, suggesting a significant achievement for their team. Another moment shows a man catching a soccer ball, possibly the goalkeeper or a player involved in the play. The crowd's excitement is implied through the audio, referencing a championship victory. The scene highlights the emotional highs of the match, emphasizing the shared joy and triumph of the players and spectators in this climactic moment."
+    },
+    {
+      "scene_index": 63,
+      "start_timecode": "00:05:57.280",
+      "end_timecode": "00:06:01.440",
+      "start_seconds": 357.28,
+      "end_seconds": 361.44,
+      "duration_seconds": 4.160000000000025,
+      "clip_path": ".runs\\messi\\clips\\scene_0063.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_063\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_063\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_063\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man with a scarf around his neck",
+        "a video frame of a shirtless man in a stadium",
+        "a video frame of a shirtless man in a stadium"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.69)",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place in a stadium during an ongoing soccer match, maintaining the energetic and communal atmosphere established in previous segments. The focus shifts briefly to a man wearing a scarf, possibly a spectator or someone associated with the event. The camera then highlights a shirtless man in the stadium, suggesting a moment of celebration or enthusiasm, potentially tied to the excitement of the game. While specific gameplay details are unclear, the scene emphasizes the shared energy and emotional engagement of the crowd and participants, capturing the dynamic and lively spirit of the event."
+    },
+    {
+      "scene_index": 64,
+      "start_timecode": "00:06:01.440",
+      "end_timecode": "00:06:06.400",
+      "start_seconds": 361.44,
+      "end_seconds": 366.4,
+      "duration_seconds": 4.9599999999999795,
+      "clip_path": ".runs\\messi\\clips\\scene_0064.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_064\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_064\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_064\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man hugging another man",
+        "a video frame of a soccer player with his arms outstretched in the air",
+        "a video frame of a group of people in a stadium"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.70)",
+      "audio_speech": " The best boys in the world all are cool!",
+      "llm_scene_description": "The segment takes place in a stadium during a soccer match, continuing the energetic and celebratory atmosphere established in previous scenes. The focus shifts between moments of emotional connection and celebration, including a man hugging another man, likely in response to a significant event in the game, and a soccer player celebrating with arms outstretched, suggesting a pivotal achievement such as a goal. The crowd's presence and enthusiasm are implied, reinforcing the communal excitement of the event. The scene captures the shared joy and emotional highs of both the players and spectators in this dynamic and lively setting."
+    },
+    {
+      "scene_index": 65,
+      "start_timecode": "00:06:06.400",
+      "end_timecode": "00:06:09.600",
+      "start_seconds": 366.4,
+      "end_seconds": 369.6,
+      "duration_seconds": 3.2000000000000455,
+      "clip_path": ".runs\\messi\\clips\\scene_0065.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_065\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_065\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_065\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer stadium",
+        "a video frame of a soccer game in a stadium",
+        "a video frame of a soccer stadium full of fans"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The segment takes place in a soccer stadium during an ongoing match, maintaining the lively and celebratory atmosphere established in previous scenes. The focus remains on the energetic environment, with the stadium full of fans contributing to the communal excitement. While specific gameplay details are not depicted, the scene emphasizes the shared enthusiasm and dynamic spirit of the event, capturing the collective engagement of players and spectators alike."
+    },
+    {
+      "scene_index": 66,
+      "start_timecode": "00:06:09.600",
+      "end_timecode": "00:06:25.760",
+      "start_seconds": 369.6,
+      "end_seconds": 385.76,
+      "duration_seconds": 16.159999999999968,
+      "clip_path": ".runs\\messi\\clips\\scene_0066.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_066\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_066\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_066\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game with two players",
+        "a video frame of a soccer game in a stadium",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.78)",
+      "audio_speech": " And the nation will tango all night long.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, continuing the lively and communal atmosphere established in previous segments. The focus remains on the energetic environment, with players actively engaged in the game and the stadium filled with fans contributing to the excitement. While specific gameplay details are unclear, the scene emphasizes the shared enthusiasm and dynamic spirit of the event, capturing the collective energy of both the participants and spectators. The audio suggests a celebratory tone, reinforcing the festive mood of the occasion."
+    },
+    {
+      "scene_index": 67,
+      "start_timecode": "00:06:25.760",
+      "end_timecode": "00:06:33.280",
+      "start_seconds": 385.76,
+      "end_seconds": 393.28,
+      "duration_seconds": 7.519999999999982,
+      "clip_path": ".runs\\messi\\clips\\scene_0067.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_067\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_067\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_067\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game with a crowd in the background",
+        "a video frame of a group of soccer players hugging each other players",
+        "a video frame of a group of soccer players hugging each other players"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.78)",
+      "audio_speech": " 56 years since Maradona and Mexico here finally.",
+      "llm_scene_description": "The scene takes place in a soccer stadium during a significant moment in the match, maintaining the celebratory and energetic atmosphere established in previous segments. A group of soccer players is seen embracing, likely in response to a pivotal event such as a goal or victory, while the presence of a cheering crowd in the background reinforces the communal excitement. The scene captures the emotional connection and shared joy of both players and spectators, emphasizing the celebratory spirit of the event."
+    },
+    {
+      "scene_index": 68,
+      "start_timecode": "00:06:33.280",
+      "end_timecode": "00:06:37.760",
+      "start_seconds": 393.28,
+      "end_seconds": 397.76,
+      "duration_seconds": 4.480000000000018,
+      "clip_path": ".runs\\messi\\clips\\scene_0068.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_068\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_068\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_068\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a group of soccer players hugging each other players",
+        "a video frame of a soccer game with a group of players hugging each other players",
+        "a video frame of a soccer game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.44)",
+      "audio_speech": " is a nation's new throng of immortals.",
+      "llm_scene_description": "The segment takes place in a soccer stadium during a celebratory moment in the match. A group of soccer players is seen embracing, likely in response to a significant event such as a goal or victory. The lively atmosphere is reinforced by the context of the ongoing game and the communal excitement of the crowd. The scene captures the emotional connection and shared joy of the players and spectators, emphasizing the festive and unifying spirit of the event."
+    },
+    {
+      "scene_index": 69,
+      "start_timecode": "00:06:37.760",
+      "end_timecode": "00:06:40.320",
+      "start_seconds": 397.76,
+      "end_seconds": 400.32,
+      "duration_seconds": 2.5600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0069.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_069\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_069\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_069\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man with dread hair",
+        "a video frame of a soccer player on the field",
+        "a video frame of a man in a blue shirt"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place in a soccer stadium, continuing the lively and energetic atmosphere of the match. The focus alternates between a man, likely a spectator or participant, and the ongoing game on the field. The presence of a soccer player and the dynamic setting suggest the match is still in progress, with the communal excitement of the event remaining central. The scene emphasizes the shared enthusiasm of the crowd and participants, maintaining the celebratory and spirited tone established in previous segments."
+    },
+    {
+      "scene_index": 70,
+      "start_timecode": "00:06:40.320",
+      "end_timecode": "00:06:44.320",
+      "start_seconds": 400.32,
+      "end_seconds": 404.32,
+      "duration_seconds": 4.0,
+      "clip_path": ".runs\\messi\\clips\\scene_0070.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_070\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_070\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_070\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a man with his head in his hands",
+        "a video frame of a man in a blue shirt",
+        "a video frame of a soccer player in action"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.79)",
+      "audio_speech": " Tony will be fated. Messi will be sainted.",
+      "llm_scene_description": "The scene transitions between a man, possibly a spectator or someone emotionally invested in the match, and the ongoing soccer game. The man is shown with his head in his hands, suggesting a moment of tension or reflection, before being depicted more clearly in a blue shirt. The focus then shifts to a soccer player in action, reinforcing the connection to the match. The audio hints at the significance of the game and its players, maintaining the emotional and celebratory tone established in previous scenes. The setting remains consistent with the soccer stadium, emphasizing the shared passion and intensity of the event."
+    },
+    {
+      "scene_index": 71,
+      "start_timecode": "00:06:44.320",
+      "end_timecode": "00:06:49.920",
+      "start_seconds": 404.32,
+      "end_seconds": 409.92,
+      "duration_seconds": 5.600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0071.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_071\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_071\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_071\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a crowd at a soccer game",
+        "a video frame of a crowd at a basketball game",
+        "a video frame of a crowd at a football game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.49)",
+      "audio_speech": " France this time denied the fight.",
+      "llm_scene_description": "The segment takes place in a stadium filled with an energetic crowd, consistent with the ongoing soccer match from previous scenes. The lively atmosphere suggests a continuation of the communal excitement and emotional engagement of both spectators and players. While the captions briefly mention other sports, the context and prior scenes confirm the setting remains a soccer game, with the crowd's enthusiasm reflecting the importance of the event. The scene highlights the unifying and celebratory spirit of the match, emphasizing the shared passion of everyone present."
+    },
+    {
+      "scene_index": 72,
+      "start_timecode": "00:06:49.920",
+      "end_timecode": "00:07:04.320",
+      "start_seconds": 409.92,
+      "end_seconds": 424.32,
+      "duration_seconds": 14.399999999999977,
+      "clip_path": ".runs\\messi\\clips\\scene_0072.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_072\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_072\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_072\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game",
+        "a video frame of a soccer game being played",
+        "a video frame of a soccer game being played on the field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": " Messi felt to his knees Peter in the center circle he couldn't move he felt to his knees and was surrounded by teammates incredible scene",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, maintaining the lively and emotional atmosphere established in previous segments. The focus is on a pivotal moment in the game, where a player, likely a key figure, falls to his knees in the center of the field, surrounded by teammates. This suggests a significant event, possibly a moment of triumph, exhaustion, or emotional release. The communal energy of the stadium, with its vibrant crowd and shared passion, underscores the importance of the event, highlighting the unity and intensity of the match."
+    },
+    {
+      "scene_index": 73,
+      "start_timecode": "00:07:04.320",
+      "end_timecode": "00:07:08.960",
+      "start_seconds": 424.32,
+      "end_seconds": 428.96,
+      "duration_seconds": 4.639999999999986,
+      "clip_path": ".runs\\messi\\clips\\scene_0073.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_073\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_073\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_073\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player celebrating a goal",
+        "a video frame of a soccer player with his hands up in the air",
+        "a video frame of a soccer player with his arms in the air"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.84)",
+      "audio_speech": " here. Lionel Messi has conquered his five...",
+      "llm_scene_description": "The scene takes place in a soccer stadium, continuing the emotional and celebratory atmosphere of the match. A soccer player is shown raising his arms in triumph, likely celebrating a significant achievement, such as scoring a goal. The player’s gestures and the context of the ongoing game suggest a moment of personal and team victory, resonating with the excitement of the crowd. The audio reinforces the importance of the event, hinting at the player’s prominence. The scene captures the unity and shared passion of the game, emphasizing the joy and intensity of the moment."
+    },
+    {
+      "scene_index": 74,
+      "start_timecode": "00:07:08.960",
+      "end_timecode": "00:07:14.560",
+      "start_seconds": 428.96,
+      "end_seconds": 434.56,
+      "duration_seconds": 5.600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0074.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_074\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_074\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_074\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer game with a man in a blue shirt standing on the field",
+        "a video frame of a soccer player on the field",
+        "a video frame of a man in a blue shirt standing on a soccer field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.59)",
+      "audio_speech": " Little pink. Little messy. Has shaken hands with paradox.",
+      "llm_scene_description": "The segment takes place on a soccer field during an ongoing match, continuing the lively and energetic atmosphere established in previous scenes. A man in a blue shirt, likely a player or official, is seen standing on the field, with the focus remaining on the game and its participants. The context suggests the match is still in progress, with the shared excitement of the event uniting players and spectators. The scene maintains the celebratory and communal spirit of the soccer game, emphasizing the importance of the event and the emotional engagement of everyone involved."
+    },
+    {
+      "scene_index": 75,
+      "start_timecode": "00:07:14.560",
+      "end_timecode": "00:07:17.440",
+      "start_seconds": 434.56,
+      "end_seconds": 437.44,
+      "duration_seconds": 2.8799999999999955,
+      "clip_path": ".runs\\messi\\clips\\scene_0075.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_075\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_075\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_075\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player with his hands in the air",
+        "a video frame of a soccer player with his hands in the air",
+        "a video frame of a soccer player celebrating a goal"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.45)",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place in a soccer stadium during an ongoing match, focusing on a celebratory moment. A soccer player is seen raising his arms in triumph, likely after scoring a goal, capturing the joy and excitement of the event. The atmosphere remains lively and emotional, with the player’s actions emphasizing a significant achievement for both him and his team. The communal energy of the stadium and the shared passion of the crowd underscore the importance of the moment, maintaining the celebratory and unifying spirit of the game."
+    },
+    {
+      "scene_index": 76,
+      "start_timecode": "00:07:17.440",
+      "end_timecode": "00:07:23.520",
+      "start_seconds": 437.44,
+      "end_seconds": 443.52,
+      "duration_seconds": 6.079999999999984,
+      "clip_path": ".runs\\messi\\clips\\scene_0076.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_076\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_076\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_076\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a soccer player with his arms in the air",
+        "a video frame of a soccer player celebrating his team ' s victory",
+        "a video frame of a soccer player on the field"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "speech (conf=0.56)",
+      "audio_speech": " from Rosario Santa Fe has just pitched up in heaven.",
+      "llm_scene_description": "The scene takes place in a soccer stadium, continuing the celebratory and emotional atmosphere of a significant moment in the match. A soccer player is shown on the field with his arms raised, expressing triumph and joy, likely celebrating a key achievement such as a goal or a team victory. The player's gestures and the context highlight the excitement and unity of the event, reflecting the shared passion of the game. The atmosphere remains lively and uplifting, emphasizing the communal spirit and emotional connection of the players and spectators."
+    },
+    {
+      "scene_index": 77,
+      "start_timecode": "00:07:23.520",
+      "end_timecode": "00:07:29.120",
+      "start_seconds": 443.52,
+      "end_seconds": 449.12,
+      "duration_seconds": 5.600000000000023,
+      "clip_path": ".runs\\messi\\clips\\scene_0077.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_077\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_077\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_077\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of a group of people holding up a flag",
+        "a video frame of a fan holding a scarf",
+        "a video frame of a crowd at a football game"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "none",
+      "audio_speech": "",
+      "llm_scene_description": "The scene takes place in a soccer stadium during a lively and celebratory moment. A crowd of fans is actively engaged, showcasing their enthusiasm through actions such as holding up flags and scarves, likely in support of their team. The communal energy of the event is evident, with the spectators united in their passion for the game. The atmosphere remains vibrant and uplifting, emphasizing the shared excitement and emotional connection between the fans and the ongoing match."
+    },
+    {
+      "scene_index": 78,
+      "start_timecode": "00:07:29.120",
+      "end_timecode": "00:07:39.000",
+      "start_seconds": 449.12,
+      "end_seconds": 459.0,
+      "duration_seconds": 9.879999999999995,
+      "clip_path": ".runs\\messi\\clips\\scene_0078.mp4",
+      "frame_paths": [
+        "././.runs/messi/frames\\scene_078\\frame_00.jpg",
+        "././.runs/messi/frames\\scene_078\\frame_01.jpg",
+        "././.runs/messi/frames\\scene_078\\frame_02.jpg"
+      ],
+      "frame_captions": [
+        "a video frame of blue and white lights on a black background",
+        "a video frame of an airplane flying in the sky",
+        "a video frame of a dark blue background with the words watch on and watch next"
+      ],
+      "yolo_detections": {},
+      "audio_natural": "silence (conf=0.63)",
+      "audio_speech": " you",
+      "llm_scene_description": "The video segment transitions away from the soccer stadium setting to abstract visuals and unrelated imagery. It features a sequence of frames with blue and white lights against a dark background, followed by a brief view of an airplane flying in the sky, and concluding with text on a dark blue background. The audio remains silent, and no discernible narrative or connection to the previous soccer stadium scenes is present. The segment appears to serve as a break or interlude, with no clear actions, characters, or spatial continuity linking it to prior events."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 15921,
+      "chunk_len": 8,
+      "narrative": "The scene opens in a quiet soccer stadium, with the field visible but devoid of active players or crowd noise. Faint, unclear audio hints at distant conversation, with snippets of French heard in the background. Moments later, the focus shifts to a man wearing a blue shirt, possibly someone associated with the game, as commentary begins discussing last summer's European Championship. References to Kylian Mbappe and Jan Sommer highlight Switzerland's victory during a pivotal penalty shootout.\n\nThe narrative progresses to a soccer match, where a player is seen standing in front of the goal, setting the stage for a critical penalty kick. Commentary mentions the \"final penalty,\" emphasizing the significance of the moment. As the focus briefly returns to the man in the blue shirt, the audio signals a shift to discussions on a player's past performances in similar situations, reinforcing the high stakes of the scene.\n\nThe tension builds as a player steps forward, preparing for the decisive kick. Moments later, the ball is struck and successfully driven into the net. The commentary underscores the precision and power of the shot, noting even the goalkeeper's correct guess was not enough to block it. The atmosphere reflects the charged excitement and intensity of the match as strategic commentary highlights key figures leading the play.\n\nThe narrative then interweaves references to the player involved, noting their past performances against teams such as the Netherlands and their role in the shootout during last summer's Copa America in Brazil. Attention lingers on the player wearing a blue and white shirt as they take center stage in the ongoing game, maintaining the atmosphere of focus and anticipation within the soccer stadium.\nThe scene unfolds in a soccer stadium during a high-stakes match, the competitive atmosphere palpable as the game progresses. The camera transitions between the general action on the field and a moment of visible frustration from one of the players, who sits with his head in his hands, seemingly reflecting on a critical missed opportunity. Off-screen commentary provides context, referencing his notable past performances against Colombia in a semi-final match, highlighting his ability to score under pressure in previous decisive moments. As the stadium buzzes with activity, gameplay resumes, with players actively competing, the energy of the event reflected in the intensity of the scene.\n\nMoments later, the commentary draws attention to Kingsley Coman, suggesting that the player may be central to an impending moment. Meanwhile, the game continues, and the sound of piercing whistles momentarily fills the stadium as the focus shifts to a brief exchange between a player in a red shirt and the referee, hinting at a decision or interruption on the field. Gameplay quickly resumes, and a player executes a forward kick, a potential turning point in the match. The stadium’s energy surges, with the sound of celebratory cheers in the background, suggesting a significant play has taken place. Commentary reinforces the moment’s weight, applauding the importance of the action and the player’s determination.\n\nThe attention then shifts to a soccer player in green, presumably involved in a critical play. The commentary emphasizes his role, describing him as a figure of immense character in a massive moment. The visuals highlight the soccer goal in the center of the pitch, underscoring its importance as the focal point of the competition. The narrative conveys an escalating sense of tension and engagement, with audio hints of strategic moves as the game continues. The crowd's energy and the ongoing gameplay reflect the high stakes, leaving the ultimate outcome hanging in suspense.\nThe match continues in a lively and high-stakes atmosphere at the soccer stadium, with the competition reaching critical moments that echo the intensity of the environment. Amid the dynamic action on the field, the goal serves as a central point of focus, underscoring its importance in the unfolding play. As the game advances, a player raises his arms briefly, perhaps signaling or acknowledging a crucial event, while commentary mentions an Argentine player coming off the bench with a decisive kick in mind, adding an air of significance to the ongoing action. The field remains the center of activity, with gameplay directed through the middle and ambient sounds blending the excitement of the crowd and the narration of the match.\n\nIn the following moments, a player actively kicks the ball in the heat of competition, drawing renewed focus to the field’s intensity. Two players are seen engaging directly during a pivotal sequence, hinting at the importance of their roles in this high-profile match—possibly tied to teams like Argentina or Real Madrid. As the action continues, a soccer player wearing a green shirt moves near the goal, implying the potential for a decisive moment. Commentary touches on psychological tactics, specifically mentioning Martinez attempting to influence the mindset of an opponent, revealing the competitive undercurrents in this stage of the match.\n\nAs the ball circulates through a pass and return sequence, strategy unfolds visibly on the field while the player in the green shirt remains positioned near the goal, heightening anticipation for what might occur next. The environment reflects the weight of the competition and the emotional investment from players and the crowd, suggesting the stakes are building in this significant contest, possibly a quarterfinal match featuring England. The match continues with sustained energy, leaving spectators and participants alike engrossed in the outcome of these pivotal moments.\nThe match in the electrifying stadium continued at an unrelenting pace, the intensity mounting with each passing moment. The game demanded focus and effort from all on the field, with the crowd's energy fueling the competitive atmosphere. One player emerged as the focal point of action, their determination evident as commentators speculated they would do whatever was necessary to meet the challenge. Anticipation hung in the air, underscoring the importance of every move. \n\nMoments later, a significant shift occurred off the field; a scene unfolded showing a connection between a player and their coach. The player, their emotions visibly heavy, sat with their head in their hands before the coach stepped in to offer a comforting embrace. The focus momentarily shifted from action to this interpersonal moment of support, conveying the resilience and teamwork behind the competitive exterior. However, the match itself pressed on, the commentary hinting at high-stakes plays, like a moment described as bringing Argentina to the edge of victory.\n\nOn the field, play surged on, with key moments capturing the crowd's attention. A pivotal sequence highlighted a missed opportunity as a player in a blue jersey appeared to send a shot wide, stirring both tension and excitement among spectators. The commentary confirmed another crucial moment in which Argentina seemed on the verge of securing an advantage, adding to the escalating drama. Meanwhile, scattered glimpses showed continuing action on the field, including players communicating and strategizing, while the steady rhythm of spectator anticipation reverberated throughout the stadium.\n\nFinally, attention centered on one player who appeared to look upward, possibly anticipating the ball or a forthcoming moment of significance. Nearby, exchanges between two players suggested focused planning, and the audio referenced Martinez as particularly adept at these high-pressure situations. The commentary then shifted to Paredes, tasked with a critical kick that could push Argentina to match point. The tension was palpable, as all eyes seemed fixed on what could be a decisive moment in this high-stakes competition. Despite brief flashes of visible frustration on the field after what appeared to be errors or missed opportunities, the collective determination persisted, both on the pitch and among the roaring crowd.\nThe match remains underway under the electrified atmosphere of the stadium, the intensity of the ongoing competition palpable. At 00:04:08.320, the scene shifts to the field, capturing the flow of the game as players stay engaged in the evolving action. The broader significance of the event is reinforced by the energy of the setting, while specific actions blend into the overall rhythm of the match, marking this as a transitional or neutral moment. Seconds later, at 00:04:17.920, the action becomes more focused as a prominent player takes a visible shot at the ball, momentarily drawing attention to their individual effort amidst the collective struggle. The surrounding stadium buzzes with anticipation, and the audio briefly presents ambiguous commentary, further enriching the dynamic backdrop of the game.\n\nAt 00:04:20.480, the camera shifts focus to a player sitting on the ground in a state of visible frustration, their head buried in their hands. Whether reacting to a missed opportunity or a setback in the match, this moment underscores the emotional toll of the high-stakes environment. Despite the disappointment conveyed here, the intensity of the match continues to build, uninterrupted. At 00:04:23.040, the scene transitions back to the field, where the ongoing gameplay maintains its energetic and competitive tone, though no defining moment or specific action emerges clearly from the exchange.\n\nAs the match progresses, highlighted at 00:04:29.440, the players’ focus on the field reflects the broader intensity of the competition. The scene holds steady with an emphasis on skillful play and collective effort, as participants and spectators remain invested in the unfolding drama. At 00:04:31.840, the audible cues suggest continuing active gameplay, amplifying the dynamic energy. No single event takes center stage, though the momentum of the match suggests high-pressure stakes for those involved.\n\nAt 00:04:35.840, gameplay nears the net, capturing a moment of heightened activity. The fast-paced exchange points to a critical juncture within the match, though the result is left ambiguous. Similarly, at 00:04:46.080, a celebratory shift in energy suggests that one team, likely Argentina, may have secured a critical goal. This pivotal moment alters the tone of the game, energizing the crowd and players alike, as the significance of this event reverberates through the stadium. Moments later, at 00:04:52.960, the camera cuts to a bearded man in the crowd, his distressed posture and hands covering his face hinting at the emotional weight of recent developments on the field. The shared stakes of the spectators and players remain evident.\n\nAs the timeline nears 00:04:55.200, the setting remains immersed within the stadium, the loud and crowded environment emphasizing the high-stakes nature of the action. The match continues at 00:04:58.080 with players visibly engaged on the field, their movements reflecting the ongoing tension and intensity. Though specific gameplay events at this moment are unclear, the scene captures the immersive energy of the game. Audio comments hint at the pressure of the match, reinforcing the idea that there is no room for error. This developing narrative remains intertwined with the emotional investment of both players and spectators, pushing the match toward its ultimate resolution.\nThe energy in the stadium remains electric as the soccer match continues to unfold, with the high-paced and emotionally charged atmosphere still palpable. The crowd's reactions and the players' movements on the field convey the shared intensity of the moment, keeping the audience deeply engaged in the action. A notable scene highlights a soccer player in a blue jersey, focused and seemingly preparing for a critical play, with the collective anticipation in the stadium reflecting the stakes of the match.\n\nMoments later, the game reaches a pivotal turning point as a goal is scored. The goal scorer erupts into celebration, arms stretched wide, signaling a triumphant achievement, likely influencing the course of the match. Simultaneously, another player—possibly a goalkeeper—interacts with a soccer ball, a small but significant element of the unfolding drama. The excitement reverberates through the crowd, with audible references to a championship victory suggesting that this moment carries significant weight for the outcome of the competition.\n\nThe camera then shifts to the spectators, capturing snippets of their joyous responses. A man donning a scarf briefly comes into focus, followed by another shirtless spectator, both visibly reveling in the intensity of the event. Further celebrating the occasion, two men are seen embracing as another meaningful connection unfolds. The joyous atmosphere takes center stage, with players and onscreen fans collectively basking in this hard-fought moment of triumph.\n\nThe celebrations continue as the scene glimpses various snapshots of unity and passion. A player celebrates energetically on the field with the crowd’s energy amplifying the sense of accomplishment. Fans chant and cheer in unison, their enthusiasm filling the vibrant stadium. These shared experiences cement the communal spirit of the event, showcasing the emotional highs of all those present at this climactic and unforgettable juncture in the match.\nThe lively atmosphere of the soccer stadium continues as the match unfolds, maintaining the communal excitement and energy established in earlier scenes. A group of players is seen embracing on the field, celebrating what appears to be a pivotal moment in the game. The surrounding crowd erupts in joyous cheers, their enthusiasm filling the air. The celebratory audio commentary suggests a historic achievement, referencing a long-awaited triumph tied to past legends of the sport, enhancing the significance of the event. \n\nThe scene transitions to a soccer player falling to his knees in the center of the field, surrounded by his teammates. This act appears to represent a profound moment of emotion, as he remains still, overwhelmed. The crowd's fervor persists, echoing the significance of the occasion. Shortly after, another player raises his arms high, signaling a gesture of triumph and accomplishment. These celebratory actions, coupled with the ongoing commentary, hint that a monumental goal or match victory has occurred, further intensifying the shared emotions within the stadium.\n\nAs the focus shifts around the field, the celebratory energy remains palpable. Players continue to express their joy, while fans in the stands unite in enthusiasm, waving flags and scarves in solidarity with their team. The audio commentary underscores the historic nature of the event, mentioning an iconic player's legacy and the remarkable impact of this moment on the sport’s history. The stadium atmosphere remains electric, capturing the unity between the players on the field and the spectators who share in the celebration.\nAs the celebrations in the soccer stadium fade away, the scene transitions into an abstract sequence that breaks away from the vivid energy of the match. The view shifts to a dark backdrop illuminated by blue and white lights, forming a scattered, ethereal pattern. These visuals provide no clear connection or continuity to the previous stadium scenes, serving as an interlude. The stillness is uninterrupted by sound, heightening the focus on the quiet, abstract imagery. Following this, the perspective changes briefly to show an airplane soaring against an expansive, open sky. The shot lingers momentarily before fading out. The segment concludes with text displayed on a dark blue background, stating \"you.\" With no characters, actions, or dialogue, the sequence appears entirely disconnected from the events unfolding in the soccer stadium."
+    }
+  ],
+  "synopsis": "**Summary:**  \nThe video chronicles a high-stakes soccer match set in an electrified stadium, focusing on pivotal gameplay, emotional reactions, and celebratory moments. It opens with references to past tournaments, commentary providing context, and images of players engaging in critical plays, including goals, missed opportunities, and strategic exchanges. Emotional moments capture the toll of competition, such as a distraught player comforted by their coach. The match builds toward decisive moments, with players making impactful kicks or gestures, ultimately leading to a signature goal that brings Argentina near victory. Joy erupts from both players and spectators, showcasing unified celebrations through hugs, chanting, and flag-waving. Emotional and historic significance is underscored by commentary linking the victory to previous legends. This climaxes with overwhelming triumph for Argentina, celebrated by players falling to their knees, raising hands, and embracing. The video shifts abruptly to abstract imagery featuring lights, an airplane, and text, disconnecting from the stadium’s lively atmosphere.\n\n**What is the central activity or situation?**  \nThe central activity is a high-stakes soccer match culminating in Argentina scoring a decisive, possibly championship-winning goal.\n\n**What are the key actions performed? Who performs each action?**  \nKey actions include:  \n- A penalty kick successfully scored by a player.  \n- A missed opportunity leading to visible distress by a player.  \n- Celebratory gestures by players (raising hands, kneeling).  \n- Comfort provided by a coach to a distraught player.  \n- Strategic gameplay contributions by players like Martinez and Paredes.  \n- Spectator celebrations involving cheering, chanting, and physical expressions like hugging and waving flags.  \n\n**What are the main phases or steps? Are there repeated or cyclical actions?**  \nMain phases:  \n1. Gameplay with intense action, strategic moves, and commentary.  \n2. Pivotal moments such as successful and missed kicks.  \n3. Emotional responses, including frustration and celebration.  \n4. Climactic victory and unified celebration.  \n5. Transition to abstract, disconnected visuals.  \n\nRepeated actions include ongoing strategic exchanges, scoring attempts, and collective cheering.\n\n**Who is involved and what are their characteristics and roles?**  \n- Players: Skilled soccer athletes focused on scoring, competing, and emotionally reacting to the game’s stakes.  \n- Coach: Provides emotional support during intense moments.  \n- Spectators: Enthusiastic crowd sharing in the highs and lows of the game.  \n- Commentary: Offers strategic insights, references to past events, and emphasizes the significance of the match.  \n\n**Where does this take place? Does the location change? Is the setting important to what happens?**  \nThe majority takes place in a soccer stadium, integral to the match’s emotional and competitive atmosphere. The final abstract sequence shifts away from the stadium to feature lights, a sky, an airplane, and text.\n\n**What objects are central to the video and which ones are incidental?**  \nCentral objects: Soccer ball, soccer goal, players’ jerseys.  \nIncidental objects: Flags, scarves, and visual abstract elements like the airplane and lights.\n\n**What is the most important thing said or heard?**  \nCommentary emphasizing Argentina’s triumph and connecting it to historic sports legends.\n\n**What is different at the end vs the beginning?**  \nAt the beginning, the focus is on tense gameplay and competition. By the end, celebrations dominate, followed by abstract visuals unrelated to the game.\n\n**What type of video is this? What is the mood or tone?**  \nThis is a sports video with a mood that transitions from tense and competitive to joyful and celebratory, finally ending with a quiet abstract tone.\n\n**What is the goal or intent or theme of the video?**  \nThe theme revolves around unity, triumph, and emotional highs in sports, showcasing both competition and community. The intent may be to evoke emotional connection and pride for Argentina’s victory.\n\n**What context is missing or assumed? What would require outside knowledge?**  \nDetails of the match itself, such as official tournament name, teams involved (apart from Argentina), and exact significance of the victory are not explicitly stated. Knowledge about referenced past tournaments and players (e.g., Copa America, Kylian Mbappe, Jan Sommer) relies on outside familiarity with soccer history."
+}
