@@ -3,6 +3,7 @@ import os
 import time
 import textwrap
 import numpy as np
+from pymongo import MongoClient
 from src.debug_utils import load_prompt
 from src.path_utils import load_kairos_env
 from google import genai
@@ -15,10 +16,10 @@ GENERATION_MODEL = "gemini-2.5-pro"
 
 
 def _get_gemini_client():
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = (os.environ.get("GEMINI_API_KEY") or "").strip().strip('"').strip("'")
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY not found in environment variables.")
-    return genai.Client(vertexai=True, api_key=api_key)
+    return genai.Client(api_key=api_key)
 
 
 def format_scene_embedding(scenes: list):
@@ -208,6 +209,207 @@ def _to_vector(e) -> np.ndarray:
     if isinstance(e, dict) and "values" in e:
         return np.array(e["values"], dtype=np.float32)
     return np.array(e, dtype=np.float32)
+
+
+def _vector_norm(vec: np.ndarray) -> float:
+    return float(np.linalg.norm(vec))
+
+
+def _cosine_similarity(vec_a: np.ndarray, vec_b: np.ndarray) -> float:
+    denom = _vector_norm(vec_a) * _vector_norm(vec_b)
+    if denom == 0:
+        return 0.0
+    return float(np.dot(vec_a, vec_b) / denom)
+
+
+def _to_oid(id_str):
+    from bson import ObjectId
+
+    try:
+        return ObjectId(id_str)
+    except Exception:
+        return id_str
+
+
+def _mongo_db_name(client):
+    try:
+        return os.getenv("MONGODB_DB_NAME") or client.get_database().name
+    except Exception:
+        return "kairos"
+
+
+def _chunk_embedding(chunk: dict):
+    embedding = chunk.get("embedding")
+    if embedding is None:
+        return None
+    try:
+        vec = _to_vector(embedding)
+    except Exception:
+        return None
+    if vec.size == 0:
+        return None
+    return vec
+
+
+def _clip_payload(chunk: dict, score: float) -> dict:
+    return {
+        "startTimeSec": chunk.get("startSec"),
+        "endTimeSec": chunk.get("endSec"),
+        "startTimecode": chunk.get("startTimecode"),
+        "endTimecode": chunk.get("endTimecode"),
+        "context": chunk.get("context", ""),
+        "score": round(float(score), 4),
+    }
+
+
+def _meta_text(chunk: dict) -> str:
+    chunk_type = chunk.get("type", "metadata")
+    if chunk_type == "summary":
+        value = chunk.get("summary") or chunk.get("context", "")
+    elif chunk_type == "highlights":
+        value = chunk.get("highlights") or chunk.get("context", "")
+    elif chunk_type == "timeline":
+        value = chunk.get("timeline") or chunk.get("context", "")
+    elif chunk_type == "suggested_clips":
+        value = chunk.get("suggested_clips") or chunk.get("context", "")
+    elif chunk_type == "questions":
+        value = chunk.get("questions") or chunk.get("context", "")
+    else:
+        value = chunk.get("context", "")
+    return f"{chunk_type}: {value}".strip()
+
+
+def load_chat_chunks_from_mongo(chat_id: str, mongo_uri: str | None = None):
+    mongo_uri = mongo_uri or os.getenv("MONGODB_URI")
+    if not mongo_uri:
+        raise RuntimeError("MONGODB_URI not found in environment variables.")
+
+    client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
+    try:
+        client.admin.command("ping")
+        db = client[_mongo_db_name(client)]
+        chat_oid = _to_oid(chat_id)
+        docs = list(
+            db.chat_chunks.find(
+                {"chatId": chat_oid},
+                {
+                    "_id": 0,
+                    "chatId": 1,
+                    "chunkIndex": 1,
+                    "sceneIndex": 1,
+                    "type": 1,
+                    "startSec": 1,
+                    "endSec": 1,
+                    "startTimecode": 1,
+                    "endTimecode": 1,
+                    "context": 1,
+                    "captions": 1,
+                    "objects": 1,
+                    "audioSpeech": 1,
+                    "audioNatural": 1,
+                    "embedding": 1,
+                    "summary": 1,
+                    "highlights": 1,
+                    "timeline": 1,
+                    "suggested_clips": 1,
+                    "questions": 1,
+                },
+            ).sort("chunkIndex", 1)
+        )
+        return docs
+    finally:
+        client.close()
+
+
+def rank_chat_chunks(question: str, chunks: list, top_k: int = 5, meta_k: int = 3, client=None):
+    if client is None:
+        client = _get_gemini_client()
+
+    if not chunks:
+        raise ValueError("No chat_chunks found for this chat.")
+
+    question_embedding = embed_question(question, client=client)
+    if isinstance(question_embedding, list):
+        question_embedding = question_embedding[0]
+    query_vec = _to_vector(_embedding_values(question_embedding))
+
+    scene_matches = []
+    meta_matches = []
+    for chunk in chunks:
+        embedding_vec = _chunk_embedding(chunk)
+        if embedding_vec is None:
+            continue
+
+        score = _cosine_similarity(query_vec, embedding_vec)
+        chunk_type = chunk.get("type") or "scene"
+        match = {
+            "chunk": chunk,
+            "score": score,
+            "type": chunk_type,
+        }
+        if chunk_type == "scene":
+            scene_matches.append(match)
+        else:
+            meta_matches.append(match)
+
+    scene_matches.sort(key=lambda item: item["score"], reverse=True)
+    meta_matches.sort(key=lambda item: item["score"], reverse=True)
+
+    return {
+        "scene_matches": scene_matches[:max(int(top_k), 1)],
+        "meta_matches": meta_matches[:max(int(meta_k), 0)],
+    }
+
+
+def _build_generation_matches(scene_matches: list, meta_matches: list):
+    generation_matches = []
+
+    for item in meta_matches:
+        generation_matches.append((_meta_text(item["chunk"]), item["score"]))
+
+    for item in scene_matches:
+        chunk = item["chunk"]
+        start_tc = chunk.get("startTimecode") or chunk.get("startSec")
+        end_tc = chunk.get("endTimecode") or chunk.get("endSec")
+        context = chunk.get("context", "")
+        scene_text = f"scene [{start_tc} - {end_tc}]: {context}".strip()
+        generation_matches.append((scene_text, item["score"]))
+
+    return generation_matches
+
+
+def query_chat(
+    chat_id: str,
+    question: str,
+    top_k: int = 5,
+    mongo_uri: str | None = None,
+    video_id: str | None = None,
+    client=None,
+    generation_model=GENERATION_MODEL,
+):
+    chunks = load_chat_chunks_from_mongo(chat_id=chat_id, mongo_uri=mongo_uri)
+    ranked = rank_chat_chunks(question=question, chunks=chunks, top_k=top_k, client=client)
+
+    scene_matches = ranked["scene_matches"]
+    meta_matches = ranked["meta_matches"]
+    generation_matches = _build_generation_matches(scene_matches, meta_matches)
+
+    if not generation_matches:
+        raise ValueError("No embedded chat_chunks with usable embeddings were found for this chat.")
+
+    answer = create_answer(question, generation_matches, client=client, model=generation_model)
+    clips = [_clip_payload(item["chunk"], item["score"]) for item in scene_matches]
+
+    return {
+        "answer": answer,
+        "clips": clips,
+        "schema_assumptions": {
+            "chatId_used_as_lookup_key": True,
+            "videoId_not_used_for_chunk_lookup": bool(video_id),
+            "scene_chunks_only_generate_clips": True,
+            "meta_chunks_may_inform_answer_only": True,
+        },
+    }
 
 
 def find_optimal_k_elbow(embeddings: list, max_k: int = 20, random_state: int = 42) -> int:
