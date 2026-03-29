@@ -23,6 +23,7 @@ import gc
 import torch
 import psutil
 from src.path_utils import load_kairos_env, is_low_mem
+from src.storage_utils import StorageManager
 
 # --- Resource Policy Detection ---
 LOW_MEM_MODE = is_low_mem()
@@ -147,6 +148,7 @@ def parse_args():
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     process = subparsers.add_parser("process", help="Process videos")
+    process.add_argument("path", nargs="?", help="Direct path to a video file for easy one-off runs")
     process.add_argument("--video", action="append", help="Blob name or path (repeatable)")
     process.add_argument("--all", action="store_true", help="Process all catalog videos")
     process.add_argument(
@@ -175,6 +177,8 @@ def parse_args():
             "Provide steps here or use with --redo."
         ),
     )
+    process.add_argument("--chat-id", help="MongoDB Chat ID to update")
+    process.add_argument("--mongo-uri", help="MongoDB Connection URI")
 
     rag = subparsers.add_parser("rag", help="Run RAG for a single video")
     rag.add_argument("--video", required=True, help="Blob name or path")
@@ -186,6 +190,19 @@ def main():
     CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
     PROCESSED_ROOT = Path("_processed")
     args = parse_args()
+    
+    # Smart Defaults for MongoDB
+    # If MONGODB_URI is in env but not CLI, we use the env one automatically.
+    # If chat_id is missing, StorageManager will generate a fallback inside per-video loop.
+    mongo_uri = args.mongo_uri or os.getenv("MONGODB_URI")
+    
+    # Initialize StorageManager (We will update local_path and video_name inside the loop)
+    storage_manager = StorageManager(
+        chat_id=args.chat_id,
+        mongo_uri=mongo_uri,
+        local_path=None
+    )
+
     redo_only_raw = getattr(args, "redo_only", None)
     redo_only_flag = redo_only_raw is not None
     redo_only_steps = redo_only_raw or []
@@ -209,10 +226,17 @@ def main():
     if redo_only_flag and not redo_steps:
         raise SystemExit("--redo-only requires at least one step (via --redo-only or --redo)")
     catalog = load_video_catalog(CATALOG_PATH)
-    selected_paths = select_videos(args, catalog, VIDEOS_DIR)
-
+    all_vids = []
+    if getattr(args, "path", None):
+        all_vids.append(Path(args.path))
+    if getattr(args, "video", None):
+        all_vids.extend([Path(p) for p in args.video])
+    
+    # If both provided, use them; if only positional provided, use it.
+    selected_paths = list(dict.fromkeys(all_vids)) if all_vids else select_videos(args, catalog, VIDEOS_DIR)
+    
     if not selected_paths:
-        raise SystemExit("No videos selected.")
+        raise SystemExit("No videos selected. Use: python3 main.py process <path>")
     if args.command == "rag" and len(selected_paths) != 1:
         raise SystemExit("RAG supports exactly one video. Use --video to pick one.")
 
@@ -224,6 +248,17 @@ def main():
 
     for output_dir, test_video in test_videos.items():
         Path(output_dir).mkdir(parents=True, exist_ok=True)
+        checkpoint_path = f"{output_dir}/checkpoint.json"
+        
+        # Ensure StorageManager is correctly context-switched for this specific video
+        # We always reset chat_id to None if args.chat_id is missing, 
+        # allowing deterministic generation per-video.
+        storage_manager.__init__(
+            chat_id=args.chat_id, 
+            mongo_uri=mongo_uri, 
+            local_path=Path(checkpoint_path),
+            video_name=test_video
+        )
 
         if rag_only:
             rag_path = f"{output_dir}/rag_embedding.json"
@@ -249,8 +284,7 @@ def main():
 
         # I added checkpoints so if you wanna redo the whole process,
         # youd have to delete the checkpoint json in the path below
-        checkpoint_path = f"{output_dir}/checkpoint.json"
-        checkpoint = read_json(json_path=checkpoint_path) # if deleted it will return a {}
+        checkpoint = storage_manager.read_checkpoint() # if deleted it will return a {}
         checkpoint.setdefault("steps", {})
         step = checkpoint["steps"]
         if redo_steps:
@@ -261,7 +295,27 @@ def main():
                 redo_only=redo_only,
             )
             if redo_info.get("changed") and "scenes" in checkpoint:
-                save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+                storage_manager.save_checkpoint(checkpoint)
+
+        # Catch-up reporting for cached steps to ensure MongoDB status is current
+        if storage_manager.is_remote and checkpoint.get("scenes"):
+            last_scene = checkpoint["scenes"][-1]
+            if "synopsis" in checkpoint:
+                storage_manager.update_pipeline_state("synopsis_generation", 95)
+            elif "narratives" in checkpoint:
+                storage_manager.update_pipeline_state("narrative_synthesis", 90)
+            elif "llm_scene_description" in last_scene:
+                storage_manager.update_pipeline_state("scene_description", 85)
+            elif "audio_natural" in last_scene:
+                storage_manager.update_pipeline_state("sound_analysis", 75)
+            elif "audio_speech" in last_scene:
+                storage_manager.update_pipeline_state("speech_transcription", 65)
+            elif "yolo_detections" in last_scene:
+                storage_manager.update_pipeline_state("object_detection", 50)
+            elif "frame_captions" in last_scene:
+                storage_manager.update_pipeline_state("frame_captioning", 40)
+            elif "scenes" in checkpoint:
+                storage_manager.update_pipeline_state("scene_detection", 10)
 
         if not checkpoint.get("scenes"):
             print("")
@@ -271,6 +325,7 @@ def main():
                 threshold = pyscene_threshold,
                 min_scene_sec= pyscene_shortest,
             )
+            storage_manager.update_pipeline_state("scene_detection", 10)
             see_scenes_cuts(df=checkpoint["scenes"])
             time.sleep(10)
 
@@ -281,7 +336,7 @@ def main():
                 scenes=checkpoint["scenes"],
                 output_dir=f"{output_dir}/.clips",
             )
-            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            storage_manager.save_checkpoint(checkpoint)
             purge_memory()
 
         if "frame_captions" not in checkpoint["scenes"][-1].keys():
@@ -293,6 +348,7 @@ def main():
                 new_size = frame_resolution,
                 output_dir=f"{output_dir}/.frames",
             )
+            storage_manager.update_pipeline_state("frame_sampling", 30)
             time.sleep(10)
 
             print("")
@@ -311,8 +367,9 @@ def main():
                 repetition_penalty=blip_repetition_penalty,
                 debug=True,
             )
+            storage_manager.update_pipeline_state("frame_captioning", 40)
             time.sleep(10)
-            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            storage_manager.save_checkpoint(checkpoint)
             purge_memory()
         
 
@@ -343,8 +400,9 @@ def main():
                 summary_key="yolo_detections",
                 debug=True,
             )
+            storage_manager.update_pipeline_state("object_detection", 50)
             time.sleep(10)
-            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            storage_manager.save_checkpoint(checkpoint)
             purge_memory()
 
         scan_result = None
@@ -375,8 +433,9 @@ def main():
                 force_cpu=True,
                 debug=True,
             )
+            storage_manager.update_pipeline_state("speech_transcription", 65)
             time.sleep(10)
-            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            storage_manager.save_checkpoint(checkpoint)
             purge_memory()
 
         if "audio_natural" not in checkpoint["scenes"][-1].keys():
@@ -403,8 +462,9 @@ def main():
                 force_cpu=False,
                 debug=True,
             )
+            storage_manager.update_pipeline_state("sound_analysis", 75)
             time.sleep(10)
-            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            storage_manager.save_checkpoint(checkpoint)
             purge_memory()
 
         if "llm_scene_description" not in checkpoint["scenes"][-1].keys():
@@ -425,8 +485,9 @@ def main():
                 debug=True,
                 video_path=test_video,
             )
+            storage_manager.update_pipeline_state("scene_description", 85)
             time.sleep(10)
-            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            storage_manager.save_checkpoint(checkpoint)
             purge_memory()
             
 
@@ -447,7 +508,8 @@ def main():
                 last = narratives[-1]
                 narrative_path = Path(output_dir) / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
                 print(f"Saving narrative in: {narrative_path}")
-            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            storage_manager.update_pipeline_state("narrative_synthesis", 90)
+            storage_manager.save_checkpoint(checkpoint)
 
         if "synopsis" not in checkpoint:
             print("")
@@ -459,26 +521,37 @@ def main():
                 debug=True,
                 output_dir=output_dir
             )
-            save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
+            storage_manager.update_pipeline_state("synopsis_generation", 95)
+            storage_manager.save_checkpoint(checkpoint=checkpoint)
 
-        rag_path = f"{output_dir}/rag_embedding.json"
-        if not os.path.exists(rag_path):
+        rag_path = Path(output_dir) / "rag_embedding.json"
+        
+        # 1. Generate embeddings if they don't exist
+        if not rag_path.exists():
             checkpoint["rag_embedding"], step['make_embedding'] = make_embedding_log(
                 checkpoint=checkpoint,
-                output_path=rag_path,
+                output_path=str(rag_path),
+            )
+        else:
+            # 2. Load existing embeddings for sync if not already in memory
+            if "rag_embedding" not in checkpoint:
+                try:
+                    with open(rag_path, 'r') as f:
+                        checkpoint["rag_embedding"] = json.load(f)
+                except:
+                    checkpoint["rag_embedding"] = []
+
+        # 3. ALWAYS SYNC TO MONGODB IF CHAT_ID IS PROVIDED
+        # This ensures that even if the video was already processed, the state is updated in DB
+        if storage_manager.is_remote:
+            storage_manager.save_final_results(
+                checkpoint=checkpoint, 
+                rag_embedding=checkpoint.get("rag_embedding")
             )
 
-            cleared_checkpoint = save_checkpoint(checkpoint=checkpoint, path=checkpoint_path)
-            log = complete_log(
-                log=log,
-                steps=step,
-                vid_len=checkpoint["scenes"][-1]["end_timecode"],
-                scene_num=len(checkpoint["scenes"]),
-                vid_df=cleared_checkpoint,
-            )
-
-            logpath = save_log(data=log, path=f"logs/{output_dir}.json")
-            save_checkpoint(checkpoint=log, path=checkpoint_path)
+        # Final logs and checkpoint sync
+        logpath = save_log(data=checkpoint, path=f"logs/{output_dir}.json")
+        storage_manager.save_checkpoint(checkpoint=checkpoint)
 
 
 if __name__ == '__main__':
