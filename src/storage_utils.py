@@ -15,7 +15,11 @@ class StorageManager:
         self.mongo_uri = mongo_uri or os.getenv("MONGODB_URI")
         self.local_path = Path(local_path) if local_path else None
         self.video_name = video_name
-        self.db = None
+        
+        # Don't reset client/db if we're just updating the video/chat context
+        if not hasattr(self, 'client'): 
+            self.client = None
+            self.db = None
         self.is_remote = False
 
         # AUTO-SYNC: If we have a URI, we enable remote mode automatically
@@ -32,9 +36,10 @@ class StorageManager:
             
             if self.chat_id:
                 try:
-                    self.client = MongoClient(self.mongo_uri, serverSelectionTimeoutMS=5000)
-                    # Verify connection
-                    self.client.admin.command('ping')
+                    if not self.client:
+                        self.client = MongoClient(self.mongo_uri, serverSelectionTimeoutMS=5000)
+                        # Verify connection
+                        self.client.admin.command('ping')
                     
                     # Get DB name from environment, then URI, then default to "kairos"
                     try:
@@ -44,7 +49,10 @@ class StorageManager:
                     
                     self.db = self.client[db_name]
                     self.is_remote = True
-                    print(f"[StorageManager] Connected to MongoDB: {db_name}")
+                    # Only print on first connection
+                    if not hasattr(self, '_connected_printed'):
+                        print(f"[StorageManager] Connected to MongoDB: {db_name}")
+                        self._connected_printed = True
                 except Exception as e:
                     print(f"[StorageManager] WARNING: Failed to connect to MongoDB: {e}")
                     self.is_remote = False
@@ -120,8 +128,8 @@ class StorageManager:
                     "chatId": self._to_oid(self.chat_id),
                     "chunkIndex": i,
                     "sceneIndex": i, # Assuming 1:1 for now
-                    "startSec": scene.get("start_sec"),
-                    "endSec": scene.get("end_sec"),
+                    "startSec": scene.get("start_seconds"), 
+                    "endSec": scene.get("end_seconds"),
                     "startTimecode": scene.get("start_timecode"),
                     "endTimecode": scene.get("end_timecode"),
                     "context": scene.get("llm_scene_description", ""), # Merged context
@@ -140,7 +148,7 @@ class StorageManager:
                 self.db.chat_chunks.insert_many(chunks)
                 print(f"[StorageManager] Inserted {len(chunks)} chunks into MongoDB.")
 
-            # 2. Update chat document with synopsis
+            # 2. Update chat document with synopsis and RAG metadata
             synopsis_data = checkpoint.get("synopsis", {})
             update_payload = {
                 "pipeline.state": "ready",

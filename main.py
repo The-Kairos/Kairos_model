@@ -250,19 +250,15 @@ def main():
         Path(output_dir).mkdir(parents=True, exist_ok=True)
         checkpoint_path = f"{output_dir}/checkpoint.json"
         
-        # Inject context into StorageManager for this specific video
-        storage_manager.local_path = Path(checkpoint_path)
-        storage_manager.video_name = test_video
-        
-        # If no chat_id was provided, trigger auto-ID generation for this specific run
-        # This ensures every run has an ID to write to MongoDB if URI is present
-        if not storage_manager.chat_id and storage_manager.mongo_uri:
-            storage_manager.__init__(
-                chat_id=None, 
-                mongo_uri=storage_manager.mongo_uri, 
-                local_path=storage_manager.local_path,
-                video_name=test_video
-            )
+        # Ensure StorageManager is correctly context-switched for this specific video
+        # We always reset chat_id to None if args.chat_id is missing, 
+        # allowing deterministic generation per-video.
+        storage_manager.__init__(
+            chat_id=args.chat_id, 
+            mongo_uri=mongo_uri, 
+            local_path=Path(checkpoint_path),
+            video_name=test_video
+        )
 
         if rag_only:
             rag_path = f"{output_dir}/rag_embedding.json"
@@ -300,6 +296,26 @@ def main():
             )
             if redo_info.get("changed") and "scenes" in checkpoint:
                 storage_manager.save_checkpoint(checkpoint)
+
+        # Catch-up reporting for cached steps to ensure MongoDB status is current
+        if storage_manager.is_remote and checkpoint.get("scenes"):
+            last_scene = checkpoint["scenes"][-1]
+            if "synopsis" in checkpoint:
+                storage_manager.update_pipeline_state("synopsis_generation", 95)
+            elif "narratives" in checkpoint:
+                storage_manager.update_pipeline_state("narrative_synthesis", 90)
+            elif "llm_scene_description" in last_scene:
+                storage_manager.update_pipeline_state("scene_description", 85)
+            elif "audio_natural" in last_scene:
+                storage_manager.update_pipeline_state("sound_analysis", 75)
+            elif "audio_speech" in last_scene:
+                storage_manager.update_pipeline_state("speech_transcription", 65)
+            elif "yolo_detections" in last_scene:
+                storage_manager.update_pipeline_state("object_detection", 50)
+            elif "frame_captions" in last_scene:
+                storage_manager.update_pipeline_state("frame_captioning", 40)
+            elif "scenes" in checkpoint:
+                storage_manager.update_pipeline_state("scene_detection", 10)
 
         if not checkpoint.get("scenes"):
             print("")

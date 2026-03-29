@@ -23,8 +23,18 @@ The `StorageManager` (`src/storage_utils.py`) has been upgraded to be "Self-Conf
 - **Deterministic Native IDs**: If no `chat-id` is provided (e.g., during a raw command-line run), the system generates a **valid 24-character hex ID** based on the video name.
   - *Benefit*: Re-running the same video updates the **same** record in MongoDB instead of creating duplicates.
 - **Auto-Upsert**: The system intelligently creates the parent "Chat" document on the fly if it doesn't already exist.
+- **Connection Stability**: The `StorageManager` now handles `mongodb+srv://` URIs by ensuring `dnspython` is present and validates connections with a `ping` command upon initialization.
+- **Multi-Video Support**: Initialization logic has been refactored to correctly isolate `chat_id` and `is_remote` state for each video when processing multiple files in a single batch.
 
 ---
+
+## 3. Real-Time Progressive Updates
+
+The pipeline now features **"Catch-up Progress Reporting"**. 
+
+- **State Persistence**: If you restart a partially completed video, the system detects existing checkpoints and immediately syncs the current "furthest" stage to MongoDB. 
+  - *Example*: If BLIP captioning was already done, the progress bar in your Next.js frontend will instantly jump to 40% instead of staying at 0% until the next new step finishes.
+- **Granular Stages**: Stages are mapped from internal step names to user-friendly titles (e.g., `get_scene_list` -> `scene_detection`).
 
 ## 3. Streamlined CLI (Human-Friendly)
 
