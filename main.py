@@ -358,18 +358,20 @@ def append_benchmark_report(path: Path, entry: dict, steps: dict):
 def run_blip_branch(test_video: str, output_dir: str, scenes: list, debug: bool, quiet: bool):
     branch_scenes = clone_scenes(scenes)
     updates = {}
+    frames_output_dir = f"{output_dir}/.frames" if debug else None
 
     if all_scenes_have_key(branch_scenes, "frame_captions"):
         return branch_scenes, updates
 
-    emit(f"Saving sampled frames in: {output_dir}/.frames", quiet=quiet)
+    if frames_output_dir:
+        emit(f"Saving sampled frames in: {frames_output_dir}", quiet=quiet)
     with maybe_silence(quiet):
         branch_scenes, updates["sample_frames"] = sample_frames_log(
             input_video_path=test_video,
             scenes=branch_scenes,
             num_frames=frames_per_scene,
             new_size=frame_resolution,
-            output_dir=f"{output_dir}/.frames",
+            output_dir=frames_output_dir,
         )
 
     section("Running BLIP...", quiet=quiet)
@@ -394,19 +396,22 @@ def run_blip_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
 def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool, quiet: bool):
     branch_scenes = clone_scenes(scenes)
     updates = {}
+    fps_output_dir = f"{output_dir}/.fps" if debug else None
+    yolo_output_dir = f"{output_dir}/.yolo" if debug else None
 
     if all_scenes_have_key(branch_scenes, "yolo_detections"):
         return branch_scenes, updates
 
     if not all_scenes_have_key(branch_scenes, "yolo_frames"):
-        emit(f"Saving sampled fps in: {output_dir}/.fps", quiet=quiet)
+        if fps_output_dir:
+            emit(f"Saving sampled fps in: {fps_output_dir}", quiet=quiet)
         with maybe_silence(quiet):
             branch_scenes, updates["sample_fps"] = sample_fps_log(
                 input_video_path=test_video,
                 scenes=branch_scenes,
                 fps=yolo_action_fps,
                 new_size=frame_resolution,
-                output_dir=f"{output_dir}/.fps",
+                output_dir=fps_output_dir,
                 frames_key="yolo_frames",
                 frame_paths_key="yolo_frame_paths",
             )
@@ -418,7 +423,7 @@ def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
             model_size="model/yolov8s.pt",
             conf=yolo_conf_thres,
             iou=yolo_iou_thres,
-            output_dir=f"{output_dir}/.yolo",
+            output_dir=yolo_output_dir,
             frame_key="yolo_frames",
             summary_key="yolo_detections",
             debug=debug,
@@ -521,14 +526,15 @@ def ensure_scene_detection(
     if debug and not quiet:
         see_scenes_cuts(df=checkpoint["scenes"])
 
-    emit(f"Saving clips in: {output_dir}/.clips", quiet=quiet)
-    with maybe_silence(quiet):
-        checkpoint["scenes"], step_store["save_clips"] = save_clips_log(
-            video_path=test_video,
-            scenes=checkpoint["scenes"],
-            output_dir=f"{output_dir}/.clips",
-        )
-    update_state_for_step(storage_manager, "save_clips")
+    if debug:
+        emit(f"Saving clips in: {output_dir}/.clips", quiet=quiet)
+        with maybe_silence(quiet):
+            checkpoint["scenes"], step_store["save_clips"] = save_clips_log(
+                video_path=test_video,
+                scenes=checkpoint["scenes"],
+                output_dir=f"{output_dir}/.clips",
+            )
+        update_state_for_step(storage_manager, "save_clips")
     storage_manager.save_checkpoint(checkpoint)
     purge_memory()
     return checkpoint
