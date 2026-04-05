@@ -7,10 +7,14 @@ from src.debug_utils import *
 from src.log_utils import *
 from src.redo_utils import apply_redo, REDO_CHOICES
 import argparse
+import io
+import json
 import os
 import time
-import logging
 import warnings
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager, redirect_stdout
+from datetime import datetime, timezone
 from pathlib import Path
 
 # --- Mute harmless native warnings (FFmpeg / H264 / OpenCV) ---
@@ -21,14 +25,15 @@ warnings.filterwarnings("ignore", message=".*mmco: unref short failure.*")
 
 import gc
 import torch
-import psutil
-from src.path_utils import load_kairos_env, is_low_mem
+
+from src.path_utils import is_low_mem
 from src.storage_utils import StorageManager
 
 # --- Resource Policy Detection ---
 LOW_MEM_MODE = is_low_mem()
 
-def purge_memory(force=False):
+
+def purge_memory(force: bool = False):
     """Clear RAM and GPU VRAM if in low memory mode or forced."""
     if not LOW_MEM_MODE and not force:
         return
@@ -36,18 +41,16 @@ def purge_memory(force=False):
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
         torch.cuda.ipc_collect()
-    print(f"[Kairos] Resource purge completed (LowMem: {LOW_MEM_MODE})")
+
 
 use_gemini = False
+client = None
 if use_gemini:
-    # =============== GEMINI FLASH 2.5 ===============
     api_key = os.getenv("GEMINI_API_KEY")
-
     from google import genai
-    model_name= "gemini-2.5-flash"
-    client = genai.Client(vertexai=True, api_key=api_key) # vertexai=True is needed if youre Dr. Oussama's key
+    model_name = "gemini-2.5-flash"
+    deployment = model_name
 else:
-    # =============== GPT 4o ===============
     model_name = "gpt-4o"
     endpoint = os.getenv("GPT_ENDPOINT")
     deployment = os.getenv("GPT_DEPLOYMENT")
@@ -55,61 +58,76 @@ else:
     api_version = os.getenv("GPT_VERSION")
 
     from openai import AzureOpenAI
+
+
+def get_llm_client():
+    global client
+    if client is not None:
+        return client
+    if use_gemini:
+        api_key = os.getenv("GEMINI_API_KEY")
+        from google import genai
+
+        client = genai.Client(vertexai=True, api_key=api_key)
+        return client
+
+    if not endpoint or not subscription_key:
+        raise RuntimeError("Azure OpenAI credentials are required to run the LLM pipeline.")
+
     client = AzureOpenAI(
         api_version=api_version,
         azure_endpoint=endpoint,
         api_key=subscription_key,
     )
+    return client
 
-# =========================================================
+
 improve_motion_detection = True
-pyscene_threshold   = 27        # sensitivity (lower = more cuts)
-pyscene_shortest    = 2         # minimum scene length  
-frames_per_scene    = 3         # number of frames sampled in each scene
-frame_resolution    = 320       # resolution on the longest axis
-blip_start_prompt   = "a video frame of"
-blip_caption_len    = 50        # max blip caption length
-blip_min_length     = 15        # min blip caption length
-blip_num_beams      = 1         # small beam for structure
-blip_do_sample      = True      # allow variation
-blip_top_p          = 0.85       # nucleus sampling
-blip_temperature    = 0.65       # mild randomness
+pyscene_threshold = 27
+pyscene_shortest = 2
+frames_per_scene = 3
+frame_resolution = 320
+blip_start_prompt = "a video frame of"
+blip_caption_len = 50
+blip_min_length = 15
+blip_num_beams = 1
+blip_do_sample = True
+blip_top_p = 0.85
+blip_temperature = 0.65
 blip_length_penalty = 1.0
 blip_no_repeat_ngram_size = 3
 blip_repetition_penalty = 1.1
-yolo_action_fps     = 4
-yolo_conf_thres     = 0.8       # YOLO confidence threshold
-yolo_iou_thres      = 0.5       # YOLO IoU threshold for NMS
-ast_target_sr       = 16000     # audio target sample rate for AST
-asr_model_size      = 'medium'
-asr_use_vad         = True      # enable VAD for ASR (whatever that means)
-asr_target_sr       = 16000     # audio target sample rate for ASR
-llm_scene_history   = 5         # number of prior scenes in LLM context
-llm_chunk_len       = 20000     # max char len of combined scenes for one chunk
-llm_summary_len     = 50000     # max char len of final context for synopsis
-llm_cooldown_sec    = 0         # LLM cooldown between scene calls
-rag_top_k_context   = 10        # top-k RAG scenes to include
-# =========================================================
-improve_motion_detection    = False
-prioritize_speed            = False
-process_static_videos       = False
+yolo_action_fps = 4
+yolo_conf_thres = 0.8
+yolo_iou_thres = 0.5
+ast_target_sr = 16000
+asr_model_size = "medium"
+asr_use_vad = True
+asr_target_sr = 16000
+llm_scene_history = 5
+llm_chunk_len = 20000
+llm_summary_len = 50000
+llm_cooldown_sec = 0
+rag_top_k_context = 10
+
+improve_motion_detection = False
+prioritize_speed = False
+process_static_videos = False
 
 if improve_motion_detection:
-    pyscene_threshold   = 15     # more sensitive pyscene
-    pyscene_shortest    = 0.5    # the minimum scene length  
-    frames_per_scene    = 5      # more frames sampled per scene
-    yolo_action_fps     = 8      # more frames sampled per scene
+    pyscene_threshold = 15
+    pyscene_shortest = 0.5
+    frames_per_scene = 5
+    yolo_action_fps = 8
 if prioritize_speed:
-    pyscene_threshold   = 40     # less sensitive pyscene
-    frames_per_scene    = 1      # number of frames sampled in each scene
-    llm_chunk_len       = 500000 # x10 bigger story chunks
-    llm_summary_len     = 500000 # x10 bigger context for synopsis
+    pyscene_threshold = 40
+    frames_per_scene = 1
+    llm_chunk_len = 500000
+    llm_summary_len = 500000
 if process_static_videos:
-    pyscene_threshold   = 3      # more sensitive pyscene
-    frames_per_scene    = 1      # number of frames sampled in each scene
-    yolo_action_fps     = 0.5
-# todo: if 0 scenes are found, decrease pyscene_threshold automatically
-# =========================================================
+    pyscene_threshold = 3
+    frames_per_scene = 1
+    yolo_action_fps = 0.5
 
 params = {
     "improve_motion_detection": improve_motion_detection,
@@ -142,7 +160,541 @@ params = {
     "rag_top_k_context": rag_top_k_context,
 }
 
-# =========================================================
+STEP_STAGE_MAP = {
+    "get_scene_list": ("scene_detection", 10),
+    "save_clips": ("clip_extraction", 20),
+    "sample_frames": ("frame_sampling", 30),
+    "caption_frames": ("frame_captioning", 40),
+    "sample_fps": ("motion_sampling", 45),
+    "detect_object_yolo": ("object_detection", 50),
+    "audio_scan": ("audio_prescan", 60),
+    "asr_timings": ("speech_transcription", 65),
+    "ast_timings": ("sound_analysis", 75),
+    "describe_scenes": ("scene_description", 85),
+    "summarize_scenes": ("narrative_synthesis", 90),
+    "synthesize_synopsis": ("synopsis_generation", 95),
+    "make_embedding": ("embedding", 100),
+}
+
+BENCHMARK_STEPS = [
+    "get_scene_list",
+    "save_clips",
+    "sample_frames",
+    "caption_frames",
+    "sample_fps",
+    "detect_object_yolo",
+    "audio_scan",
+    "asr_timings",
+    "ast_timings",
+    "describe_scenes",
+    "summarize_scenes",
+    "synthesize_synopsis",
+    "make_embedding",
+]
+
+
+@contextmanager
+def maybe_silence(enabled: bool):
+    if not enabled:
+        yield
+        return
+    buffer = io.StringIO()
+    with redirect_stdout(buffer):
+        yield
+
+
+def emit(message: str = "", quiet: bool = False, force: bool = False):
+    if quiet and not force:
+        return
+    print(message)
+
+
+def section(title: str, quiet: bool = False):
+    if quiet:
+        return
+    print_section(title)
+
+
+def all_scenes_have_key(scenes: list, key: str) -> bool:
+    return bool(scenes) and all(isinstance(scene, dict) and key in scene for scene in scenes)
+
+
+def clone_scenes(scenes: list) -> list:
+    return [dict(scene) for scene in scenes]
+
+
+def merge_scene_variants(base_scenes: list, *variants: list) -> list:
+    merged = [dict(scene) for scene in base_scenes]
+    index_map = {}
+    for pos, scene in enumerate(merged):
+        index_map[scene.get("scene_index", pos)] = pos
+
+    for variant in variants:
+        if not variant:
+            continue
+        for fallback_pos, scene in enumerate(variant):
+            idx = scene.get("scene_index", fallback_pos)
+            pos = index_map.get(idx)
+            if pos is None:
+                merged.append(dict(scene))
+                index_map[idx] = len(merged) - 1
+            else:
+                merged[pos].update(scene)
+
+    merged.sort(key=lambda item: item.get("scene_index", 0))
+    return merged
+
+
+def resolve_bool_env(name: str, default: bool = False) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def resolve_embedding_config(provider_arg: str | None, model_arg: str | None) -> tuple[str, str]:
+    provider = (provider_arg or os.environ.get("KAIROS_EMBEDDING_PROVIDER") or "gemini").strip().lower()
+    if provider in {"openai", "azure", "azure_openai"}:
+        provider = "openai"
+        model = (
+            model_arg
+            or os.environ.get("KAIROS_EMBEDDING_MODEL")
+            or os.environ.get("OPENAI_EMBEDDING_DEPLOYMENT")
+            or os.environ.get("GPT_EMBEDDING_DEPLOYMENT")
+            or "text-embedding-3-large"
+        )
+    else:
+        provider = "gemini"
+        model = model_arg or os.environ.get("KAIROS_EMBEDDING_MODEL") or "gemini-embedding-001"
+    return provider, model
+
+
+def get_ast_worker_count() -> int:
+    raw = os.environ.get("KAIROS_AST_WORKERS") or os.environ.get("MAX_KAIROS_WORKERS")
+    if raw:
+        try:
+            return max(1, int(raw))
+        except ValueError:
+            pass
+    return 2
+
+
+def update_state_for_step(storage_manager: StorageManager, step_name: str):
+    info = STEP_STAGE_MAP.get(step_name)
+    if not info:
+        return
+    stage, percent = info
+    storage_manager.update_pipeline_state(stage, percent)
+
+
+def persist_step_updates(checkpoint: dict, step_store: dict, updates: dict, storage_manager: StorageManager):
+    for step_name, step_log in updates.items():
+        step_store[step_name] = step_log
+        checkpoint.setdefault("steps", {})[step_name] = step_log
+        update_state_for_step(storage_manager, step_name)
+
+
+def benchmark_step_value(steps: dict, name: str) -> str:
+    value = steps.get(name, {}).get("wall_time_sec")
+    if value is None:
+        return "-"
+    return f"{float(value):.3f}"
+
+
+def ensure_benchmark_plan(path: Path):
+    if path.exists():
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "# Parallelization Benchmark Plan\n\n"
+        "This report compares Kairos production runs in two modes only:\n\n"
+        "- `semi_parallel`: current production orchestration with internal parallelism in audio and LLM stages.\n"
+        "- `parallel`: updated branch-parallel orchestration after scene detection.\n\n"
+        "Each benchmark row captures wall time, embedding provider/model, and stage-level timings so we can compare architectural changes without maintaining a separate sequential pipeline.\n",
+        encoding="utf-8",
+    )
+
+
+def append_benchmark_report(path: Path, entry: dict, steps: dict):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if not path.exists():
+        path.write_text(
+            "# Parallelization Benchmarks\n\n"
+            "| Timestamp | Video | Mode | Embedding Provider | Embedding Model | Total Wall Sec | Scene Desc Sec | Narrative Sec | Synopsis Sec | Embedding Sec |\n"
+            "| --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |\n",
+            encoding="utf-8",
+        )
+
+    row = (
+        f"| {entry['timestamp']} | {entry['video_name']} | {entry['execution_mode']} | "
+        f"{entry['embedding_provider']} | {entry['embedding_model']} | {entry['total_wall_time_sec']:.3f} | "
+        f"{benchmark_step_value(steps, 'describe_scenes')} | {benchmark_step_value(steps, 'summarize_scenes')} | "
+        f"{benchmark_step_value(steps, 'synthesize_synopsis')} | {benchmark_step_value(steps, 'make_embedding')} |\n"
+    )
+
+    detail_lines = [
+        "",
+        f"## {entry['timestamp']} | {entry['video_name']} | {entry['execution_mode']}",
+        "",
+        f"- Video path: `{entry['video_path']}`",
+        f"- Low memory mode: `{entry['low_mem_mode']}`",
+        f"- Debug: `{entry['debug']}`",
+        f"- Quiet: `{entry['quiet']}`",
+        f"- Embedding provider: `{entry['embedding_provider']}`",
+        f"- Embedding model: `{entry['embedding_model']}`",
+        f"- Total wall time: `{entry['total_wall_time_sec']:.3f}` sec",
+        "",
+        "| Step | Wall Time (sec) |",
+        "| --- | ---: |",
+    ]
+    for step_name in BENCHMARK_STEPS:
+        detail_lines.append(f"| {step_name} | {benchmark_step_value(steps, step_name)} |")
+
+    with open(path, "a", encoding="utf-8") as handle:
+        handle.write(row)
+        handle.write("\n".join(detail_lines) + "\n")
+
+
+def run_blip_branch(test_video: str, output_dir: str, scenes: list, debug: bool, quiet: bool):
+    branch_scenes = clone_scenes(scenes)
+    updates = {}
+
+    if all_scenes_have_key(branch_scenes, "frame_captions"):
+        return branch_scenes, updates
+
+    emit(f"Saving sampled frames in: {output_dir}/.frames", quiet=quiet)
+    with maybe_silence(quiet):
+        branch_scenes, updates["sample_frames"] = sample_frames_log(
+            input_video_path=test_video,
+            scenes=branch_scenes,
+            num_frames=frames_per_scene,
+            new_size=frame_resolution,
+            output_dir=f"{output_dir}/.frames",
+        )
+
+    section("Running BLIP...", quiet=quiet)
+    with maybe_silence(quiet):
+        branch_scenes, updates["caption_frames"] = caption_frames_log(
+            scenes=branch_scenes,
+            prompt=blip_start_prompt,
+            max_length=blip_caption_len,
+            min_length=blip_min_length,
+            num_beams=blip_num_beams,
+            do_sample=blip_do_sample,
+            top_p=blip_top_p,
+            temperature=blip_temperature,
+            length_penalty=blip_length_penalty,
+            no_repeat_ngram_size=blip_no_repeat_ngram_size,
+            repetition_penalty=blip_repetition_penalty,
+            debug=debug,
+        )
+    return branch_scenes, updates
+
+
+def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool, quiet: bool):
+    branch_scenes = clone_scenes(scenes)
+    updates = {}
+
+    if all_scenes_have_key(branch_scenes, "yolo_detections"):
+        return branch_scenes, updates
+
+    if not all_scenes_have_key(branch_scenes, "yolo_frames"):
+        emit(f"Saving sampled fps in: {output_dir}/.fps", quiet=quiet)
+        with maybe_silence(quiet):
+            branch_scenes, updates["sample_fps"] = sample_fps_log(
+                input_video_path=test_video,
+                scenes=branch_scenes,
+                fps=yolo_action_fps,
+                new_size=frame_resolution,
+                output_dir=f"{output_dir}/.fps",
+                frames_key="yolo_frames",
+                frame_paths_key="yolo_frame_paths",
+            )
+
+    section("Running YOLOv8...", quiet=quiet)
+    with maybe_silence(quiet):
+        branch_scenes, updates["detect_object_yolo"] = detect_object_yolo_log(
+            scenes=branch_scenes,
+            model_size="model/yolov8s.pt",
+            conf=yolo_conf_thres,
+            iou=yolo_iou_thres,
+            output_dir=f"{output_dir}/.yolo",
+            frame_key="yolo_frames",
+            summary_key="yolo_detections",
+            debug=debug,
+        )
+    return branch_scenes, updates
+
+
+def run_audio_branch(
+    test_video: str,
+    scenes: list,
+    debug: bool,
+    quiet: bool,
+    execution_mode: str,
+):
+    branch_scenes = clone_scenes(scenes)
+    updates = {}
+    scan_result = None
+
+    needs_asr = not all_scenes_have_key(branch_scenes, "audio_speech")
+    needs_ast = not all_scenes_have_key(branch_scenes, "audio_natural")
+    if not needs_asr and not needs_ast:
+        return branch_scenes, updates
+
+    section("Running Audio Pre-Scan...", quiet=quiet)
+    with maybe_silence(quiet):
+        scan_result, updates["audio_scan"] = scan_audio_log(
+            video_path=test_video,
+            scenes=branch_scenes,
+            target_sr=asr_target_sr,
+            debug=debug,
+        )
+
+    ast_workers = get_ast_worker_count()
+
+    def _run_asr(local_scenes):
+        section("Running Whisper (Parallel)...", quiet=quiet)
+        with maybe_silence(quiet):
+            return extract_speech_log(
+                scenes=local_scenes,
+                scan_result=scan_result,
+                model_size=asr_model_size,
+                use_vad=asr_use_vad,
+                language=None,
+                parallel=True,
+                use_api=True,
+                force_cpu=True,
+                debug=debug,
+            )
+
+    def _run_ast(local_scenes):
+        section("Running MIT AST (Parallel)...", quiet=quiet)
+        with maybe_silence(quiet):
+            return extract_sounds_log(
+                scenes=local_scenes,
+                scan_result=scan_result,
+                max_workers=ast_workers,
+                use_processes=True,
+                force_cpu=False,
+                debug=debug,
+            )
+
+    if execution_mode == "parallel" and needs_asr and needs_ast:
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            future_asr = executor.submit(_run_asr, clone_scenes(branch_scenes))
+            future_ast = executor.submit(_run_ast, clone_scenes(branch_scenes))
+            asr_scenes, asr_log = future_asr.result()
+            ast_scenes, ast_log = future_ast.result()
+        branch_scenes = merge_scene_variants(branch_scenes, asr_scenes, ast_scenes)
+        updates["asr_timings"] = asr_log
+        updates["ast_timings"] = ast_log
+    else:
+        if needs_asr:
+            branch_scenes, updates["asr_timings"] = _run_asr(branch_scenes)
+        if needs_ast:
+            branch_scenes, updates["ast_timings"] = _run_ast(branch_scenes)
+
+    return branch_scenes, updates
+
+
+def ensure_scene_detection(
+    checkpoint: dict,
+    step_store: dict,
+    storage_manager: StorageManager,
+    test_video: str,
+    output_dir: str,
+    debug: bool,
+    quiet: bool,
+):
+    if checkpoint.get("scenes"):
+        return checkpoint
+
+    section("Running PysceneDetect...", quiet=quiet)
+    with maybe_silence(quiet):
+        checkpoint["scenes"], step_store["get_scene_list"] = get_scene_list_log(
+            input_video_path=test_video,
+            threshold=pyscene_threshold,
+            min_scene_sec=pyscene_shortest,
+        )
+    update_state_for_step(storage_manager, "get_scene_list")
+    if debug and not quiet:
+        see_scenes_cuts(df=checkpoint["scenes"])
+
+    emit(f"Saving clips in: {output_dir}/.clips", quiet=quiet)
+    with maybe_silence(quiet):
+        checkpoint["scenes"], step_store["save_clips"] = save_clips_log(
+            video_path=test_video,
+            scenes=checkpoint["scenes"],
+            output_dir=f"{output_dir}/.clips",
+        )
+    update_state_for_step(storage_manager, "save_clips")
+    storage_manager.save_checkpoint(checkpoint)
+    purge_memory()
+    return checkpoint
+
+
+def run_visual_audio_pipeline(
+    checkpoint: dict,
+    step_store: dict,
+    storage_manager: StorageManager,
+    test_video: str,
+    output_dir: str,
+    execution_mode: str,
+    debug: bool,
+    quiet: bool,
+):
+    scenes = checkpoint.get("scenes", [])
+    if not scenes:
+        return checkpoint
+
+    if execution_mode == "parallel":
+        with ThreadPoolExecutor(max_workers=3) as executor:
+            future_blip = executor.submit(run_blip_branch, test_video, output_dir, scenes, debug, quiet)
+            future_yolo = executor.submit(run_yolo_branch, test_video, output_dir, scenes, debug, quiet)
+            future_audio = executor.submit(run_audio_branch, test_video, scenes, debug, quiet, execution_mode)
+
+            blip_scenes, blip_updates = future_blip.result()
+            yolo_scenes, yolo_updates = future_yolo.result()
+            audio_scenes, audio_updates = future_audio.result()
+
+        checkpoint["scenes"] = merge_scene_variants(scenes, blip_scenes, yolo_scenes, audio_scenes)
+        persist_step_updates(checkpoint, step_store, blip_updates, storage_manager)
+        persist_step_updates(checkpoint, step_store, yolo_updates, storage_manager)
+        persist_step_updates(checkpoint, step_store, audio_updates, storage_manager)
+        storage_manager.save_checkpoint(checkpoint)
+        purge_memory()
+        return checkpoint
+
+    blip_scenes, blip_updates = run_blip_branch(test_video, output_dir, scenes, debug, quiet)
+    checkpoint["scenes"] = merge_scene_variants(checkpoint["scenes"], blip_scenes)
+    persist_step_updates(checkpoint, step_store, blip_updates, storage_manager)
+    if blip_updates:
+        storage_manager.save_checkpoint(checkpoint)
+        purge_memory()
+
+    yolo_scenes, yolo_updates = run_yolo_branch(test_video, output_dir, checkpoint["scenes"], debug, quiet)
+    checkpoint["scenes"] = merge_scene_variants(checkpoint["scenes"], yolo_scenes)
+    persist_step_updates(checkpoint, step_store, yolo_updates, storage_manager)
+    if yolo_updates:
+        storage_manager.save_checkpoint(checkpoint)
+        purge_memory()
+
+    audio_scenes, audio_updates = run_audio_branch(test_video, checkpoint["scenes"], debug, quiet, execution_mode)
+    checkpoint["scenes"] = merge_scene_variants(checkpoint["scenes"], audio_scenes)
+    persist_step_updates(checkpoint, step_store, audio_updates, storage_manager)
+    if audio_updates:
+        storage_manager.save_checkpoint(checkpoint)
+        purge_memory()
+
+    return checkpoint
+
+
+def run_llm_and_rag_pipeline(
+    checkpoint: dict,
+    step_store: dict,
+    storage_manager: StorageManager,
+    test_video: str,
+    output_dir: str,
+    debug: bool,
+    quiet: bool,
+    embedding_provider: str,
+    embedding_model: str,
+):
+    llm_client = get_llm_client()
+    if checkpoint.get("scenes") and not all_scenes_have_key(checkpoint["scenes"], "llm_scene_description"):
+        section("Running GPT4o Scene Descriptions...", quiet=quiet)
+        with maybe_silence(quiet):
+            checkpoint["scenes"], step_store["describe_scenes"] = describe_scenes_log(
+                scenes=checkpoint["scenes"],
+                client=llm_client,
+                hist_size=llm_scene_history,
+                YOLO_key="yolo_detections",
+                FLIP_key="frame_captions",
+                ASR_key="audio_speech",
+                AST_key="audio_natural",
+                SUMMARY_key="llm_scene_description",
+                model=model_name,
+                prompt_path="prompts/describe_scene.txt",
+                cooldown_sec=llm_cooldown_sec,
+                debug=debug,
+                video_path=test_video,
+            )
+        update_state_for_step(storage_manager, "describe_scenes")
+        storage_manager.save_checkpoint(checkpoint)
+        purge_memory()
+
+    if "narratives" not in checkpoint:
+        section("Running GPT4o Summary narrative...", quiet=quiet)
+        with maybe_silence(quiet):
+            checkpoint, step_store["summarize_scenes"] = summarize_scenes_log(
+                client=llm_client,
+                deployment=deployment,
+                scenes=checkpoint["scenes"],
+                chunk_size=llm_chunk_len,
+                summary_len=llm_summary_len,
+                debug=debug,
+                output_dir=output_dir,
+            )
+        update_state_for_step(storage_manager, "summarize_scenes")
+        storage_manager.save_checkpoint(checkpoint)
+
+    if "synopsis" not in checkpoint:
+        section("Running GPT4o Synopsis generation...", quiet=quiet)
+        with maybe_silence(quiet):
+            checkpoint, step_store["synthesize_synopsis"] = synthesize_synopsis_log(
+                client=llm_client,
+                deployment=deployment,
+                data=checkpoint,
+                debug=debug,
+                output_dir=output_dir,
+            )
+        update_state_for_step(storage_manager, "synthesize_synopsis")
+        storage_manager.save_checkpoint(checkpoint)
+
+    rag_path = Path(output_dir) / "rag_embedding.json"
+    reproduce_embedding = False
+    if not rag_path.exists():
+        reproduce_embedding = True
+    else:
+        if "rag_embedding" not in checkpoint:
+            try:
+                with open(rag_path, "r", encoding="utf-8") as handle:
+                    data = json.load(handle)
+                    if isinstance(data, dict) and "embeddings" in data:
+                        checkpoint["rag_embedding"] = data
+                    else:
+                        reproduce_embedding = True
+            except (json.JSONDecodeError, OSError, Exception):
+                reproduce_embedding = True
+
+    if reproduce_embedding:
+        with maybe_silence(quiet):
+            checkpoint["rag_embedding"], step_store["make_embedding"] = make_embedding_log(
+                checkpoint=checkpoint,
+                output_path=str(rag_path),
+                provider=embedding_provider,
+                model=embedding_model,
+            )
+        update_state_for_step(storage_manager, "make_embedding")
+
+    if storage_manager.is_remote:
+        full_rag_data = None
+        if rag_path.exists():
+            try:
+                with open(rag_path, "r", encoding="utf-8") as handle:
+                    full_rag_data = json.load(handle)
+            except Exception:
+                full_rag_data = checkpoint.get("rag_embedding")
+
+        storage_manager.save_final_results(
+            checkpoint=checkpoint,
+            rag_embedding=full_rag_data,
+        )
+
+    return checkpoint
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Process videos or run RAG.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -179,28 +731,42 @@ def parse_args():
     )
     process.add_argument("--chat-id", help="MongoDB Chat ID to update")
     process.add_argument("--mongo-uri", help="MongoDB Connection URI")
+    process.add_argument(
+        "--execution-mode",
+        choices=["semi_parallel", "parallel"],
+        default=os.environ.get("KAIROS_EXECUTION_MODE", "semi_parallel"),
+        help="Choose the production orchestration mode.",
+    )
+    process.add_argument("--debug", action="store_true", help="Enable verbose debug output.")
+    process.add_argument("--quiet", action="store_true", help="Reduce console output from the pipeline.")
+    process.add_argument(
+        "--embedding-provider",
+        choices=["gemini", "openai"],
+        default=os.environ.get("KAIROS_EMBEDDING_PROVIDER", "gemini"),
+        help="Embedding provider for RAG generation.",
+    )
+    process.add_argument(
+        "--embedding-model",
+        help="Embedding model or deployment name to use for RAG generation.",
+    )
 
     rag = subparsers.add_parser("rag", help="Run RAG for a single video")
     rag.add_argument("--video", required=True, help="Blob name or path")
 
     return parser.parse_args()
 
+
 def main():
-    VIDEOS_DIR = Path("Videos")
-    CATALOG_PATH = VIDEOS_DIR / "_all_videos.json"
-    PROCESSED_ROOT = Path("_processed")
+    videos_dir = Path("Videos")
+    catalog_path = videos_dir / "_all_videos.json"
+    processed_root = Path("_processed")
     args = parse_args()
-    
-    # Smart Defaults for MongoDB
-    # If MONGODB_URI is in env but not CLI, we use the env one automatically.
-    # If chat_id is missing, StorageManager will generate a fallback inside per-video loop.
+
     mongo_uri = args.mongo_uri or os.getenv("MONGODB_URI")
-    
-    # Initialize StorageManager (We will update local_path and video_name inside the loop)
     storage_manager = StorageManager(
-        chat_id=args.chat_id,
+        chat_id=getattr(args, "chat_id", None),
         mongo_uri=mongo_uri,
-        local_path=None
+        local_path=None,
     )
 
     redo_only_raw = getattr(args, "redo_only", None)
@@ -225,46 +791,63 @@ def main():
         redo_steps = _flatten(args.redo)
     if redo_only_flag and not redo_steps:
         raise SystemExit("--redo-only requires at least one step (via --redo-only or --redo)")
-    catalog = load_video_catalog(CATALOG_PATH)
-    all_vids = []
+
+    catalog = load_video_catalog(catalog_path)
+    blob_index = {v.get("blob"): v for v in catalog if isinstance(v, dict) and v.get("blob")}
+    selected_paths = []
     if getattr(args, "path", None):
-        all_vids.append(Path(args.path))
+        direct_path = Path(args.path)
+        if not direct_path.exists():
+            resolved = resolve_video_arg(args.path, blob_index, videos_dir)
+            direct_path = resolved or direct_path
+        selected_paths.append(direct_path)
+
     if getattr(args, "video", None):
-        all_vids.extend([Path(p) for p in args.video])
-    
-    # If both provided, use them; if only positional provided, use it.
-    selected_paths = list(dict.fromkeys(all_vids)) if all_vids else select_videos(args, catalog, VIDEOS_DIR)
-    
+        selected_paths.extend(select_videos(args, catalog, videos_dir))
+
+    if selected_paths:
+        selected_paths = list(dict.fromkeys(selected_paths))
+    else:
+        selected_paths = select_videos(args, catalog, videos_dir)
+
     if not selected_paths:
         raise SystemExit("No videos selected. Use: python3 main.py process <path>")
     if args.command == "rag" and len(selected_paths) != 1:
         raise SystemExit("RAG supports exactly one video. Use --video to pick one.")
 
-    test_videos = {make_output_dir(p, PROCESSED_ROOT): str(p) for p in selected_paths}
+    test_videos = {make_output_dir(p, processed_root): str(p) for p in selected_paths}
     rag_only = args.command == "rag"
     if redo_only_steps and getattr(args, "redo", None):
         redo_steps = list(dict.fromkeys(redo_steps + _flatten(args.redo)))
     redo_only = redo_only_flag
 
+    embedding_provider, embedding_model = resolve_embedding_config(
+        getattr(args, "embedding_provider", None),
+        getattr(args, "embedding_model", None),
+    )
+    debug_enabled = bool(getattr(args, "debug", False)) and not bool(getattr(args, "quiet", False))
+    quiet = bool(getattr(args, "quiet", False))
+
+    plan_path = Path("log_reports") / "PARALLELIZATION_PLAN.md"
+    benchmark_path = Path("log_reports") / "PARALLELIZATION_BENCHMARKS.md"
+    ensure_benchmark_plan(plan_path)
+
     for output_dir, test_video in test_videos.items():
+        run_started = time.perf_counter()
         Path(output_dir).mkdir(parents=True, exist_ok=True)
         checkpoint_path = f"{output_dir}/checkpoint.json"
-        
-        # Ensure StorageManager is correctly context-switched for this specific video
-        # We always reset chat_id to None if args.chat_id is missing, 
-        # allowing deterministic generation per-video.
+
         storage_manager.__init__(
-            chat_id=args.chat_id, 
-            mongo_uri=mongo_uri, 
+            chat_id=getattr(args, "chat_id", None),
+            mongo_uri=mongo_uri,
             local_path=Path(checkpoint_path),
-            video_name=test_video
+            video_name=test_video,
         )
 
         if rag_only:
             rag_path = f"{output_dir}/rag_embedding.json"
-            checkpoint_path = f"{output_dir}/checkpoint.json"
             if not os.path.exists(rag_path):
-                print(f"RAG embedding not found: {rag_path}. Run process first.")
+                emit(f"RAG embedding not found: {rag_path}. Run process first.", quiet=quiet, force=True)
                 continue
             ask_rag(
                 rag_path=rag_path,
@@ -276,17 +859,26 @@ def main():
             )
             continue
 
+        run_params = dict(params)
+        run_params.update({
+            "execution_mode": args.execution_mode,
+            "debug": debug_enabled,
+            "quiet": quiet,
+            "embedding_provider": embedding_provider,
+            "embedding_model": embedding_model,
+            "low_mem_mode": LOW_MEM_MODE,
+        })
+
         log = initiate_log(
             video_path=test_video,
-            run_description="Test run for video processing pipeline.",
-            params=params,
+            run_description="Production pipeline benchmark run.",
+            params=run_params,
         )
 
-        # I added checkpoints so if you wanna redo the whole process,
-        # youd have to delete the checkpoint json in the path below
-        checkpoint = storage_manager.read_checkpoint() # if deleted it will return a {}
+        checkpoint = storage_manager.read_checkpoint()
         checkpoint.setdefault("steps", {})
         step = checkpoint["steps"]
+
         if redo_steps:
             checkpoint, redo_info = apply_redo(
                 checkpoint=checkpoint,
@@ -297,280 +889,80 @@ def main():
             if redo_info.get("changed") and "scenes" in checkpoint:
                 storage_manager.save_checkpoint(checkpoint)
 
-        # Catch-up reporting for cached steps to ensure MongoDB status is current
-        if storage_manager.is_remote and checkpoint.get("scenes"):
-            last_scene = checkpoint["scenes"][-1]
-            if "synopsis" in checkpoint:
-                storage_manager.update_pipeline_state("synopsis_generation", 95)
-            elif "narratives" in checkpoint:
-                storage_manager.update_pipeline_state("narrative_synthesis", 90)
-            elif "llm_scene_description" in last_scene:
-                storage_manager.update_pipeline_state("scene_description", 85)
-            elif "audio_natural" in last_scene:
-                storage_manager.update_pipeline_state("sound_analysis", 75)
-            elif "audio_speech" in last_scene:
-                storage_manager.update_pipeline_state("speech_transcription", 65)
-            elif "yolo_detections" in last_scene:
-                storage_manager.update_pipeline_state("object_detection", 50)
-            elif "frame_captions" in last_scene:
-                storage_manager.update_pipeline_state("frame_captioning", 40)
-            elif "scenes" in checkpoint:
-                storage_manager.update_pipeline_state("scene_detection", 10)
+        checkpoint = ensure_scene_detection(
+            checkpoint=checkpoint,
+            step_store=step,
+            storage_manager=storage_manager,
+            test_video=test_video,
+            output_dir=output_dir,
+            debug=debug_enabled,
+            quiet=quiet,
+        )
 
-        if not checkpoint.get("scenes"):
-            print("")
-            print_section("Running PysceneDetect...")
-            checkpoint["scenes"], step['get_scene_list'] = get_scene_list_log(
-                input_video_path=test_video,
-                threshold = pyscene_threshold,
-                min_scene_sec= pyscene_shortest,
-            )
-            storage_manager.update_pipeline_state("scene_detection", 10)
-            see_scenes_cuts(df=checkpoint["scenes"])
-            time.sleep(10)
+        checkpoint = run_visual_audio_pipeline(
+            checkpoint=checkpoint,
+            step_store=step,
+            storage_manager=storage_manager,
+            test_video=test_video,
+            output_dir=output_dir,
+            execution_mode=args.execution_mode,
+            debug=debug_enabled,
+            quiet=quiet,
+        )
 
-            print("")
-            print(f"Saving clips in: {output_dir}/.clips")
-            checkpoint["scenes"], step['save_clips'] = save_clips_log(
-                video_path=test_video,
-                scenes=checkpoint["scenes"],
-                output_dir=f"{output_dir}/.clips",
-            )
-            storage_manager.save_checkpoint(checkpoint)
-            purge_memory()
+        checkpoint = run_llm_and_rag_pipeline(
+            checkpoint=checkpoint,
+            step_store=step,
+            storage_manager=storage_manager,
+            test_video=test_video,
+            output_dir=output_dir,
+            debug=debug_enabled,
+            quiet=quiet,
+            embedding_provider=embedding_provider,
+            embedding_model=embedding_model,
+        )
 
-        if "frame_captions" not in checkpoint["scenes"][-1].keys():
-            print(f"Saving sampled frames in: {output_dir}/.frames")
-            checkpoint["scenes"], step['sample_frames'] = sample_frames_log(
-                input_video_path=test_video,
-                scenes=checkpoint["scenes"],
-                num_frames = frames_per_scene,
-                new_size = frame_resolution,
-                output_dir=f"{output_dir}/.frames",
-            )
-            storage_manager.update_pipeline_state("frame_sampling", 30)
-            time.sleep(10)
+        total_wall_time = time.perf_counter() - run_started
+        checkpoint.setdefault("benchmark", {})
+        checkpoint["benchmark"] = {
+            "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+            "execution_mode": args.execution_mode,
+            "debug": debug_enabled,
+            "quiet": quiet,
+            "low_mem_mode": LOW_MEM_MODE,
+            "embedding_provider": embedding_provider,
+            "embedding_model": embedding_model,
+            "total_wall_time_sec": round(total_wall_time, 5),
+        }
 
-            print("")
-            print_section("Running BLIP...")
-            checkpoint["scenes"], step['caption_frames'] = caption_frames_log(
-                scenes=checkpoint["scenes"],
-                prompt= blip_start_prompt,
-                max_length=blip_caption_len,
-                min_length=blip_min_length,
-                num_beams=blip_num_beams,
-                do_sample=blip_do_sample,
-                top_p=blip_top_p,
-                temperature=blip_temperature,
-                length_penalty=blip_length_penalty,
-                no_repeat_ngram_size=blip_no_repeat_ngram_size,
-                repetition_penalty=blip_repetition_penalty,
-                debug=True,
-            )
-            storage_manager.update_pipeline_state("frame_captioning", 40)
-            time.sleep(10)
-            storage_manager.save_checkpoint(checkpoint)
-            purge_memory()
-        
+        complete = complete_log(
+            log=log,
+            steps=step,
+            vid_len=checkpoint.get("video_duration_sec"),
+            scene_num=len(checkpoint.get("scenes", [])),
+        )
+        checkpoint["run_log"] = complete
 
-        if "yolo_detections" not in checkpoint["scenes"][-1].keys():
-            if "yolo_frames" not in checkpoint["scenes"][-1].keys():
-                print("")
-                print(f"Saving sampled fps in: {output_dir}/.fps")
-                checkpoint["scenes"], step['sample_fps'] = sample_fps_log(
-                    input_video_path=test_video,
-                    scenes=checkpoint["scenes"],
-                    fps=yolo_action_fps,
-                    new_size=frame_resolution,
-                    output_dir=f"{output_dir}/.fps",
-                    frames_key="yolo_frames",
-                    frame_paths_key="yolo_frame_paths",
-                )
-            time.sleep(10)
-
-            print("")
-            print_section("Running YOLOv8...")
-            checkpoint["scenes"], step['detect_object_yolo'] = detect_object_yolo_log(
-                scenes=checkpoint["scenes"],
-                model_size="model/yolov8s.pt",
-                conf=yolo_conf_thres,
-                iou=yolo_iou_thres,
-                output_dir=f"{output_dir}/.yolo",
-                frame_key="yolo_frames",
-                summary_key="yolo_detections",
-                debug=True,
-            )
-            storage_manager.update_pipeline_state("object_detection", 50)
-            time.sleep(10)
-            storage_manager.save_checkpoint(checkpoint)
-            purge_memory()
-
-        scan_result = None
-        def get_scan_result():
-            print("")
-            print_section("Running Audio Pre-Scan...")
-            scan_result, step['audio_scan'] = scan_audio_log(
-                video_path=test_video,
-                scenes=checkpoint["scenes"],
-                target_sr=asr_target_sr,
-                debug=True,
-            )
-            time.sleep(10)
-            return scan_result
-
-        if "audio_speech" not in checkpoint["scenes"][-1].keys():
-            if scan_result is None: scan_result = get_scan_result()
-            print("")
-            print_section("Running Whisper (Parallel)...")
-            checkpoint["scenes"], step['asr_timings'] = extract_speech_log(
-                scenes=checkpoint["scenes"],
-                scan_result=scan_result,
-                model_size=asr_model_size,
-                use_vad=asr_use_vad,
-                language=None,
-                parallel=True,
-                use_api=True,
-                force_cpu=True,
-                debug=True,
-            )
-            storage_manager.update_pipeline_state("speech_transcription", 65)
-            time.sleep(10)
-            storage_manager.save_checkpoint(checkpoint)
-            purge_memory()
-
-        if "audio_natural" not in checkpoint["scenes"][-1].keys():
-            if scan_result is None: scan_result = get_scan_result()
-
-            # Dynamic Resource Scaling: Standardized via Environment Variables
-            # Use MAX_KAIROS_WORKERS from .env.local to control concurrency.
-            # Default to 2 for safety; scale up to 4+ on high-performance VMs.
-            env_workers = os.environ.get("MAX_KAIROS_WORKERS")
-            ast_workers = int(env_workers) if env_workers else 2
-
-            if env_workers:
-                print(f"[Kairos] Using {ast_workers} workers from environment override.")
-            else:
-                print(f"[Kairos] MAX_KAIROS_WORKERS not set. Defaulting to safe value: {ast_workers}")
-
-            print("")
-            print_section("Running MIT AST (Parallel)...")
-            checkpoint["scenes"], step['ast_timings'] = extract_sounds_log(
-                scenes=checkpoint["scenes"],
-                scan_result=scan_result,
-                max_workers=ast_workers,
-                use_processes=True,
-                force_cpu=False,
-                debug=True,
-            )
-            storage_manager.update_pipeline_state("sound_analysis", 75)
-            time.sleep(10)
-            storage_manager.save_checkpoint(checkpoint)
-            purge_memory()
-
-        if "llm_scene_description" not in checkpoint["scenes"][-1].keys():
-            print("")
-            print_section("Running GPT4o Scene Descriptions...")
-            checkpoint["scenes"], step['describe_scenes'] = describe_scenes_log(
-                scenes=checkpoint["scenes"],
-                client=client,
-                hist_size= llm_scene_history,
-                YOLO_key="yolo_detections",
-                FLIP_key="frame_captions",
-                ASR_key="audio_speech",
-                AST_key="audio_natural",
-                SUMMARY_key="llm_scene_description",
-                model=model_name,
-                prompt_path="prompts/describe_scene.txt",
-                cooldown_sec=llm_cooldown_sec,
-                debug=True,
-                video_path=test_video,
-            )
-            storage_manager.update_pipeline_state("scene_description", 85)
-            time.sleep(10)
-            storage_manager.save_checkpoint(checkpoint)
-            purge_memory()
-            
-
-        if "narratives" not in checkpoint:
-            print("")
-            print_section("Running GPT4o Summary narrative...")
-            checkpoint, step['summarize_scenes'] = summarize_scenes_log(
-                client=client,
-                deployment=deployment,
-                scenes=checkpoint["scenes"],
-                chunk_size = llm_chunk_len,
-                summary_len = llm_summary_len,
-                debug=True,
-                output_dir=output_dir,
-            )
-            narratives = checkpoint.get("narratives", [])
-            if narratives:
-                last = narratives[-1]
-                narrative_path = Path(output_dir) / f"narrative_{len(narratives)}_len_{last['narrative_len']}.txt"
-                print(f"Saving narrative in: {narrative_path}")
-            storage_manager.update_pipeline_state("narrative_synthesis", 90)
-            storage_manager.save_checkpoint(checkpoint)
-
-        if "synopsis" not in checkpoint:
-            print("")
-            print_section("Running GPT4o Synopsis generation...")
-            checkpoint, step['synthesize_synopsis'] = synthesize_synopsis_log(
-                client=client,
-                deployment=deployment,
-                data=checkpoint,
-                debug=True,
-                output_dir=output_dir
-            )
-            storage_manager.update_pipeline_state("synopsis_generation", 95)
-            storage_manager.save_checkpoint(checkpoint=checkpoint)
-
-        rag_path = Path(output_dir) / "rag_embedding.json"
-        
-        # 1. Load or Generate embeddings
-        reproduce_embedding = False
-        if not rag_path.exists():
-            reproduce_embedding = True
-        else:
-            if "rag_embedding" not in checkpoint:
-                try:
-                    with open(rag_path, 'r') as f:
-                        data = json.load(f)
-                        if isinstance(data, dict) and "embeddings" in data:
-                            checkpoint["rag_embedding"] = data
-                        else:
-                            print(f"[Kairos] {rag_path} exists but has unexpected format. Reproducing.")
-                            reproduce_embedding = True
-                except (json.JSONDecodeError, Exception):
-                    print(f"[Kairos] {rag_path} is invalid or an LFS pointer. Reproducing.")
-                    reproduce_embedding = True
-
-        if reproduce_embedding:
-            checkpoint["rag_embedding"], step['make_embedding'] = make_embedding_log(
-                checkpoint=checkpoint,
-                output_path=str(rag_path),
-            )
-
-        # 2. ALWAYS SYNC TO MONGODB IF CHAT_ID IS PROVIDED
-        # This ensures that even if the video was already processed, the state is updated in DB
-        if storage_manager.is_remote:
-            # We need the full data (contexts/embeddings) for storage, not just the summary in checkpoint
-            full_rag_data = None
-            if rag_path.exists():
-                try:
-                    with open(rag_path, 'r') as f:
-                        full_rag_data = json.load(f)
-                except:
-                    full_rag_data = checkpoint.get("rag_embedding")
-            
-            storage_manager.save_final_results(
-                checkpoint=checkpoint, 
-                rag_embedding=full_rag_data
-            )
-
-        # Final logs and checkpoint sync
-        logpath = save_log(data=checkpoint, path=f"logs/{output_dir}.json")
+        save_log(data=checkpoint, path=f"logs/{output_dir}.json")
         storage_manager.save_checkpoint(checkpoint=checkpoint)
 
+        append_benchmark_report(
+            benchmark_path,
+            {
+                "timestamp": checkpoint["benchmark"]["timestamp"],
+                "video_name": Path(test_video).name,
+                "video_path": test_video,
+                "execution_mode": args.execution_mode,
+                "debug": debug_enabled,
+                "quiet": quiet,
+                "low_mem_mode": LOW_MEM_MODE,
+                "embedding_provider": embedding_provider,
+                "embedding_model": embedding_model,
+                "total_wall_time_sec": total_wall_time,
+            },
+            step,
+        )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
