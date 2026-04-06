@@ -4,6 +4,8 @@
 | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 2026-04-06 07:05:09 UTC | Young Sheldon - First Day of High School.mp4 | semi_parallel | gemini | gemini-embedding-001 | 161.565 | 1.514 | 41.046 | 34.601 | 10.179 | 9.483 | 2.515 |
 | 2026-04-06 07:07:31 UTC | Young Sheldon - First Day of High School.mp4 | parallel | gemini | gemini-embedding-001 | 128.822 | 1.469 | 71.880 | 34.820 | 9.432 | 8.521 | 2.535 |
+| 2026-04-06 11:16:08 UTC | Young Sheldon - First Day of High School.mp4 | parallel | gemini | gemini-embedding-001 | 141.628 | 1.464 | 73.563 | 43.704 | 12.170 | 7.802 | 2.539 |
+
 
 ## 2026-04-06 07:05:09 UTC | Young Sheldon - First Day of High School.mp4 | semi_parallel
 
@@ -37,6 +39,8 @@
 | branch_yolo_total | 29.955 |
 | branch_audio_total | 32.096 |
 
+## --- Initial Parallelization ---
+
 ## 2026-04-06 07:07:31 UTC | Young Sheldon - First Day of High School.mp4 | parallel
 
 - Video path: `Videos/Young Sheldon - First Day of High School.mp4`
@@ -68,3 +72,39 @@
 | branch_blip_total | 71.880 |
 | branch_yolo_total | 42.873 |
 | branch_audio_total | 32.024 |
+
+## --- GPU-enabled Parallelization
+
+## 2026-04-06 11:16:08 UTC | Young Sheldon - First Day of High School.mp4 | parallel
+
+- Video path: `Videos/Young Sheldon - First Day of High School.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `141.628` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 1.464 |
+| save_clips | - |
+| sample_frames | 4.521 |
+| caption_frames | 69.036 |
+| sample_fps | 28.519 |
+| detect_object_yolo | 14.536 |
+| audio_scan | 16.464 |
+| asr_timings | 16.023 |
+| ast_timings | 8.893 |
+| describe_scenes | 43.704 |
+| summarize_scenes | 12.170 |
+| synthesize_synopsis | 7.802 |
+| make_embedding | 2.539 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 73.563 |
+| branch_yolo_total | 43.063 |
+| branch_audio_total | 32.496 |
+
+## --- Batched BLIP Processing (batches = [1,4,8])---

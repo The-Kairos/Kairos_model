@@ -4,6 +4,8 @@
 | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 2026-04-06 07:13:01 UTC | Argentina v France Full Penalty Shoot-out.mp4 | semi_parallel | gemini | gemini-embedding-001 | 317.074 | 2.497 | 84.340 | 79.458 | 13.840 | 8.087 | 3.853 |
 | 2026-04-06 07:17:21 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 246.552 | 2.476 | 140.177 | 74.794 | 12.942 | 12.055 | 3.940 |
+| 2026-04-06 11:20:23 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 241.338 | 2.548 | 144.350 | 65.616 | 13.217 | 11.118 | 4.088 |
+
 
 ## 2026-04-06 07:13:01 UTC | Argentina v France Full Penalty Shoot-out.mp4 | semi_parallel
 
@@ -37,6 +39,8 @@
 | branch_yolo_total | 67.152 |
 | branch_audio_total | 57.658 |
 
+## --- Initial Parallelization ---
+
 ## 2026-04-06 07:17:21 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel
 
 - Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
@@ -68,3 +72,40 @@
 | branch_blip_total | 140.177 |
 | branch_yolo_total | 91.865 |
 | branch_audio_total | 58.980 |
+
+
+## --- GPU-enabled Parallelization
+
+## 2026-04-06 11:20:23 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel
+
+- Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `241.338` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 2.548 |
+| save_clips | - |
+| sample_frames | 6.789 |
+| caption_frames | 137.554 |
+| sample_fps | 60.641 |
+| detect_object_yolo | 31.402 |
+| audio_scan | 25.538 |
+| asr_timings | 32.443 |
+| ast_timings | 15.720 |
+| describe_scenes | 65.616 |
+| summarize_scenes | 13.217 |
+| synthesize_synopsis | 11.118 |
+| make_embedding | 4.088 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 144.350 |
+| branch_yolo_total | 92.050 |
+| branch_audio_total | 57.992 |
+
+## --- Batched BLIP Processing (batches = [1,4,8])---

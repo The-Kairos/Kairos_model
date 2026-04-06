@@ -97,6 +97,7 @@ blip_temperature = 0.65
 blip_length_penalty = 1.0
 blip_no_repeat_ngram_size = 3
 blip_repetition_penalty = 1.1
+blip_batch_size = 4
 yolo_action_fps = 4
 yolo_conf_thres = 0.8
 yolo_iou_thres = 0.5
@@ -147,6 +148,7 @@ params = {
     "blip_length_penalty": blip_length_penalty,
     "blip_no_repeat_ngram_size": blip_no_repeat_ngram_size,
     "blip_repetition_penalty": blip_repetition_penalty,
+    "blip_batch_size": blip_batch_size,
     "yolo_conf_thres": yolo_conf_thres,
     "yolo_iou_thres": yolo_iou_thres,
     "ast_target_sr": ast_target_sr,
@@ -286,6 +288,31 @@ def get_ast_worker_count() -> int:
         except ValueError:
             pass
     return 2
+
+
+def get_blip_batch_size() -> int:
+    raw = os.environ.get("KAIROS_BLIP_BATCH_SIZE")
+    if raw:
+        try:
+            return max(1, int(raw))
+        except ValueError:
+            pass
+    return blip_batch_size
+
+
+def resolve_gpu_device_env(name: str) -> str | None:
+    raw = os.environ.get(name)
+    if raw is None or not raw.strip():
+        return None
+    value = raw.strip().lower()
+    if value in {"cpu", "none", "auto"}:
+        return None
+    if value.startswith("cuda:"):
+        return value
+    try:
+        return f"cuda:{int(value)}"
+    except ValueError:
+        return raw.strip()
 
 
 def update_state_for_step(storage_manager: StorageManager, step_name: str):
@@ -486,6 +513,8 @@ def run_blip_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
     updates = {}
     frames_output_dir = f"{output_dir}/.frames" if debug else None
     branch_start = time.time()
+    blip_device = resolve_gpu_device_env("KAIROS_BLIP_GPU_ID")
+    batch_size = get_blip_batch_size()
 
     if all_scenes_have_key(branch_scenes, "frame_captions"):
         return branch_scenes, updates
@@ -505,6 +534,8 @@ def run_blip_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
     with maybe_silence(quiet):
         branch_scenes, updates["caption_frames"] = caption_frames_log(
             scenes=branch_scenes,
+            device=blip_device,
+            batch_size=batch_size,
             prompt=blip_start_prompt,
             max_length=blip_caption_len,
             min_length=blip_min_length,
@@ -530,6 +561,7 @@ def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
     fps_output_dir = f"{output_dir}/.fps" if debug else None
     yolo_output_dir = f"{output_dir}/.yolo" if debug else None
     branch_start = time.time()
+    yolo_device = resolve_gpu_device_env("KAIROS_YOLO_GPU_ID")
 
     if all_scenes_have_key(branch_scenes, "yolo_detections"):
         return branch_scenes, updates
@@ -559,6 +591,7 @@ def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
             frame_key="yolo_frames",
             summary_key="yolo_detections",
             debug=debug,
+            device=yolo_device,
         )
     updates["branch_yolo_total"] = {
         "step": "branch_yolo_total",
@@ -1014,6 +1047,9 @@ def main():
             "embedding_provider": embedding_provider,
             "embedding_model": embedding_model,
             "low_mem_mode": LOW_MEM_MODE,
+            "blip_batch_size": get_blip_batch_size(),
+            "blip_device": resolve_gpu_device_env("KAIROS_BLIP_GPU_ID"),
+            "yolo_device": resolve_gpu_device_env("KAIROS_YOLO_GPU_ID"),
         })
 
         log = initiate_log(
