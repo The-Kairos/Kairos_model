@@ -5,6 +5,9 @@
 | 2026-04-06 07:05:09 UTC | Young Sheldon - First Day of High School.mp4 | semi_parallel | gemini | gemini-embedding-001 | 161.565 | 1.514 | 41.046 | 34.601 | 10.179 | 9.483 | 2.515 |
 | 2026-04-06 07:07:31 UTC | Young Sheldon - First Day of High School.mp4 | parallel | gemini | gemini-embedding-001 | 128.822 | 1.469 | 71.880 | 34.820 | 9.432 | 8.521 | 2.535 |
 | 2026-04-06 11:16:08 UTC | Young Sheldon - First Day of High School.mp4 | parallel | gemini | gemini-embedding-001 | 141.628 | 1.464 | 73.563 | 43.704 | 12.170 | 7.802 | 2.539 |
+| 2026-04-06 14:26:11 UTC | Young Sheldon - First Day of High School.mp4 | parallel | gemini | gemini-embedding-001 | 145.065 | 1.487 | 72.367 | 42.287 | 13.241 | 12.641 | 2.659 |
+| 2026-04-06 14:33:11 UTC | Young Sheldon - First Day of High School.mp4 | parallel | gemini | gemini-embedding-001 | 117.036 | 1.493 | 46.715 | 43.315 | 12.710 | 9.825 | 2.589 |
+| 2026-04-06 14:39:06 UTC | Young Sheldon - First Day of High School.mp4 | parallel | gemini | gemini-embedding-001 | 122.444 | 1.479 | 47.831 | 46.381 | 12.142 | 11.629 | 2.584 |
 
 
 ## 2026-04-06 07:05:09 UTC | Young Sheldon - First Day of High School.mp4 | semi_parallel
@@ -108,3 +111,99 @@
 | branch_audio_total | 32.496 |
 
 ## --- Batched BLIP Processing (batches = [1,4,8])---
+
+## 2026-04-06 14:26:11 UTC | Young Sheldon - First Day of High School.mp4 | parallel
+
+- Video path: `Videos/Young Sheldon - First Day of High School.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `145.065` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 1.487 |
+| save_clips | - |
+| sample_frames | 4.534 |
+| caption_frames | 67.827 |
+| sample_fps | 28.525 |
+| detect_object_yolo | 14.489 |
+| audio_scan | 16.665 |
+| asr_timings | 14.995 |
+| ast_timings | 8.784 |
+| describe_scenes | 42.287 |
+| summarize_scenes | 13.241 |
+| synthesize_synopsis | 12.641 |
+| make_embedding | 2.659 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 72.367 |
+| branch_yolo_total | 43.021 |
+| branch_audio_total | 31.669 |
+
+## 2026-04-06 14:33:11 UTC | Young Sheldon - First Day of High School.mp4 | parallel
+
+- Video path: `Videos/Young Sheldon - First Day of High School.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `117.036` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 1.493 |
+| save_clips | - |
+| sample_frames | 4.572 |
+| caption_frames | 38.486 |
+| sample_fps | 31.711 |
+| detect_object_yolo | 14.997 |
+| audio_scan | 18.641 |
+| asr_timings | 16.443 |
+| ast_timings | 8.539 |
+| describe_scenes | 43.315 |
+| summarize_scenes | 12.710 |
+| synthesize_synopsis | 9.825 |
+| make_embedding | 2.589 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 43.067 |
+| branch_yolo_total | 46.715 |
+| branch_audio_total | 35.094 |
+
+## 2026-04-06 14:39:06 UTC | Young Sheldon - First Day of High School.mp4 | parallel
+
+- Video path: `Videos/Young Sheldon - First Day of High School.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `122.444` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 1.479 |
+| save_clips | - |
+| sample_frames | 4.514 |
+| caption_frames | 43.311 |
+| sample_fps | 31.553 |
+| detect_object_yolo | 15.300 |
+| audio_scan | 18.297 |
+| asr_timings | 17.092 |
+| ast_timings | 8.557 |
+| describe_scenes | 46.381 |
+| summarize_scenes | 12.142 |
+| synthesize_synopsis | 11.629 |
+| make_embedding | 2.584 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 47.831 |
+| branch_yolo_total | 46.860 |
+| branch_audio_total | 35.400 |
