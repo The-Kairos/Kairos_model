@@ -192,6 +192,15 @@ BENCHMARK_STEPS = [
     "make_embedding",
 ]
 
+BENCHMARK_SUMMARY_HEADER = (
+    "| Timestamp | Video | Mode | Embedding Provider | Embedding Model | Total Wall Sec | Pyscene Sec | "
+    "Audio and Visual Components | Scene Desc Sec | Narrative Sec | Synopsis Sec | Embedding Sec |"
+)
+
+BENCHMARK_SUMMARY_SEPARATOR = (
+    "| --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"
+)
+
 
 @contextmanager
 def maybe_silence(enabled: bool):
@@ -301,6 +310,113 @@ def benchmark_step_value(steps: dict, name: str) -> str:
     return f"{float(value):.3f}"
 
 
+def benchmark_step_float(steps: dict, name: str) -> float | None:
+    value = steps.get(name, {}).get("wall_time_sec")
+    if value is None:
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _sum_step_times(steps: dict, names: list[str]) -> float | None:
+    values = [benchmark_step_float(steps, name) for name in names]
+    present = [value for value in values if value is not None]
+    if not present:
+        return None
+    return sum(present)
+
+
+def compute_branch_metrics(steps: dict, execution_mode: str) -> dict[str, float | None]:
+    pyscene_total = benchmark_step_float(steps, "get_scene_list")
+
+    blip_total = benchmark_step_float(steps, "branch_blip_total")
+    if blip_total is None:
+        blip_total = _sum_step_times(steps, ["sample_frames", "caption_frames"])
+
+    yolo_total = benchmark_step_float(steps, "branch_yolo_total")
+    if yolo_total is None:
+        yolo_total = _sum_step_times(steps, ["sample_fps", "detect_object_yolo"])
+
+    audio_total = benchmark_step_float(steps, "branch_audio_total")
+    if audio_total is None:
+        audio_scan = benchmark_step_float(steps, "audio_scan")
+        asr_time = benchmark_step_float(steps, "asr_timings")
+        ast_time = benchmark_step_float(steps, "ast_timings")
+
+        if execution_mode == "parallel":
+            tails = [value for value in (asr_time, ast_time) if value is not None]
+            if audio_scan is not None or tails:
+                audio_total = (audio_scan or 0.0) + (max(tails) if tails else 0.0)
+        else:
+            audio_total = _sum_step_times(steps, ["audio_scan", "asr_timings", "ast_timings"])
+
+    branch_values = [value for value in (blip_total, yolo_total, audio_total) if value is not None]
+
+    if execution_mode == "semi_parallel":
+        audio_visual_components_total = sum(branch_values) if branch_values else None
+    else:
+        audio_visual_components_total = max(branch_values) if branch_values else None
+
+    return {
+        "pyscene_total": pyscene_total,
+        "branch_blip_total": blip_total,
+        "branch_yolo_total": yolo_total,
+        "branch_audio_total": audio_total,
+        "audio_visual_components_total": audio_visual_components_total,
+    }
+
+
+def format_benchmark_metric(value: float | None) -> str:
+    if value is None:
+        return "-"
+    return f"{value:.3f}"
+
+
+def ensure_benchmark_summary_table(content: str) -> str:
+    title = "# Parallelization Benchmarks"
+    if BENCHMARK_SUMMARY_HEADER in content and BENCHMARK_SUMMARY_SEPARATOR in content:
+        return content
+
+    remainder = content
+    if content.startswith(title):
+        remainder = content[len(title):].lstrip("\n")
+    else:
+        remainder = content.lstrip("\n")
+
+    rebuilt = [
+        title,
+        "",
+        BENCHMARK_SUMMARY_HEADER,
+        BENCHMARK_SUMMARY_SEPARATOR,
+        "",
+    ]
+    if remainder:
+        rebuilt.append(remainder.rstrip("\n"))
+        rebuilt.append("")
+    return "\n".join(rebuilt)
+
+
+def insert_benchmark_summary_row(content: str, row: str) -> str:
+    lines = content.splitlines()
+    try:
+        separator_idx = lines.index(BENCHMARK_SUMMARY_SEPARATOR)
+    except ValueError:
+        return content.rstrip("\n") + "\n" + row.rstrip("\n") + "\n"
+
+    insert_idx = separator_idx + 1
+    while insert_idx < len(lines) and lines[insert_idx].startswith("| "):
+        insert_idx += 1
+    lines.insert(insert_idx, row.rstrip("\n"))
+    return "\n".join(lines).rstrip("\n") + "\n"
+
+
+def benchmark_report_path_for_video(video_path: str) -> Path:
+    video_name = Path(video_path).name
+    return Path("log_reports") / "parallelization_benchmarks" / video_name / "PARALLELIZATION_BENCHMARKS.md"
+
+
 def ensure_benchmark_plan(path: Path):
     if path.exists():
         return
@@ -317,17 +433,17 @@ def ensure_benchmark_plan(path: Path):
 
 def append_benchmark_report(path: Path, entry: dict, steps: dict):
     path.parent.mkdir(parents=True, exist_ok=True)
-    if not path.exists():
-        path.write_text(
-            "# Parallelization Benchmarks\n\n"
-            "| Timestamp | Video | Mode | Embedding Provider | Embedding Model | Total Wall Sec | Scene Desc Sec | Narrative Sec | Synopsis Sec | Embedding Sec |\n"
-            "| --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |\n",
-            encoding="utf-8",
-        )
+    content = ""
+    if path.exists():
+        content = path.read_text(encoding="utf-8")
+    content = ensure_benchmark_summary_table(content)
+    branch_metrics = compute_branch_metrics(steps, entry["execution_mode"])
 
     row = (
         f"| {entry['timestamp']} | {entry['video_name']} | {entry['execution_mode']} | "
         f"{entry['embedding_provider']} | {entry['embedding_model']} | {entry['total_wall_time_sec']:.3f} | "
+        f"{format_benchmark_metric(branch_metrics['pyscene_total'])} | "
+        f"{format_benchmark_metric(branch_metrics['audio_visual_components_total'])} | "
         f"{benchmark_step_value(steps, 'describe_scenes')} | {benchmark_step_value(steps, 'summarize_scenes')} | "
         f"{benchmark_step_value(steps, 'synthesize_synopsis')} | {benchmark_step_value(steps, 'make_embedding')} |\n"
     )
@@ -349,16 +465,27 @@ def append_benchmark_report(path: Path, entry: dict, steps: dict):
     ]
     for step_name in BENCHMARK_STEPS:
         detail_lines.append(f"| {step_name} | {benchmark_step_value(steps, step_name)} |")
+    detail_lines.extend(
+        [
+            "",
+            "| Branch | Wall Time (sec) |",
+            "| --- | ---: |",
+            f"| branch_blip_total | {format_benchmark_metric(branch_metrics['branch_blip_total'])} |",
+            f"| branch_yolo_total | {format_benchmark_metric(branch_metrics['branch_yolo_total'])} |",
+            f"| branch_audio_total | {format_benchmark_metric(branch_metrics['branch_audio_total'])} |",
+        ]
+    )
 
-    with open(path, "a", encoding="utf-8") as handle:
-        handle.write(row)
-        handle.write("\n".join(detail_lines) + "\n")
+    content = insert_benchmark_summary_row(content, row)
+    content = content.rstrip("\n") + "\n" + "\n".join(detail_lines) + "\n"
+    path.write_text(content, encoding="utf-8")
 
 
 def run_blip_branch(test_video: str, output_dir: str, scenes: list, debug: bool, quiet: bool):
     branch_scenes = clone_scenes(scenes)
     updates = {}
     frames_output_dir = f"{output_dir}/.frames" if debug else None
+    branch_start = time.time()
 
     if all_scenes_have_key(branch_scenes, "frame_captions"):
         return branch_scenes, updates
@@ -390,6 +517,10 @@ def run_blip_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
             repetition_penalty=blip_repetition_penalty,
             debug=debug,
         )
+    updates["branch_blip_total"] = {
+        "step": "branch_blip_total",
+        "wall_time_sec": round(time.time() - branch_start, 5),
+    }
     return branch_scenes, updates
 
 
@@ -398,6 +529,7 @@ def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
     updates = {}
     fps_output_dir = f"{output_dir}/.fps" if debug else None
     yolo_output_dir = f"{output_dir}/.yolo" if debug else None
+    branch_start = time.time()
 
     if all_scenes_have_key(branch_scenes, "yolo_detections"):
         return branch_scenes, updates
@@ -428,6 +560,10 @@ def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
             summary_key="yolo_detections",
             debug=debug,
         )
+    updates["branch_yolo_total"] = {
+        "step": "branch_yolo_total",
+        "wall_time_sec": round(time.time() - branch_start, 5),
+    }
     return branch_scenes, updates
 
 
@@ -441,6 +577,7 @@ def run_audio_branch(
     branch_scenes = clone_scenes(scenes)
     updates = {}
     scan_result = None
+    branch_start = time.time()
 
     needs_asr = not all_scenes_have_key(branch_scenes, "audio_speech")
     needs_ast = not all_scenes_have_key(branch_scenes, "audio_natural")
@@ -500,6 +637,10 @@ def run_audio_branch(
         if needs_ast:
             branch_scenes, updates["ast_timings"] = _run_ast(branch_scenes)
 
+    updates["branch_audio_total"] = {
+        "step": "branch_audio_total",
+        "wall_time_sec": round(time.time() - branch_start, 5),
+    }
     return branch_scenes, updates
 
 
@@ -835,12 +976,12 @@ def main():
     quiet = bool(getattr(args, "quiet", False))
 
     plan_path = Path("log_reports") / "PARALLELIZATION_PLAN.md"
-    benchmark_path = Path("log_reports") / "PARALLELIZATION_BENCHMARKS.md"
     ensure_benchmark_plan(plan_path)
 
     for output_dir, test_video in test_videos.items():
         run_started = time.perf_counter()
         Path(output_dir).mkdir(parents=True, exist_ok=True)
+        benchmark_path = benchmark_report_path_for_video(test_video)
         checkpoint_path = f"{output_dir}/checkpoint.json"
 
         storage_manager.__init__(

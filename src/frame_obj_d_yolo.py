@@ -714,7 +714,7 @@ def detect_object_yolo(
 
         # Memory Logging
         mem = psutil.Process().memory_info().rss / (1024 * 1024)
-        print_prefixed("(YOLOv8)", f"Memory usage: {mem:.2f} MB", indent=4)
+        # print_prefixed("(YOLOv8)", f"Memory usage: {mem:.2f} MB", indent=4)
 
     # Explicit Model Unload (Only if Low Memory Mode is active)
     if is_low_mem():
