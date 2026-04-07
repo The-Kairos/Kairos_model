@@ -17,6 +17,7 @@ def run_yolo_on_frame(
     frame: np.ndarray,  # process a single frame (np.ndarray)
     conf: float = 0.25,
     iou: float = 0.45,
+    device: str | None = None,
 ):
     """
     Run YOLOv8 on a single frame (np.ndarray).
@@ -39,6 +40,7 @@ def run_yolo_on_frame(
         frame,
         conf=conf,
         iou=iou,
+        device=device,
         stream=True,
         verbose=False
     )
@@ -70,6 +72,7 @@ def run_yolo_track_on_frames(
     conf: float = 0.25,
     iou: float = 0.45,
     tracker: str = "bytetrack.yaml",
+    device: str | None = None,
 ):
     """
     Run YOLOv8 tracking on a list of frames.
@@ -80,6 +83,7 @@ def run_yolo_track_on_frames(
             frames,
             conf=conf,
             iou=iou,
+            device=device,
             tracker=tracker,
             persist=True,
             verbose=False,
@@ -616,6 +620,7 @@ def detect_object_yolo(
     moving_with_cos: float = 0.8,
     moving_with_speed_ratio=(0.5, 2.0),
     moving_with_min_speed: float = 1.0,
+    device: str | None = None,
 ):
     """
     Run YOLO on a list of scenes.
@@ -649,6 +654,7 @@ def detect_object_yolo(
                 conf=conf,
                 iou=iou,
                 tracker=tracker,
+                device=device,
             )
             if results is not None:
                 yolo_dict = _parse_yolo_results(results, model)
@@ -660,7 +666,8 @@ def detect_object_yolo(
                     model,
                     frame,
                     conf=conf,
-                    iou=iou
+                    iou=iou,
+                    device=device,
                 )
                 yolo_dict[idx] = detections
 
@@ -714,7 +721,7 @@ def detect_object_yolo(
 
         # Memory Logging
         mem = psutil.Process().memory_info().rss / (1024 * 1024)
-        print_prefixed("(YOLOv8)", f"Memory usage: {mem:.2f} MB", indent=4)
+        # print_prefixed("(YOLOv8)", f"Memory usage: {mem:.2f} MB", indent=4)
 
     # Explicit Model Unload (Only if Low Memory Mode is active)
     if is_low_mem():

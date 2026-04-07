@@ -158,18 +158,27 @@ def sample_from_clip_fps(
     frame_indices: Optional[List[int]] = [] if return_meta else None
     frame_timestamps: Optional[List[float]] = [] if return_meta else None
 
-    for frame_num in frame_positions:
-        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_num)
-        ret, frame = cap.read()
+    if frame_positions:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_positions[0])
+        target_idx = 0
+        current_frame_num = frame_positions[0]
+        last_target = frame_positions[-1]
 
-        if not ret or frame is None:
-            continue
+        while current_frame_num <= last_target and target_idx < len(frame_positions):
+            ret, frame = cap.read()
+            if not ret or frame is None:
+                break
 
-        frame_resized = resize_frame(frame, new_size)
-        frames.append(frame_resized)
-        if return_meta:
-            frame_indices.append(frame_num)
-            frame_timestamps.append(frame_num / video_fps if video_fps else 0.0)
+            target_frame_num = frame_positions[target_idx]
+            if current_frame_num == target_frame_num:
+                frame_resized = resize_frame(frame, new_size)
+                frames.append(frame_resized)
+                if return_meta:
+                    frame_indices.append(current_frame_num)
+                    frame_timestamps.append(current_frame_num / video_fps if video_fps else 0.0)
+                target_idx += 1
+
+            current_frame_num += 1
 
     cap.release()
     if return_meta:

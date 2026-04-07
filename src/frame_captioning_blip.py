@@ -7,41 +7,54 @@ from typing import Optional
 from PIL import Image
 from src.path_utils import is_low_mem
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
-
 # ======================================================================
 # Load BLIP model and processor
 from transformers import BlipProcessor, BlipForConditionalGeneration
-_blip_model = None
-_blip_processor = None
+_blip_models = {}
+_blip_processors = {}
 
-def _get_blip_model():
+
+def resolve_blip_device(device: Optional[str] = None) -> str:
+    if device:
+        return device
+    return "cuda" if torch.cuda.is_available() else "cpu"
+
+
+def _get_blip_model(device: Optional[str] = None):
     """
     Lazy load BLIP model only when needed.
     """
-    global _blip_model, _blip_processor
-    if _blip_model is None:
-        _blip_model = BlipForConditionalGeneration.from_pretrained(
+    resolved_device = resolve_blip_device(device)
+    if resolved_device not in _blip_models:
+        _blip_models[resolved_device] = BlipForConditionalGeneration.from_pretrained(
             "Salesforce/blip-image-captioning-base"
-        ).to(device)
-        _blip_processor = BlipProcessor.from_pretrained(
+        ).to(resolved_device)
+        _blip_processors[resolved_device] = BlipProcessor.from_pretrained(
             "Salesforce/blip-image-captioning-base", use_fast=True
         )
-    return _blip_model, _blip_processor
+    return _blip_models[resolved_device], _blip_processors[resolved_device]
 
-def unload_blip():
+
+def unload_blip(device: Optional[str] = None):
     """Explicitly unload BLIP from memory/GPU only if LOW_MEM_MODE is True."""
-    global _blip_model, _blip_processor
-    if _blip_model is not None and is_low_mem():
-        del _blip_model
-        del _blip_processor
-        _blip_model = None
-        _blip_processor = None
+    if not is_low_mem():
+        return
+
+    targets = [resolve_blip_device(device)] if device else list(_blip_models.keys())
+    for target in targets:
+        model = _blip_models.pop(target, None)
+        processor = _blip_processors.pop(target, None)
+        if model is None and processor is None:
+            continue
+        if model is not None:
+            del model
+        if processor is not None:
+            del processor
         import gc
         gc.collect()
-        if torch.cuda.is_available():
+        if torch.cuda.is_available() and target.startswith("cuda"):
             torch.cuda.empty_cache()
-        print("[BLIP] Model unloaded from memory (LowMem mode).")
+        print(f"[BLIP] Model unloaded from memory ({target}).")
 # ======================================================================
 # # Load BLIP2 model and processor
 # from transformers import Blip2Processor, Blip2ForConditionalGeneration
@@ -58,6 +71,7 @@ def blip_frame(
     image,
     model: Optional[BlipForConditionalGeneration] = None,
     processor: Optional[BlipProcessor] = None,
+    device: Optional[str] = None,
     prompt: Optional[str] = None,
     max_length: int = 50,
     min_length: int = 20,
@@ -108,7 +122,7 @@ def blip_frame(
         Generated caption.
     """
     if model is None or processor is None:
-        model, processor = _get_blip_model()
+        model, processor = _get_blip_model(device=device)
 
     # --- Normalize image to RGB PIL.Image ---
     if isinstance(image, Image.Image):
@@ -161,10 +175,23 @@ def blip_frame(
     return caption.strip()
 
 
-def caption_frames(
-    scenes: List[Dict],
+def _normalize_blip_image(image) -> Image.Image:
+    if isinstance(image, Image.Image):
+        return image.convert("RGB")
+    if isinstance(image, np.ndarray):
+        if image.ndim == 3 and image.shape[2] == 3:
+            image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        else:
+            image_rgb = image
+        return Image.fromarray(image_rgb)
+    raise TypeError("image must be a PIL.Image.Image or a numpy.ndarray")
+
+
+def blip_frames_batch(
+    images,
     model: Optional[BlipForConditionalGeneration] = None,
     processor: Optional[BlipProcessor] = None,
+    device: Optional[str] = None,
     prompt: Optional[str] = None,
     max_length: int = 50,
     min_length: int = 20,
@@ -175,6 +202,58 @@ def caption_frames(
     length_penalty: float = 0.8,
     no_repeat_ngram_size: int = 2,
     repetition_penalty: float = 1.2,
+) -> List[str]:
+    if not images:
+        return []
+
+    if model is None or processor is None:
+        model, processor = _get_blip_model(device=device)
+
+    pil_images = [_normalize_blip_image(image) for image in images]
+    model_device = next(model.parameters()).device
+
+    if prompt is not None:
+        prompts = [prompt] * len(pil_images)
+        inputs = processor(images=pil_images, text=prompts, return_tensors="pt", padding=True)
+    else:
+        inputs = processor(images=pil_images, return_tensors="pt", padding=True)
+
+    inputs = {k: v.to(model_device) for k, v in inputs.items()}
+
+    with torch.no_grad():
+        output_ids = model.generate(
+            **inputs,
+            max_length=max_length,
+            min_length=min_length,
+            num_beams=num_beams,
+            do_sample=do_sample,
+            top_p=top_p,
+            temperature=temperature,
+            length_penalty=length_penalty,
+            no_repeat_ngram_size=no_repeat_ngram_size,
+            repetition_penalty=repetition_penalty,
+        )
+
+    captions = processor.batch_decode(output_ids, skip_special_tokens=True)
+    return [caption.strip() for caption in captions]
+
+
+def caption_frames(
+    scenes: List[Dict],
+    model: Optional[BlipForConditionalGeneration] = None,
+    processor: Optional[BlipProcessor] = None,
+    device: Optional[str] = None,
+    prompt: Optional[str] = None,
+    max_length: int = 50,
+    min_length: int = 20,
+    num_beams: int = 1,
+    do_sample: bool = True,
+    top_p: float = 0.9,
+    temperature: float = 0.8,
+    length_penalty: float = 0.8,
+    no_repeat_ngram_size: int = 2,
+    repetition_penalty: float = 1.2,
+    batch_size: int = 1,
     debug: bool = False,
 ) -> List[Dict]:
     """
@@ -223,7 +302,9 @@ def caption_frames(
     enriched_scenes: List[Dict] = []
 
     # Lazy load BLIP once for the entire batch
-    model, processor = _get_blip_model()
+    resolved_device = resolve_blip_device(device)
+    model, processor = _get_blip_model(device=resolved_device)
+    actual_batch_size = max(1, int(batch_size))
 
     for scene in scenes:
         if debug:
@@ -231,12 +312,13 @@ def caption_frames(
             print_prefixed("(BLIP)", f"Scene {scene_idx}")
         frames = scene.get("frames", [])
         captions: List[str] = []
-
-        for frame in frames:
-            caption = blip_frame(
-                image=frame,
+        for start in range(0, len(frames), actual_batch_size):
+            batch_frames = frames[start:start + actual_batch_size]
+            batch_captions = blip_frames_batch(
+                images=batch_frames,
                 model=model,
                 processor=processor,
+                device=resolved_device,
                 prompt=prompt,
                 max_length=max_length,
                 min_length=min_length,
@@ -248,9 +330,10 @@ def caption_frames(
                 no_repeat_ngram_size=no_repeat_ngram_size,
                 repetition_penalty=repetition_penalty,
             )
-            captions.append(caption)
+            captions.extend(batch_captions)
             if debug:
-                print_prefixed("(BLIP)", f"{caption}", indent=2)
+                for caption in batch_captions:
+                    print_prefixed("(BLIP)", f"{caption}", indent=2)
 
         new_scene = dict(scene)  # shallow copy so we don't mutate original reference
         new_scene["frame_captions"] = captions
@@ -269,7 +352,7 @@ def caption_frames(
         enriched_scenes.append(new_scene)
 
     # Explicitly unload after the entire batch is done
-    unload_blip()
+    unload_blip(device=resolved_device)
 
     return enriched_scenes
 

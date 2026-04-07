@@ -7,12 +7,14 @@ from pymongo import MongoClient
 from src.debug_utils import load_prompt
 from src.path_utils import load_kairos_env
 from google import genai
+from openai import AzureOpenAI
 
 # Load environment variables from project root dynamically
 load_kairos_env(override=True)
 
 EMBEDDING_MODEL = "gemini-embedding-001"
 GENERATION_MODEL = "gemini-2.5-pro"
+EMBEDDING_PROVIDER = "gemini"
 
 
 def _get_gemini_client():
@@ -20,6 +22,31 @@ def _get_gemini_client():
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY not found in environment variables.")
     return genai.Client(api_key=api_key)
+
+
+def _get_openai_client():
+    endpoint = os.environ.get("GPT_ENDPOINT") or os.environ.get("AZURE_OPENAI_ENDPOINT")
+    api_key = os.environ.get("GPT_KEY") or os.environ.get("AZURE_OPENAI_KEY")
+    api_version = os.environ.get("GPT_VERSION") or os.environ.get("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
+    if not endpoint or not api_key:
+        raise RuntimeError("Azure OpenAI embedding credentials not found in environment variables.")
+    return AzureOpenAI(
+        api_version=api_version,
+        azure_endpoint=endpoint,
+        api_key=api_key,
+    )
+
+
+def _normalize_provider(provider: str | None) -> str:
+    value = (provider or EMBEDDING_PROVIDER).strip().lower()
+    return "openai" if value in {"openai", "azure", "azure_openai"} else "gemini"
+
+
+def _get_embedding_client(provider: str | None = None):
+    provider_name = _normalize_provider(provider)
+    if provider_name == "openai":
+        return _get_openai_client(), provider_name
+    return _get_gemini_client(), provider_name
 
 
 def format_scene_embedding(scenes: list):
@@ -164,9 +191,16 @@ def build_contexts(checkpoint: dict):
 MAX_EMBED_BATCH = 250  # Vertex AI embed_content supports up to 250 items per request.
 
 
-def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL, batch_size=MAX_EMBED_BATCH):
+def embed_contexts(
+    contexts: list,
+    client=None,
+    model=EMBEDDING_MODEL,
+    batch_size=MAX_EMBED_BATCH,
+    provider: str | None = None,
+):
+    provider_name = _normalize_provider(provider)
     if client is None:
-        client = _get_gemini_client()
+        client, provider_name = _get_embedding_client(provider_name)
     if not contexts:
         return []
     if batch_size < 1:
@@ -175,18 +209,32 @@ def embed_contexts(contexts: list, client=None, model=EMBEDDING_MODEL, batch_siz
     embeddings = []
     for start in range(0, len(contexts), batch_size):
         batch = contexts[start:start + batch_size]
-        result = client.models.embed_content(
-            model=model,
-            contents=batch,
-        )
-        embeddings.extend([embedding.values for embedding in result.embeddings])
+        if provider_name == "openai":
+            response = client.embeddings.create(
+                model=model,
+                input=batch,
+            )
+            embeddings.extend([item.embedding for item in response.data])
+        else:
+            result = client.models.embed_content(
+                model=model,
+                contents=batch,
+            )
+            embeddings.extend([embedding.values for embedding in result.embeddings])
 
     return embeddings
 
 
-def embed_question(question: str, client=None, model=EMBEDDING_MODEL):
+def embed_question(question: str, client=None, model=EMBEDDING_MODEL, provider: str | None = None):
+    provider_name = _normalize_provider(provider)
     if client is None:
-        client = _get_gemini_client()
+        client, provider_name = _get_embedding_client(provider_name)
+    if provider_name == "openai":
+        result = client.embeddings.create(
+            model=model,
+            input=[question],
+        )
+        return [result.data[0].embedding]
     result = client.models.embed_content(
         model=model,
         contents=question
@@ -550,8 +598,16 @@ def create_answer(question, top_matches, client=None, model=GENERATION_MODEL):
     return response.text
 
 
-def save_rag_embeddings(path, contexts, embeddings, model=EMBEDDING_MODEL, kmeans_clusters=None):
+def save_rag_embeddings(
+    path,
+    contexts,
+    embeddings,
+    model=EMBEDDING_MODEL,
+    kmeans_clusters=None,
+    provider: str = EMBEDDING_PROVIDER,
+):
     payload = {
+        "provider": _normalize_provider(provider),
         "model": model,
         "context_count": len(contexts),
         "embedding_dim": len(embeddings[0]) if embeddings else 0,
@@ -578,20 +634,33 @@ def load_rag_embeddings(path):
         return json.load(f)
 
 
-def make_embedding(checkpoint: dict, output_path: str, model=EMBEDDING_MODEL):
+def make_embedding(
+    checkpoint: dict,
+    output_path: str,
+    model=EMBEDDING_MODEL,
+    provider: str = EMBEDDING_PROVIDER,
+):
     contexts = build_contexts(checkpoint)
     if not contexts:
         raise ValueError("No contexts found in checkpoint to embed.")
 
-    client = _get_gemini_client()
-    embeddings = embed_contexts(contexts, client=client, model=model)
+    client, provider_name = _get_embedding_client(provider)
+    embeddings = embed_contexts(contexts, client=client, model=model, provider=provider_name)
     kmeans_clusters = compute_kmeans_clusters(embeddings, num_clusters=None)
-    payload = save_rag_embeddings(output_path, contexts, embeddings, model=model, kmeans_clusters=kmeans_clusters)
+    payload = save_rag_embeddings(
+        output_path,
+        contexts,
+        embeddings,
+        model=model,
+        kmeans_clusters=kmeans_clusters,
+        provider=provider_name,
+    )
 
     return {
         "rag_path": output_path,
         "context_count": payload["context_count"],
         "embedding_dim": payload["embedding_dim"],
+        "provider": payload["provider"],
         "model": payload["model"],
     }
 
@@ -639,13 +708,16 @@ def ask_rag(
     contexts = data.get("contexts", [])
     embeddings = data.get("embeddings", [])
     kmeans_clusters = data.get("kmeans_clusters")
+    embedding_provider = data.get("provider", EMBEDDING_PROVIDER)
+    embedding_model = data.get("model", EMBEDDING_MODEL)
     if kmeans_clusters is None:
         kmeans_clusters = compute_kmeans_clusters(embeddings, num_clusters=None)
 
     if not contexts or not embeddings:
         raise ValueError("RAG embedding file is missing contexts or embeddings.")
 
-    client = _get_gemini_client()
+    generation_client = _get_gemini_client()
+    embedding_client, embedding_provider = _get_embedding_client(embedding_provider)
     print("RAG ready. Ask questions (type 'exit' to quit).")
 
     conversation = None
@@ -663,7 +735,12 @@ def ask_rag(
             continue
 
         t0 = time.perf_counter()
-        question_embedding = embed_question(question, client=client)
+        question_embedding = embed_question(
+            question,
+            client=embedding_client,
+            model=embedding_model,
+            provider=embedding_provider,
+        )
         t1 = time.perf_counter()
 
         top_matches = get_top_k_similar(
@@ -678,7 +755,7 @@ def ask_rag(
         )
         t2 = time.perf_counter()
 
-        answer = create_answer(question, top_matches, client=client, model=generation_model)
+        answer = create_answer(question, top_matches, client=generation_client, model=generation_model)
         t3 = time.perf_counter()
 
         print("=" * 80)
