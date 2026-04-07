@@ -1,0 +1,23 @@
+[
+  {
+    "question_id": "q_long_01",
+    "video_id": "example_long_01",
+    "gold_answer": "Replace this with your annotated answer after you watch the video.",
+    "acceptable_variants": [],
+    "relevant_segment_ids": []
+  },
+  {
+    "question_id": "q_long_02",
+    "video_id": "example_long_01",
+    "gold_answer": "Replace with the factual event at ~12:00.",
+    "acceptable_variants": [],
+    "relevant_segment_ids": ["seg_placeholder_12min"]
+  },
+  {
+    "question_id": "q_med_01",
+    "video_id": "example_medium_01",
+    "gold_answer": "Replace with the true stop count from the dashcam clip.",
+    "acceptable_variants": [],
+    "relevant_segment_ids": []
+  }
+]

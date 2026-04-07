@@ -1,0 +1,23 @@
+[
+  {
+    "question_id": "q_long_01",
+    "video_id": "example_long_01",
+    "question": "What is the main subject discussed in the first segment of the video?",
+    "type": "semantic",
+    "difficulty": "easy"
+  },
+  {
+    "question_id": "q_long_02",
+    "video_id": "example_long_01",
+    "question": "At approximately minute 12, what is happening on screen?",
+    "type": "temporal",
+    "difficulty": "medium"
+  },
+  {
+    "question_id": "q_med_01",
+    "video_id": "example_medium_01",
+    "question": "How many times does the vehicle come to a full stop?",
+    "type": "counting",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,4 @@
+# Paths are relative to video_benchmark/data/
+queries_file: queries/queries.json
+ground_truth_file: ground_truth/answers.json
+video_catalog_file: metadata/video_info.json

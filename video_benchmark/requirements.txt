@@ -1,0 +1,7 @@
+# Install from repo root venv or: pip install -r video_benchmark/requirements.txt
+python-dotenv>=1.1.0
+PyYAML>=6.0.1
+requests>=2.31.0
+tqdm>=4.66.1
+anthropic>=0.40.0
+google-genai>=1.50.0

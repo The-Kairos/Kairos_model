@@ -1,0 +1,61 @@
+# Enable systems to run in one benchmark pass (run_benchmark.py --systems all uses this list).
+enabled:
+  - mock
+  - kairos_recorded
+  - google_gemini
+  - twelve_labs
+  - sentrysearch
+
+systems:
+  mock:
+    class: MockSystem
+    module: systems.mock
+    params:
+      echo_prefix: "[mock] "
+
+  kairos_recorded:
+    class: KairosRecordedSystem
+    module: systems.kairos_recorded
+    params:
+      recording_file: datasets/young_sheldon/kairos_recording_flat.json
+
+  google_gemini:
+    class: GoogleGeminiSystem
+    module: systems.google_gemini
+    params:
+      model: gemini-2.5-flash
+      vertexai: true
+      env_api_key: GEMINI_API_KEY
+
+  twelve_labs:
+    class: TwelveLabsSystem
+    module: systems.twelve_labs
+    params:
+      env_api_key: TWELVE_LABS_API_KEY
+      base_url: https://api.twelvelabs.io/v1.3
+      index_id_env: TWELVE_LABS_INDEX_ID
+
+  sentrysearch:
+    class: HttpJsonSystem
+    module: systems.http_json
+    params:
+      name: sentrysearch
+      base_url_env: SENTRYSEARCH_BASE_URL
+      default_base_url: http://127.0.0.1:8000
+      upload:
+        method: POST
+        path: /process
+        file_field: video
+        response_id_path: runId
+        extra_form_fields:
+          videoId: "{video_id}"
+          chatId: "{chat_id}"
+      ask:
+        method: POST
+        path: /ask
+        json_body_template:
+          videoId: "{remote_video_id}"
+          question: "{question}"
+        response_text_path: answer
+      env_chat_id: SENTRYSEARCH_CHAT_ID
+      default_chat_id: "000000000000000000000000"

@@ -1,0 +1,17 @@
+llm_judge:
+  provider: anthropic
+  model: claude-3-5-sonnet-20241022
+  env_api_key: ANTHROPIC_API_KEY
+  temperature: 0
+  max_tokens: 1024
+
+# Optional: when model responses include ranked segment ids aligned with gold relevant_segment_ids
+retrieval:
+  compute_recall_at_k: true
+  k_values: [1, 3, 5]
+
+metrics:
+  primary: answer_accuracy
+  latency_summary: true
+  per_question_type: true
+  per_video_category: true

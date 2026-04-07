@@ -1,0 +1,13 @@
+outputs/raw/**/*.json
+outputs/evaluated/**/*.json
+outputs/logs/*
+!outputs/raw/.gitkeep
+!outputs/evaluated/.gitkeep
+!outputs/logs/.gitkeep
+.env
+__pycache__/
+*.pyc
+data/videos/**/*.mp4
+data/videos/**/*.mkv
+data/videos/**/*.webm
+data/videos/**/*.mov
