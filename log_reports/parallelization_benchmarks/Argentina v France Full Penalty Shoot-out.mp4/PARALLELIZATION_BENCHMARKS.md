@@ -8,7 +8,12 @@
 | 2026-04-06 14:31:01 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 277.033 | 2.559 | 141.449 | 84.730 | 30.992 | 12.798 | 4.107 |
 | 2026-04-06 14:36:51 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 206.972 | 2.505 | 96.794 | 78.893 | 14.636 | 9.454 | 4.294 |
 | 2026-04-06 14:43:02 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 222.339 | 2.531 | 96.699 | 79.686 | 26.917 | 12.064 | 4.047 |
-
+| 2026-04-06 15:39:04 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 238.962 | 2.563 | 99.372 | 95.045 | 21.786 | 15.618 | 4.177 |
+| 2026-04-06 16:16:21 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 219.780 | 2.531 | 99.176 | 86.275 | 15.266 | 11.968 | 4.158 |
+| 2026-04-06 16:52:28 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 312.253 | 2.510 | 99.872 | 176.435 | 15.714 | 13.126 | 4.187 |
+| 2026-04-06 16:59:03 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 230.812 | 2.520 | 99.446 | 99.506 | 15.065 | 9.679 | 4.197 |
+| 2026-04-06 17:05:20 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 219.944 | 2.491 | 99.776 | 81.495 | 19.445 | 12.225 | 4.103 |
+| 2026-04-06 19:09:50 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 235.286 | 2.523 | 100.320 | 93.626 | 22.756 | 11.500 | 4.157 |
 
 ## 2026-04-06 07:13:01 UTC | Argentina v France Full Penalty Shoot-out.mp4 | semi_parallel
 
@@ -208,3 +213,210 @@
 | branch_blip_total | 66.080 |
 | branch_yolo_total | 96.699 |
 | branch_audio_total | 63.368 |
+
+## --- Implementing a Less Seek-heavy YOLO Frame Sampling Strategy (Sequential) ---
+
+## 2026-04-06 15:39:04 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel
+
+- Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `238.962` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 2.563 |
+| save_clips | - |
+| sample_frames | 6.729 |
+| caption_frames | 92.637 |
+| sample_fps | 7.548 |
+| detect_object_yolo | 33.163 |
+| audio_scan | 43.992 |
+| asr_timings | 32.548 |
+| ast_timings | 15.235 |
+| describe_scenes | 95.045 |
+| summarize_scenes | 21.786 |
+| synthesize_synopsis | 15.618 |
+| make_embedding | 4.177 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 99.372 |
+| branch_yolo_total | 40.717 |
+| branch_audio_total | 76.549 |
+
+## 2026-04-06 16:16:21 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel
+
+- Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `219.780` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 2.531 |
+| save_clips | - |
+| sample_frames | 6.785 |
+| caption_frames | 92.384 |
+| sample_fps | 7.614 |
+| detect_object_yolo | 32.955 |
+| audio_scan | 44.868 |
+| asr_timings | 31.863 |
+| ast_timings | 15.319 |
+| describe_scenes | 86.275 |
+| summarize_scenes | 15.266 |
+| synthesize_synopsis | 11.968 |
+| make_embedding | 4.158 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 99.176 |
+| branch_yolo_total | 40.784 |
+| branch_audio_total | 76.740 |
+
+## --- After tuning scene description workers & description + LLM cooldown
+
+### workers=8, cooldown=5
+
+## 2026-04-06 16:52:28 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel
+
+- Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `312.253` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 2.510 |
+| save_clips | - |
+| sample_frames | 6.813 |
+| caption_frames | 93.052 |
+| sample_fps | 7.606 |
+| detect_object_yolo | 33.302 |
+| audio_scan | 44.779 |
+| asr_timings | 32.629 |
+| ast_timings | 14.999 |
+| describe_scenes | 176.435 |
+| summarize_scenes | 15.714 |
+| synthesize_synopsis | 13.126 |
+| make_embedding | 4.187 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 99.872 |
+| branch_yolo_total | 40.915 |
+| branch_audio_total | 77.418 |
+
+
+### workers=8, cooldown=1
+
+## 2026-04-06 16:59:03 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel
+
+- Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `230.812` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 2.520 |
+| save_clips | - |
+| sample_frames | 6.759 |
+| caption_frames | 92.679 |
+| sample_fps | 7.544 |
+| detect_object_yolo | 33.058 |
+| audio_scan | 44.530 |
+| asr_timings | 31.771 |
+| ast_timings | 14.978 |
+| describe_scenes | 99.506 |
+| summarize_scenes | 15.065 |
+| synthesize_synopsis | 9.679 |
+| make_embedding | 4.197 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 99.446 |
+| branch_yolo_total | 40.608 |
+| branch_audio_total | 76.310 |
+
+
+### workers=10, cooldown=1
+
+## 2026-04-06 17:05:20 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel
+
+- Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `219.944` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 2.491 |
+| save_clips | - |
+| sample_frames | 6.736 |
+| caption_frames | 93.034 |
+| sample_fps | 7.648 |
+| detect_object_yolo | 33.980 |
+| audio_scan | 44.300 |
+| asr_timings | 31.834 |
+| ast_timings | 15.153 |
+| describe_scenes | 81.495 |
+| summarize_scenes | 19.445 |
+| synthesize_synopsis | 12.225 |
+| make_embedding | 4.103 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 99.776 |
+| branch_yolo_total | 41.634 |
+| branch_audio_total | 76.144 |
+
+
+### --- One more batch size 4 run just to test again
+
+## 2026-04-06 19:09:50 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel
+
+- Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `235.286` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 2.523 |
+| save_clips | - |
+| sample_frames | 6.748 |
+| caption_frames | 93.565 |
+| sample_fps | 7.649 |
+| detect_object_yolo | 33.242 |
+| audio_scan | 43.521 |
+| asr_timings | 32.005 |
+| ast_timings | 14.888 |
+| describe_scenes | 93.626 |
+| summarize_scenes | 22.756 |
+| synthesize_synopsis | 11.500 |
+| make_embedding | 4.157 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 100.320 |
+| branch_yolo_total | 40.897 |
+| branch_audio_total | 75.536 |
