@@ -1,0 +1,1660 @@
+{
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:04.004",
+      "start_seconds": 0.0,
+      "end_seconds": 4.0040000000000004,
+      "duration_seconds": 4.0040000000000004,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a cartoon character sitting at a table with his head down",
+        "a video frame of sponge sponge and his friends in the house with a flashlight",
+        "a video frame of sponge sponge sponge is sitting at the table, while someone stands next to him"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Okay, Mr. Essay, I say, prepare to be written!",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene depicts SpongeBob SquarePants preparing to write an essay at a table. He appears focused and determined, as indicated by his dialogue. The setting is indoors, likely SpongeBob’s home, based on the context of the video name and prior scene captions. There is some inconsistency in the captions regarding additional characters and objects, but the audio confirms SpongeBob is alone and speaking to himself.\n\nCharacters:\nName: SpongeBob SquarePants  \nRole: Main character, attempting to write an essay  \n\nKey Dialogue:  \nSpeaker: SpongeBob SquarePants  \nCause: SpongeBob is addressing his essay-writing task with enthusiasm, saying, \"Okay, Mr. Essay, I say, prepare to be written!\"  \n\nCausal Relationships:  \nEmotion or action: Determined and focused  \nCause: SpongeBob is motivated to begin writing his essay, as evidenced by his dialogue.  \nEvidence: Audio transcript confirms his intent and tone.  \n\nObjects and Setting:  \nObject or environment: Table and indoor setting  \nContext relevance: SpongeBob is seated at the table, preparing to write, which is central to the scene's focus on his essay-writing task.  \n\nCross-Scene Continuity:  \nOngoing conflict: SpongeBob’s struggle to complete his essay may be a recurring theme in the video.  \nCharacter development: SpongeBob demonstrates initial enthusiasm and determination, possibly setting up a comedic or challenging essay-writing journey.  "
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:04.004",
+      "end_timecode": "00:00:06.273",
+      "start_seconds": 4.0040000000000004,
+      "end_seconds": 6.2729333333333335,
+      "duration_seconds": 2.268933333333333,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of sponge sponge sponge is sitting at the desk with a piece of paper in his hand",
+        "a video frame of sponge and his friend sponge, who is in the background",
+        "a video frame of sponge sponge and his friend sponge is trying to take him out"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "mouse",
+          "confidence_avg": 0.819,
+          "start_frame": 5,
+          "end_frame": 5,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Okay, Mr. Essay, I say, prepare to be written!",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene shows SpongeBob SquarePants sitting at his desk, holding a piece of paper, as he prepares to write an essay. He confidently declares, \"Okay, Mr. Essay, I say, prepare to be written!\" The scene emphasizes his determination and readiness to begin his task, though no actual writing occurs yet. The setting appears calm, with no significant background activity or interruptions.\n\nCharacters:  \nName: SpongeBob SquarePants  \nRole: Main character, attempting to write an essay  \n\nKey Dialogue:  \nSpeaker: SpongeBob SquarePants  \nCause: SpongeBob is preparing himself mentally and verbally to start writing his essay.  \n\nCausal Relationships:  \nEmotion or action: Confidence and focus  \nCause: SpongeBob's verbal declaration of readiness to begin writing  \nEvidence: Audio transcript of his statement  \n\nObjects and Setting:  \nObject or environment: Desk and paper  \nContext relevance: Indicates SpongeBob's workspace and his intention to write an essay  \n\nCross-Scene Continuity:  \nOngoing conflict: SpongeBob's effort to write an essay, potentially facing challenges in the process  \nCharacter development: SpongeBob's initial confidence and determination to tackle the task at hand"
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:06.273",
+      "end_timecode": "00:00:10.143",
+      "start_seconds": 6.2729333333333335,
+      "end_seconds": 10.143466666666667,
+      "duration_seconds": 3.8705333333333334,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of the blue and green stripes on the screen, with text that reads ' what ' s that? '",
+        "a video frame of the dragon with an image of the yellow sword and the green dragon",
+        "a video frame of a man in a hat, with the words in the middle and the image on the"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "scissors",
+          "confidence_avg": 0.84,
+          "start_frame": 5,
+          "end_frame": 5,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.917,
+          "start_frame": 14,
+          "end_frame": 14,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "",
+      "audio_natural": "music (conf=0.43)",
+      "llm_scene_description": "This scene appears to be abstract and disconnected from the previous narrative involving SpongeBob writing an essay. The visual evidence includes captions describing colorful stripes, a dragon, and a man in a hat, but these elements do not align with the established storyline. The audio track contains faint music, but no dialogue or sounds directly related to the essay-writing context. The scene lacks clear continuity with SpongeBob's earlier determination to write his essay.\n\nCharacters:\nName: Unclear (no identifiable characters from the SpongeBob narrative)\nRole: Not applicable in this scene\n\nKey Dialogue:\nSpeaker: None\nCause: No dialogue is present in this scene.\n\nCausal Relationships:\nEmotion or action: Unclear\nCause: The scene lacks identifiable characters or actions tied to emotions.\nEvidence: Visual captions and audio provide no explicit emotional cues.\n\nObjects and Setting:\nObject or environment: Blue and green stripes, a dragon, a man in a hat\nContext relevance: These visuals appear unrelated to the essay-writing narrative, suggesting a possible shift in focus or an abstract interlude.\n\nCross-Scene Continuity:\nOngoing conflict: SpongeBob's essay-writing task is not referenced or advanced in this scene.\nCharacter development: No progression or insight into SpongeBob's determination or actions. This scene does not contribute to the established storyline."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:10.143",
+      "end_timecode": "00:00:19.353",
+      "start_seconds": 10.143466666666667,
+      "end_seconds": 19.352666666666668,
+      "duration_seconds": 9.209200000000001,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of spongenan ' s music and the song from spongenans",
+        "a video frame of sponge and patrick the cat from sponge and the cat",
+        "a video frame of spongenan from the sponge spongenan cartoon series, which is featured in the video"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "chair",
+          "confidence_avg": 0.936,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "I'm doing it! Yeah! In some of these! Almost there and...",
+      "audio_natural": "speech (conf=0.50), music (conf=0.70)",
+      "llm_scene_description": "This scene features SpongeBob expressing excitement and determination as he appears to be actively engaged in a task, possibly writing his essay. The audio reveals SpongeBob exclaiming phrases like \"I'm doing it! Yeah! In some of these! Almost there and...\" which suggests he is making progress and feeling motivated. The visual captions are inconsistent and do not clearly align with the audio evidence, but the stationary chair in the frame may indicate a domestic or study setting.\n\nCharacters:\nName: SpongeBob SquarePants  \nRole: Main character, attempting to write an essay.\n\nKey Dialogue:\nSpeaker: SpongeBob  \nCause: SpongeBob is actively working on his essay and vocalizing his progress, showing enthusiasm and determination.\n\nCausal Relationships:\nEmotion or action: Excitement and determination  \nCause: SpongeBob is making progress on his essay, as indicated by his dialogue.  \nEvidence: Audio transcript of SpongeBob's speech.\n\nObjects and Setting:\nObject or environment: Chair  \nContext relevance: Suggests a study or domestic environment where SpongeBob is working on his essay.\n\nCross-Scene Continuity:\nOngoing conflict: SpongeBob's struggle to write his essay continues, with moments of determination and progress.  \nCharacter development: SpongeBob demonstrates perseverance and optimism as he tackles the challenge of completing his essay."
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:19.353",
+      "end_timecode": "00:00:29.029",
+      "start_seconds": 19.352666666666668,
+      "end_seconds": 29.029,
+      "duration_seconds": 9.676333333333332,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a plane flying through the sky with clouds in the background",
+        "a video frame of sponge sponge, from nickelodeon and sponge is seen on this screen",
+        "a video frame of spongebok holding a blank paper while sitting in front of a large object"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 5,
+          "label": "suitcase",
+          "confidence_avg": 0.826,
+          "start_frame": 13,
+          "end_frame": 16,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.558,
+          "net_displacement": 0.412,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Done. Now let's see how it looks so far. The... Uh... Time!",
+      "audio_natural": "speech (conf=0.43), music (conf=0.66), zipper (clothing) (conf=0.33)",
+      "llm_scene_description": "This scene shows SpongeBob sitting at a desk holding a blank piece of paper, seemingly reflecting on his progress while attempting to write an essay. His tone shifts from confidence to concern as he exclaims, \"Done. Now let's see how it looks so far. The... Uh... Time!\" The audio suggests a mix of speech, background music, and faint zipper sounds, indicating a moment of realization or distraction. The visual captions mention a plane flying earlier, but this detail seems unrelated to SpongeBob's current activity.\n\nCharacters:\nName: SpongeBob SquarePants  \nRole: Protagonist attempting to write an essay  \n\nKey Dialogue:\nSpeaker: SpongeBob  \nCause: SpongeBob is reviewing his progress on the essay and appears to realize he has not made significant progress.  \n\nCausal Relationships:\nEmotion or action: Concern or mild panic  \nCause: SpongeBob realizes the time and possibly his lack of progress on the essay.  \nEvidence: Audio transcript of SpongeBob's dialogue expressing concern about \"the time.\"  \n\nObjects and Setting:\nObject or environment: Blank paper  \nContext relevance: Represents SpongeBob's incomplete essay and his struggle to make progress.  \n\nCross-Scene Continuity:\nOngoing conflict: SpongeBob's challenge in writing his essay and maintaining focus.  \nCharacter development: SpongeBob's initial confidence transitions into concern as he struggles to complete his task."
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 1784,
+      "chunk_len": 1,
+      "narrative": "### Chronological Summary of Scenes 0 to 4 (00:00:00.000 to 00:00:29.029)\n\n1. **00:00:00.000**: SpongeBob SquarePants is seated at a table indoors, preparing to write an essay. He appears focused and determined, declaring enthusiastically, \"Okay, Mr. Essay, I say, prepare to be written!\" The setting is calm, and SpongeBob is alone.\n\n2. **00:00:04.004**: SpongeBob, now at his desk holding a piece of paper, reiterates his readiness to begin writing with the same confident declaration, \"Okay, Mr. Essay, I say, prepare to be written!\" The scene emphasizes his determination, though no writing occurs yet.\n\n3. **00:00:06.273**: An abstract and unrelated scene interrupts the narrative. Visuals include colorful stripes, a dragon, and a man in a hat, with faint background music but no dialogue. This scene lacks continuity with SpongeBob's essay-writing task.\n\n4. **00:00:10.143**: SpongeBob expresses excitement and determination, exclaiming phrases like \"I'm doing it! Yeah! In some of these! Almost there and...\" This suggests he is making progress on his essay. The setting remains domestic, with a stationary chair visible.\n\n5. **00:00:19.353**: SpongeBob, holding a blank piece of paper at his desk, shifts from confidence to concern. He exclaims, \"Done. Now let's see how it looks so far. The... Uh... Time!\" The audio suggests a mix of realization and distraction, as he notices his lack of progress. Background music and faint zipper sounds accompany this moment.\n\n### Key Themes and Continuity:\n- SpongeBob begins with enthusiasm and determination to write his essay.\n- An unrelated abstract scene briefly disrupts the narrative.\n- SpongeBob's confidence transitions into concern as he struggles to make progress, highlighting the ongoing challenge of completing his essay."
+    }
+  ],
+  "synopsis": {
+    "chat_name": "SpongeBob Essay Struggles",
+    "summary": "SpongeBob starts writing an essay with enthusiasm but faces distractions and realizes he has made no progress.",
+    "video_highlights": [
+      {
+        "start": "00:00:00",
+        "end": "00:00:04",
+        "highlight": "SpongeBob declares enthusiastically, \"Okay, Mr. Essay, I say, prepare to be written!\" while seated indoors."
+      },
+      {
+        "start": "00:00:06",
+        "end": "00:00:10",
+        "highlight": "An abstract scene with colorful stripes, a dragon, and a man in a hat interrupts the essay narrative."
+      },
+      {
+        "start": "00:00:10",
+        "end": "00:00:19",
+        "highlight": "SpongeBob exclaims phrases like \"I'm doing it! Yeah! Almost there!\" suggesting progress on his essay."
+      },
+      {
+        "start": "00:00:19",
+        "end": "00:00:29",
+        "highlight": "SpongeBob shifts from confidence to concern, realizing his paper is still blank despite his efforts."
+      }
+    ],
+    "video_timeline": [
+      {
+        "timestamp": "00:00:00",
+        "event": "SpongeBob Prepares"
+      },
+      {
+        "timestamp": "00:00:04",
+        "event": "Determined Declaration"
+      },
+      {
+        "timestamp": "00:00:06",
+        "event": "Abstract Disruption"
+      },
+      {
+        "timestamp": "00:00:10",
+        "event": "Progress Excitement"
+      },
+      {
+        "timestamp": "00:00:19",
+        "event": "Realization"
+      }
+    ],
+    "suggested_clips": [
+      {
+        "timestamp": "00:00:00",
+        "description": "SpongeBob enthusiastically declares his readiness to write the essay, setting a determined and humorous tone for the narrative."
+      },
+      {
+        "timestamp": "00:00:04",
+        "description": "SpongeBob reiterates his confident declaration, emphasizing his focus and determination to begin writing."
+      },
+      {
+        "timestamp": "00:00:06.273",
+        "description": "An abstract and visually striking scene with colorful stripes, a dragon, and a man in a hat creates a surreal and unexpected interruption."
+      },
+      {
+        "timestamp": "00:00:10.143",
+        "description": "SpongeBob excitedly exclaims progress on his essay, adding energy and humor to the narrative as he appears to be making headway."
+      },
+      {
+        "timestamp": "00:00:19.353",
+        "description": "SpongeBob shifts from confidence to concern as he realizes his lack of progress, creating a relatable and comedic moment."
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is happening in the video?",
+        "answer": "SpongeBob is attempting to write an essay but struggles to make progress despite his initial enthusiasm."
+      },
+      {
+        "question": "What are the key events?",
+        "answer": "SpongeBob declares his readiness to write, an abstract scene interrupts, and he realizes he hasn't written anything."
+      },
+      {
+        "question": "What are the key actions and who performed them?",
+        "answer": "SpongeBob prepares to write, expresses determination, and later shows concern over his lack of progress."
+      },
+      {
+        "question": "What are the main conflicts and problems encountered?",
+        "answer": "SpongeBob struggles with starting his essay despite his initial confidence."
+      },
+      {
+        "question": "Who is the main character? Describe their journey.",
+        "answer": "SpongeBob is the main character, starting with enthusiasm but becoming concerned as he fails to make progress."
+      },
+      {
+        "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
+        "answer": "SpongeBob: A yellow sponge, determined but distracted, trying to write an essay. Others: A dragon and a man in a hat appear briefly in the abstract scene but lack clear roles."
+      },
+      {
+        "question": "What are some significant quotes from the video and who said them?",
+        "answer": "\"Okay, Mr. Essay, I say, prepare to be written!\" - SpongeBob. \"Done. Now let's see how it looks so far. The... Uh... Time!\" - SpongeBob."
+      },
+      {
+        "question": "What is the setting? Did it change? How is it related to the story?",
+        "answer": "The setting is SpongeBob's domestic space, emphasizing his solitary struggle. It briefly shifts to an abstract scene unrelated to the essay."
+      },
+      {
+        "question": "How did the video start? Explain the start.",
+        "answer": "SpongeBob is seated at a table, confidently preparing to write his essay."
+      },
+      {
+        "question": "How did the video end? Explain the ending.",
+        "answer": "SpongeBob realizes he has made no progress on his essay, holding a blank piece of paper."
+      },
+      {
+        "question": "What objects are central to the video and when do they appear?",
+        "answer": "A blank piece of paper appears throughout as SpongeBob's focus for writing his essay."
+      },
+      {
+        "question": "What is the most important thing said or heard?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What is different at the end vs the beginning?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What type of video is this?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What is the goal or intent or theme of the video?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "List the moods and tones present, explain each one.",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What context is missing or assumed? What would require outside knowledge?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What are key visual descriptions?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What are key audio descriptions?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What are prominent visual cues and audio cues noticed throughout the video?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "Does the video contain any live action, animation, or special effects?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What is SpongeBob's initial attitude toward writing the essay?",
+        "answer": "He is enthusiastic and determined, confidently declaring his readiness to begin."
+      },
+      {
+        "question": "Does SpongeBob make any progress on the essay by the end of these scenes?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What interrupts SpongeBob's essay-writing task?",
+        "answer": "An abstract scene with colorful stripes, a dragon, and a man in a hat."
+      },
+      {
+        "question": "What does SpongeBob say when he checks his progress?",
+        "answer": "\"Done. Now let's see how it looks so far. The... Uh... Time!\""
+      },
+      {
+        "question": "Is SpongeBob alone during these scenes?",
+        "answer": "Yes, he is alone."
+      },
+      {
+        "question": "What is the setting for SpongeBob's essay-writing?",
+        "answer": "Indoors, at a desk in a calm domestic environment."
+      },
+      {
+        "question": "Does SpongeBob write anything on the paper during these scenes?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What emotions does SpongeBob display by the end of the scenes?",
+        "answer": "He shifts from confidence to concern."
+      },
+      {
+        "question": "What sounds are heard during SpongeBob's realization moment?",
+        "answer": "Background music and faint zipper sounds."
+      },
+      {
+        "question": "Does the abstract scene have any dialogue?",
+        "answer": "No, it has faint background music but no dialogue."
+      },
+      {
+        "question": "What does SpongeBob exclaim during his moment of excitement?",
+        "answer": "\"I'm doing it! Yeah! In some of these! Almost there and...\""
+      },
+      {
+        "question": "Does SpongeBob's determination change throughout the scenes?",
+        "answer": "Yes, it transitions from determination to concern."
+      },
+      {
+        "question": "What visual elements are present in the abstract scene?",
+        "answer": "Colorful stripes, a dragon, and a man in a hat."
+      },
+      {
+        "question": "Does the narrative explain why the abstract scene occurs?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What does SpongeBob hold in his hands during the final scene?",
+        "answer": "A blank piece of paper."
+      }
+    ]
+  },
+  "rag_embedding": {
+    "rag_path": "_processed/69d5ff5a83c9e060fd8189e8/rag_embedding.json",
+    "context_count": 10,
+    "embedding_dim": 3072,
+    "provider": "gemini",
+    "model": "gemini-embedding-001"
+  },
+  "benchmark": {
+    "timestamp": "2026-04-08 07:11:33 UTC",
+    "execution_mode": "semi_parallel",
+    "debug": false,
+    "quiet": true,
+    "low_mem_mode": false,
+    "embedding_provider": "gemini",
+    "embedding_model": "gemini-embedding-001",
+    "total_wall_time_sec": 63.64162
+  },
+  "run_log": {
+    "run_description": "Production pipeline benchmark run.",
+    "video_path": "/var/tmp/kairos/jobs/58b13e6f-8035-4be8-bd4e-2b755e821fc5/SpongeBob_SquarePants_-_Writing_Essay_-_Some_of_These_-_Meme_Source.mp4",
+    "video_length": null,
+    "total_process_sec": 93.6867,
+    "scene_number": 5,
+    "start_process": "2026-04-08 07:10:29",
+    "end_process": "2026-04-08 07:11:33",
+    "computer": {
+      "os_info": {
+        "os": "Linux 5.10.0-34-cloud-amd64",
+        "os_version": "#1 SMP Debian 5.10.234-1 (2025-02-24)",
+        "machine_type": "x86_64",
+        "hostname": "kairos-deployment",
+        "python_version": "3.12.13"
+      },
+      "cpu_info": {
+        "cpu_model": "",
+        "cpu_physical_cores": 24,
+        "cpu_logical_cores": 48,
+        "cpu_frequency_MHz": {
+          "current": 2200.164000000001,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "ram_info": {
+        "total_RAM_GB": 188.71,
+        "available_RAM_GB": 181.87,
+        "used_RAM_GB": 6.84,
+        "RAM_usage_percent": 3.6
+      },
+      "disk_info": {
+        "disk_total_GB": 1007.68,
+        "disk_used_GB": 76.02,
+        "disk_free_GB": 890.59,
+        "disk_usage_percent": 7.9
+      },
+      "gpu_info": {
+        "gpu_model": null
+      }
+    },
+    "params": {
+      "improve_motion_detection": false,
+      "prioritize_speed": false,
+      "process_static_videos": false,
+      "pyscene_threshold": 27,
+      "pyscene_shortest": 2,
+      "frames_per_scene": 3,
+      "frame_resolution": 320,
+      "blip_start_prompt": "a video frame of",
+      "blip_caption_len": 50,
+      "blip_min_length": 15,
+      "blip_num_beams": 1,
+      "blip_do_sample": true,
+      "blip_top_p": 0.85,
+      "blip_temperature": 0.65,
+      "blip_length_penalty": 1.0,
+      "blip_no_repeat_ngram_size": 3,
+      "blip_repetition_penalty": 1.1,
+      "blip_batch_size": 4,
+      "yolo_conf_thres": 0.8,
+      "yolo_iou_thres": 0.5,
+      "ast_target_sr": 16000,
+      "asr_model_size": "medium",
+      "asr_use_vad": true,
+      "asr_target_sr": 16000,
+      "llm_scene_history": 5,
+      "llm_chunk_len": 20000,
+      "llm_summary_len": 50000,
+      "llm_cooldown_sec": 0,
+      "rag_top_k_context": 10,
+      "execution_mode": "semi_parallel",
+      "debug": false,
+      "quiet": true,
+      "embedding_provider": "gemini",
+      "embedding_model": "gemini-embedding-001",
+      "low_mem_mode": false,
+      "blip_device": "cuda:0",
+      "yolo_device": "cuda:1"
+    },
+    "steps": {
+      "get_scene_list": {
+        "step": "get_scene_list_log",
+        "wall_time_sec": 0.30882,
+        "cpu_time_sec": 1.26637,
+        "ram_before_MB": 633,
+        "ram_after_MB": 719,
+        "ram_used_MB": 86,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 555,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 555,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 555,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 555,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "sample_frames": {
+        "step": "sample_frames_log",
+        "wall_time_sec": 0.29669,
+        "cpu_time_sec": 1.51232,
+        "ram_before_MB": 719,
+        "ram_after_MB": 741,
+        "ram_used_MB": 22,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "caption_frames": {
+        "step": "caption_frames_log",
+        "wall_time_sec": 11.16125,
+        "cpu_time_sec": 14.62079,
+        "ram_before_MB": 741,
+        "ram_after_MB": 2077,
+        "ram_used_MB": 1336,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0078125,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1903,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 28,
+            "mem_util_percent": 19
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          1010,
+          0,
+          0,
+          0
+        ]
+      },
+      "branch_blip_total": {
+        "step": "branch_blip_total",
+        "wall_time_sec": 11.46274
+      },
+      "sample_fps": {
+        "step": "sample_fps_log",
+        "wall_time_sec": 0.35779,
+        "cpu_time_sec": 1.33265,
+        "ram_before_MB": 2077,
+        "ram_after_MB": 2119,
+        "ram_used_MB": 42,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1903,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1903,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "detect_object_yolo": {
+        "step": "detect_object_yolo_log",
+        "wall_time_sec": 1.94992,
+        "cpu_time_sec": 3.50694,
+        "ram_before_MB": 2119,
+        "ram_after_MB": 2487,
+        "ram_used_MB": 368,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0078125,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1903,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 60,
+            "mem_util_percent": 51
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          912,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          1754,
+          0,
+          0,
+          0
+        ]
+      },
+      "branch_yolo_total": {
+        "step": "branch_yolo_total",
+        "wall_time_sec": 2.31249
+      },
+      "audio_scan": {
+        "step": "scan_audio_log",
+        "wall_time_sec": 7.60045,
+        "cpu_time_sec": 7.60236,
+        "ram_before_MB": 2487,
+        "ram_after_MB": 2941,
+        "ram_used_MB": 454,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          912,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          912,
+          0,
+          0,
+          0
+        ]
+      },
+      "asr_timings": {
+        "step": "extract_speech_log",
+        "wall_time_sec": 3.92114,
+        "cpu_time_sec": 0.68977,
+        "ram_before_MB": 2941,
+        "ram_after_MB": 2952,
+        "ram_used_MB": 11,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.88671875,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "ast_timings": {
+        "step": "extract_sounds_log",
+        "wall_time_sec": 9.50806,
+        "cpu_time_sec": 0.08215,
+        "ram_before_MB": 2952,
+        "ram_after_MB": 2952,
+        "ram_used_MB": 0,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "branch_audio_total": {
+        "step": "branch_audio_total",
+        "wall_time_sec": 21.03735
+      },
+      "describe_scenes": {
+        "step": "describe_scenes_log",
+        "wall_time_sec": 7.96368,
+        "cpu_time_sec": 0.08874,
+        "ram_before_MB": 2952,
+        "ram_after_MB": 2952,
+        "ram_used_MB": 0,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "summarize_scenes": {
+        "step": "summarize_scenes_log",
+        "wall_time_sec": 6.93083,
+        "cpu_time_sec": 0.02024,
+        "ram_before_MB": 2952,
+        "ram_after_MB": 2953,
+        "ram_used_MB": 1,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "synthesize_synopsis": {
+        "step": "synthesize_synopsis_log",
+        "wall_time_sec": 7.94168,
+        "cpu_time_sec": 0.06463,
+        "ram_before_MB": 2953,
+        "ram_after_MB": 2953,
+        "ram_used_MB": 0,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.01953125,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "make_embedding": {
+        "step": "make_embedding_log",
+        "wall_time_sec": 0.93381,
+        "cpu_time_sec": 10.03583,
+        "ram_before_MB": 2953,
+        "ram_after_MB": 2993,
+        "ram_used_MB": 40,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.953125,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1779,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  }
+}

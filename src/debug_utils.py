@@ -189,7 +189,10 @@ def categorize_length(seconds: float) -> str:
     return "extra"
 
 
-def make_output_dir(video_path: Path, processed_root: Path | str = "processed") -> str:
+def make_output_dir(video_path: Path, processed_root: Path | str = "processed", chat_id: str | None = None) -> str:
+    if chat_id:
+        # Server flow: isolate by chatId so different users don't collide
+        return str(Path(processed_root) / chat_id)
     name = video_path.name
     if name.startswith("."):
         name = name.lstrip(".")

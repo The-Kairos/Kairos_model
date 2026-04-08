@@ -1,0 +1,2914 @@
+{
+  "scenes": [
+    {
+      "scene_index": 0,
+      "start_timecode": "00:00:00.000",
+      "end_timecode": "00:00:10.000",
+      "start_seconds": 0.0,
+      "end_seconds": 10.0,
+      "duration_seconds": 10.0,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of the car that crashed into the home of a man who was trying to steal it",
+        "a video frame of a person in the dark parking lot, and a man standing in the driveway",
+        "a video frame of a street scene at night time with a red light"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.925,
+          "start_frame": 6,
+          "end_frame": 39,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, looping/circling",
+          "path_length": 93.88,
+          "net_displacement": 10.817,
+          "direction_change_var": 3.0561,
+          "relations": []
+        }
+      ],
+      "audio_speech": "You guys should see a time-lapse. We thought the night would end with just us complaining about having to walk.",
+      "audio_natural": "silence (conf=0.70)",
+      "llm_scene_description": "This scene depicts a nighttime incident involving a car crash and two individuals in a residential area. The video begins with a caption suggesting that the car crashed into a home as part of an attempted theft. The setting transitions to a dark parking lot and a driveway, where two people are visible. The audio transcript provides conversational context, indicating that the individuals initially expected a mundane evening involving complaints about walking, but the events took an unexpected turn.\n\nCharacters:\nName: Person 1  \nRole: Likely a witness or participant in the unfolding events, seen moving repeatedly in the parking lot.  \n\nName: Person 2  \nRole: Another individual present in the driveway, possibly connected to the car crash incident.  \n\nKey Dialogue:\nSpeaker: Unclear (audio transcript does not specify speaker).  \nCause: The speaker reflects on the unexpected nature of the night, implying surprise or disbelief at the events.  \n\nCausal Relationships:\nEmotion or action: Surprise and disbelief.  \nCause: The car crash and the unexpected escalation of events.  \nEvidence: Audio transcript mentioning the night not ending as anticipated.  \n\nObjects and Setting:\nObject or environment: Car.  \nContext relevance: Central to the incident, as it crashed into a home during an apparent theft attempt.  \n\nObject or environment: Parking lot and driveway.  \nContext relevance: Locations where the individuals are observed, possibly tied to the aftermath of the crash.  \n\nCross-Scene Continuity:\nOngoing conflict: The attempted theft and subsequent crash create tension and uncertainty about the individuals' roles and intentions.  \nCharacter development: Person 1's repetitive movement and the dialogue suggest they are processing the unexpected events, while Person 2's presence in the driveway may indicate involvement or observation.  "
+    },
+    {
+      "scene_index": 1,
+      "start_timecode": "00:00:10.000",
+      "end_timecode": "00:00:34.000",
+      "start_seconds": 10.0,
+      "end_seconds": 34.0,
+      "duration_seconds": 24.0,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a street scene at night time with the lights on",
+        "a video frame of a white car and a fire hydra in a parking lot",
+        "a video frame of a car driving down a highway at night time with motion bluring"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "person",
+          "confidence_avg": 0.861,
+          "start_frame": 29,
+          "end_frame": 67,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving left, getting closer, moving in a loop",
+          "path_length": 187.2,
+          "net_displacement": 28.133,
+          "direction_change_var": 3.4028,
+          "relations": []
+        }
+      ],
+      "audio_speech": "The tires deflated completely. We're being strong independent women. We don't need no man. The car is parked in the middle of nowhere at the end of the street. This is the maritime place. There's no one here. I plugged this in here. I took the screw off. I remind me not to lose it. I lost it. No, it's here. I filled this up. My dad said even the bike pump that he used for a reach would work",
+      "audio_natural": "silence (conf=0.52)",
+      "llm_scene_description": "Scene omitted due to content filter."
+    },
+    {
+      "scene_index": 2,
+      "start_timecode": "00:00:34.000",
+      "end_timecode": "00:00:36.667",
+      "start_seconds": 34.0,
+      "end_seconds": 36.666666666666664,
+      "duration_seconds": 2.6666666666666643,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of the car involved in the crash on the road in front of a police car",
+        "a video frame of the vehicle that crashed into the side of a car",
+        "a video frame of the car caught in the middle of a crash on the side of the road"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "No, it's here. I filled this up. My dad said even the bike pump that he used for a reach would work",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene captures the aftermath of a car crash on a road, with a police car present nearby. The captions suggest the crash involved multiple vehicles, with one car caught in the middle and another potentially colliding into its side. The audio transcript includes a conversation about filling something up and mentions a bike pump, which may relate to prior scenes discussing tire issues. No sounds of the crash or other environmental audio are present, leaving the exact circumstances of the accident unclear.\n\nCharacters:\nName: Unknown individuals (speakers in audio)\nRole: Possible drivers or passengers involved in the crash.\n\nKey Dialogue:\nSpeaker: Unknown\nCause: Discussion about filling something up and referencing a bike pump, possibly connected to prior tire repair efforts.\n\nCausal Relationships:\nEmotion or action: Uncertainty or confusion about the crash's cause.\nCause: Lack of clear audio or visual evidence explaining the collision.\nEvidence: Captions describe the crash scene, but audio does not directly address it.\n\nObjects and Setting:\nObject or environment: Cars involved in the crash, police car nearby.\nContext relevance: Indicates a traffic incident requiring police presence, possibly linked to prior tire issues.\n\nCross-Scene Continuity:\nOngoing conflict: The crash may connect to earlier scenes involving tire problems and vehicle movement at night.\nCharacter development: The individuals discussing tire repair in prior scenes may now be involved in the crash, suggesting a progression from calm problem-solving to a sudden accident."
+    },
+    {
+      "scene_index": 3,
+      "start_timecode": "00:00:36.667",
+      "end_timecode": "00:00:40.533",
+      "start_seconds": 36.666666666666664,
+      "end_seconds": 40.53333333333333,
+      "duration_seconds": 3.866666666666667,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of the crash on a car shows the driver ' s car in the accident",
+        "a video frame of the vehicle was filmed by a police officer in the bronx borough borough, new york",
+        "a video frame of a white sports car with a camera attached to the front"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 1,
+          "label": "car",
+          "confidence_avg": 0.901,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 2,
+          "label": "person",
+          "confidence_avg": 0.801,
+          "start_frame": 8,
+          "end_frame": 8,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 3,
+          "label": "car",
+          "confidence_avg": 0.847,
+          "start_frame": 12,
+          "end_frame": 12,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 4,
+          "label": "person",
+          "confidence_avg": 0.925,
+          "start_frame": 15,
+          "end_frame": 15,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "No, it's here. I filled this up. My dad said even the bike pump that he used for a reach would work on this. We literally filled it up. We came from there. We went from there. To here. And it's",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene captures a stationary moment involving a white sports car, a police officer, and a second vehicle in what appears to be a post-accident investigation in the Bronx, New York. The white sports car has a camera attached to its front, and the setting suggests the aftermath of a crash, though no active tension or visible damage is emphasized in the visuals. The audio features a conversation about inflating something, possibly a tire, using a bike pump, which seems unrelated to the crash. The tone of the audio is calm and matter-of-fact, with no indication of distress or urgency.\n\nCharacters:  \nName: Police Officer  \nRole: Likely documenting or investigating the crash scene.  \n\nName: Unknown Speaker(s) (from audio)  \nRole: Discussing a prior attempt to inflate a tire, possibly connected to the earlier flat tire incident.  \n\nKey Dialogue:  \nSpeaker: Unknown  \nCause: Discussing the use of a bike pump and a father's advice, likely referencing a prior mechanical issue.  \n\nCausal Relationships:  \nEmotion or action: Calm, explanatory tone in the audio.  \nCause: The conversation focuses on a past event involving a tire, unrelated to the current crash scene.  \nEvidence: Audio transcript detailing the use of a bike pump and a journey from one location to another.  \n\nObjects and Setting:  \nObject or environment: White sports car with a camera attached.  \nContext relevance: The car may be central to the crash investigation, as it is prominently featured in the visuals.  \n\nObject or environment: Police presence.  \nContext relevance: Indicates official involvement, likely due to the crash.  \n\nCross-Scene Continuity:  \nOngoing conflict: The crash and its investigation remain central, though the exact cause and sequence of events are unclear. The audio continues to reference a flat tire issue from earlier scenes, suggesting a possible connection to the events leading up to the crash.  \n\nCharacter development: The unknown speaker(s) maintain a calm demeanor, consistent with their earlier attempts to resolve the flat tire issue independently. The police officer's role as an investigator aligns with their presence in the prior crash scene.  "
+    },
+    {
+      "scene_index": 4,
+      "start_timecode": "00:00:40.533",
+      "end_timecode": "00:00:42.667",
+      "start_seconds": 40.53333333333333,
+      "end_seconds": 42.666666666666664,
+      "duration_seconds": 2.133333333333333,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a man talking on a cell phone at night time",
+        "a video frame of a person dancing in a parking lot with a car driving by",
+        "a video frame of someone flying in the air over an airport at night"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 15,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 2,
+          "start_pos": "middle-right",
+          "end_pos": "middle-center",
+          "movement": "moving left",
+          "path_length": 31.452,
+          "net_displacement": 28.965,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "on this. We literally filled it up. We came from there. We went from there. To here. And it's",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene captures a nighttime sequence involving a man talking on a cell phone while walking, followed by a person dancing in a parking lot as a car drives by. The final frame depicts someone seemingly airborne over an airport at night, though this may be a visual error or misinterpretation. The audio features fragmented dialogue about a journey and filling something up, but its connection to the visuals remains unclear. No distinct sounds or emotional cues are present.\n\nCharacters:\nName: Unnamed man  \nRole: Cell phone user, possibly narrating events.\n\nName: Unnamed dancer  \nRole: Individual dancing in a parking lot, potentially unrelated to the main narrative.\n\nKey Dialogue:\nSpeaker: Unnamed man  \nCause: Reflecting on a journey or series of events, mentioning \"we came from there\" and \"we went from there to here.\"  \n\nCausal Relationships:\nEmotion or action: Movement and narration.  \nCause: The man appears to be recounting a past event or journey, though its significance is unclear.  \nEvidence: Audio transcript referencing a journey and filling something up.\n\nObjects and Setting:\nObject or environment: Parking lot at night.  \nContext relevance: Suggests a casual or transitional location, possibly unrelated to the broader narrative.  \n\nObject or environment: Car driving by.  \nContext relevance: May indicate ongoing activity or movement in the area.\n\nObject or environment: Airport at night (inferred).  \nContext relevance: Likely a visual error, as the airborne figure seems implausible.\n\nCross-Scene Continuity:\nOngoing conflict: The broader narrative involves car accidents and unexpected nighttime events, but this scene's connection to those incidents is unclear.  \nCharacter development: The unnamed man may be a recurring figure reflecting on the events, though his role remains ambiguous."
+    },
+    {
+      "scene_index": 5,
+      "start_timecode": "00:00:42.667",
+      "end_timecode": "00:00:54.133",
+      "start_seconds": 42.666666666666664,
+      "end_seconds": 54.13333333333333,
+      "duration_seconds": 11.466666666666669,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a police car driving down a street at night time",
+        "a video frame of a woman standing on a street at night time and talking on the phone",
+        "a video frame of a man in the car driving a car at night"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 16,
+          "label": "person",
+          "confidence_avg": 0.879,
+          "start_frame": 5,
+          "end_frame": 5,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.891,
+          "start_frame": 9,
+          "end_frame": 45,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer, moving in a loop",
+          "path_length": 158.427,
+          "net_displacement": 19.564,
+          "direction_change_var": 3.5113,
+          "relations": []
+        }
+      ],
+      "audio_speech": "on this. We literally filled it up. We came from there. We went from there. To here. And it's gone down by like 10 psi. We're trying to get to that gas station over there. I don't think that's possible. I'll get it for parking 10. Yeah. And then I'll go to the health center.",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene captures a nighttime moment involving a police car driving down a street, a woman talking on the phone while standing on the street, and a man driving a car. The audio reveals a conversation about a flat tire, efforts to reach a gas station, and logistical challenges. The dialogue suggests frustration or concern about vehicle issues. The setting is dark and urban, with minimal background activity.\n\nCharacters:\nName: Woman on the phone  \nRole: Likely a driver or passenger dealing with a vehicle issue  \n\nName: Man driving the car  \nRole: Driver navigating the situation  \n\nKey Dialogue:\nSpeaker: Unidentified (likely the woman on the phone)  \nCause: The speaker describes a flat tire and the difficulty of reaching a gas station, indicating a stressful situation.  \n\nCausal Relationships:\nEmotion or action: Frustration or concern  \nCause: The flat tire and the perceived inability to reach the gas station  \nEvidence: Explicitly stated in the audio transcript  \n\nObjects and Setting:\nObject or environment: Police car  \nContext relevance: Indicates the presence of law enforcement, though their role in the scene is unclear  \n\nObject or environment: Street at night  \nContext relevance: Establishes the setting as an urban area with limited visibility  \n\nCross-Scene Continuity:\nOngoing conflict: The flat tire issue continues to be a central problem, tying into earlier scenes where vehicle troubles were discussed.  \n\nCharacter development: The woman on the phone appears to be taking an active role in addressing the issue, showing persistence despite the challenges.  "
+    },
+    {
+      "scene_index": 6,
+      "start_timecode": "00:00:54.133",
+      "end_timecode": "00:00:57.733",
+      "start_seconds": 54.13333333333333,
+      "end_seconds": 57.733333333333334,
+      "duration_seconds": 3.6000000000000014,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of an individual wearing a black hoodie with a white logo",
+        "a video frame of a woman standing in front of a car and pointing to the camera",
+        "a video frame of a young girl dancing in front of a car that has been hit by a man"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.864,
+          "start_frame": 0,
+          "end_frame": 12,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting farther",
+          "path_length": 45.974,
+          "net_displacement": 22.477,
+          "direction_change_var": 2.6515,
+          "relations": []
+        }
+      ],
+      "audio_speech": "I'll tell the security that the people will take an hour to get here.",
+      "audio_natural": "silence (conf=0.39)",
+      "llm_scene_description": "This scene shows a woman standing in front of a car, pointing toward the camera, while another individual wearing a black hoodie with a white logo is seen nearby. A girl briefly dances in front of the car, which appears to have been hit by someone. The audio features a statement about informing security that \"the people will take an hour to get here,\" suggesting a delay or waiting period. The atmosphere is tense but calm, with no immediate signs of urgency or distress. The connection between the car damage and the individuals present remains unclear.\n\nCharacters:\nName: Woman in front of car  \nRole: Possibly involved in or reacting to the car incident.\n\nName: Individual in black hoodie  \nRole: Bystander or secondary participant.\n\nName: Dancing girl  \nRole: Unclear, possibly unrelated to the main event.\n\nKey Dialogue:\nSpeaker: Unidentified  \nCause: Informing security about a delay in someone's arrival, potentially related to resolving the car situation.\n\nCausal Relationships:\nEmotion or action: Calm but anticipatory tone in dialogue.  \nCause: Waiting for assistance or resolution.  \nEvidence: Audio transcript about informing security.\n\nObjects and Setting:\nObject or environment: Damaged car  \nContext relevance: Central to the scene, as it may be the cause of the gathering or interaction.\n\nCross-Scene Continuity:\nOngoing conflict: The damaged car and the delay in assistance appear to connect to prior scenes involving car trouble and accidents.  \nCharacter development: The woman in front of the car may be taking a leadership role in managing the situation, while the dancing girl adds an element of distraction or unrelated activity."
+    },
+    {
+      "scene_index": 7,
+      "start_timecode": "00:00:57.733",
+      "end_timecode": "00:01:16.667",
+      "start_seconds": 57.733333333333334,
+      "end_seconds": 76.66666666666667,
+      "duration_seconds": 18.933333333333337,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a man in a car driving down the road, with a blur effect",
+        "a video frame of a car driving down a city street at night time",
+        "a video frame of a woman driving a car at night time, with her hands on the steering wheel"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 17,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 4,
+          "end_frame": 46,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up, getting closer",
+          "path_length": 96.433,
+          "net_displacement": 32.472,
+          "direction_change_var": 0.8486,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Man, hustle. Why do people have to lie? It's a lie. Okay, right now, I'm driving to parking 10. Parking 10. I told Luz to go home. She didn't listen. I don't think I'll ever go home. I will be disrespecting my entire lineage if I go home. Oh, the way you put pressure even. It's softer.",
+      "audio_natural": "music (conf=0.35), silence (conf=0.44)",
+      "llm_scene_description": "This scene depicts a man driving a car at night, expressing frustration and emotional distress through his dialogue. The visuals show a blurred effect in the first frame, followed by a city street at night, and later a woman driving a car. The audio transcript reveals the man discussing his decision to drive to \"Parking 10,\" his dissatisfaction with someone named Luz not listening to him, and his refusal to return home due to a perceived disrespect to his lineage. The tone of his speech suggests inner turmoil and unresolved personal conflict. Background sounds include faint music and silence, contributing to the somber mood.\n\nCharacters:\nName: Unnamed man  \nRole: Driver, emotionally distressed individual  \n\nName: Luz (mentioned in audio)  \nRole: Off-screen character, possibly a close acquaintance or family member  \n\nKey Dialogue:\nSpeaker: Unnamed man  \nCause: Frustration over Luz's actions and his internal struggle about returning home  \n\nCausal Relationships:\nEmotion or action: Frustration and emotional distress  \nCause: Luz's refusal to listen and his personal conflict about returning home  \nEvidence: Explicit statements in the audio transcript  \n\nObjects and Setting:\nObject or environment: Car, city street at night  \nContext relevance: The car serves as the setting for the man's emotional monologue, and the nighttime city street emphasizes the isolation and introspective tone  \n\nCross-Scene Continuity:\nOngoing conflict: The man's frustration and emotional distress may connect to prior scenes involving car accidents and interpersonal disputes. His mention of \"Parking 10\" could tie into earlier discussions about destinations and vehicle-related issues.  \nCharacter development: The man appears increasingly conflicted and emotionally charged, suggesting a deeper narrative about his relationships and decisions."
+    },
+    {
+      "scene_index": 8,
+      "start_timecode": "00:01:16.667",
+      "end_timecode": "00:01:18.933",
+      "start_seconds": 76.66666666666667,
+      "end_seconds": 78.93333333333334,
+      "duration_seconds": 2.2666666666666657,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a person on the street at night time, in a blur",
+        "a video frame of an auto - driven vehicle driving on the street at night",
+        "a video frame of the driver in the car driving on the road at night"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "disrespecting my entire lineage if I go home. Oh, the way you put pressure even. It's softer.",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene shows a man driving a car at night, expressing frustration and disappointment in his dialogue. He reflects on familial obligations and his heritage, feeling disrespected if he returns home without resolving an issue. The visuals depict blurred nighttime street views and a vehicle in motion, though the connection between the man’s emotional state and the visuals is unclear. No significant sounds or external interactions are detected.\n\nCharacters:\nName: Unknown Male Driver  \nRole: Central figure expressing emotional conflict  \n\nKey Dialogue:\nSpeaker: Unknown Male Driver  \nCause: Frustration stemming from familial obligations and perceived disrespect  \n\nCausal Relationships:\nEmotion or action: Frustration and disappointment  \nCause: Concerns about familial respect and unresolved obligations  \nEvidence: Audio transcript explicitly mentions \"disrespecting my entire lineage if I go home\"  \n\nObjects and Setting:\nObject or environment: Nighttime street, auto-driven vehicle  \nContext relevance: Suggests the man is actively traveling, possibly to address his concerns  \n\nCross-Scene Continuity:\nOngoing conflict: The driver’s frustration ties to earlier scenes where emotional conflict and car-related issues were discussed.  \nCharacter development: The driver’s dialogue reveals deeper concerns about heritage and respect, adding complexity to his motivations.  "
+    },
+    {
+      "scene_index": 9,
+      "start_timecode": "00:01:18.933",
+      "end_timecode": "00:01:22.533",
+      "start_seconds": 78.93333333333334,
+      "end_seconds": 82.53333333333333,
+      "duration_seconds": 3.5999999999999943,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a person driving a car at night time in the middle of a street",
+        "a video frame of a car driving in the rain at night time with a man standing next to it",
+        "a video frame of a man driving in a car on the street at night"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 20,
+          "label": "car",
+          "confidence_avg": 0.806,
+          "start_frame": 10,
+          "end_frame": 10,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Oh my god, this is the craziest. This is a nice day. You know, when life is tough, when",
+      "audio_natural": "silence (conf=0.39)",
+      "llm_scene_description": "This scene captures a tense nighttime moment involving a car and a man. The visuals show a car stationary in the middle of a street, with a man either driving or standing nearby. The audio features fragmented speech, with someone exclaiming, \"Oh my god, this is the craziest,\" followed by a reflective comment about life being tough. The scene's atmosphere is quiet, with minimal background noise, and the rain adds to the somber tone. The man's emotional state appears conflicted, possibly overwhelmed by the situation or his thoughts.\n\nCharacters:\nName: Unnamed man  \nRole: Driver or bystander, central figure in the scene  \n\nKey Dialogue:\nSpeaker: Unnamed man  \nCause: The man expresses surprise or disbelief, followed by a philosophical reflection on life's challenges.  \n\nCausal Relationships:\nEmotion or action: Surprise and reflection  \nCause: The man's exclamation suggests he is reacting to an unusual or overwhelming event, though the exact cause is unclear.  \nEvidence: Audio transcript  \n\nObjects and Setting:\nObject or environment: Car on a rainy street at night  \nContext relevance: The car's stationary position and the nighttime rain contribute to the scene's tense and reflective mood.  \n\nCross-Scene Continuity:\nOngoing conflict: The man appears to be grappling with personal or situational challenges, as hinted in previous scenes where he reflects on family, heritage, and obligations.  \nCharacter development: The man continues to display emotional depth, moving from frustration in earlier scenes to a mix of surprise and introspection in this one.  "
+    },
+    {
+      "scene_index": 10,
+      "start_timecode": "00:01:22.533",
+      "end_timecode": "00:01:25.067",
+      "start_seconds": 82.53333333333333,
+      "end_seconds": 85.06666666666666,
+      "duration_seconds": 2.5333333333333314,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a car driving down a city street at night time",
+        "a video frame of a car driving at night time, with motion bluring and the driver blurred",
+        "a video frame of a car ' s front window is shown in this image"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 20,
+          "label": "car",
+          "confidence_avg": 0.833,
+          "start_frame": 4,
+          "end_frame": 4,
+          "start_pos": "top-left",
+          "end_pos": "top-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.937,
+          "start_frame": 10,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Oh my god, this is the craziest. This is a nice day. You know, when life is tough, when",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene captures a nighttime moment where a car is driving down a city street. The visuals show motion blur and a partially obscured view of the driver through the car's front window. The audio features a voice expressing amazement, calling the situation \"the craziest,\" while also describing it as a \"nice day.\" The tone suggests a mix of astonishment and reflective calm, though the exact cause of these emotions is unclear. There are no significant background sounds or immediate action in the scene.\n\nCharacters:\nName: Unknown (Driver)\nRole: Driver of the car, reflective narrator\n\nKey Dialogue:\nSpeaker: Driver\nCause: The driver expresses amazement and reflects on the day, possibly due to an unusual or impactful event, though no specific details are provided.\n\nCausal Relationships:\nEmotion or action: Amazement and reflective calm\nCause: Inferred from the driver's dialogue about the situation being \"the craziest\" yet a \"nice day.\"\nEvidence: Audio transcript of the driver's speech\n\nObjects and Setting:\nObject or environment: Car driving on a city street at night\nContext relevance: The car and nighttime setting establish the scene's atmosphere and suggest a continuation of the ongoing nighttime journey.\n\nCross-Scene Continuity:\nOngoing conflict: The driver’s reflective tone and earlier frustrations suggest an ongoing internal struggle or tension related to personal or situational challenges.\nCharacter development: The driver appears to oscillate between frustration and reflection, hinting at a deeper emotional or situational complexity. This aligns with prior scenes where the driver expressed inner conflict and a sense of obligation."
+    },
+    {
+      "scene_index": 11,
+      "start_timecode": "00:01:25.067",
+      "end_timecode": "00:01:27.733",
+      "start_seconds": 85.06666666666666,
+      "end_seconds": 87.73333333333333,
+      "duration_seconds": 2.6666666666666714,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of an person wearing a scarf and glasses, standing with their head tilted back",
+        "a video frame of a woman in glasses and a scarf, smiling and looking up",
+        "a video frame of a woman singing into her microphone and looking up at the sky"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.933,
+          "start_frame": 0,
+          "end_frame": 10,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up, getting closer",
+          "path_length": 28.165,
+          "net_displacement": 16.99,
+          "direction_change_var": 3.4359,
+          "relations": []
+        }
+      ],
+      "audio_speech": "when life is tough, makes you tough. When don't judge a book, judge the cover. No, wait. No,",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene depicts a woman wearing glasses and a scarf, smiling and looking upward while speaking or singing. Her head is tilted back, and she appears to be performing or expressing herself in a reflective or lighthearted manner. The audio captures her speaking in a playful tone, mixing metaphors and correcting herself mid-sentence, suggesting a moment of levity or self-awareness. There are no significant background sounds or actions, and the setting remains unclear.\n\nCharacters:\nName: Unnamed Woman\nRole: Central character, possibly a performer or reflective individual.\n\nKey Dialogue:\nSpeaker: Unnamed Woman\nCause: The woman says, \"When life is tough, makes you tough. When don't judge a book, judge the cover. No, wait. No,\" in a playful and self-correcting tone, suggesting she is either improvising or reflecting humorously on life.\n\nCausal Relationships:\nEmotion or action: Playful and reflective tone.\nCause: The woman’s dialogue and body language, including her smile and upward gaze, indicate a lighthearted moment of self-expression.\nEvidence: Audio transcript and visual cues of her smiling and looking upward.\n\nObjects and Setting:\nObject or environment: Microphone.\nContext relevance: Suggests the woman may be performing or addressing an audience, though the setting is not explicitly clear.\n\nCross-Scene Continuity:\nOngoing conflict: The broader narrative involves themes of personal reflection, life challenges, and interpersonal dynamics, as seen in prior scenes with other characters.\nCharacter development: The woman’s playful and reflective tone contrasts with the tension and seriousness of earlier scenes, adding a moment of levity and individuality to the unfolding story."
+    },
+    {
+      "scene_index": 12,
+      "start_timecode": "00:01:27.733",
+      "end_timecode": "00:01:33.467",
+      "start_seconds": 87.73333333333333,
+      "end_seconds": 93.46666666666667,
+      "duration_seconds": 5.733333333333334,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a man wearing glasses and a scarf on his neck",
+        "a video frame of a woman wearing a hina with glasses and a headscar",
+        "a video frame of a woman wearing a hijah and singing in front of her"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.924,
+          "start_frame": 0,
+          "end_frame": 22,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting farther",
+          "path_length": 79.236,
+          "net_displacement": 36.397,
+          "direction_change_var": 2.7439,
+          "relations": []
+        }
+      ],
+      "audio_speech": "when life is tough, makes you tough. When don't judge a book, judge the cover. No, wait. No,",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene shows a man wearing glasses and a scarf, followed by a woman wearing glasses and a headscarf. The woman appears to be singing or speaking, though her words are slightly jumbled, suggesting she might be improvising or joking. The audio transcript features a reflective statement about resilience and judgment, though it is delivered with some confusion, indicating possible humor or lightheartedness. The atmosphere is calm, with no significant background sounds or immediate action.\n\nCharacters:\nName: Unnamed Man  \nRole: Possibly a reflective or contemplative individual, shown briefly in the opening frame.\n\nName: Unnamed Woman  \nRole: Appears to be a singer or speaker, possibly providing a lighthearted or humorous tone.\n\nKey Dialogue:\nSpeaker: Unnamed Woman  \nCause: Reflecting on resilience and judgment, though the delivery suggests humor or improvisation.\n\nCausal Relationships:\nEmotion or action: Lightheartedness or humor.  \nCause: The woman's jumbled delivery of reflective statements.  \nEvidence: Audio transcript and visual of the woman singing or speaking.\n\nObjects and Setting:\nObject or environment: Glasses, scarf, and headscarf.  \nContext relevance: Suggests the characters' attire and possible cultural or personal identity.\n\nCross-Scene Continuity:\nOngoing conflict: The theme of resilience and reflection continues from earlier scenes, tying into the broader narrative of life's challenges.  \nCharacter development: The woman introduces a lighter tone, contrasting with the tension and introspection seen in previous scenes."
+    },
+    {
+      "scene_index": 13,
+      "start_timecode": "00:01:33.467",
+      "end_timecode": "00:01:42.267",
+      "start_seconds": 93.46666666666667,
+      "end_seconds": 102.26666666666667,
+      "duration_seconds": 8.799999999999997,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a woman with glasses and a black hinok",
+        "a video frame of a woman wearing a black hijaa with glasses",
+        "a video frame of a woman with glasses and a hinon in a hospital"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.932,
+          "start_frame": 0,
+          "end_frame": 35,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 100.533,
+          "net_displacement": 5.096,
+          "direction_change_var": 3.1762,
+          "relations": []
+        }
+      ],
+      "audio_speech": "when life is tough, makes you tough. When don't judge a book, judge the cover. No, wait. No, judge the cover. No, judge the book. but don't judge the cover. Judge the cover. No, just whatever. Just don't do it. You can hear it.",
+      "audio_natural": "silence (conf=0.65)",
+      "llm_scene_description": "This scene depicts a woman wearing glasses and a black headscarf, possibly in a hospital setting, based on the visual caption. She is stationary and appears to be reflecting or speaking aloud. Her speech is fragmented and humorous, as she struggles to articulate a coherent thought about judgment and appearances, eventually giving up with a lighthearted tone. The audio suggests a mix of self-reflection and playful frustration, with no significant background sounds.\n\nCharacters:\nName: Woman in black headscarf  \nRole: Reflective speaker, possibly a central figure in the narrative  \n\nKey Dialogue:\nSpeaker: Woman in black headscarf  \nCause: She is reflecting on resilience and the concept of judgment, though her words become jumbled and humorous, indicating a mix of introspection and lightheartedness.  \n\nCausal Relationships:\nEmotion or action: Playful frustration and self-reflection  \nCause: Difficulty in articulating a coherent thought about judgment and appearances  \nEvidence: Audio transcript of her fragmented and humorous speech  \n\nObjects and Setting:\nObject or environment: Hospital (inferred from caption)  \nContext relevance: Suggests a location tied to recovery or reflection, aligning with the character's introspective dialogue  \n\nCross-Scene Continuity:\nOngoing conflict: Themes of resilience and judgment continue to surface, as seen in previous scenes where characters reflect on life’s challenges and appearances.  \nCharacter development: The woman’s playful tone and fragmented speech suggest she is trying to make sense of complex emotions, adding depth to her reflective nature.  "
+    },
+    {
+      "scene_index": 14,
+      "start_timecode": "00:01:42.267",
+      "end_timecode": "00:02:10.400",
+      "start_seconds": 102.26666666666667,
+      "end_seconds": 130.4,
+      "duration_seconds": 28.13333333333334,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a person driving a car at night time, with a blur",
+        "a video frame of a dark room with a broken toilet and a black floor",
+        "a video frame of a woman taking off her hair in the bathroom,"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 21,
+          "label": "person",
+          "confidence_avg": 0.811,
+          "start_frame": 4,
+          "end_frame": 4,
+          "start_pos": "bottom-left",
+          "end_pos": "bottom-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 22,
+          "label": "car",
+          "confidence_avg": 0.95,
+          "start_frame": 9,
+          "end_frame": 17,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving up",
+          "path_length": 37.212,
+          "net_displacement": 25.324,
+          "direction_change_var": 1.1586,
+          "relations": [
+            "below car #24"
+          ]
+        },
+        {
+          "track_id": 24,
+          "label": "car",
+          "confidence_avg": 0.847,
+          "start_frame": 10,
+          "end_frame": 12,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "moving up-right",
+          "path_length": 7.917,
+          "net_displacement": 7.431,
+          "direction_change_var": 0.0,
+          "relations": [
+            "above car #22"
+          ]
+        },
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.91,
+          "start_frame": 67,
+          "end_frame": 112,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting farther, moving in a loop",
+          "path_length": 321.251,
+          "net_displacement": 33.528,
+          "direction_change_var": 2.3453,
+          "relations": [
+            "below car #30",
+            "left-of person #28",
+            "left-of person #29"
+          ]
+        },
+        {
+          "track_id": 28,
+          "label": "person",
+          "confidence_avg": 0.843,
+          "start_frame": 94,
+          "end_frame": 96,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving up, getting farther",
+          "path_length": 14.01,
+          "net_displacement": 14.01,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #26"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.88,
+          "start_frame": 99,
+          "end_frame": 112,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving down-right, moving in a loop",
+          "path_length": 65.33,
+          "net_displacement": 14.357,
+          "direction_change_var": 2.2003,
+          "relations": [
+            "below car #30",
+            "right-of person #26"
+          ]
+        },
+        {
+          "track_id": 30,
+          "label": "car",
+          "confidence_avg": 0.866,
+          "start_frame": 104,
+          "end_frame": 109,
+          "start_pos": "top-center",
+          "end_pos": "top-center",
+          "movement": "moving down-left, getting farther",
+          "path_length": 56.159,
+          "net_displacement": 50.236,
+          "direction_change_var": 0.0938,
+          "relations": [
+            "above person #26",
+            "above person #29"
+          ]
+        }
+      ],
+      "audio_speech": "No, just whatever. Just don't do it. You can hear it. Oh, we can hear it. It's literally sliced. You can hear it. I want to feel it. Oh my god, it's really... The way there was one moment of silence and it's just... What a day. Like, this is actually... Bro, it would have been more fun if I could change it myself, but my dad doesn't trust me. I want to watch them do it. I will tell",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene depicts a fragmented and surreal sequence with unclear transitions between settings. The visuals alternate between a person driving a car at night, a dark room with a broken toilet, and a woman seemingly removing her hair in a bathroom. The audio features a casual conversation, with one speaker expressing frustration about their father not trusting them to make changes themselves, alongside vague commentary about silence and the day being unusual. No significant sounds or actions are evident, and the emotional tone is mixed, oscillating between frustration and casual reflection.\n\nCharacters:\nName: Unknown Speaker 1  \nRole: Conversational participant expressing frustration and casual reflection.\n\nName: Unknown Woman  \nRole: Appears briefly in the visuals, possibly removing a wig or adjusting her hair.\n\nKey Dialogue:\nSpeaker: Unknown Speaker 1  \nCause: Frustration about lack of autonomy in making changes and casual reflection on the day.  \n\nCausal Relationships:\nEmotion or action: Frustration and casual reflection  \nCause: Lack of trust from their father and general commentary on the day.  \nEvidence: Audio transcript mentioning \"Bro, it would have been more fun if I could change it myself, but my dad doesn't trust me.\"\n\nObjects and Setting:\nObject or environment: Car driving at night  \nContext relevance: Suggests a transition or journey, though details are unclear due to motion blur.\n\nObject or environment: Broken toilet in a dark room  \nContext relevance: Adds a surreal and unsettling tone to the scene but lacks direct narrative connection.\n\nObject or environment: Woman removing hair in a bathroom  \nContext relevance: Potentially symbolic or related to personal transformation, though unclear.\n\nCross-Scene Continuity:\nOngoing conflict: Themes of personal reflection and frustration appear to continue, though the connection to prior scenes is tenuous.  \nCharacter development: The speaker's frustration adds depth to their personality, contrasting with earlier reflective tones in previous scenes."
+    },
+    {
+      "scene_index": 15,
+      "start_timecode": "00:02:10.400",
+      "end_timecode": "00:02:14.000",
+      "start_seconds": 130.4,
+      "end_seconds": 134.0,
+      "duration_seconds": 3.5999999999999943,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a young woman in a hijat talking to another woman",
+        "a video frame of a woman sitting on a bench holding a cell phone",
+        "a video frame of two women talking on the phone at night time, with a bluring background"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.874,
+          "start_frame": 0,
+          "end_frame": 13,
+          "start_pos": "bottom-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, getting closer, moving in a loop",
+          "path_length": 118.887,
+          "net_displacement": 16.08,
+          "direction_change_var": 1.587,
+          "relations": [
+            "left-of person #29"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.854,
+          "start_frame": 0,
+          "end_frame": 14,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "moving left, moving in a loop",
+          "path_length": 161.784,
+          "net_displacement": 21.288,
+          "direction_change_var": 3.2606,
+          "relations": [
+            "right-of person #26"
+          ]
+        }
+      ],
+      "audio_speech": "could change it myself, but my dad doesn't trust me. I want to watch them do it. I will tell",
+      "audio_natural": "silence (conf=0.39)",
+      "llm_scene_description": "This scene features two women conversing at night, with one appearing to hold a cell phone. The audio reveals a personal discussion about trust and independence, where one woman expresses frustration about her father's lack of trust in her ability to handle a task herself. The setting is unclear due to motion blur and inconsistent captions, but the mood is reflective and slightly tense, driven by the dialogue.\n\nCharacters:\nName: Woman in hijab  \nRole: Speaker expressing frustration over trust issues with her father.\n\nName: Second woman  \nRole: Listener, potentially providing emotional support.\n\nKey Dialogue:\nSpeaker: Woman in hijab  \nCause: Frustration over her father's unwillingness to trust her to complete a task independently.\n\nCausal Relationships:\nEmotion or action: Frustration and desire for autonomy.  \nCause: Her father's lack of trust in her ability to handle a task.  \nEvidence: Audio transcript explicitly mentions her wanting to watch others do it, indicating a lack of trust.\n\nObjects and Setting:\nObject or environment: Cell phone  \nContext relevance: Suggests communication or a potential attempt to resolve the conflict.\n\nObject or environment: Nighttime setting with motion blur  \nContext relevance: Adds to the reflective and slightly somber mood of the conversation.\n\nCross-Scene Continuity:\nOngoing conflict: Trust and autonomy issues appear to be a recurring theme, as frustration about independence was also expressed in the previous scene.  \nCharacter development: The woman in hijab continues to grapple with themes of resilience and judgment, as seen in earlier scenes, now tied to her personal relationships."
+    },
+    {
+      "scene_index": 16,
+      "start_timecode": "00:02:14.000",
+      "end_timecode": "00:02:20.267",
+      "start_seconds": 134.0,
+      "end_seconds": 140.26666666666668,
+      "duration_seconds": 6.26666666666668,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a woman standing on a street corner at night time",
+        "a video frame of a group of people walking down a street at night",
+        "a video frame of two women on a street in a city at night"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.899,
+          "start_frame": 0,
+          "end_frame": 25,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "moving down, moving in a loop",
+          "path_length": 163.495,
+          "net_displacement": 14.58,
+          "direction_change_var": 2.665,
+          "relations": [
+            "left-of person #29"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.894,
+          "start_frame": 0,
+          "end_frame": 24,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "moving down, moving in a loop",
+          "path_length": 177.301,
+          "net_displacement": 19.298,
+          "direction_change_var": 2.2852,
+          "relations": [
+            "right-of person #26"
+          ]
+        }
+      ],
+      "audio_speech": "them to let me help. Yeah. Now, we gotta tell security. This moment is being recorded and you will see what happens. This will be the fastest vlog I've ever recorded. And we're sending it down.",
+      "audio_natural": "silence (conf=0.56)",
+      "llm_scene_description": "This scene captures a nighttime street interaction involving two women and a group of people walking nearby. The audio suggests urgency and a sense of purpose, as one of the women mentions involving security and recording the moment as part of a vlog. The atmosphere is tense but controlled, with no significant background sounds.\n\nCharacters:\nName: Unnamed Woman 1  \nRole: Likely the primary speaker, expressing urgency and intent to involve security.\n\nName: Unnamed Woman 2  \nRole: Companion to Woman 1, present but not actively speaking in this scene.\n\nKey Dialogue:\nSpeaker: Unnamed Woman 1  \nCause: She expresses urgency to involve security and documents the moment, possibly as evidence or for public sharing.\n\nCausal Relationships:\nEmotion or action: Urgency and determination.  \nCause: The need to address a situation involving security and to document events.  \nEvidence: Audio transcript explicitly mentions contacting security and recording the moment.\n\nObjects and Setting:\nObject or environment: Nighttime city street.  \nContext relevance: The setting adds to the tension and urgency, as nighttime environments can heighten the sense of immediacy in resolving conflicts.\n\nCross-Scene Continuity:\nOngoing conflict: A recurring theme of trust and responsibility appears across scenes, with references to personal frustrations and the need for external validation or intervention.  \nCharacter development: The women’s actions in this scene suggest a shift from passive reflection in earlier scenes to active problem-solving and documentation."
+    },
+    {
+      "scene_index": 17,
+      "start_timecode": "00:02:20.267",
+      "end_timecode": "00:02:23.200",
+      "start_seconds": 140.26666666666668,
+      "end_seconds": 143.2,
+      "duration_seconds": 2.9333333333333087,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of two women dancing outside at night time with their arms in the air",
+        "a video frame of two women dancing and smiling in a courtyard at night time",
+        "a video frame of two people dancing in the street at night time with a man holding a skateboard"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.911,
+          "start_frame": 0,
+          "end_frame": 11,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "mostly stationary, moving in a loop",
+          "path_length": 48.189,
+          "net_displacement": 1.449,
+          "direction_change_var": 3.294,
+          "relations": [
+            "left-of person #29"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.899,
+          "start_frame": 7,
+          "end_frame": 11,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "moving right",
+          "path_length": 10.572,
+          "net_displacement": 10.22,
+          "direction_change_var": 0.0,
+          "relations": [
+            "right-of person #26"
+          ]
+        }
+      ],
+      "audio_speech": "will see what happens. This will be the fastest vlog I've ever recorded. And we're sending it down.",
+      "audio_natural": "silence (conf=0.35)",
+      "llm_scene_description": "This scene depicts two women dancing and smiling outdoors at night, possibly in a courtyard or street. The atmosphere appears lighthearted and casual, with one of the women recording a vlog. A man holding a skateboard is also present but does not interact directly with the women. The audio suggests the speaker is documenting the moment quickly, indicating a sense of urgency or excitement. The scene lacks significant background sounds, and the visual details are somewhat inconsistent.\n\nCharacters:\nName: Woman 1  \nRole: Vlogger, documenting the scene  \n\nName: Woman 2  \nRole: Companion, dancing with Woman 1  \n\nName: Man with skateboard  \nRole: Bystander, present but uninvolved  \n\nKey Dialogue:\nSpeaker: Woman 1  \nCause: She is recording a vlog and mentions it will be the fastest one she has ever done, suggesting she is capturing a fleeting or spontaneous moment.  \n\nCausal Relationships:\nEmotion or action: Excitement or urgency  \nCause: Woman 1's dialogue about quickly recording the vlog and \"sending it down\" implies a sense of immediacy or importance to documenting the scene.  \nEvidence: Audio transcript  \n\nObjects and Setting:\nObject or environment: Courtyard or street at night  \nContext relevance: The nighttime setting and casual dancing contribute to the lighthearted tone of the scene.  \n\nCross-Scene Continuity:\nOngoing conflict: The urgency in Woman 1's vlog recording may connect to the previous scene's mention of helping and notifying security, suggesting a broader context of documenting or reacting to events.  \n\nCharacter development: Woman 1 continues to take an active role in documenting moments, reinforcing her role as a vlogger or storyteller."
+    },
+    {
+      "scene_index": 18,
+      "start_timecode": "00:02:23.200",
+      "end_timecode": "00:02:26.533",
+      "start_seconds": 143.2,
+      "end_seconds": 146.53333333333333,
+      "duration_seconds": 3.333333333333343,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a woman walking in the street while someone takes a picture",
+        "a video frame of a woman dancing on the sidewalk in front of a building",
+        "a video frame of two people walking on a sidewalk at night time, one is holding a cell"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.909,
+          "start_frame": 0,
+          "end_frame": 13,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "moving up-right, getting closer, moving in a loop",
+          "path_length": 54.991,
+          "net_displacement": 12.45,
+          "direction_change_var": 2.4296,
+          "relations": [
+            "left-of person #29"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.901,
+          "start_frame": 0,
+          "end_frame": 13,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-right",
+          "movement": "mostly stationary, looping/circling",
+          "path_length": 81.698,
+          "net_displacement": 6.776,
+          "direction_change_var": 4.308,
+          "relations": [
+            "right-of person #26"
+          ]
+        }
+      ],
+      "audio_speech": "will see what happens. This will be the fastest vlog I've ever recorded. And we're sending it down. And we can use it for Kairos. Oh, we will send this to Dr. Usama. We're sending this to Dr. Usama.",
+      "audio_natural": "silence (conf=0.39)",
+      "llm_scene_description": "This scene involves two individuals on a nighttime city street, with one person actively recording a vlog and expressing urgency about sending the footage to someone named Dr. Usama. The visual evidence shows movement and circling actions, possibly indicating preparation or coordination. The audio transcript suggests the vlog is intended for a specific purpose, potentially tied to an event or project named \"Kairos.\" The mood appears focused and purposeful, though the exact nature of the urgency remains unclear.\n\nCharacters:\nName: Woman recording vlog  \nRole: Vlogger, possibly documenting an event or project  \n\nName: Second individual  \nRole: Companion, likely assisting or observing  \n\nKey Dialogue:\nSpeaker: Woman recording vlog  \nCause: She is preparing to send the recorded footage to Dr. Usama for a purpose related to \"Kairos.\"  \n\nCausal Relationships:\nEmotion or action: Focused and urgent  \nCause: The woman is recording footage with the intention of sending it to Dr. Usama, suggesting a time-sensitive or important task.  \nEvidence: Audio transcript explicitly mentions sending the footage and references \"Kairos.\"  \n\nObjects and Setting:\nObject or environment: Nighttime city street  \nContext relevance: The setting supports the urgency and preparation for recording the vlog, possibly indicating a public or event-related activity.  \n\nCross-Scene Continuity:\nOngoing conflict: The urgency in the vlog recording may connect to prior scenes where individuals expressed frustration about trust and preparation.  \nCharacter development: The woman recording the vlog shows determination and focus, contrasting with earlier scenes where confusion or casual interactions were more prominent.  "
+    },
+    {
+      "scene_index": 19,
+      "start_timecode": "00:02:26.533",
+      "end_timecode": "00:02:33.333",
+      "start_seconds": 146.53333333333333,
+      "end_seconds": 153.33333333333334,
+      "duration_seconds": 6.800000000000011,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of two women walking down the street at night time with lights on",
+        "a video frame of a person walking down the street with their cell in hand",
+        "a video frame of two people standing outside at night time with one person holding a cell"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.878,
+          "start_frame": 0,
+          "end_frame": 25,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-left",
+          "movement": "moving down-left, getting farther, moving in a loop",
+          "path_length": 101.044,
+          "net_displacement": 21.277,
+          "direction_change_var": 1.9097,
+          "relations": [
+            "left-of person #29"
+          ]
+        },
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.869,
+          "start_frame": 0,
+          "end_frame": 26,
+          "start_pos": "bottom-right",
+          "end_pos": "bottom-center",
+          "movement": "moving left, moving in a loop",
+          "path_length": 123.923,
+          "net_displacement": 33.189,
+          "direction_change_var": 3.5534,
+          "relations": [
+            "right-of person #26"
+          ]
+        }
+      ],
+      "audio_speech": "And we can use it for Kairos. Oh, we will send this to Dr. Usama. We're sending this to Dr. Usama.",
+      "audio_natural": "silence (conf=0.59)",
+      "llm_scene_description": "This scene depicts two women walking down a street at night, illuminated by streetlights. One of them is holding a cell phone, and their movements suggest casual interaction. The audio reveals a conversation about sending footage to Dr. Usama and using it for Kairos, implying a purposeful recording or documentation effort. The scene is quiet, with no background sounds indicating urgency or distress.\n\nCharacters:\nName: Woman 1  \nRole: Participant in conversation, possibly recording or documenting something.\n\nName: Woman 2  \nRole: Companion, engaged in casual interaction.\n\nKey Dialogue:\nSpeaker: Woman 1  \nCause: Discussing the purpose of the footage and its intended recipients (Dr. Usama and Kairos).\n\nCausal Relationships:\nEmotion or action: Intentional recording and discussion.  \nCause: The dialogue suggests a planned effort to share or utilize the footage for a specific purpose.  \nEvidence: Audio transcript explicitly mentions sending the footage to Dr. Usama and using it for Kairos.\n\nObjects and Setting:\nObject or environment: Cell phone  \nContext relevance: Used for recording or documentation, central to the conversation.\n\nObject or environment: Nighttime street with lights  \nContext relevance: Sets the scene as casual and quiet, with no immediate signs of conflict.\n\nCross-Scene Continuity:\nOngoing conflict: The mention of Dr. Usama and Kairos connects to previous scenes where similar names were referenced, suggesting a larger narrative involving documentation or collaboration.\n\nCharacter development: Woman 1 continues to exhibit a purposeful and organized demeanor, possibly leading efforts to record and share footage. Woman 2 remains a supportive presence, contributing to the casual tone of the scene."
+    },
+    {
+      "scene_index": 20,
+      "start_timecode": "00:02:33.333",
+      "end_timecode": "00:02:36.667",
+      "start_seconds": 153.33333333333334,
+      "end_seconds": 156.66666666666666,
+      "duration_seconds": 3.3333333333333144,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of someone who is walking down the hallway to the other",
+        "a video frame of someone taking a picture of a man with a cell phone",
+        "a video frame of a man wearing a yellow vest, while two people are standing behind him"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 26,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 0,
+          "end_frame": 13,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up, moving in a loop",
+          "path_length": 143.285,
+          "net_displacement": 38.878,
+          "direction_change_var": 1.584,
+          "relations": []
+        },
+        {
+          "track_id": 32,
+          "label": "person",
+          "confidence_avg": 0.871,
+          "start_frame": 6,
+          "end_frame": 6,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Oh no, I don't remember.",
+      "audio_natural": "explosion (conf=0.40)",
+      "llm_scene_description": "This scene depicts a tense and uncertain moment indoors, where a man wearing a yellow vest is standing in the center of the frame, while two other individuals are positioned behind him. One person appears to be taking a picture of the man with a cell phone. The audio captures a voice expressing confusion or forgetfulness, saying, \"Oh no, I don't remember.\" There is also a faint sound resembling an explosion, though its reliability is uncertain due to low confidence. The visual and audio elements suggest a potentially significant event, but the exact nature remains unclear.\n\nCharacters:\nName: Yellow Vest Man  \nRole: Central figure in the scene, possibly involved in an important event.\n\nName: Unknown Photographer  \nRole: Individual documenting the moment, possibly for evidence or personal reasons.\n\nName: Unknown Bystanders  \nRole: Observers in the background, their involvement is unclear.\n\nKey Dialogue:\nSpeaker: Unknown  \nCause: Expressing confusion or forgetfulness, possibly in response to an unfolding situation.\n\nCausal Relationships:\nEmotion or action: Confusion or uncertainty  \nCause: The speaker's inability to remember something significant.  \nEvidence: Audio transcript (\"Oh no, I don't remember\").\n\nObjects and Setting:\nObject or environment: Cell phone  \nContext relevance: Used for taking a picture, suggesting documentation or evidence collection.\n\nObject or environment: Yellow vest  \nContext relevance: May indicate the man’s role or profession, such as security or construction.\n\nObject or environment: Explosion sound (low confidence)  \nContext relevance: Potentially signals danger or disruption, though its reliability is uncertain.\n\nCross-Scene Continuity:\nOngoing conflict: Increasing tension or urgency, hinted at in previous scenes involving discussions of security, documentation, and significant events.  \nCharacter development: The Yellow Vest Man appears for the first time, possibly playing a pivotal role in the unfolding narrative. The two women from earlier scenes are not visibly present, but their prior actions of recording and discussing security may connect to this moment."
+    },
+    {
+      "scene_index": 21,
+      "start_timecode": "00:02:36.667",
+      "end_timecode": "00:02:40.267",
+      "start_seconds": 156.66666666666666,
+      "end_seconds": 160.26666666666668,
+      "duration_seconds": 3.6000000000000227,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a dog with a human hand on its nose and its paws in the air",
+        "a video frame of a person ' s feet and foot with the camera in focus",
+        "a video frame of someone playing with a cat on the floor, and another cat is watching"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.941,
+          "start_frame": 14,
+          "end_frame": 14,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene involves a series of disconnected visual frames with no accompanying audio, making it difficult to establish a cohesive narrative. The frames depict a dog interacting with a human hand, a person’s feet in focus, and someone playing with a cat while another cat observes. The lack of audio and minimal context from prior scenes leaves the emotional tone and narrative intent ambiguous.\n\nCharacters:\nName: Unknown person interacting with a dog  \nRole: Unclear, possibly a pet owner or caretaker.\n\nName: Unknown person playing with a cat  \nRole: Unclear, possibly a pet owner or someone engaging with animals.\n\nKey Dialogue:\nSpeaker: None  \nCause: No audio dialogue is present in this scene.\n\nCausal Relationships:\nEmotion or action: Interaction with animals (dog and cats)  \nCause: Likely casual or affectionate behavior, inferred from the actions depicted in the frames.  \nEvidence: Visual depiction of human-animal interaction.\n\nObjects and Setting:\nObject or environment: Dog, cats, human hand, feet, and floor  \nContext relevance: Suggests a domestic or casual setting, but no further context is provided.\n\nCross-Scene Continuity:\nOngoing conflict: There is no clear connection between this scene and the ongoing narrative involving the women, Dr. Usama, Kairos, or the explosion-like sound from prior scenes. The scene appears to be a standalone or unrelated moment.  \nCharacter development: None evident, as the characters in this scene do not appear to overlap with those in prior scenes."
+    },
+    {
+      "scene_index": 22,
+      "start_timecode": "00:02:40.267",
+      "end_timecode": "00:02:47.200",
+      "start_seconds": 160.26666666666668,
+      "end_seconds": 167.2,
+      "duration_seconds": 6.933333333333309,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a woman in a hooded jacket and hat with her hands on the side of a white car",
+        "a video frame of someone riding a motorcycle and a helmet on the side of it",
+        "a video frame of a person kissing another person with a hat and glasses"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.881,
+          "start_frame": 0,
+          "end_frame": 24,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up, getting closer, moving in a loop",
+          "path_length": 136.281,
+          "net_displacement": 15.872,
+          "direction_change_var": 3.7769,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Let's hit it. Oh, I know how to play the instrument now. You can play the harmonica.",
+      "audio_natural": "insect (conf=0.35), mosquito (conf=0.61), fly, housefly (conf=0.38)",
+      "llm_scene_description": "This scene depicts a series of disconnected and unclear events involving multiple individuals and objects. The visual evidence suggests a woman in a hooded jacket interacting with a white car, followed by someone riding a motorcycle, and then two people kissing, one of whom is wearing a hat and glasses. The audio transcript introduces unrelated dialogue about playing a harmonica and includes faint insect sounds, creating an ambiguous atmosphere.\n\nCharacters:\nName: Woman in hooded jacket  \nRole: Possibly interacting with the car; her intentions are unclear.  \n\nName: Motorcycle rider  \nRole: Briefly visible; no clear actions or relevance established.  \n\nName: Person wearing hat and glasses  \nRole: Engaged in a kiss; emotional context is uncertain.  \n\nKey Dialogue:\nSpeaker: Unknown  \nCause: The statement \"Let's hit it\" may imply readiness or urgency, but its connection to the scene is unclear. The mention of playing a harmonica seems unrelated to the visual events.  \n\nCausal Relationships:\nEmotion or action: Ambiguity and disconnection  \nCause: Lack of clear narrative or continuity between visual and audio evidence.  \nEvidence: Visual captions and audio transcript do not align, creating confusion.  \n\nObjects and Setting:\nObject or environment: White car  \nContext relevance: Interaction with the car is noted but lacks further detail or explanation.  \n\nObject or environment: Motorcycle  \nContext relevance: Briefly visible; its role in the scene is uncertain.  \n\nObject or environment: Hat and glasses  \nContext relevance: Worn by one of the individuals kissing; no further significance established.  \n\nCross-Scene Continuity:\nOngoing conflict: No clear conflict is evident in this scene, though the lack of coherence between audio and visual elements creates narrative ambiguity.  \n\nCharacter development: No discernible development or progression for any characters due to the fragmented nature of the scene.  "
+    },
+    {
+      "scene_index": 23,
+      "start_timecode": "00:02:47.200",
+      "end_timecode": "00:02:50.267",
+      "start_seconds": 167.2,
+      "end_seconds": 170.26666666666668,
+      "duration_seconds": 3.0666666666666913,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a man kissing another man on the street in a city",
+        "a video frame of someone touching a dog on the ground with a glove",
+        "a video frame of a person kissing another person on the other side of the screen"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 29,
+          "label": "person",
+          "confidence_avg": 0.876,
+          "start_frame": 12,
+          "end_frame": 12,
+          "start_pos": "middle-left",
+          "end_pos": "middle-left",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene involves a brief sequence of unclear and disconnected actions, with no audible dialogue or sounds to provide additional context. Visual captions suggest interactions between individuals, including intimate gestures, but these captions may be unreliable. The scene lacks clear emotional or narrative progression.\n\nCharacters:\nName: Unknown Man 1  \nRole: Appears to be interacting with another man in an intimate gesture (kissing).  \nName: Unknown Man 2  \nRole: Receives the intimate gesture (kissing).  \nName: Unknown Person  \nRole: Seen briefly touching a dog on the ground with a glove.  \n\nKey Dialogue:  \nSpeaker: None  \nCause: No audio dialogue is present in this scene.  \n\nCausal Relationships:  \nEmotion or action: Intimacy inferred (kissing).  \nCause: Visual captions suggest physical closeness, but the accuracy of this claim is uncertain.  \nEvidence: Frame captions indicate kissing, but no corroborating audio or additional visual evidence is available.  \n\nObjects and Setting:  \nObject or environment: Dog on the ground.  \nContext relevance: Suggests a momentary interaction with the animal, but its significance is unclear.  \n\nCross-Scene Continuity:  \nOngoing conflict: No explicit conflict is evident in this scene.  \nCharacter development: No clear progression or development of characters is observed.  \n\n"
+    },
+    {
+      "scene_index": 24,
+      "start_timecode": "00:02:50.267",
+      "end_timecode": "00:03:02.000",
+      "start_seconds": 170.26666666666668,
+      "end_seconds": 182.0,
+      "duration_seconds": 11.73333333333332,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a man and a white bear in a zoo setting",
+        "a video frame of a man working on his laptop computer in a dark room",
+        "a video frame of a person with a black cat in a box of food"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 38,
+          "label": "car",
+          "confidence_avg": 0.901,
+          "start_frame": 27,
+          "end_frame": 31,
+          "start_pos": "middle-center",
+          "end_pos": "top-center",
+          "movement": "moving right",
+          "path_length": 75.399,
+          "net_displacement": 35.033,
+          "direction_change_var": 0.4643,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Had a nice conversation with the security. We got people coming. My dad's coming. New character unlocked. We got the thing inside",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene involves a mix of seemingly unrelated visual and audio elements, with a focus on a moving car and cryptic dialogue. The visuals depict a man with a white bear in a zoo setting, a man working on a laptop in a dark room, and a person with a black cat in a box of food. Meanwhile, audio suggests an interaction with security, anticipation of visitors, and the mention of a \"new character unlocked\" and \"the thing inside.\" The car is seen moving diagonally across the frame, but its relevance to the dialogue or characters remains unclear.\n\nCharacters:\nName: Unknown man\nRole: Possibly a zoo visitor or worker (uncertain due to conflicting captions)\n\nName: Unknown person with black cat\nRole: Likely unrelated to the main dialogue (visual-only presence)\n\nKey Dialogue:\nSpeaker: Unknown (audio transcript)\nCause: Mention of security interaction and anticipation of visitors, possibly setting up a future event or conflict.\n\nCausal Relationships:\nEmotion or action: Anticipation or preparation for an event\nCause: Dialogue referencing visitors and \"the thing inside\"\nEvidence: Audio transcript\n\nObjects and Setting:\nObject or environment: Car moving diagonally\nContext relevance: Unclear, no direct connection to audio or prior scenes\n\nObject or environment: Laptop in a dark room\nContext relevance: Suggests work or private activity, but unrelated to audio\n\nObject or environment: Black cat in a box of food\nContext relevance: Likely incidental, no direct narrative link\n\nCross-Scene Continuity:\nOngoing conflict: Possible buildup to an event involving visitors and \"the thing inside,\" though specifics remain ambiguous.\nCharacter development: Introduction of new elements (security interaction, visitors, and \"new character unlocked\") suggests progression in the narrative, but connections to prior scenes are unclear."
+    },
+    {
+      "scene_index": 25,
+      "start_timecode": "00:03:02.000",
+      "end_timecode": "00:03:04.667",
+      "start_seconds": 182.0,
+      "end_seconds": 184.66666666666666,
+      "duration_seconds": 2.666666666666657,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a person eating food in a bag of chips and a paper towel",
+        "a video frame of someone laying on the bed and making a pillow for someone",
+        "a video frame of a person playing the nintendo game console in a white box"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "here. I like how your dad has everything though. He has everything packed. Security has been so",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene involves a casual interaction between two individuals discussing a well-prepared person, possibly a father, while the visuals show unrelated activities such as eating chips, lying on a bed, and playing a game console. The audio is conversational, with no evident emotional tension or conflict.\n\nCharacters:\nName: Unknown Speaker 1  \nRole: Conversational participant, possibly reflecting on someone’s preparedness.\n\nName: Unknown Speaker 2  \nRole: Conversational participant, likely responding or agreeing.\n\nKey Dialogue:\nSpeaker: Unknown Speaker 1  \nCause: Reflecting on the father’s preparedness and organization.  \nEvidence: “I like how your dad has everything though. He has everything packed.”\n\nCausal Relationships:\nEmotion or action: Admiration or acknowledgment of preparedness.  \nCause: The father’s ability to pack and organize effectively.  \nEvidence: Explicit mention in audio transcript.\n\nObjects and Setting:\nObject or environment: Bag of chips, paper towel, bed, pillow, Nintendo game console.  \nContext relevance: These objects appear in the captions but do not align with the audio dialogue, suggesting they are unrelated to the primary focus of the scene.\n\nCross-Scene Continuity:\nOngoing conflict: No clear conflict is evident in this scene.  \nCharacter development: The dialogue suggests a positive perception of the father’s organizational skills, which may contribute to understanding his role in the broader narrative."
+    },
+    {
+      "scene_index": 26,
+      "start_timecode": "00:03:04.667",
+      "end_timecode": "00:03:22.400",
+      "start_seconds": 184.66666666666666,
+      "end_seconds": 202.4,
+      "duration_seconds": 17.73333333333335,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of two cats playing with each other cat in the dark",
+        "a video frame of a car going through a tunnel in a parking lot",
+        "a video frame of a woman in the car with a man sitting in the back"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.882,
+          "start_frame": 36,
+          "end_frame": 66,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting farther",
+          "path_length": 76.307,
+          "net_displacement": 51.322,
+          "direction_change_var": 1.8337,
+          "relations": []
+        }
+      ],
+      "audio_speech": "here. I like how your dad has everything though. He has everything packed. Security has been so helpful. I want to leave an evaluation. This is literally the happiest day of my life. Imagine if you didn't accompany me today. Imagine. Oh, this is... that a gun?",
+      "audio_natural": "explosion (conf=0.53)",
+      "llm_scene_description": "This scene depicts a tense and potentially alarming moment inside a car. A woman is seated in the car with a man in the backseat. The audio captures the woman expressing admiration for someone's preparedness, mentioning security's helpfulness, and describing her happiness about the day. However, her tone shifts dramatically when she appears to notice something alarming, asking, \"Oh, this is... that a gun?\" An explosion sound is faintly detected, though its source and context are unclear. The visuals show the car moving through a tunnel in a parking lot, but the connection between the dialogue and the setting is uncertain.\n\nCharacters:\nName: Woman  \nRole: Passenger in the car, possibly the main focus of the scene.\n\nName: Man  \nRole: Backseat passenger, relationship to the woman unclear.\n\nKey Dialogue:\nSpeaker: Woman  \nCause: She is initially expressing gratitude and happiness about the day but becomes alarmed upon noticing something she believes might be a gun.\n\nCausal Relationships:\nEmotion or action: Gratitude and happiness  \nCause: The woman appreciates someone's preparedness and security's assistance, which she attributes to the success of the day.  \nEvidence: \"I like how your dad has everything though. He has everything packed. Security has been so helpful. This is literally the happiest day of my life.\"\n\nEmotion or action: Alarm and concern  \nCause: The woman notices something she believes might be a gun.  \nEvidence: \"Oh, this is... that a gun?\"\n\nObjects and Setting:\nObject or environment: Car moving through a tunnel in a parking lot  \nContext relevance: The car serves as the setting for the conversation and potential discovery of a gun. The tunnel and parking lot may indicate a transitional or isolated location.\n\nCross-Scene Continuity:\nOngoing conflict: The mention of a gun introduces a potential threat or danger, contrasting with the previously calm and casual tone of the earlier scenes.  \nCharacter development: The woman transitions from expressing joy and gratitude to alarm and concern, suggesting a shift in her perception of the situation."
+    },
+    {
+      "scene_index": 27,
+      "start_timecode": "00:03:22.400",
+      "end_timecode": "00:03:28.133",
+      "start_seconds": 202.4,
+      "end_seconds": 208.13333333333333,
+      "duration_seconds": 5.73333333333332,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a woman opening a toilet paper roll to reveal a toilet roll",
+        "a video frame of an old car being used as a spare rack and storage",
+        "a video frame of the vehicle that has been removed from the front wheel"
+      ],
+      "yolo_detections": [],
+      "audio_speech": "Imagine. Oh, this is... that a gun? It's the thing to change it. I want to add this to my CV. Let me pick it up.",
+      "audio_natural": "silence (conf=0.54)",
+      "llm_scene_description": "This scene depicts a series of disconnected visual and auditory moments, with unclear continuity between actions. The visuals show a woman interacting with a toilet paper roll, an old car being repurposed for storage, and a vehicle missing its front wheel. The audio transcript includes fragmented dialogue, suggesting confusion or surprise, possibly related to an object perceived as a gun. The scene lacks cohesive narrative flow but hints at tension or preparation for an unusual event.\n\nCharacters:\nName: Woman\nRole: Central figure in the scene, interacting with objects and possibly reacting to an alarming discovery.\n\nKey Dialogue:\nSpeaker: Unidentified voice\nCause: The dialogue includes fragmented phrases such as \"Imagine. Oh, this is... that a gun?\" suggesting surprise or concern about an object. The speaker also mentions wanting to add something to their CV, indicating a mix of humor or casual commentary.\n\nCausal Relationships:\nEmotion or action: Surprise or concern\nCause: Mention of an object perceived as a gun\nEvidence: Audio transcript explicitly references the object, though the visuals do not confirm its presence.\n\nObjects and Setting:\nObject or environment: Toilet paper roll, old car used for storage, vehicle missing a front wheel\nContext relevance: The objects and setting appear unrelated, contributing to a disjointed narrative. The missing wheel may suggest mechanical issues or preparation for repair.\n\nCross-Scene Continuity:\nOngoing conflict: The previous scenes suggest tension building around a car-related event, possibly involving security and a sudden explosion. This scene adds fragmented dialogue about a potentially alarming object, maintaining the theme of unease.\nCharacter development: The woman continues to be a focal point, interacting with objects and reacting to unfolding events, though her emotions and motivations remain unclear."
+    },
+    {
+      "scene_index": 28,
+      "start_timecode": "00:03:28.133",
+      "end_timecode": "00:03:39.467",
+      "start_seconds": 208.13333333333333,
+      "end_seconds": 219.46666666666667,
+      "duration_seconds": 11.333333333333343,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a person wearing a bul, buling and smiling",
+        "a video frame of a car being removed by a person with a hammer",
+        "a video frame of a person pulling the wheel of a car on the road"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 44,
+          "label": "person",
+          "confidence_avg": 0.896,
+          "start_frame": 0,
+          "end_frame": 32,
+          "start_pos": "middle-center",
+          "end_pos": "top-center",
+          "movement": "moving up, getting farther",
+          "path_length": 187.827,
+          "net_displacement": 116.809,
+          "direction_change_var": 1.5075,
+          "relations": []
+        },
+        {
+          "track_id": 48,
+          "label": "person",
+          "confidence_avg": 0.907,
+          "start_frame": 35,
+          "end_frame": 36,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right",
+          "path_length": 9.917,
+          "net_displacement": 9.917,
+          "direction_change_var": 0.0,
+          "relations": []
+        }
+      ],
+      "audio_speech": "It's the thing to change it. I want to add this to my CV. Let me pick it up. Oh, never mind. Do you mind being in my vlog for my YouTube channel? And my dad brought us food. Samosas. They're warm too. Samosas for the road.",
+      "audio_natural": "explosion (conf=0.37), silence (conf=0.52)",
+      "llm_scene_description": "This scene depicts a chaotic and somewhat humorous situation involving a car and two individuals. One person is seen attempting to remove or repair a car part, possibly the wheel, using a hammer, while another person is nearby, seemingly observing or assisting. The audio reveals casual and lighthearted dialogue, with one individual expressing interest in adding this experience to their CV and asking if the other person minds being featured in their vlog. The mention of samosas brought by someone’s dad adds a warm, familial touch to the scene. Background sounds are mostly silent, with a low-confidence explosion sound that may be unrelated or misinterpreted.\n\nCharacters:\nName: Person 1  \nRole: Likely the individual attempting to repair or dismantle the car.\n\nName: Person 2  \nRole: Possibly assisting or observing Person 1, engaging in lighthearted conversation.\n\nKey Dialogue:\nSpeaker: Person 2  \nCause: Expressing interest in documenting the event and sharing it on their vlog, while also mentioning food brought by their dad.  \n\nCausal Relationships:\nEmotion or action: Lightheartedness and humor.  \nCause: The casual dialogue about adding the experience to a CV and the mention of samosas for the road.  \nEvidence: Audio transcript.\n\nObjects and Setting:\nObject or environment: A car on the road.  \nContext relevance: Central to the scene, as the actions and dialogue revolve around the car and its repair or dismantling.\n\nCross-Scene Continuity:\nOngoing conflict: The car appears to be a recurring element, possibly broken or in need of repair, tying into earlier scenes involving tools and car-related activities.  \nCharacter development: Person 2’s playful and resourceful personality is highlighted through their dialogue, adding depth to their role in the ongoing narrative."
+    },
+    {
+      "scene_index": 29,
+      "start_timecode": "00:03:39.467",
+      "end_timecode": "00:03:43.600",
+      "start_seconds": 219.46666666666667,
+      "end_seconds": 223.6,
+      "duration_seconds": 4.133333333333326,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a man in the passenger seat holding his towel over his head",
+        "a video frame of a man wearing a shirt and goggles with a sign that says it is a piece of paper",
+        "a video frame of a white shirt and yellow tie around the neck of a man"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 44,
+          "label": "car",
+          "confidence_avg": 0.88,
+          "start_frame": 9,
+          "end_frame": 10,
+          "start_pos": "top-right",
+          "end_pos": "top-right",
+          "movement": "mostly stationary",
+          "path_length": 2.175,
+          "net_displacement": 2.175,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 50,
+          "label": "person",
+          "confidence_avg": 0.863,
+          "start_frame": 11,
+          "end_frame": 15,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "mostly stationary",
+          "path_length": 13.189,
+          "net_displacement": 4.752,
+          "direction_change_var": 5.2414,
+          "relations": []
+        }
+      ],
+      "audio_speech": "And my dad brought us food. Samosas. They're warm too. Samosas for the road.",
+      "audio_natural": "silence (conf=0.47)",
+      "llm_scene_description": "This scene depicts a moment inside a car where a man, seated in the passenger seat, appears to be holding a towel over his head, possibly for comfort or to shield himself. Another visual shows the same man wearing a shirt and goggles, holding a piece of paper. The audio reveals a calm and casual tone, with the man mentioning that his dad brought warm samosas for the road, suggesting a familial bond and preparation for a journey. The car remains stationary, and no immediate tension or conflict is evident.\n\nCharacters:  \nName: Unnamed man  \nRole: Passenger, possibly part of a family group preparing for a trip  \n\nKey Dialogue:  \nSpeaker: Unnamed man  \nCause: Expressing gratitude and noting his dad's contribution to the trip by bringing food  \n\nCausal Relationships:  \nEmotion or action: Gratitude and casual conversation  \nCause: The man's dad bringing warm samosas for the journey  \nEvidence: Audio transcript  \n\nObjects and Setting:  \nObject or environment: Towel, goggles, piece of paper, car interior  \nContext relevance: Suggests a casual and possibly humorous or relaxed moment during a road trip  \n\nCross-Scene Continuity:  \nOngoing conflict: None explicitly evident in this scene  \nCharacter development: Reinforces the theme of familial support and preparation, as seen in prior scenes where the dad's efforts were highlighted  "
+    },
+    {
+      "scene_index": 30,
+      "start_timecode": "00:03:43.600",
+      "end_timecode": "00:04:01.600",
+      "start_seconds": 223.6,
+      "end_seconds": 241.6,
+      "duration_seconds": 18.0,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a man on his phone pushing a car into a parking lot",
+        "a video frame of a car being chased by another car on the road",
+        "a video frame of an automobile driving down the street at night time, while a man is on his cell"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 50,
+          "label": "person",
+          "confidence_avg": 0.884,
+          "start_frame": 1,
+          "end_frame": 6,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down",
+          "path_length": 49.384,
+          "net_displacement": 36.538,
+          "direction_change_var": 1.9731,
+          "relations": []
+        },
+        {
+          "track_id": 53,
+          "label": "car",
+          "confidence_avg": 0.893,
+          "start_frame": 15,
+          "end_frame": 24,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer",
+          "path_length": 107.977,
+          "net_displacement": 95.385,
+          "direction_change_var": 2.9232,
+          "relations": []
+        },
+        {
+          "track_id": 57,
+          "label": "person",
+          "confidence_avg": 0.918,
+          "start_frame": 27,
+          "end_frame": 34,
+          "start_pos": "middle-center",
+          "end_pos": "middle-right",
+          "movement": "moving right, getting closer",
+          "path_length": 87.864,
+          "net_displacement": 78.039,
+          "direction_change_var": 0.1895,
+          "relations": []
+        },
+        {
+          "track_id": 58,
+          "label": "person",
+          "confidence_avg": 0.904,
+          "start_frame": 28,
+          "end_frame": 28,
+          "start_pos": "middle-right",
+          "end_pos": "middle-right",
+          "movement": "mostly stationary",
+          "path_length": 0.0,
+          "net_displacement": 0.0,
+          "direction_change_var": 0.0,
+          "relations": []
+        },
+        {
+          "track_id": 60,
+          "label": "car",
+          "confidence_avg": 0.901,
+          "start_frame": 37,
+          "end_frame": 71,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving down, getting closer, moving in a loop",
+          "path_length": 237.979,
+          "net_displacement": 53.204,
+          "direction_change_var": 3.6642,
+          "relations": [
+            "above person #62"
+          ]
+        },
+        {
+          "track_id": 62,
+          "label": "person",
+          "confidence_avg": 0.89,
+          "start_frame": 49,
+          "end_frame": 51,
+          "start_pos": "bottom-center",
+          "end_pos": "bottom-center",
+          "movement": "moving down, getting farther",
+          "path_length": 17.369,
+          "net_displacement": 17.301,
+          "direction_change_var": 0.0,
+          "relations": [
+            "below car #60"
+          ]
+        }
+      ],
+      "audio_speech": "Now we're fixing the car. Okay, it's done. Successful. mission. We're in the process of emailing Dr. Usama. In case you're curious. Dr. Usama. Because he's gonna see this. He better see this. Successful mission by the one and only Urwin. So kids,",
+      "audio_natural": "none",
+      "llm_scene_description": "This scene depicts a man named Urwin, who appears to be involved in fixing a car. The audio confirms the repair is complete, with Urwin declaring the mission successful and mentioning his intent to email Dr. Usama, suggesting a sense of accomplishment and purpose. The visual evidence is inconsistent, showing a mix of car movements and individuals in unclear roles, but the audio provides clarity about the repair's completion. The setting seems to involve a parking lot or street at night, though the exact location remains uncertain due to caption errors.\n\nCharacters:\nName: Urwin  \nRole: Car repairer, possibly leading the effort  \n\nKey Dialogue:\nSpeaker: Urwin  \nCause: Successful completion of car repair and communication with Dr. Usama  \n\nCausal Relationships:\nEmotion or action: Sense of accomplishment and pride  \nCause: Completion of car repair and intent to share results with Dr. Usama  \nEvidence: Audio transcript explicitly states \"Successful mission by the one and only Urwin.\"  \n\nObjects and Setting:\nObject or environment: Car  \nContext relevance: Central to the scene as the repair is the focus of the action  \n\nCross-Scene Continuity:\nOngoing conflict: The car repair appears to be part of a larger narrative involving preparation and unexpected events, as hinted in prior scenes.  \nCharacter development: Urwin emerges as a proactive and resourceful individual, taking pride in his work and seeking acknowledgment from Dr. Usama."
+    },
+    {
+      "scene_index": 31,
+      "start_timecode": "00:04:01.600",
+      "end_timecode": "00:04:10.800",
+      "start_seconds": 241.6,
+      "end_seconds": 250.8,
+      "duration_seconds": 9.200000000000017,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a woman in a black scarf holding a yellow cup",
+        "a video frame of a woman wearing hina holding a dont a cookie",
+        "a video frame of a woman wearing hijab and holding food in her hand"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 60,
+          "label": "person",
+          "confidence_avg": 0.92,
+          "start_frame": 0,
+          "end_frame": 36,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving up, looping/circling",
+          "path_length": 71.867,
+          "net_displacement": 10.769,
+          "direction_change_var": 1.9329,
+          "relations": []
+        }
+      ],
+      "audio_speech": "whenever there's a flat tire, you call the exterminator-nators. Or Urwin.",
+      "audio_natural": "silence (conf=0.54)",
+      "llm_scene_description": "This scene involves a woman wearing a hijab holding an object, possibly food or a cup, while an unusual statement about flat tires and exterminators is heard in the audio. The visual captions are inconsistent, describing the woman alternately holding a yellow cup, a cookie, or food, but the audio does not clarify this. The tone of the audio is humorous or absurd, as the suggestion to call \"exterminator-nators\" for a flat tire is nonsensical. The setting and actions suggest a pause or casual moment, though the exact context is unclear.\n\nCharacters:\nName: Unnamed woman\nRole: Central figure in the scene, holding an object and possibly reacting to the audio dialogue.\n\nKey Dialogue:\nSpeaker: Unknown\nCause: The speaker humorously suggests calling exterminators for flat tires, creating an absurd and lighthearted tone.\n\nCausal Relationships:\nEmotion or action: Potential confusion or amusement.\nCause: The nonsensical statement in the audio.\nEvidence: The audio transcript explicitly mentions \"flat tire\" and \"exterminator-nators.\"\n\nObjects and Setting:\nObject or environment: Yellow cup, cookie, or food.\nContext relevance: The object being held by the woman may indicate a casual or relaxed moment, though its significance is unclear.\n\nCross-Scene Continuity:\nOngoing conflict: The previous scenes involve car troubles and lighthearted interactions, which may connect to the flat tire mentioned in the audio.\nCharacter development: The woman appears in multiple scenes, possibly as a central figure dealing with the car-related events. Her role and actions suggest adaptability and involvement in the ongoing situation."
+    },
+    {
+      "scene_index": 32,
+      "start_timecode": "00:04:10.800",
+      "end_timecode": "00:04:15.767",
+      "start_seconds": 250.8,
+      "end_seconds": 255.76666666666668,
+      "duration_seconds": 4.966666666666669,
+      "frame_paths": null,
+      "frame_captions": [
+        "a video frame of a woman driving with her cell in hand, and a camera on the steering",
+        "a video frame of a man sitting in a bus while he is holding a cell",
+        "a video frame of a person holding a dog in their hand with a parking lot behind them"
+      ],
+      "yolo_detections": [
+        {
+          "track_id": 60,
+          "label": "person",
+          "confidence_avg": 0.891,
+          "start_frame": 0,
+          "end_frame": 19,
+          "start_pos": "middle-center",
+          "end_pos": "middle-center",
+          "movement": "moving right, moving in a loop",
+          "path_length": 82.26,
+          "net_displacement": 23.797,
+          "direction_change_var": 1.5873,
+          "relations": []
+        }
+      ],
+      "audio_speech": "Yes, thank you. Bye-bye.",
+      "audio_natural": "silence (conf=0.50)",
+      "llm_scene_description": "This scene depicts a series of disconnected moments involving different individuals, with minimal narrative cohesion. A woman is seen driving while holding a cellphone, a man is sitting on a bus with a cellphone, and another person is holding a dog in a parking lot. The audio includes a polite farewell, \"Yes, thank you. Bye-bye,\" but provides no direct connection to the visual elements. The atmosphere appears calm, with no significant background sounds or activity.\n\nCharacters:\nName: Unnamed Woman  \nRole: Driver, possibly distracted  \n\nName: Unnamed Man  \nRole: Bus passenger  \n\nName: Unnamed Person  \nRole: Dog holder  \n\nKey Dialogue:\nSpeaker: Unknown  \nCause: Polite farewell, possibly concluding a conversation  \n\nCausal Relationships:\nEmotion or action: Calm, polite tone  \nCause: Farewell dialogue  \nEvidence: Audio transcript  \n\nObjects and Setting:\nObject or environment: Cellphone, dog, parking lot, bus  \nContext relevance: Suggests everyday activities in different locations  \n\nCross-Scene Continuity:\nOngoing conflict: Potential distraction while driving (woman with cellphone)  \nCharacter development: No clear progression; characters appear unrelated to prior scenes  "
+    }
+  ],
+  "narratives": [
+    {
+      "narrative_len": 11201,
+      "chunk_len": 3,
+      "narrative": "### Chronological Summary of Scenes 0 to 11 (00:00:00.000 to 00:01:27.733)\n\n1. **00:00:00.000**: A nighttime car crash occurs in a residential area, reportedly during an attempted theft. Two individuals, Person 1 (moving in a parking lot) and Person 2 (in a driveway), are present. Dialogue reflects surprise at the unexpected turn of events, with a mention of \"complaining about walking\" earlier in the night.\n\n2. **00:00:10.000**: Scene omitted due to content filter. Dialogue references deflated tires, a bike pump, and efforts to fix the issue independently, with a humorous note about losing and finding a screw.\n\n3. **00:00:34.000**: Aftermath of a car crash involving multiple vehicles is shown, with a police car nearby. Captions suggest one car was hit on its side. Dialogue continues discussing tire inflation with a bike pump, possibly linking to earlier scenes.\n\n4. **00:00:36.667**: A white sports car with a front-mounted camera is shown during a post-accident investigation in the Bronx. A police officer is present. Audio remains focused on prior tire issues, unrelated to the crash.\n\n5. **00:00:40.533**: A man talks on a cell phone while walking, followed by a person dancing in a parking lot as a car drives by. The final frame shows a figure seemingly airborne over an airport, likely a visual error. Dialogue reflects on a journey and filling something up, but its connection to visuals is unclear.\n\n6. **00:00:42.667**: A police car drives down a street as a woman talks on the phone and a man drives another car. Dialogue reveals frustration over a flat tire and challenges in reaching a gas station, adding tension to the scene.\n\n7. **00:00:54.133**: A woman stands in front of a damaged car, pointing toward the camera, while a girl briefly dances nearby. Dialogue mentions informing security about a delay in assistance, creating a calm but anticipatory atmosphere.\n\n8. **00:00:57.733**: A man drives at night, expressing frustration about someone named Luz not listening to him and his refusal to return home, citing disrespect to his lineage. The tone is emotionally charged, with faint background music.\n\n9. **00:01:16.667**: The same man continues driving, reflecting on familial obligations and feeling disrespected if he returns home. His dialogue reveals deeper emotional conflict, while visuals show blurred nighttime streets.\n\n10. **00:01:18.933**: A car is stationary on a rainy street at night, with a man nearby. He exclaims, \"Oh my god, this is the craziest,\" and reflects on life's challenges. The rain and quiet atmosphere heighten the somber tone.\n\n11. **00:01:22.533**: A car drives down a city street at night. The driver expresses amazement, calling the situation \"the craziest\" but also a \"nice day.\" The reflective tone suggests a mix of astonishment and calm.\n\n12. **00:01:25.067**: A woman wearing glasses and a scarf smiles and looks upward while speaking or singing. Her playful dialogue mixes metaphors and self-corrects mid-sentence, adding a moment of levity to the narrative.\n\n### Key Themes and Continuity:\n- **Car Troubles**: Flat tires, crashes, and vehicle-related issues are recurring elements, tying various scenes together.\n- **Emotional Reflection**: Characters frequently express frustration, surprise, or introspection, revealing personal struggles and interpersonal dynamics.\n- **Police Presence**: Law enforcement appears in multiple scenes, indicating ongoing investigations or incidents.\n- **Levity Amidst Tension**: The woman’s playful dialogue in the final scene contrasts with the heavier emotional tones earlier, providing a brief reprieve.\n### Chronological and Factual Summary of Scenes 12 to 22 (00:01:27.733 to 00:02:47.200):\n\n1. **00:01:27.733**: A man wearing glasses and a scarf is briefly shown, followed by a woman wearing glasses and a black headscarf. The woman speaks or sings humorously, delivering fragmented thoughts about resilience and judgment, such as, \"When life is tough, makes you tough. When don't judge a book, judge the cover. No, wait. No.\" The atmosphere is calm, with no significant background sounds.\n\n2. **00:01:33.467**: The woman in the black headscarf appears stationary, possibly in a hospital setting. She humorously struggles to articulate coherent thoughts about judgment and appearances, saying, \"Judge the cover. No, judge the book. But don't judge the cover. Judge the cover. No, just whatever. Just don't do it. You can hear it.\" The tone is playful and reflective.\n\n3. **00:01:42.267**: A fragmented sequence alternates between visuals of a person driving a car at night, a dark room with a broken toilet, and a woman seemingly removing her hair in a bathroom. The audio features casual conversation, including frustration about a father’s lack of trust (\"Bro, it would have been more fun if I could change it myself, but my dad doesn't trust me\") and vague commentary about silence and the day being unusual.\n\n4. **00:02:10.400**: Two women converse at night, one expressing frustration about her father’s lack of trust in her independence (\"I want to watch them do it. I will tell\"). The setting is unclear due to motion blur, but the mood is reflective and slightly tense.\n\n5. **00:02:14.000**: On a nighttime street, two women interact with urgency. One mentions involving security and recording the moment for a vlog, saying, \"This moment is being recorded and you will see what happens. This will be the fastest vlog I've ever recorded. And we're sending it down.\" The atmosphere is tense but controlled.\n\n6. **00:02:20.267**: Two women dance and smile outdoors at night, possibly in a courtyard or street. A man holding a skateboard is present but uninvolved. One woman records a vlog, stating, \"This will be the fastest vlog I've ever recorded. And we're sending it down.\" The tone is lighthearted and casual.\n\n7. **00:02:23.200**: On a nighttime city street, a woman records a vlog with urgency, preparing to send footage to Dr. Usama for a project named \"Kairos.\" She says, \"We can use it for Kairos. Oh, we will send this to Dr. Usama. We're sending this to Dr. Usama.\" The mood is focused and purposeful.\n\n8. **00:02:26.533**: Two women walk down a street at night, illuminated by streetlights. One holds a cell phone and discusses sending footage to Dr. Usama and using it for Kairos. The scene is quiet and casual, with no signs of urgency.\n\n9. **00:02:33.333**: Indoors, a man wearing a yellow vest stands at the center of the frame while another person takes his picture with a cell phone. A voice expresses confusion, saying, \"Oh no, I don't remember.\" A faint sound resembling an explosion is heard, though its reliability is uncertain. The scene suggests tension or significance but remains unclear.\n\n10. **00:02:36.667**: Disconnected visuals show a dog interacting with a human hand, a person’s feet, and someone playing with a cat while another cat observes. No audio is present, leaving the emotional tone and narrative intent ambiguous.\n\n11. **00:02:40.267**: A fragmented scene depicts a woman in a hooded jacket interacting with a white car, a motorcycle rider, and two people kissing (one wearing a hat and glasses). The audio includes unrelated dialogue about playing a harmonica and faint insect sounds. The scene is ambiguous and disconnected from prior events.\n\n### Key Themes and Continuity:\n- **Resilience and Judgment**: The woman in the black headscarf humorously reflects on these themes, tying into broader narratives of introspection and personal challenges.\n- **Trust and Autonomy**: Frustration about trust issues with a father recurs in multiple scenes, highlighting interpersonal struggles.\n- **Documentation and Urgency**: Several scenes involve recording vlogs and sending footage to Dr. Usama for a project named \"Kairos,\" suggesting a purposeful effort to document events.\n- **Fragmentation and Ambiguity**: Later scenes introduce disconnected visuals and unclear audio, creating a surreal and ambiguous tone that contrasts with earlier reflective moments.\n**Chronological Summary of Scenes 23 to 32 (00:02:47.200 to 00:04:15.767):**\n\n1. **00:02:47.200**: A sequence of unclear actions unfolds with no audible dialogue. Visual captions suggest intimate gestures between two men (kissing) and a brief interaction involving a person touching a dog with a glove. The scene lacks narrative clarity or emotional progression.\n\n2. **00:02:50.267**: Disconnected visuals show a man with a white bear in a zoo, another working on a laptop in a dark room, and a person with a black cat in a box of food. Audio mentions security interactions, visitors, and \"the thing inside,\" alongside cryptic dialogue like \"new character unlocked.\" A car moves diagonally across the frame, but its relevance remains ambiguous.\n\n3. **00:03:02.000**: Two individuals casually discuss a father’s preparedness, admiring his ability to pack effectively. Visuals show unrelated activities like eating chips, lying on a bed, and playing a game console. The dialogue is conversational, with no evident tension.\n\n4. **00:03:04.667**: Inside a car, a woman expresses gratitude for security's help and her happiness about the day, calling it \"the happiest day of my life.\" Her tone shifts as she notices something alarming, asking, \"Oh, this is... that a gun?\" A faint explosion sound is detected. The car moves through a tunnel in a parking lot, but the connection to the dialogue is unclear.\n\n5. **00:03:22.400**: Fragmented visuals show a woman interacting with a toilet paper roll, an old car repurposed for storage, and a vehicle missing its front wheel. Audio includes surprise about a perceived gun and humorous commentary about adding the experience to a CV. The narrative remains disjointed.\n\n6. **00:03:28.133**: A chaotic scene involves a car repair attempt using a hammer. Casual dialogue includes a person expressing interest in documenting the event for their vlog and mentioning warm samosas brought by their dad. Background sounds include a faint explosion, possibly unrelated.\n\n7. **00:03:39.467**: A man named Urwin completes a car repair and declares the mission successful, expressing pride and intent to email Dr. Usama. Visuals show him holding a towel, goggles, and a piece of paper. The setting appears to be a parking lot or street at night.\n\n8. **00:04:01.600**: A woman wearing a hijab holds an object (possibly food or a cup) while audio humorously suggests calling \"exterminator-nators\" for flat tires. Visual captions inconsistently describe the object, and the tone is lighthearted.\n\n9. **00:04:10.800**: Disconnected visuals show a woman driving while holding a cellphone, a man sitting on a bus with a cellphone, and another person holding a dog in a parking lot. Audio includes a polite farewell, \"Yes, thank you. Bye-bye,\" with no direct connection to the visuals. The atmosphere is calm.\n\n**Key Themes Across Scenes**:\n- Disjointed visuals and audio create ambiguity in narrative progression.\n- Recurring elements include car-related activities, familial references (e.g., samosas brought by a dad), and lighthearted or humorous dialogue.\n- Moments of tension (e.g., perceived gun, faint explosion sounds) contrast with casual interactions."
+    }
+  ],
+  "synopsis": {
+    "chat_name": "Car Crash and Kairos",
+    "summary": "A nighttime car crash sets off a series of fragmented events involving vehicle troubles, emotional reflections, police investigations, and vlog recordings for a project named \"Kairos,\" interspersed with moments of levity and ambiguity.",
+    "video_highlights": [
+      {
+        "start": "00:00:15",
+        "end": "00:00:45",
+        "highlight": "Aftermath of a car crash involving multiple vehicles, with a police car nearby and dialogue discussing tire inflation efforts."
+      },
+      {
+        "start": "00:00:57",
+        "end": "00:01:16",
+        "highlight": "A man drives at night, expressing frustration about familial disrespect and refusing to return home."
+      },
+      {
+        "start": "00:01:18",
+        "end": "00:01:22",
+        "highlight": "A car is stationary on a rainy street at night, with a man reflecting on life's challenges and calling the situation \"the craziest.\""
+      },
+      {
+        "start": "00:02:14",
+        "end": "00:02:20",
+        "highlight": "Two women interact urgently on a nighttime street, recording a vlog and preparing to send footage to Dr. Usama for a project named \"Kairos.\""
+      },
+      {
+        "start": "00:03:39",
+        "end": "00:04:01",
+        "highlight": "A man named Urwin successfully completes a car repair and expresses pride, intending to email Dr. Usama."
+      }
+    ],
+    "video_timeline": [
+      {
+        "timestamp": "00:00:00",
+        "event": "Nighttime crash"
+      },
+      {
+        "timestamp": "00:00:34",
+        "event": "Crash aftermath"
+      },
+      {
+        "timestamp": "00:00:42",
+        "event": "Police frustration"
+      },
+      {
+        "timestamp": "00:00:57",
+        "event": "Emotional drive"
+      },
+      {
+        "timestamp": "00:01:22",
+        "event": "Reflective amazement"
+      },
+      {
+        "timestamp": "00:01:25",
+        "event": "Playful levity"
+      }
+    ],
+    "suggested_clips": [
+      {
+        "timestamp": "00:00:34",
+        "description": "The aftermath of a car crash involving multiple vehicles is shown, with a police car nearby. The visuals and captions create a dramatic and engaging moment."
+      },
+      {
+        "timestamp": "00:00:57.733",
+        "description": "A man drives at night, expressing frustration about familial disrespect. The emotionally charged dialogue and nighttime visuals make this a compelling clip."
+      },
+      {
+        "timestamp": "00:01:18.933",
+        "description": "A car is stationary on a rainy street at night, with a man reflecting on life's challenges. The somber tone and atmospheric visuals are highly evocative."
+      },
+      {
+        "timestamp": "00:02:14.000",
+        "description": "Two women interact with urgency on a nighttime street, mentioning security and recording a vlog. The tension and purposefulness make this moment stand out."
+      },
+      {
+        "timestamp": "00:03:04.667",
+        "description": "Inside a car, a woman expresses gratitude for security's help before noticing something alarming. The sudden shift in tone adds intrigue and suspense."
+      },
+      {
+        "timestamp": "00:03:39.467",
+        "description": "A man named Urwin completes a car repair and declares the mission successful. His pride and intent to email Dr. Usama provide a satisfying and uplifting conclusion."
+      }
+    ],
+    "questions": [
+      {
+        "question": "What is happening in the video?",
+        "answer": "A series of fragmented events involving car troubles, personal reflections, and humorous interactions unfolds, with recurring themes of resilience, trust, and documentation."
+      },
+      {
+        "question": "What are the key events?",
+        "answer": "A car crash, police investigation, emotional reflections, vlog recordings for a project, and a chaotic car repair attempt are key events."
+      },
+      {
+        "question": "What are the key actions and who performed them?",
+        "answer": "A man drives while reflecting on familial issues, a woman records vlogs for Dr. Usama, and Urwin repairs a car."
+      },
+      {
+        "question": "What are the main conflicts and problems encountered?",
+        "answer": "Conflicts include car troubles, familial trust issues, and emotional struggles."
+      },
+      {
+        "question": "Who is the main character? Describe their journey.",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "List the characters. For each character, describe their appearance, traits, and role in the story.",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What are some significant quotes from the video and who said them?",
+        "answer": "\"This is the craziest,\" \"We can use it for Kairos,\" and \"Oh, this is... that a gun?\" are significant quotes, but speakers are not explicitly identified."
+      },
+      {
+        "question": "What is the setting? Did it change? How is it related to the story?",
+        "answer": "The setting includes nighttime streets, parking lots, and indoor spaces, shifting frequently to reflect the fragmented narrative."
+      },
+      {
+        "question": "How did the video start? Explain the start.",
+        "answer": "The video begins with a nighttime car crash during an attempted theft, involving two individuals."
+      },
+      {
+        "question": "How did the video end? Explain the ending.",
+        "answer": "The video ends with disconnected visuals of people interacting with objects and casual farewells."
+      },
+      {
+        "question": "What objects are central to the video and when do they appear?",
+        "answer": "Central objects include cars, a bike pump, a towel, goggles, and a cellphone, appearing during car-related scenes and personal interactions."
+      },
+      {
+        "question": "What is the most important thing said or heard?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What is different at the end vs the beginning?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What type of video is this?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What is the goal or intent or theme of the video?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "List the moods and tones present, explain each one.",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What context is missing or assumed? What would require outside knowledge?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What are key visual descriptions?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What are key audio descriptions?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "Are the visual and audio cues noticed throughout the video aligned? If not, how do they differ?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What are prominent visual cues and audio cues noticed throughout the video?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "Does the video contain any live action, animation, or special effects?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What caused the car crash in the opening scene?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "Why is the man frustrated about Luz not listening to him?",
+        "answer": "He feels disrespected and believes returning home would dishonor his lineage."
+      },
+      {
+        "question": "What is the significance of the project named \"Kairos\"?",
+        "answer": "It involves sending recorded footage to Dr. Usama, but its purpose is not explicitly stated."
+      },
+      {
+        "question": "Why does the woman mention involving security in her vlog?",
+        "answer": "She wants to document the urgency and record the moment for her vlog."
+      },
+      {
+        "question": "What does the man named Urwin accomplish during the car repair scene?",
+        "answer": "He successfully completes the repair and plans to email Dr. Usama about it."
+      },
+      {
+        "question": "What does the woman humorously suggest calling for flat tires?",
+        "answer": "She suggests calling \"exterminator-nators,\" adding a playful tone."
+      },
+      {
+        "question": "What is the emotional tone of the nighttime driving scenes?",
+        "answer": "Reflective and emotionally charged, with themes of familial obligations and personal struggles."
+      },
+      {
+        "question": "Why does the woman in the hijab hold an object while joking about flat tires?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What does the faint explosion sound signify in multiple scenes?",
+        "answer": "Its significance is unclear and remains ambiguous."
+      },
+      {
+        "question": "What does the dialogue about a father’s preparedness reveal?",
+        "answer": "Admiration for his ability to pack effectively, highlighting familial dynamics."
+      },
+      {
+        "question": "Why does the woman call the day \"the happiest day of my life\"?",
+        "answer": "She expresses gratitude for security's help but later notices something alarming."
+      },
+      {
+        "question": "What is the connection between the fragmented visuals and the narrative?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "Why does the woman struggle to articulate thoughts about judgment and appearances?",
+        "answer": "She humorously reflects on resilience and judgment, adding levity to the narrative."
+      },
+      {
+        "question": "What is the relevance of the white sports car shown during the investigation?",
+        "answer": "Not explicitly stated."
+      },
+      {
+        "question": "What does the dialogue about warm samosas brought by a dad signify?",
+        "answer": "It adds a familial and casual element to the chaotic car repair scene."
+      }
+    ]
+  },
+  "rag_embedding": {
+    "rag_path": "_processed/69d6176138f896955885e090/rag_embedding.json",
+    "context_count": 38,
+    "embedding_dim": 3072,
+    "provider": "gemini",
+    "model": "gemini-embedding-001"
+  },
+  "benchmark": {
+    "timestamp": "2026-04-08 08:55:46 UTC",
+    "execution_mode": "parallel",
+    "debug": false,
+    "quiet": true,
+    "low_mem_mode": false,
+    "embedding_provider": "gemini",
+    "embedding_model": "gemini-embedding-001",
+    "total_wall_time_sec": 136.01533
+  },
+  "run_log": {
+    "run_description": "Production pipeline benchmark run.",
+    "video_path": "/var/tmp/kairos/jobs/32f2bd0d-a983-40f2-8fce-a5278d72545a/cartrastophe.mp4",
+    "video_length": null,
+    "total_process_sec": 366.14575,
+    "scene_number": 33,
+    "start_process": "2026-04-08 08:53:30",
+    "end_process": "2026-04-08 08:55:46",
+    "computer": {
+      "os_info": {
+        "os": "Linux 5.10.0-34-cloud-amd64",
+        "os_version": "#1 SMP Debian 5.10.234-1 (2025-02-24)",
+        "machine_type": "x86_64",
+        "hostname": "kairos-deployment",
+        "python_version": "3.12.13"
+      },
+      "cpu_info": {
+        "cpu_model": "",
+        "cpu_physical_cores": 24,
+        "cpu_logical_cores": 48,
+        "cpu_frequency_MHz": {
+          "current": 2200.164000000001,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "ram_info": {
+        "total_RAM_GB": 188.71,
+        "available_RAM_GB": 181.86,
+        "used_RAM_GB": 6.84,
+        "RAM_usage_percent": 3.6
+      },
+      "disk_info": {
+        "disk_total_GB": 1007.68,
+        "disk_used_GB": 76.6,
+        "disk_free_GB": 890.01,
+        "disk_usage_percent": 7.9
+      },
+      "gpu_info": {
+        "gpu_model": null
+      }
+    },
+    "params": {
+      "improve_motion_detection": false,
+      "prioritize_speed": false,
+      "process_static_videos": false,
+      "pyscene_threshold": 27,
+      "pyscene_shortest": 2,
+      "frames_per_scene": 3,
+      "frame_resolution": 320,
+      "blip_start_prompt": "a video frame of",
+      "blip_caption_len": 50,
+      "blip_min_length": 15,
+      "blip_num_beams": 1,
+      "blip_do_sample": true,
+      "blip_top_p": 0.85,
+      "blip_temperature": 0.65,
+      "blip_length_penalty": 1.0,
+      "blip_no_repeat_ngram_size": 3,
+      "blip_repetition_penalty": 1.1,
+      "blip_batch_size": 4,
+      "yolo_conf_thres": 0.8,
+      "yolo_iou_thres": 0.5,
+      "ast_target_sr": 16000,
+      "asr_model_size": "medium",
+      "asr_use_vad": true,
+      "asr_target_sr": 16000,
+      "llm_scene_history": 5,
+      "llm_chunk_len": 20000,
+      "llm_summary_len": 50000,
+      "llm_cooldown_sec": 0,
+      "rag_top_k_context": 10,
+      "execution_mode": "parallel",
+      "debug": false,
+      "quiet": true,
+      "embedding_provider": "gemini",
+      "embedding_model": "gemini-embedding-001",
+      "low_mem_mode": false,
+      "blip_device": "cuda:0",
+      "yolo_device": "cuda:1"
+    },
+    "steps": {
+      "get_scene_list": {
+        "step": "get_scene_list_log",
+        "wall_time_sec": 2.83604,
+        "cpu_time_sec": 27.65854,
+        "ram_before_MB": 638,
+        "ram_after_MB": 780,
+        "ram_used_MB": 142,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 555,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 555,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 555,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 555,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "sample_frames": {
+        "step": "sample_frames_log",
+        "wall_time_sec": 5.59083,
+        "cpu_time_sec": 76.96984,
+        "ram_before_MB": 781,
+        "ram_after_MB": 1284,
+        "ram_used_MB": 503,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "caption_frames": {
+        "step": "caption_frames_log",
+        "wall_time_sec": 42.06169,
+        "cpu_time_sec": 95.23221,
+        "ram_before_MB": 1284,
+        "ram_after_MB": 2916,
+        "ram_used_MB": 1632,
+        "io_read_MB": 0.0,
+        "io_write_MB": 23.4375,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 6,
+            "mem_util_percent": 5
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          1481,
+          0,
+          0,
+          0
+        ]
+      },
+      "branch_blip_total": {
+        "step": "branch_blip_total",
+        "wall_time_sec": 47.66014
+      },
+      "sample_fps": {
+        "step": "sample_fps_log",
+        "wall_time_sec": 18.10493,
+        "cpu_time_sec": 128.05269,
+        "ram_before_MB": 781,
+        "ram_after_MB": 2814,
+        "ram_used_MB": 2033,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0078125,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1903,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 31,
+            "mem_util_percent": 21
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          1003,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          1010,
+          0,
+          0,
+          0
+        ]
+      },
+      "detect_object_yolo": {
+        "step": "detect_object_yolo_log",
+        "wall_time_sec": 17.36305,
+        "cpu_time_sec": 29.95294,
+        "ram_before_MB": 2814,
+        "ram_after_MB": 2946,
+        "ram_used_MB": 132,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.01171875,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 1903,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 31,
+            "mem_util_percent": 21
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2169,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          1003,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          1049,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          1481,
+          0,
+          0,
+          0
+        ]
+      },
+      "branch_yolo_total": {
+        "step": "branch_yolo_total",
+        "wall_time_sec": 35.47847
+      },
+      "audio_scan": {
+        "step": "scan_audio_log",
+        "wall_time_sec": 34.67197,
+        "cpu_time_sec": 156.60318,
+        "ram_before_MB": 781,
+        "ram_after_MB": 2837,
+        "ram_used_MB": 2056,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.015625,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2319,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 1,
+            "mem_util_percent": 1
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          1330,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          3489,
+          0,
+          0,
+          0
+        ]
+      },
+      "asr_timings": {
+        "step": "extract_speech_log",
+        "wall_time_sec": 16.81736,
+        "cpu_time_sec": 15.89679,
+        "ram_before_MB": 2837,
+        "ram_after_MB": 2922,
+        "ram_used_MB": 85,
+        "io_read_MB": 0.0,
+        "io_write_MB": 23.421875,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2433,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 1,
+            "mem_util_percent": 1
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          1481,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          1481,
+          0,
+          0,
+          0
+        ]
+      },
+      "ast_timings": {
+        "step": "extract_sounds_log",
+        "wall_time_sec": 16.98108,
+        "cpu_time_sec": 15.89897,
+        "ram_before_MB": 2837,
+        "ram_after_MB": 2922,
+        "ram_used_MB": 85,
+        "io_read_MB": 0.0,
+        "io_write_MB": 23.421875,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2433,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 1,
+            "mem_util_percent": 1
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          1481,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          1481,
+          0,
+          0,
+          0
+        ]
+      },
+      "branch_audio_total": {
+        "step": "branch_audio_total",
+        "wall_time_sec": 51.66155
+      },
+      "describe_scenes": {
+        "step": "describe_scenes_log",
+        "wall_time_sec": 47.29317,
+        "cpu_time_sec": 0.34274,
+        "ram_before_MB": 2907,
+        "ram_after_MB": 2907,
+        "ram_used_MB": 0,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 3
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "summarize_scenes": {
+        "step": "summarize_scenes_log",
+        "wall_time_sec": 17.41282,
+        "cpu_time_sec": 0.03907,
+        "ram_before_MB": 2907,
+        "ram_after_MB": 2907,
+        "ram_used_MB": 0,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.0,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 1
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "synthesize_synopsis": {
+        "step": "synthesize_synopsis_log",
+        "wall_time_sec": 9.75528,
+        "cpu_time_sec": 0.05945,
+        "ram_before_MB": 2907,
+        "ram_after_MB": 2907,
+        "ram_used_MB": 0,
+        "io_read_MB": 0.0,
+        "io_write_MB": 0.01953125,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      },
+      "make_embedding": {
+        "step": "make_embedding_log",
+        "wall_time_sec": 2.45737,
+        "cpu_time_sec": 38.59579,
+        "ram_before_MB": 2907,
+        "ram_after_MB": 2943,
+        "ram_used_MB": 36,
+        "io_read_MB": 0.0,
+        "io_write_MB": 2.8046875,
+        "gpu_before": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "gpu_after": [
+          {
+            "id": 0,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 2175,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 1,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 2,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          },
+          {
+            "id": 3,
+            "name": "NVIDIA L4",
+            "memory_used_MB": 558,
+            "memory_total_MB": 23034,
+            "gpu_util_percent": 0,
+            "mem_util_percent": 0
+          }
+        ],
+        "cuda_before_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_after_MB": [
+          864,
+          0,
+          0,
+          0
+        ],
+        "cuda_peak_MB": [
+          864,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  }
+}

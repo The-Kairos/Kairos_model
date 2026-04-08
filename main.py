@@ -932,6 +932,7 @@ def parse_args():
 
     rag = subparsers.add_parser("rag", help="Run RAG for a single video")
     rag.add_argument("--video", required=True, help="Blob name or path")
+    rag.add_argument("--mongo-uri", help="MongoDB Connection URI")
 
     return parser.parse_args()
 
@@ -995,7 +996,8 @@ def main():
     if args.command == "rag" and len(selected_paths) != 1:
         raise SystemExit("RAG supports exactly one video. Use --video to pick one.")
 
-    test_videos = {make_output_dir(p, processed_root): str(p) for p in selected_paths}
+    chat_id = getattr(args, "chat_id", None)
+    test_videos = {make_output_dir(p, processed_root, chat_id=chat_id): str(p) for p in selected_paths}
     rag_only = args.command == "rag"
     if redo_only_steps and getattr(args, "redo", None):
         redo_steps = list(dict.fromkeys(redo_steps + _flatten(args.redo)))
@@ -1012,139 +1014,197 @@ def main():
     ensure_benchmark_plan(plan_path)
 
     for output_dir, test_video in test_videos.items():
-        run_started = time.perf_counter()
-        Path(output_dir).mkdir(parents=True, exist_ok=True)
-        benchmark_path = benchmark_report_path_for_video(test_video)
-        checkpoint_path = f"{output_dir}/checkpoint.json"
-
-        storage_manager.__init__(
-            chat_id=getattr(args, "chat_id", None),
-            mongo_uri=mongo_uri,
-            local_path=Path(checkpoint_path),
-            video_name=test_video,
-        )
-
-        if rag_only:
-            rag_path = f"{output_dir}/rag_embedding.json"
-            if not os.path.exists(rag_path):
-                emit(f"RAG embedding not found: {rag_path}. Run process first.", quiet=quiet, force=True)
-                continue
-            ask_rag(
-                rag_path=rag_path,
-                show_k_context=True,
-                k=rag_top_k_context,
-                conv_path=f"{output_dir}/conversation_history.json",
-                log_source=checkpoint_path,
-                show_timings=False,
-            )
-            continue
-
-        run_params = dict(params)
-        run_params.update({
-            "execution_mode": args.execution_mode,
-            "debug": debug_enabled,
-            "quiet": quiet,
-            "embedding_provider": embedding_provider,
-            "embedding_model": embedding_model,
-            "low_mem_mode": LOW_MEM_MODE,
-            "blip_batch_size": get_blip_batch_size(),
-            "blip_device": resolve_gpu_device_env("KAIROS_BLIP_GPU_ID"),
-            "yolo_device": resolve_gpu_device_env("KAIROS_YOLO_GPU_ID"),
-        })
-
-        log = initiate_log(
+        run_pipeline(
             video_path=test_video,
-            run_description="Production pipeline benchmark run.",
-            params=run_params,
-        )
-
-        checkpoint = storage_manager.read_checkpoint()
-        checkpoint.setdefault("steps", {})
-        step = checkpoint["steps"]
-
-        if redo_steps:
-            checkpoint, redo_info = apply_redo(
-                checkpoint=checkpoint,
-                output_dir=output_dir,
-                redo_steps=redo_steps,
-                redo_only=redo_only,
-            )
-            if redo_info.get("changed") and "scenes" in checkpoint:
-                storage_manager.save_checkpoint(checkpoint)
-
-        checkpoint = ensure_scene_detection(
-            checkpoint=checkpoint,
-            step_store=step,
-            storage_manager=storage_manager,
-            test_video=test_video,
-            output_dir=output_dir,
-            debug=debug_enabled,
-            quiet=quiet,
-        )
-
-        checkpoint = run_visual_audio_pipeline(
-            checkpoint=checkpoint,
-            step_store=step,
-            storage_manager=storage_manager,
-            test_video=test_video,
+            chat_id=chat_id,
+            mongo_uri=mongo_uri,
             output_dir=output_dir,
             execution_mode=args.execution_mode,
-            debug=debug_enabled,
-            quiet=quiet,
-        )
-
-        checkpoint = run_llm_and_rag_pipeline(
-            checkpoint=checkpoint,
-            step_store=step,
-            storage_manager=storage_manager,
-            test_video=test_video,
-            output_dir=output_dir,
-            debug=debug_enabled,
-            quiet=quiet,
             embedding_provider=embedding_provider,
             embedding_model=embedding_model,
+            debug=debug_enabled,
+            quiet=quiet,
+            redo_steps=redo_steps,
+            redo_only=redo_only,
+            rag_only=rag_only,
         )
 
-        total_wall_time = time.perf_counter() - run_started
-        checkpoint.setdefault("benchmark", {})
-        checkpoint["benchmark"] = {
-            "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
-            "execution_mode": args.execution_mode,
-            "debug": debug_enabled,
+
+def run_pipeline(
+    video_path: str,
+    chat_id: str | None = None,
+    mongo_uri: str | None = None,
+    output_dir: str | None = None,
+    execution_mode: str = "semi_parallel",
+    embedding_provider: str | None = None,
+    embedding_model: str | None = None,
+    debug: bool = False,
+    quiet: bool = False,
+    redo_steps: list | None = None,
+    redo_only: bool = False,
+    rag_only: bool = False,
+    stage_callback=None,
+):
+    """Run the full Kairos pipeline for a single video.
+
+    This function can be called directly from the server (in-process) or
+    from the CLI via main().  The optional *stage_callback(stage, percent)*
+    is invoked whenever the pipeline enters a new stage so the caller can
+    push progress updates without parsing stdout.
+    """
+    redo_steps = redo_steps or []
+    processed_root = Path("_processed")
+
+    if output_dir is None:
+        output_dir = make_output_dir(Path(video_path), processed_root, chat_id=chat_id)
+
+    embedding_provider, embedding_model = resolve_embedding_config(
+        embedding_provider, embedding_model,
+    )
+
+    # Wrap storage_manager so stage updates also fire the callback
+    storage_manager = StorageManager(
+        chat_id=chat_id,
+        mongo_uri=mongo_uri,
+        local_path=Path(f"{output_dir}/checkpoint.json"),
+        video_name=video_path,
+    )
+
+    if stage_callback is not None:
+        _orig_update = storage_manager.update_pipeline_state
+
+        def _hooked_update(stage, percent):
+            _orig_update(stage, percent)
+            stage_callback(stage, percent)
+
+        storage_manager.update_pipeline_state = _hooked_update
+
+    run_started = time.perf_counter()
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    benchmark_path = benchmark_report_path_for_video(video_path)
+
+    if rag_only:
+        rag_path = f"{output_dir}/rag_embedding.json"
+        if not os.path.exists(rag_path):
+            emit(f"RAG embedding not found: {rag_path}. Run process first.", quiet=quiet, force=True)
+            return
+        from src.rag_convo import ask_rag
+        ask_rag(
+            rag_path=rag_path,
+            show_k_context=True,
+            k=rag_top_k_context,
+            conv_path=f"{output_dir}/conversation_history.json",
+            log_source=f"{output_dir}/checkpoint.json",
+            show_timings=False,
+        )
+        return
+
+    run_params = dict(params)
+    run_params.update({
+        "execution_mode": execution_mode,
+        "debug": debug,
+        "quiet": quiet,
+        "embedding_provider": embedding_provider,
+        "embedding_model": embedding_model,
+        "low_mem_mode": LOW_MEM_MODE,
+        "blip_batch_size": get_blip_batch_size(),
+        "blip_device": resolve_gpu_device_env("KAIROS_BLIP_GPU_ID"),
+        "yolo_device": resolve_gpu_device_env("KAIROS_YOLO_GPU_ID"),
+    })
+
+    log = initiate_log(
+        video_path=video_path,
+        run_description="Production pipeline benchmark run.",
+        params=run_params,
+    )
+
+    checkpoint = storage_manager.read_checkpoint()
+    checkpoint.setdefault("steps", {})
+    step = checkpoint["steps"]
+
+    if redo_steps:
+        checkpoint, redo_info = apply_redo(
+            checkpoint=checkpoint,
+            output_dir=output_dir,
+            redo_steps=redo_steps,
+            redo_only=redo_only,
+        )
+        if redo_info.get("changed") and "scenes" in checkpoint:
+            storage_manager.save_checkpoint(checkpoint)
+
+    checkpoint = ensure_scene_detection(
+        checkpoint=checkpoint,
+        step_store=step,
+        storage_manager=storage_manager,
+        test_video=video_path,
+        output_dir=output_dir,
+        debug=debug,
+        quiet=quiet,
+    )
+
+    checkpoint = run_visual_audio_pipeline(
+        checkpoint=checkpoint,
+        step_store=step,
+        storage_manager=storage_manager,
+        test_video=video_path,
+        output_dir=output_dir,
+        execution_mode=execution_mode,
+        debug=debug,
+        quiet=quiet,
+    )
+
+    checkpoint = run_llm_and_rag_pipeline(
+        checkpoint=checkpoint,
+        step_store=step,
+        storage_manager=storage_manager,
+        test_video=video_path,
+        output_dir=output_dir,
+        debug=debug,
+        quiet=quiet,
+        embedding_provider=embedding_provider,
+        embedding_model=embedding_model,
+    )
+
+    total_wall_time = time.perf_counter() - run_started
+    checkpoint.setdefault("benchmark", {})
+    checkpoint["benchmark"] = {
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "execution_mode": execution_mode,
+        "debug": debug,
+        "quiet": quiet,
+        "low_mem_mode": LOW_MEM_MODE,
+        "embedding_provider": embedding_provider,
+        "embedding_model": embedding_model,
+        "total_wall_time_sec": round(total_wall_time, 5),
+    }
+
+    complete = complete_log(
+        log=log,
+        steps=step,
+        vid_len=checkpoint.get("video_duration_sec"),
+        scene_num=len(checkpoint.get("scenes", [])),
+    )
+    checkpoint["run_log"] = complete
+
+    save_log(data=checkpoint, path=f"logs/{output_dir}.json")
+    storage_manager.save_checkpoint(checkpoint=checkpoint)
+
+    append_benchmark_report(
+        benchmark_path,
+        {
+            "timestamp": checkpoint["benchmark"]["timestamp"],
+            "video_name": Path(video_path).name,
+            "video_path": video_path,
+            "execution_mode": execution_mode,
+            "debug": debug,
             "quiet": quiet,
             "low_mem_mode": LOW_MEM_MODE,
             "embedding_provider": embedding_provider,
             "embedding_model": embedding_model,
-            "total_wall_time_sec": round(total_wall_time, 5),
-        }
-
-        complete = complete_log(
-            log=log,
-            steps=step,
-            vid_len=checkpoint.get("video_duration_sec"),
-            scene_num=len(checkpoint.get("scenes", [])),
-        )
-        checkpoint["run_log"] = complete
-
-        save_log(data=checkpoint, path=f"logs/{output_dir}.json")
-        storage_manager.save_checkpoint(checkpoint=checkpoint)
-
-        append_benchmark_report(
-            benchmark_path,
-            {
-                "timestamp": checkpoint["benchmark"]["timestamp"],
-                "video_name": Path(test_video).name,
-                "video_path": test_video,
-                "execution_mode": args.execution_mode,
-                "debug": debug_enabled,
-                "quiet": quiet,
-                "low_mem_mode": LOW_MEM_MODE,
-                "embedding_provider": embedding_provider,
-                "embedding_model": embedding_model,
-                "total_wall_time_sec": total_wall_time,
-            },
-            step,
-        )
+            "total_wall_time_sec": total_wall_time,
+        },
+        step,
+    )
 
 
 if __name__ == "__main__":
