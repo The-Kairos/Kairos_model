@@ -14,6 +14,7 @@
 | 2026-04-06 16:59:03 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 230.812 | 2.520 | 99.446 | 99.506 | 15.065 | 9.679 | 4.197 |
 | 2026-04-06 17:05:20 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 219.944 | 2.491 | 99.776 | 81.495 | 19.445 | 12.225 | 4.103 |
 | 2026-04-06 19:09:50 UTC | Argentina v France Full Penalty Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 235.286 | 2.523 | 100.320 | 93.626 | 22.756 | 11.500 | 4.157 |
+| 2026-04-07 20:15:40 UTC | Argentina v France Full Penalty Shoot-out.mp4 | semi_parallel | gemini | gemini-embedding-001 | 8.436 | - | - | - | - | - | 4.015 |
 
 ## 2026-04-06 07:13:01 UTC | Argentina v France Full Penalty Shoot-out.mp4 | semi_parallel
 
@@ -420,3 +421,35 @@
 | branch_blip_total | 100.320 |
 | branch_yolo_total | 40.897 |
 | branch_audio_total | 75.536 |
+
+## 2026-04-07 20:15:40 UTC | Argentina v France Full Penalty Shoot-out.mp4 | semi_parallel
+
+- Video path: `Videos/Argentina v France Full Penalty Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `False`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `8.436` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | - |
+| save_clips | - |
+| sample_frames | - |
+| caption_frames | - |
+| sample_fps | - |
+| detect_object_yolo | - |
+| audio_scan | - |
+| asr_timings | - |
+| ast_timings | - |
+| describe_scenes | - |
+| summarize_scenes | - |
+| synthesize_synopsis | - |
+| make_embedding | 4.015 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | - |
+| branch_yolo_total | - |
+| branch_audio_total | - |

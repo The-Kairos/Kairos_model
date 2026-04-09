@@ -280,75 +280,84 @@ def save_log(data, path):
 # ================================================================================================
 # WRAPPER FUNCTIONS
 # ================================================================================================
-from src.scene_cutting import get_scene_list
-from src.frame_sampling import sample_frames, sample_fps
-from src.frame_captioning_blip import caption_frames
-from src.frame_obj_d_yolo import detect_object_yolo
-from src.scene_description import describe_scenes
-from src.audio_detector import scan_audio
-from src.audio_MIT_ast_parallel import extract_sounds_optimized
-from src.audio_whisper_parallel import extract_speech_singlecall
-from src.debug_utils import save_clips
-from src.synopsis_synthesis import summarize_scenes, synthesize_synopsis
-from src.rag_convo import make_embedding, ask_rag
+# Imports are deferred into each wrapper so that heavy libraries (torch,
+# transformers, ultralytics, whisper, librosa …) are only loaded when the
+# corresponding pipeline stage actually runs.  This eliminates the ~85 s
+# upfront import cost and allows the server to keep the process alive
+# across requests (second+ calls pay zero import overhead).
+# ================================================================================================
 
 
 @log_step()
 def get_scene_list_log(*args, **kwargs):
+    from src.scene_cutting import get_scene_list
     return get_scene_list(*args, **kwargs)
 
 @log_step()
 def save_clips_log(*args, **kwargs):
+    from src.debug_utils import save_clips
     return save_clips(*args, **kwargs)
 
 @log_step()
 def sample_frames_log(*args, **kwargs):
+    from src.frame_sampling import sample_frames
     return sample_frames(*args, **kwargs)
 
 @log_step()
 def sample_fps_log(*args, **kwargs):
+    from src.frame_sampling import sample_fps
     return sample_fps(*args, **kwargs)
 
 @log_step()
 def caption_frames_log(*args, **kwargs):
+    from src.frame_captioning_blip import caption_frames
     return caption_frames(*args, **kwargs)
-    
+
 @log_step()
 def detect_object_yolo_log(*args, **kwargs):
+    from src.frame_obj_d_yolo import detect_object_yolo
     return detect_object_yolo(*args, **kwargs)
 
 @log_step()
 def describe_scenes_log(*args, **kwargs):
+    from src.scene_description import describe_scenes
     return describe_scenes(*args, **kwargs)
 
 @log_step()
 def extract_sounds_log(*args, **kwargs):
+    from src.audio_MIT_ast_parallel import extract_sounds_optimized
     scenes, _stats = extract_sounds_optimized(*args, **kwargs)
     return scenes
 
 @log_step()
 def extract_speech_log(*args, **kwargs):
+    from src.audio_whisper_parallel import extract_speech_singlecall
     scenes, _stats = extract_speech_singlecall(*args, **kwargs)
     return scenes
 
 @log_step()
 def scan_audio_log(*args, **kwargs):
+    from src.audio_detector import scan_audio
     return scan_audio(*args, **kwargs)
 
 @log_step()
 def summarize_scenes_log(*args, **kwargs):
+    from src.synopsis_synthesis import summarize_scenes
     return summarize_scenes(*args, **kwargs)
 
 @log_step()
 def synthesize_synopsis_log(*args, **kwargs):
+    from src.synopsis_synthesis import synthesize_synopsis
     return synthesize_synopsis(*args, **kwargs)
 
 @log_step()
 def make_embedding_log(*args, **kwargs):
+    from src.rag_convo import make_embedding
     return make_embedding(*args, **kwargs)
 
 @log_step()
 def ask_rag_log(*args, **kwargs):
+    from src.rag_convo import ask_rag
     return ask_rag(*args, **kwargs)
 
 # ================================================================================================
