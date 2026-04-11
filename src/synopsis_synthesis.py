@@ -304,7 +304,7 @@ def _parse_clips_nonjson(text: str, min_count: int, max_count: int) -> tuple[dic
             ts = "Not explicitly stated"
         if not value:
             value = "Not explicitly stated."
-        items.append({"timestamp": ts, "description": value})
+        items.append({"timestamp": ts, "start": ts, "end": "Not explicitly stated", "description": value})
     if len(items) > max_count:
         items = items[:max_count]
     ok = min_count <= len(items) <= max_count
@@ -417,9 +417,11 @@ def _build_repair_prompt(
     elif section == "clips":
         schema = (
             "Use this exact schema and key names:\n"
-            '{ "suggested_clips": [ { "timestamp": "00:00:00", "description": "Clip description." } ] }\n'
+            '{ "suggested_clips": [ { "timestamp": "00:00:00.000", "start": "00:00:00.000", "end": "00:00:10.000", "description": "Clip description." } ] }\n'
             "Rules:\n"
             f"- \"suggested_clips\" must contain between {highlight_min} and {highlight_max} items ({highlight_label}).\n"
+            "- \"timestamp\" and \"start\" must be identical.\n"
+            "- \"end\" is where the meaningful content of that clip ends.\n"
         )
     elif section == "qna_predefined":
         schema = (
@@ -819,21 +821,32 @@ def _normalize_clips(payload: dict, min_count: int, max_count: int) -> list[dict
     items = []
     if isinstance(raw, list):
         for entry in raw:
-            ts = desc = None
+            ts = desc = start = end = None
             if isinstance(entry, dict):
                 ts = entry.get("timestamp")
                 desc = entry.get("description")
+                start = entry.get("start")
+                end = entry.get("end")
             elif isinstance(entry, str):
                 desc = entry
             if not isinstance(ts, str) or not ts.strip():
                 ts = "Not explicitly stated"
             if not isinstance(desc, str) or not desc.strip():
                 desc = "Not explicitly stated."
-            items.append({"timestamp": ts.strip(), "description": desc.strip()})
+            if not isinstance(start, str) or not start.strip():
+                start = ts.strip()
+            if not isinstance(end, str) or not end.strip():
+                end = "Not explicitly stated"
+            items.append({
+                "timestamp": ts.strip(),
+                "start": start.strip(),
+                "end": end.strip(),
+                "description": desc.strip(),
+            })
     if len(items) > max_count:
         items = items[:max_count]
     while len(items) < min_count:
-        items.append({"timestamp": "Not explicitly stated", "description": "Not explicitly stated."})
+        items.append({"timestamp": "Not explicitly stated", "start": "Not explicitly stated", "end": "Not explicitly stated", "description": "Not explicitly stated."})
     return items
 
 
@@ -1156,9 +1169,11 @@ def _build_safe_section_prompt(
     elif section == "clips":
         schema = (
             "Use this exact schema and key names:\n"
-            '{ "suggested_clips": [ { "timestamp": "00:00:00", "description": "Clip description." } ] }\n'
+            '{ "suggested_clips": [ { "timestamp": "00:00:00.000", "start": "00:00:00.000", "end": "00:00:10.000", "description": "Clip description." } ] }\n'
             "Rules:\n"
             f"- \"suggested_clips\" must contain between {highlight_min} and {highlight_max} items ({highlight_label}).\n"
+            "- \"timestamp\" and \"start\" must be identical.\n"
+            "- \"end\" is where the meaningful content of that clip ends.\n"
             "- If a timestamp is not explicitly stated, use \"Not explicitly stated\".\n"
         )
     elif section == "qna_predefined":
@@ -1807,7 +1822,7 @@ def synthesize_synopsis(
             '  "summary": "Single coherent paragraph.",\n'
             '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
             '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
-            '  "suggested_clips": [ { "timestamp": "00:00:00", "description": "Clip description." } ]\n'
+            '  "suggested_clips": [ { "timestamp": "00:00:00.000", "start": "00:00:00.000", "end": "00:00:10.000", "description": "Clip description." } ]\n'
             "}\n"
             "Rules:\n"
             "- Extract exact timestamps from the narrative for timeline and clips.\n"
@@ -1971,7 +1986,7 @@ def synthesize_synopsis(
                 '  "summary": "Single coherent paragraph.",\n'
                 '  "video_highlights": [ { "start": "00:00:00", "end": "00:00:00", "highlight": "One sentence highlight." } ],\n'
                 '  "video_timeline": [ { "timestamp": "00:00:00", "event": "3-5 word event" } ],\n'
-                '  "suggested_clips": [ { "timestamp": "00:00:00", "description": "Clip description." } ],\n'
+                '  "suggested_clips": [ { "timestamp": "00:00:00.000", "start": "00:00:00.000", "end": "00:00:10.000", "description": "Clip description." } ],\n'
                 '  "questions": [ { "question": "Question text", "answer": "Answer text" } ]\n'
                 "}\n"
                 "Rules:\n"
