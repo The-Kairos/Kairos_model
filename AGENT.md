@@ -21,6 +21,7 @@ functional, model-agnostic, and easy to read.
 - Prefer clarity over DRY when DRY makes code harder to read.
 - Do not use Python OOP for application logic.
 - Do not add classes.
+- Do not add test classes, typing-only classes, or protocol/helper classes when a function or plain dictionary is enough.
 - Do not combine unrelated domains just to reduce duplication.
 
 Example: audio and video should stay separate. Do not merge audio and video
@@ -63,6 +64,9 @@ framework-style objects for Kairos logic.
 
 Use functions, dictionaries, tuples, dataclasses only if needed for plain data,
 and small modules grouped by responsibility.
+
+This no-class rule also applies to tests and lightweight typing helpers.
+Prefer plain test functions, plain dictionaries, and small schema builders.
 
 Prefer this:
 
@@ -282,6 +286,10 @@ def caption_frames_log(*args, **kwargs):
 
 Logging code must not change business logic. It should observe and record.
 
+Reusable output shapes should live in `src/kairos/logging/schemas.py` when more
+than one module needs the same dictionary structure. Do not duplicate schema
+builders across modules.
+
 ## Target File Structure
 
 Refactor toward this structure:
@@ -332,6 +340,13 @@ Do not put application logic in `__init__.py`.
 
 Keep `__init__.py` empty unless packaging requires a tiny export. Prefer
 explicit module imports and `pyproject.toml` configuration.
+
+Prefer intuitive docstrings on public modules and public functions. Keep them
+short and practical:
+
+- explain the function's responsibility
+- state the input/output contract when not obvious
+- note retry or fallback behavior when that affects downstream logic
 
 In `pyproject.toml`, expose CLI entry points through `[project.scripts]` so
 these commands are possible:
@@ -440,6 +455,22 @@ Use three levels of tests:
 - Unit tests: mock model calls.
 - Smoke tests: run real models on tiny sample inputs.
 - Integration tests: verify pipeline steps connect correctly.
+
+Organize tests by folder:
+
+- `test/unit`
+- `test/smoke`
+- `test/integration`
+
+Prefer function-based tests with plain `assert` over `unittest.TestCase`
+classes unless a library requires a different style.
+
+At the top of each runnable test script, add a first-line comment showing how
+to run it, for example:
+
+```python
+# Run: python test/unit/test_example.py
+```
 
 Unit test example:
 
