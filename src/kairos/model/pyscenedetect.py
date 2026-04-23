@@ -1,13 +1,21 @@
+"""PySceneDetect adapter for Kairos scene segmentation.
+
+This module keeps scene detection functional and small:
+- read basic video stats
+- run PySceneDetect
+- retry with a more sensitive threshold if needed
+- fall back to fixed intervals when no cuts are found
+"""
+
 from typing import Any
-
 import cv2
-
 
 DEFAULT_FPS = 30.0
 DEFAULT_FALLBACK_INTERVAL_SEC = 20
 MIN_RETRY_THRESHOLD = 0.1
 
 def format_timecode(seconds: float | None) -> str:
+    """Convert seconds into `HH:MM:SS.mmm` for fallback scene metadata."""
     if seconds is None:
         return "??:??:??.???"
     try:
@@ -19,14 +27,15 @@ def format_timecode(seconds: float | None) -> str:
     hrs, mins = divmod(mins_total, 60)
     return f"{hrs:02d}:{mins:02d}:{sec:02d}.{ms:03d}"
 
-
-def build_scene(
+# put this in src\kairos\logging\schemas.py
+def scene_schema(
     scene_index: int,
     start_seconds: float,
     end_seconds: float,
     start_timecode: str,
     end_timecode: str,
 ) -> dict:
+    """Build the standard Kairos scene dictionary used downstream."""
     return {
         "scene_index": scene_index,
         "start_timecode": start_timecode,
@@ -37,8 +46,9 @@ def build_scene(
     }
 
 
-def build_detected_scene(scene_index: int, start_time: Any, end_time: Any) -> dict:
-    return build_scene(
+def build_scene_schema(scene_index: int, start_time: Any, end_time: Any) -> dict:
+    """Convert a PySceneDetect time range into the standard scene dictionary."""
+    return scene_schema(
         scene_index=scene_index,
         start_seconds=start_time.get_seconds(),
         end_seconds=end_time.get_seconds(),
@@ -48,29 +58,35 @@ def build_detected_scene(scene_index: int, start_time: Any, end_time: Any) -> di
 
 
 def normalize_fps(fps: float) -> float:
+    """Use the detected FPS when valid, otherwise fall back to a safe default."""
     return fps if fps > 0 else DEFAULT_FPS
 
 
 def normalize_interval_seconds(fallback_interval_sec: int) -> float:
+    """Normalize fallback interval input so fixed splitting always has a valid step."""
     interval = float(fallback_interval_sec)
     return interval if interval > 0 else float(DEFAULT_FALLBACK_INTERVAL_SEC)
 
 
 def compute_min_scene_len(fps: float, min_scene_sec: int) -> int:
+    """Convert the minimum scene duration from seconds into frames."""
     return max(1, int(round(fps * min_scene_sec)))
 
 
 def compute_duration_seconds(frame_count: float, fps: float, min_scene_sec: int) -> float:
+    """Estimate total video duration for fallback segmentation."""
     if frame_count > 0:
         return frame_count / fps
     return max(float(min_scene_sec), 1.0)
 
 
 def compute_retry_threshold(threshold: float, retry_threshold_factor: float) -> float:
+    """Lower the threshold for the retry pass without going below the floor."""
     return max(MIN_RETRY_THRESHOLD, threshold * retry_threshold_factor)
 
 
 def build_fallback_scenes(duration_seconds: float, fallback_interval_sec: int) -> list[dict]:
+    """Split a video duration into fixed-length scene dictionaries."""
     scenes = []
     interval = normalize_interval_seconds(fallback_interval_sec)
     start = 0.0
@@ -78,12 +94,13 @@ def build_fallback_scenes(duration_seconds: float, fallback_interval_sec: int) -
         end = min(start + interval, duration_seconds)
         if end <= start:
             break
-        scenes.append(build_scene(len(scenes), start, end, format_timecode(start), format_timecode(end)))
+        scenes.append(scene_schema(len(scenes), start, end, format_timecode(start), format_timecode(end)))
         start = end
     return scenes
 
 
 def read_video_stats(input_video_path: str) -> tuple[float, float]:
+    """Read FPS and frame count once so later logic can stay pure."""
     capture = cv2.VideoCapture(input_video_path)
     try:
         fps = capture.get(cv2.CAP_PROP_FPS)
@@ -94,6 +111,7 @@ def read_video_stats(input_video_path: str) -> tuple[float, float]:
 
 
 def detect_scene_ranges(input_video_path: str, threshold: float, min_scene_len: int, frame_skip: int) -> list:
+    """Run PySceneDetect and return its raw `(start_time, end_time)` ranges."""
     from scenedetect import SceneManager, open_video
     from scenedetect.detectors import ContentDetector
 
@@ -104,7 +122,8 @@ def detect_scene_ranges(input_video_path: str, threshold: float, min_scene_len: 
 
 
 def format_detected_scenes(scene_ranges: list) -> list[dict]:
-    return [build_detected_scene(idx, start, end) for idx, (start, end) in enumerate(scene_ranges)]
+    """Format raw PySceneDetect ranges into Kairos scene dictionaries."""
+    return [build_scene_schema(idx, start, end) for idx, (start, end) in enumerate(scene_ranges)]
 
 
 def detect_with_retry(
@@ -114,6 +133,7 @@ def detect_with_retry(
     frame_skip: int,
     retry_threshold_factor: float,
 ) -> list:
+    """Try scene detection twice, making the second pass more sensitive."""
     scene_ranges = detect_scene_ranges(input_video_path, threshold, min_scene_len, frame_skip)
     if scene_ranges:
         return scene_ranges
@@ -129,6 +149,16 @@ def detect_scenes(
     retry_threshold_factor: float = 0.5,
     fallback_interval_sec: int = 20,
 ) -> list[dict]:
+    """Return Kairos scene metadata from PySceneDetect or fixed-interval fallback.
+
+    Input:
+    - `input_video_path`: path to the video file
+    - tuning values for sensitivity, minimum scene duration, and fallback size
+
+    Output:
+    - list of scene dictionaries with scene index, timecodes, timestamps, and
+      duration in seconds
+    """
     fps, frame_count = read_video_stats(input_video_path)
     normalized_fps = normalize_fps(fps)
     min_scene_len = compute_min_scene_len(normalized_fps, min_scene_sec)
