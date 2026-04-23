@@ -7,8 +7,14 @@ This module keeps scene detection functional and small:
 - fall back to fixed intervals when no cuts are found
 """
 
+#
+# In the future, a lot of these functions will be moved. I want this 
+# file to be ONLY pyscene model loading 
+#
+
 from typing import Any
 import cv2
+from src.kairos.logging.schemas import scene_schema
 
 DEFAULT_FPS = 30.0
 DEFAULT_FALLBACK_INTERVAL_SEC = 20
@@ -26,25 +32,6 @@ def format_timecode(seconds: float | None) -> str:
     mins_total, sec = divmod(sec_total, 60)
     hrs, mins = divmod(mins_total, 60)
     return f"{hrs:02d}:{mins:02d}:{sec:02d}.{ms:03d}"
-
-# put this in src\kairos\logging\schemas.py
-def scene_schema(
-    scene_index: int,
-    start_seconds: float,
-    end_seconds: float,
-    start_timecode: str,
-    end_timecode: str,
-) -> dict:
-    """Build the standard Kairos scene dictionary used downstream."""
-    return {
-        "scene_index": scene_index,
-        "start_timecode": start_timecode,
-        "end_timecode": end_timecode,
-        "start_seconds": start_seconds,
-        "end_seconds": end_seconds,
-        "duration_seconds": end_seconds - start_seconds,
-    }
-
 
 def build_scene_schema(scene_index: int, start_time: Any, end_time: Any) -> dict:
     """Convert a PySceneDetect time range into the standard scene dictionary."""
