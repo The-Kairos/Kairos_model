@@ -1,6 +1,10 @@
+# Run: python test/smoke/gpt4o_connection.py
+
 import os
-from openai import AzureOpenAI
+
 from dotenv import load_dotenv
+from openai import AzureOpenAI
+
 load_dotenv()
 
 model_name = "gpt-4o"
@@ -9,7 +13,6 @@ deployment = os.getenv("GPT_DEPLOYMENT")
 subscription_key = os.getenv("GPT_KEY")
 api_version = os.getenv("GPT_VERSION")
 
-from openai import AzureOpenAI
 client = AzureOpenAI(
     api_version=api_version,
     azure_endpoint=endpoint,
@@ -25,14 +28,12 @@ response = client.chat.completions.create(
         {
             "role": "user",
             "content": "How to make Ube bread?",
-        }
+        },
     ],
     max_tokens=4096,
     temperature=1.0,
     top_p=1.0,
-    model=deployment
+    model=deployment,
 )
 
 print(response.choices[0].message.content)
-
-

@@ -19,15 +19,23 @@ export PYTHONPATH=$PYTHONPATH:.
 
 ---
 
-## 2. Running Individual Tests
+## 2. Test Folders
 
-### A. Storage Manager Logic Test
-Verifies that the `StorageManager` can handle both local and remote modes correctly.
+Tests are grouped by scope:
+
+- `test/unit`: fast tests with mocks and no external services
+- `test/smoke`: small real-connection checks for providers or assets
+- `test/integration`: multi-component or API workflow checks
+
+## 3. Running Individual Tests
+
+### A. Unit Tests
+Verifies local logic without calling external services.
 
 ```bash
-python3 test/test_storage.py
+python test/unit/test_storage.py
+python test/unit/test_pyscenedetect.py
 ```
-*Note: If you get a `ModuleNotFoundError`, ensure you have run `export PYTHONPATH=$PYTHONPATH:.` from the root directory.*
 
 ### B. Flask API Server Test
 Start the server in one terminal:
@@ -42,7 +50,22 @@ curl -H "X-API-Key: your-secret-key" http://localhost:8000/health
 
 ---
 
-## 3. Video Processing Workflows
+### C. Smoke Tests
+These touch real provider credentials or real local assets.
+
+```bash
+python test/smoke/gpt4o_connection.py
+python test/smoke/gemini_connection.py
+```
+
+### D. Integration Test Client
+This exercises the VM API workflow end-to-end against a running server.
+
+```bash
+python test/integration/kairos_client.py --video Videos/your_video.mp4
+```
+
+## 4. Video Processing Workflows
 
 ### Phase 1: Local Only (Default)
 Run a video process without MongoDB synchronization.
@@ -61,7 +84,7 @@ python3 main.py process \
 
 ---
 
-## 4. End-to-End API Integration
+## 5. End-to-End API Integration
 To simulate how the Next.js app will trigger the VM:
 
 ```bash
@@ -80,8 +103,8 @@ curl -N -H "X-API-Key: your-secret-key" http://localhost:8000/jobs/<RUN_ID_FROM_
 
 ---
 
-## 5. Troubleshooting
+## 6. Troubleshooting
 
-- **ModuleNotFoundError: No module named 'src'**: Run `export PYTHONPATH=$PYTHONPATH:.` from the project root.
+- **ModuleNotFoundError: No module named 'src'**: Run commands from the project root. The unit tests now add the repo root to `sys.path` automatically.
 - **Connection Refused**: Ensure the Flask server is running on the correct port (default 8000).
 - **Unauthorized (401)**: Double-check that your `X-API-Key` matches the `KAIROS_VM_API_KEY` on the server.
