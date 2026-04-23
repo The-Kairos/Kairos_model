@@ -6,14 +6,27 @@ This module keeps scene detection functional and small:
 - retry with a more sensitive threshold if needed
 - fall back to fixed intervals when no cuts are found
 """
+# python src\kairos\model\pyscenedetect.py "test\smoke\inputs\short_video.mp4" --json
 
-#
-# In the future, a lot of these functions will be moved. I want this 
-# file to be ONLY pyscene model loading 
-#
-
+import argparse
+import json
+import sys
+from pathlib import Path
 from typing import Any
+
 import cv2
+
+
+def add_repo_root_to_path():
+    """Allow this file to be run directly as a script from the repo root."""
+    repo_root = Path(__file__).resolve().parents[3]
+    repo_root_str = str(repo_root)
+    if repo_root_str not in sys.path:
+        sys.path.insert(0, repo_root_str)
+
+
+add_repo_root_to_path()
+
 from src.kairos.logging.schemas import scene_schema
 
 DEFAULT_FPS = 30.0
@@ -162,4 +175,54 @@ def detect_scenes(
     return build_fallback_scenes(duration_seconds, fallback_interval_sec)
 
 
+def format_scene_line(scene: dict) -> str:
+    """Format one scene for readable terminal output."""
+    return (
+        f"{scene['scene_index']:03d}: {scene['start_timecode']} -> "
+        f"{scene['end_timecode']} ({scene['duration_seconds']:.2f}s)"
+    )
+
+
+def print_scene_report(video_path: str, scenes: list[dict]):
+    """Print a compact scene report for a video."""
+    print(f"Video: {video_path}")
+    print(f"Found {len(scenes)} scenes")
+    for scene in scenes:
+        print(format_scene_line(scene))
+
+
+def parse_args():
+    """Parse CLI arguments for direct script execution."""
+    parser = argparse.ArgumentParser(description="Detect scenes with the Kairos PySceneDetect adapter.")
+    parser.add_argument("video_path", help="Path to the input video file")
+    parser.add_argument("--threshold", type=float, default=27)
+    parser.add_argument("--min-scene-sec", type=float, default=2)
+    parser.add_argument("--frame-skip", type=int, default=3)
+    parser.add_argument("--retry-threshold-factor", type=float, default=0.5)
+    parser.add_argument("--fallback-interval-sec", type=int, default=20)
+    parser.add_argument("--json", action="store_true", help="Print the full scene list as JSON")
+    return parser.parse_args()
+
+
+def run_cli():
+    """Run scene detection from the command line and print the result."""
+    args = parse_args()
+    scenes = detect_scenes(
+        input_video_path=args.video_path,
+        threshold=args.threshold,
+        min_scene_sec=args.min_scene_sec,
+        frame_skip=args.frame_skip,
+        retry_threshold_factor=args.retry_threshold_factor,
+        fallback_interval_sec=args.fallback_interval_sec,
+    )
+    if args.json:
+        print(json.dumps(scenes, indent=2))
+        return
+    print_scene_report(args.video_path, scenes)
+
+
 get_scene_list = detect_scenes
+
+
+if __name__ == "__main__":
+    run_cli()
