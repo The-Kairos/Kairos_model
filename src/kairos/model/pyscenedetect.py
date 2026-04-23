@@ -17,6 +17,9 @@ from typing import Any
 import cv2
 
 
+# TEMP: This path bootstrap is only here so the module can be run directly as
+# `python src\kairos\model\pyscenedetect.py ...`. Per AGENT.md, direct CLI
+# entrypoints should move under `src/kairos/cli/`.
 def add_repo_root_to_path():
     """Allow this file to be run directly as a script from the repo root."""
     repo_root = Path(__file__).resolve().parents[3]
@@ -83,6 +86,14 @@ def compute_duration_seconds(frame_count: float, fps: float, min_scene_sec: int)
 def compute_retry_threshold(threshold: float, retry_threshold_factor: float) -> float:
     """Lower the threshold for the retry pass without going below the floor."""
     return max(MIN_RETRY_THRESHOLD, threshold * retry_threshold_factor)
+
+
+def resolve_video_path(input_video_path: str) -> str:
+    """Resolve a video path and fail early when the file does not exist."""
+    video_path = Path(input_video_path).expanduser().resolve()
+    if not video_path.exists():
+        raise FileNotFoundError(f"Video file not found: {video_path}")
+    return str(video_path)
 
 
 def build_fallback_scenes(duration_seconds: float, fallback_interval_sec: int) -> list[dict]:
@@ -159,11 +170,12 @@ def detect_scenes(
     - list of scene dictionaries with scene index, timecodes, timestamps, and
       duration in seconds
     """
-    fps, frame_count = read_video_stats(input_video_path)
+    video_path = resolve_video_path(input_video_path)
+    fps, frame_count = read_video_stats(video_path)
     normalized_fps = normalize_fps(fps)
     min_scene_len = compute_min_scene_len(normalized_fps, min_scene_sec)
     scene_ranges = detect_with_retry(
-        input_video_path,
+        video_path,
         threshold,
         min_scene_len,
         frame_skip,
@@ -183,6 +195,20 @@ def format_scene_line(scene: dict) -> str:
     )
 
 
+# TEMP: This default output location supports manual smoke runs from this file.
+# Per AGENT.md, user-facing CLI defaults belong in `src/kairos/cli/`.
+def default_output_dir(video_path: str) -> Path:
+    """Build the default clip output folder under `.temp` for one video."""
+    return Path(".temp") / "pyscenedetect" / Path(video_path).stem
+
+
+def seconds_to_frame(seconds: float, fps: float) -> int:
+    """Convert a timestamp in seconds into a frame index."""
+    return max(0, int(round(seconds * fps)))
+
+
+# TEMP: This printing helper exists for direct script usage. Per AGENT.md,
+# terminal formatting should move into `src/kairos/cli/`.
 def print_scene_report(video_path: str, scenes: list[dict]):
     """Print a compact scene report for a video."""
     print(f"Video: {video_path}")
@@ -191,6 +217,52 @@ def print_scene_report(video_path: str, scenes: list[dict]):
         print(format_scene_line(scene))
 
 
+def save_scene_clip(capture, fps: float, frame_size: tuple[int, int], scene: dict, clip_path: Path):
+    """Write one scene clip using OpenCV's built-in video writer."""
+    start_frame = seconds_to_frame(scene["start_seconds"], fps)
+    end_frame = max(start_frame + 1, seconds_to_frame(scene["end_seconds"], fps))
+    writer = cv2.VideoWriter(
+        str(clip_path),
+        cv2.VideoWriter_fourcc(*"mp4v"),
+        fps,
+        frame_size,
+    )
+    try:
+        capture.set(cv2.CAP_PROP_POS_FRAMES, start_frame)
+        for _ in range(start_frame, end_frame):
+            ok, frame = capture.read()
+            if not ok:
+                break
+            writer.write(frame)
+    finally:
+        writer.release()
+
+
+# TEMP: Clip export is only here to make the detector easy to smoke-test.
+# Per AGENT.md, file-writing helpers should move into `src/kairos/logging/io.py`
+# or a dedicated video IO module once the package structure is in place.
+def save_scene_clips(video_path: str, scenes: list[dict], output_dir: str | Path) -> Path:
+    """Save one clip per scene and return the output folder path."""
+    clip_dir = Path(output_dir)
+    clip_dir.mkdir(parents=True, exist_ok=True)
+    capture = cv2.VideoCapture(video_path)
+    try:
+        fps = normalize_fps(capture.get(cv2.CAP_PROP_FPS))
+        width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH))
+        height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        frame_size = (width, height)
+        for scene in scenes:
+            clip_path = clip_dir / f"scene_{scene['scene_index']:04d}.mp4"
+            if clip_path.exists():
+                continue
+            save_scene_clip(capture, fps, frame_size, scene, clip_path)
+    finally:
+        capture.release()
+    return clip_dir.resolve()
+
+
+# TEMP: These CLI args are here for direct manual testing. Per AGENT.md, CLI
+# argument parsing should move to `src/kairos/cli/main.py`.
 def parse_args():
     """Parse CLI arguments for direct script execution."""
     parser = argparse.ArgumentParser(description="Detect scenes with the Kairos PySceneDetect adapter.")
@@ -201,9 +273,13 @@ def parse_args():
     parser.add_argument("--retry-threshold-factor", type=float, default=0.5)
     parser.add_argument("--fallback-interval-sec", type=int, default=20)
     parser.add_argument("--json", action="store_true", help="Print the full scene list as JSON")
+    parser.add_argument("--output-dir", help="Folder for saved clips. Default: .temp/pyscenedetect/<video-name>")
+    parser.add_argument("--no-clips", action="store_true", help="Skip saving clips after detection")
     return parser.parse_args()
 
 
+# TEMP: This direct runner is only a convenience wrapper around the model
+# adapter. Per AGENT.md, the long-term home is `src/kairos/cli/main.py`.
 def run_cli():
     """Run scene detection from the command line and print the result."""
     args = parse_args()
@@ -217,12 +293,18 @@ def run_cli():
     )
     if args.json:
         print(json.dumps(scenes, indent=2))
+    else:
+        print_scene_report(args.video_path, scenes)
+    if args.no_clips:
         return
-    print_scene_report(args.video_path, scenes)
+    clip_dir = save_scene_clips(args.video_path, scenes, args.output_dir or default_output_dir(args.video_path))
+    print(f"Clips saved to: {clip_dir}")
 
 
 get_scene_list = detect_scenes
 
 
+# TEMP: Direct file execution is supported for manual testing right now.
+# Per AGENT.md, the stable public entrypoint should become the Kairos CLI.
 if __name__ == "__main__":
     run_cli()
