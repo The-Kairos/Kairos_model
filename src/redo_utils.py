@@ -10,6 +10,7 @@ PIPELINE_ORDER = [
     "audio_natural",
     "audio_speech",
     "llm",
+    "kg_extract",
     "narrative",
     "synopsis",
     "rag",
@@ -32,7 +33,8 @@ DEPENDENTS = {
     "yolo": ["llm", "narrative", "synopsis", "rag"],
     "audio_natural": ["llm", "narrative", "synopsis", "rag"],
     "audio_speech": ["llm", "narrative", "synopsis", "rag"],
-    "llm": ["narrative", "synopsis", "rag"],
+    "llm": ["kg_extract", "narrative", "synopsis", "rag"],
+    "kg_extract": ["narrative", "synopsis", "rag"],
     "narrative": ["synopsis", "rag"],
     "synopsis": ["rag"],
     "rag": [],
@@ -45,6 +47,7 @@ STEP_LOG_KEYS = {
     "audio_natural": ["ast_timings"],
     "audio_speech": ["asr_timings"],
     "llm": ["describe_scenes"],
+    "kg_extract": ["kg_extract"],
     "narrative": ["summarize_scenes"],
     "synopsis": ["synthesize_synopsis"],
     "rag": ["make_embedding"],
@@ -56,9 +59,11 @@ SCENE_KEYS = {
     "audio_natural": ["audio_natural"],
     "audio_speech": ["audio_speech"],
     "llm": ["llm_scene_description"],
+    "kg_extract": ["relationships"],
 }
 
 TOP_LEVEL_KEYS = {
+    "llm": ["knowledge_graph"],
     "narrative": ["narratives"],
     "synopsis": ["synopsis"],
     "rag": ["rag_embedding"],

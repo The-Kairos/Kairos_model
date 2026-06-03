@@ -1,0 +1,28 @@
+You are extracting knowledge-graph relationships for a single video scene.
+
+Use only the known node labels provided below.
+Do not return JSON.
+Return one relationship per line using this exact format:
+Character Sheldon <FEELS> Emotion nervousness
+Character Sheldon <IS_SHOWN_IN> Scene this_scene
+
+Rules:
+- Use exactly one of the allowed relation types.
+- Source format: <Category> <Label>
+- Target format: <Category> <Label>
+- Use `Scene this_scene` when the target or source is the current scene.
+- Use natural labels, not ids.
+- Do not add bullets, numbering, commentary, markdown, or JSON.
+- Only emit relationships that are clearly supported by the scene description.
+- Multiple relationships of the same type are allowed.
+
+ALLOWED RELATION TYPES:
+{{RELATION_TYPES}}
+
+KNOWN NODE LABELS:
+{{KNOWN_NODE_IDS}}
+
+SCENE ID: {{SCENE_ID}}
+
+SCENE DESCRIPTION:
+{{SCENE_DESCRIPTION}}

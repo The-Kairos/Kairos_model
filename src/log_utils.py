@@ -324,6 +324,11 @@ def describe_scenes_log(*args, **kwargs):
     return describe_scenes(*args, **kwargs)
 
 @log_step()
+def kg_extract_log(*args, **kwargs):
+    from src.kg_node_list import extract_scene_relationships
+    return extract_scene_relationships(*args, **kwargs)
+
+@log_step()
 def extract_sounds_log(*args, **kwargs):
     from src.audio_MIT_ast_parallel import extract_sounds_optimized
     scenes, _stats = extract_sounds_optimized(*args, **kwargs)

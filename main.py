@@ -5,7 +5,7 @@ load_kairos_env(override=True)
 
 from src.debug_utils import *
 from src.log_utils import *
-from src.redo_utils import apply_redo, REDO_CHOICES
+from src.redo_utils import apply_redo, REDO_CHOICES, get_stop_after_step, should_stop_after
 import argparse
 import io
 import json
@@ -173,6 +173,7 @@ STEP_STAGE_MAP = {
     "asr_timings": ("speech_transcription", 65),
     "ast_timings": ("sound_analysis", 75),
     "describe_scenes": ("scene_description", 85),
+    "kg_extract": ("knowledge_graph", 88),
     "summarize_scenes": ("narrative_synthesis", 90),
     "synthesize_synopsis": ("synopsis_generation", 95),
     "make_embedding": ("embedding", 100),
@@ -189,6 +190,7 @@ BENCHMARK_STEPS = [
     "asr_timings",
     "ast_timings",
     "describe_scenes",
+    "kg_extract",
     "summarize_scenes",
     "synthesize_synopsis",
     "make_embedding",
@@ -780,6 +782,7 @@ def run_llm_and_rag_pipeline(
     quiet: bool,
     embedding_provider: str,
     embedding_model: str,
+    stop_after_step: str | None = None,
 ):
     llm_client = get_llm_client()
     if checkpoint.get("scenes") and not all_scenes_have_key(checkpoint["scenes"], "llm_scene_description"):
@@ -809,6 +812,24 @@ def run_llm_and_rag_pipeline(
         update_state_for_step(storage_manager, "describe_scenes")
         storage_manager.save_checkpoint(checkpoint)
         purge_memory()
+        if should_stop_after("llm", stop_after_step):
+            return checkpoint
+
+    needs_kg_extract = bool(checkpoint.get("scenes")) and not all_scenes_have_key(checkpoint["scenes"], "relationships")
+    if needs_kg_extract:
+        section("Running KG Relationship Extraction...", quiet=quiet)
+        with maybe_silence(quiet):
+            checkpoint["scenes"], step_store["kg_extract"] = kg_extract_log(
+                scenes=checkpoint["scenes"],
+                known_nodes=checkpoint.get("knowledge_graph", {}).get("nodes", {}),
+                client=llm_client,
+                model=model_name,
+            )
+        update_state_for_step(storage_manager, "kg_extract")
+        storage_manager.save_checkpoint(checkpoint)
+        purge_memory()
+        if should_stop_after("kg_extract", stop_after_step):
+            return checkpoint
 
     if "narratives" not in checkpoint:
         section("Running GPT4o Summary narrative...", quiet=quiet)
@@ -1169,6 +1190,7 @@ def run_pipeline(
         quiet=quiet,
         embedding_provider=embedding_provider,
         embedding_model=embedding_model,
+        stop_after_step=get_stop_after_step(redo_steps) if redo_only else None,
     )
 
     total_wall_time = time.perf_counter() - run_started
