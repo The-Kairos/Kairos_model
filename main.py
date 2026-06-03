@@ -785,7 +785,7 @@ def run_llm_and_rag_pipeline(
     if checkpoint.get("scenes") and not all_scenes_have_key(checkpoint["scenes"], "llm_scene_description"):
         section("Running GPT4o Scene Descriptions...", quiet=quiet)
         with maybe_silence(quiet):
-            checkpoint["scenes"], step_store["describe_scenes"] = describe_scenes_log(
+            describe_output, step_store["describe_scenes"] = describe_scenes_log(
                 scenes=checkpoint["scenes"],
                 client=llm_client,
                 hist_size=llm_scene_history,
@@ -797,9 +797,15 @@ def run_llm_and_rag_pipeline(
                 model=model_name,
                 prompt_path="prompts/describe_scene.txt",
                 cooldown_sec=llm_cooldown_sec,
+                return_metadata=True,
                 debug=debug,
                 video_path=test_video,
             )
+        checkpoint["scenes"], describe_metadata = describe_output
+        checkpoint.setdefault("knowledge_graph", {})
+        checkpoint["knowledge_graph"]["nodes"] = (
+            describe_metadata.get("knowledge_graph", {}).get("nodes", {})
+        )
         update_state_for_step(storage_manager, "describe_scenes")
         storage_manager.save_checkpoint(checkpoint)
         purge_memory()

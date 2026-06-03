@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from src.debug_utils import apply_gpt_normalization
 from src.debug_utils import print_prefixed
+from src.kg_node_list import build_kg_node_lists, format_kg_node_context
 
 
 def describe_flash_scene(
@@ -82,6 +83,7 @@ def describe_scenes(
     max_rate_limit_retries: int = 4,
     video_path: str | None = None,
     cooldown_sec: float = 5,
+    return_metadata: bool = False,
     debug= False,
 ):
     """
@@ -227,10 +229,18 @@ def describe_scenes(
         fallback_prompt=short_fallback_prompt_path,
     )
 
+    kg_nodes = build_kg_node_lists(
+        short_summaries=short_summaries,
+        client=client,
+        model=model,
+        video_path=video_path,
+    )
+    kg_node_context = format_kg_node_context(kg_nodes)
+
     # Stage-2 (reduce): full reports using raw scene + Stage-1 context.
     stage2_inputs = []
     for i, raw_text in enumerate(formatted_scenes):
-        stage2_inputs.append(raw_text + _build_short_context(short_summaries, i))
+        stage2_inputs.append(raw_text + _build_short_context(short_summaries, i) + "\n\n" + kg_node_context)
 
     final_summaries = _parallel_map(
         stage2_inputs,
@@ -250,6 +260,13 @@ def describe_scenes(
             print_prefixed("(GPT4o)", f"----- Scene {idx} -----")
             print(summary.strip())
             print("")
+
+    if return_metadata:
+        return updated, {
+            "knowledge_graph": {
+                "nodes": kg_nodes
+            }
+        }
 
     return updated
 
