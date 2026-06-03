@@ -1,0 +1,197 @@
+Fixed nodes:
+Scene
+Character
+Object
+Location
+Action
+Emotion
+Topic
+
+Fixed relations (all are unidirectional)
+Scene <NEXT> Scene
+/ Scene <REFERENCES_PAST> (Previous) Scene 
+Scene <HAS_TOPIC> Topic
+Character/Object/Location <IS_SHOWN_IN> Scene
+Character/Object <IS_IN> Location
+Action <OCCURS_IN> Scene
+Character <DOES> Action
+Character <INTERACTS_WITH> Object
+Action <INVOLVES> Object
+Action <TARGETS> Character/Object
+Character <FEELS> Emotion
+Action/Character/Object/Topic <CAUSES> Emotion
+Character <SPEAKS_TO> Character
+Character <MENTIONS> Topic/Character/Object/Location
+
+-- 
+
+During scene description creation, the scenes will first be summarized into very short scene descriptions on the first phase. Then the product of the first phase will be used to create longer scene descriptions in the second phase. Before the second phase, I want all the short scene descriptions to be concatenated together and used to extract character arcs, location, action, emotions, and topic notes that we are using. 
+
+You will plan a system that will follow the code conventions in main, and you edit src\kg_node_list.py to create a function that will output a list of nodes. that function will be referenced in src\scene_description.py after the first phase and before the second phase to concatenated the short summaries together and create a list of potential nodes. those nodes will be in added in the checkpoint following this format:
+
+// global 
+"knowledge_graph": {
+    "nodes": {
+        "Character": [normalized_Characters]
+        "Object": [normalized_Objects]
+        "Location": [normalized_Locations]
+        "Action": [normalized_Actions]
+        "Emotion": [normalized_Emotions]
+        "Topic": [normalized_Topics]
+    }
+
+Success will be achieved when there is a normalized list for each node category (except 'scene') when running the Scene Description LLM part of the pipeline.
+
+
+--
+Create a plan to extract node relationships per scene 
+
+in src\kg_node_list.py, Create a function that will input all of the long scene descriptions from phase 2 of the scene description AND it will input the list of known nodes.this function will output a list of relationships that happened in that scene. this fucntion will go thru all the possible relations see which one fits. (BTW there can be multiple of the same relations but with different nodes in one scene)
+Scene <HAS_TOPIC> Topic
+Character/Object/Location <IS_SHOWN_IN> Scene
+Character/Object <IS_IN> Location
+Action <OCCURS_IN> Scene
+Character <DOES> Action
+Character <INTERACTS_WITH> Object
+Action <INVOLVES> Object
+Action <TARGETS> Character/Object
+Character <FEELS> Emotion
+Action/Character/Object/Topic <CAUSES> Emotion
+Character <SPEAKS_TO> Character
+Character <MENTIONS> Topic/Character/Object/Location
+
+
+EXAMPLE:
+    SCENE Description:
+
+    This scene depicts a car driving down a street, followed by a boy sitting inside the car holding a tie in one hand. The audio suggests an interactive moment as a voice asks, \"Would you like to play a driving game?\" Background sounds include faint music and an explosion, though their relevance is unclear. The scene appears to focus on the boy's preparation for an important event, likely his first day of high school, given the context of the video.
+
+    Characters:
+        Name: Boy with Brown Hair (likely Sheldon)
+        Role: Main character, preparing for school
+
+    Key Dialogue:
+        Speaker: Unknown voice
+        Cause: The voice asks, \"Would you like to play a driving game?\" possibly to engage the boy or lighten the mood during the car ride.
+
+    Causal Relationships:
+        Emotion or action: Nervousness or contemplation
+        Cause: The boy holding his tie suggests he may be preparing for or reflecting on an important moment, such as starting high school.
+        Evidence: Visual of the boy holding the tie, combined with the video title and prior context.
+
+    Objects and Setting:
+        Object or environment: Car interior
+        Context relevance: The car ride likely represents a transitional moment as the boy heads to school, emphasizing his preparation and mindset.
+
+    Cross-Scene Continuity:
+        Ongoing conflict: The boy's adjustment to high school and potential social or academic challenges.
+        Character development: The boy's actions, such as holding his tie, suggest a mix of nervousness and readiness, reflecting his internal state as he approaches a new chapter in his life.
+
+    LIST:
+    "knowledge_graph": {
+        "nodes": {
+        "Character": [
+            "Boy with Brown Hair",
+            "Girl in Hallway",
+            "Pregnant Girl",
+            "Sheldon",
+            "Sheldon's Mother"
+        ],
+        "Object": [
+            "Book",
+            "Bow Tie",
+            "Car",
+            "Dog Statue",
+            "Paper",
+            "School Bus",
+            "Stuffed Animals",
+            "Umbrella"
+        ],
+        "Location": [
+            "Car Interior",
+            "Classroom",
+            "Park",
+            "School",
+            "School Hallway",
+            "Street",
+            "Suburban Area",
+            "Texas Country Road"
+        ],
+        "Action": [
+            "comment on pregnancy",
+            "contemplate first day of school",
+            "discuss license plates",
+            "drive a car",
+            "express readiness to learn",
+            "introduce homeroom",
+            "observe surroundings",
+            "play a driving game",
+            "prepare for school",
+            "reassure child",
+            "walk down hallway"
+        ],
+        "Emotion": [
+            "amusement",
+            "concern",
+            "curiosity",
+            "encouragement",
+            "nervousness",
+            "optimism",
+            "overwhelm"
+        ],
+        "Topic": [
+            "dress code",
+            "first day of high school",
+            "intelligence and leadership",
+            "license plates and prime numbers",
+            "parental guidance",
+            "school environment",
+            "social interactions"
+        ]
+
+    POSSIBLE OUTPUT:
+
+    "Sheldon" <IS_SHOWN_IN> this_scene 
+    "Bow Tie" <IS_SHOWN_IN> this_scene
+    "play a driving game" <OCCURS_IN> this_scene
+    "Sheldon" <FEELS> "nervousness"
+    "Sheldon" <INTERACTS_WITH> "Bow Tie"
+    "Sheldon" <IS_IN> "Car Interior"
+    "Bow Tie" <IS_IN> "Car Interior"
+    "Sheldon" <DOES> "play a driving game"
+
+"this_scene" will be outputted by the LLM but it will be replaced in the function to be the scene_index so '"Sheldon" <IS_SHOWN_IN> this_scene' will turn into '"Sheldon" <IS_SHOWN_IN> scene_33' 
+
+check how main is structured because this function in src\kg_node_list.py will be triggered in main.py after llm scene description. 
+
+also add this CLI ARG python main.py process --video "Young Sheldon - First Day of High School.mp4" --redo/or/--redo-only kg_extract
+
+Success will look like each scene having a list of relationships in checkpoint like:
+"relationships": [
+  {
+    "type": "HAS_TOPIC",
+    "source_id": "scene:33",
+    "target_id": "topic:youtube_branding"
+  }
+]
+and this CLI  "process --video <anyvideo> --redo-only kg_extract" working
+and this CLI  "process --video <anyvideo> --redo kg_extract" working
+
+---
+still part of the kg_extract process in main,
+
+see how main works with working with data. and review how to add nodes to neo4j https://neo4j.com/docs/cypher-manual/current/clauses/create/ (the name of the instance is kairos_kg and the password is also kairos_kg. connection url is neo4j://127.0.0.1:7687)
+
+plan for the second part of kg_extract:
+
+prepare each scene as a node and enforce this relationship "Scene <NEXT> Scene" with all the these properties: start_timecode, end_timecode, frame_captions, yolo_detections, audio_speech, audio_natural, llm_scene_description
+all relationships will have a scene_id as a relationship property before putting in neo4j
+
+You will sanitize the video name to create a new database If the name of the database already exists, I want to start from scratch, so either delete the whole database or clear the database out and add the new ones, whatever is more efficient. Look for what is the more efficient options and apply that. We are only doing one database per video.
+
+Then you will add each relationship starting from the scene nodes with all of their properties, as well as all the relationship nodes with the scene ID as a property.
+
+Success will look like a successful connection to Neo4j and the creation of a new database. All of the relationships and all of the scenes should be there in the knowledge graph. The types of nodes will be respected and the directionality of the relationships will also be respected. They are unilateral or unidirectional. Success will also look like the correct label for the node and not just the ID.
+
+
+---
