@@ -144,14 +144,21 @@ def _load_relationship_prompt_template() -> str:
     )
 
 
-def _call_node_extractor(prompt: str, client, model: str, gpt_deployment: str, gpt_temperature: float) -> str:
+def _call_node_extractor(
+    prompt: str,
+    client,
+    model: str,
+    gpt_deployment: str,
+    gpt_temperature: float,
+    force_json: bool = True,
+) -> str:
     if "gemini" in model.lower():
         chat = client.chats.create(model=model)
         resp = chat.send_message(prompt)
         return (resp.text or "").strip()
 
-    response = client.chat.completions.create(
-        messages=[
+    request_kwargs = {
+        "messages": [
             {
                 "role": "system",
                 "content": "Follow the requested output format exactly and return only the requested content.",
@@ -161,23 +168,27 @@ def _call_node_extractor(prompt: str, client, model: str, gpt_deployment: str, g
                 "content": prompt,
             },
         ],
-        response_format={"type": "json_object"},
-        max_tokens=2048,
-        temperature=gpt_temperature,
-        top_p=1.0,
-        model=gpt_deployment,
-        timeout=60.0,
-    )
+        "max_tokens": 2048,
+        "temperature": gpt_temperature,
+        "top_p": 1.0,
+        "model": gpt_deployment,
+        "timeout": 60.0,
+    }
+    if force_json:
+        request_kwargs["response_format"] = {"type": "json_object"}
+
+    response = client.chat.completions.create(**request_kwargs)
     return response.choices[0].message.content or ""
 
 
-def _call_json_extractor(prompt: str, client, model: str, gpt_deployment: str, gpt_temperature: float) -> str:
+def _call_relationship_extractor(prompt: str, client, model: str, gpt_deployment: str, gpt_temperature: float) -> str:
     return _call_node_extractor(
         prompt=prompt,
         client=client,
         model=model,
         gpt_deployment=gpt_deployment,
         gpt_temperature=gpt_temperature,
+        force_json=False,
     )
 
 
@@ -339,6 +350,9 @@ def _parse_relationship_text(
     scene_index: int,
     known_nodes: dict | None,
 ) -> list[dict]:
+    if not (raw_text or "").strip():
+        raise ValueError("Empty LLM relationship output.")
+
     pattern = re.compile(
         r"^\s*(Scene|Character|Object|Location|Action|Emotion|Topic)\s+(.+?)\s+<([A-Z_]+)>\s+"
         r"(Scene|Character|Object|Location|Action|Emotion|Topic)\s+(.+?)\s*$"
@@ -388,8 +402,10 @@ def _parse_relationship_text(
             }
         )
 
-    if parse_failures and not parsed_relationships:
-        raise ValueError("Failed to parse any relationship lines.")
+    if not parsed_relationships:
+        if parse_failures:
+            raise ValueError("Failed to parse any relationship lines.")
+        raise ValueError("No relationships extracted from non-empty LLM output.")
 
     return parsed_relationships
 
@@ -468,7 +484,7 @@ def extract_scene_relationships(
 
         raw_response = ""
         try:
-            raw_response = _call_json_extractor(
+            raw_response = _call_relationship_extractor(
                 prompt=prompt,
                 client=client,
                 model=model,
@@ -480,9 +496,12 @@ def extract_scene_relationships(
                 scene_index=scene_index,
                 known_nodes=known_nodes,
             )
-        except Exception:
-            raw_clean = _strip_code_fences(raw_response) if "raw_response" in locals() else ""
-            new_scene["relationships"] = [f"ERROR: {raw_clean}"] if raw_clean else []
+        except Exception as exc:
+            raw_clean = _strip_code_fences(raw_response)
+            if raw_clean:
+                new_scene["relationships"] = [f"ERROR: {raw_clean}"]
+            else:
+                new_scene["relationships"] = [f"ERROR: {type(exc).__name__}: {exc}"]
         updated_scenes.append(new_scene)
 
     return updated_scenes
