@@ -329,6 +329,11 @@ def kg_extract_log(*args, **kwargs):
     return extract_scene_relationships(*args, **kwargs)
 
 @log_step()
+def kg_sync_neo4j_log(*args, **kwargs):
+    from src.kg_neo4j import sync_video_graph_to_neo4j
+    return sync_video_graph_to_neo4j(*args, **kwargs)
+
+@log_step()
 def extract_sounds_log(*args, **kwargs):
     from src.audio_MIT_ast_parallel import extract_sounds_optimized
     scenes, _stats = extract_sounds_optimized(*args, **kwargs)

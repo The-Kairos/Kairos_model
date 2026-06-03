@@ -47,7 +47,7 @@ STEP_LOG_KEYS = {
     "audio_natural": ["ast_timings"],
     "audio_speech": ["asr_timings"],
     "llm": ["describe_scenes"],
-    "kg_extract": ["kg_extract"],
+    "kg_extract": ["kg_extract", "kg_sync_neo4j"],
     "narrative": ["summarize_scenes"],
     "synopsis": ["synthesize_synopsis"],
     "rag": ["make_embedding"],

@@ -330,6 +330,7 @@ class StorageManager:
             "extract_sounds": "sound_analysis",
             "describe_scenes": "scene_description",
             "kg_extract": "knowledge_graph",
+            "kg_sync_neo4j": "knowledge_graph",
             "summarize_scenes": "narrative_synthesis",
             "synthesize_synopsis": "synopsis_generation",
             "make_embedding": "embedding"

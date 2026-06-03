@@ -86,6 +86,9 @@ hdbscan
 pymongo>=4.0.0
 dnspython>=2.0.0
 
+# Neo4j Driver
+neo4j>=5.28.1,<6
+
 # Flask Server
 flask>=3.1.0
 flask-cors>=6.0.0

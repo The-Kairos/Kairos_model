@@ -174,6 +174,7 @@ STEP_STAGE_MAP = {
     "ast_timings": ("sound_analysis", 75),
     "describe_scenes": ("scene_description", 85),
     "kg_extract": ("knowledge_graph", 88),
+    "kg_sync_neo4j": ("knowledge_graph", 89),
     "summarize_scenes": ("narrative_synthesis", 90),
     "synthesize_synopsis": ("synopsis_generation", 95),
     "make_embedding": ("embedding", 100),
@@ -191,6 +192,7 @@ BENCHMARK_STEPS = [
     "ast_timings",
     "describe_scenes",
     "kg_extract",
+    "kg_sync_neo4j",
     "summarize_scenes",
     "synthesize_synopsis",
     "make_embedding",
@@ -826,6 +828,21 @@ def run_llm_and_rag_pipeline(
                 model=model_name,
             )
         update_state_for_step(storage_manager, "kg_extract")
+        storage_manager.save_checkpoint(checkpoint)
+        purge_memory()
+
+    needs_neo4j_sync = bool(checkpoint.get("scenes")) and bool(checkpoint.get("knowledge_graph", {}).get("nodes"))
+    if needs_neo4j_sync:
+        section("Syncing KG To Neo4j...", quiet=quiet)
+        with maybe_silence(quiet):
+            neo4j_meta, step_store["kg_sync_neo4j"] = kg_sync_neo4j_log(
+                video_path=test_video,
+                scenes=checkpoint["scenes"],
+                known_nodes=checkpoint.get("knowledge_graph", {}).get("nodes", {}),
+            )
+        checkpoint.setdefault("knowledge_graph", {})
+        checkpoint["knowledge_graph"]["neo4j"] = neo4j_meta
+        update_state_for_step(storage_manager, "kg_sync_neo4j")
         storage_manager.save_checkpoint(checkpoint)
         purge_memory()
         if should_stop_after("kg_extract", stop_after_step):
