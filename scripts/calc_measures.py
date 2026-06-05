@@ -15,6 +15,7 @@ from src.kg_neo4j import (
     NEO4J_URI,
     sanitize_video_database_name,
 )
+from src.kg_node_list import RELATION_SPECS, SPATIAL_RELATION_SPECS, TEMPORAL_INTERVAL_RELATION_SPECS
 
 
 VIDEO_PATH = "Titanic.1997.mkv"
@@ -26,6 +27,20 @@ OUTPUT_CSV = ABLATION_ROOT / "graph_measures.csv"
 
 def emit(message: str) -> None:
     print(message, flush=True)
+
+
+def format_percentage(value) -> str:
+    try:
+        return f"{float(value) * 100.0:.2f}%"
+    except Exception:
+        return ""
+
+
+def format_decimal_4(value) -> str:
+    try:
+        return f"{float(value):.4f}"
+    except Exception:
+        return ""
 
 
 def connect_driver():
@@ -74,18 +89,22 @@ def fetch_graph(driver, database_name: str):
         "MATCH (a)-[r]->(b) "
         "RETURN "
         "coalesce(a.id, elementId(a)) AS source_id, "
-        "coalesce(b.id, elementId(b)) AS target_id"
+        "coalesce(b.id, elementId(b)) AS target_id, "
+        "type(r) AS rel_type"
     )
 
     node_records, _, _ = driver.execute_query(node_query, database_=database_name)
     rel_records, _, _ = driver.execute_query(rel_query, database_=database_name)
 
     node_ids = [record["node_id"] for record in node_records]
-    raw_edges = [(record["source_id"], record["target_id"]) for record in rel_records]
+    raw_edges = [
+        (record["source_id"], record["target_id"], record["rel_type"])
+        for record in rel_records
+    ]
     return node_ids, raw_edges
 
 
-def build_graph_structures(node_ids: list[str], raw_edges: list[tuple[str, str]]):
+def build_graph_structures(node_ids: list[str], raw_edges: list[tuple[str, str, str]]):
     nodes = list(dict.fromkeys(node_ids))
     node_set = set(nodes)
 
@@ -94,7 +113,7 @@ def build_graph_structures(node_ids: list[str], raw_edges: list[tuple[str, str]]
     in_adj = {node: set() for node in nodes}
     undirected_adj = {node: set() for node in nodes}
 
-    for source, target in raw_edges:
+    for source, target, _ in raw_edges:
         if source not in node_set or target not in node_set:
             continue
         if (source, target) not in simple_edges:
@@ -184,16 +203,25 @@ def bfs_distances(source, adjacency):
     return distances
 
 
+def induced_subgraph_adjacency(nodes_subset, adjacency):
+    allowed = set(nodes_subset)
+    return {
+        node: {neighbor for neighbor in adjacency[node] if neighbor in allowed}
+        for node in allowed
+    }
+
+
 def average_shortest_path_and_diameter(gscc_nodes, out_adj):
     if len(gscc_nodes) < 2:
         return 0.0, 0
 
+    restricted_out_adj = induced_subgraph_adjacency(gscc_nodes, out_adj)
     total_distance = 0
     pair_count = 0
     diameter = 0
 
     for source in gscc_nodes:
-        distances = bfs_distances(source, out_adj)
+        distances = bfs_distances(source, restricted_out_adj)
         for target in gscc_nodes:
             if source == target:
                 continue
@@ -235,11 +263,30 @@ def reciprocity(simple_edges):
     return reciprocated / len(simple_edges)
 
 
-def compute_metrics(node_ids: list[str], raw_edges: list[tuple[str, str]]) -> dict:
+def compute_metrics(node_ids: list[str], raw_edges: list[tuple[str, str, str]]) -> dict:
     nodes, simple_edges, out_adj, in_adj, undirected_adj = build_graph_structures(node_ids, raw_edges)
+    narrative_rel_types = {rel_type for rel_type, _, _ in RELATION_SPECS}
+    spatial_rel_types = {rel_type for rel_type, _, _ in SPATIAL_RELATION_SPECS}
+    temporal_rel_types = {rel_type for rel_type, _, _ in TEMPORAL_INTERVAL_RELATION_SPECS}
 
     node_count = len(nodes)
+    non_scene_node_count = sum(
+        1 for node_id in nodes
+        if not (isinstance(node_id, str) and node_id.startswith("scene:"))
+    )
     relationship_count = len(raw_edges)
+    narrative_relationship_count = sum(
+        1 for _, _, rel_type in raw_edges
+        if rel_type in narrative_rel_types
+    )
+    spatial_relationship_count = sum(
+        1 for _, _, rel_type in raw_edges
+        if rel_type in spatial_rel_types
+    )
+    temporal_relationship_count = sum(
+        1 for _, _, rel_type in raw_edges
+        if rel_type in temporal_rel_types
+    )
     simple_edge_count = len(simple_edges)
     non_self_simple_edge_count = sum(1 for source, target in simple_edges if source != target)
 
@@ -266,7 +313,11 @@ def compute_metrics(node_ids: list[str], raw_edges: list[tuple[str, str]]) -> di
 
     return {
         "node_count": node_count,
+        "non_scene_node_count": non_scene_node_count,
         "relationship_count": relationship_count,
+        "narrative_relationship_count": narrative_relationship_count,
+        "spatial_relationship_count": spatial_relationship_count,
+        "temporal_relationship_count": temporal_relationship_count,
         "edge_density_directed": edge_density,
         "average_degree": average_degree,
         "weakly_connected_components": len(wccs),
@@ -289,7 +340,11 @@ def main():
         "variant",
         "database_name",
         "node_count",
+        "non_scene_node_count",
         "relationship_count",
+        "narrative_relationship_count",
+        "spatial_relationship_count",
+        "temporal_relationship_count",
         "edge_density_directed",
         "average_degree",
         "weakly_connected_components",
@@ -322,6 +377,13 @@ def main():
             try:
                 node_ids, raw_edges = fetch_graph(driver, database_name)
                 row.update(compute_metrics(node_ids, raw_edges))
+                row["edge_density_directed"] = format_percentage(row.get("edge_density_directed"))
+                row["largest_wcc_ratio"] = format_percentage(row.get("largest_wcc_ratio"))
+                row["largest_scc_ratio"] = format_percentage(row.get("largest_scc_ratio"))
+                row["global_efficiency"] = format_percentage(row.get("global_efficiency"))
+                row["reciprocity"] = format_percentage(row.get("reciprocity"))
+                row["average_degree"] = format_decimal_4(row.get("average_degree"))
+                row["average_shortest_path_length"] = format_decimal_4(row.get("average_shortest_path_length"))
             except Exception as exc:
                 row.update({
                     "status": "failure",

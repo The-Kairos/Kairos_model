@@ -1,0 +1,6 @@
+variant,database_name,node_count,non_scene_node_count,relationship_count,narrative_relationship_count,spatial_relationship_count,temporal_relationship_count,edge_density_directed,average_degree,weakly_connected_components,largest_wcc_size,largest_wcc_ratio,strongly_connected_components,largest_scc_size,largest_scc_ratio,average_shortest_path_length,graph_diameter,global_efficiency,reciprocity,status,error
+full,titanic-1997-mkv-full,2288,433,19660,13384,2712,1427,0.30%,13.6233,15,2274,99.39%,217,1854,81.03%,617.4456,1852,4.02%,5.61%,success,
+no_yolo,titanic-1997-mkv-no-yolo,2257,402,16986,11878,1717,1292,0.27%,12.4067,3,2255,99.91%,186,1845,81.75%,614.3892,1843,3.82%,5.69%,success,
+no_asr,titanic-1997-mkv-no-asr,2316,461,21364,13926,4234,994,0.31%,14.5725,8,2309,99.70%,228,1855,80.09%,617.6894,1853,4.10%,5.74%,success,
+no_ast,titanic-1997-mkv-no-ast,2322,467,20815,14805,2587,1291,0.31%,14.2860,9,2314,99.66%,237,1840,79.24%,612.7390,1838,4.05%,5.03%,success,
+no_blip,titanic-1997-mkv-no-blip,2212,357,15109,9202,2178,1543,0.22%,9.9964,15,2198,99.37%,163,1853,83.77%,617.0415,1851,3.56%,8.10%,success,
