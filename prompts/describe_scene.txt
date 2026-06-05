@@ -1,52 +1,19 @@
-You are a story detective.
+You are writing a dense visual description of a video segment.
 
-You are given multimodal clues:
-Visual evidence (frame captions and object detections) may contain errors.
-Audio evidence (speech transcript and sounds) is generally more reliable.
-Prior scene context may be incomplete or partially incorrect.
+Describe what is happening on screen: the people, their appearance (clothing, hair, expressions), the setting, objects, actions, and camera transitions. Use concrete visual language ("a man in a red jacket stands in a hallway") rather than abstract interpretation.
 
-All inputs may contain noise or inconsistencies. Cross-check modalities before asserting facts. Prefer audio for explicit claims. Mark uncertain information as inferred.
+Integrate audio evidence (speech, sounds) naturally into the description to explain what characters are saying or doing, but lead with visual detail.
+
+Do not hedge or qualify. Describe confidently what the scene shows. Do not use phrases like "appears to", "it is inferred", "possibly", "the audio suggests", "no visual details are available", "the exact setting is unclear", or "without additional context."
+
+Write in a flowing, descriptive narrative style. Describe the scene as it unfolds, noting transitions between shots with phrases like "The scene cuts to", "The video opens with", or "The camera transitions to."
 
 VIDEO NAME: {{VIDEO_NAME}}
 
 SCENE INFORMATION:
 {{SCENE_TEXT}}
 
-Produce a clear scene report optimized for retrieval.
+Treat YOLOv8 object detections as potentially noisy; discard or correct them when contradicted by context or captions.
+Content must be non-sexual, non-violent, PG-13 or lower, child-safe, G-rated.
 
-Rules:
-Use video name as context
-Remove object detection IDs and bounding box references.
-Use consistent character names.
-Avoid vague language.
-Explicitly state emotions and their causes when supported by evidence.
-Ensure PG-13 content.
-
-Output format (plain text, no markdown):
-
-This scene... <short scene paragraph>
-
-Characters:
-Name: 
-Role:
-
-Key Dialogue:
-Speaker:
-Cause:
-
-Causal Relationships:
-Emotion or action:
-Cause:
-Evidence:
-
-Objects and Setting:
-Object or environment: 
-context relevance: 
-
-
-Cross-Scene Continuity
-Ongoing conflict:
-Character development:
-
-
-WRITE YOUR REPORT:
+Segment description:

@@ -1,54 +1,21 @@
-You will describe what is happening.
+You are writing a dense visual description of a video segment.
 
-You are given multimodal clues:
-* Visual evidence (short frame captions and object detections) — may contain speculation or misidentification.
-* Audio evidence (speech transcript and environmental sounds) — generally more reliable for factual claims.
-* Prior scene context — may be incomplete or partially incorrect.
-All inputs may contain noise, hallucinations, or inconsistencies.
-You must cross-check information across modalities before asserting it as fact.
+Describe what is happening on screen: the people, their appearance (clothing, hair, expressions), the setting, objects, actions, and camera transitions. Use concrete visual language ("a man in a red jacket stands in a hallway") rather than abstract interpretation.
+
+Integrate audio evidence (speech, sounds) naturally into the description to explain what characters are saying or doing, but lead with visual detail.
+
+Do not hedge or qualify. Describe confidently what the scene shows. Do not use phrases like "appears to", "it is inferred", "possibly", "the audio suggests", "no visual details are available", "the exact setting is unclear", or "without additional context."
+
+Write in a flowing, descriptive narrative style. Describe the scene as it unfolds, noting transitions between shots with phrases like "The scene cuts to", "The video opens with", or "The camera transitions to."
+
+Remove object detection IDs, numbers (e.g., #1, #14), or bounding-box references — refer to people and objects descriptively instead. Include main events, objects, quotes, and character names.
 
 VIDEO NAME: {{VIDEO_NAME}}
 
 SCENE INFORMATION:
 {{SCENE_TEXT}}
 
-Ensure the summary complies with a PG-13 content standard. Remove object detection IDs, numbers (e.g., #1, #14), or bounding-box references—refer to people and objects descriptively instead. Include main events, objects, quotes, and character names in your report. Write your short objective report on what is happening in this new scene here:
+Treat YOLOv8 object detections as potentially noisy; discard or correct them when contradicted by context or captions.
+Content must be non-sexual, non-violent, PG-13 or lower, child-safe, G-rated.
 
-Produce a clear scene report optimized for retrieval.
-
-Rules:
-Use video name as context
-Remove object detection IDs and bounding box references.
-Use consistent character names.
-Avoid vague language.
-Explicitly state emotions and their causes when supported by evidence.
-Ensure PG-13 content.
-
-Output format (plain text, no markdown):
-
-This scene... <short scene paragraph>
-
-Characters:
-Name: 
-Role:
-
-Key Dialogue:
-Speaker:
-Cause:
-
-Causal Relationships:
-Emotion or action:
-Cause:
-Evidence:
-
-Objects and Setting:
-Object or environment: 
-context relevance: 
-
-
-Cross-Scene Continuity
-Ongoing conflict:
-Character development:
-
-
-WRITE YOUR REPORT:
+Segment description:

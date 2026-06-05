@@ -1,0 +1,33 @@
+{
+  "dataset": "TIB",
+  "num_videos": 1,
+  "aggregate": {
+    "bertscore_f1": 0.6684385538101196,
+    "bertscore_precision": 0.6651148200035095,
+    "bertscore_recall": 0.671795666217804,
+    "rouge_l_f1": 0.16901408450704225,
+    "rouge_l_precision": 0.15789473684210525,
+    "rouge_l_recall": 0.18181818181818182,
+    "bleu_1": 0.2631578947368421,
+    "bleu_2": 0.08433490104000932,
+    "bleu_3": 0.0,
+    "bleu_4": 0.0
+  },
+  "per_video": [
+    {
+      "index": 0,
+      "title": "Building Custom Pinball Machines",
+      "doi": "10.5446/43826 (DOI)",
+      "duration_sec": 3780.360107421875,
+      "duration_min": 63.0,
+      "ground_truth_length": 33,
+      "generated_length": 36,
+      "ground_truth_preview": "How to build a pinball machine? We introduce you to all basics and explain the different options for hardware and software. As an example, we show images of our own custom pinball machine.",
+      "generated_preview": "A computer scientist shares the journey of designing and building a custom two-player pinball machine, covering game design, mechanics, electronics, software, iterative problem-solving, and lessons le",
+      "bertscore_f1": 0.6684385538101196,
+      "rouge_l_f1": 0.16901408450704225,
+      "bleu_1": 0.2631578947368421,
+      "bleu_4": 0.0
+    }
+  ]
+}

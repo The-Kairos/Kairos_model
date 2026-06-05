@@ -1,0 +1,48 @@
+{
+  "dataset": "TIB",
+  "num_videos": 2,
+  "aggregate": {
+    "bertscore_f1": 0.6341768503189087,
+    "bertscore_precision": 0.6662166118621826,
+    "bertscore_recall": 0.60833740234375,
+    "rouge_l_f1": 0.1363205137561118,
+    "rouge_l_precision": 0.20715249662618082,
+    "rouge_l_recall": 0.12337662337662338,
+    "bleu_1": 0.14232907068496592,
+    "bleu_2": 0.04688324193383923,
+    "bleu_3": 0.002503453764225467,
+    "bleu_4": 0.0
+  },
+  "per_video": [
+    {
+      "index": 0,
+      "title": "Building Custom Pinball Machines",
+      "doi": "10.5446/43826 (DOI)",
+      "duration_sec": 3780.360107421875,
+      "duration_min": 63.0,
+      "ground_truth_length": 33,
+      "generated_length": 36,
+      "ground_truth_preview": "How to build a pinball machine? We introduce you to all basics and explain the different options for hardware and software. As an example, we show images of our own custom pinball machine.",
+      "generated_preview": "A computer scientist shares the journey of designing and building a custom two-player pinball machine, covering game design, mechanics, electronics, software, iterative problem-solving, and lessons le",
+      "bertscore_f1": 0.6684386134147644,
+      "rouge_l_f1": 0.16901408450704225,
+      "bleu_1": 0.2631578947368421,
+      "bleu_4": 0.0
+    },
+    {
+      "index": 1,
+      "title": "Differential Privacy and the US Census",
+      "doi": "10.5446/42853 (DOI)",
+      "duration_sec": 4208.68017578125,
+      "duration_min": 70.1,
+      "ground_truth_length": 151,
+      "generated_length": 37,
+      "ground_truth_preview": "Differential privacy is a mathematically rigorous definition of privacy tailored to statistical analysis of large datasets. Differentially private systems simultaneously provide useful statistics to t",
+      "generated_preview": "The video explores the introduction, applications, and challenges of differential privacy in the U.S. Census, emphasizing its role in protecting individual data while maintaining statistical utility, ",
+      "bertscore_f1": 0.5999151468276978,
+      "rouge_l_f1": 0.10362694300518134,
+      "bleu_1": 0.021500246633089765,
+      "bleu_4": 0.0
+    }
+  ]
+}

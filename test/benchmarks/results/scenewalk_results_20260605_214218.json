@@ -1,0 +1,38 @@
+{
+  "dataset": "SceneWalk",
+  "num_videos": 2,
+  "aggregate": {
+    "soda_f1": 0.06857385003460023,
+    "soda_precision": 0.044321448070695504,
+    "soda_recall": 0.15234358150573296,
+    "matched_bertscore_f1": 0.5723465085029602,
+    "matched_bertscore_precision": 0.52121502161026,
+    "matched_bertscore_recall": 0.6352359652519226,
+    "matched_rouge_l_f1": 0.17713916548715114,
+    "total_matched_pairs": 113
+  },
+  "per_video": [
+    {
+      "index": 0,
+      "video_id": "mDvkux01G3A",
+      "duration_min": 37.6,
+      "num_kairos_scenes": 301,
+      "num_gt_segments": 80,
+      "soda_f1": 0.06484105908535891,
+      "soda_precision": 0.0410372815806009,
+      "soda_recall": 0.15440277194701088,
+      "soda_matched": 70
+    },
+    {
+      "index": 1,
+      "video_id": "X9MAf245Yag",
+      "duration_min": 31.8,
+      "num_kairos_scenes": 161,
+      "num_gt_segments": 51,
+      "soda_f1": 0.07230664098384157,
+      "soda_precision": 0.0476056145607901,
+      "soda_recall": 0.15028439106445501,
+      "soda_matched": 43
+    }
+  ]
+}
