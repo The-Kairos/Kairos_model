@@ -1,5 +1,4 @@
 {
-  "source_checkpoint": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed\\Titanic.1997.mkv\\checkpoint.json",
   "video_path": "Titanic.1997.mkv",
   "output_root": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed_ablations\\Titanic.1997.mkv",
   "variants": [
@@ -9,18 +8,18 @@
       "status": "success",
       "error": null,
       "scene_count": 1855,
-      "all_scenes_have_llm_scene_description": true,
       "all_scenes_have_relationships": true,
-      "has_knowledge_graph_nodes": true,
+      "all_scenes_have_spatial_relationships": true,
+      "all_scenes_have_temporal_relationships": true,
       "neo4j": {
         "database_name": "titanic-1997-mkv-full",
         "uri": "neo4j://127.0.0.1:7687",
         "username": "neo4j",
-        "synced_at": "2026-06-05T12:41:40Z",
+        "synced_at": "2026-06-05T18:08:48Z",
         "scene_nodes": 1855,
         "scene_next_relationships": 1854,
         "graph_nodes": 433,
-        "graph_relationships": 12667
+        "graph_relationships": 17806
       }
     },
     {
@@ -29,18 +28,18 @@
       "status": "success",
       "error": null,
       "scene_count": 1855,
-      "all_scenes_have_llm_scene_description": true,
       "all_scenes_have_relationships": true,
-      "has_knowledge_graph_nodes": true,
+      "all_scenes_have_spatial_relationships": true,
+      "all_scenes_have_temporal_relationships": true,
       "neo4j": {
         "database_name": "titanic-1997-mkv-no-yolo",
         "uri": "neo4j://127.0.0.1:7687",
         "username": "neo4j",
-        "synced_at": "2026-06-05T13:38:34Z",
+        "synced_at": "2026-06-05T18:15:29Z",
         "scene_nodes": 1855,
         "scene_next_relationships": 1854,
         "graph_nodes": 402,
-        "graph_relationships": 11153
+        "graph_relationships": 15132
       }
     },
     {
@@ -49,18 +48,18 @@
       "status": "success",
       "error": null,
       "scene_count": 1855,
-      "all_scenes_have_llm_scene_description": true,
       "all_scenes_have_relationships": true,
-      "has_knowledge_graph_nodes": true,
+      "all_scenes_have_spatial_relationships": true,
+      "all_scenes_have_temporal_relationships": true,
       "neo4j": {
         "database_name": "titanic-1997-mkv-no-asr",
         "uri": "neo4j://127.0.0.1:7687",
         "username": "neo4j",
-        "synced_at": "2026-06-05T14:37:35Z",
+        "synced_at": "2026-06-05T18:22:18Z",
         "scene_nodes": 1855,
         "scene_next_relationships": 1854,
         "graph_nodes": 461,
-        "graph_relationships": 13323
+        "graph_relationships": 19510
       }
     },
     {
@@ -69,18 +68,18 @@
       "status": "success",
       "error": null,
       "scene_count": 1855,
-      "all_scenes_have_llm_scene_description": true,
       "all_scenes_have_relationships": true,
-      "has_knowledge_graph_nodes": true,
+      "all_scenes_have_spatial_relationships": true,
+      "all_scenes_have_temporal_relationships": true,
       "neo4j": {
         "database_name": "titanic-1997-mkv-no-ast",
         "uri": "neo4j://127.0.0.1:7687",
         "username": "neo4j",
-        "synced_at": "2026-06-05T15:39:25Z",
+        "synced_at": "2026-06-05T18:30:45Z",
         "scene_nodes": 1855,
         "scene_next_relationships": 1854,
         "graph_nodes": 467,
-        "graph_relationships": 14073
+        "graph_relationships": 18961
       }
     },
     {
@@ -89,18 +88,18 @@
       "status": "success",
       "error": null,
       "scene_count": 1855,
-      "all_scenes_have_llm_scene_description": true,
       "all_scenes_have_relationships": true,
-      "has_knowledge_graph_nodes": true,
+      "all_scenes_have_spatial_relationships": true,
+      "all_scenes_have_temporal_relationships": true,
       "neo4j": {
         "database_name": "titanic-1997-mkv-no-blip",
         "uri": "neo4j://127.0.0.1:7687",
         "username": "neo4j",
-        "synced_at": "2026-06-05T16:27:30Z",
+        "synced_at": "2026-06-05T18:38:38Z",
         "scene_nodes": 1855,
         "scene_next_relationships": 1854,
         "graph_nodes": 357,
-        "graph_relationships": 8539
+        "graph_relationships": 13255
       }
     }
   ]
