@@ -1,6 +1,6 @@
 variant,database_name,node_character,node_object,node_location,node_action,node_emotion,node_topic,rel_has_topic,rel_is_shown_in,rel_is_in,rel_occurs_in,rel_does,rel_interacts_with,rel_involves,rel_targets,rel_feels,rel_causes,rel_speaks_to,rel_mentions,status,error
-full,titanic-1997-mkv-full,18,20,29,29,20,20,3873,2545,22,700,207,22,96,52,720,418,152,511,success,
-no_yolo,titanic-1997-mkv-no-yolo,11,10,10,10,10,10,2234,2231,23,474,209,13,173,38,540,408,149,454,success,
-no_asr,titanic-1997-mkv-no-asr,11,11,10,10,10,10,914,1998,26,333,129,31,78,6,374,163,7,23,success,
-no_ast,titanic-1997-mkv-no-ast,8,8,8,8,8,8,1492,2362,25,489,211,17,163,59,660,398,181,397,success,
-no_blip,titanic-1997-mkv-no-blip,18,39,20,32,24,20,4192,1721,6,991,188,9,146,51,586,466,143,299,success,
+full,titanic-1997-mkv-full,21,20,21,217,10,144,6359,2067,25,1869,409,26,133,55,411,345,96,872,success,
+no_yolo,titanic-1997-mkv-no-yolo,16,16,13,206,12,139,6285,1598,7,1393,384,8,121,66,369,286,83,553,success,
+no_asr,titanic-1997-mkv-no-asr,20,20,20,272,10,119,7966,2534,85,1546,354,29,84,26,426,202,8,63,success,
+no_ast,titanic-1997-mkv-no-ast,12,10,10,263,10,162,8001,1815,13,1562,634,6,132,56,504,274,103,973,success,
+no_blip,titanic-1997-mkv-no-blip,21,28,13,174,15,106,2892,1280,5,1960,307,8,114,90,450,475,66,892,success,
