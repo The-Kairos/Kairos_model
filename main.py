@@ -785,6 +785,7 @@ def run_llm_and_rag_pipeline(
     embedding_provider: str,
     embedding_model: str,
     stop_after_step: str | None = None,
+    database_name_seed: str | None = None,
 ):
     llm_client = get_llm_client()
     if checkpoint.get("scenes") and not all_scenes_have_key(checkpoint["scenes"], "llm_scene_description"):
@@ -839,6 +840,7 @@ def run_llm_and_rag_pipeline(
                 video_path=test_video,
                 scenes=checkpoint["scenes"],
                 known_nodes=checkpoint.get("knowledge_graph", {}).get("nodes", {}),
+                database_name_seed=database_name_seed,
             )
         checkpoint.setdefault("knowledge_graph", {})
         checkpoint["knowledge_graph"]["neo4j"] = neo4j_meta
@@ -1088,6 +1090,7 @@ def run_pipeline(
     redo_only: bool = False,
     rag_only: bool = False,
     stage_callback=None,
+    database_name_seed: str | None = None,
 ):
     """Run the full Kairos pipeline for a single video.
 
@@ -1208,6 +1211,7 @@ def run_pipeline(
         embedding_provider=embedding_provider,
         embedding_model=embedding_model,
         stop_after_step=get_stop_after_step(redo_steps) if redo_only else None,
+        database_name_seed=database_name_seed,
     )
 
     total_wall_time = time.perf_counter() - run_started

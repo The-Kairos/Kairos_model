@@ -15,7 +15,8 @@ NODE_CATEGORIES = ("Character", "Object", "Location", "Action", "Emotion", "Topi
 
 
 def sanitize_video_database_name(video_path: str) -> str:
-    raw_name = Path(video_path).stem.casefold()
+    raw_name = Path(video_path).name.casefold()
+    raw_name = re.sub(r"\.(mp4|mkv|avi|mov|webm|m4v)$", "", raw_name)
     cleaned = re.sub(r"[^a-z0-9-]+", "-", raw_name)
     cleaned = re.sub(r"-{2,}", "-", cleaned).strip("-")
     if not cleaned:
@@ -216,8 +217,9 @@ def sync_video_graph_to_neo4j(
     scenes: list[dict],
     known_nodes: dict | None,
     uri: str = NEO4J_URI,
+    database_name_seed: str | None = None,
 ) -> dict:
-    database_name = sanitize_video_database_name(video_path)
+    database_name = sanitize_video_database_name(database_name_seed or video_path)
     driver, connected_user = _connect_driver(uri, DEFAULT_AUTH_CANDIDATES)
 
     try:
