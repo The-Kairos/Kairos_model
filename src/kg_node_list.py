@@ -1,5 +1,6 @@
 import json
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from src.debug_utils import apply_gpt_normalization
@@ -375,6 +376,14 @@ def _call_relationship_extractor(prompt: str, client, model: str, gpt_deployment
         gpt_temperature=gpt_temperature,
         force_json=False,
     )
+
+
+def _resolve_max_workers(task_count: int, max_workers: int | None) -> int:
+    if task_count <= 1:
+        return 1
+    if max_workers is None:
+        return min(8, max(1, task_count))
+    return max(1, int(max_workers))
 
 
 def _render_indexed_summaries(indexed_summaries: list[tuple[int, str]]) -> str:
@@ -1082,14 +1091,14 @@ def extract_scene_spatial_relationships(
     model: str = "gemini-2.5-flash",
     gpt_deployment: str = "gpt-4o-kairos",
     gpt_temperature: float = 0.1,
+    max_workers: int | None = None,
 ) -> list[dict]:
     spatial_node_map = _filter_node_map(known_nodes, SPATIAL_NODE_CATEGORIES)
     known_node_ids = build_known_node_id_map(spatial_node_map)
     prompt_template = _load_spatial_relationship_prompt_template()
     relation_types = _relation_specs_text(SPATIAL_RELATION_SPECS)
 
-    updated_scenes = []
-    for fallback_idx, scene in enumerate(scenes or []):
+    def _process_scene(fallback_idx: int, scene: dict) -> dict:
         new_scene = dict(scene)
         scene_index = scene.get("scene_index", fallback_idx)
         scene_id = f"scene:{scene_index}"
@@ -1099,8 +1108,7 @@ def extract_scene_spatial_relationships(
         new_scene["spatial_relationship_errors"] = []
 
         if not scene_description:
-            updated_scenes.append(new_scene)
-            continue
+            return new_scene
 
         prompt = prompt_template.replace("{{RELATION_TYPES}}", relation_types)
         prompt = prompt.replace("{{KNOWN_NODE_IDS}}", _known_node_id_text(scene_id, known_node_ids, include_scene=False))
@@ -1130,7 +1138,25 @@ def extract_scene_spatial_relationships(
                 new_scene["spatial_relationship_errors"] = [f"ERROR: {raw_clean}"]
             else:
                 new_scene["spatial_relationship_errors"] = [f"ERROR: {type(exc).__name__}: {exc}"]
-        updated_scenes.append(new_scene)
+        return new_scene
+
+    input_scenes = list(scenes or [])
+    if not input_scenes:
+        return []
+
+    resolved_workers = _resolve_max_workers(len(input_scenes), max_workers)
+    if resolved_workers <= 1:
+        return [_process_scene(idx, scene) for idx, scene in enumerate(input_scenes)]
+
+    updated_scenes = [None] * len(input_scenes)
+    with ThreadPoolExecutor(max_workers=resolved_workers) as executor:
+        future_to_idx = {
+            executor.submit(_process_scene, idx, scene): idx
+            for idx, scene in enumerate(input_scenes)
+        }
+        for future in as_completed(future_to_idx):
+            idx = future_to_idx[future]
+            updated_scenes[idx] = future.result()
 
     return updated_scenes
 
@@ -1142,6 +1168,7 @@ def extract_temporal_interval_relationships(
     model: str = "gemini-2.5-flash",
     gpt_deployment: str = "gpt-4o-kairos",
     gpt_temperature: float = 0.1,
+    max_workers: int | None = None,
 ) -> list[dict]:
     action_node_map = _filter_node_map(known_nodes, TEMPORAL_ACTION_CATEGORIES)
     known_node_ids = build_known_node_id_map(action_node_map)
@@ -1159,10 +1186,12 @@ def extract_temporal_interval_relationships(
     if not updated_scenes:
         return updated_scenes
 
-    for window_start in range(0, max(len(updated_scenes) - 1, 0), TEMPORAL_WINDOW_STRIDE):
+    window_starts = list(range(0, max(len(updated_scenes) - 1, 0), TEMPORAL_WINDOW_STRIDE))
+
+    def _process_window(window_start: int) -> tuple[dict[int, list[dict]], dict[int, list[str]]]:
         window = updated_scenes[window_start:window_start + TEMPORAL_WINDOW_SIZE]
         if len(window) < 2:
-            continue
+            return {}, {}
 
         window_context_lines = []
         output_scene_indices = set()
@@ -1206,27 +1235,65 @@ def extract_temporal_interval_relationships(
                 known_nodes=action_node_map,
                 valid_scene_indices=output_scene_indices,
             )
+            relationships_by_scene = {}
+            errors_by_scene = {}
             for scene in window[1:]:
                 scene_index = scene.get("scene_index")
                 temporal_relationships = parsed_by_scene.get(scene_index, [])
-                scene["temporal_relationships"] = merge_scene_relationships(
-                    scene.get("temporal_relationships", []),
-                    _add_temporal_occurs_in_relationships(
-                        _apply_temporal_inverse_relationships(temporal_relationships),
-                        scene_index,
-                    ),
+                relationships_by_scene[scene_index] = _add_temporal_occurs_in_relationships(
+                    _apply_temporal_inverse_relationships(temporal_relationships),
+                    scene_index,
                 )
             if parse_errors:
                 for scene in window[1:]:
-                    scene["temporal_relationship_errors"] = list(scene.get("temporal_relationship_errors", []))
-                    scene["temporal_relationship_errors"].extend(parse_errors)
+                    scene_index = scene.get("scene_index")
+                    errors_by_scene[scene_index] = list(parse_errors)
+            return relationships_by_scene, errors_by_scene
         except Exception as exc:
             error_message = _strip_code_fences(raw_response)
             if error_message:
                 error_value = f"ERROR: {error_message}"
             else:
                 error_value = f"ERROR: {type(exc).__name__}: {exc}"
+            errors_by_scene = {}
             for scene in window[1:]:
-                scene["temporal_relationship_errors"] = [error_value]
+                errors_by_scene[scene.get("scene_index")] = [error_value]
+            return {}, errors_by_scene
+
+    resolved_workers = _resolve_max_workers(len(window_starts), max_workers)
+    window_results = []
+    if resolved_workers <= 1:
+        window_results = [_process_window(window_start) for window_start in window_starts]
+    else:
+        with ThreadPoolExecutor(max_workers=resolved_workers) as executor:
+            future_to_start = {
+                executor.submit(_process_window, window_start): window_start
+                for window_start in window_starts
+            }
+            ordered_results = {}
+            for future in as_completed(future_to_start):
+                window_start = future_to_start[future]
+                ordered_results[window_start] = future.result()
+            window_results = [ordered_results[window_start] for window_start in window_starts]
+
+    scenes_by_index = {
+        scene.get("scene_index", idx): scene
+        for idx, scene in enumerate(updated_scenes)
+    }
+    for relationships_by_scene, errors_by_scene in window_results:
+        for scene_index, temporal_relationships in relationships_by_scene.items():
+            scene = scenes_by_index.get(scene_index)
+            if not scene:
+                continue
+            scene["temporal_relationships"] = merge_scene_relationships(
+                scene.get("temporal_relationships", []),
+                temporal_relationships,
+            )
+        for scene_index, error_values in errors_by_scene.items():
+            scene = scenes_by_index.get(scene_index)
+            if not scene:
+                continue
+            scene["temporal_relationship_errors"] = list(scene.get("temporal_relationship_errors", []))
+            scene["temporal_relationship_errors"].extend(error_values)
 
     return updated_scenes
