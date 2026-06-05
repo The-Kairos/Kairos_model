@@ -1,0 +1,21 @@
+You are normalizing merged node candidates for a single video's knowledge graph.
+
+Normalize duplicates and aliases, and keep as many valid reusable nodes as supported by the candidate lists.
+Extract only these categories:
+Action, Topic.
+
+Requirements:
+- Return JSON only.
+- Use exactly these top-level keys: Action, Topic.
+- Each value must be a JSON array of strings.
+- Merge duplicates and obvious aliases.
+- For actions, use concise verb phrases.
+- For topics, use recurring discussion or narrative themes.
+
+VIDEO NAME: {{VIDEO_NAME}}
+
+MERGED ACTION CANDIDATES:
+{{ACTION_CANDIDATES}}
+
+MERGED TOPIC CANDIDATES:
+{{TOPIC_CANDIDATES}}

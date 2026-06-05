@@ -13,6 +13,18 @@ NODE_CATEGORIES = (
     "Emotion",
     "Topic",
 )
+ENTITY_NODE_CATEGORIES = (
+    "Character",
+    "Object",
+    "Location",
+    "Emotion",
+)
+ACTION_TOPIC_CATEGORIES = (
+    "Action",
+    "Topic",
+)
+ACTION_TOPIC_CHUNK_SIZE = 200
+ENABLE_ACTION_TOPIC_FINAL_NORMALIZATION = False
 
 RELATION_SPECS = (
     ("HAS_TOPIC", ("Scene",), ("Topic",)),
@@ -113,6 +125,84 @@ def _load_prompt_template() -> str:
     )
 
 
+def _load_entity_prompt_template() -> str:
+    prompt_path = Path("prompts/kg_node_list_entities.txt")
+    if prompt_path.exists():
+        return prompt_path.read_text(encoding="utf-8")
+
+    return (
+        "You are extracting a reusable node inventory for a single video's knowledge graph.\n\n"
+        "You will be given concatenated short scene summaries from one video.\n"
+        "Extract as many valid reusable nodes as supported by the summaries for each category.\n"
+        "Extract only these categories: Character, Object, Location, Emotion.\n\n"
+        "Requirements:\n"
+        "- Return JSON only.\n"
+        "- Use exactly these top-level keys: Character, Object, Location, Emotion.\n"
+        "- Each value must be a JSON array of strings.\n"
+        "- Normalize duplicates and aliases when the summaries clearly indicate they refer to the same thing.\n"
+        "- Prefer specific labels over vague ones.\n"
+        "- Exclude Scene.\n"
+        "- Exclude relations.\n"
+        "- Keep only likely reusable nodes for a video-level graph.\n"
+        "- For emotions, use concise emotion labels.\n\n"
+        "VIDEO NAME: {{VIDEO_NAME}}\n\n"
+        "SHORT SCENE SUMMARIES:\n"
+        "{{SHORT_SUMMARIES}}\n"
+    )
+
+
+def _load_action_topic_prompt_template() -> str:
+    prompt_path = Path("prompts/kg_node_list_actions_topics.txt")
+    if prompt_path.exists():
+        return prompt_path.read_text(encoding="utf-8")
+
+    return (
+        "You are extracting a reusable node inventory for a single video's knowledge graph.\n\n"
+        "You will be given a chunk of short scene summaries from one video.\n"
+        "Extract as many valid reusable nodes as supported by the summaries for each category.\n"
+        "Extract only these categories: Action, Topic.\n\n"
+        "Requirements:\n"
+        "- Return JSON only.\n"
+        "- Use exactly these top-level keys: Action, Topic.\n"
+        "- Each value must be a JSON array of strings.\n"
+        "- Normalize duplicates and aliases when the summaries clearly indicate they refer to the same thing.\n"
+        "- Prefer specific labels over vague ones.\n"
+        "- Exclude Scene.\n"
+        "- Exclude relations.\n"
+        "- Prefer recurring or narratively meaningful actions/topics, but include valid chunk-supported ones.\n"
+        "- For actions, use concise verb phrases.\n"
+        "- For topics, use recurring discussion or narrative themes.\n\n"
+        "VIDEO NAME: {{VIDEO_NAME}}\n"
+        "SCENE RANGE: {{SCENE_RANGE}}\n\n"
+        "SHORT SCENE SUMMARIES:\n"
+        "{{SHORT_SUMMARIES}}\n"
+    )
+
+
+def _load_action_topic_normalize_prompt_template() -> str:
+    prompt_path = Path("prompts/kg_node_list_actions_topics_normalize.txt")
+    if prompt_path.exists():
+        return prompt_path.read_text(encoding="utf-8")
+
+    return (
+        "You are normalizing merged node candidates for a single video's knowledge graph.\n\n"
+        "Normalize duplicates and aliases, and keep as many valid reusable nodes as supported by the candidate lists.\n"
+        "Extract only these categories: Action, Topic.\n\n"
+        "Requirements:\n"
+        "- Return JSON only.\n"
+        "- Use exactly these top-level keys: Action, Topic.\n"
+        "- Each value must be a JSON array of strings.\n"
+        "- Merge duplicates and obvious aliases.\n"
+        "- For actions, use concise verb phrases.\n"
+        "- For topics, use recurring discussion or narrative themes.\n\n"
+        "VIDEO NAME: {{VIDEO_NAME}}\n\n"
+        "MERGED ACTION CANDIDATES:\n"
+        "{{ACTION_CANDIDATES}}\n\n"
+        "MERGED TOPIC CANDIDATES:\n"
+        "{{TOPIC_CANDIDATES}}\n"
+    )
+
+
 def _load_relationship_prompt_template() -> str:
     prompt_path = Path("prompts/kg_relationships.txt")
     if prompt_path.exists():
@@ -192,6 +282,105 @@ def _call_relationship_extractor(prompt: str, client, model: str, gpt_deployment
     )
 
 
+def _render_indexed_summaries(indexed_summaries: list[tuple[int, str]]) -> str:
+    return "\n\n".join(
+        f"Scene {scene_idx:04d}: {summary}"
+        for scene_idx, summary in indexed_summaries
+    )
+
+
+def _nonempty_indexed_summaries(short_summaries: list[str | None]) -> list[tuple[int, str]]:
+    indexed = []
+    for idx, summary in enumerate(short_summaries):
+        if not isinstance(summary, str):
+            continue
+        cleaned = summary.strip()
+        if not cleaned:
+            continue
+        indexed.append((idx, cleaned))
+    return indexed
+
+
+def _chunk_indexed_summaries(indexed_summaries: list[tuple[int, str]], chunk_size: int) -> list[list[tuple[int, str]]]:
+    if chunk_size <= 0:
+        return [indexed_summaries] if indexed_summaries else []
+    return [
+        indexed_summaries[start:start + chunk_size]
+        for start in range(0, len(indexed_summaries), chunk_size)
+    ]
+
+
+def _merge_node_maps(*node_maps: dict | None) -> dict:
+    merged = _default_node_map()
+    for node_map in node_maps:
+        if not isinstance(node_map, dict):
+            continue
+        for category in NODE_CATEGORIES:
+            values = node_map.get(category, [])
+            if isinstance(values, list):
+                merged[category].extend(values)
+    return _normalize_node_map(merged)
+
+
+def _extract_node_subset(
+    prompt: str,
+    categories: tuple[str, ...],
+    client,
+    model: str,
+    gpt_deployment: str,
+    gpt_temperature: float,
+) -> dict:
+    raw_response = _call_node_extractor(
+        prompt=prompt,
+        client=client,
+        model=model,
+        gpt_deployment=gpt_deployment,
+        gpt_temperature=gpt_temperature,
+    )
+    parsed = json.loads(_strip_code_fences(raw_response))
+    subset = {category: parsed.get(category, []) for category in categories}
+    return _normalize_node_map(subset)
+
+
+def _normalize_action_topic_candidates(
+    action_topic_map: dict,
+    client,
+    model: str,
+    gpt_deployment: str,
+    gpt_temperature: float,
+    video_path: str | None = None,
+) -> dict:
+    normalized_input = _normalize_node_map(action_topic_map)
+    actions = normalized_input.get("Action", [])
+    topics = normalized_input.get("Topic", [])
+    if not actions and not topics:
+        return _default_node_map()
+
+    prompt_template = _load_action_topic_normalize_prompt_template()
+    video_name = Path(video_path).name if video_path else ""
+    prompt = prompt_template.replace("{{VIDEO_NAME}}", video_name)
+    prompt = prompt.replace(
+        "{{ACTION_CANDIDATES}}",
+        "\n".join(f"- {value}" for value in actions) or "None",
+    )
+    prompt = prompt.replace(
+        "{{TOPIC_CANDIDATES}}",
+        "\n".join(f"- {value}" for value in topics) or "None",
+    )
+
+    try:
+        return _extract_node_subset(
+            prompt=prompt,
+            categories=ACTION_TOPIC_CATEGORIES,
+            client=client,
+            model=model,
+            gpt_deployment=gpt_deployment,
+            gpt_temperature=gpt_temperature,
+        )
+    except Exception:
+        return normalized_input
+
+
 def build_kg_node_lists(
     short_summaries: list[str | None],
     client,
@@ -200,33 +389,74 @@ def build_kg_node_lists(
     gpt_temperature: float = 0.1,
     video_path: str | None = None,
 ) -> dict:
-    nonempty_summaries = [summary.strip() for summary in short_summaries if isinstance(summary, str) and summary.strip()]
-    if not nonempty_summaries:
+    indexed_summaries = _nonempty_indexed_summaries(short_summaries)
+    if not indexed_summaries:
         return _default_node_map()
 
-    prompt_template = _load_prompt_template()
-    joined_summaries = "\n\n".join(
-        f"Scene {idx:03d}: {summary}"
-        for idx, summary in enumerate(nonempty_summaries)
-    )
-    normalized_text = apply_gpt_normalization(joined_summaries)
     video_name = Path(video_path).name if video_path else ""
+    full_summary_text = apply_gpt_normalization(_render_indexed_summaries(indexed_summaries))
 
-    prompt = prompt_template.replace("{{VIDEO_NAME}}", video_name)
-    prompt = prompt.replace("{{SHORT_SUMMARIES}}", normalized_text)
+    entity_prompt = _load_entity_prompt_template()
+    entity_prompt = entity_prompt.replace("{{VIDEO_NAME}}", video_name)
+    entity_prompt = entity_prompt.replace("{{SHORT_SUMMARIES}}", full_summary_text)
 
     try:
-        raw_response = _call_node_extractor(
-            prompt=prompt,
+        entity_nodes = _extract_node_subset(
+            prompt=entity_prompt,
+            categories=ENTITY_NODE_CATEGORIES,
             client=client,
             model=model,
             gpt_deployment=gpt_deployment,
             gpt_temperature=gpt_temperature,
         )
-        parsed = json.loads(_strip_code_fences(raw_response))
-        return _normalize_node_map(parsed)
     except Exception:
-        return _default_node_map()
+        entity_nodes = _default_node_map()
+
+    action_topic_prompt_template = _load_action_topic_prompt_template()
+    action_topic_chunks = _chunk_indexed_summaries(indexed_summaries, ACTION_TOPIC_CHUNK_SIZE)
+    action_topic_results = []
+
+    for chunk in action_topic_chunks:
+        if not chunk:
+            continue
+        chunk_prompt = action_topic_prompt_template.replace("{{VIDEO_NAME}}", video_name)
+        chunk_prompt = chunk_prompt.replace(
+            "{{SCENE_RANGE}}",
+            f"{chunk[0][0]:04d}-{chunk[-1][0]:04d}",
+        )
+        chunk_prompt = chunk_prompt.replace(
+            "{{SHORT_SUMMARIES}}",
+            apply_gpt_normalization(_render_indexed_summaries(chunk)),
+        )
+
+        try:
+            action_topic_results.append(
+                _extract_node_subset(
+                    prompt=chunk_prompt,
+                    categories=ACTION_TOPIC_CATEGORIES,
+                    client=client,
+                    model=model,
+                    gpt_deployment=gpt_deployment,
+                    gpt_temperature=gpt_temperature,
+                )
+            )
+        except Exception:
+            continue
+
+    merged_action_topic = _merge_node_maps(*action_topic_results)
+    if ENABLE_ACTION_TOPIC_FINAL_NORMALIZATION:
+        normalized_action_topic = _normalize_action_topic_candidates(
+            merged_action_topic,
+            client=client,
+            model=model,
+            gpt_deployment=gpt_deployment,
+            gpt_temperature=gpt_temperature,
+            video_path=video_path,
+        )
+    else:
+        normalized_action_topic = merged_action_topic
+
+    return _merge_node_maps(entity_nodes, normalized_action_topic)
 
 
 def format_kg_node_context(node_map: dict | None) -> str:

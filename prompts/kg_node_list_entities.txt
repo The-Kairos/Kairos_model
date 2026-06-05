@@ -1,0 +1,22 @@
+You are extracting a reusable node inventory for a single video's knowledge graph.
+
+You will be given concatenated short scene summaries from one video.
+Extract as many valid reusable nodes as supported by the summaries for each category.
+Extract only these categories:
+Character, Object, Location, Emotion.
+
+Requirements:
+- Return JSON only.
+- Use exactly these top-level keys: Character, Object, Location, Emotion.
+- Each value must be a JSON array of strings.
+- Normalize duplicates and aliases when the summaries clearly indicate they refer to the same thing.
+- Prefer specific labels over vague ones.
+- Exclude Scene.
+- Exclude relations.
+- Keep only likely reusable nodes for a video-level graph.
+- For emotions, use concise emotion labels.
+
+VIDEO NAME: {{VIDEO_NAME}}
+
+SHORT SCENE SUMMARIES:
+{{SHORT_SUMMARIES}}
