@@ -1037,13 +1037,13 @@ def extract_scene_relationships(
     model: str = "gemini-2.5-flash",
     gpt_deployment: str = "gpt-4o-kairos",
     gpt_temperature: float = 0.1,
+    max_workers: int | None = None,
 ) -> list[dict]:
     known_node_ids = build_known_node_id_map(known_nodes)
     prompt_template = _load_relationship_prompt_template()
     relation_types = _relation_specs_text()
 
-    updated_scenes = []
-    for fallback_idx, scene in enumerate(scenes or []):
+    def _process_scene(fallback_idx: int, scene: dict) -> dict:
         new_scene = dict(scene)
         scene_index = scene.get("scene_index", fallback_idx)
         scene_id = f"scene:{scene_index}"
@@ -1051,8 +1051,7 @@ def extract_scene_relationships(
 
         if not scene_description:
             new_scene["relationships"] = []
-            updated_scenes.append(new_scene)
-            continue
+            return new_scene
 
         prompt = prompt_template.replace("{{RELATION_TYPES}}", relation_types)
         prompt = prompt.replace("{{KNOWN_NODE_IDS}}", _known_node_id_text(scene_id, known_node_ids))
@@ -1079,7 +1078,25 @@ def extract_scene_relationships(
                 new_scene["relationships"] = [f"ERROR: {raw_clean}"]
             else:
                 new_scene["relationships"] = [f"ERROR: {type(exc).__name__}: {exc}"]
-        updated_scenes.append(new_scene)
+        return new_scene
+
+    input_scenes = list(scenes or [])
+    if not input_scenes:
+        return []
+
+    resolved_workers = _resolve_max_workers(len(input_scenes), max_workers)
+    if resolved_workers <= 1:
+        return [_process_scene(idx, scene) for idx, scene in enumerate(input_scenes)]
+
+    updated_scenes = [None] * len(input_scenes)
+    with ThreadPoolExecutor(max_workers=resolved_workers) as executor:
+        future_to_idx = {
+            executor.submit(_process_scene, idx, scene): idx
+            for idx, scene in enumerate(input_scenes)
+        }
+        for future in as_completed(future_to_idx):
+            idx = future_to_idx[future]
+            updated_scenes[idx] = future.result()
 
     return updated_scenes
 
