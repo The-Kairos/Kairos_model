@@ -1,7 +1,7 @@
 import csv
 import json
 import sys
-from collections import defaultdict, deque
+from collections import deque
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -15,7 +15,6 @@ from src.kg_neo4j import (
     NEO4J_URI,
     sanitize_video_database_name,
 )
-from src.kg_node_list import RELATION_SPECS, SPATIAL_RELATION_SPECS, TEMPORAL_INTERVAL_RELATION_SPECS
 
 
 VIDEO_PATH = "Titanic.1997.mkv"
@@ -36,11 +35,43 @@ def format_percentage(value) -> str:
         return ""
 
 
+def format_percentage_4(value) -> str:
+    try:
+        return f"{float(value) * 100.0:.4f}%"
+    except Exception:
+        return ""
+
+
 def format_decimal_4(value) -> str:
     try:
         return f"{float(value):.4f}"
     except Exception:
         return ""
+
+
+def format_decimal_2(value) -> str:
+    try:
+        return f"{float(value):.2f}"
+    except Exception:
+        return ""
+
+
+def format_decimal_1(value) -> str:
+    try:
+        return f"{float(value):.1f}"
+    except Exception:
+        return ""
+
+
+def relationship_key(rel: dict) -> tuple[str, str, str] | None:
+    if not isinstance(rel, dict):
+        return None
+    rel_type = rel.get("type")
+    source_id = rel.get("source_id")
+    target_id = rel.get("target_id")
+    if not all(isinstance(value, str) and value.strip() for value in (rel_type, source_id, target_id)):
+        return None
+    return rel_type.strip().upper(), source_id.strip().lower(), target_id.strip().lower()
 
 
 def connect_driver():
@@ -80,6 +111,13 @@ def load_variant_database_names() -> dict[str, str]:
     return names
 
 
+def load_variant_checkpoint(variant: str) -> dict:
+    checkpoint_path = ABLATION_ROOT / variant / "checkpoint.json"
+    if not checkpoint_path.exists():
+        raise FileNotFoundError(f"Checkpoint not found: {checkpoint_path}")
+    return json.loads(checkpoint_path.read_text(encoding="utf-8"))
+
+
 def fetch_graph(driver, database_name: str):
     node_query = (
         "MATCH (n) "
@@ -102,6 +140,131 @@ def fetch_graph(driver, database_name: str):
         for record in rel_records
     ]
     return node_ids, raw_edges
+
+
+def build_gds_projection(driver, database_name: str, graph_name: str) -> None:
+    exists_query = (
+        "CALL gds.graph.exists($graph_name) "
+        "YIELD exists "
+        "RETURN exists"
+    )
+    records, _, _ = driver.execute_query(
+        exists_query,
+        graph_name=graph_name,
+        database_=database_name,
+    )
+    if records and records[0]["exists"]:
+        driver.execute_query(
+            "CALL gds.graph.drop($graph_name) YIELD graphName RETURN graphName",
+            graph_name=graph_name,
+            database_=database_name,
+        )
+
+    driver.execute_query(
+        "CALL gds.graph.project($graph_name, '*', '*') "
+        "YIELD graphName, nodeCount, relationshipCount "
+        "RETURN graphName, nodeCount, relationshipCount",
+        graph_name=graph_name,
+        database_=database_name,
+    )
+
+
+def drop_gds_projection(driver, database_name: str, graph_name: str) -> None:
+    try:
+        driver.execute_query(
+            "CALL gds.graph.drop($graph_name) YIELD graphName RETURN graphName",
+            graph_name=graph_name,
+            database_=database_name,
+        )
+    except Exception:
+        pass
+
+
+def fetch_gds_metrics(driver, database_name: str, graph_name: str) -> dict:
+    shortest_path_query = (
+        "CALL gds.allShortestPaths.stream($graph_name) "
+        "YIELD distance "
+        "RETURN avg(distance) AS avg_shortest_path_length, max(distance) AS graph_diameter"
+    )
+    shortest_path_records, _, _ = driver.execute_query(
+        shortest_path_query,
+        graph_name=graph_name,
+        database_=database_name,
+    )
+
+    scc_query = (
+        "CALL gds.scc.stats($graph_name) "
+        "YIELD componentCount, componentDistribution "
+        "RETURN componentCount AS strongly_connected_components, "
+        "componentDistribution.max AS largest_scc_size"
+    )
+    scc_records, _, _ = driver.execute_query(
+        scc_query,
+        graph_name=graph_name,
+        database_=database_name,
+    )
+
+    path_row = shortest_path_records[0] if shortest_path_records else {}
+    scc_row = scc_records[0] if scc_records else {}
+    return {
+        "average_shortest_path_length": path_row.get("avg_shortest_path_length") or 0.0,
+        "graph_diameter": int(path_row.get("graph_diameter") or 0),
+        "strongly_connected_components": int(scc_row.get("strongly_connected_components") or 0),
+        "largest_scc_size": int(scc_row.get("largest_scc_size") or 0),
+    }
+
+
+def count_relationship_families_from_checkpoint(checkpoint: dict) -> dict[str, int]:
+    scenes = checkpoint.get("scenes", [])
+    if not isinstance(scenes, list):
+        scenes = []
+
+    narrative_count = 0
+    spatial_count = 0
+    temporal_count = 0
+
+    valid_scene_indices = []
+    for fallback_idx, scene in enumerate(scenes):
+        if not isinstance(scene, dict):
+            continue
+        scene_index = scene.get("scene_index", fallback_idx)
+        valid_scene_indices.append(scene_index)
+
+        merged_keys = {
+            key for key in (
+                relationship_key(rel)
+                for rel in scene.get("relationships", [])
+            )
+            if key is not None
+        }
+        spatial_keys = {
+            key for key in (
+                relationship_key(rel)
+                for rel in scene.get("spatial_relationships", [])
+            )
+            if key is not None
+        }
+        temporal_keys = {
+            key for key in (
+                relationship_key(rel)
+                for rel in scene.get("temporal_relationships", [])
+            )
+            if key is not None
+        }
+
+        spatial_count += len(spatial_keys)
+        temporal_count += len(temporal_keys)
+        narrative_count += len(merged_keys - spatial_keys - temporal_keys)
+
+    # Scene NEXT relationships are exported to Neo4j separately from per-scene lists.
+    if len(valid_scene_indices) >= 2:
+        narrative_count += len(valid_scene_indices) - 1
+
+    return {
+        "narrative_relationship_count": narrative_count,
+        "spatial_relationship_count": spatial_count,
+        "temporal_relationship_count": temporal_count,
+    }
 
 
 def build_graph_structures(node_ids: list[str], raw_edges: list[tuple[str, str, str]]):
@@ -265,9 +428,6 @@ def reciprocity(simple_edges):
 
 def compute_metrics(node_ids: list[str], raw_edges: list[tuple[str, str, str]]) -> dict:
     nodes, simple_edges, out_adj, in_adj, undirected_adj = build_graph_structures(node_ids, raw_edges)
-    narrative_rel_types = {rel_type for rel_type, _, _ in RELATION_SPECS}
-    spatial_rel_types = {rel_type for rel_type, _, _ in SPATIAL_RELATION_SPECS}
-    temporal_rel_types = {rel_type for rel_type, _, _ in TEMPORAL_INTERVAL_RELATION_SPECS}
 
     node_count = len(nodes)
     non_scene_node_count = sum(
@@ -275,18 +435,6 @@ def compute_metrics(node_ids: list[str], raw_edges: list[tuple[str, str, str]]) 
         if not (isinstance(node_id, str) and node_id.startswith("scene:"))
     )
     relationship_count = len(raw_edges)
-    narrative_relationship_count = sum(
-        1 for _, _, rel_type in raw_edges
-        if rel_type in narrative_rel_types
-    )
-    spatial_relationship_count = sum(
-        1 for _, _, rel_type in raw_edges
-        if rel_type in spatial_rel_types
-    )
-    temporal_relationship_count = sum(
-        1 for _, _, rel_type in raw_edges
-        if rel_type in temporal_rel_types
-    )
     simple_edge_count = len(simple_edges)
     non_self_simple_edge_count = sum(1 for source, target in simple_edges if source != target)
 
@@ -315,9 +463,7 @@ def compute_metrics(node_ids: list[str], raw_edges: list[tuple[str, str, str]]) 
         "node_count": node_count,
         "non_scene_node_count": non_scene_node_count,
         "relationship_count": relationship_count,
-        "narrative_relationship_count": narrative_relationship_count,
-        "spatial_relationship_count": spatial_relationship_count,
-        "temporal_relationship_count": temporal_relationship_count,
+        "simple_edge_count": simple_edge_count,
         "edge_density_directed": edge_density,
         "average_degree": average_degree,
         "weakly_connected_components": len(wccs),
@@ -342,6 +488,7 @@ def main():
         "node_count",
         "non_scene_node_count",
         "relationship_count",
+        "simple_edge_count",
         "narrative_relationship_count",
         "spatial_relationship_count",
         "temporal_relationship_count",
@@ -377,13 +524,24 @@ def main():
             try:
                 node_ids, raw_edges = fetch_graph(driver, database_name)
                 row.update(compute_metrics(node_ids, raw_edges))
-                row["edge_density_directed"] = format_percentage(row.get("edge_density_directed"))
+                graph_name = "myGraph"
+                build_gds_projection(driver, database_name, graph_name)
+                try:
+                    row.update(fetch_gds_metrics(driver, database_name, graph_name))
+                finally:
+                    drop_gds_projection(driver, database_name, graph_name)
+                if row.get("node_count"):
+                    row["largest_scc_ratio"] = row.get("largest_scc_size", 0) / row["node_count"]
+                row.update(count_relationship_families_from_checkpoint(load_variant_checkpoint(variant)))
+                # GDS path and SCC measures are computed on the whole projected graph using '*', '*'.
+                # Scene nodes dominate this graph, so path-based measures may move only modestly across ablations.
+                row["edge_density_directed"] = format_percentage_4(row.get("edge_density_directed"))
                 row["largest_wcc_ratio"] = format_percentage(row.get("largest_wcc_ratio"))
                 row["largest_scc_ratio"] = format_percentage(row.get("largest_scc_ratio"))
                 row["global_efficiency"] = format_percentage(row.get("global_efficiency"))
                 row["reciprocity"] = format_percentage(row.get("reciprocity"))
-                row["average_degree"] = format_decimal_4(row.get("average_degree"))
-                row["average_shortest_path_length"] = format_decimal_4(row.get("average_shortest_path_length"))
+                row["average_degree"] = format_decimal_2(row.get("average_degree"))
+                row["average_shortest_path_length"] = format_decimal_1(row.get("average_shortest_path_length"))
             except Exception as exc:
                 row.update({
                     "status": "failure",
