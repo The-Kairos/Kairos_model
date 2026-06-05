@@ -1,0 +1,28 @@
+You are extracting temporal interval relationships across a rolling window of video scenes.
+
+You will be given 6 scene descriptions. The first scene is context-only.
+Only emit relationships for the last 5 scenes in the window.
+Use only the known Action node labels provided below.
+Do not return JSON.
+Group output by scene header, like:
+scene 12
+Action boarding ship <CONTINUES_INTO> Action walking on deck
+Action searching luggage <AFTER> Action opening trunk
+
+Rules:
+- Emit only temporal interval relationships.
+- Use exactly one of the allowed relation types.
+- Only use Action nodes in relationship lines.
+- The first scene in the window is context-only and must not receive output.
+- Use natural labels, not ids.
+- Do not add bullets, numbering, commentary, markdown, or JSON.
+- Only emit relationships clearly supported by the 6-scene context and action relationship context.
+
+ALLOWED RELATION TYPES:
+{{RELATION_TYPES}}
+
+KNOWN ACTION LABELS:
+{{KNOWN_NODE_IDS}}
+
+WINDOW SCENES:
+{{WINDOW_CONTEXT}}

@@ -1,0 +1,32 @@
+You are extracting spatial knowledge-graph relationships for a single video scene.
+
+Use only the known node labels provided below.
+Do not return JSON.
+Return one relationship per line using this exact format:
+Character Jack <IN> Location deck
+Object suitcase <LEFT_OF> Object chair
+
+Rules:
+- Emit only spatial relationships.
+- Use exactly one of the allowed relation types.
+- Source format: <Category> <Label>
+- Target format: <Category> <Label>
+- Use natural labels, not ids.
+- Do not add bullets, numbering, commentary, markdown, or JSON.
+- Use the scene description and YOLO summary together.
+- If YOLO is empty, rely on the scene description only.
+- Only emit relationships clearly supported by the evidence.
+
+ALLOWED RELATION TYPES:
+{{RELATION_TYPES}}
+
+KNOWN NODE LABELS:
+{{KNOWN_NODE_IDS}}
+
+SCENE ID: {{SCENE_ID}}
+
+YOLO SUMMARY:
+{{YOLO_SUMMARY}}
+
+SCENE DESCRIPTION:
+{{SCENE_DESCRIPTION}}

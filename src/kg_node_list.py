@@ -40,6 +40,35 @@ RELATION_SPECS = (
     ("SPEAKS_TO", ("Character",), ("Character",)),
     ("MENTIONS", ("Character",), ("Topic", "Character", "Object", "Location")),
 )
+SPATIAL_RELATION_SPECS = (
+    ("IN", ("Character", "Object"), ("Location",)),
+    ("NEAR", ("Character", "Object"), ("Character", "Object")),
+    ("LEFT_OF", ("Character", "Object"), ("Character", "Object")),
+    ("IN_FRONT_OF", ("Character", "Object"), ("Character", "Object")),
+    ("ON", ("Object",), ("Object", "Location")),
+    ("INSIDE", ("Object",), ("Object", "Location")),
+)
+TEMPORAL_INTERVAL_RELATION_SPECS = (
+    ("CONTINUES_INTO", ("Action",), ("Action",)),
+    ("AFTER", ("Action",), ("Action",)),
+    ("OVERLAPS", ("Action",), ("Action",)),
+)
+SPATIAL_NODE_CATEGORIES = (
+    "Character",
+    "Object",
+    "Location",
+)
+TEMPORAL_ACTION_CATEGORIES = (
+    "Action",
+)
+TEMPORAL_WINDOW_SIZE = 6
+TEMPORAL_WINDOW_STRIDE = 5
+TEMPORAL_ACTION_CONTEXT_REL_TYPES = {
+    "OCCURS_IN",
+    "DOES",
+    "INVOLVES",
+    "TARGETS",
+}
 
 
 def _default_node_map() -> dict:
@@ -234,6 +263,72 @@ def _load_relationship_prompt_template() -> str:
     )
 
 
+def _load_spatial_relationship_prompt_template() -> str:
+    prompt_path = Path("prompts/kg_relationships_spatial.txt")
+    if prompt_path.exists():
+        return prompt_path.read_text(encoding="utf-8")
+
+    return (
+        "You are extracting spatial knowledge-graph relationships for a single video scene.\n\n"
+        "Use only the known node labels provided below.\n"
+        "Do not return JSON.\n"
+        "Return one relationship per line using this exact format:\n"
+        "Character Jack <IN> Location deck\n"
+        "Object suitcase <LEFT_OF> Object chair\n\n"
+        "Rules:\n"
+        "- Emit only spatial relationships.\n"
+        "- Use exactly one of the allowed relation types.\n"
+        "- Source format: <Category> <Label>\n"
+        "- Target format: <Category> <Label>\n"
+        "- Use natural labels, not ids.\n"
+        "- Do not add bullets, numbering, commentary, markdown, or JSON.\n"
+        "- Use the scene description and YOLO summary together.\n"
+        "- If YOLO is empty, rely on the scene description only.\n"
+        "- Only emit relationships clearly supported by the evidence.\n\n"
+        "ALLOWED RELATION TYPES:\n"
+        "{{RELATION_TYPES}}\n\n"
+        "KNOWN NODE LABELS:\n"
+        "{{KNOWN_NODE_IDS}}\n\n"
+        "SCENE ID: {{SCENE_ID}}\n\n"
+        "YOLO SUMMARY:\n"
+        "{{YOLO_SUMMARY}}\n\n"
+        "SCENE DESCRIPTION:\n"
+        "{{SCENE_DESCRIPTION}}\n"
+    )
+
+
+def _load_temporal_relationship_prompt_template() -> str:
+    prompt_path = Path("prompts/kg_relationships_temporal.txt")
+    if prompt_path.exists():
+        return prompt_path.read_text(encoding="utf-8")
+
+    return (
+        "You are extracting temporal interval relationships across a rolling window of video scenes.\n\n"
+        "You will be given 6 scene descriptions. The first scene is context-only.\n"
+        "Only emit relationships for the last 5 scenes in the window.\n"
+        "Use only the known Action node labels provided below.\n"
+        "Do not return JSON.\n"
+        "Group output by scene header, like:\n"
+        "scene 12\n"
+        "Action boarding ship <CONTINUES_INTO> Action walking on deck\n"
+        "Action searching luggage <AFTER> Action opening trunk\n\n"
+        "Rules:\n"
+        "- Emit only temporal interval relationships.\n"
+        "- Use exactly one of the allowed relation types.\n"
+        "- Only use Action nodes in relationship lines.\n"
+        "- The first scene in the window is context-only and must not receive output.\n"
+        "- Use natural labels, not ids.\n"
+        "- Do not add bullets, numbering, commentary, markdown, or JSON.\n"
+        "- Only emit relationships clearly supported by the 6-scene context and action relationship context.\n\n"
+        "ALLOWED RELATION TYPES:\n"
+        "{{RELATION_TYPES}}\n\n"
+        "KNOWN ACTION LABELS:\n"
+        "{{KNOWN_NODE_IDS}}\n\n"
+        "WINDOW SCENES:\n"
+        "{{WINDOW_CONTEXT}}\n"
+    )
+
+
 def _call_node_extractor(
     prompt: str,
     client,
@@ -320,6 +415,14 @@ def _merge_node_maps(*node_maps: dict | None) -> dict:
             if isinstance(values, list):
                 merged[category].extend(values)
     return _normalize_node_map(merged)
+
+
+def _filter_node_map(node_map: dict | None, categories: tuple[str, ...]) -> dict:
+    normalized = _normalize_node_map(node_map)
+    filtered = _default_node_map()
+    for category in categories:
+        filtered[category] = list(normalized.get(category, []))
+    return filtered
 
 
 def _extract_node_subset(
@@ -502,31 +605,35 @@ def build_known_node_id_map(node_map: dict | None) -> dict:
     return id_map
 
 
-def _relation_specs_text() -> str:
+def _relation_specs_text(relation_specs: tuple = RELATION_SPECS) -> str:
     lines = []
-    for rel_type, source_categories, target_categories in RELATION_SPECS:
+    for rel_type, source_categories, target_categories in relation_specs:
         src = "/".join(source_categories)
         tgt = "/".join(target_categories)
         lines.append(f"- {src} <{rel_type}> {tgt}")
     return "\n".join(lines)
 
 
-def _known_node_id_text(scene_id: str, known_node_ids: dict) -> str:
-    lines = ["- Scene: this_scene"]
+def _known_node_id_text(scene_id: str, known_node_ids: dict, include_scene: bool = True) -> str:
+    lines = ["- Scene: this_scene"] if include_scene else []
     for node_id in sorted(known_node_ids):
         meta = known_node_ids[node_id]
         lines.append(f'- {meta["category"]}: {meta["label"]}')
     return "\n".join(lines)
 
 
-def _allowed_relation_map() -> dict:
+def _allowed_relation_map(relation_specs: tuple = RELATION_SPECS) -> dict:
     relation_map = {}
-    for rel_type, source_categories, target_categories in RELATION_SPECS:
+    for rel_type, source_categories, target_categories in relation_specs:
         relation_map[rel_type] = {
             "source": set(source_categories),
             "target": set(target_categories),
         }
     return relation_map
+
+
+def _build_id_meta_map(node_map: dict | None) -> dict:
+    return build_known_node_id_map(node_map)
 
 
 def _build_label_lookup(node_map: dict | None) -> dict:
@@ -579,6 +686,7 @@ def _parse_relationship_text(
     raw_text: str,
     scene_index: int,
     known_nodes: dict | None,
+    relation_specs: tuple = RELATION_SPECS,
 ) -> list[dict]:
     if not (raw_text or "").strip():
         raise ValueError("Empty LLM relationship output.")
@@ -588,7 +696,7 @@ def _parse_relationship_text(
         r"(Scene|Character|Object|Location|Action|Emotion|Topic)\s+(.+?)\s*$"
     )
     label_lookup = _build_label_lookup(known_nodes)
-    allowed_relation_map = _allowed_relation_map()
+    allowed_relation_map = _allowed_relation_map(relation_specs)
     parsed_relationships = []
     seen = set()
     parse_failures = []
@@ -638,6 +746,236 @@ def _parse_relationship_text(
         raise ValueError("No relationships extracted from non-empty LLM output.")
 
     return parsed_relationships
+
+
+def _format_yolo_summary(scene: dict) -> str:
+    detections = scene.get("yolo_detections", [])
+    if not isinstance(detections, list) or not detections:
+        return "No YOLO detections available."
+
+    lines = []
+    for detection in detections:
+        if not isinstance(detection, dict):
+            continue
+        label = detection.get("label", "unknown")
+        track_id = detection.get("track_id", "?")
+        confidence = detection.get("confidence_avg", "?")
+        start_pos = detection.get("start_pos", "unknown")
+        end_pos = detection.get("end_pos", "unknown")
+        lines.append(
+            f"- track {track_id}: {label} (conf={confidence}) start={start_pos} end={end_pos}"
+        )
+    return "\n".join(lines) if lines else "No YOLO detections available."
+
+
+def _format_relationship_for_context(rel: dict, scene_index: int, id_meta_map: dict) -> str | None:
+    if not isinstance(rel, dict):
+        return None
+    rel_type = _clean_label(rel.get("type", "")).upper()
+    source_id = rel.get("source_id")
+    target_id = rel.get("target_id")
+    if not rel_type or not isinstance(source_id, str) or not isinstance(target_id, str):
+        return None
+
+    def _render(node_id: str) -> str | None:
+        if node_id == f"scene:{scene_index}":
+            return f"Scene {scene_index}"
+        if node_id.startswith("scene:"):
+            return f"Scene {node_id.split(':', 1)[1]}"
+        meta = id_meta_map.get(node_id)
+        if not meta:
+            return None
+        return f'{meta["category"]} {meta["label"]}'
+
+    source_text = _render(source_id)
+    target_text = _render(target_id)
+    if not source_text or not target_text:
+        return None
+    return f"{source_text} <{rel_type}> {target_text}"
+
+
+def _format_action_relationship_context(scene: dict, id_meta_map: dict, fallback_idx: int) -> str:
+    scene_index = scene.get("scene_index", fallback_idx)
+    lines = []
+    for rel in scene.get("relationships", []):
+        if not isinstance(rel, dict):
+            continue
+        rel_type = _clean_label(rel.get("type", "")).upper()
+        if rel_type not in TEMPORAL_ACTION_CONTEXT_REL_TYPES:
+            continue
+        rendered = _format_relationship_for_context(rel, scene_index, id_meta_map)
+        if rendered:
+            lines.append(rendered)
+    return "\n".join(lines) if lines else "None"
+
+
+def _apply_spatial_inverse_relationships(relationships: list[dict]) -> list[dict]:
+    expanded = []
+    seen = set()
+
+    def _push(rel: dict):
+        if not isinstance(rel, dict):
+            return
+        key = (rel.get("type"), rel.get("source_id"), rel.get("target_id"))
+        if key in seen:
+            return
+        seen.add(key)
+        expanded.append(rel)
+
+    for rel in relationships:
+        _push(rel)
+        rel_type = rel.get("type")
+        source_id = rel.get("source_id")
+        target_id = rel.get("target_id")
+        if rel_type == "LEFT_OF":
+            _push({"type": "RIGHT_OF", "source_id": target_id, "target_id": source_id})
+        elif rel_type == "IN_FRONT_OF":
+            _push({"type": "BEHIND", "source_id": target_id, "target_id": source_id})
+        elif rel_type == "NEAR":
+            _push({"type": "NEAR", "source_id": target_id, "target_id": source_id})
+
+    return expanded
+
+
+def _apply_temporal_inverse_relationships(relationships: list[dict]) -> list[dict]:
+    expanded = []
+    seen = set()
+
+    def _push(rel: dict):
+        if not isinstance(rel, dict):
+            return
+        key = (rel.get("type"), rel.get("source_id"), rel.get("target_id"))
+        if key in seen:
+            return
+        seen.add(key)
+        expanded.append(rel)
+
+    for rel in relationships:
+        _push(rel)
+        if rel.get("type") == "AFTER":
+            _push(
+                {
+                    "type": "BEFORE",
+                    "source_id": rel.get("target_id"),
+                    "target_id": rel.get("source_id"),
+                }
+            )
+
+    return expanded
+
+
+def _add_temporal_occurs_in_relationships(
+    relationships: list[dict],
+    scene_index: int,
+) -> list[dict]:
+    expanded = []
+    seen = set()
+    scene_id = f"scene:{scene_index}"
+
+    def _push(rel: dict):
+        if not isinstance(rel, dict):
+            return
+        key = (rel.get("type"), rel.get("source_id"), rel.get("target_id"))
+        if key in seen:
+            return
+        seen.add(key)
+        expanded.append(rel)
+
+    for rel in relationships:
+        _push(rel)
+        source_id = rel.get("source_id")
+        if isinstance(source_id, str) and source_id.startswith("action:"):
+            _push(
+                {
+                    "type": "OCCURS_IN",
+                    "source_id": source_id,
+                    "target_id": scene_id,
+                }
+            )
+
+    return expanded
+
+
+def _parse_temporal_relationship_text(
+    raw_text: str,
+    known_nodes: dict | None,
+    valid_scene_indices: set[int],
+) -> tuple[dict[int, list[dict]], list[str]]:
+    if not (raw_text or "").strip():
+        raise ValueError("Empty LLM temporal relationship output.")
+
+    scene_blocks: dict[int, list[str]] = {}
+    errors = []
+    current_scene_index = None
+    header_pattern = re.compile(r"^\s*scene\s+(\d+)\s*:?\s*$", re.IGNORECASE)
+
+    for raw_line in (raw_text or "").splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        header_match = header_pattern.match(line)
+        if header_match:
+            candidate_scene_index = int(header_match.group(1))
+            if candidate_scene_index not in valid_scene_indices:
+                errors.append(line)
+                current_scene_index = None
+                continue
+            current_scene_index = candidate_scene_index
+            scene_blocks.setdefault(current_scene_index, [])
+            continue
+        if current_scene_index is None:
+            errors.append(line)
+            continue
+        scene_blocks[current_scene_index].append(line)
+
+    parsed_by_scene = {}
+    for scene_index, lines in scene_blocks.items():
+        if not lines:
+            continue
+        try:
+            parsed_by_scene[scene_index] = _parse_relationship_text(
+                raw_text="\n".join(lines),
+                scene_index=scene_index,
+                known_nodes=known_nodes,
+                relation_specs=TEMPORAL_INTERVAL_RELATION_SPECS,
+            )
+        except Exception:
+            errors.extend(lines)
+
+    if not parsed_by_scene:
+        if errors:
+            raise ValueError("Failed to parse any temporal relationship lines.")
+        raise ValueError("No temporal relationships extracted from non-empty LLM output.")
+
+    return parsed_by_scene, errors
+
+
+def merge_scene_relationships(*relationship_lists: list) -> list[dict]:
+    merged = []
+    seen = set()
+    for relationship_list in relationship_lists:
+        if not isinstance(relationship_list, list):
+            continue
+        for rel in relationship_list:
+            if not isinstance(rel, dict):
+                continue
+            rel_type = _clean_label(rel.get("type", "")).upper()
+            source_id = _clean_label(rel.get("source_id", ""), lowercase=True)
+            target_id = _clean_label(rel.get("target_id", ""), lowercase=True)
+            if not rel_type or not source_id or not target_id:
+                continue
+            key = (rel_type, source_id, target_id)
+            if key in seen:
+                continue
+            seen.add(key)
+            merged.append(
+                {
+                    "type": rel_type,
+                    "source_id": source_id,
+                    "target_id": target_id,
+                }
+            )
+    return merged
 
 
 def _validate_relationships(raw_relationships: list, scene_index: int, known_node_ids: dict) -> list[dict]:
@@ -733,5 +1071,162 @@ def extract_scene_relationships(
             else:
                 new_scene["relationships"] = [f"ERROR: {type(exc).__name__}: {exc}"]
         updated_scenes.append(new_scene)
+
+    return updated_scenes
+
+
+def extract_scene_spatial_relationships(
+    scenes: list[dict],
+    known_nodes: dict | None,
+    client,
+    model: str = "gemini-2.5-flash",
+    gpt_deployment: str = "gpt-4o-kairos",
+    gpt_temperature: float = 0.1,
+) -> list[dict]:
+    spatial_node_map = _filter_node_map(known_nodes, SPATIAL_NODE_CATEGORIES)
+    known_node_ids = build_known_node_id_map(spatial_node_map)
+    prompt_template = _load_spatial_relationship_prompt_template()
+    relation_types = _relation_specs_text(SPATIAL_RELATION_SPECS)
+
+    updated_scenes = []
+    for fallback_idx, scene in enumerate(scenes or []):
+        new_scene = dict(scene)
+        scene_index = scene.get("scene_index", fallback_idx)
+        scene_id = f"scene:{scene_index}"
+        scene_description = (scene.get("llm_scene_description") or "").strip()
+        yolo_summary = _format_yolo_summary(scene)
+        new_scene["spatial_relationships"] = []
+        new_scene["spatial_relationship_errors"] = []
+
+        if not scene_description:
+            updated_scenes.append(new_scene)
+            continue
+
+        prompt = prompt_template.replace("{{RELATION_TYPES}}", relation_types)
+        prompt = prompt.replace("{{KNOWN_NODE_IDS}}", _known_node_id_text(scene_id, known_node_ids, include_scene=False))
+        prompt = prompt.replace("{{SCENE_ID}}", scene_id)
+        prompt = prompt.replace("{{YOLO_SUMMARY}}", apply_gpt_normalization(yolo_summary))
+        prompt = prompt.replace("{{SCENE_DESCRIPTION}}", apply_gpt_normalization(scene_description))
+
+        raw_response = ""
+        try:
+            raw_response = _call_relationship_extractor(
+                prompt=prompt,
+                client=client,
+                model=model,
+                gpt_deployment=gpt_deployment,
+                gpt_temperature=gpt_temperature,
+            )
+            parsed = _parse_relationship_text(
+                raw_text=_strip_code_fences(raw_response),
+                scene_index=scene_index,
+                known_nodes=spatial_node_map,
+                relation_specs=SPATIAL_RELATION_SPECS,
+            )
+            new_scene["spatial_relationships"] = _apply_spatial_inverse_relationships(parsed)
+        except Exception as exc:
+            raw_clean = _strip_code_fences(raw_response)
+            if raw_clean:
+                new_scene["spatial_relationship_errors"] = [f"ERROR: {raw_clean}"]
+            else:
+                new_scene["spatial_relationship_errors"] = [f"ERROR: {type(exc).__name__}: {exc}"]
+        updated_scenes.append(new_scene)
+
+    return updated_scenes
+
+
+def extract_temporal_interval_relationships(
+    scenes: list[dict],
+    known_nodes: dict | None,
+    client,
+    model: str = "gemini-2.5-flash",
+    gpt_deployment: str = "gpt-4o-kairos",
+    gpt_temperature: float = 0.1,
+) -> list[dict]:
+    action_node_map = _filter_node_map(known_nodes, TEMPORAL_ACTION_CATEGORIES)
+    known_node_ids = build_known_node_id_map(action_node_map)
+    full_id_meta_map = _build_id_meta_map(known_nodes)
+    prompt_template = _load_temporal_relationship_prompt_template()
+    relation_types = _relation_specs_text(TEMPORAL_INTERVAL_RELATION_SPECS)
+
+    updated_scenes = []
+    for scene in scenes or []:
+        new_scene = dict(scene)
+        new_scene["temporal_relationships"] = []
+        new_scene["temporal_relationship_errors"] = []
+        updated_scenes.append(new_scene)
+
+    if not updated_scenes:
+        return updated_scenes
+
+    for window_start in range(0, max(len(updated_scenes) - 1, 0), TEMPORAL_WINDOW_STRIDE):
+        window = updated_scenes[window_start:window_start + TEMPORAL_WINDOW_SIZE]
+        if len(window) < 2:
+            continue
+
+        window_context_lines = []
+        output_scene_indices = set()
+
+        for idx, scene in enumerate(window):
+            scene_index = scene.get("scene_index", window_start + idx)
+            is_context_only = idx == 0
+            if not is_context_only:
+                output_scene_indices.add(scene_index)
+            scene_description = (scene.get("llm_scene_description") or "").strip() or "No scene description available."
+            action_context = _format_action_relationship_context(scene, full_id_meta_map, window_start + idx)
+            role_text = "context-only" if is_context_only else "output-scene"
+            window_context_lines.append(f"Scene {scene_index} ({role_text})")
+            window_context_lines.append("Description:")
+            window_context_lines.append(scene_description)
+            window_context_lines.append("Existing action relationships:")
+            window_context_lines.append(action_context)
+            window_context_lines.append("")
+
+        prompt = prompt_template.replace("{{RELATION_TYPES}}", relation_types)
+        prompt = prompt.replace(
+            "{{KNOWN_NODE_IDS}}",
+            _known_node_id_text("scene:this_window", known_node_ids, include_scene=False),
+        )
+        prompt = prompt.replace(
+            "{{WINDOW_CONTEXT}}",
+            apply_gpt_normalization("\n".join(window_context_lines).strip()),
+        )
+
+        raw_response = ""
+        try:
+            raw_response = _call_relationship_extractor(
+                prompt=prompt,
+                client=client,
+                model=model,
+                gpt_deployment=gpt_deployment,
+                gpt_temperature=gpt_temperature,
+            )
+            parsed_by_scene, parse_errors = _parse_temporal_relationship_text(
+                raw_text=_strip_code_fences(raw_response),
+                known_nodes=action_node_map,
+                valid_scene_indices=output_scene_indices,
+            )
+            for scene in window[1:]:
+                scene_index = scene.get("scene_index")
+                temporal_relationships = parsed_by_scene.get(scene_index, [])
+                scene["temporal_relationships"] = merge_scene_relationships(
+                    scene.get("temporal_relationships", []),
+                    _add_temporal_occurs_in_relationships(
+                        _apply_temporal_inverse_relationships(temporal_relationships),
+                        scene_index,
+                    ),
+                )
+            if parse_errors:
+                for scene in window[1:]:
+                    scene["temporal_relationship_errors"] = list(scene.get("temporal_relationship_errors", []))
+                    scene["temporal_relationship_errors"].extend(parse_errors)
+        except Exception as exc:
+            error_message = _strip_code_fences(raw_response)
+            if error_message:
+                error_value = f"ERROR: {error_message}"
+            else:
+                error_value = f"ERROR: {type(exc).__name__}: {exc}"
+            for scene in window[1:]:
+                scene["temporal_relationship_errors"] = [error_value]
 
     return updated_scenes

@@ -329,6 +329,16 @@ def kg_extract_log(*args, **kwargs):
     return extract_scene_relationships(*args, **kwargs)
 
 @log_step()
+def kg_extract_spatial_log(*args, **kwargs):
+    from src.kg_node_list import extract_scene_spatial_relationships
+    return extract_scene_spatial_relationships(*args, **kwargs)
+
+@log_step()
+def kg_extract_temporal_log(*args, **kwargs):
+    from src.kg_node_list import extract_temporal_interval_relationships
+    return extract_temporal_interval_relationships(*args, **kwargs)
+
+@log_step()
 def kg_sync_neo4j_log(*args, **kwargs):
     from src.kg_neo4j import sync_video_graph_to_neo4j
     return sync_video_graph_to_neo4j(*args, **kwargs)
