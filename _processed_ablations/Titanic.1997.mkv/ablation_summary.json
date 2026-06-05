@@ -1,0 +1,107 @@
+{
+  "source_checkpoint": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed\\Titanic.1997.mkv\\checkpoint.json",
+  "video_path": "Titanic.1997.mkv",
+  "output_root": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed_ablations\\Titanic.1997.mkv",
+  "variants": [
+    {
+      "variant": "full",
+      "checkpoint_path": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed_ablations\\Titanic.1997.mkv\\full\\checkpoint.json",
+      "status": "success",
+      "error": null,
+      "scene_count": 1855,
+      "all_scenes_have_llm_scene_description": true,
+      "all_scenes_have_relationships": true,
+      "has_knowledge_graph_nodes": true,
+      "neo4j": {
+        "database_name": "titanic-1997-mkv-full",
+        "uri": "neo4j://127.0.0.1:7687",
+        "username": "neo4j",
+        "synced_at": "2026-06-04T23:12:14Z",
+        "scene_nodes": 1855,
+        "scene_next_relationships": 1854,
+        "graph_nodes": 136,
+        "graph_relationships": 9318
+      }
+    },
+    {
+      "variant": "no_yolo",
+      "checkpoint_path": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed_ablations\\Titanic.1997.mkv\\no_yolo\\checkpoint.json",
+      "status": "success",
+      "error": null,
+      "scene_count": 1855,
+      "all_scenes_have_llm_scene_description": true,
+      "all_scenes_have_relationships": true,
+      "has_knowledge_graph_nodes": true,
+      "neo4j": {
+        "database_name": "titanic-1997-mkv-no-yolo",
+        "uri": "neo4j://127.0.0.1:7687",
+        "username": "neo4j",
+        "synced_at": "2026-06-04T23:49:29Z",
+        "scene_nodes": 1855,
+        "scene_next_relationships": 1854,
+        "graph_nodes": 61,
+        "graph_relationships": 6946
+      }
+    },
+    {
+      "variant": "no_asr",
+      "checkpoint_path": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed_ablations\\Titanic.1997.mkv\\no_asr\\checkpoint.json",
+      "status": "success",
+      "error": null,
+      "scene_count": 1855,
+      "all_scenes_have_llm_scene_description": true,
+      "all_scenes_have_relationships": true,
+      "has_knowledge_graph_nodes": true,
+      "neo4j": {
+        "database_name": "titanic-1997-mkv-no-asr",
+        "uri": "neo4j://127.0.0.1:7687",
+        "username": "neo4j",
+        "synced_at": "2026-06-05T00:21:08Z",
+        "scene_nodes": 1855,
+        "scene_next_relationships": 1854,
+        "graph_nodes": 62,
+        "graph_relationships": 4082
+      }
+    },
+    {
+      "variant": "no_ast",
+      "checkpoint_path": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed_ablations\\Titanic.1997.mkv\\no_ast\\checkpoint.json",
+      "status": "success",
+      "error": null,
+      "scene_count": 1855,
+      "all_scenes_have_llm_scene_description": true,
+      "all_scenes_have_relationships": true,
+      "has_knowledge_graph_nodes": true,
+      "neo4j": {
+        "database_name": "titanic-1997-mkv-no-ast",
+        "uri": "neo4j://127.0.0.1:7687",
+        "username": "neo4j",
+        "synced_at": "2026-06-05T00:57:54Z",
+        "scene_nodes": 1855,
+        "scene_next_relationships": 1854,
+        "graph_nodes": 48,
+        "graph_relationships": 6454
+      }
+    },
+    {
+      "variant": "no_blip",
+      "checkpoint_path": "C:\\Users\\Joy Anne\\Desktop\\Kairos\\_processed_ablations\\Titanic.1997.mkv\\no_blip\\checkpoint.json",
+      "status": "success",
+      "error": null,
+      "scene_count": 1855,
+      "all_scenes_have_llm_scene_description": true,
+      "all_scenes_have_relationships": true,
+      "has_knowledge_graph_nodes": true,
+      "neo4j": {
+        "database_name": "titanic-1997-mkv-no-blip",
+        "uri": "neo4j://127.0.0.1:7687",
+        "username": "neo4j",
+        "synced_at": "2026-06-05T01:38:36Z",
+        "scene_nodes": 1855,
+        "scene_next_relationships": 1854,
+        "graph_nodes": 153,
+        "graph_relationships": 8798
+      }
+    }
+  ]
+}
