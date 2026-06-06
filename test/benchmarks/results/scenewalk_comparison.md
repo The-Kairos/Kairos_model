@@ -6,216 +6,216 @@
 
 ---
 
-## Video 1: mDvkux01G3A
+## Video 1: c0VPJWt_f0w
 
-- **URL:** https://www.youtube.com/watch?v=mDvkux01G3A
-- **Duration:** 37.6 min
-- **Ground truth segments:** 80
-- **Kairos segments evaluated:** 193
+- **URL:** https://www.youtube.com/watch?v=c0VPJWt_f0w
+- **Duration:** 31.0 min
+- **Ground truth segments:** 71
+- **Kairos segments evaluated:** 154
 - **Aggregation:** `fixed_window`
 
 ### Kairos Full Synopsis
 
-> The story follows various characters engaging in everyday activities, emotional conversations, and reflective moments, with recurring themes of fishing, personal connections, and introspection, culminating in a mix of mundane and poignant scenes.
+> A family navigates a chaotic weekend as a woman leaves her child with her brother, Uncle Jeff, who struggles with caregiving, emotional connections, and creative pursuits, while the child bonds with him and copes with the loss of her pet Pony.
 
 ### Scene-by-Scene Comparison
 
-#### Scene 1 [00:00 – 00:09]
+#### Scene 1 [00:00 – 00:10]
 
 **Kairos:**
-> A glowing moon is shown in a dark sky, transitioning to the word "ometo" in white on a black background. The scene shifts to the top deck of a boat, where a woman with a ponytail stands still, facing the ocean and looking out at the horizon under an open sky.
+> The segment begins with a black background displaying white text that reads "ometo." The frame then transitions to another dark background with the text "` ' pny `" visible. No other notable objects or actions are present in this static sequence.
 
 **Ground Truth (1 overlapping):**
-> [00:00–00:26] The video begins with a black screen displaying the word "Omeleto" in white text. It then transitions to a scene with a person standing at the edge of a pier, gazing out at the ocean. The person is wearing a white shirt and has a fishing rod in hand. The ocean is calm with a few small waves, and the...
+> [00:00–00:20] The video begins with a black screen displaying the word "Omeleto" in white text, followed by a similar screen with the word "PONY" in white text with a yellow circle around the letter 'O'. The scene transitions to a child sitting at a kitchen table, holding a glass of orange juice with a straw, wea...
 
-#### Scene 2 [00:09 – 00:26]
+#### Scene 2 [00:10 – 00:20]
 
 **Kairos:**
-> A woman holds a phone and looks down at the screen. The view shifts to a man with his eyes closed, facing upward and remaining still, followed by a rear view of another man with his hair pulled back. The background remains plain and unremarkable throughout.
+> The scene takes place in a kitchen with a woman standing near an oven and a girl holding a glass of orange juice. The girl drinks from the glass using a blue straw and then appears to talk to her phone while lowering the glass. The woman remains stationary, facing the girl, as the interaction unfolds. Key visible objects include the glass in the girl's hand and the oven in the background. A girl is seated at a table with a cat nearby, while a boy sits at the same table with his head tilted back....
 
 **Ground Truth (2 overlapping):**
-> [00:00–00:26] The video begins with a black screen displaying the word "Omeleto" in white text. It then transitions to a scene with a person standing at the edge of a pier, gazing out at the ocean. The person is wearing a white shirt and has a fishing rod in hand. The ocean is calm with a few small waves, and the...
+> [00:00–00:20] The video begins with a black screen displaying the word "Omeleto" in white text, followed by a similar screen with the word "PONY" in white text with a yellow circle around the letter 'O'. The scene transitions to a child sitting at a kitchen table, holding a glass of orange juice with a straw, wea...
 
-> [00:26–00:48] The video opens with a close-up of a woman's face, showing her profile as she looks off to the side. Her hair is tied back, and she has a serious expression. The scene then cuts to a man fishing on a pier; he is wearing a white shirt and brown pants, and he is holding a fishing rod. The camera focus...
+> [00:20–00:43] The video opens with a scene of a child sitting at a kitchen table, with a plate of food in front of them, including a fried egg with a runny yolk. The child is holding a toy and appears to be eating. The kitchen has a retro aesthetic with wallpaper and a white table. The next scene shows a woman in...
 
-#### Scene 3 [00:26 – 00:32]
+#### Scene 3 [00:20 – 00:26]
 
 **Kairos:**
-> A calm outdoor setting by a lake with trees in the background. A woman stands near the water while a girl with a backpack is nearby. On a wooden pier, a man holds a fishing rod over the water as a woman watches him.
+> A boy sits at a table in a room, eating food from a bowl. The scene shifts to a girl sitting at a table, eating food and drinking milk from a cup. Finally, a woman is visible in a kitchen area, talking on a phone while standing near a chair and a cup. The setting transitions between a room and a kitchen, with visible objects including a table, chairs, and a cup. The scene takes place in a kitchen where a man and a woman are seated on chairs. The woman adjusts her position, bending her knee while...
 
 **Ground Truth (1 overlapping):**
-> [00:26–00:48] The video opens with a close-up of a woman's face, showing her profile as she looks off to the side. Her hair is tied back, and she has a serious expression. The scene then cuts to a man fishing on a pier; he is wearing a white shirt and brown pants, and he is holding a fishing rod. The camera focus...
+> [00:20–00:43] The video opens with a scene of a child sitting at a kitchen table, with a plate of food in front of them, including a fried egg with a runny yolk. The child is holding a toy and appears to be eating. The kitchen has a retro aesthetic with wallpaper and a white table. The next scene shows a woman in...
 
-#### Scene 4 [00:32 – 00:43]
+#### Scene 4 [00:26 – 00:39]
 
 **Kairos:**
-> A woman with blonde hair blowing in the wind stands outdoors as another person walks by in the background from left to right in an open setting.
+> The scene begins with a table set with food, a knife, and a fork visible in the background. A girl is seated, holding a glass of orange juice and drinking from it. The shot transitions to a kitchen where a woman is standing and talking on a cell phone. Nearby objects include a chair and a cup, which are slightly repositioned during the scene as the girl and another person move within the space.
 
 **Ground Truth (1 overlapping):**
-> [00:26–00:48] The video opens with a close-up of a woman's face, showing her profile as she looks off to the side. Her hair is tied back, and she has a serious expression. The scene then cuts to a man fishing on a pier; he is wearing a white shirt and brown pants, and he is holding a fishing rod. The camera focus...
+> [00:20–00:43] The video opens with a scene of a child sitting at a kitchen table, with a plate of food in front of them, including a fried egg with a runny yolk. The child is holding a toy and appears to be eating. The kitchen has a retro aesthetic with wallpaper and a white table. The next scene shows a woman in...
 
-#### Scene 5 [00:43 – 00:56]
+#### Scene 5 [00:39 – 00:52]
 
 **Kairos:**
-> A man fishes with a rod on a calm pier as a woman stands nearby, occasionally glancing at her hair. The view transitions to cars driving on a street near a mountain, followed by a train passing on tracks with buildings in the background. A man with a bird on his shoulder stands on a street, shifting to a cyclist riding by and another person walking away with a backpack in a busy urban setting.
+> A girl is visible holding a glass of orange juice, with her mouth in view. She then cradles a baby in her arms while drinking from the glass. The scene shifts as she eats a banana, appearing surprised by something happening around her. Key objects include the glass of orange juice and the banana, which define her actions. A woman is standing in a kitchen, holding a cell phone to her ear and talking. She moves slightly to the left, shifting her position within the room. The kitchen setting includ...
 
 **Ground Truth (2 overlapping):**
-> [00:26–00:48] The video opens with a close-up of a woman's face, showing her profile as she looks off to the side. Her hair is tied back, and she has a serious expression. The scene then cuts to a man fishing on a pier; he is wearing a white shirt and brown pants, and he is holding a fishing rod. The camera focus...
+> [00:20–00:43] The video opens with a scene of a child sitting at a kitchen table, with a plate of food in front of them, including a fried egg with a runny yolk. The child is holding a toy and appears to be eating. The kitchen has a retro aesthetic with wallpaper and a white table. The next scene shows a woman in...
 
-> [00:48–01:08] The video opens with a view of a road with moving vehicles, including a white van and a black car. The scene transitions to a person wearing a dark tank top and carrying a backpack, walking along the roadside. The individual appears to be in distress, as indicated by their body language and facial e...
+> [00:43–01:06] The video opens with a woman standing in a kitchen, dressed in a light blue shirt and black skirt, talking on a mobile phone. She is positioned near a kitchen counter with various items on it, including a bowl and a glass. The kitchen has white cabinets and a window with blinds. The scene cuts to a ...
 
-#### Scene 6 [00:56 – 01:00]
+#### Scene 6 [00:52 – 01:02]
 
 **Kairos:**
-> Two men are on a street as one pulls the other, who is wearing a backpack. A man is then seen walking on the sidewalk with an unusual lifted stride. The segment ends with a person standing in the street, the backpack still visible.
+> A young girl is lying in a hospital bed with an inhaler in her hand and a bottle of orange juice nearby. In the next moment, she sticks her tongue out playfully while holding a toy. The scene shifts to her eating food and drinking from the bottle of orange juice, with a cup visible on the side. The setting remains focused on the hospital bed and nearby items throughout. A woman is standing in a kitchen, holding a cell phone to her ear and talking. The kitchen features a sink, a stove, and an ope...
 
 **Ground Truth (1 overlapping):**
-> [00:48–01:08] The video opens with a view of a road with moving vehicles, including a white van and a black car. The scene transitions to a person wearing a dark tank top and carrying a backpack, walking along the roadside. The individual appears to be in distress, as indicated by their body language and facial e...
+> [00:43–01:06] The video opens with a woman standing in a kitchen, dressed in a light blue shirt and black skirt, talking on a mobile phone. She is positioned near a kitchen counter with various items on it, including a bowl and a glass. The kitchen has white cabinets and a window with blinds. The scene cuts to a ...
 
-#### Scene 7 [01:00 – 01:10]
+#### Scene 7 [01:02 – 01:09]
 
 **Kairos:**
-> Two men stand in front of a gas station with a sign reading "we are doing here." The scene shifts to a bus driving along a road with a motion blur effect. A man carrying a backpack walks down a street as vehicles and pedestrians move in the background.
+> A boy is seated at a table, drinking milk through a straw from a glass positioned in front of him. The scene shifts to a girl sitting nearby, also drinking milk through a straw from her glass. In the next moment, a child is seen eating a piece of cake and sipping milk. The setting appears to be a dining area, with the focus on the children and their interaction with the food and drinks. A woman is standing in a kitchen, holding a cell phone to her ear with one hand while holding a cup in the oth...
 
 **Ground Truth (2 overlapping):**
-> [00:48–01:08] The video opens with a view of a road with moving vehicles, including a white van and a black car. The scene transitions to a person wearing a dark tank top and carrying a backpack, walking along the roadside. The individual appears to be in distress, as indicated by their body language and facial e...
+> [00:43–01:06] The video opens with a woman standing in a kitchen, dressed in a light blue shirt and black skirt, talking on a mobile phone. She is positioned near a kitchen counter with various items on it, including a bowl and a glass. The kitchen has white cabinets and a window with blinds. The scene cuts to a ...
 
-> [01:08–01:45] The video opens with a scene of two individuals, one wearing a white shirt and the other in a dark tank top, engaged in a physical altercation on a sidewalk next to a fence. The individual in the white shirt appears to be the aggressor, pushing the other person against the fence. The scene cuts to a...
+> [01:06–01:54] The video opens with a woman in a light blue shirt and black skirt standing in a kitchen, holding a phone to her ear. She appears to be engaged in a conversation. The kitchen is well-lit, with white cabinets, a window with blinds, and various kitchen appliances and items visible. The woman has her h...
 
-#### Scene 8 [01:10 – 01:21]
-
-**Kairos:**
-> A street with visible activity: a man in a black shirt rides a bicycle past a walking person, while a woman watches from the side. A car moves in the background as another remains stationary. The scene transitions to a man lying on the ground with his head resting on a white shirt in the middle of the road.
-
-**Ground Truth (1 overlapping):**
-> [01:08–01:45] The video opens with a scene of two individuals, one wearing a white shirt and the other in a dark tank top, engaged in a physical altercation on a sidewalk next to a fence. The individual in the white shirt appears to be the aggressor, pushing the other person against the fence. The scene cuts to a...
-
-#### Scene 9 [01:21 – 01:24]
+#### Scene 8 [01:09 – 01:22]
 
 **Kairos:**
-> Outdoors on a sidewalk, a man walks his bike along the street as a woman passes by in the background. Two people then walk along the sidewalk, with a camera visible behind them. A stationary bus is parked on the left, framing the urban scene.
+> The scene shows a girl with brown hair and blue eyes holding a bottle while standing in the middle of the frame. She is then seen eating or drinking orange juice, holding the container in her hand. The setting is unclear, but the focus remains on her actions with the juice. No other notable objects or interactions are visible. A woman is standing in a kitchen, holding a cell phone to her ear and talking. The kitchen includes visible features such as a sink, stove, and an open dishwasher, with a ...
 
 **Ground Truth (1 overlapping):**
-> [01:08–01:45] The video opens with a scene of two individuals, one wearing a white shirt and the other in a dark tank top, engaged in a physical altercation on a sidewalk next to a fence. The individual in the white shirt appears to be the aggressor, pushing the other person against the fence. The scene cuts to a...
+> [01:06–01:54] The video opens with a woman in a light blue shirt and black skirt standing in a kitchen, holding a phone to her ear. She appears to be engaged in a conversation. The kitchen is well-lit, with white cabinets, a window with blinds, and various kitchen appliances and items visible. The woman has her h...
 
-#### Scene 10 [01:24 – 01:43]
+#### Scene 9 [01:22 – 01:26]
 
 **Kairos:**
-> A man runs across a bridge with a cityscape and buildings in the background. The scene shifts to two people sitting together, eating a hot chili. A close-up shows a man in a white shirt, transitioning between outdoor views and tighter shots of the individuals.
+> A woman is standing in a kitchen, holding a phone to her ear and talking. She looks toward the counter while speaking, with minimal movement in the scene. The kitchen setting includes visible counters and typical indoor lighting, and her focus remains on the phone conversation.
 
 **Ground Truth (1 overlapping):**
-> [01:08–01:45] The video opens with a scene of two individuals, one wearing a white shirt and the other in a dark tank top, engaged in a physical altercation on a sidewalk next to a fence. The individual in the white shirt appears to be the aggressor, pushing the other person against the fence. The scene cuts to a...
+> [01:06–01:54] The video opens with a woman in a light blue shirt and black skirt standing in a kitchen, holding a phone to her ear. She appears to be engaged in a conversation. The kitchen is well-lit, with white cabinets, a window with blinds, and various kitchen appliances and items visible. The woman has her h...
+
+#### Scene 10 [01:26 – 01:55]
+
+**Kairos:**
+> A woman is standing in a room, talking on a cell phone while smiling briefly toward the camera. A child is nearby, watching her as she speaks. A bottle is visible on a surface to the left of the woman. The setting appears simple, with no other notable objects or actions in focus.
+
+**Ground Truth (2 overlapping):**
+> [01:06–01:54] The video opens with a woman in a light blue shirt and black skirt standing in a kitchen, holding a phone to her ear. She appears to be engaged in a conversation. The kitchen is well-lit, with white cabinets, a window with blinds, and various kitchen appliances and items visible. The woman has her h...
+
+> [01:54–02:24] The video begins with a shot of an unmade bed with a person lying under the covers, seemingly asleep. The room is dimly lit, and there are various objects scattered around, such as bottles and a red cup. As the video progresses, the person starts to stir and eventually sits up, revealing their face ...
 
 ---
 
-*... 183 more scenes (see scenewalk_comparison.json) ...*
+*... 144 more scenes (see scenewalk_comparison.json) ...*
 
 ---
 
-## Video 2: X9MAf245Yag
+## Video 2: NkMWgw6hNrE
 
-- **URL:** https://www.youtube.com/watch?v=X9MAf245Yag
-- **Duration:** 31.8 min
-- **Ground truth segments:** 51
-- **Kairos segments evaluated:** 106
+- **URL:** https://www.youtube.com/watch?v=NkMWgw6hNrE
+- **Duration:** 30.2 min
+- **Ground truth segments:** 70
+- **Kairos segments evaluated:** 134
 - **Aggregation:** `fixed_window`
 
 ### Kairos Full Synopsis
 
-> A couple spends their final day together in a hotel, engaging in intimate moments, playful activities, and a planned assisted death, while reflecting on their love and shared memories.
+> The narrative depicts a series of fragmented scenes featuring various characters in urban and natural settings, engaging in casual interactions, dancing, confrontations, and reflective moments, with recurring themes of tension, camaraderie, and self-expression, while specific plot details remain unclear.
 
 ### Scene-by-Scene Comparison
 
-#### Scene 1 [00:00 – 00:18]
+#### Scene 1 [00:00 – 00:07]
 
 **Kairos:**
-> A black and gold background displays static text and a logo, transitioning from blank text to the word "you" and ending with the logo on a black background with a white border.
+> The segment consists of three static frames displaying text and logos. The first frame shows a black background with a logo featuring the word "s" in black, accompanied by a red and white circle above it. The second frame transitions to white text spelling "melo" on a plain background. The third frame displays the same name, "melo," visible on the screen of a computer monitor. No movement or additional objects are present in the scene. The scene opens with a person walking along a dirt path in a...
 
 **Ground Truth (1 overlapping):**
-> [00:00–00:23] The video opens with a black screen displaying the white text "Omelete" in a simple, sans-serif font. The scene transitions to another black screen with the same text, but this time the font is golden and cursive, giving it a more elegant appearance. The sequence continues with a third black screen,...
+> [00:00–00:21] The video opens with a black screen displaying the text "Omelete" in white font. The scene transitions to a person jogging on a dirt path in a natural setting, followed by a close-up of a hand holding a string of beads. The next scene shows the same person jogging, with the text "TEAM RED PRO PRESEN...
 
-#### Scene 2 [00:18 – 00:30]
+#### Scene 2 [00:07 – 00:17]
 
 **Kairos:**
-> A well-lit hallway with neutral walls; a man in a red jacket and a woman stand and talk calmly. The man holds a bag while facing the woman, who is to his left. Near a mirror, the man glances at the woman’s reflection as they subtly shift positions.
+> The scene begins with a view of a tree and a car on the side of a street. The camera shifts to show a person walking on a sidewalk in front of houses, with cars moving along the street nearby. The final shot focuses on someone holding a rosary and a woman’s hand, emphasizing the close-up interaction. The setting transitions from an outdoor street to a more personal moment. The scene begins with a man walking on a grassy area, with a tree visible in the background. The shot transitions to a perso...
+
+**Ground Truth (1 overlapping):**
+> [00:00–00:21] The video opens with a black screen displaying the text "Omelete" in white font. The scene transitions to a person jogging on a dirt path in a natural setting, followed by a close-up of a hand holding a string of beads. The next scene shows the same person jogging, with the text "TEAM RED PRO PRESEN...
+
+#### Scene 3 [00:17 – 00:25]
+
+**Kairos:**
+> The segment begins with a man wearing a white shirt and black pants, holding a banana, standing in an undefined setting. The scene transitions to a person riding a bike with the sun visible behind them, creating a backlit effect. Finally, the shot changes to a man riding a horse on a road surrounded by mountainous terrain. The sequence highlights distinct actions and settings, with no additional notable objects or interactions visible. The scene opens with a view of a desert landscape at sunset,...
 
 **Ground Truth (2 overlapping):**
-> [00:00–00:23] The video opens with a black screen displaying the white text "Omelete" in a simple, sans-serif font. The scene transitions to another black screen with the same text, but this time the font is golden and cursive, giving it a more elegant appearance. The sequence continues with a third black screen,...
+> [00:00–00:21] The video opens with a black screen displaying the text "Omelete" in white font. The scene transitions to a person jogging on a dirt path in a natural setting, followed by a close-up of a hand holding a string of beads. The next scene shows the same person jogging, with the text "TEAM RED PRO PRESEN...
 
-> [00:23–00:43] The video opens with a man and a woman standing in a hallway. The man is wearing a red jacket with a gray backpack and a patterned shirt, while the woman is dressed in a black jacket with a yellow scarf and has long dark hair. They appear to be engaged in a conversation. The woman is seen gesturing ...
+> [00:21–01:25] The video opens with a scene of a person performing a martial arts move on a beach at sunset. The next scene transitions to a nighttime urban setting where a group of individuals is engaged in a coordinated physical activity, possibly a dance or a fight sequence. The participants are dressed in casu...
 
-#### Scene 3 [00:30 – 00:36]
+#### Scene 4 [00:25 – 00:35]
 
 **Kairos:**
-> Indoors, a woman in a yellow shirt and black scarf stands on the left, talking to a man who moves in a circling motion to her right. The woman raises her hand toward the camera briefly, drawing attention to her gesture, while the man remains in the background.
+> A man is standing on a beach, facing the horizon as the sun rises, casting warm light across the scene. The setting transitions to a music video featuring a singer, though the specific actions are not clearly visible. The next shot shows a man crouched on the ground, using his hand to interact with something on the surface. The beach, the rising sun, and the man's movements define the sequence. A man wearing a white shirt and sunglasses stands near the ocean, with the water stretching out behind...
 
 **Ground Truth (1 overlapping):**
-> [00:23–00:43] The video opens with a man and a woman standing in a hallway. The man is wearing a red jacket with a gray backpack and a patterned shirt, while the woman is dressed in a black jacket with a yellow scarf and has long dark hair. They appear to be engaged in a conversation. The woman is seen gesturing ...
+> [00:21–01:25] The video opens with a scene of a person performing a martial arts move on a beach at sunset. The next scene transitions to a nighttime urban setting where a group of individuals is engaged in a coordinated physical activity, possibly a dance or a fight sequence. The participants are dressed in casu...
 
-#### Scene 4 [00:36 – 00:47]
+#### Scene 5 [00:35 – 01:12]
 
 **Kairos:**
-> An indoor hallway with three people moving in different directions. A man in a red vest walks to the right, a woman moves to the left, and a third person crosses diagonally toward the right. The man and woman briefly exchange words as they pass.
+> The segment begins with a red background displaying the word "twilight" in text. The scene transitions to a dimly lit room where a woman with long dark hair is standing still. The next shot shows a nighttime street scene with several people walking in front of a building. The individuals move in various directions, some walking left and others right, with no clear focal interaction. The setting is defined by the dark street, the building in the background, and the movement of the pedestrians.
+
+**Ground Truth (1 overlapping):**
+> [00:21–01:25] The video opens with a scene of a person performing a martial arts move on a beach at sunset. The next scene transitions to a nighttime urban setting where a group of individuals is engaged in a coordinated physical activity, possibly a dance or a fight sequence. The participants are dressed in casu...
+
+#### Scene 6 [01:12 – 01:25]
+
+**Kairos:**
+> The scene begins on a street where a person is being escorted off a bus by others, with the bus visible in the background. The shot transitions to a lively group of people dancing and moving with their hands raised in the air, creating an energetic atmosphere. The final moment shows individuals engaging in hip-hop-style movements on the street, with the urban surroundings of San Francisco subtly visible. The sequence highlights dynamic actions and group interactions in an outdoor setting.
 
 **Ground Truth (2 overlapping):**
-> [00:23–00:43] The video opens with a man and a woman standing in a hallway. The man is wearing a red jacket with a gray backpack and a patterned shirt, while the woman is dressed in a black jacket with a yellow scarf and has long dark hair. They appear to be engaged in a conversation. The woman is seen gesturing ...
+> [00:21–01:25] The video opens with a scene of a person performing a martial arts move on a beach at sunset. The next scene transitions to a nighttime urban setting where a group of individuals is engaged in a coordinated physical activity, possibly a dance or a fight sequence. The participants are dressed in casu...
 
-> [00:43–01:09] The video opens with a man and a woman standing in a hallway. The man is wearing a red jacket, a patterned shirt, and a backpack, while the woman is dressed in a black jacket and a yellow scarf. They are engaged in a conversation, with the man speaking and the woman listening and responding. The set...
+> [01:25–01:47] The video opens with a scene of a person sitting on the ground, leaning against a wall with graffiti, in a dimly lit urban environment at night. The individual is wearing a black hoodie, a white undershirt, and dark pants. They are surrounded by a group of people standing in the background. The came...
 
-#### Scene 5 [00:47 – 00:53]
+#### Scene 7 [01:25 – 01:29]
 
 **Kairos:**
-> A man in a red shirt and a woman stand in an indoor hallway, lightly conversing as another person walks by in the background. The man then begins walking down the hallway to the left, with the woman moving alongside him. The setting remains simple, with no notable objects in focus.
+> The scene begins on a street where a man is visibly falling to the ground. The camera then shows a group of people walking along the road, with some moving leftward. The view shifts to a dark alley where a person is sitting on the ground, stationary. The setting transitions between the street and the alley, with no additional notable objects or actions visible.
 
 **Ground Truth (1 overlapping):**
-> [00:43–01:09] The video opens with a man and a woman standing in a hallway. The man is wearing a red jacket, a patterned shirt, and a backpack, while the woman is dressed in a black jacket and a yellow scarf. They are engaged in a conversation, with the man speaking and the woman listening and responding. The set...
+> [01:25–01:47] The video opens with a scene of a person sitting on the ground, leaning against a wall with graffiti, in a dimly lit urban environment at night. The individual is wearing a black hoodie, a white undershirt, and dark pants. They are surrounded by a group of people standing in the background. The came...
 
-#### Scene 6 [00:53 – 01:03]
+#### Scene 8 [01:29 – 01:42]
 
 **Kairos:**
-> A hotel hallway with a man and woman standing and talking. They walk together into a room, with the man moving slightly ahead as the woman continues speaking. The hallway reappears briefly as they shift positions near a door, one holding a backpack, before stepping apart.
+> The scene begins with a close view of a person with tattoos visible on their back and their hands raised in the air. It transitions to a woman wearing a mask and holding a bottle of wine. The next shot shows a subway platform at night, where a person is walking away while others remain stationary or move slightly in the background. The setting is dimly lit, with the platform and surrounding figures defining the nighttime urban environment. The scene features a man wearing a hat and a jacket stan...
 
 **Ground Truth (1 overlapping):**
-> [00:43–01:09] The video opens with a man and a woman standing in a hallway. The man is wearing a red jacket, a patterned shirt, and a backpack, while the woman is dressed in a black jacket and a yellow scarf. They are engaged in a conversation, with the man speaking and the woman listening and responding. The set...
+> [01:25–01:47] The video opens with a scene of a person sitting on the ground, leaning against a wall with graffiti, in a dimly lit urban environment at night. The individual is wearing a black hoodie, a white undershirt, and dark pants. They are surrounded by a group of people standing in the background. The came...
 
-#### Scene 7 [01:03 – 01:14]
+#### Scene 9 [01:42 – 01:47]
 
 **Kairos:**
-> A hotel room with a bed and couch is shown as a woman stands inside. A man enters, briefly interacts with a phone while walking, and then runs across the room. The scene transitions to an outdoor setting where a man in a maroon jacket over a yellow shirt stands in front of a partially visible horse, shifting slightly to the left in the open space.
+> The scene takes place in a dark hallway where a man is walking forward, with another man visible in the background. The shot transitions to a person wearing a hat and jacket walking toward a small group of people. The next moment shows a person shaking hands with someone else in a dimly lit room, suggesting a brief interaction. The setting remains dark throughout, with no additional notable objects visible.
 
 **Ground Truth (2 overlapping):**
-> [00:43–01:09] The video opens with a man and a woman standing in a hallway. The man is wearing a red jacket, a patterned shirt, and a backpack, while the woman is dressed in a black jacket and a yellow scarf. They are engaged in a conversation, with the man speaking and the woman listening and responding. The set...
+> [01:25–01:47] The video opens with a scene of a person sitting on the ground, leaning against a wall with graffiti, in a dimly lit urban environment at night. The individual is wearing a black hoodie, a white undershirt, and dark pants. They are surrounded by a group of people standing in the background. The came...
 
-> [01:09–01:31] The video opens with a man in a red jacket and a backpack standing in a room with patterned wallpaper and a framed picture of a horse. He is smiling and appears to be in a good mood. The scene cuts to a woman in a black leather jacket and a yellow shirt with a black scarf, standing in a hallway with...
+> [01:47–02:09] The video opens with a group of individuals standing in a dimly lit alley at night. The focus is on two men who engage in a physical altercation. One man, wearing a black cap, jacket, and a white shirt, is seen punching the other, who is wearing a denim jacket and a black beanie. The fight is intens...
 
-#### Scene 8 [01:14 – 01:24]
+#### Scene 10 [01:47 – 01:56]
 
 **Kairos:**
-> A woman in a black leather jacket over a yellow shirt stands at the center of the frame, smiling and looking off-camera. The setting transitions to a hotel room with visible furniture, where she walks across the room past a stationary man and a bed. She is later seen standing still in a neutral setting, with a man visible in the background.
+> The scene takes place on a street at night, where a group of men is gathered. One man wearing a hoodie is holding a cell phone, standing slightly apart from the others. In the background, another man is dancing with someone else on a stage, adding a lively element to the setting. The group appears to be engaged in movement and interaction, with no other notable objects defining the scene.
 
 **Ground Truth (1 overlapping):**
-> [01:09–01:31] The video opens with a man in a red jacket and a backpack standing in a room with patterned wallpaper and a framed picture of a horse. He is smiling and appears to be in a good mood. The scene cuts to a woman in a black leather jacket and a yellow shirt with a black scarf, standing in a hallway with...
-
-#### Scene 9 [01:24 – 01:34]
-
-**Kairos:**
-> A man in a red shirt sits on a couch with a floral arrangement in front of him, picks up the flowers, and smiles at the camera. A woman is seated behind him on the couch. The scene transitions to a woman in a black leather jacket and yellow shirt standing against a plain wall, moving slightly to the right. It returns to the man on the couch, now wearing a yellow jacket, as he pours liquid into a vase and arranges the flowers.
-
-**Ground Truth (2 overlapping):**
-> [01:09–01:31] The video opens with a man in a red jacket and a backpack standing in a room with patterned wallpaper and a framed picture of a horse. He is smiling and appears to be in a good mood. The scene cuts to a woman in a black leather jacket and a yellow shirt with a black scarf, standing in a hallway with...
-
-> [01:31–01:52] The video opens with a man in a red jacket and a woman in a black leather jacket standing in a room with a floral wallpaper and a framed picture on the wall. The man is holding a yellow envelope and appears to be reading from it. The woman is standing nearby, looking on. The scene then cuts to the m...
-
-#### Scene 10 [01:34 – 01:45]
-
-**Kairos:**
-> A woman in a black jacket and yellow scarf stands near an electric outlet in a dimly lit space. The scene shifts to a darker setting where she, now with her hair down, stands beside a man. She is later shown in front of a plain white wall, looking upward, followed by a man in a red shirt and yellow jacket standing near a wall and mirror, moving slightly. The segment ends with the woman in a yellow sweater and black jacket standing still with her eyes closed near a wall-mounted alarm.
-
-**Ground Truth (1 overlapping):**
-> [01:31–01:52] The video opens with a man in a red jacket and a woman in a black leather jacket standing in a room with a floral wallpaper and a framed picture on the wall. The man is holding a yellow envelope and appears to be reading from it. The woman is standing nearby, looking on. The scene then cuts to the m...
+> [01:47–02:09] The video opens with a group of individuals standing in a dimly lit alley at night. The focus is on two men who engage in a physical altercation. One man, wearing a black cap, jacket, and a white shirt, is seen punching the other, who is wearing a denim jacket and a black beanie. The fight is intens...
 
 ---
 
-*... 96 more scenes (see scenewalk_comparison.json) ...*
+*... 124 more scenes (see scenewalk_comparison.json) ...*
 
 ---

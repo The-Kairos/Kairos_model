@@ -28,6 +28,23 @@ Compared with the original pre-versioning result:
 
 The recall drop is important to report internally: the tuned prompts became more precise and grounded, but less broad than the original baseline. The overall result is still stronger because semantic precision, lexical overlap, and temporal alignment all improved.
 
+## Frozen Held-Out Evaluation Result
+
+The selected configuration was frozen and evaluated on two held-out SceneWalk videos that were excluded from the development prompt/aggregation tuning:
+
+- held-out videos: `c0VPJWt_f0w`, `NkMWgw6hNrE`
+- excluded development videos: `mDvkux01G3A`, `X9MAf245Yag`
+- result file: `test/benchmarks/results/scenewalk_results_20260606_154048.json`
+- generated held-out report: `test/benchmarks/results/scenewalk_benchmark_report.md`
+- generated held-out comparison: `test/benchmarks/results/scenewalk_comparison.md`
+- dedicated qualitative comparison: `log_reports/scenewalk_heldout_description_comparison.md`
+
+| Configuration | BERTScore F1 | Precision | Recall | ROUGE-L F1 | SODA F1 | Matched Pairs |
+|---|---:|---:|---:|---:|---:|---:|
+| Frozen held-out: `v4 + fixed_window 13s` | `0.5886` | `0.5885` | `0.5903` | `0.2305` | `0.1382` | `129` |
+
+This held-out result is slightly higher than the development best on BERTScore F1 (`0.5879 -> 0.5886`) and remains close on ROUGE-L (`0.2358 -> 0.2305`) and SODA (`0.1450 -> 0.1382`). This supports the claim that the selected prompt plus aggregation policy did not obviously overfit the two development videos.
+
 ## Why Prompt Tuning Is Justified
 
 Prompt tuning is valid here because Kairos uses an LLM fusion stage to convert multimodal evidence into scene descriptions. The prompt is therefore part of the system configuration, not an external scoring trick.
@@ -122,6 +139,50 @@ For the ablation section or appendix, include:
 - failed abstractive rewrite result, if space allows
 
 If the paper has limited space, do not include every failed trial in the main results table. Put the successful frozen held-out result in the main table, and move development ablations to an appendix or short ablation subsection.
+
+## Qualitative Narrative For The Paper
+
+The recommended interpretation is not that low overlap scores mean Kairos descriptions are worse. A more accurate and publishable framing is:
+
+```text
+Automated overlap metrics can understate Kairos quality because Kairos often produces more temporally local, visually specific descriptions than SceneWalk's broader segment captions. The mismatch is not only description quality, but annotation granularity and reference style.
+```
+
+This narrative is useful because SceneWalk captions often summarize a broad event span, while Kairos describes shorter scene units with concrete visual evidence. That can lower BERTScore, ROUGE-L, and SODA even when the Kairos output is useful, grounded, and more detailed for downstream retrieval or question answering.
+
+The paper should show this with examples rather than only stating it. Good example candidates from the current development comparison are:
+
+| Video | Kairos Scene / Time | Why It Is Useful |
+|---|---|---|
+| `mDvkux01G3A` | scene `116`, around `1317.6-1328.5s` | Kairos gives concrete beach, couch, window, sunset, and bench details while the SceneWalk reference is broader and organized differently. |
+| `X9MAf245Yag` | scene `33`, around `381.9-394.1s` | Kairos describes visible actions and objects such as window blinds, a Wii controller, painting, and cutting, while the reference summarizes a wider event sequence. |
+| `X9MAf245Yag` | scene `10`, around `94.1-105.8s` | Kairos includes clothing, outlet, dim-room, and wall details that help show visual specificity beyond simple overlap scoring. |
+
+When writing these examples, avoid claiming that Kairos is always better than SceneWalk. The stronger claim is that the two systems describe different units of analysis: SceneWalk is segment-level and reference-style, while Kairos is scene-level and evidence-rich.
+
+## Where The Description Files Are
+
+SceneWalk ground-truth descriptions:
+
+- `test/benchmarks/cache/scenewalk_manifest.json`
+- `test/benchmarks/cache/scenewalk_heldout_manifest.json`
+- `test/benchmarks/results/scenewalk_comparison.md`
+- `test/benchmarks/results/scenewalk_comparison.json`
+
+Kairos development outputs:
+
+- current `v4`: `test/benchmarks/cache/scenewalk_outputs/video_000/checkpoint.json`
+- current `v4`: `test/benchmarks/cache/scenewalk_outputs/video_001/checkpoint.json`
+- `v1` backups: `test/benchmarks/cache/scenewalk_outputs_v1_backup_20260606/`
+- `v2` backups: `test/benchmarks/cache/scenewalk_outputs_v2_backup_20260606/`
+- `v3` backups: `test/benchmarks/cache/scenewalk_outputs_v3_backup_20260606/`
+
+Prompt files:
+
+- active full scene prompt: `prompts/describe_scene.txt`
+- active fallback prompt: `prompts/fallback_describe_scene.txt`
+- active short scene prompt: `prompts/describe_scene_short.txt`
+- versioned prompt archive: `prompts/benchmark_versions/`
 
 ## Recommended Paper Structure
 

@@ -1,0 +1,49 @@
+{
+  "dataset": "SceneWalk",
+  "num_videos": 2,
+  "prediction_source": "scenewalk_outputs_heldout",
+  "manifest_name": "scenewalk_heldout_manifest.json",
+  "aggregation": {
+    "policy": "fixed_window",
+    "window_sec": 13.0,
+    "max_gap_sec": 5.0,
+    "rewrite": false,
+    "rewrite_prompt": "prompts/benchmark_versions/aggregate_scene_segments_v1.txt"
+  },
+  "aggregate": {
+    "soda_f1": 0.13817870691124512,
+    "soda_precision": 0.10293034203125218,
+    "soda_recall": 0.21069029888453827,
+    "matched_bertscore_f1": 0.588629961013794,
+    "matched_bertscore_precision": 0.5884998440742493,
+    "matched_bertscore_recall": 0.590273916721344,
+    "matched_rouge_l_f1": 0.23045844411337904,
+    "total_matched_pairs": 129
+  },
+  "per_video": [
+    {
+      "index": 0,
+      "video_id": "c0VPJWt_f0w",
+      "duration_min": 31.0,
+      "num_kairos_scenes": 154,
+      "num_raw_kairos_scenes": 310,
+      "num_gt_segments": 71,
+      "soda_f1": 0.14673172197446516,
+      "soda_precision": 0.10719038131251513,
+      "soda_recall": 0.23249744679052578,
+      "soda_matched": 70
+    },
+    {
+      "index": 1,
+      "video_id": "NkMWgw6hNrE",
+      "duration_min": 30.2,
+      "num_kairos_scenes": 134,
+      "num_raw_kairos_scenes": 261,
+      "num_gt_segments": 70,
+      "soda_f1": 0.12962569184802505,
+      "soda_precision": 0.09867030274998922,
+      "soda_recall": 0.1888831509785508,
+      "soda_matched": 59
+    }
+  ]
+}
