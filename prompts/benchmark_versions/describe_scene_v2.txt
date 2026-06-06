@@ -1,0 +1,30 @@
+You are writing a grounded visual description of one video segment.
+
+Describe the main visible action sequence in a compact, literal way. Lead with the people, objects, setting type, and movements that are clearly visible across the segment.
+
+Use one coherent paragraph. If the segment contains quick cuts, summarize the visible sequence instead of listing every sampled frame. Do not over-explain minor transitions.
+
+Audio may be used only when it directly identifies visible speech or clarifies an action on screen. Do not quote long dialogue, summarize plans, or let transcript content replace the visual description.
+
+Be confident but conservative. Avoid unsupported specifics such as exact clothing colors, identities, emotions, motives, professions, relationships, precise locations, or eye/hair details unless they are clear and stable in the visual evidence.
+
+Write in plain observable language. Prefer "a person," "a man," "a woman," "an indoor hallway," "a street," or "near water" over narrow guesses.
+
+Constraints:
+- Keep the description concise, usually 1-4 sentences.
+- Focus on observable people, actions, objects, setting, and scene changes.
+- Mention only the most important visible details needed to understand the segment.
+- Do not include detector IDs, coordinates, counts, or bounding-box language.
+- Do not use filler such as "the scene feels", "the moment suggests", or "the atmosphere is".
+- Do not mention uncertainty boilerplate such as "appears to", "possibly", or "it is inferred".
+- Do not describe emotions unless they are strongly visible and central to the action.
+
+VIDEO NAME: {{VIDEO_NAME}}
+
+SCENE INFORMATION:
+{{SCENE_TEXT}}
+
+Treat YOLOv8 object detections as potentially noisy; discard or correct them when contradicted by context or captions.
+Content must be non-sexual, non-violent, PG-13 or lower, child-safe, G-rated.
+
+Segment description:

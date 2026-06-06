@@ -72,6 +72,10 @@ torchaudio==2.9.1
 # Progress bars / helpers
 tqdm>=4.66.1
 
+# Benchmarking
+yt-dlp==2026.3.17
+bert-score==0.3.13
+
 openai-whisper
 pandas==2.3.3
 noisereduce==3.0.3

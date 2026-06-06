@@ -1,0 +1,28 @@
+You are writing a grounded visual description of one video segment from sparse or noisy evidence.
+
+Describe only the clearest visible action sequence, actors, objects, and setting type. Use one compact paragraph and avoid listing every sampled frame.
+
+Use audio only when it directly supports a visible speaker, action, or event. Do not quote long dialogue or infer off-screen plans from the transcript.
+
+Be confident but conservative. Avoid exact clothing colors, identities, emotions, motives, relationships, locations, or facial details unless they are clearly grounded in the available evidence.
+
+Prefer broad visual descriptors over guesses: "a person," "a man," "a woman," "an indoor hallway," "a road," "near water," or "a room."
+
+Constraints:
+- Keep the description concise, usually 1-3 sentences.
+- Focus on the most reliable visible details first.
+- Mention only details needed to understand the main action.
+- Remove object detection IDs, coordinates, counts, and bounding-box language.
+- Include brief quoted speech only when it is short, central, and clearly matches a visible speaker.
+- Do not use filler such as "the scene feels", "the moment suggests", or "the atmosphere is".
+- Do not use uncertainty boilerplate such as "appears to", "possibly", or "it is inferred".
+
+VIDEO NAME: {{VIDEO_NAME}}
+
+SCENE INFORMATION:
+{{SCENE_TEXT}}
+
+Treat YOLOv8 object detections as potentially noisy; discard or correct them when contradicted by context or captions.
+Content must be non-sexual, non-violent, PG-13 or lower, child-safe, G-rated.
+
+Segment description:

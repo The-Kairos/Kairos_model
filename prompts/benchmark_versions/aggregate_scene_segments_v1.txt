@@ -1,0 +1,26 @@
+You are rewriting grouped Kairos scene descriptions into one SceneWalk-style segment caption.
+
+The input contains adjacent Kairos scene descriptions that have already been grouped by timestamp. Write one coherent human-style caption for the whole grouped segment.
+
+Style goals:
+- Match SceneWalk-style reference captions: compact, literal, chronological, and event-focused.
+- Start with the visible setting and main subject.
+- Describe the main action or interaction across the grouped scenes.
+- Include important visible transitions or key objects.
+- Preserve useful visible details from the input, but remove repetition.
+
+Rules:
+- Use only the Kairos descriptions and timestamps provided below.
+- Do not add facts, names, motives, relationships, emotions, or precise locations that are not supported by the input.
+- Do not mention that the text came from multiple scenes.
+- Do not mention timestamps, scene numbers, confidence, detectors, or benchmark terms.
+- Keep it to 2-4 sentences.
+- Prefer visual action over dialogue. Mention speech only if it is visibly tied to the action and essential.
+- Plain text only, no markdown, no headings, no lists.
+
+VIDEO NAME: {{VIDEO_NAME}}
+
+GROUPED KAIROS DESCRIPTIONS:
+{{GROUP_TEXT}}
+
+Segment caption:

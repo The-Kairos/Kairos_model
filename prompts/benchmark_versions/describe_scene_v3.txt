@@ -10,7 +10,7 @@ Use 2-4 sentences for normal segments. Use 1-2 sentences only for very short, st
 
 Prioritize recall of visible events over extreme brevity, but stay grounded. Include stable details that help match the reference, such as broad clothing type, carried objects, vehicles, roads, rooms, water, signs, screens, doors, or furniture. Avoid tiny attributes that do not affect the action.
 
-Audio is secondary. Use it only when it clearly belongs to a visible speaker or directly explains a visible action. Do not quote dialogue except for a very short phrase that is essential to the visible interaction. Prefer visual action over speech content, and do not include off-screen voices, background sounds, plans, explanations, or transcript details that are not visibly acted out.
+Use audio only when it clearly belongs to a visible speaker or directly clarifies the visible event. Briefly summarize speech only if it changes what the viewer understands about the on-screen action. Do not quote long dialogue or infer off-screen plans.
 
 Be confident but conservative. Do not invent identities, names, motives, relationships, professions, precise locations, emotions, or facial details unless clearly visible and central.
 
@@ -19,7 +19,6 @@ Write in plain observable language. Prefer broad grounded descriptors such as "a
 Constraints:
 - Use one coherent paragraph, not a list.
 - Include the main visible sequence, not just a generic caption.
-- Keep dialogue/audio to at most one short clause, and omit it entirely if the visible action is already clear.
 - Avoid ending with empty filler such as "no other notable objects are visible" unless the segment is truly static or empty.
 - Do not include detector IDs, coordinates, counts, or bounding-box language.
 - Do not use filler such as "the scene feels", "the moment suggests", or "the atmosphere is".

@@ -16,7 +16,7 @@
       "yolo_detections": [],
       "audio_speech": "Today is going to be a great day, it's going to be so fun, it's going to be a blast. Yes, like you said, it's going to be great.",
       "audio_natural": "silence (conf=0.59)",
-      "llm_scene_description": "The segment consists of static frames displaying text and a logo against a black and gold background. The first frame shows a black background with the words \"` `\". The second frame transitions to a gold and black background with the word \"you\" prominently displayed. The final frame shows the same logo with a black background and a white border. No visible actions or people are present in this sequence."
+      "llm_scene_description": "The segment consists of static frames showing a black background with text appearing in sequence. The first frame displays a person against the black background with no additional details visible. The second frame transitions to a gold and black background with the word \"you\" prominently displayed. The third frame shows a logo on a black background with a white border. There is no visible movement or interaction in the scene."
     },
     {
       "scene_index": 1,
@@ -67,7 +67,7 @@
       ],
       "audio_speech": "Yes, like you said, it's going to be great. You can do whatever you want.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a hallway inside a building, where a young man and a woman are walking together. The man, wearing a red jacket over a tan shirt, is positioned slightly to the left of the woman. Both individuals are mostly stationary, with subtle movements as they appear to interact. The hallway is the primary setting, and no other notable objects or actions are visible."
+      "llm_scene_description": "A young man and a woman are walking side by side down an indoor hallway in a building. The man, wearing a red jacket over a tan shirt, is visible in the background. The two individuals appear stationary at times, with slight movements as they face each other briefly during the interaction. The setting remains consistent throughout the segment, with no significant changes in location or visible objects."
     },
     {
       "scene_index": 2,
@@ -118,7 +118,7 @@
       ],
       "audio_speech": "Is my makeup okay?",
       "audio_natural": "none",
-      "llm_scene_description": "A woman and a man are standing in a hotel hallway, facing each other and talking. The man is holding a bag in one hand, while the woman, positioned to his left, appears engaged in the conversation. The hallway is well-lit, with neutral-colored walls and minimal visible decor. The interaction is calm, with no other people or notable objects in the frame."
+      "llm_scene_description": "A man and a woman are standing in a hotel hallway, facing each other and talking. The man is holding a bag, while the woman remains stationary. The setting is an indoor corridor with no other visible people or significant movement in the background."
     },
     {
       "scene_index": 3,
@@ -169,7 +169,7 @@
       ],
       "audio_speech": "Yeah,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place indoors, where a man with brown hair, wearing a maroon vest over a white button-down shirt, stands near a mirror. He appears to be looking at a woman, possibly his girlfriend, who is reflected in the mirror, and he speaks briefly. The man is positioned to the left of the woman, and both are moving slightly to the left within the frame. The setting includes no other notable objects or distractions."
+      "llm_scene_description": "A man wearing a maroon vest over a white button-down shirt and a woman in a red jacket are standing indoors near a mirror. The man looks at the woman through the mirror and speaks to her while both remain relatively stationary. The setting appears to be a simple, enclosed space with no additional visible objects or notable background details."
     },
     {
       "scene_index": 4,
@@ -220,7 +220,7 @@
       ],
       "audio_speech": "Yeah, I did it, but I wanted it to look like me, but not too fancy.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in what appears to be an indoor setting, with a woman in a yellow shirt and a black scarf standing on the left, talking to a man positioned to her right. The woman has long hair and is later seen raising her hand toward the camera, briefly drawing attention to her gesture. The man moves in a looping or circling motion to her right, remaining in the background. The woman’s yellow sweater and jacket are prominent, and no other significant objects or actions are visible."
+      "llm_scene_description": "A woman wearing a yellow shirt and a black scarf is standing and talking to a man in an indoor setting. The man moves slightly to the right in a looping or circling motion while the woman remains mostly stationary, briefly raising her hand toward the camera. The background and context suggest a casual interaction between the two individuals."
     },
     {
       "scene_index": 5,
@@ -288,7 +288,7 @@
       ],
       "audio_speech": "I did it, but I wanted it to look like me, but not too fancy. Yes, you look like you, look as beautiful as ever. You look like you're 22. No, I'm 30. What? You lied to me?",
       "audio_natural": "silence (conf=0.68)",
-      "llm_scene_description": "The scene takes place in a hallway of an apartment or building, where three people are visible. A man wearing a red vest walks to the right, while a woman nearby moves to the left, and a third person moves diagonally toward the right. The man and the woman appear to exchange words as they pass each other. The setting is defined by the indoor corridor, with no additional notable objects or actions visible."
+      "llm_scene_description": "In an indoor hallway, a man walks from the left toward the center while talking, as a woman stands nearby looking at him. Another man in a red vest is visible further to the right, standing still in the corridor. The three individuals are positioned near each other, with subtle movement as they interact in the confined space."
     },
     {
       "scene_index": 6,
@@ -339,7 +339,7 @@
       ],
       "audio_speech": "You lied to me? No, listen, I have this whole day planned out, it's going to be a blast.",
       "audio_natural": "none",
-      "llm_scene_description": "A man and a woman are standing in a hallway, with the man wearing a red shirt. The setting appears to be indoors, with a mirror visible in earlier frames. The man and woman are moving slightly, with the man positioned to the right of the woman. Another person is visible in the background, smiling faintly while walking through the hallway. The interaction seems light and conversational, with no additional objects or notable actions in focus."
+      "llm_scene_description": "A man and a woman are walking through a hallway, moving side by side. The hallway appears to have a simple, indoor setting with no prominent features other than a mirror visible earlier. The man is positioned to the right of the woman as they move, and another person is briefly visible in the background, smiling. The scene focuses on their movement and interaction as they walk together."
     },
     {
       "scene_index": 7,
@@ -390,7 +390,7 @@
       ],
       "audio_speech": "No, listen, I have this whole day planned out, it's going to be a blast.",
       "audio_natural": "silence (conf=0.33)",
-      "llm_scene_description": "The scene takes place in an office hallway, where a man in a red sweater is standing and talking to someone nearby. He then begins walking down the hallway, moving to the left of the frame. Another person, positioned to his right, is also moving left and appears to be getting closer as they walk. The hallway setting is simple, with no other notable objects or distractions visible."
+      "llm_scene_description": "A man in a red sweater and another person are in an office hallway, walking side by side while talking. The man in the red sweater moves slightly ahead as they both walk to the left of the frame. The hallway remains consistent as the setting, with no visible changes or additional objects of note."
     },
     {
       "scene_index": 8,
@@ -441,7 +441,7 @@
       ],
       "audio_speech": "Okay, ready? Yep. Alright. Just let me make sure that I can get us in the room so you can enjoy your day.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins in a hotel hallway where a woman and a man are standing and talking to each other. The woman is positioned on the left, while the man is on the right. The setting transitions as they walk together into a room, with the woman continuing to speak while the man moves slightly ahead. In the background of the room, the woman is still visible talking to the man. The interaction appears casual, with no other notable objects or actions dominating the scene."
+      "llm_scene_description": "A woman and a man are seen standing in a hotel hallway, with the woman talking to the man. The scene transitions to the two walking together into a room, where the woman continues speaking while the man moves slightly in the background. The setting remains indoors, with no significant changes to the environment or visible objects."
     },
     {
       "scene_index": 9,
@@ -492,7 +492,7 @@
       ],
       "audio_speech": "Just let me make sure that I can get us in the room so you can enjoy your day.",
       "audio_natural": "explosion (conf=0.30)",
-      "llm_scene_description": "Two people are standing in a hallway near a door. One of them is holding a backpack, and they appear to be facing each other briefly before shifting positions. The person on the left moves slightly to the right, while the person on the right moves slightly to the left, both stepping away from the center of the frame. The hallway setting remains consistent, with no other notable objects visible."
+      "llm_scene_description": "Two people are standing in a hallway near a door, briefly facing each other before moving in opposite directions. One person holds a backpack as they shift positions, and the setting alternates between the hallway and a room. Both individuals glance toward the camera at one point before the scene transitions."
     },
     {
       "scene_index": 10,
@@ -583,7 +583,7 @@
       ],
       "audio_speech": "Just let me make sure that I can get us in the room so you can enjoy your day. Ta-da! Yay! Fancy.",
       "audio_natural": "sliding door (conf=0.30)",
-      "llm_scene_description": "The scene takes place in a hotel room with a bed and a couch visible. A woman is present in the room, and shortly after, a man enters, walking through the space. The man briefly interacts with a phone while moving, and at one point, he starts running across the room. The couch is positioned to the left of the bed, and both pieces of furniture remain stationary throughout the scene."
+      "llm_scene_description": "Two people are visible in a hotel room with a bed and a couch. One person walks across the room while briefly interacting with a phone, and the other moves in the opposite direction. The setting remains indoors, with the furniture stationary in the background."
     },
     {
       "scene_index": 11,
@@ -616,7 +616,7 @@
       ],
       "audio_speech": "Fancy. This is too nice. No, don't, it's good.",
       "audio_natural": "silence (conf=0.54)",
-      "llm_scene_description": "A man wearing a maroon jacket over a yellow shirt is standing outdoors in front of a horse, which is partially visible behind him. He moves slightly to the left, shifting from the middle-right toward the center of the frame. The setting appears open, with no other prominent objects or people visible in the scene."
+      "llm_scene_description": "A man in a maroon jacket and yellow shirt stands in front of a horse in an outdoor setting. He moves slightly to the left, shifting closer to the center of the frame while the horse remains stationary. The scene focuses on the man and the horse, with no other visible people or significant background details."
     },
     {
       "scene_index": 12,
@@ -649,7 +649,7 @@
       ],
       "audio_speech": "No, don't, it's good. It just seems really expensive.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a woman standing in the center of the frame, wearing a black leather jacket over a yellow shirt. She is smiling and appears to be looking at someone off-camera. Her hair is slightly lifted, as if by a breeze or air movement. The background and surroundings are not clearly visible, and no other notable objects or actions are present."
+      "llm_scene_description": "A woman wearing a leather jacket is standing indoors, smiling and facing someone off-camera. Her hair is slightly lifted, possibly by air movement, and she remains mostly stationary in the center of the frame. The setting is not clearly detailed, but the focus stays on her as she interacts briefly, with no significant movement or background changes."
     },
     {
       "scene_index": 13,
@@ -747,7 +747,7 @@
       ],
       "audio_speech": "It's good, it's great.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a hotel room with visible furniture, including a bed on the right and a vase near the center. A woman is standing on the floor near the middle of the room, while a man and another person are visible in the background. The woman begins walking across the room, passing by the stationary man and the bed. The setting remains focused on the interior of the hotel room, with no significant changes in visible objects or actions."
+      "llm_scene_description": "A woman is standing in a hotel room near a bed, while a man and another person are visible in the background. The woman begins walking across the room as the two others remain mostly stationary. The setting includes typical hotel room furnishings, such as a bed and a vase, and the scene remains indoors throughout."
     },
     {
       "scene_index": 14,
@@ -780,7 +780,7 @@
       ],
       "audio_speech": "I know, but it's just all been very expensive.",
       "audio_natural": "none",
-      "llm_scene_description": "A woman wearing a yellow shirt, a black leather jacket, and a scarf around her neck is standing in a neutral setting. She remains mostly stationary at the center of the frame, with a man visible in the background. The scene focuses on her posture and attire, with no significant movement or interaction taking place."
+      "llm_scene_description": "A woman wearing a yellow shirt and a black leather jacket is standing indoors, with a scarf loosely visible around her neck. She remains mostly stationary in the center of the frame, while a man is visible in the background but does not move prominently. The setting appears neutral and does not show significant activity or interaction beyond her speaking briefly."
     },
     {
       "scene_index": 15,
@@ -813,7 +813,7 @@
       ],
       "audio_speech": "It's budgeted, it's all good.",
       "audio_natural": "none",
-      "llm_scene_description": "A man in a red shirt is seated on a couch with a floral arrangement featuring purple flowers placed in front of him. He picks up the flowers and smiles at the camera, while a woman is visible sitting on the couch behind him. The setting appears to be indoors, with the couch and flowers as the central objects in the scene."
+      "llm_scene_description": "A man in a red shirt is sitting on a couch with a floral arrangement featuring purple flowers in front of him. He picks up the flowers, smiles at the camera, and holds them up, while a woman sits on the couch behind him, remaining stationary. The setting appears to be indoors, with no significant movement beyond the man’s actions."
     },
     {
       "scene_index": 16,
@@ -846,7 +846,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "tearing (conf=0.61)",
-      "llm_scene_description": "The scene shows a woman with long brown hair wearing a black leather jacket and a yellow shirt, standing in front of a plain wall. She appears to be moving slightly to the right. The setting is simple, with no additional visible objects or notable background details. A faint tearing sound is heard, but no specific action related to it is visible."
+      "llm_scene_description": "A woman with long hair, wearing a jacket, yellow top, and scarf, is standing in front of a wall. Another girl with long brown hair, dressed in a black leather jacket, is visible nearby. The woman moves slightly to the right while the setting remains stationary. A faint tearing sound is audible during the sequence."
     },
     {
       "scene_index": 17,
@@ -879,7 +879,7 @@
       ],
       "audio_speech": "Okay.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene opens with a man sitting on a couch, holding a bouquet of flowers. He is wearing a red shirt and a yellow jacket, and the setting appears to be a living room or similar indoor space. The man pours liquid from a container into a vase, placing the flowers inside. The sofa and vase are key visible objects in the frame, and the action focuses on arranging the flowers. The background remains static, with no other notable movement or interaction visible."
+      "llm_scene_description": "A man is seated on a couch, holding a bouquet of flowers. He then pours liquid into a vase, placing the flowers inside. The setting appears to be a living room with the man remaining the central focus of the action."
     },
     {
       "scene_index": 18,
@@ -912,7 +912,7 @@
       ],
       "audio_speech": "Okay. I thought that we would start with a very relaxing bubble bath.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a woman wearing a black jacket and a yellow scarf standing next to an electric outlet in a dimly lit setting. The shot transitions to a darker environment where the woman, now with her hair down, stands beside a man. In the next shot, the woman is seen standing in front of a white wall, looking upward. The setting is minimal, with no other notable objects besides the wall and the individuals."
+      "llm_scene_description": "A woman wearing a black jacket and yellow scarf is standing near an electric outlet in an indoor setting. The scene transitions to a darker environment where the woman, now with her hair down, is standing beside a man. In the next shot, the woman is seen standing in front of a plain white wall, looking upward. The sequence is mostly stationary, with minimal movement from the individuals."
     },
     {
       "scene_index": 19,
@@ -945,7 +945,7 @@
       ],
       "audio_speech": "I thought that we would start with a very relaxing bubble bath.",
       "audio_natural": "silence (conf=0.56)",
-      "llm_scene_description": "A man with short brown hair, wearing a red shirt and a yellow jacket, stands near a wall and a mirror. He moves slightly to the right, remaining in the center of the frame. The setting is simple, with no other notable objects or visible interactions."
+      "llm_scene_description": "A man with short hair, wearing a red shirt and a gold or yellow layer underneath, is standing indoors near a wall. He moves slightly to the right, getting closer to the center of the frame. A mirror is visible nearby, reflecting part of his figure. The setting remains stationary, with no other significant actions or objects in focus."
     },
     {
       "scene_index": 20,
@@ -978,7 +978,7 @@
       ],
       "audio_speech": "I thought that we would start with a very relaxing bubble bath.",
       "audio_natural": "none",
-      "llm_scene_description": "A woman wearing a yellow sweater and a black leather jacket stands in front of a plain wall. Her eyes are closed as she remains still, and an alarm is visible on the wall beside her. The setting is simple, with no other notable objects or movement in the frame."
+      "llm_scene_description": "A woman in a yellow sweater and black leather jacket stands in front of a wall with her eyes closed. The wall has an alarm visible on it. She remains stationary as the scene focuses on her position and surroundings."
     },
     {
       "scene_index": 21,
@@ -1029,7 +1029,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a man and a woman sitting together in a bathtub filled with bubbles, situated in a bathroom. The two appear close, with the man positioned slightly to the left of the woman. The setting is intimate but visually grounded, with the bubbles and the bathtub being the key defining elements of the scene. No significant objects or additional actions are visible beyond their shared presence in the tub."
+      "llm_scene_description": "A man and a woman are sitting together in a bathtub filled with bubbles inside a bathroom. Both individuals are positioned close to each other, with the man on the left and the woman on the right, and their movements are minimal, primarily shifting slightly within the tub. The setting is confined to the bathtub and its immediate surroundings, with no additional objects or actions prominently visible."
     },
     {
       "scene_index": 22,
@@ -1062,7 +1062,7 @@
       ],
       "audio_speech": "Tell me if I'm going too hard or too soft, whatever. It's good.",
       "audio_natural": "none",
-      "llm_scene_description": "A shirtless man stands in a bathroom, looking at his reflection in the mirror. A woman briefly appears in the mirror's reflection beside him, but the focus remains on the man as he continues to face the mirror. The bathroom setting is simple, with no other notable objects or actions visible."
+      "llm_scene_description": "A shirtless man stands in a bathroom, looking at his reflection in the mirror. At one point, a woman is briefly visible in the mirror beside him. The setting remains static, with the man’s movements limited to slight shifts as he continues to face the mirror."
     },
     {
       "scene_index": 23,
@@ -1113,7 +1113,7 @@
       ],
       "audio_speech": "It's good. I'm going to rub your back. No, let me rub your back. No, I'm going to rub your back. No, come on. I would please, that's what I want.",
       "audio_natural": "single-lens reflex camera (conf=0.78)",
-      "llm_scene_description": "A man and a woman are sitting together in a bathtub filled with bubbles in a bathroom. They are facing each other and appear to be interacting, with slight movements visible. Another woman stands nearby in front of them, partially visible in the frame. The bathroom setting includes the tub as the central feature, with no other prominent objects or actions in view."
+      "llm_scene_description": "A man and a woman are sitting together in a bathtub filled with bubbles in a bathroom. They face each other and appear to be engaged in conversation while remaining seated. The setting is static, with no significant movement beyond their interaction in the tub."
     },
     {
       "scene_index": 24,
@@ -1164,7 +1164,7 @@
       ],
       "audio_speech": "I would please, that's what I want. Magic words.",
       "audio_natural": "squish (conf=0.33)",
-      "llm_scene_description": "The scene takes place in a bathroom with a shower stall and a bathtub. A man is sitting in the bathtub, partially submerged, while a woman stands nearby in the same room. The man appears stationary, while the woman moves slightly within the space. The bathroom setting includes visible fixtures like the tub and shower, but no other notable objects or actions are emphasized."
+      "llm_scene_description": "A man is sitting in a bathtub filled with water in a bathroom, while a woman stands nearby. The setting includes a shower stall and typical bathroom fixtures. The man remains mostly stationary in the tub, while the woman moves slightly within the space. The scene is focused on their presence and subtle movements within the bathroom."
     },
     {
       "scene_index": 25,
@@ -1215,7 +1215,7 @@
       ],
       "audio_speech": "Magic words. Thank you.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a hotel bathroom with two bathtubs placed side by side. A man and a woman are sitting in the tubs, surrounded by bubbles, and appear to be interacting with each other. Both individuals shift slightly in position, with the man on the left and the woman on the right. The setting is brightly lit, and the tubs are the central focus of the scene."
+      "llm_scene_description": "A man and a woman are sitting together in a bathtub filled with bubbles in what appears to be a hotel bathroom. The two are positioned close to each other, partially submerged in the water, with visible bubbles covering parts of the tub. The setting remains static, with no significant movement beyond their slight shifts in position."
     },
     {
       "scene_index": 26,
@@ -1266,7 +1266,7 @@
       ],
       "audio_speech": "Thank you. Sorry. I'm sorry.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a bathroom with a bathtub as the central focus. A man and a woman are sitting together in the tub, surrounded by bubbles. The man is holding a candle, which is the main visible object in the scene. Their reflections are faintly visible on the wall behind them, and there is minimal movement as they remain seated in the tub."
+      "llm_scene_description": "A man and a woman are sitting together in a bathtub in a bathroom setting. The man is holding a candle, and their reflections are faintly visible on the wall behind them. The scene remains focused on the two individuals in the tub, with no significant movement or changes in the setting."
     },
     {
       "scene_index": 27,
@@ -1317,7 +1317,7 @@
       ],
       "audio_speech": "It's okay.",
       "audio_natural": "sneeze (conf=0.31)",
-      "llm_scene_description": "The scene takes place in a bathroom, where a man and a woman are standing close together. The man leans in and kisses the woman while she looks toward him. The setting is intimate, with both individuals positioned near the center of the frame. The bathroom environment is visible, but the focus remains on their interaction. Text reading \"i ' m\" is overlaid on the frame, and the audio includes a brief phrase, \"It's okay,\" spoken during the moment."
+      "llm_scene_description": "A man and a woman are standing close together in a bathroom, facing each other. The man leans in to kiss the woman while she looks at him, and they briefly kiss. The setting is a small, enclosed bathroom with no other visible people or significant objects in focus."
     },
     {
       "scene_index": 28,
@@ -1368,7 +1368,7 @@
       ],
       "audio_speech": "It's okay. No, I know what you're talking about. Not at all.",
       "audio_natural": "speech (conf=0.71)",
-      "llm_scene_description": "The scene takes place in a bathroom with a man and a woman standing near a mirror. The man is looking at his reflection, though his gaze seems unfocused or directed past himself, while the woman is positioned nearby, facing him. Their interaction appears conversational, with minimal movement as they remain close to the mirror. The setting is defined by the bathroom fixtures and the reflective surface, with no additional significant objects or actions visible."
+      "llm_scene_description": "A man and a woman are standing in a bathroom, positioned near a mirror. The man looks into his reflection, though his gaze seems unfocused or directed past himself, while the woman stands nearby, facing him. Their movements are minimal, with the man slightly shifting downward and the woman moving subtly to the right. The setting remains a bathroom, with the mirror prominently reflecting their figures."
     },
     {
       "scene_index": 29,
@@ -1433,7 +1433,7 @@
       ],
       "audio_speech": "No, I want you to be relaxed and comfortable. I know, look at this, it's so pretty. Yeah, see? I just want to look what time it is. Well, you don't have to look what time it is because I know what time it is. About 30. Nope. It is time to eat whatever the poke we want. See ya. Oh. Bye. Oh, goodbye. I thought you liked this plan. The bath time was great, I really appreciate it.",
       "audio_natural": "none",
-      "llm_scene_description": "A man and a woman are sitting together in a bathtub filled with soap bubbles in a bathroom. The two are positioned close to each other, and their movements suggest an intimate interaction as they share a kiss. The setting is simple, with the bathtub and bubbles being the primary visible features of the scene. No other notable actions or objects are visible."
+      "llm_scene_description": "A man and a woman are sitting together in a bathtub filled with soap bubbles in a bathroom. They are positioned close to each other, and at one point, they kiss. The setting remains consistent, with the bathtub and bubbles being the primary visible elements in the scene."
     },
     {
       "scene_index": 30,
@@ -1466,7 +1466,7 @@
       ],
       "audio_speech": "The bath time was great, I really appreciate it. Goodnight.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins in a dimly lit room, focusing on a woman with long hair, her face visible in the foreground. The shot transitions to a girl washing her hair, with foam and soap bubbles covering her head as she rinses. The next shot shows a close-up of a woman’s hair in front of a mirror, with no other significant movement or objects visible. The audio features a brief statement about enjoying bath time and saying goodnight, aligning with the visible actions."
+      "llm_scene_description": "A woman with long hair is briefly visible in a dark room, her face illuminated. The scene transitions to a girl washing her hair, with foam and soap bubbles covering her head. It then shifts to a close-up of a woman’s hair in front of a mirror. The setting appears to remain indoors, with the focus on grooming and personal care."
     },
     {
       "scene_index": 31,
@@ -1499,7 +1499,7 @@
       ],
       "audio_speech": "Jesus, be careful. You're going to kill yourself.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a woman standing in front of a mirror, brushing her hair while her face is visible in the reflection. The setting transitions to a man standing in a bathroom surrounded by soap, his arms crossed and hands folded as he remains stationary. The bathroom appears to be a central location, with the man positioned near the middle of the frame. The audio includes a brief remark, \"Jesus, be careful. You're going to kill yourself,\" though no corresponding visible action directly reflects this statement."
+      "llm_scene_description": "A woman is brushing her hair while looking into a mirror, her face clearly visible. The scene shifts to a man standing in a bathroom surrounded by soap, with his arms crossed and hands folded. The setting remains consistent as a bathroom throughout the segment."
     },
     {
       "scene_index": 32,
@@ -1550,7 +1550,7 @@
       ],
       "audio_speech": "You're going to kill yourself. I'm going to try a little goldfish pizza. Yeah, put a little bit of meat, grilled cheese, this one. Ooh, cool. I'm doing fries and goldfish. Goldfish.",
       "audio_natural": "none",
-      "llm_scene_description": "A man and a woman are sitting together on a bed, eating food. The man is positioned to the left, and the woman is to the right. Both are engaged in eating, with visible food items in their hands, and the setting appears casual and relaxed. The bed and surrounding area are the primary visible elements, with no significant changes in the shot or additional objects drawing focus."
+      "llm_scene_description": "A man and a woman are sitting together on a bed in what appears to be an indoor setting, eating food from plates. The man is holding and eating a piece of food while the woman watches him briefly before continuing to eat her own meal. Both remain seated on the bed throughout the segment, with visible interaction centered around their shared activity of eating."
     },
     {
       "scene_index": 33,
@@ -1601,7 +1601,7 @@
       ],
       "audio_speech": "Carb load. They're mine for you.",
       "audio_natural": "none",
-      "llm_scene_description": "A man is seated indoors, eating food in what appears to be a home setting. The background alternates between a bedroom with curtains, a living room, and a kitchen, with the man consuming different items—a hamburger and a pizza—during the sequence. The pizza is briefly visible to his right as he moves slightly, and the curtains remain a consistent feature in the background. The audio includes a short phrase, \"Carb load. They're mine for you,\" spoken by the man as he eats."
+      "llm_scene_description": "A man is seated indoors, eating food in various parts of a home. The setting shifts between a bedroom with curtains, a living room, and a kitchen with curtains, as he eats different items, including a hamburger and a pizza. The man moves slightly while holding the food, and the pizza is lowered toward the bottom-right of the frame. The audio includes the phrase \"Carb load. They're mine for you,\" but no significant additional actions occur."
     },
     {
       "scene_index": 34,
@@ -1634,7 +1634,7 @@
       ],
       "audio_speech": "They're mine for you. Oh, mine was gross. That was the same sound, meaning different things. I'm just full.",
       "audio_natural": "silence (conf=0.54)",
-      "llm_scene_description": "The scene begins with a woman standing in front of a mirror, holding a cell phone and looking at her reflection. The shot transitions to a young man sitting on a bed, engaged in conversation with someone off-screen. It then cuts to a man wearing a yellow shirt, drinking from a bottle while standing. The settings and actions focus on everyday indoor moments, with no additional notable objects or interactions visible."
+      "llm_scene_description": "A woman is standing indoors, looking at her cell phone in a mirror. The scene transitions to a man sitting on a bed, talking to someone off-screen. It then cuts to another man wearing a yellow shirt, drinking from a bottle while standing in an indoor setting. The actions are simple and contained within each frame, with no significant interaction between the individuals shown."
     },
     {
       "scene_index": 35,
@@ -1685,7 +1685,7 @@
       ],
       "audio_speech": "I'm just full. It's scavenger hunt time. Lots of clues and puzzles and twists and turns, you never know what's coming. I'm stuck. I'm going to finish this one. Where do I go?",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a hotel room with two people sitting on a bed, sharing a meal. Plates of food are spread out in front of them as they eat together, appearing relaxed and engaged in the moment. The setting is cozy, with the bed serving as both a seating area and dining space, and no other significant objects or actions are visible."
+      "llm_scene_description": "Two people are sitting on a bed in what appears to be a hotel room, with food placed in front of them. They are eating together, and the setting includes visible bedding and furniture typical of an indoor bedroom. Both individuals remain seated throughout the segment, with minimal movement beyond small gestures as they interact with the food."
     },
     {
       "scene_index": 36,
@@ -1732,7 +1732,7 @@
       ],
       "audio_speech": "Where do I go? I'll be right here, you set it up. Today you will have to find five things ranging from silly to sweet.",
       "audio_natural": "walk, footsteps (conf=0.37)",
-      "llm_scene_description": "The scene begins with a woman sitting on a bed in what appears to be a bedroom, surrounded by scattered food items. She is eating a sandwich and appears focused on her meal. A glass of wine is visible nearby, adding to the casual and relaxed setting. The background remains consistent, with no significant changes in the shot or additional visible interactions."
+      "llm_scene_description": "A woman is sitting on a bed in what appears to be a bedroom, eating a sandwich with various food items scattered around her. The setting is casual and focused on her actions as she eats. There are no other visible people or significant movements in the scene."
     },
     {
       "scene_index": 37,
@@ -1765,7 +1765,7 @@
       ],
       "audio_speech": "Today you will have to find five things ranging from silly to sweet.",
       "audio_natural": "none",
-      "llm_scene_description": "A woman with long dark hair is sitting on a couch, smiling and looking up at the camera. She then talks on a phone while remaining seated. In a closer shot, her face is visible as she places her hand near her mouth. The setting appears to be a casual indoor space, with no other notable objects or actions visible."
+      "llm_scene_description": "A woman with long dark hair is seated on a couch, holding a phone to her ear as she talks. Her posture is relaxed, and at one point, she brings her hand to her mouth while her face remains visible in close-up. The setting appears to be indoors, with no significant movement or additional objects drawing focus."
     },
     {
       "scene_index": 38,
@@ -1798,7 +1798,7 @@
       ],
       "audio_speech": "Today you will have to find five things ranging from silly to sweet. But finding each treat will require its own special feat.",
       "audio_natural": "silence (conf=0.34)",
-      "llm_scene_description": "A man in a uniform is standing indoors, holding a cell phone in one hand and appearing to take a picture of himself. He is wearing a hat and briefly holds what looks like a magnifying glass. The background is plain and does not show any notable objects or features, keeping the focus on his actions with the phone and magnifying glass."
+      "llm_scene_description": "A man in a uniform is standing indoors, holding a cell phone in one hand and appearing to take a picture of himself. He is stationary in the center of the frame, occasionally adjusting his position slightly. The setting is not clearly detailed, but the focus remains on the man and his actions with the phone."
     },
     {
       "scene_index": 39,
@@ -1831,7 +1831,7 @@
       ],
       "audio_speech": "But finding each treat will require its own special feat.",
       "audio_natural": "none",
-      "llm_scene_description": "A woman with long dark hair is smiling and looking directly at the camera. She is wearing a yellow shirt with text that partially reads \"one day I'm.\" The setting appears to be a living room, with a sofa and couch visible in the background. The woman remains the central focus of the frame, and her movement is minimal as she continues to smile."
+      "llm_scene_description": "A woman with long dark hair is standing in what appears to be a living room, smiling and looking directly at the camera. She is wearing a yellow shirt with visible text and is positioned near a sofa and a couch in the background. The setting remains consistent, and her movement is minimal as she shifts slightly to the right while maintaining her smile."
     },
     {
       "scene_index": 40,
@@ -1864,7 +1864,7 @@
       ],
       "audio_speech": "There will be puzzles and games and clues to be kind. But most of the time you'll just have to use your pretty little mind.",
       "audio_natural": "silence (conf=0.64)",
-      "llm_scene_description": "The scene shows a man wearing a hat and holding a magnifying glass. He examines a piece of food closely through the magnifying glass, appearing to focus on it intently. The background and setting are not clearly visible, and no other significant objects or actions are present."
+      "llm_scene_description": "A man wearing a hat is holding a magnifying glass and examining a piece of food closely. The setting is unclear, but the focus remains on his actions as he looks through the magnifying glass. The scene is steady, with no significant changes in movement or setting."
     },
     {
       "scene_index": 41,
@@ -1897,7 +1897,7 @@
       ],
       "audio_speech": "But most of the time you'll just have to use your pretty little mind. Here's your first clue. It has to do with poop.",
       "audio_natural": "music (conf=0.58)",
-      "llm_scene_description": "A woman in a yellow shirt is sitting on a couch with pink flowers visible nearby. The scene shifts to a man wearing a hat and glasses, holding a magnifying object, followed by a boy holding the same object and looking through its lens. The setting appears to be indoors, with the focus on the interactions involving the magnifying object."
+      "llm_scene_description": "A woman in a yellow shirt is seated on a couch with pink flowers nearby. The scene transitions to a man wearing a hat and glasses, holding a magnifying tool. It then shows a boy holding a magnifying tool and looking through its lens. The setting appears to remain indoors throughout, with the individuals stationary and focused on their respective actions."
     },
     {
       "scene_index": 42,
@@ -1930,7 +1930,7 @@
       ],
       "audio_speech": "It has to do with poop. Wow, okay.",
       "audio_natural": "none",
-      "llm_scene_description": "A woman with long brown hair wearing a yellow shirt is visible, smiling and talking on a cell phone. She faces the camera directly, and the text \"one love\" appears in the middle of the frame as she continues to smile. The background and setting are not clearly visible, and no other notable objects are present."
+      "llm_scene_description": "A woman with long brown hair wearing a yellow shirt is standing and smiling while talking on a cell phone. The text \"one love\" briefly appears over the frame as she looks toward the camera. The setting and background details are not clearly visible."
     },
     {
       "scene_index": 43,
@@ -1963,7 +1963,7 @@
       ],
       "audio_speech": "You're sitting on the throne, but you aren't alone. When a stranger next to you is caught in despair.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a man holding an orange piece of paper in front of his face, partially obscuring it. He then lowers the paper, revealing that he is holding a Magnum ice cream bar in his hand. The orange paper remains visible in his other hand as he stands stationary, with no significant background details discernible."
+      "llm_scene_description": "A man is shown holding an orange piece of paper in front of his face in a stationary indoor setting. The scene briefly alternates between him holding the paper and holding a magnifying tool, with the orange paper later visible in his hand. The man remains mostly stationary and centered in the frame throughout the segment."
     },
     {
       "scene_index": 44,
@@ -1996,7 +1996,7 @@
       ],
       "audio_speech": "It seems she's run out of something she needs and it would only be fair for you to spare a... Squirt.",
       "audio_natural": "silence (conf=0.31)",
-      "llm_scene_description": "A woman with long brown hair, wearing a yellow shirt and jeans, is the central focus of the scene. She faces the camera, smiling and laughing, with her movements looping slightly as she shifts in place. The background and setting are not clearly visible, and no additional objects or details are prominent in the frame."
+      "llm_scene_description": "A woman with long brown hair, wearing a yellow shirt and jeans, is seen smiling and laughing directly at the camera in a stationary indoor setting. She briefly moves slightly to the right but remains centered in the frame, maintaining eye contact with the camera throughout the segment. The background and setting details are minimal and not emphasized."
     },
     {
       "scene_index": 45,
@@ -2043,7 +2043,7 @@
       ],
       "audio_speech": "Squirt. Where's his lips? I want to spare a... Let's... Spare... Poppy. The key to finding my home requires one more step and a march or parade.",
       "audio_natural": "music (conf=0.57)",
-      "llm_scene_description": "The scene begins with a man wearing a hat looking directly at the camera. The shot changes to a woman standing on a toilet stall, her hands inside the toilet. In the next frame, a girl in a yellow shirt is laughing while standing near the toilet. The setting appears to be a restroom, with the toilet as the central object in the sequence."
+      "llm_scene_description": "A man wearing a hat looks directly at the camera in an indoor setting. The scene cuts to a woman standing on a toilet stall with her hands inside the toilet, followed by a girl in a yellow shirt laughing while standing nearby. The setting remains focused around the toilet area, with minimal movement beyond the individuals present."
     },
     {
       "scene_index": 46,
@@ -2090,7 +2090,7 @@
       ],
       "audio_speech": "The key to finding my home requires one more step and a march or parade.",
       "audio_natural": "silence (conf=0.32)",
-      "llm_scene_description": "The scene takes place in an office where a man wearing a hat is holding a pipe. Another man, also wearing a hat and holding a pipe, is visible nearby. The two appear to be interacting, with one man holding a microphone while speaking to the other. The setting remains consistent, with no significant background activity or additional objects visible."
+      "llm_scene_description": "Two men are visible in an office setting, both wearing hats and smoking pipes. One man holds a microphone and appears to be speaking to the other, who is moving slightly to the right within the frame. The room contains no other clearly visible objects or actions, and the audio mentions a step and a march or parade."
     },
     {
       "scene_index": 47,
@@ -2137,7 +2137,7 @@
       ],
       "audio_speech": "Once you find it, you'll be made in the shade.",
       "audio_natural": "music (conf=0.77), silence (conf=0.52)",
-      "llm_scene_description": "The scene begins with a woman in a yellow top looking directly into the camera. The shot transitions to a girl in a yellow dress holding a cell phone, followed by another shot of the same girl painting a picture on a wall with a brush. The background and additional context are not prominently visible, and the focus remains on the girl’s actions with the phone and the painting."
+      "llm_scene_description": "A woman in a yellow top is seen looking directly into the camera in an indoor setting. The scene transitions to a girl wearing a yellow dress, holding a cell phone, followed by another shot of the same girl painting a picture on a wall with a brush. The movements of people in the background are minimal and do not significantly alter the focus on the main actions. Music plays faintly in the background."
     },
     {
       "scene_index": 48,
@@ -2170,7 +2170,7 @@
       ],
       "audio_speech": "What is this?",
       "audio_natural": "music (conf=0.79)",
-      "llm_scene_description": "A woman wearing a yellow shirt is standing in front of an open window with sunlight streaming through the blinds. She appears to be playing a game on a Wii, holding a controller and moving her arms in a rhythmic motion. The background is softly lit by the sunlight, and the scene is accompanied by music playing faintly. No other notable objects or actions are visible."
+      "llm_scene_description": "A woman is visible in an indoor setting near a window with sunlight streaming through the blinds. She moves rhythmically, appearing to dance in place, while the light highlights her movements. The scene transitions to another moment where the same or another woman, now wearing a yellow shirt, is seen actively playing a Wii game, holding a controller and engaging with the screen. The setting remains indoors, and faint music plays in the background."
     },
     {
       "scene_index": 49,
@@ -2203,7 +2203,7 @@
       ],
       "audio_speech": "You are doing so good, but if you know the clue, you don't have to finish the puzzle.",
       "audio_natural": "music (conf=0.66)",
-      "llm_scene_description": "The scene begins with a close-up of a woman’s hand and fingers painting a picture on a flat surface, likely on the ground. The view shifts to a person sitting on the floor, cutting a piece of paper with scissors. The next shot shows the woman again, now fully visible, as she continues painting on the ground in a room. A pizza box is stationary in the bottom-left corner throughout the segment. Soft music plays faintly in the background."
+      "llm_scene_description": "A woman is seated on the ground in a room, painting a picture with her hand and fingers on a flat surface. Nearby, another person is cutting a piece of paper on the floor. The setting is indoors, with minimal visible furniture or background details. A stationary pizza box is visible in the bottom-left corner of the frame."
     },
     {
       "scene_index": 50,
@@ -2236,7 +2236,7 @@
       ],
       "audio_speech": "You are doing so good, but if you know the clue, you don't have to finish the puzzle. It's a pillow.",
       "audio_natural": "silence (conf=0.38)",
-      "llm_scene_description": "The scene begins with a close view of someone painting on a table using a paintbrush, with the brush and table clearly visible. The perspective shifts to show the back of a person standing, while in the background, a man is seated on a couch. The shot transitions again to a man sitting on the floor in a living room, actively playing a Wii game. The living room setting includes the couch and visible open space around the man."
+      "llm_scene_description": "A person is seated at a table, painting with a brush, while another person is visible in the background sitting on a couch. The scene transitions to a man sitting on the floor in a living room, actively playing a Wii game. The setting remains indoors, with minimal movement beyond the man’s gaming actions."
     },
     {
       "scene_index": 51,
@@ -2269,7 +2269,7 @@
       ],
       "audio_speech": "What could this be? Give me a kiss. Thank you, I think you're supposed to give the scroll a kiss though, but I'll take it.",
       "audio_natural": "music (conf=0.59)",
-      "llm_scene_description": "A child wearing a yellow shirt is sitting on a bed, actively playing a Wii game. The scene shifts to show a woman, also in a yellow shirt, holding a cell phone while standing nearby. In the next shot, the woman is holding a remote control device in her hand. The setting appears to be indoors, with the bed and gaming activity as central elements."
+      "llm_scene_description": "A child wearing a yellow shirt is sitting on a bed and actively playing a Wii game, holding a controller and making visible movements. Nearby, a woman in a yellow shirt is standing and holding a cell phone, occasionally interacting with the child. The setting appears to be a bedroom with minimal background distractions, and the focus remains on their actions with the game and the phone."
     },
     {
       "scene_index": 52,
@@ -2316,7 +2316,7 @@
       ],
       "audio_speech": "Thank you, I think you're supposed to give the scroll a kiss though, but I'll take it. Gold. You have a heart of gold.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a woman sitting in bed with a laptop resting on her lap, suggesting a relaxed indoor setting. The shot transitions to a man wearing a hat, who is talking on a phone while standing. It then shifts to the same man, now seated and holding a microphone, appearing to engage in a conversation or performance. The setting remains simple, with the focus on the individuals and their actions."
+      "llm_scene_description": "A woman is sitting in bed with a laptop resting on her lap in what appears to be an indoor setting. The scene transitions to a man wearing a hat, talking on a phone while standing or sitting nearby. It then shifts to the same man seated and holding a microphone, with minimal movement visible in the setting."
     },
     {
       "scene_index": 53,
@@ -2349,7 +2349,7 @@
       ],
       "audio_speech": "Gold. You have a heart of gold. You've answered my every wish. I wonder if you can find this very tiny gold. Very tiny gold... Dish. Plate.",
       "audio_natural": "music (conf=0.85), silence (conf=0.61)",
-      "llm_scene_description": "The scene begins with a woman in a yellow shirt standing with her hands raised in a well-lit room. The shot transitions to the same woman now sitting on a couch, leaning forward with her head in her hands. The lighting dims as the scene shifts again, showing her sitting quietly on the couch in a darkened room. No other notable objects or actions are visible in this segment."
+      "llm_scene_description": "A woman is seated on a couch in a dimly lit room. At one point, she has her head in her hands, and in another moment, her hands are raised. The setting remains static, with no significant movement or changes in the environment."
     },
     {
       "scene_index": 54,
@@ -2382,7 +2382,7 @@
       ],
       "audio_speech": "Tiny dish, gold dish.",
       "audio_natural": "music (conf=0.66)",
-      "llm_scene_description": "The scene begins with a man holding a banana in his mouth and eating it. The shot changes to show the same man, now wearing a hat, talking on a cell phone while holding a bouquet in his mouth. In the next frame, he is still wearing a hat and tie, continuing to talk on the phone as he moves slightly to the left. The setting and background details are minimal, with the focus remaining on the man and his actions."
+      "llm_scene_description": "A man wearing a hat is seen holding a banana in his mouth and eating it. The scene transitions to the same man now holding a bouquet in his mouth while talking on a cell phone. In the final moment, he is still wearing the hat and tie, continuing to talk on the phone as he moves slightly to the left within the frame. The setting and background details remain minimal and unchanging throughout."
     },
     {
       "scene_index": 55,
@@ -2457,7 +2457,7 @@
       ],
       "audio_speech": "Words that, um, dish that... Could start with gold. Oh my god!",
       "audio_natural": "music (conf=0.66)",
-      "llm_scene_description": "The scene takes place in a room where a woman wearing a yellow shirt is standing near a vase of orange flowers. She briefly holds the vase before placing it back on a surface. A wine glass is visible on the bottom-right of the frame, remaining stationary throughout. The setting is calm, with no significant changes in action or environment."
+      "llm_scene_description": "A woman in a yellow shirt is standing in a room near a vase of orange flowers. She briefly holds the vase before placing it back on the surface. Another person is visible in the background, moving slightly but remaining mostly stationary. A wine glass sits untouched on a nearby surface. The setting remains calm with minimal movement."
     },
     {
       "scene_index": 56,
@@ -2490,7 +2490,7 @@
       ],
       "audio_speech": "Oh my god! I cannot believe that!",
       "audio_natural": "silence (conf=0.43)",
-      "llm_scene_description": "The scene begins with a man sitting on a bed, holding a bouquet of flowers in his hand. The shot transitions to an elderly man lying on a bed with a vase of flowers nearby. It then shifts to a man wearing a hat, looking down at a cell phone. The setting remains indoors, with the bed and flowers as consistent elements across the sequence."
+      "llm_scene_description": "A man is sitting on a bed holding a bouquet of flowers, while the setting appears to be a bedroom with minimal movement or additional activity visible."
     },
     {
       "scene_index": 57,
@@ -2541,7 +2541,7 @@
       ],
       "audio_speech": "Sometimes it's just right in front of your face and you have no idea!",
       "audio_natural": "silence (conf=0.48)",
-      "llm_scene_description": "The scene takes place in a dimly lit room, with a woman as the main subject. She is smiling and holding a vase filled with flowers, which she then places down. The woman laughs briefly, with the vase now stationary in the background as she moves slightly to the right, creating some distance between herself and the vase. The room remains dark, and no other notable objects or actions are visible."
+      "llm_scene_description": "A woman is standing in a dimly lit room, smiling and laughing while holding a vase filled with flowers. She moves slightly to the right, with the vase remaining visible in the background as she continues to smile."
     },
     {
       "scene_index": 58,
@@ -2588,7 +2588,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "music (conf=0.72)",
-      "llm_scene_description": "The scene takes place in a room with a television screen visible. A person stands next to another individual, who is moving slightly to the left. The shot transitions to a woman performing a dance pose, her body in motion. It then shifts to a woman writing on the wall of her room, with no other notable objects or interactions prominently visible. Music plays faintly in the background, aligning with the actions shown."
+      "llm_scene_description": "A person stands in a room near a television screen while another person is positioned beside them. The scene transitions to a woman performing a dance pose, followed by a view of a woman writing on the wall of her room. The setting appears to shift between these actions, accompanied by background music."
     },
     {
       "scene_index": 59,
@@ -2639,7 +2639,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "music (conf=0.48)",
-      "llm_scene_description": "The scene takes place in a bedroom with light streaming in through a window. A man stands in the room with his hand raised in the air, and a second person is visible holding a yellow balloon. The man appears to steady or hold up the balloon while the other person grips it. The room is softly lit, and no other notable objects or actions are visible."
+      "llm_scene_description": "A man is standing in a bedroom with light streaming in from a window. He raises one hand into the air while another person nearby holds a yellow balloon. The man appears to momentarily hold or interact with the balloon as the two individuals remain in close proximity within the room."
     },
     {
       "scene_index": 60,
@@ -2707,7 +2707,7 @@
       ],
       "audio_speech": "Next to mine, you're fire in the flood We have been married for five...",
       "audio_natural": "music (conf=0.51)",
-      "llm_scene_description": "A man and a woman stand together, each holding balloons in front of them. The man then leans in to kiss the woman while holding a knife in his mouth. The scene shifts to show two people holding flowers, with one man prominently holding a bouquet. The setting and interactions suggest a focus on the exchange of objects and gestures between the individuals."
+      "llm_scene_description": "A man and a woman are standing together indoors, each holding balloons in front of them. The scene transitions to the man leaning in to kiss the woman while holding a knife in his mouth. In the next moment, two people are visible holding flowers, with one man prominently holding a bouquet. The setting remains indoors throughout, with the focus shifting between these interactions."
     },
     {
       "scene_index": 61,
@@ -2740,7 +2740,7 @@
       ],
       "audio_speech": "We have been married for five... It's not dish.",
       "audio_natural": "music (conf=0.33)",
-      "llm_scene_description": "The scene begins with a man wearing a hat, his eyes closed, and one hand resting on his face in a still moment. The shot transitions to the same man now holding a cellphone and looking directly at the camera. The next shot shows a woman gazing at her reflection in a mirror, with her mirrored image staring back at her. The setting appears static, with no additional notable objects or movements beyond the individuals and their actions."
+      "llm_scene_description": "A man wearing a hat is shown with his eyes closed and one hand resting on his face. The scene transitions to the same man holding a cellphone and briefly looking toward the camera. It then cuts to a woman standing in front of a mirror, looking at her reflection while her mirrored image appears to stare back at her. The setting remains indoors, and the movements are minimal across the segment."
     },
     {
       "scene_index": 62,
@@ -2793,7 +2793,7 @@
       ],
       "audio_speech": "Give me another clue. I don't know this one. It's not ours. This one's not gonna work. I got this far. Yours? Yes.",
       "audio_natural": "silence (conf=0.52)",
-      "llm_scene_description": "A man and a woman are sitting together on a bed in a softly lit room. The man holds a video game controller, while the woman adjusts her hair with one hand. They appear to be engaged in conversation, with their attention focused on each other. The bed is unmade, and no other notable objects are prominently visible in the frame."
+      "llm_scene_description": "A man and a woman are sitting together on a bed in what appears to be a bedroom. The man holds a video game controller, and the two seem to be interacting, with the woman briefly adjusting her hair. The setting remains consistent, with the bed as the central focus and no significant movement or changes in the environment."
     },
     {
       "scene_index": 63,
@@ -2844,7 +2844,7 @@
       ],
       "audio_speech": "We've laughed so hard and we've cried many... Tears.",
       "audio_natural": "none",
-      "llm_scene_description": "Two women are visible in what appears to be an indoor setting. One woman is holding the other’s hand while speaking, and the second woman smiles warmly, briefly looking toward the camera. The scene then shifts to the smiling woman talking on a cell phone and laughing. The interaction is lighthearted, with no other notable objects or actions in view."
+      "llm_scene_description": "Two women are standing close together in what appears to be an indoor setting. One woman is holding the other’s hand while they talk, and she briefly smiles while looking toward the camera. The scene transitions to one of the women laughing as she talks on a cellphone."
     },
     {
       "scene_index": 64,
@@ -2877,7 +2877,7 @@
       ],
       "audio_speech": "And tears from laughing. Yes, we have.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man wearing a hat and a shirt featuring a dog design, standing and playing an instrument. The shot then transitions to a woman in a yellow shirt, who is focused on her phone while standing nearby. The man moves slightly to the left during the sequence, but the primary focus remains on the two individuals and their respective actions. No other notable objects are visible in the frame."
+      "llm_scene_description": "A man wearing a hat and shirt is playing an instrument, seated in a simple indoor setting. The scene briefly shifts to show the same man with a dog on his shirt, followed by a woman in a yellow shirt looking at her phone. The movements are minimal, with the focus on the individuals and their actions in a calm, static environment."
     },
     {
       "scene_index": 65,
@@ -2928,7 +2928,7 @@
       ],
       "audio_speech": "So much love through all the joys and each plight Here's to even more when you turn off the... Light! Gold up!",
       "audio_natural": "music (conf=0.42)",
-      "llm_scene_description": "The scene takes place in a hotel room with a man and a woman as the main subjects. Initially, the woman is playing with her hair while the two are near each other in the room. The shot transitions to the man and woman kissing in what appears to be a bedroom with curtains visible in the background. In the next moment, they are seen dancing together in the same bedroom, with a window visible behind them. The setting remains consistent with furniture and decor typical of a hotel room."
+      "llm_scene_description": "A man and a woman are in a hotel room setting with visible curtains and a window. The woman briefly plays with her hair before the two share a kiss. The scene transitions to the pair dancing together in the same room, with their movements centered near the window. The setting remains consistent, with no major changes in the environment or additional visible objects."
     },
     {
       "scene_index": 66,
@@ -2975,7 +2975,7 @@
       ],
       "audio_speech": "Gold up!",
       "audio_natural": "music (conf=0.66)",
-      "llm_scene_description": "The scene begins in a hallway with a closed door that has a sign on it. The shot transitions to an elevator, where a person with long hair walks in and briefly looks at the camera. The next shot shows a man wearing a hat, staring directly at the camera. The actions are accompanied by the phrase \"Gold up!\" heard in the audio, though no visible speaker is shown."
+      "llm_scene_description": "The segment shows a hallway with a door that has a sign on it, followed by a person with long hair walking into an elevator and briefly looking at the camera. The scene then cuts to a man wearing a hat, staring directly at the camera. The movements include one person walking toward the right side of the frame and another moving left, while faint music plays in the background and someone says, \"Gold up!\""
     },
     {
       "scene_index": 67,
@@ -2993,7 +2993,7 @@
       "yolo_detections": [],
       "audio_speech": "",
       "audio_natural": "music (conf=0.54)",
-      "llm_scene_description": "The scene begins with a view of a wall inside a bar in London, featuring colorful graffiti art as the main subject. The shot transitions to a man and a woman walking together in the dark, illuminated by a faint glow that highlights their movement. The next scene shows a group of children standing with green light projected onto them, creating visible shadows on the surface behind them. The sequence focuses on these visual elements without additional notable objects or interactions."
+      "llm_scene_description": "The segment begins with a view of graffiti art on a wall inside what appears to be a bar. It transitions to a man and woman walking together in a dark setting, illuminated by a faint glow. The scene then shifts to a group of children standing under green light, with their shadows projected on a surface, creating a visible interplay of light and movement."
     },
     {
       "scene_index": 68,
@@ -3026,7 +3026,7 @@
       ],
       "audio_speech": "I love this! Dandit!",
       "audio_natural": "music (conf=0.83)",
-      "llm_scene_description": "The scene begins in a darkened room where a woman is smiling with her mouth open, her face clearly visible. The shot transitions to a child and his mother illuminated by green light, with a text overlay briefly appearing on the screen. It then shifts to a man walking a dog along a wall glowing with green light, moving from the middle-center of the frame toward the middle-right. The green lighting and the figures define the sequence, with no other notable objects in focus."
+      "llm_scene_description": "A woman is shown smiling with her mouth open in a darkened room. The scene transitions to a child and a woman standing together under green light, with text overlaid on the screen. It then shifts to a man walking a dog along a wall that glows green, moving from the center of the frame toward the right. Music plays faintly in the background."
     },
     {
       "scene_index": 69,
@@ -3059,7 +3059,7 @@
       ],
       "audio_speech": "It's dark.",
       "audio_natural": "music (conf=0.52)",
-      "llm_scene_description": "The scene takes place in a dark room where a woman with long hair is smiling and laughing. Behind her, a mirror reflects part of the dimly lit space, and a photo of her face is visible in the background. The setting is quiet and intimate, with no other notable objects or actions visible."
+      "llm_scene_description": "A woman with long hair is visible in a dimly lit room, smiling and laughing. Behind her, a mirror reflects part of the scene, and a photo of her face is visible in the background. The setting remains dark throughout, with no significant movement or changes in the environment."
     },
     {
       "scene_index": 70,
@@ -3106,7 +3106,7 @@
       ],
       "audio_speech": "It's dark outside. That's okay. Hold on. It's 7-4 and I didn't realize it was late right now.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man wearing a baseball cap and glasses, standing still and looking into the distance. The shot transitions to a woman in a yellow dress, facing away from the camera. It then shifts to another woman shown in profile, with her head tilted toward a wall. The setting appears static, with no notable objects or movement beyond the individuals briefly visible in each frame."
+      "llm_scene_description": "A man in a baseball cap and glasses stands in a dimly lit setting, looking into the distance. The scene shifts to a woman in a yellow dress who is turned away from the camera, followed by another woman shown in profile with her head tilted toward a wall. The individuals appear stationary or moving subtly within a low-light environment, with no significant background details or objects emphasized."
     },
     {
       "scene_index": 71,
@@ -3139,7 +3139,7 @@
       ],
       "audio_speech": "It's 7-4 and I didn't realize it was late right now. Hey, No!",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a man wearing a white cap and a yellow shirt standing in front of a window. He appears stationary, with his eyes closed, as the camera captures him from a frontal angle. The background is bright, with the window providing natural light, but no other notable objects or actions are visible."
+      "llm_scene_description": "A man wearing a cap and glasses is standing indoors near a window. He moves slightly to the right while facing forward, with his eyes briefly closed during the motion. The setting appears to be softly lit, with no other people or prominent objects visible in the frame."
     },
     {
       "scene_index": 72,
@@ -3209,7 +3209,7 @@
       ],
       "audio_speech": "No! It got late. I know. It's already 7-4. You still have two more clues.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins in a hospital hallway where a woman in a yellow shirt is walking down the corridor. She is holding a cell phone in her hand as she moves. The shot transitions to a dimly lit hotel room at night, where a man is seated, using a phone. The settings and actions are distinct, with the hallway and hospital context contrasting the indoor hotel environment."
+      "llm_scene_description": "The segment shows a girl in a yellow shirt walking down a hallway, followed by a woman holding a cell phone in what appears to be a hospital hallway. The scene then shifts to a man in a hotel room at night, seated and using a phone. The transitions between these locations are quick, presenting distinct indoor settings with minimal overlap in action."
     },
     {
       "scene_index": 73,
@@ -3242,7 +3242,7 @@
       ],
       "audio_speech": "You still have two more clues. What is it? Sorry, what? What's the clue? Oh, no. We don't have to finish the game.",
       "audio_natural": "music (conf=0.77)",
-      "llm_scene_description": "The scene begins with a woman wearing a yellow shirt and long hair, looking up and toward the camera in a well-lit setting. The shot briefly changes to a man in a shirt, staring directly at the camera. It then returns to the woman in the yellow top, maintaining her gaze toward the camera. The setting appears simple, with no other notable objects or background elements drawing focus."
+      "llm_scene_description": "A woman wearing a yellow shirt with long hair looks directly at the camera in a well-lit setting. The scene briefly alternates to a man in a shirt also staring at the camera, before returning to the woman in the yellow top. The background and setting remain neutral and unremarkable, with no significant objects or movements visible beyond the individuals looking toward the camera."
     },
     {
       "scene_index": 74,
@@ -3275,7 +3275,7 @@
       ],
       "audio_speech": "We don't have to finish the game. What's the last clue? Did I get this one right? What's the rest of it?",
       "audio_natural": "none",
-      "llm_scene_description": "A woman with long brown hair wearing a yellow shirt is centered in the frame, standing still and smiling slightly. She remains stationary, with her expression calm and focused, as the camera holds on her. The background is not distinctly visible, keeping attention on her yellow top and her subtle movements. No other notable objects or actions are present in the scene."
+      "llm_scene_description": "A woman with long brown hair is visible in the center of the frame, wearing a yellow shirt. She remains mostly stationary, occasionally shifting slightly in place, while smiling. The background and setting are not clearly defined, and no significant movement or interaction occurs during the segment."
     },
     {
       "scene_index": 75,
@@ -3308,7 +3308,7 @@
       ],
       "audio_speech": "What's the rest of it? I want to win the prize. I want to finish the game.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a woman with long hair wearing a yellow shirt, standing stationary in the center of the frame. She smiles and looks directly at the camera, occasionally shifting her gaze upward. Her hands rest on her hips as she remains mostly still. The audio features her speaking briefly, saying, \"What's the rest of it? I want to win the prize. I want to finish the game,\" though no additional visible action accompanies her words. The background remains neutral, with no other notable objects or movement in the frame."
+      "llm_scene_description": "A woman with long hair is shown smiling and looking directly at the camera in a stationary position. She alternates between placing her hands on her hips and looking slightly upward while maintaining her smile. The setting remains consistent, with no significant background activity or scene changes visible."
     },
     {
       "scene_index": 76,
@@ -3341,7 +3341,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "A man wearing a yellow shirt is seen standing in the center of the frame, looking directly at the camera. He then shifts his gaze downward toward a table in front of him, where a cake is visible. The man appears to move slightly to the right while remaining near the table. The setting is simple, with no other notable objects or background details visible."
+      "llm_scene_description": "A man in a yellow shirt is shown in a stationary indoor setting. He initially looks directly at the camera, then shifts his gaze to something off-screen, and finally looks down at a table where a cake is visible. The movements are minimal, and the focus remains on the man and the table with the cake."
     },
     {
       "scene_index": 77,
@@ -3411,7 +3411,7 @@
       ],
       "audio_speech": "Moon clue.",
       "audio_natural": "door (conf=0.63), sliding door (conf=0.35)",
-      "llm_scene_description": "The scene takes place in a hotel room with two women present. One woman is standing on a bed positioned in the center of the room, while the other is standing nearby. Both women are engaged in a conversation, with one of them holding a phone. The bed shifts slightly upward during the interaction, but the focus remains on the women and their discussion. The room is modestly furnished, with no other notable objects or actions in view."
+      "llm_scene_description": "Two women are in a hotel room. One is standing on a bed, while the other is nearby, holding a phone and appearing to talk. The bed shifts slightly upward during the scene, but both women remain in their positions, with minimal movement beyond the phone interaction. The setting is a simple indoor space with no significant changes or additional actions visible."
     },
     {
       "scene_index": 78,
@@ -3444,7 +3444,7 @@
       ],
       "audio_speech": "Okay, this star can glow, and glow, This star can glow and glow and glow.",
       "audio_natural": "gasp (conf=0.46), music (conf=0.69)",
-      "llm_scene_description": "A man wearing a shirt is walking while looking directly at the camera. The scene shifts to him holding a remote control device, and then to another moment where he is eating something and holding an object in his hand while playing a Wii. The background remains consistent, and the focus stays on his actions with the remote and the Wii gameplay."
+      "llm_scene_description": "A man wearing a shirt is walking while looking directly at the camera. In the next moment, he is holding a remote control device. The scene then shifts to someone eating and holding an object while playing a Wii game, with visible hand movements corresponding to gameplay. The setting appears to be indoors, with no significant background details emphasized."
     },
     {
       "scene_index": 79,
@@ -3477,7 +3477,7 @@
       ],
       "audio_speech": "It's the sun. Well, that's possible. But if there's one thing that you should know, there are men...",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a woman wearing a yellow top and black bottoms, positioned in the center of the frame with the title \"hello hello\" displayed. She has long brown hair and looks up at the camera, smiling. The setting appears to be a dimly lit room with a white wall and visible flowers in the background. No significant movement or interaction occurs beyond her stationary presence and expression."
+      "llm_scene_description": "A woman with long brown hair is visible in a dark room with a white wall and flowers in the background. She is wearing a yellow top and black bottoms, looking up at the camera and smiling slightly. The setting remains stationary, with no significant movements or additional actions occurring in the frame."
     },
     {
       "scene_index": 80,
@@ -3510,7 +3510,7 @@
       ],
       "audio_speech": "But if there's one thing that you should know, there are men... there are men.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a man with short hair in a close-up view, standing indoors. He initially has his eyes closed and is looking down while singing. He then shifts his gaze slightly to his left side, appearing to focus on something off-screen. In the final moment, he looks at a screen with a concentrated expression, his face partially turned downward. The background is neutral, and no other notable objects or actions are visible."
+      "llm_scene_description": "A man is seated indoors, looking downward and slightly to his left while singing. His eyes are briefly closed before he glances at something nearby, possibly a screen, with a focused expression. The setting is neutral and does not reveal additional context or background activity."
     },
     {
       "scene_index": 81,
@@ -3543,7 +3543,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a woman with long dark hair wearing a yellow shirt, positioned in the center of the frame. She is moving slightly to her right while remaining in the middle of the shot. The background and surroundings are not clearly visible, and there are no other notable objects or actions in the frame."
+      "llm_scene_description": "A woman with long dark hair wearing a yellow shirt is visible in the frame, moving slightly to the right while remaining near the center of the shot. The background and setting are not clearly defined, and there are no additional objects or people in view. The action is minimal, with the focus remaining on the woman’s subtle movement."
     },
     {
       "scene_index": 82,
@@ -3576,7 +3576,7 @@
       ],
       "audio_speech": "Don't answer the door yet.",
       "audio_natural": "gasp (conf=0.44)",
-      "llm_scene_description": "A man with dark hair wearing a white shirt is visible, initially staring directly at the camera. He then looks upward, seemingly at something on a screen, with captions briefly appearing at the bottom of the frame. In the next moment, he is holding a knife in his hand while continuing to stare forward. The setting and background are not clearly detailed."
+      "llm_scene_description": "A man with dark hair and a white shirt is shown staring directly at the camera in an indoor setting. He then looks upward at something off-screen before the scene cuts to him holding a knife in his hand while continuing to stare intently. The background remains nondescript, and his movements are minimal throughout the segment."
     },
     {
       "scene_index": 83,
@@ -3609,7 +3609,7 @@
       ],
       "audio_speech": "Don't answer the door yet. It's 15 minutes early. Do not answer the door yet.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a woman with long dark hair wearing a yellow shirt, standing indoors with a cat nearby. She appears to look at the cat briefly before moving slightly to the left, shifting from the middle-center of the frame toward the middle-left. The background is not clearly detailed, and no other notable objects are visible in the frame."
+      "llm_scene_description": "A woman with long dark hair wearing a yellow shirt is standing indoors, holding a cat and looking at it. She begins moving slightly to the left, creating more space between herself and the center of the frame. The setting appears well-lit, with no other visible people or significant objects in the background."
     },
     {
       "scene_index": 84,
@@ -3674,7 +3674,7 @@
       ],
       "audio_speech": "We do have 15 minutes, okay? I'm going to tell them to go away. I'm gonna tell them to go away. It's too early. Listen, Listen, I know. It is too early. I have 15 more minutes. I don't wanna answer the door yet. We do, So let's just leave. You go sit down, and I'll take care of it. I'm gonna send them away. You tell them to leave, and it's too early. Yes, I will, It's not eight o'clock. I will. Hi.",
       "audio_natural": "music (conf=0.35), silence (conf=0.44)",
-      "llm_scene_description": "The scene begins with a boy seated indoors, holding a game controller and appearing focused on playing a game. The shot transitions to a man and a woman standing close together, holding hands. In the next moment, the same man and woman are seen standing in front of a door, with the man positioned to the left and the woman to the right. The background is not distinctly detailed, and the interaction centers around their proximity and shared gestures."
+      "llm_scene_description": "A boy is seated indoors, holding a game controller and playing a game. The scene transitions to a man and a woman standing close together, holding hands. They are then shown standing in front of a door, with slight movements as they face each other. The setting appears to be indoors, with no significant background details visible."
     },
     {
       "scene_index": 85,
@@ -3725,7 +3725,7 @@
       ],
       "audio_speech": "Oh. Do you want cleaning today? No, cleaning. We're fine. But I see that you have a mess.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man standing in front of a mirror, smiling. The shot transitions to the man, now wearing a shirt, talking to a woman who is looking at him. The focus shifts back to the man as he looks into the mirror and continues speaking to the woman, who remains nearby. The setting appears to be indoors, with the mirror serving as a central object in the interaction."
+      "llm_scene_description": "A man is standing in front of a mirror, smiling, while a woman stands nearby. The man looks at his reflection and speaks, briefly turning toward the woman as she looks at him. Both remain in close proximity in what appears to be an indoor setting, with minimal movement beyond their interaction."
     },
     {
       "scene_index": 86,
@@ -3776,7 +3776,7 @@
       ],
       "audio_speech": "But I see that you have a mess. That's fine. You have a lot of boxes, and oh, cupcakes.",
       "audio_natural": "silence (conf=0.49)",
-      "llm_scene_description": "The scene takes place in a room where a woman is holding a baby in her arms, standing near the center of the frame. A man is visible in the background, positioned slightly to the right. The shot transitions to a man in a suit standing near a mirror, talking to another man whose reflection is visible. The setting includes minimal visible objects, focusing primarily on the people and their positioning within the room."
+      "llm_scene_description": "A woman is holding a baby in her arms while standing in a room, with a man visible nearby in the background. The setting appears to be indoors, and the man is stationary while the woman remains focused on holding the baby. The scene transitions to a man in a suit standing in front of a mirror, talking to another man who is reflected in the mirror. The actions are calm and primarily involve standing and talking."
     },
     {
       "scene_index": 87,
@@ -3827,7 +3827,7 @@
       ],
       "audio_speech": "You have a lot of boxes, and oh, cupcakes. You have birthday cupcakes. Happy birthday.",
       "audio_natural": "silence (conf=0.50)",
-      "llm_scene_description": "The scene takes place in a hospital room, where a woman stands beside a baby in a sling. Another child is visible nearby, holding a stack of baby clothes. The woman appears stationary, positioned to the left of the child, who also remains mostly still. The room contains no other clearly visible objects or notable actions."
+      "llm_scene_description": "In a hospital room, a woman stands beside a baby in a sling while another person, possibly a child, holds a stack of baby clothes. The two individuals remain mostly stationary, positioned near each other in the room. The setting is simple, with no significant movement or interaction beyond their presence and the objects they are holding."
     },
     {
       "scene_index": 88,
@@ -3895,7 +3895,7 @@
       ],
       "audio_speech": "Happy birthday. Well, thank you. Can I take a box for you? No, we're fine,",
       "audio_natural": "silence (conf=0.43)",
-      "llm_scene_description": "The scene begins with a man wearing a shirt standing in front of a mirror, looking at his reflection. Another man, also in a shirt and wearing a tie, is visible nearby with a mustache. In the background, a man with a dog on his back is briefly seen, while another individual moves in a looping motion between them. The setting appears to be indoors, with the focus on the interactions and positioning of the men in the frame."
+      "llm_scene_description": "A man with a dog on his back is visible in the foreground, standing still, while another man moves in the background, looping or circling near him. The setting appears to be indoors, with no distinct environmental details visible. The audio includes a brief exchange of pleasantries, but the visible focus remains on the two men and their positions relative to each other."
     },
     {
       "scene_index": 89,
@@ -3928,7 +3928,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a hallway where a woman is visible holding a baby in a sling across her chest. She is also carrying a pile of folded laundry in her hands and appears to be moving slightly to the left. The setting is simple, with no additional visible objects or significant background details defining the action."
+      "llm_scene_description": "A woman is standing in an indoor hallway holding a baby in a sling while also carrying a pile of folded laundry or clothing in her hands. She moves slightly to the left within the frame, with the hallway setting remaining consistent. No other people or significant actions are visible in this segment."
     },
     {
       "scene_index": 90,
@@ -3989,7 +3989,7 @@
       ],
       "audio_speech": "Did you want a cupcake? Oh. If you have extra. All right, yeah, we have.",
       "audio_natural": "silence (conf=0.34)",
-      "llm_scene_description": "The scene takes place indoors, where a man in a floral shirt and another man with a flower in his hair are visible. The man in the floral shirt appears to be talking to the other man, who is seen reflected in a mirror. The interaction is calm, with no significant movement beyond slight shifts in position. The setting and focus remain on the two men and their conversation, with no other notable objects or actions visible."
+      "llm_scene_description": "Two men are visible in what appears to be an indoor setting. One man, wearing a floral shirt, has a flower in his hair, while the other has his hair cut back and is wearing a shirt. The man in the floral shirt moves slightly to the left, while the other man appears to be talking and is partially visible in a mirror. Their movements are subtle, and the interaction seems conversational."
     },
     {
       "scene_index": 91,
@@ -4036,7 +4036,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a boy standing in front of a bathroom mirror, brushing his teeth. Another child stands nearby, watching him. In the same space, a hand is visible holding the bathroom door handle, suggesting someone is about to enter or exit. The setting is a small, enclosed bathroom with the mirror and door as key visible elements."
+      "llm_scene_description": "In an indoor setting, a boy is brushing his teeth while standing in front of a mirror, with another child watching nearby. The scene briefly shifts to a close-up of a hand gripping a bathroom door handle. The movements are minimal, with the focus on the grooming activity and the door interaction."
     },
     {
       "scene_index": 92,
@@ -4087,7 +4087,7 @@
       ],
       "audio_speech": "She wanted a cupcake. Yeah, she got the one she wanted. She, knew. I think she smelled it. That's what she came in.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a room where a man and a woman are visible. The woman, wearing a yellow shirt and carrying a black purse, stands near the wall while the man is positioned nearby. They appear to be engaged in conversation, with subtle movements as they interact. No other significant objects or actions are visible in the room."
+      "llm_scene_description": "A woman in a yellow shirt with a black purse stands near a wall in a room, while a man is positioned nearby. The two appear to be engaged in conversation, with slight movements as they shift positions relative to each other. The setting is an indoor space with no distinct features highlighted in the scene."
     },
     {
       "scene_index": 93,
@@ -4120,7 +4120,7 @@
       ],
       "audio_speech": "Whew, I thought they came in early. I thought they were trying to take 50 more minutes.",
       "audio_natural": "speech (conf=0.80)",
-      "llm_scene_description": "The scene shows a woman with long hair and brown eyes in profile, standing in an indoor setting. She looks down at her cell phone with her eyes closed, then adjusts her hair while holding it in one hand. The woman moves slightly to the left in a looping motion, remaining near the center of the frame. No other notable objects or actions are visible."
+      "llm_scene_description": "A woman with long hair is shown in profile, then with her eyes closed while looking at a cell phone, and finally looking down as she holds her hair. The setting appears static, with the woman remaining the central focus as she moves slightly within the frame."
     },
     {
       "scene_index": 94,
@@ -4153,7 +4153,7 @@
       ],
       "audio_speech": "I thought they were trying to take 50 more minutes. It's like 50 minutes. There's nothing to take any time.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man and a woman in the background of a dimly lit space, standing and looking at each other. The shot then shifts to a close-up of a man’s face and hair in a dark room. The next frame shows the same man wearing a yellow shirt and holding a black cat in his arms. He moves slightly to the left, creating a sense of motion within the otherwise static environment. The setting remains undefined, with no additional notable objects visible."
+      "llm_scene_description": "A man in a yellow shirt is holding a black cat in what appears to be an indoor setting. The scene briefly cuts to a close-up of a man's face and hair in a dark room before returning to the wider view of the man and woman in the background, who are standing and looking at each other. One person moves slightly to the left within the frame as the segment progresses."
     },
     {
       "scene_index": 95,
@@ -4238,7 +4238,7 @@
       ],
       "audio_speech": "There's nothing to take any time. Yeah, I know. Still have 50 minutes. Still have 10 minutes. And we could have, we could have more than 10 minutes. We could have a week. Because we don't know. We could do whatever you want. It doesn't have to be tonight. I don't know why, but I don't want to be here. I just want to do it today, like we said. I don't want to be here. Oh, sorry.",
       "audio_natural": "snort (conf=0.35)",
-      "llm_scene_description": "A man and a woman are seated together in a room with patterned wallpaper, positioned near the center of the frame. The woman is on the left, and the man is on the right. They embrace briefly, with the woman leaning toward the man during the interaction. The setting remains static, with no other notable objects or movement visible in the background."
+      "llm_scene_description": "A man and a woman are seated together in a room with patterned wallpaper visible on the walls. The two are positioned close to each other, and at one point, they share a brief hug, with the woman on the left and the man on the right. The setting remains consistent, with minimal movement beyond their interaction."
     },
     {
       "scene_index": 96,
@@ -4289,7 +4289,7 @@
       ],
       "audio_speech": "It's like digging into my scalp. Stupid. My weave is having problems. Do you want me to take your rest out? No. I want to look good. Yeah, but if it's uncomfortable, you can. No. Oh, look. Some poor little Indian girl. She spent her whole life making that for me. Oh, she made it? She spun it? They stole it from her, I'm sure. Probably. And charged me a lot of money for that. Sad. Keep it all in. I'll look good. Pretty for you. You look so beautiful. You look handsome.",
       "audio_natural": "silence (conf=0.41)",
-      "llm_scene_description": "The scene begins in a room where two people, a man and a woman, are standing and talking to each other. The setting appears casual, with no distinct furniture or objects emphasized in the frame. The shot transitions to a bathroom, where a young man and a woman are standing close together, each holding and looking at their phones. The interaction is focused on their proximity and shared attention to their devices, with no other notable objects or actions visible."
+      "llm_scene_description": "Two people, a man and a woman, are standing in a bathroom. They are positioned near each other and appear to be looking at their phones while talking. The setting is small and enclosed, with visible bathroom fixtures in the background. Their movements are minimal, focused on holding and glancing at their phones as they interact."
     },
     {
       "scene_index": 97,
@@ -4336,7 +4336,7 @@
       ],
       "audio_speech": "You look handsome. You look like the most beautiful guffling human hybrid.",
       "audio_natural": "none",
-      "llm_scene_description": "A man and a woman are standing in a living room, facing each other closely. The man moves slightly to the right in a looping motion, while the woman remains mostly stationary, maintaining eye contact with him. The room appears furnished and stable, though no specific objects are prominently visible in this brief interaction."
+      "llm_scene_description": "A man and a woman are standing in a living room, facing each other. The man moves slightly to the right in a looping or circling motion, while the woman remains mostly stationary. They appear to be engaged in a quiet interaction, with the man briefly leaning closer as they maintain eye contact. The setting is simple, with no other visible activity or objects drawing focus."
     },
     {
       "scene_index": 98,
@@ -4387,7 +4387,7 @@
       ],
       "audio_speech": "Make the sound that those geckos make. Mm. Mm. Mm. Just one second. That's good. There you go.",
       "audio_natural": "silence (conf=0.67)",
-      "llm_scene_description": "A man and a woman are standing in a room, facing each other. The man is positioned slightly to the left, while the woman is to the right. Both appear to shift subtly in place, with the man moving closer toward the center and the woman moving slightly farther to the right. The room itself is not distinctly described, and no additional objects or notable actions are visible."
+      "llm_scene_description": "A man and a woman are standing in a room, facing each other. The man moves slightly to the right, getting closer to the woman, while she also shifts to the right, creating a subtle back-and-forth motion between them. The room appears simple and enclosed, with no other prominent objects or distractions visible. Their movements are minimal and focused on their interaction."
     },
     {
       "scene_index": 99,
@@ -4420,7 +4420,7 @@
       ],
       "audio_speech": "Ruskin?",
       "audio_natural": "door (conf=0.67), sliding door (conf=0.31)",
-      "llm_scene_description": "The scene begins in a bathroom, where a woman is looking at her reflection in a mirror. The shot transitions to a man standing in front of a mirror, also looking at his reflection, with a blurry background behind him. In the next shot, a man with a mustache, wearing a white shirt, is standing in front of a door. The setting shifts subtly with each frame, focusing on individual subjects and their stationary positions near reflective surfaces or the door."
+      "llm_scene_description": "A man stands in front of a door in a well-lit setting, wearing a white shirt and a mustache. The scene briefly shows a woman looking at her reflection in a bathroom mirror, followed by a man looking at his reflection in another mirror with a blurry background. The sequence transitions between these reflective moments and the man near the door, with minimal movement or interaction visible."
     },
     {
       "scene_index": 100,
@@ -4453,7 +4453,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man in a shirt and tie holding a camera, standing in what appears to be an indoor setting. The shot transitions to a man wearing a yellow shirt in an office environment, with no significant movement or interaction visible. The next frame shows a man standing in an open doorway with his mouth open, suggesting he may be speaking or reacting, though no audio is present. The setting shifts slightly with each frame, but the focus remains on individual figures and their immediate surroundings."
+      "llm_scene_description": "A man wearing a shirt and tie is seen holding a camera in what appears to be an indoor setting. The scene transitions to a man in a yellow shirt standing in an office-like environment. Finally, a man with his mouth open is visible standing in a doorway with the door open, as he moves slightly to the left within the frame."
     },
     {
       "scene_index": 101,
@@ -4486,7 +4486,7 @@
       ],
       "audio_speech": "I was told room 143 at eight o'clock.",
       "audio_natural": "none",
-      "llm_scene_description": "A man stands in a room with an open door, holding an electronic device, possibly a cell phone, and smiling as he talks. The setting appears simple, with no other notable objects or visible activity in the background. His movements are minimal, staying mostly stationary while engaging in the conversation."
+      "llm_scene_description": "A man is standing in a room with an open door, holding an electronic device, possibly a cell phone, and looking at it while talking. He smiles briefly during the interaction, and his movements remain minimal, staying mostly in the center of the room. The setting appears to be indoors with no significant background activity visible."
     },
     {
       "scene_index": 102,
@@ -4519,7 +4519,7 @@
       ],
       "audio_speech": "Yes, I'm doing Ruskin. He, can come in,",
       "audio_natural": "music (conf=0.36)",
-      "llm_scene_description": "A man wearing a yellow shirt stands in the middle of a room, facing a mirror. He appears to be looking at his reflection while remaining mostly stationary. The room is simple and uncluttered, with no other notable objects or movement visible in the frame."
+      "llm_scene_description": "A man wearing a yellow shirt stands in the middle of a room, facing a mirror and looking at his reflection. The setting is simple and indoors, with no significant movement or interaction beyond the man’s stationary position and his focus on the mirror."
     },
     {
       "scene_index": 103,
@@ -4552,7 +4552,7 @@
       ],
       "audio_speech": "Oh, yeah, he can come in.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a bathroom with a visible mirror and lighting. A man is standing in front of the mirror, holding a pen in his hand, and appears to be talking to a woman whose reflection is visible in the mirror. The man shifts slightly to the left during the interaction, with no other notable objects or actions drawing focus in the setting."
+      "llm_scene_description": "A man is standing in a bathroom in front of a mirror, holding a pen in his hand. He appears to be talking, with his reflection visible in the mirror. A woman is also present, visible in the mirror's reflection, standing nearby as they interact. The setting remains focused on the bathroom with the mirror as the central object."
     },
     {
       "scene_index": 104,
@@ -4617,7 +4617,7 @@
       ],
       "audio_speech": "I'll have to set this here.",
       "audio_natural": "none",
-      "llm_scene_description": "A man wearing a white shirt and a tie around his neck stands in a room, facing a mirror and looking at his reflection. He moves slightly to the left, while another person remains mostly stationary to his right. A chair is visible in the lower-left corner of the frame, remaining in place throughout the scene. The man briefly says, \"I'll have to set this here,\" though no specific object or action related to the statement is visible."
+      "llm_scene_description": "A man wearing a white shirt and a tie around his neck stands in a room, facing a mirror and looking at his reflection. Another person is partially visible nearby but remains mostly stationary. A chair is positioned in the lower part of the frame and does not move throughout the segment. The man adjusts his position slightly while speaking the phrase, \"I'll have to set this here.\""
     },
     {
       "scene_index": 105,
@@ -4723,7 +4723,7 @@
       ],
       "audio_speech": "Mm-hmm. Can you get a cup? In the bathroom. And do you have all the paperwork that I need to sign?",
       "audio_natural": "music (conf=0.52)",
-      "llm_scene_description": "The scene takes place in a hotel room with a bed visible near the center. A woman is standing in the room, and two men are also present, moving around the space. One person walks across the bed, while the others shift positions nearby. The room appears modestly furnished, with the bed serving as the central object around which the action occurs."
+      "llm_scene_description": "In a hotel room with a visible bed, a woman is initially standing alone. Two men then join her in the room. One person is seen walking across the bed while others remain nearby, with some movement occurring among the group. The setting remains consistent throughout the segment, focused on the interior of the hotel room."
     },
     {
       "scene_index": 106,
@@ -4756,7 +4756,7 @@
       ],
       "audio_speech": "And do you have all the paperwork that I need to sign? Where's the doctor's sign?",
       "audio_natural": "none",
-      "llm_scene_description": "A man is standing in front of a closed door, holding a knife in one hand. The scene shifts to another man standing nearby, holding a video camera in his hands and facing the first man. The perspective then changes to show a person holding a gun, with the camera positioned behind them, focusing on their hand and the weapon. The setting appears confined, with no additional objects or furniture clearly visible in the frame."
+      "llm_scene_description": "A man is standing in front of a door holding a knife, while another man stands nearby holding a video camera. The perspective shifts to show a person holding a gun, viewed from behind, as they face the scene. The setting appears to be indoors, with the individuals positioned close to one another, and the actions suggest a tense interaction."
     },
     {
       "scene_index": 107,
@@ -4840,7 +4840,7 @@
       ],
       "audio_speech": "Where's the doctor's sign? It's in the, it's in the backpack. I made sure it's all in the backpack.",
       "audio_natural": "silence (conf=0.44)",
-      "llm_scene_description": "A hotel room is visible with a bed positioned near the center. A man and a woman are playing guitar together, with the man standing near the bed and the woman seated or positioned nearby. The room appears modestly furnished, with no additional notable objects or actions visible in the frame."
+      "llm_scene_description": "In a hotel room with a visible bed, a man and a woman are playing guitar together. The man is standing near the bed, while the woman is seated nearby. The setting remains stationary, and no significant movements or additional actions are visible beyond their interaction with the guitars."
     },
     {
       "scene_index": 108,
@@ -4873,7 +4873,7 @@
       ],
       "audio_speech": "I don't know where it is. It's here. Are you okay with today? Because we can, okay. Some of this got wet. What do you look, It's because you left the water open in the backpack. Okay, all right, I'm sorry.",
       "audio_natural": "music (conf=0.43)",
-      "llm_scene_description": "The scene begins with a person cutting something on a table using scissors, with an object visible in the background. The shot transitions to a woman holding a cell phone, looking at it closely as if interacting with the camera. The next frame shows a girl wearing a yellow shirt with long brown hair, standing still. The sequence focuses on these individual actions without any significant interaction between them."
+      "llm_scene_description": "A person is seated at a table, using scissors to cut an object while another item is visible in the background. The scene transitions to a woman holding a cell phone and looking at its screen, followed by a girl in a yellow shirt with long brown hair visible in the frame. The setting and actions shift fluidly, with no clear indication of interaction between the individuals."
     },
     {
       "scene_index": 109,
@@ -4906,7 +4906,7 @@
       ],
       "audio_speech": "Okay, all right, I'm sorry.",
       "audio_natural": "none",
-      "llm_scene_description": "A man wearing a white shirt and tie stands against a plain wall, facing slightly to the side. He has a mustache and short, neatly combed hair. The man moves slightly to the left while speaking the phrase, \"Okay, all right, I'm sorry.\" The background remains simple and unadorned, with no other notable objects or actions visible."
+      "llm_scene_description": "A man wearing a white shirt and tie is standing against a wall in an indoor setting. He has a mustache and short hair. The man moves slightly to the left while speaking, saying, \"Okay, all right, I'm sorry.\" The background remains plain and unadorned, with no additional visible objects or people in the frame."
     },
     {
       "scene_index": 110,
@@ -4939,7 +4939,7 @@
       ],
       "audio_speech": "I don't have the pen. Here.",
       "audio_natural": "music (conf=0.36)",
-      "llm_scene_description": "The scene takes place in a dark room, likely within an apartment. A woman with long hair is visible, initially looking at her cell phone. She then closes her eyes and briefly faces the camera. The setting remains dimly lit, with no other notable objects or actions in view."
+      "llm_scene_description": "A woman with long hair is in a dark room, holding a cell phone and looking at it briefly. She then closes her eyes and faces the camera directly, remaining still. The setting appears to be an apartment with minimal visible details in the dim lighting."
     },
     {
       "scene_index": 111,
@@ -4990,7 +4990,7 @@
       ],
       "audio_speech": "I have to have the one with the medicine.",
       "audio_natural": "music (conf=0.56)",
-      "llm_scene_description": "The scene takes place in a hotel room with a man and a woman present. The man is standing and interacting with a vacuum mop, moving slightly to the left and then back to the center of the room. The woman is lying on the bed with her head resting on a nearby table, remaining mostly stationary. The room contains visible furniture, including the bed and table, which define the setting."
+      "llm_scene_description": "A man is in a hotel room, moving around while handling a vacuum mop, as a woman lies in bed with her head resting on a nearby table. The setting remains consistent, showing the hotel room with the man and woman positioned apart, and the man briefly moves closer to the camera during the sequence."
     },
     {
       "scene_index": 112,
@@ -5051,7 +5051,7 @@
       ],
       "audio_speech": "I have to have the one with the medicine. There's one more thing to sign. Here's this. I need you today, Jane, can you just? All right. This one says no more than 12 ounces of water. I don't know. See? 12 ounces, I don't know what Dr. Marks said, that doesn't exist. It's fine. You were saying eight ounces. You can't say how much liquid.",
       "audio_natural": "chewing, mastication (conf=0.45), music (conf=0.57)",
-      "llm_scene_description": "The scene begins with a person holding a Wii controller while playing a game displayed on a television screen in a room. The shot transitions to a woman using her phone, appearing to text while seated. In the next shot, the same woman is sitting on a couch with her hand resting on her head, remaining stationary. The setting includes a couch and a television, with the focus on the woman's actions and posture."
+      "llm_scene_description": "A woman is seated on a couch in what appears to be a living room, holding a phone and texting. Nearby, another person is visible holding a gaming controller, with a television screen displaying a Wii game. The setting includes a casual indoor environment with minimal movement, as the individuals engage in their respective activities."
     },
     {
       "scene_index": 113,
@@ -5084,7 +5084,7 @@
       ],
       "audio_speech": "It can be eight ounces.",
       "audio_natural": "music (conf=0.39)",
-      "llm_scene_description": "The scene takes place indoors, showing a man wearing a tie and a shirt with the word \"one\" visible on it. He has a mustache and briefly moves slightly to the left while standing in the center of the frame. The background appears to be a room, but no additional details or objects are prominently visible."
+      "llm_scene_description": "A man wearing a tie and a shirt with the word \"one\" on it is standing in a room. He moves slightly to the left while the camera remains focused on him. The setting appears to be indoors, with no other people or significant objects clearly visible in the frame."
     },
     {
       "scene_index": 114,
@@ -5117,7 +5117,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man wearing a yellow shirt and short hair, looking to the right in a neutral setting. The shot transitions to a man in an army uniform looking up directly at the camera. It then shifts to a scene from a movie, showing a man named Zac wearing a floral-print shirt. The sequence focuses on these distinct individuals in separate frames, with no visible interaction or shared environment."
+      "llm_scene_description": "A man with short hair wearing a yellow shirt is visible, looking to the right in what appears to be a neutral setting. The scene transitions to a man in an army uniform looking upward toward the camera, followed by a brief view of another man wearing a floral-print shirt in what resembles a movie scene. The setting and context shift quickly between these frames, with no continuous action or interaction visible across the segment."
     },
     {
       "scene_index": 115,
@@ -5150,7 +5150,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "music (conf=0.52)",
-      "llm_scene_description": "A man with a mustache is standing in a room, wearing a shirt and tie. He remains mostly stationary in the center of the frame, with no significant movement or interaction visible. The room's details are not prominently shown, and the background remains neutral."
+      "llm_scene_description": "A man with a mustache is standing mostly stationary in a room, wearing a shirt and tie. The setting appears simple and indoor, with no significant movement or interaction visible during the segment."
     },
     {
       "scene_index": 116,
@@ -5183,7 +5183,7 @@
       ],
       "audio_speech": "It's good, okay? It's today, okay?",
       "audio_natural": "music (conf=0.50)",
-      "llm_scene_description": "The scene begins with a woman in a well-lit room, her face blurred, sitting on a couch with her eyes closed. She is wearing a yellow shirt and, in the next moment, looks upward as if gazing at the sky. The setting remains indoors, with no other notable objects or actions visible."
+      "llm_scene_description": "A woman is seated on a couch in a well-lit room with her eyes closed. The setting remains stationary, and no other significant movement or objects are visible in the scene."
     },
     {
       "scene_index": 117,
@@ -5216,7 +5216,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "speech (conf=0.57), music (conf=0.50)",
-      "llm_scene_description": "The scene begins with a man in a white shirt and tie standing in front of a microphone in what appears to be an indoor setting. The shot transitions to a close-up of a man with a mustache and short, styled hair. It then shifts to a living room, where a man is seen talking to another person. The room contains typical furniture, such as a couch, and the interaction appears conversational."
+      "llm_scene_description": "A man wearing a white shirt and tie stands in front of a microphone in an indoor setting, appearing to address an audience or speak. The scene transitions to a man with a mustache and styled hair, shown in a close-up view. It then shifts to a living room where one man is talking to another person, with furniture and household items visible in the background. The sequence focuses on these interactions and settings without significant movement or additional activity."
     },
     {
       "scene_index": 118,
@@ -5249,7 +5249,7 @@
       ],
       "audio_speech": "And before anything,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene is dark, with a close-up of a woman’s face as the main subject, her background appearing blurred. She holds her head with one hand while staring directly at the camera. The shot transitions to her using a phone, holding it to her ear as if talking, while simultaneously looking at its screen. No other notable objects or actions are visible in the dim setting."
+      "llm_scene_description": "A woman is visible in a dark setting with a blurred background, initially facing the camera. She holds her head briefly while continuing to look toward the camera, then uses a phone while appearing to talk on it. The setting remains indistinct, and her actions are the primary focus of the segment."
     },
     {
       "scene_index": 119,
@@ -5282,7 +5282,7 @@
       ],
       "audio_speech": "And before anything, I'll need to read you the Nevada guidelines and rules for the death with dignity procedure.",
       "audio_natural": "silence (conf=0.45)",
-      "llm_scene_description": "The scene shows a man wearing a white shirt, a tie, and suspenders, standing in a well-lit indoor setting. He has a mustache and styled hair and is looking directly at the camera. There is no visible movement or interaction beyond his presence, and the setting remains static."
+      "llm_scene_description": "A man wearing a shirt, tie, and suspenders is standing indoors and looking directly at the camera. The setting appears plain, with no distinct background details visible. The man has a mustache and styled hair, and his movements are minimal as he remains in the center of the frame. The audio includes a statement about reading guidelines for a procedure, but the man’s visible actions remain limited to standing and facing forward."
     },
     {
       "scene_index": 120,
@@ -5373,7 +5373,7 @@
       ],
       "audio_speech": "And this will need to be recorded as well. As I'm sure you know, unlike California and Oregon,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a hotel room with a man and a woman sitting on a bed near the center of the frame. The two appear to be engaged in conversation, with the man positioned to the right of the bed and the woman to the left. The room is modestly furnished, with the bed serving as the central piece of furniture. Two additional people are visible in the background, seated or standing near the bed, also participating in the interaction. The setting remains focused on the group and their conversation, with no other notable actions or objects drawing attention."
+      "llm_scene_description": "A man and a woman are seated on a bed in a hotel room, facing each other and talking. The room appears simple, with no significant movement or changes in the setting, as they remain stationary while conversing. Two other people are also visible in the room, positioned to the left of the bed, but they remain mostly still throughout the segment. The focus stays on the interaction between the man and the woman."
     },
     {
       "scene_index": 121,
@@ -5406,7 +5406,7 @@
       ],
       "audio_speech": "As I'm sure you know, unlike California and Oregon, Nevada citizens voted to mimic the Swiss model. So video recording will be required for most of today.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a woman in a yellow shirt seated indoors, looking to her left. She then shifts her attention to a laptop in front of her, appearing to focus on its screen. Afterward, she gazes into the distance briefly and touches her left eye. The setting appears calm, with no other notable objects or actions visible."
+      "llm_scene_description": "A woman in a yellow shirt is seated indoors, looking at a laptop in front of her. She briefly glances to her left and then appears to focus on something in the distance, touching or inspecting her left eye with her hand. The setting remains consistent, with no significant changes in the background or visible objects."
     },
     {
       "scene_index": 122,
@@ -5497,7 +5497,7 @@
       ],
       "audio_speech": "Please set the date.",
       "audio_natural": "speech (conf=0.77)",
-      "llm_scene_description": "The scene takes place in a hotel room with a bed visible in the center. A man is standing near the right side of the bed, facing a woman who is seated or reclining on the bed as they talk to each other. The room appears relatively simple, with no other significant objects or actions visible beyond their interaction. The dialogue includes the phrase, \"Please set the date,\" which aligns with their visible conversation."
+      "llm_scene_description": "In a hotel room, a man and a woman are visible near a bed. The man is standing in front of the bed, facing the woman, while the woman is seated or reclining on the bed, talking to him. The setting remains consistent, with the bed as a central object in the room."
     },
     {
       "scene_index": 123,
@@ -5530,7 +5530,7 @@
       ],
       "audio_speech": "And again, this is all just the legal, so it's kind of long. I apologize.",
       "audio_natural": "speech (conf=0.47)",
-      "llm_scene_description": "The scene takes place in a dimly lit room with a man as the main subject. He is standing in front of a mirror, holding a phone and taking a selfie. He has a mustache and beard, and his reflection is visible in the mirror. The room appears dark, and the man briefly looks at his phone while moving slightly to the left. No other notable objects or actions are visible in the frame."
+      "llm_scene_description": "A man is standing indoors in front of a mirror, holding a phone and taking a selfie. He has a mustache and beard, and the setting appears dimly lit. In another moment, he is seen looking at his phone in a dark room while moving slightly from the middle-right to the middle-left of the frame."
     },
     {
       "scene_index": 124,
@@ -5600,7 +5600,7 @@
       ],
       "audio_speech": "I, Steven Staten, registered nurse, license NV1246893,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a hotel room with a bed as the central focus. A woman is seated on the bed, while a man stands nearby on one side, and another woman stands at the foot of the bed. Another man is positioned on the opposite side of the bed. The group appears stationary, with no significant movement or interaction beyond their presence in the room. The setting is defined by the bed and the indoor hotel environment, with no additional notable objects or actions visible."
+      "llm_scene_description": "In a hotel room, a woman is seated on a bed while a man stands nearby, and another woman is positioned at the foot of the bed. A second man is visible on the opposite side of the bed. The group appears stationary, with no significant movement or interaction beyond their placement in the room. The setting includes typical hotel furnishings, and the scene remains focused on the people in this arrangement."
     },
     {
       "scene_index": 125,
@@ -5633,7 +5633,7 @@
       ],
       "audio_speech": "oversee today's consensual death with dignity decision for today, March 26, 2018, for patient Jane Freskin. I'm hereby authorized to present to you Will Jane Freskin please identify herself for the sake of video documentation? Hi, I'm Jane Freskin. In line with the Nevada state law, ABX3-17, all death with dignity cases must be recorded",
       "audio_natural": "music (conf=0.35), silence (conf=0.44)",
-      "llm_scene_description": "The scene begins with a close-up of a white wall featuring a black handle and a shadow cast on its surface. The shot transitions to a young man standing and looking directly at the camera. In the next frame, a man wearing a white jacket is visible, focused on his phone. The setting and context remain minimal, with no additional significant objects or movements beyond the individuals and their actions."
+      "llm_scene_description": "A man in a white jacket is standing indoors, holding a phone and looking at its screen. The setting includes a plain white wall with a black handle visible in the background. The man remains stationary while the camera captures him from a frontal angle. There are no significant movements or interactions beyond his focus on the phone."
     },
     {
       "scene_index": 126,
@@ -5717,7 +5717,7 @@
       ],
       "audio_speech": "and preserved by the state of Nevada. This documentation is to ensure the witness of consent, ensure the safety of the patient, and the legal safety of predetermined and approved family members or loved ones during the process. The use of Wi-Fi or Bluetooth cameras",
       "audio_natural": "silence (conf=0.66)",
-      "llm_scene_description": "The scene takes place in a hotel room with a visible bed and lamps in the background. A group of people, including at least one woman and two men, are gathered in the room. They appear to be engaged in an activity together, possibly playing a Wii game, as suggested by their positioning and movement. The setting is casual, with no significant objects or interactions beyond the group dynamic and the hotel room furnishings."
+      "llm_scene_description": "Several people are gathered in a hotel room with a bed visible in the center of the space. They are standing close together and moving slightly to the right in unison, with no distinct individual actions dominating the scene. The room includes visible lamps and typical hotel furnishings, but no clear interaction with objects or significant activity, such as playing a game, is apparent. The setting remains stationary, with the group’s subtle movements being the primary visible action."
     },
     {
       "scene_index": 127,
@@ -5764,7 +5764,7 @@
       ],
       "audio_speech": "for said recording is strictly prohibited. And in line with the law, we're using a non-Bluetooth camera, one that cannot connect or upload its contents to the internet or any other electronic sources unless done so manually. Today's camera is a model XS-3200.",
       "audio_natural": "silence (conf=0.75)",
-      "llm_scene_description": "The segment begins with a close-up of a red phone displaying the text \"one\" on its screen. The scene shifts to a dimly lit view of a man's face and shoulder, with minimal visible background details. The next frame shows a dark background with a brown color and a white vertical line on the right side. The setting and actions are static, with no significant movement or interaction visible."
+      "llm_scene_description": "The segment begins with a close-up of a red phone displaying the text \"one\" on its screen. It then cuts to a dimly lit view of a man's face and shoulder, partially illuminated against a dark background. The next frame shows an abstract composition with a brown color filling most of the screen, a black background, and a thin white line on the right. Two individuals are visible in motion: one moves from the middle-left toward the middle-right, while the other moves upward from the bottom-center toward the middle-center. The setting remains unclear due to the limited lighting and abstract visuals."
     },
     {
       "scene_index": 128,
@@ -5797,7 +5797,7 @@
       ],
       "audio_speech": "I, Steven Statton, registered nurse while paid by the state of Nevada,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a dark room with a faint light source. A woman’s face and hair are visible in a mirror, and she appears to be looking at her reflection. The view then shifts to a person holding a camera lens in the dimly lit space, with no other significant movement or interaction visible. The setting remains subdued and focused on these close-up details."
+      "llm_scene_description": "A person is in a dark room with a light source visible. The scene transitions to show a close-up of a woman’s face and hair reflected in a mirror. It then shifts to a person holding a camera lens in the dark, with no significant movement or interaction beyond these actions."
     },
     {
       "scene_index": 129,
@@ -5830,7 +5830,7 @@
       ],
       "audio_speech": "while paid by the state of Nevada, and here voluntarily to serve as medical assistant",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a room with a white wall and white wallpaper. A stationary lamp is positioned on a table next to a bed, which is covered with a red and white blanket. The setting is static, with no visible movement or interaction, and the focus remains on the furniture and decor."
+      "llm_scene_description": "The segment shows a stationary view of a room with a white wall, a bed, and a table. A lamp is positioned on the table next to the bed, which is covered with a red and white blanket. The scene remains static, with no visible movement or interaction occurring."
     },
     {
       "scene_index": 130,
@@ -5863,7 +5863,7 @@
       ],
       "audio_speech": "and here voluntarily to serve as medical assistant in the case of emergency.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a woman wearing a red sweater and long hair visible in the frame. The shot transitions to a cat playing with a remote control, while a person’s hand is seen holding the remote. The view then shifts to the woman again, now wearing a red shirt and black gloves, with her hands resting on someone’s shoulder. The setting and actions suggest a casual indoor environment with minimal background details."
+      "llm_scene_description": "A woman with long hair wearing a red sweater is visible in an indoor setting. A cat is playing with a remote control on the floor, while a person's hand holds the remote nearby. The woman, now wearing black gloves, places her hands on someone's shoulder as she moves slightly to the right. The setting remains consistent, with no major changes in the environment or additional actions."
     },
     {
       "scene_index": 131,
@@ -5896,7 +5896,7 @@
       ],
       "audio_speech": "I will not intervene unless it is deemed medically necessary. Intervention might be necessary in the case of,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a person lying in bed, partially covered by a bedspread, with a pillow positioned near the edge. Another man leans in and hugs the person's face, creating a close physical interaction. The next shot shows a hand resting on the bedspread, with someone gently touching it. The setting remains focused on the bed, with no other notable objects or actions visible."
+      "llm_scene_description": "A person is lying in bed with a pillow positioned near the edge, while another person leans in and hugs their face. The setting includes a bed with a visible bedspread, and one person briefly touches a hand resting on the bed. The scene remains focused on these close interactions in a stationary indoor environment."
     },
     {
       "scene_index": 132,
@@ -5943,7 +5943,7 @@
       ],
       "audio_speech": "Intervention might be necessary in the case of, not limited to, choking, incomplete consumption",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a woman sitting on a couch with her eyes closed, positioned in the center of the frame. The shot transitions to the same woman now sitting on a bed, looking at something held in her hand. Another person enters the frame, sitting down near her on the bed. The setting is a simple indoor space with the bed as the central piece of furniture, though no other notable objects are emphasized."
+      "llm_scene_description": "A woman is sitting on a bed, holding and looking at something in her hand. Another person enters the frame, moving slightly to sit down nearby. The setting remains a bedroom with minimal movement or interaction between the individuals."
     },
     {
       "scene_index": 133,
@@ -6008,7 +6008,7 @@
       ],
       "audio_speech": "not limited to, choking, incomplete consumption",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins in a kitchen where two men are standing and looking at each other. The shot transitions to a bedroom, showing a person lying in bed with a book and a cup placed on a surface nearby. It then shifts to a nighttime setting where a man and a woman are in bed, with a framed picture of a person visible in the background. The sequence includes stable indoor settings with minimal movement, focusing on the individuals and nearby objects."
+      "llm_scene_description": "Two men are standing in a kitchen, facing each other without significant movement. The scene transitions to a bedroom where a person is lying in bed with a book and a cup placed on a nearby surface. In the next shot, a man and a woman are seen lying in bed at night, with a framed picture visible in the background. The settings shift between these indoor spaces with no major visible actions beyond the positioning of the individuals and objects."
     },
     {
       "scene_index": 134,
@@ -6041,7 +6041,7 @@
       ],
       "audio_speech": "not limited to, choking, incomplete consumption of seculbarbital, and alternative cases of death,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a close-up of a woman lying in bed, her head turned toward the camera as she stares intently. The shot transitions to the woman looking down at her cell phone, with part of a man’s face visible in the background. The setting appears to be a bedroom, with no other notable objects or actions visible in this segment."
+      "llm_scene_description": "A woman is shown in close-up, looking directly at the camera lens with a blurred effect around her face. The scene transitions to her lying in bed, her head turned as she stares outward. In the next shot, she is seated and looking down at a cell phone in her hands, with a man’s face visible in the background. The setting remains indoors, likely a bedroom, with no significant movement beyond her actions."
     },
     {
       "scene_index": 135,
@@ -6088,7 +6088,7 @@
       ],
       "audio_speech": "of seculbarbital, and alternative cases of death,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man wearing a red shirt and white pants on his head, standing in a neutral setting. He then adjusts his clothing, now appearing in a red shirt and white pants, and holds a glass containing an unidentified liquid. The man takes a drink from the glass while moving slightly to the left, as another person remains stationary in the background to the right. No other notable objects or actions are visible."
+      "llm_scene_description": "A man in a red sweater is standing indoors, holding a glass in his hand. He raises the glass to his mouth and takes a drink while remaining mostly stationary. Another person is visible nearby but does not move significantly during the segment. The setting appears to be a simple interior space."
     },
     {
       "scene_index": 136,
@@ -6121,7 +6121,7 @@
       ],
       "audio_speech": "such as heart attacks induced by stress or anxiety. My death with dignity RN certification code is ABNV 47. I'm required by law to collect all time",
       "audio_natural": "silence (conf=0.70)",
-      "llm_scene_description": "The scene begins in a dark setting where two people are kissing, with one person leaning in to kiss the other. The shot then transitions to a close-up of two glasses on a table, both containing water and ice. It shifts again to show a hand pouring water from a bottle into one of the glasses. The table and glasses are the primary visible objects in this sequence."
+      "llm_scene_description": "Two people are briefly shown kissing in a dark setting. The scene transitions to a close-up of two glasses on a table, each containing water and ice. This is followed by a hand pouring water from a bottle into one of the glasses. The setting appears calm and focused on these small, deliberate actions."
     },
     {
       "scene_index": 137,
@@ -6154,7 +6154,7 @@
       ],
       "audio_speech": "and dated physical consent forms, confirming the date and time of the decision.",
       "audio_natural": "silence (conf=0.33)",
-      "llm_scene_description": "The scene begins with a woman wearing a red jacket and holding a microphone, standing in an indeterminate setting. The shot transitions to a nighttime bedroom where a man is seated, using his phone. The scene then shifts to a hotel room where a couple is seen kissing on a bed. The settings are dimly lit, with the bed being the central piece of furniture in the final shot."
+      "llm_scene_description": "A woman with long hair wearing a red jacket is standing indoors, holding a microphone. The scene transitions to a nighttime bedroom where a man is using his phone. It then shifts to a hotel room where a couple is sitting on a bed and briefly kissing. The settings and actions are distinct, with each scene focusing on a specific interaction or moment."
     },
     {
       "scene_index": 138,
@@ -6205,7 +6205,7 @@
       ],
       "audio_speech": "confirming the date and time of the decision. At this time, I'll exit the frame of camera and ask for verbal consent from the patient, Jane Breskin.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man and a woman sitting together on a couch, both smiling warmly. The shot transitions to the two embracing on a bed at night, with dim lighting suggesting an intimate and quiet moment. The next cut shows the couple kissing on the bed, now dressed in formal attire, indicating it is their wedding day. The setting remains focused on the bed throughout, with no other significant objects or actions visible."
+      "llm_scene_description": "A man and a woman are sitting together on a couch, smiling at each other. The scene transitions to the same man and woman hugging on a bed at night, followed by another transition where the couple is seen kissing on the bed, dressed in formal attire, suggesting it is their wedding day. The setting remains indoors throughout, with the focus on the couple's interactions."
     },
     {
       "scene_index": 139,
@@ -6252,7 +6252,7 @@
       ],
       "audio_speech": "and ask for verbal consent from the patient, Jane Breskin.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man in a white shirt and tie looking down, his face partially visible. The camera then shifts to show a man with a beard and mustache, wearing a shirt and looking directly at the camera. In the background, a television screen displays a mirrored view of the scene. One person moves slightly to the left, while another remains mostly stationary on the right. The setting appears to be indoors, with no additional notable objects or actions visible."
+      "llm_scene_description": "A man in a white shirt and tie is standing indoors, looking downward. The scene transitions to a close-up of another man with a beard and mustache, followed by a shot of a man in a shirt looking directly at the camera while a television screen displaying content is visible in the background. One person moves slightly to the left in the frame, while another remains mostly stationary on the right. The setting appears to be an indoor environment, possibly an office or similar space."
     },
     {
       "scene_index": 140,
@@ -6303,7 +6303,7 @@
       ],
       "audio_speech": "Do you, Jane Breskin, with the consumption of seculbarbital voluntarily choose to end your life? It has to be verbal for the camera, miss. Yes, I do. Okay, I have the camera operating, and there's no time limit. and there's no time limit. As the patient, you have the option to opt out at any time. Consumption is not required or necessary. The consumption is not required or necessary. After consumption of the pill, you will have five to ten minutes you will have five to 10 minutes until the effects of drowsiness take effect, leading to permanent sleep. leading to permanent death. I am available to answer questions or offer assistance to the best of my medical ability. Cuddle time. Cuddling time.",
       "audio_natural": "music (conf=0.38)",
-      "llm_scene_description": "Two people are sitting on a bed in a softly lit room, facing each other. They appear to be engaged in a conversation, with one person speaking while the other listens. Both individuals are seated close together, and the setting is simple, with no other prominent objects or distractions visible in the frame. The interaction seems calm and focused, with their attention directed toward each other."
+      "llm_scene_description": "Two people are sitting on a bed in what appears to be an indoor setting, facing each other and engaging in conversation. At one point, both individuals are seen holding and looking at their phones while remaining seated on the bed. The setting and interactions suggest a calm and private moment."
     },
     {
       "scene_index": 141,
@@ -6336,7 +6336,7 @@
       ],
       "audio_speech": "Cuddling time.",
       "audio_natural": "speech (conf=0.76)",
-      "llm_scene_description": "The scene begins with a man smiling at the camera while holding a cat in his arms. The shot transitions to the same man sitting on a bed and hugging a dog with one hand. In the next frame, the man and a woman are visible at night, each talking on their phones. The setting appears dimly lit, with no additional notable objects or actions in view."
+      "llm_scene_description": "A man is seen holding a cat and smiling at the camera, followed by a shot of him hugging a dog on a bed with one hand. The scene transitions to a man and woman sitting separately at night, each talking on their phones. The setting appears to shift between an indoor bedroom and a nighttime environment."
     },
     {
       "scene_index": 142,
@@ -6354,7 +6354,7 @@
       "yolo_detections": [],
       "audio_speech": "I love you.",
       "audio_natural": "speech (conf=0.59), throat clearing (conf=0.59)",
-      "llm_scene_description": "The scene shows a woman lying on a bed, wearing a red shirt. She appears to be sleeping, with her head resting on a pillow and partially covered by a blanket. The setting is simple, with no other significant objects or actions visible in the frame."
+      "llm_scene_description": "A woman is lying on a bed in an indoor setting, wearing a red shirt. She is positioned with her head resting on a pillow and partially covered by a blanket. The scene is calm and stationary, with no significant movement visible. The audio includes the phrase \"I love you,\" but the woman appears to be sleeping or resting quietly."
     },
     {
       "scene_index": 143,
@@ -6387,7 +6387,7 @@
       ],
       "audio_speech": "I have a song for you.",
       "audio_natural": "speech (conf=0.85), gasp (conf=0.32)",
-      "llm_scene_description": "The scene begins with a man wearing a red and black plaid shirt visible in the frame. The shot transitions to a person holding a red blanket and shaping it into the form of a heart with their hands. The next shot shows a person lying on a bed, holding a pillow, appearing to be asleep. The sequence focuses on these calm and simple actions, with no other notable objects or movements in the frame."
+      "llm_scene_description": "A man wearing a red and black plaid shirt is visible in an indoor setting. Another person holds a red blanket and briefly shapes it into a heart with their hands. The scene transitions to a person lying on a bed, holding a pillow while appearing still. The setting remains indoors, with minimal movement across the segment."
     },
     {
       "scene_index": 144,
@@ -6438,7 +6438,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "throat clearing (conf=0.48)",
-      "llm_scene_description": "The scene takes place in a hotel room with a bed positioned in the center. A person is standing on the bed, while another person stands nearby, watching. The room appears to be well-lit, and no other significant objects or actions are prominently visible."
+      "llm_scene_description": "In a hotel room, one person stands on a bed while another person stands nearby, watching. The setting includes visible furniture like the bed, and the scene remains focused on the two individuals and their positions within the room."
     },
     {
       "scene_index": 145,
@@ -6471,7 +6471,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a blurred view of a person sitting in bed, holding a book, as seen from behind. It transitions to a clearer shot of a woman lying in bed with a pillow positioned on its side. The next shot shows a man wearing a red shirt, seated and looking at his phone. The setting appears consistent throughout, focused on a bed in a quiet indoor space."
+      "llm_scene_description": "A woman is sitting in bed with a pillow beside her, while a man wearing a red shirt stands nearby, looking at his phone. The setting appears to be a bedroom, and the scene is calm with minimal movement as the man shifts slightly from the middle-right to the middle-center of the frame."
     },
     {
       "scene_index": 146,
@@ -6489,7 +6489,7 @@
       "yolo_detections": [],
       "audio_speech": "Ready? Ready for some beautiful music? Beautiful, music. Just like you.",
       "audio_natural": "none",
-      "llm_scene_description": "A woman is lying on her bed in a dark room, with her head resting on a pillow. She is looking at her phone with a serious expression, the screen faintly illuminating her face. The setting remains static, with no other significant objects or actions visible."
+      "llm_scene_description": "A woman is lying on her bed in a dark room, illuminated by the light from her phone. She looks at the phone with a serious expression while resting her head on a pillow. The setting remains still and quiet, with no other visible movement or activity in the scene."
     },
     {
       "scene_index": 147,
@@ -6522,7 +6522,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man wearing a plaid shirt, standing in a room and looking directly at the camera. The shot transitions to a person using a laptop computer to play a Wii game, with the screen and their hands visibly interacting with the device. The next frame shows the same man standing in the room, now with a camera visibly attached to his neck, while moving slightly from the middle-right to the middle-center of the frame. The setting appears to remain indoors, with no other notable objects prominently defining the actions."
+      "llm_scene_description": "A man wearing a plaid shirt is standing in a room and looking directly at the camera. The setting shifts to show a person playing a Wii game on a laptop computer. The scene then transitions to a man standing in the same room with a camera visibly attached to his neck, while he moves slightly to the left. The room appears to remain consistent throughout the segment."
     },
     {
       "scene_index": 148,
@@ -6555,7 +6555,7 @@
       ],
       "audio_speech": "No,",
       "audio_natural": "silence (conf=0.52)",
-      "llm_scene_description": "The scene begins in a dark room where two people are visible, one of them appearing blurred. The camera shifts to show someone walking away from a man holding a box in his hands. In the next shot, a woman is lying in bed with white sheets and pillows, the setting calm and static. The transitions emphasize minimal movement and the presence of key objects like the box and the bed."
+      "llm_scene_description": "In a dimly lit room, a man is holding a box while another person walks away from him. The scene transitions to a woman lying in bed with white sheets and pillows, motionless. The setting alternates between these moments, with minimal movement and no audible sound."
     },
     {
       "scene_index": 149,
@@ -6588,7 +6588,7 @@
       ],
       "audio_speech": "No,",
       "audio_natural": "none",
-      "llm_scene_description": "The scene shows a man wearing a shirt and tie standing with his hands on his hips, facing the camera. The shot changes to the same man holding a microphone in his hand while looking directly into the camera. In the next frame, the man, now with a visible mustache, has the microphone near his mouth as if speaking or preparing to speak. The background and setting remain unclear, with the focus staying on the man and his actions with the microphone."
+      "llm_scene_description": "A man wearing a shirt and tie is initially visible with his hands on his hips in an indoor setting. The scene transitions to the same man holding a microphone and looking directly into the camera. In the next shot, he is shown with a mustache, holding the microphone close to his mouth as if speaking or preparing to speak. The background and setting remain unclear, with the focus staying on the man and his actions."
     },
     {
       "scene_index": 150,
@@ -6621,7 +6621,7 @@
       ],
       "audio_speech": "No, This is not the song that I meant to play. No, is that off?",
       "audio_natural": "silence (conf=0.54)",
-      "llm_scene_description": "The scene begins with a woman seated at a piano, playing music while a small child stands nearby and another adult is present in the background. The shot then transitions to a man in pajamas standing and looking down at a lamp lying on the floor. Finally, the scene shifts to a woman lying in bed with white sheets, resting in a calm setting. Key objects include the piano, the lamp on the floor, and the bed with white sheets."
+      "llm_scene_description": "A woman is seated at a piano, playing while a small child stands nearby and an adult watches. The setting appears to be indoors, with the piano as the central object. The scene then cuts to a man in pajamas looking down at a lamp on the floor, followed by another cut to a woman lying in bed under white sheets. The transitions between these moments are smooth, with each action clearly framed in its respective setting."
     },
     {
       "scene_index": 151,
@@ -6654,7 +6654,7 @@
       ],
       "audio_speech": "No, is that off? It won't read my face. Okay, let's take a look here.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man wearing a tie and shirt holding a microphone in his hand. He is standing indoors and briefly looks at his reflection, adjusting his position slightly. The man moves leftward, shifting from the middle-center to the middle-left of the frame. The setting appears simple, with no other notable objects clearly defining the space."
+      "llm_scene_description": "A man wearing a tie and shirt is holding a microphone in his hand while standing indoors. He then looks at his reflection, adjusting his position slightly as he moves left within the frame. The setting appears to be well-lit, and no other people or significant objects are prominently visible in this segment."
     },
     {
       "scene_index": 152,
@@ -6687,7 +6687,7 @@
       ],
       "audio_speech": "Is that like a bass booster?",
       "audio_natural": "none",
-      "llm_scene_description": "A woman is sitting upright in bed, surrounded by white sheets and pillows, laughing and looking directly into the camera. She then shifts her attention slightly, appearing to look at someone or something on the screen in front of her. In the next moment, she is still seated on the bed, now holding a cup in her hand. The setting remains consistent, with the bed and its light-colored bedding as the central backdrop."
+      "llm_scene_description": "A woman is sitting upright in bed, holding a cup in one hand and looking toward the camera while laughing briefly. The setting appears to be a bedroom with visible white sheets. The camera remains focused on her as she shifts slightly, and the audio includes a question about a \"bass booster,\" though no additional movement or objects are introduced."
     },
     {
       "scene_index": 153,
@@ -6774,7 +6774,7 @@
       ],
       "audio_speech": "Is that like a bass booster? It just made it louder. Can you put it on a little bit louder, sir? I think this is great. This is terrible. Actually, this song is not appropriate for the moment. Do you want to get rid of this? Throw away that hoe, motherfucker. I'm just going to wait.",
       "audio_natural": "music (conf=0.35), silence (conf=0.44)",
-      "llm_scene_description": "A man wearing a red and black plaid shirt is holding a cell phone in what appears to be a casual setting. A boy stands next to him, talking and gesturing as they interact. Both then look down at their respective cell phones, seemingly focused on something displayed on the screens. The setting appears neutral, with no other notable objects or background details clearly visible."
+      "llm_scene_description": "A man in a red and black plaid shirt holds a cell phone while standing next to a boy. The two appear to interact briefly, with the boy talking to the man. They then both look down at their cell phones, seemingly focused on something displayed on the screens. The setting is not clearly defined, but the interaction remains centered on their shared attention to the devices."
     },
     {
       "scene_index": 154,
@@ -6821,7 +6821,7 @@
       ],
       "audio_speech": "I know how to do this.",
       "audio_natural": "none",
-      "llm_scene_description": "The scene begins with a man standing in front of a mirror, holding a cell phone in one hand. The shot transitions to a woman laughing while sitting in bed, with pillows scattered on the floor around her. It then shifts to a man wearing a shirt, standing with his hands clasped in front of him. The audio includes the phrase \"I know how to do this,\" spoken during the sequence, but no visible speaker is directly tied to the line."
+      "llm_scene_description": "A man is standing in front of a mirror, holding a cell phone, while his reflection is visible. The scene cuts to a woman laughing while lying in bed, with pillows scattered on the floor around her. It then transitions to a man wearing a shirt, standing with his hands clasped in front of him. The settings appear to shift between an indoor bedroom and another indoor space, with minimal movement from the individuals shown."
     },
     {
       "scene_index": 155,
@@ -6854,7 +6854,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "The scene takes place in a bedroom with a bed at the center. A woman is lying on the bed, laughing and playing, surrounded by pillows. Her movements are lively, and her expression shows amusement. The setting remains consistent, with no significant changes or additional visible actions."
+      "llm_scene_description": "A woman is lying on a bed in a bedroom, laughing and playing. Pillows are visible on the bed, and the setting remains focused on this playful interaction. The camera captures her movements and expressions as she shifts slightly on the bed."
     },
     {
       "scene_index": 156,
@@ -6887,7 +6887,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "none",
-      "llm_scene_description": "A boy wearing a red flannel shirt is standing indoors near a window. He has short hair and is looking to his left, appearing to focus on something out of frame. The room is softly lit, and no other notable objects or actions are visible in this brief, static moment."
+      "llm_scene_description": "A boy wearing a red shirt stands indoors near a window, briefly looking to his left. The setting appears to be a room with no significant movement or additional objects drawing focus."
     },
     {
       "scene_index": 157,
@@ -6938,7 +6938,7 @@
       ],
       "audio_speech": "I'm so sorry. Is that in your personal collection? No. That song? It's a weird playlist. I've never heard that song before. I don't care. It's so funny. I want it. It's funny. It's laughter. You always leave me with laughter. I'm happy for this song. I don't know why you chose it. I don't know why you chose throw away the hoe. I can have some guesses. The bitch has got to go. I get it. No. There's some other very profane lyrics that I wouldn't have chosen. But he enjoyed it.",
       "audio_natural": "speech (conf=0.39), snicker (conf=0.36)",
-      "llm_scene_description": "The scene takes place in a bedroom with a bed as the central focus. A woman is lying on the bed, laughing, while another woman stands nearby, looking at her. The camera shifts slightly to show the woman on the bed glancing up at her pillow. The setting is casual, with visible bedding and pillows defining the space."
+      "llm_scene_description": "Two people are on a bed in a bedroom. A woman is lying down, laughing, while another person, a man, sits or leans nearby, facing her. They appear to be talking to each other, with the man occasionally gesturing slightly. The setting is casual, with pillows visible on the bed. The interaction focuses on their conversation and shared laughter."
     },
     {
       "scene_index": 158,
@@ -6985,7 +6985,7 @@
       ],
       "audio_speech": "I'm happy.",
       "audio_natural": "silence (conf=0.39)",
-      "llm_scene_description": "The scene takes place indoors, where a man in a white shirt and red tie stands in front of a mirror, holding a microphone. He appears to be speaking into the microphone, and his reflection is visible in the mirror. Another man, dressed in a shirt, stands in the background to the right, remaining stationary. The setting is simple, with no other notable objects or actions visible."
+      "llm_scene_description": "A man in a white shirt and red tie stands indoors, holding a microphone and speaking while facing a mirror. Another man is visible in the background, standing stationary further to the right. The setting appears to be well-lit and enclosed, with no significant movement beyond the man speaking into the microphone."
     },
     {
       "scene_index": 159,
@@ -7032,7 +7032,7 @@
       ],
       "audio_speech": "I'm glad that you're happy. I'm glad that it works out. Oh my gosh. That was... Do you want to hear some of the real stuff?",
       "audio_natural": "silence (conf=0.66)",
-      "llm_scene_description": "The scene begins with a man in a red shirt seated indoors, laughing and playing a guitar. The shot then shifts to a man holding a phone to his ear with one hand while resting his other hand on his head, appearing to be in thought or conversation. The background is simple, with no additional notable objects or activity visible."
+      "llm_scene_description": "A man in a red shirt is seated indoors, laughing and playing a guitar. The scene transitions to another man holding a phone to his ear with one hand while resting his other hand on his head. The setting remains indoors, with no significant background details emphasized."
     },
     {
       "scene_index": 160,
@@ -7083,7 +7083,7 @@
       ],
       "audio_speech": "Do you want to hear some of the real stuff? What happened? I believe the hoe gets thrown. No way. It's a bit of trash. That's what happens. I'm going to play you the real song now, okay?",
       "audio_natural": "music (conf=0.35), silence (conf=0.44)",
-      "llm_scene_description": "The scene begins in a living room where a man is seated, holding a cell phone. The shot transitions to a bedroom where a man and a woman are lying on a bed together, laughing and interacting closely. The camera angle shifts slightly, showing the same man and woman on the bed, with a caption visible in the middle of the frame. The setting includes bedding and pillows, emphasizing the casual and relaxed environment."
+      "llm_scene_description": "A man and a woman are sitting together on a bed in what appears to be a bedroom. The man is positioned to the right of the woman, and they are both moving slightly as they interact. The setting includes visible bedding and pillows, suggesting a casual and relaxed environment."
     },
     {
       "scene_index": 161,
@@ -7148,7 +7148,7 @@
       ],
       "audio_speech": "You always make me laugh. This is better. This is our song. Oh, sleep, come for me. I'll go quietly. Where the moon doesn't leak in my heart. I'm above the sprawling lake. I'll hide in your secret blue star. Sleep till dawn. I'll be to go to care. Don't be sorry. I'll help you. I'm going to find you as a ghost, okay? And you have to find Bandit first. Bandit? These are your jobs. Can I get a Bandit right now? Can you get Bandit? No. You got to meet me in front of our first apartment, okay? First apartment.",
       "audio_natural": "silence (conf=0.54)",
-      "llm_scene_description": "The scene begins with a man holding a cell phone and looking directly at the camera in a close-up shot. The view then shifts to a couple lying on a bed, facing each other closely, their heads turned toward one another. In the next shot, the same man and woman are sitting on the bed, eating food together. The setting remains a residential bedroom, with the bed serving as the central visible object throughout the sequence."
+      "llm_scene_description": "A man and a woman are lying on a bed facing each other, appearing relaxed in a casual indoor setting. In another moment, they are seen eating food together on the bed, with their movements suggesting a shared and informal interaction. The setting remains consistent, focused on the bed and their close proximity."
     },
     {
       "scene_index": 162,
@@ -7216,7 +7216,7 @@
       ],
       "audio_speech": "And then you have to eventually find me as a ghost. Oh, I'll find you in two seconds as a ghost. Well, you may not know the address by then. I do know the address. You better not forget the address having all sorts of fun. I'm going to have fun. I'm going to haunt you. You're going to haunt me and you better haunt me every single night. And you have to cuddle me every night at home until I go to, okay? I'm going to cuddle you as a ghost. You're going to be like, what's that sound? Me, cuddling as a ghost. Oh, yeah? You make cuddling sounds? The wind and the sea. Oh, okay. I love you so much. I love you too. I'm so lucky in my head. I'm so lucky. Thank you for everything. Let me touch your hair. Oh, you can touch my hair? Right here?",
       "audio_natural": "music (conf=0.35), silence (conf=0.44)",
-      "llm_scene_description": "A man and a woman are lying close together on a bed in a residential setting. The man holds the woman’s nose playfully, and they share a kiss while facing each other. The woman hugs the man as they continue their interaction, with their movements remaining gentle and affectionate. The setting is simple, with no other notable objects drawing attention in the frame."
+      "llm_scene_description": "A man and a woman are lying close together on a bed in a casual indoor setting. The man briefly holds the woman’s nose playfully, and they share a kiss while facing each other. The woman wraps her arms around the man in a hugging gesture as they remain close on the bed. The scene focuses on their physical interaction, with no significant changes in setting or visible objects."
     },
     {
       "scene_index": 163,
@@ -7249,7 +7249,7 @@
       ],
       "audio_speech": "",
       "audio_natural": "speech (conf=0.53), whispering (conf=0.77)",
-      "llm_scene_description": "The scene begins with a young man sitting on a bed, his hand resting against his face in a still posture. The shot changes to a man and a woman lying together on the bed, kissing closely while the man appears to speak to the woman. In the next moment, a man with long hair is seen holding his mouth open, his expression and posture drawing attention. The setting remains focused on the bed, with no other notable objects or actions visible."
+      "llm_scene_description": "A man and a woman are sitting together on a bed in a casual indoor setting. They are physically close, with the man leaning toward the woman as they kiss briefly. The man appears to be speaking to the woman during this interaction. The scene focuses on their proximity and subtle movements without significant changes in setting or action."
     },
     {
       "scene_index": 164,
@@ -7332,7 +7332,7 @@
       ],
       "audio_speech": "Love you.",
       "audio_natural": "sneeze (conf=0.38)",
-      "llm_scene_description": "The scene takes place in a hotel room with a bed, two lamps, and minimal furniture visible. A man in a white shirt is cleaning or adjusting the bed near the center of the room, while a woman stands in the background. The shot transitions to show two men in the room, appearing to talk to each other, with one man moving slightly to the right and the other moving closer to the left. The setting remains consistent, with the bed and lamps as key visible objects."
+      "llm_scene_description": "In a hotel room setting, a man in a white shirt is seen cleaning or adjusting the bed while a woman stands in the background. The room contains a bed and two lamps, with minimal movement from the objects. At one point, two men are visible in the background, appearing to converse briefly before the scene transitions. The setting remains consistent throughout, with no significant changes in the environment."
     },
     {
       "scene_index": 165,
@@ -7350,7 +7350,7 @@
       "yolo_detections": [],
       "audio_speech": "Oh sleep come for me, I will go quietly, where the roof doesn't leak in my heart. Oh sleep come for me, I'm approach from a leak, I'll hide and you'll seek a new start. For me, till dawn, I'll be to go, the care, I'll break the days. The dreams that yet chase this away, they stay, oh sleep.",
       "audio_natural": "music (conf=0.79)",
-      "llm_scene_description": "The segment begins with a black background displaying the word \"snur\" in white text. The scene transitions to another black background with the title \"The Twilight Zone\" in bold lettering. Finally, the screen changes to show the title \"The Shining Star\" on a similar black background. The sequence is static, with no visible actions or objects beyond the text transitions."
+      "llm_scene_description": "The segment begins with a black background displaying the word \"snur,\" followed by a title screen for \"The Twilight Zone,\" and then another title screen for \"The Shining Star.\" No people, objects, or physical actions are visible, as the sequence consists entirely of text transitions on a plain background. The accompanying audio features music and lyrics, but there are no visual elements tied to the sound."
     }
   ],
   "narratives": [
@@ -7609,103 +7609,5 @@
         "answer": "Not explicitly stated."
       }
     ]
-  },
-  "steps": {
-    "describe_scenes": {
-      "step": "describe_scenes_log",
-      "wall_time_sec": 50.39859,
-      "cpu_time_sec": 1.28071,
-      "ram_before_MB": 917,
-      "ram_after_MB": 918,
-      "ram_used_MB": 1,
-      "io_read_MB": 0.0,
-      "io_write_MB": 0.0,
-      "gpu_before": [
-        {
-          "id": 0,
-          "name": "NVIDIA L4",
-          "memory_used_MB": 558,
-          "memory_total_MB": 23034,
-          "gpu_util_percent": 0,
-          "mem_util_percent": 0
-        },
-        {
-          "id": 1,
-          "name": "NVIDIA L4",
-          "memory_used_MB": 558,
-          "memory_total_MB": 23034,
-          "gpu_util_percent": 0,
-          "mem_util_percent": 0
-        },
-        {
-          "id": 2,
-          "name": "NVIDIA L4",
-          "memory_used_MB": 558,
-          "memory_total_MB": 23034,
-          "gpu_util_percent": 0,
-          "mem_util_percent": 0
-        },
-        {
-          "id": 3,
-          "name": "NVIDIA L4",
-          "memory_used_MB": 558,
-          "memory_total_MB": 23034,
-          "gpu_util_percent": 0,
-          "mem_util_percent": 0
-        }
-      ],
-      "gpu_after": [
-        {
-          "id": 0,
-          "name": "NVIDIA L4",
-          "memory_used_MB": 558,
-          "memory_total_MB": 23034,
-          "gpu_util_percent": 0,
-          "mem_util_percent": 0
-        },
-        {
-          "id": 1,
-          "name": "NVIDIA L4",
-          "memory_used_MB": 558,
-          "memory_total_MB": 23034,
-          "gpu_util_percent": 0,
-          "mem_util_percent": 0
-        },
-        {
-          "id": 2,
-          "name": "NVIDIA L4",
-          "memory_used_MB": 558,
-          "memory_total_MB": 23034,
-          "gpu_util_percent": 0,
-          "mem_util_percent": 0
-        },
-        {
-          "id": 3,
-          "name": "NVIDIA L4",
-          "memory_used_MB": 558,
-          "memory_total_MB": 23034,
-          "gpu_util_percent": 0,
-          "mem_util_percent": 0
-        }
-      ],
-      "cuda_before_MB": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "cuda_after_MB": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "cuda_peak_MB": [
-        0,
-        0,
-        0,
-        0
-      ]
-    }
   }
 }

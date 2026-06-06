@@ -11,6 +11,7 @@ import json
 import os
 import subprocess
 from collections import defaultdict
+from importlib.util import find_spec
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
@@ -138,6 +139,11 @@ def _download_env():
         str(Path.home() / ".deno" / "bin"),
         str(Path.home() / ".local" / "bin"),
     ]
+    static_ffmpeg_spec = find_spec("static_ffmpeg")
+    if static_ffmpeg_spec and static_ffmpeg_spec.origin:
+        static_ffmpeg_bin = Path(static_ffmpeg_spec.origin).parent / "bin" / "linux"
+        if static_ffmpeg_bin.exists():
+            extra.append(str(static_ffmpeg_bin))
     env["PATH"] = os.pathsep.join(extra + [env.get("PATH", "")])
     return env
 
@@ -177,7 +183,7 @@ def _transcode_to_h264(input_path, env, timeout=600):
 
 
 def _yt_dlp_command(format_selector, output_path, url):
-    return [
+    command = [
         "yt-dlp",
         "--js-runtimes", "node",
         "--remote-components", "ejs:github",
@@ -188,6 +194,13 @@ def _yt_dlp_command(format_selector, output_path, url):
         "--socket-timeout", "30",
         url,
     ]
+    cookies_file = (os.environ.get("YTDLP_COOKIES_FILE") or "").strip()
+    cookies_browser = (os.environ.get("YTDLP_COOKIES_FROM_BROWSER") or "").strip()
+    if cookies_file:
+        command[1:1] = ["--cookies", cookies_file]
+    elif cookies_browser:
+        command[1:1] = ["--cookies-from-browser", cookies_browser]
+    return command
 
 
 def download_youtube_video(url, output_path, timeout=300):

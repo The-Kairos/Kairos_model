@@ -8,7 +8,7 @@ Write a compact paragraph that follows the clearest visible sequence:
 
 Use 1-3 sentences. Include enough visible detail to match a human reference, but avoid unsupported guesses.
 
-Audio is secondary. Use it only when it clearly supports a visible speaker, action, or event. Do not quote long dialogue or infer off-screen plans from transcript text. Omit audio when it does not change the visible description.
+Use audio only when it clearly supports a visible speaker, action, or event. Do not quote long dialogue or infer off-screen plans from transcript text.
 
 Be confident but conservative. Avoid identities, motives, relationships, precise locations, emotions, and facial details unless clearly grounded. Broad clothing or object details are acceptable when stable and useful to the action.
 
@@ -18,8 +18,8 @@ Constraints:
 - Use one coherent paragraph, not a list.
 - Focus on the most reliable visible details first.
 - Include the main visible action sequence, not only a generic caption.
-- Keep dialogue/audio to at most one short clause, and omit it entirely if the visible action is already clear.
 - Remove object detection IDs, coordinates, counts, and bounding-box language.
+- Include brief quoted speech only when it is short, central, and clearly matches a visible speaker.
 - Do not use filler such as "the scene feels", "the moment suggests", or "the atmosphere is".
 - Do not use uncertainty boilerplate such as "appears to", "possibly", or "it is inferred".
 - Keep content PG-13.

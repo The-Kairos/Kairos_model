@@ -1,0 +1,46 @@
+{
+  "dataset": "SceneWalk",
+  "num_videos": 2,
+  "prediction_source": "scenewalk_outputs_v3_backup_20260606",
+  "aggregation": {
+    "policy": "fixed_window",
+    "window_sec": 25.0,
+    "max_gap_sec": 5.0
+  },
+  "aggregate": {
+    "soda_f1": 0.1791758376881034,
+    "soda_precision": 0.15664940292065807,
+    "soda_recall": 0.2093572970297982,
+    "matched_bertscore_f1": 0.5824587345123291,
+    "matched_bertscore_precision": 0.5617595911026001,
+    "matched_bertscore_recall": 0.6074281930923462,
+    "matched_rouge_l_f1": 0.21272052896092303,
+    "total_matched_pairs": 128
+  },
+  "per_video": [
+    {
+      "index": 0,
+      "video_id": "mDvkux01G3A",
+      "duration_min": 37.6,
+      "num_kairos_scenes": 104,
+      "num_raw_kairos_scenes": 301,
+      "num_gt_segments": 80,
+      "soda_f1": 0.1761254395789727,
+      "soda_precision": 0.15580327347370662,
+      "soda_recall": 0.20254425551581862,
+      "soda_matched": 79
+    },
+    {
+      "index": 1,
+      "video_id": "X9MAf245Yag",
+      "duration_min": 31.8,
+      "num_kairos_scenes": 70,
+      "num_raw_kairos_scenes": 166,
+      "num_gt_segments": 51,
+      "soda_f1": 0.18222623579723415,
+      "soda_precision": 0.15749553236760952,
+      "soda_recall": 0.21617033854377776,
+      "soda_matched": 49
+    }
+  ]
+}

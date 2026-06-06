@@ -4,26 +4,29 @@
 **Date:** 2026-06-06
 **Videos:** 2
 
+**Prediction source:** `scenewalk_outputs`
+**Aggregation:** `fixed_window`
+
 ---
 
 ## Aggregate Metrics
 
 | Metric                    |   Score |
 |---------------------------|---------|
-| SODA F1 (ROUGE-L scorer)  |  0.0859 |
-| SODA Precision            |  0.0553 |
-| SODA Recall               |  0.1925 |
-| Matched BERTScore F1      |  0.5745 |
-| Matched BERTScore Precision |  0.5803 |
-| Matched BERTScore Recall  |  0.5697 |
-| Matched ROUGE-L F1        |  0.2208 |
-| Total Matched Pairs       |     113 |
+| SODA F1 (ROUGE-L scorer)  |  0.1273 |
+| SODA Precision            |  0.0924 |
+| SODA Recall               |  0.2055 |
+| Matched BERTScore F1      |  0.5777 |
+| Matched BERTScore Precision |  0.6136 |
+| Matched BERTScore Recall  |  0.5468 |
+| Matched ROUGE-L F1        |  0.2063 |
+| Total Matched Pairs       |     129 |
 
 ---
 
 ## Per-Video Breakdown
 
-| # | Video ID | Duration | Kairos Scenes | GT Segments | Matched | SODA F1 |
-|---|----------|----------|---------------|-------------|---------|---------|
-| 1 | mDvkux01G3A | 38 min | 301 | 80 | 69 | 0.0770 |
-| 2 | X9MAf245Yag | 32 min | 166 | 51 | 44 | 0.0947 |
+| # | Video ID | Duration | Kairos Scenes | Raw Scenes | GT Segments | Matched | SODA F1 |
+|---|----------|----------|---------------|------------|-------------|---------|---------|
+| 1 | mDvkux01G3A | 38 min | 193 | 301 | 80 | 78 | 0.1143 |
+| 2 | X9MAf245Yag | 32 min | 106 | 166 | 51 | 51 | 0.1403 |

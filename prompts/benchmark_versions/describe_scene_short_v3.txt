@@ -7,7 +7,6 @@ Reliability rules:
 - Visual captions and detections may be noisy.
 - Use audio only when it clearly supports a visible speaker, action, or event.
 - Do not let transcript content replace the visual evidence.
-- Omit audio if it is off-screen, background-only, or does not change the visible action.
 - If evidence conflicts, prefer the interpretation best supported by visible content.
 - Do not invent unsupported specifics.
 

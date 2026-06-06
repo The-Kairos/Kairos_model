@@ -1,0 +1,647 @@
+{
+  "video_id": "X9MAf245Yag",
+  "video_name": "X9MAf245Yag.mp4",
+  "prompt_path": "prompts/benchmark_versions/aggregate_scene_segments_v1.txt",
+  "output_cache_name": "scenewalk_outputs",
+  "aggregation_policy": "fixed_window",
+  "window_sec": 13.0,
+  "max_gap_sec": 5.0,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 18.685333333333332,
+      "text": "A black and gold background displays static text and a logo, transitioning from blank text to the word \"you\" and ending with the logo on a black background with a white border.",
+      "source_count": 1
+    },
+    {
+      "start": 18.685333333333332,
+      "end": 30.530499999999996,
+      "text": "A well-lit hallway with neutral walls; a man in a red jacket and a woman stand and talk calmly. The man holds a bag while facing the woman, who is to his left. Near a mirror, the man glances at the woman’s reflection as they subtly shift positions.",
+      "source_count": 3
+    },
+    {
+      "start": 30.530499999999996,
+      "end": 36.20283333333333,
+      "text": "Indoors, a woman in a yellow shirt and black scarf stands on the left, talking to a man who moves in a circling motion to her right. The woman raises her hand toward the camera briefly, drawing attention to her gesture, while the man remains in the background.",
+      "source_count": 1
+    },
+    {
+      "start": 36.20283333333333,
+      "end": 47.38066666666666,
+      "text": "An indoor hallway with three people moving in different directions. A man in a red vest walks to the right, a woman moves to the left, and a third person crosses diagonally toward the right. The man and woman briefly exchange words as they pass.",
+      "source_count": 1
+    },
+    {
+      "start": 47.38066666666666,
+      "end": 53.38666666666666,
+      "text": "A man in a red shirt and a woman stand in an indoor hallway, lightly conversing as another person walks by in the background. The man then begins walking down the hallway to the left, with the woman moving alongside him. The setting remains simple, with no notable objects in focus.",
+      "source_count": 2
+    },
+    {
+      "start": 53.38666666666666,
+      "end": 63.39666666666666,
+      "text": "A hotel hallway with a man and woman standing and talking. They walk together into a room, with the man moving slightly ahead as the woman continues speaking. The hallway reappears briefly as they shift positions near a door, one holding a backpack, before stepping apart.",
+      "source_count": 2
+    },
+    {
+      "start": 63.39666666666666,
+      "end": 74.90816666666666,
+      "text": "A hotel room with a bed and couch is shown as a woman stands inside. A man enters, briefly interacts with a phone while walking, and then runs across the room. The scene transitions to an outdoor setting where a man in a maroon jacket over a yellow shirt stands in front of a partially visible horse, shifting slightly to the left in the open space.",
+      "source_count": 2
+    },
+    {
+      "start": 74.90816666666666,
+      "end": 84.08399999999999,
+      "text": "A woman in a black leather jacket over a yellow shirt stands at the center of the frame, smiling and looking off-camera. The setting transitions to a hotel room with visible furniture, where she walks across the room past a stationary man and a bed. She is later seen standing still in a neutral setting, with a man visible in the background.",
+      "source_count": 3
+    },
+    {
+      "start": 84.08399999999999,
+      "end": 94.094,
+      "text": "A man in a red shirt sits on a couch with a floral arrangement in front of him, picks up the flowers, and smiles at the camera. A woman is seated behind him on the couch. The scene transitions to a woman in a black leather jacket and yellow shirt standing against a plain wall, moving slightly to the right. It returns to the man on the couch, now wearing a yellow jacket, as he pours liquid into a vase and arranges the flowers.",
+      "source_count": 3
+    },
+    {
+      "start": 94.094,
+      "end": 105.77233333333332,
+      "text": "A woman in a black jacket and yellow scarf stands near an electric outlet in a dimly lit space. The scene shifts to a darker setting where she, now with her hair down, stands beside a man. She is later shown in front of a plain white wall, looking upward, followed by a man in a red shirt and yellow jacket standing near a wall and mirror, moving slightly. The segment ends with the woman in a yellow sweater and black jacket standing still with her eyes closed near a wall-mounted alarm.",
+      "source_count": 3
+    },
+    {
+      "start": 105.77233333333332,
+      "end": 112.6125,
+      "text": "A man and a woman sit closely together in a bubble-filled bathtub in a bathroom, surrounded by an intimate and grounded setting.",
+      "source_count": 1
+    },
+    {
+      "start": 112.6125,
+      "end": 119.95316666666666,
+      "text": "A shirtless man stands in a simple bathroom, facing and looking at his reflection in the mirror. A woman briefly appears in the mirror's reflection beside him before disappearing, while the man remains focused on the mirror.",
+      "source_count": 1
+    },
+    {
+      "start": 119.95316666666666,
+      "end": 128.46166666666664,
+      "text": "A man and a woman sit facing each other in a bubble-filled bathtub in a bathroom, making slight movements as they interact. Another woman stands nearby, partially visible in the frame. The tub is the central focus of the scene.",
+      "source_count": 1
+    },
+    {
+      "start": 128.46166666666664,
+      "end": 137.30383333333333,
+      "text": "A bathroom with a shower stall and bathtub. A man sits partially submerged in the bathtub while a woman stands nearby, moving slightly within the space.",
+      "source_count": 1
+    },
+    {
+      "start": 137.30383333333333,
+      "end": 145.14499999999998,
+      "text": "A brightly lit hotel bathroom with two side-by-side bathtubs filled with bubbles. A man sits in the left tub and a woman in the right, both shifting slightly as they interact. The tubs remain the central focus.",
+      "source_count": 1
+    },
+    {
+      "start": 145.14499999999998,
+      "end": 153.65349999999998,
+      "text": "A bathroom with a bathtub as the focal point; a man and a woman sit together in the tub surrounded by bubbles. The man holds a candle while their faint reflections appear on the wall behind them, with minimal movement as they remain seated.",
+      "source_count": 1
+    },
+    {
+      "start": 153.65349999999998,
+      "end": 185.6855,
+      "text": "A man and a woman stand close together in a bathroom, with the man leaning in to kiss the woman as she looks toward him. The intimate setting centers on their interaction, with faint text reading \"i ' m\" overlaid on the frame and the phrase \"It's okay\" heard during the moment.",
+      "source_count": 1
+    },
+    {
+      "start": 185.6855,
+      "end": 200.8673333333333,
+      "text": "A man and a woman stand near a bathroom mirror, surrounded by visible fixtures. The man gazes at his reflection while the woman faces him, and they appear to engage in a conversation with minimal movement.",
+      "source_count": 1
+    },
+    {
+      "start": 200.8673333333333,
+      "end": 229.39583333333331,
+      "text": "A man and a woman sit closely together in a bathtub filled with soap bubbles in a simple bathroom setting. They share a kiss, with no other notable actions or objects present.",
+      "source_count": 1
+    },
+    {
+      "start": 229.39583333333331,
+      "end": 238.57166666666666,
+      "text": "A dimly lit room shows a woman with long hair in the foreground, transitioning to a girl washing her hair with soap and bubbles. A close-up captures a woman brushing her hair in front of a mirror, followed by a man standing still in a bathroom surrounded by soap, his arms crossed.",
+      "source_count": 2
+    },
+    {
+      "start": 238.57166666666666,
+      "end": 258.59166666666664,
+      "text": "A man and a woman sit together on a bed, casually eating food with visible items in their hands. The setting remains focused on the bed and surrounding area, with no notable changes or distractions.",
+      "source_count": 1
+    },
+    {
+      "start": 258.59166666666664,
+      "end": 260.7605,
+      "text": "A man sits indoors in a home setting, eating a hamburger and later a pizza, which is briefly visible to his right. The background alternates between a bedroom with curtains, a living room, and a kitchen. He speaks the phrase, \"Carb load. They're mine for you,\" while eating.",
+      "source_count": 1
+    },
+    {
+      "start": 260.7605,
+      "end": 272.9393333333333,
+      "text": "A woman stands in front of a mirror, holding a cell phone and looking at her reflection. The scene shifts to a young man sitting on a bed, talking to someone off-screen. It then cuts to a man in a yellow shirt drinking from a bottle while standing indoors.",
+      "source_count": 1
+    },
+    {
+      "start": 272.9393333333333,
+      "end": 285.9523333333333,
+      "text": "Two people sit on a bed in a hotel room, sharing a meal from plates of food spread in front of them. They eat together in a cozy setting, using the bed as both seating and a dining area.",
+      "source_count": 1
+    },
+    {
+      "start": 285.9523333333333,
+      "end": 299.63266666666664,
+      "text": "A woman sits on a bed in a bedroom surrounded by scattered food items, eating a sandwich. A glass of wine rests nearby, and the setting remains unchanged as she focuses on her meal.",
+      "source_count": 1
+    },
+    {
+      "start": 299.63266666666664,
+      "end": 308.8085,
+      "text": "A woman with long dark hair sits on a couch in a casual indoor space, smiling and looking at the camera before talking on a phone and placing her hand near her mouth. A man in a uniform stands indoors, holding a phone and briefly using a magnifying glass. The scene returns to the woman, now wearing a yellow shirt with partial text, as she smiles directly at the camera with minimal movement.",
+      "source_count": 3
+    },
+    {
+      "start": 308.8085,
+      "end": 318.4848333333333,
+      "text": "A man wearing a hat holds a magnifying glass and closely examines a piece of food.",
+      "source_count": 1
+    },
+    {
+      "start": 318.4848333333333,
+      "end": 331.16416666666663,
+      "text": "Indoors, a woman in a yellow shirt sits on a couch with pink flowers nearby. The scene transitions to a man in a hat and glasses holding a magnifying object, followed by a boy examining it through the lens. Later, the woman with long brown hair smiles and talks on a cell phone while facing the camera, with the text \"one love\" appearing mid-frame.",
+      "source_count": 2
+    },
+    {
+      "start": 331.16416666666663,
+      "end": 337.8375,
+      "text": "A man stands holding an orange piece of paper in front of his face, then lowers it to reveal a Magnum ice cream bar in his hand while keeping the paper in the other. The background remains indistinct.",
+      "source_count": 1
+    },
+    {
+      "start": 337.8375,
+      "end": 345.34499999999997,
+      "text": "A woman with long brown hair, wearing a yellow shirt and jeans, stands facing the camera, smiling and laughing while shifting slightly in place. The background remains indistinct, with no other objects or details visible.",
+      "source_count": 1
+    },
+    {
+      "start": 345.34499999999997,
+      "end": 370.70366666666666,
+      "text": "A man in a hat looks directly at the camera. The scene shifts to a restroom where a woman stands on a toilet stall with her hands inside the toilet. Nearby, a girl in a yellow shirt laughs while standing close to the toilet.",
+      "source_count": 1
+    },
+    {
+      "start": 370.70366666666666,
+      "end": 381.88149999999996,
+      "text": "In an office, two men wearing hats hold pipes while one speaks into a microphone directed at the other. The scene shifts to a woman in a yellow top looking at the camera, followed by a girl in a yellow dress holding a cell phone. The girl is then shown painting a picture on a wall with a brush.",
+      "source_count": 2
+    },
+    {
+      "start": 381.88149999999996,
+      "end": 394.0603333333333,
+      "text": "A woman in a yellow shirt stands near an open window with sunlight streaming through blinds, rhythmically moving her arms while playing a Wii game with a controller. The scene transitions to close-ups of hands painting on a flat surface and cutting paper with scissors, followed by the woman painting on the ground near a stationary pizza box. The view shifts to a person painting on a table, then to a man seated on a couch in the background, and finally to the man sitting on the floor actively playing a Wii game in a living room.",
+      "source_count": 3
+    },
+    {
+      "start": 394.0603333333333,
+      "end": 403.5698333333333,
+      "text": "A child in a yellow shirt sits on a bed, playing a Wii game. Nearby, a woman in a yellow shirt stands holding a cell phone, then transitions to holding a remote control device. The indoor setting centers around the bed and gaming activity.",
+      "source_count": 1
+    },
+    {
+      "start": 403.5698333333333,
+      "end": 409.0753333333333,
+      "text": "A woman sits in bed with a laptop on her lap in a relaxed indoor setting. The scene transitions to a man wearing a hat, standing and talking on a phone, then shifts to him seated and holding a microphone, appearing to speak or perform.",
+      "source_count": 1
+    },
+    {
+      "start": 409.0753333333333,
+      "end": 419.25216666666665,
+      "text": "A woman in a yellow shirt stands with her hands raised in a well-lit room. She transitions to sitting on a couch, leaning forward with her head in her hands. The lighting dims as she remains seated quietly on the couch in a darkened room.",
+      "source_count": 1
+    },
+    {
+      "start": 419.25216666666665,
+      "end": 428.2611666666666,
+      "text": "A man eats a banana, then appears wearing a hat and tie, talking on a cell phone while holding a bouquet in his mouth and moving slightly to the left. The scene shifts to a room where a woman in a yellow shirt stands near a vase of orange flowers, briefly picks it up, and places it back down, with a stationary wine glass visible nearby.",
+      "source_count": 2
+    },
+    {
+      "start": 428.2611666666666,
+      "end": 436.76966666666664,
+      "text": "A man sits on a bed holding a bouquet of flowers, followed by a view of an elderly man lying on a bed with a vase of flowers nearby. The scene shifts to a man in a hat looking down at a cell phone. In a dimly lit room, a woman smiles while holding a vase of flowers, places it down, and steps slightly to the side as the vase remains in the background.",
+      "source_count": 2
+    },
+    {
+      "start": 436.76966666666664,
+      "end": 446.7796666666666,
+      "text": "In a room with a television screen, one person stands while another moves slightly to the left. The scene transitions to a woman striking a dance pose, followed by a shot of her writing on a wall in her room as faint music plays in the background.",
+      "source_count": 1
+    },
+    {
+      "start": 446.7796666666666,
+      "end": 450.6168333333333,
+      "text": "A softly lit bedroom with light streaming through a window. A man raises his hand to steady a yellow balloon held by another person.",
+      "source_count": 1
+    },
+    {
+      "start": 450.6168333333333,
+      "end": 480.31316666666663,
+      "text": "A man and a woman stand together holding balloons, and the man leans in to kiss the woman while holding a knife in his mouth. The scene transitions to two people holding flowers, with one man prominently displaying a bouquet.",
+      "source_count": 1
+    },
+    {
+      "start": 480.31316666666663,
+      "end": 485.1513333333333,
+      "text": "A man wearing a hat sits still with his eyes closed and a hand on his face, then transitions to holding a cellphone and looking at the camera. A woman is shown gazing at her reflection in a mirror, her mirrored image visible as she remains stationary.",
+      "source_count": 1
+    },
+    {
+      "start": 485.1513333333333,
+      "end": 495.49499999999995,
+      "text": "A man and a woman sit together on an unmade bed in a softly lit room. The man holds a video game controller, while the woman adjusts her hair with one hand as they appear to converse, focusing on each other.",
+      "source_count": 1
+    },
+    {
+      "start": 495.49499999999995,
+      "end": 504.0035,
+      "text": "Indoors, two women interact as one holds the other's hand and speaks while the other smiles and briefly glances at the camera. The smiling woman then talks on a cell phone and laughs. The scene transitions to a man in a hat playing an instrument, with a woman in a yellow shirt nearby focused on her phone. The man shifts slightly, but the focus remains on their individual actions.",
+      "source_count": 2
+    },
+    {
+      "start": 504.0035,
+      "end": 513.6798333333332,
+      "text": "A man and a woman are in a hotel room, with the woman playing with her hair as they stand close together. They transition to kissing in a bedroom with curtains in the background, then begin dancing together near a window in the same setting.",
+      "source_count": 1
+    },
+    {
+      "start": 513.6798333333332,
+      "end": 522.6888333333333,
+      "text": "A hallway with a closed, signed door transitions to an elevator where a person with long hair enters and briefly looks at the camera. A man in a hat then stares directly at the camera as the phrase \"Gold up!\" is heard. The scene shifts to a bar wall with colorful graffiti, followed by a man and woman walking in dim light. The segment ends with children standing under green light, casting shadows on the wall behind them.",
+      "source_count": 2
+    },
+    {
+      "start": 522.6888333333333,
+      "end": 535.3681666666666,
+      "text": "A dark room with a woman smiling and laughing, her face clearly visible as a mirror reflects part of the dimly lit space. The scene transitions to a child and his mother under green light with a brief text overlay, then to a man walking a dog along a green-lit wall, moving toward the right.",
+      "source_count": 2
+    },
+    {
+      "start": 535.3681666666666,
+      "end": 543.2093333333333,
+      "text": "A man in a baseball cap and glasses stands still, looking into the distance. The scene transitions to a woman in a yellow dress facing away, followed by another woman in profile with her head tilted toward a wall. It then shifts to a man in a white cap and yellow shirt standing motionless in front of a brightly lit window.",
+      "source_count": 2
+    },
+    {
+      "start": 543.2093333333333,
+      "end": 549.3821666666666,
+      "text": "A woman in a yellow shirt walks down a hospital hallway holding a cell phone. The scene transitions to a dimly lit hotel room at night, where a man sits using a phone.",
+      "source_count": 1
+    },
+    {
+      "start": 549.3821666666666,
+      "end": 577.577,
+      "text": "A woman in a yellow shirt with long hair looks up toward the camera in a well-lit, simple setting. The shot briefly shifts to a man in a shirt staring directly at the camera before returning to the woman, who continues to hold her gaze.",
+      "source_count": 1
+    },
+    {
+      "start": 577.577,
+      "end": 586.0854999999999,
+      "text": "A woman with long brown hair in a yellow shirt stands centered in the frame, smiling slightly and looking directly at the camera. She occasionally shifts her gaze upward and rests her hands on her hips while speaking briefly about finishing a game. The background remains neutral, keeping focus on her stationary posture and subtle movements.",
+      "source_count": 2
+    },
+    {
+      "start": 586.0854999999999,
+      "end": 597.4301666666667,
+      "text": "A man in a yellow shirt stands near a table with a cake, looking at the camera before glancing down at the table and shifting slightly to the right. The scene transitions to a modestly furnished hotel room, where one woman stands on a bed and another stands nearby, both engaged in conversation as one holds a phone.",
+      "source_count": 2
+    },
+    {
+      "start": 597.4301666666667,
+      "end": 610.1094999999999,
+      "text": "A man walks while looking at the camera, then holds a remote control and eats while playing a Wii. The scene transitions to a woman in a dimly lit room with a white wall and flowers in the background; she stands still, smiling up at the camera with the title \"hello hello\" displayed.",
+      "source_count": 2
+    },
+    {
+      "start": 610.1094999999999,
+      "end": 618.4511666666666,
+      "text": "Indoors, a man with short hair sings with his eyes closed, then glances left and looks at a screen with focus. A woman in a yellow shirt moves slightly to her right, centered in the frame. A man in a white shirt looks at the camera, glances upward at a screen, and holds a knife while staring forward.",
+      "source_count": 3
+    },
+    {
+      "start": 618.4511666666666,
+      "end": 624.1234999999999,
+      "text": "Indoors, a woman in a yellow shirt stands near a cat, briefly looking at it before shifting slightly to the left within the frame.",
+      "source_count": 1
+    },
+    {
+      "start": 624.1234999999999,
+      "end": 646.8128333333333,
+      "text": "Indoors, a boy sits holding a game controller, focused on playing. The scene shifts to a man and woman standing close together, holding hands. They are then shown standing in front of a door, positioned side by side.",
+      "source_count": 1
+    },
+    {
+      "start": 646.8128333333333,
+      "end": 655.4881666666666,
+      "text": "Indoors, a man stands in front of a mirror, smiling, then puts on a shirt and talks to a woman nearby. The focus shifts between the man speaking to the woman and his reflection in the mirror. The scene transitions to a woman holding a baby at the center of the room, with a man in the background, then to a man in a suit near the mirror, talking to another man whose reflection is visible.",
+      "source_count": 2
+    },
+    {
+      "start": 655.4881666666666,
+      "end": 668.3343333333332,
+      "text": "A woman stands in a hospital room beside a baby in a sling, while a child nearby holds a stack of baby clothes. The scene transitions to a man looking at his reflection in a mirror, with another man in a tie nearby and brief movement in the background. It concludes in a hallway, where the woman, now holding both the baby and folded laundry, moves slightly to the left.",
+      "source_count": 3
+    },
+    {
+      "start": 668.3343333333332,
+      "end": 682.5151666666666,
+      "text": "Indoors, a man in a floral shirt talks to another man with a flower in his hair, who is visible in a mirror. Both remain mostly still, with slight shifts in position, as the focus stays on their calm interaction.",
+      "source_count": 1
+    },
+    {
+      "start": 682.5151666666666,
+      "end": 684.5171666666666,
+      "text": "A boy stands in front of a bathroom mirror brushing his teeth while another child watches nearby. A hand on the bathroom door handle suggests someone is about to enter or exit. The small bathroom features a mirror and door as prominent elements.",
+      "source_count": 1
+    },
+    {
+      "start": 684.5171666666666,
+      "end": 697.1964999999999,
+      "text": "A man and a woman stand in a room near a wall, with the woman wearing a yellow shirt and holding a black purse. They engage in conversation with subtle movements, and no other notable objects or actions are visible.",
+      "source_count": 1
+    },
+    {
+      "start": 697.1964999999999,
+      "end": 709.3753333333333,
+      "text": "A woman indoors looks down at her phone, adjusts her hair, and shifts slightly to the left. The scene transitions to a dimly lit space where a man and woman stand facing each other in the background. A close-up reveals the man holding a black cat while wearing a yellow shirt, moving slightly to the left in a dark, undefined setting.",
+      "source_count": 2
+    },
+    {
+      "start": 709.3753333333333,
+      "end": 766.5991666666666,
+      "text": "A man and a woman sit together in a room with patterned wallpaper. The woman leans toward the man as they briefly embrace, with no other movement or notable objects in the background.",
+      "source_count": 1
+    },
+    {
+      "start": 766.5991666666666,
+      "end": 810.6431666666666,
+      "text": "A room with a man and a woman standing and talking. The scene shifts to a bathroom, where a young man and a woman stand close together, both holding and looking at their phones.",
+      "source_count": 1
+    },
+    {
+      "start": 810.6431666666666,
+      "end": 817.8169999999999,
+      "text": "A man and a woman stand close together in a furnished living room, facing each other. The man shifts slightly to the right in a looping motion while the woman stays still, maintaining eye contact.",
+      "source_count": 1
+    },
+    {
+      "start": 817.8169999999999,
+      "end": 856.6891666666666,
+      "text": "A man and a woman stand in a room, facing each other. The man shifts slightly toward the center as the woman moves subtly to the right.",
+      "source_count": 1
+    },
+    {
+      "start": 856.6891666666666,
+      "end": 867.0328333333333,
+      "text": "A woman looks at her reflection in a bathroom mirror, followed by a man doing the same in a different setting. A man in a white shirt stands near a door, then a man in a shirt and tie holds a camera indoors. The scene shifts to a man in a yellow shirt in an office and another man standing in an open doorway, appearing to speak. Finally, a man stands near an open door, holding a phone and smiling as he talks.",
+      "source_count": 3
+    },
+    {
+      "start": 867.0328333333333,
+      "end": 877.7101666666666,
+      "text": "A man in a yellow shirt stands in a bathroom, facing a mirror. He holds a pen and shifts slightly to the left while appearing to talk to a woman, whose reflection is visible in the mirror. The room is simple, with no other notable objects or movement.",
+      "source_count": 2
+    },
+    {
+      "start": 877.7101666666666,
+      "end": 886.886,
+      "text": "A man in a white shirt and tie stands in a room facing a mirror, briefly shifting to the left while another person stands nearby. A chair remains stationary in the lower-left corner as the man speaks, though no related action is visible.",
+      "source_count": 1
+    },
+    {
+      "start": 886.886,
+      "end": 903.5693333333332,
+      "text": "A modestly furnished hotel room with a bed at the center. A woman stands while two men move around the space; one walks across the bed as the others adjust their positions nearby.",
+      "source_count": 1
+    },
+    {
+      "start": 903.5693333333332,
+      "end": 911.911,
+      "text": "A man stands in front of a closed door holding a knife, while another man nearby holds a video camera aimed at him. The perspective shifts to show a person holding a gun, with the camera focusing on their hand and the weapon. The scene transitions to a modest hotel room where a man and a woman play guitar together, the man standing near the bed and the woman seated nearby.",
+      "source_count": 2
+    },
+    {
+      "start": 911.911,
+      "end": 938.938,
+      "text": "A person cuts an object on a table with scissors, followed by a woman closely examining a cell phone. The scene shifts to a girl in a yellow shirt with long brown hair standing still.",
+      "source_count": 1
+    },
+    {
+      "start": 938.938,
+      "end": 949.4485,
+      "text": "A man in a white shirt and tie stands against a plain wall, speaking and shifting slightly to the left. In a dimly lit room, a woman looks at her phone, then closes her eyes and briefly faces the camera. In a hotel room, a man interacts with a vacuum mop while a woman lies on a bed with her head resting on a table.",
+      "source_count": 3
+    },
+    {
+      "start": 949.4485,
+      "end": 989.4884999999999,
+      "text": "A person plays a game on a television using a Wii controller in a room. The scene shifts to a woman texting on her phone while seated, then to her sitting on a couch with her hand resting on her head, staying still. The setting features a couch and a television.",
+      "source_count": 1
+    },
+    {
+      "start": 989.4884999999999,
+      "end": 996.4954999999999,
+      "text": "Indoors, a man with a mustache stands stationary in the center of the frame, wearing a tie and a shirt with \"one\" visible on it. The scene transitions to a man in a yellow shirt looking to the right, followed by a man in an army uniform gazing up at the camera. It concludes with a man in a floral-print shirt shown in a movie scene.",
+      "source_count": 3
+    },
+    {
+      "start": 996.4954999999999,
+      "end": 1011.3436666666666,
+      "text": "A woman in a well-lit room sits on a couch with her eyes closed, wearing a yellow shirt. She then looks upward, appearing to gaze at the ceiling, with no other notable actions or objects in view.",
+      "source_count": 1
+    },
+    {
+      "start": 1011.3436666666666,
+      "end": 1020.3526666666666,
+      "text": "A man in a white shirt and tie speaks into a microphone indoors, followed by a close-up of a man with a mustache. The setting shifts to a living room, where a man converses with someone near a couch. The scene transitions to a dimly lit close-up of a woman holding her head, then using a phone, looking at its screen while holding it to her ear.",
+      "source_count": 2
+    },
+    {
+      "start": 1020.3526666666666,
+      "end": 1031.1968333333332,
+      "text": "A man in a white shirt, tie, and suspenders stands still in a well-lit indoor space, looking directly at the camera. The scene transitions to a modestly furnished hotel room, where a man and a woman sit on a bed, engaged in conversation, while two others are visible in the background near the bed, also interacting.",
+      "source_count": 2
+    },
+    {
+      "start": 1031.1968333333332,
+      "end": 1043.2088333333334,
+      "text": "Indoors, a woman in a yellow shirt sits and looks to her left before focusing on a laptop screen, briefly gazing into the distance and touching her eye. The setting transitions to a hotel room where a man stands near a bed, facing a seated woman as they talk, with the phrase \"Please set the date\" audible during their interaction.",
+      "source_count": 2
+    },
+    {
+      "start": 1043.2088333333334,
+      "end": 1052.8851666666667,
+      "text": "A man with a mustache and beard stands in a dimly lit room in front of a mirror, holding a phone and taking a selfie. His reflection is visible as he briefly looks at the phone and shifts slightly to the left.",
+      "source_count": 1
+    },
+    {
+      "start": 1052.8851666666667,
+      "end": 1062.061,
+      "text": "A hotel room with a bed at the center; a woman sits on the bed while a man stands beside her, another woman stands at the foot of the bed, and a second man stands on the opposite side. The group remains stationary with no visible interaction or movement.",
+      "source_count": 1
+    },
+    {
+      "start": 1062.061,
+      "end": 1098.2638333333332,
+      "text": "A close-up of a white wall with a black handle and shadow transitions to a young man standing and looking at the camera. A man in a white jacket appears next, focused on his phone in a minimal setting.",
+      "source_count": 1
+    },
+    {
+      "start": 1098.2638333333332,
+      "end": 1117.4496666666666,
+      "text": "A group of people, including a woman and two men, are gathered in a hotel room with a bed and lamps visible in the background. They are positioned casually and appear to be engaged in an activity together, possibly playing a Wii game, with their movements suggesting interaction.",
+      "source_count": 1
+    },
+    {
+      "start": 1117.4496666666666,
+      "end": 1136.6354999999999,
+      "text": "A red phone screen displays the text \"one\" in close-up. The view shifts to a dimly lit close-up of a man's face and shoulder, followed by a static dark background with a brown tone and a white vertical line on the right.",
+      "source_count": 1
+    },
+    {
+      "start": 1136.6354999999999,
+      "end": 1146.4786666666666,
+      "text": "A dimly lit room shows a woman’s reflection in a mirror, followed by a close-up of a camera lens. The scene transitions to a brightly lit room with a bed covered in a red and white blanket, a lamp on a table, and no visible movement. A woman in a red sweater appears, then a cat plays with a remote held by a person’s hand. The woman, now in a red shirt and black gloves, rests her hands on someone’s shoulder.",
+      "source_count": 3
+    },
+    {
+      "start": 1146.4786666666666,
+      "end": 1159.158,
+      "text": "The segment opens with a person lying in bed as another man leans in to hug their face, followed by a hand gently touching the bedspread. A woman is then shown sitting on a couch with her eyes closed before transitioning to her sitting on a bed, holding an object, as another person joins her. In a kitchen, two men stand facing each other, leading to a bedroom scene with a person lying in bed near a book and cup, and later a man and woman in bed with a framed picture in the background. The sequence ends with a close-up of the woman in bed, turning to look at her phone while part of a man’s face is visible behind her.",
+      "source_count": 4
+    },
+    {
+      "start": 1159.158,
+      "end": 1161.9941666666666,
+      "text": "A man in a red shirt and white pants adjusts his clothing, holds a glass with an unidentified liquid, and takes a drink while moving slightly to the left. Another person stands stationary in the background to the right in a neutral setting.",
+      "source_count": 1
+    },
+    {
+      "start": 1161.9941666666666,
+      "end": 1175.6744999999999,
+      "text": "In a dark setting, two people kiss as one leans in toward the other. The scene transitions to a close-up of two glasses with water and ice on a table, followed by a hand pouring water from a bottle into one of the glasses.",
+      "source_count": 1
+    },
+    {
+      "start": 1175.6744999999999,
+      "end": 1187.186,
+      "text": "A woman in a red jacket holds a microphone before the scene transitions to a dimly lit bedroom where a man sits using his phone. The focus shifts to a hotel room as a couple kisses on a bed, followed by shots of them sitting on a couch, embracing, and kissing on the bed in formal wedding attire. The segment concludes indoors with a man in a white shirt and tie looking down, another man with a beard looking at the camera, and a television screen reflecting the scene.",
+      "source_count": 3
+    },
+    {
+      "start": 1187.186,
+      "end": 1334.3329999999999,
+      "text": "Two people sit close together on a bed in a softly lit room, facing each other. One person speaks while the other listens attentively, with their focus remaining on the conversation in the simple, uncluttered setting.",
+      "source_count": 1
+    },
+    {
+      "start": 1334.3329999999999,
+      "end": 1343.3419999999999,
+      "text": "A man smiles at the camera while holding a cat, then sits on a bed hugging a dog. At night, the man and a woman are seen talking on their phones in a dimly lit setting. The scene transitions to the woman lying on a bed in a red shirt, sleeping with her head on a pillow and partially covered by a blanket.",
+      "source_count": 2
+    },
+    {
+      "start": 1343.3419999999999,
+      "end": 1354.1861666666666,
+      "text": "A man in a red and black plaid shirt is seen, followed by a person shaping a red blanket into a heart with their hands. A person lies asleep on a bed holding a pillow. The setting transitions to a well-lit hotel room where one person stands on the bed while another watches nearby.",
+      "source_count": 2
+    },
+    {
+      "start": 1354.1861666666666,
+      "end": 1364.8635,
+      "text": "A dimly lit bedroom with a bed as the focal point. A woman lies on the bed with her head on a pillow, looking at her phone, the screen casting a faint glow on her face. A man in a red shirt sits nearby, also focused on his phone.",
+      "source_count": 2
+    },
+    {
+      "start": 1364.8635,
+      "end": 1375.2071666666666,
+      "text": "Indoors, a man in a plaid shirt looks at the camera before the view shifts to hands interacting with a laptop playing a Wii game. The man reappears with a camera around his neck, moving slightly in the frame. In a dark room, a person walks away from a man holding a box, followed by a static shot of a woman lying in bed with white sheets. A man in a shirt and tie is then shown standing with his hands on his hips, transitioning to holding a microphone and bringing it near his mouth as if speaking.",
+      "source_count": 3
+    },
+    {
+      "start": 1375.2071666666666,
+      "end": 1385.2171666666666,
+      "text": "A woman plays piano while a child stands nearby and another adult is visible in the background. The scene transitions to a man in pajamas looking down at a lamp on the floor, followed by a woman resting in bed with white sheets. A man holding a microphone adjusts his position near a reflective surface before moving leftward. The segment ends with a woman sitting upright in bed, laughing, then holding a cup while surrounded by white bedding.",
+      "source_count": 3
+    },
+    {
+      "start": 1385.2171666666666,
+      "end": 1411.9105,
+      "text": "A man in a red and black plaid shirt holds a cell phone while standing next to a boy who talks and gestures. Both then look down at their cell phones, appearing focused on the screens. The setting is neutral with no distinct background elements.",
+      "source_count": 1
+    },
+    {
+      "start": 1411.9105,
+      "end": 1421.5868333333333,
+      "text": "A man stands in front of a mirror holding a cell phone, followed by a woman laughing and playing on a bed surrounded by scattered pillows. The scene transitions to a man standing with his hands clasped, wearing a shirt, as the woman continues her lively movements on the bed.",
+      "source_count": 2
+    },
+    {
+      "start": 1421.5868333333333,
+      "end": 1424.9234999999999,
+      "text": "A boy in a red flannel shirt stands indoors near a softly lit window, looking to his left at something out of frame.",
+      "source_count": 1
+    },
+    {
+      "start": 1424.9234999999999,
+      "end": 1466.465,
+      "text": "A bedroom with a bed as the central focus. A woman lies on the bed laughing, while another woman stands nearby, watching her. The woman on the bed glances up at her pillow as the camera shifts slightly.",
+      "source_count": 1
+    },
+    {
+      "start": 1466.465,
+      "end": 1478.8106666666665,
+      "text": "Indoors, a man in a white shirt and red tie stands in front of a mirror, holding a microphone and speaking, with his reflection visible. Another man in a shirt stands stationary in the background. The scene transitions to a man in a red shirt seated, laughing and playing a guitar, followed by a man holding a phone to his ear while resting his other hand on his head.",
+      "source_count": 2
+    },
+    {
+      "start": 1478.8106666666665,
+      "end": 1496.495,
+      "text": "A man sits in a living room holding a cell phone. The scene transitions to a bedroom where a man and woman lie on a bed together, laughing and interacting closely. The camera shifts to show them from another angle, with a caption appearing in the center of the frame amidst bedding and pillows.",
+      "source_count": 1
+    },
+    {
+      "start": 1496.495,
+      "end": 1590.2553333333333,
+      "text": "A man holding a cell phone looks directly at the camera in a close-up. The view shifts to a couple lying closely on a bed, facing each other. They are later seen sitting on the bed together, eating food in the same bedroom setting.",
+      "source_count": 1
+    },
+    {
+      "start": 1590.2553333333333,
+      "end": 1682.0136666666665,
+      "text": "A man and a woman lie close together on a bed in a simple residential setting. The man playfully holds the woman’s nose, and they share a kiss while facing each other. The woman hugs the man as they interact gently and affectionately.",
+      "source_count": 1
+    },
+    {
+      "start": 1682.0136666666665,
+      "end": 1736.0676666666666,
+      "text": "A young man sits on a bed with his hand against his face. The scene shifts to a man and woman lying on the bed, kissing closely as the man appears to speak. A man with long hair is then shown holding his mouth open, with the focus remaining on the bed throughout.",
+      "source_count": 1
+    },
+    {
+      "start": 1736.0676666666666,
+      "end": 1823.1546666666666,
+      "text": "A hotel room with a bed and two lamps is shown. A man in a white shirt adjusts the bed while a woman stands in the background. The scene shifts to two men in the room, talking as one moves slightly to the right and the other steps closer to the left.",
+      "source_count": 1
+    },
+    {
+      "start": 1823.1546666666666,
+      "end": 1908.3230833333332,
+      "text": "Black screens display sequential text transitions: \"snur,\" followed by \"The Twilight Zone\" in bold, and then \"The Shining Star.\"",
+      "source_count": 1
+    }
+  ]
+}

@@ -405,12 +405,12 @@ Development decision standard:
 
 ### Phase 4: Second Prompt-Tuning Pass If Needed
 
-- [ ] Identify remaining failure modes from dev rerun
-- [ ] Make only targeted prompt edits in a new versioned prompt file
-- [ ] Record exactly what changed
-- [ ] Rerun development benchmark again
-- [ ] Compare with prior dev run
-- [ ] Record the new prompt version and full metric results in this plan
+- [x] Identify remaining failure modes from dev rerun
+- [x] Make only targeted prompt edits in a new versioned prompt file
+- [x] Record exactly what changed
+- [x] Rerun development benchmark again
+- [x] Compare with prior dev run
+- [x] Record the new prompt version and full metric results in this plan
 
 Possible failure modes to watch:
 - still too verbose
@@ -426,16 +426,47 @@ Reason for this phase:
 
 ### Phase 5: Freeze Prompt
 
-- [ ] Decide best versioned main prompt
-- [ ] Decide best versioned fallback prompt
-- [ ] Decide best versioned short prompt
-- [ ] Choose the prompt set with the best overall development evidence
+- [x] Decide best versioned main prompt
+- [x] Decide best versioned fallback prompt
+- [x] Decide best versioned short prompt
+- [x] Choose the prompt set with the best overall development evidence
 - [ ] Mark the development prompt as frozen
 - [ ] Stop changing prompt wording before held-out evaluation
 - [ ] Copy the chosen frozen version into the active prompt paths only after the freeze decision
 
 Reason for this phase:
 - a frozen prompt is required for clean held-out testing
+
+### Phase 5.5: Temporal Aggregation / Scene Merging Policy
+
+- [x] Add reference-independent aggregation support to the SceneWalk runner
+- [x] Preserve all existing prompt outputs and versioned prompts
+- [x] Evaluate fixed-window aggregation on development outputs
+- [x] Compare aggregation windows without using reference text for merging
+- [x] Record aggregation results separately from prompt results
+- [ ] Choose the final prompt plus aggregation policy
+- [ ] Freeze both the prompt and the aggregation policy before held-out evaluation
+
+Files involved:
+- `test/benchmarks/run_scenewalk_benchmark.py`
+- `test/benchmarks/results/scenewalk_results_*.json`
+- `test/benchmarks/results/scenewalk_benchmark_report.md`
+- `test/benchmarks/results/scenewalk_comparison.md`
+
+Implemented policy:
+- `fixed_window`
+- merge adjacent Kairos-predicted scene descriptions using only Kairos timestamps and scene order
+- do not use SceneWalk reference wording, reference captions, or semantic similarity during merging
+- configurable parameters:
+- `--aggregation-window-sec`
+- `--aggregation-max-gap-sec`
+
+Reason for this phase:
+- SceneWalk ground-truth segments are much longer than Kairos detected scenes
+- the development subset has `301` Kairos scenes vs `80` SceneWalk segments for video 1
+- the development subset has `166` Kairos scenes vs `51` SceneWalk segments for video 2
+- this creates a temporal-unit mismatch that can cap BERTScore even when local Kairos scene descriptions are correct
+- scene merging is an evaluation-alignment step, not a prompt change and not a replacement for the existing model outputs
 
 ### Phase 6: Held-Out SceneWalk Evaluation
 
@@ -576,6 +607,279 @@ For each tested prompt version, record:
 - `BERTScore` improved slightly, but not enough to justify freezing without at least one more controlled prompt iteration
 - freeze candidate:
 - yes, but weak
+
+### Prompt Candidate `v2`
+
+- version label: `v2`
+- prompt files used:
+- `prompts/benchmark_versions/describe_scene_v2.txt`
+- `prompts/benchmark_versions/fallback_describe_scene_v2.txt`
+- `prompts/benchmark_versions/describe_scene_short_v2.txt`
+- benchmark date:
+- `2026-06-06`
+- reason for change:
+- targeted follow-up to `v1` after qualitative review of `scenewalk_comparison.md`
+- `v1` still produced unsupported clothing, location, emotion, relationship, and facial-detail guesses in some scenes
+- `v1` sometimes quoted or summarized transcript content too heavily relative to visible action
+- `v2` keeps the grounded visual-first style but adds stricter limits on unsupported specifics, long dialogue, frame-by-frame listing, and transcript-driven inference
+- `Matched BERTScore F1`:
+- `0.5771`
+- `BERTScore Precision`:
+- `0.6015`
+- `BERTScore Recall`:
+- `0.5556`
+- `Matched ROUGE-L F1`:
+- `0.2095`
+- `SODA F1`:
+- `0.0815`
+- `SODA Precision`:
+- `0.0525`
+- `SODA Recall`:
+- `0.1827`
+- `Total matched pairs`:
+- `113`
+- baseline comparison:
+- `Matched BERTScore F1`: `0.5723 -> 0.5771` (`+0.0048`)
+- `Matched ROUGE-L F1`: `0.1771 -> 0.2095` (`+0.0324`)
+- `SODA F1`: `0.0686 -> 0.0815` (`+0.0129`)
+- `v1` comparison:
+- `Matched BERTScore F1`: `0.5745 -> 0.5771` (`+0.0026`)
+- `BERTScore Precision`: `0.5803 -> 0.6015` (`+0.0212`)
+- `BERTScore Recall`: `0.5697 -> 0.5556` (`-0.0141`)
+- `Matched ROUGE-L F1`: `0.2208 -> 0.2095` (`-0.0113`)
+- `SODA F1`: `0.0859 -> 0.0815` (`-0.0044`)
+- qualitative takeaway:
+- `v2` improves the primary semantic metric compared with both the pre-versioning baseline and `v1`
+- stricter visual-first prompting appears to raise precision but lowers recall and slightly reduces temporal/lexical alignment compared with `v1`
+- because `SODA` and `ROUGE-L` remain above the original baseline and further prompt tuning on the same 2-video dev subset would increase overfitting risk, `v2` is the recommended frozen prompt for held-out evaluation
+- freeze candidate:
+- yes, but not frozen because the target is to push BERTScore closer to `0.7` without overfitting
+
+### Prompt Candidate `v3`
+
+- version label: `v3`
+- prompt files used:
+- `prompts/benchmark_versions/describe_scene_v3.txt`
+- `prompts/benchmark_versions/fallback_describe_scene_v3.txt`
+- `prompts/benchmark_versions/describe_scene_short_v3.txt`
+- benchmark date:
+- `2026-06-06`
+- reason for change:
+- targeted follow-up to `v2` because `v2` improved BERTScore precision but reduced recall, SODA, and ROUGE-L
+- `v3` keeps `v2`'s conservative grounding but restores SceneWalk-like structure: setting, main subject, main action, shot progression, and key objects
+- target is to improve BERTScore recall and overall F1 without returning to unsupported specifics or benchmark-wording mimicry
+- `Matched BERTScore F1`:
+- `0.5836`
+- `BERTScore Precision`:
+- `0.5933`
+- `BERTScore Recall`:
+- `0.5750`
+- `Matched ROUGE-L F1`:
+- `0.2256`
+- `SODA F1`:
+- `0.0878`
+- `SODA Precision`:
+- `0.0566`
+- `SODA Recall`:
+- `0.1968`
+- `Total matched pairs`:
+- `113`
+- baseline comparison:
+- `Matched BERTScore F1`: `0.5723 -> 0.5836` (`+0.0113`)
+- `BERTScore Precision`: `0.5212 -> 0.5933` (`+0.0721`)
+- `BERTScore Recall`: `0.6352 -> 0.5750` (`-0.0602`)
+- `Matched ROUGE-L F1`: `0.1771 -> 0.2256` (`+0.0485`)
+- `SODA F1`: `0.0686 -> 0.0878` (`+0.0192`)
+- `v1` comparison:
+- `Matched BERTScore F1`: `0.5745 -> 0.5836` (`+0.0091`)
+- `Matched ROUGE-L F1`: `0.2208 -> 0.2256` (`+0.0048`)
+- `SODA F1`: `0.0859 -> 0.0878` (`+0.0019`)
+- `v2` comparison:
+- `Matched BERTScore F1`: `0.5771 -> 0.5836` (`+0.0065`)
+- `BERTScore Precision`: `0.6015 -> 0.5933` (`-0.0082`)
+- `BERTScore Recall`: `0.5556 -> 0.5750` (`+0.0194`)
+- `Matched ROUGE-L F1`: `0.2095 -> 0.2256` (`+0.0161`)
+- `SODA F1`: `0.0815 -> 0.0878` (`+0.0063`)
+- qualitative takeaway:
+- `v3` is the best development candidate so far across the main metrics
+- restoring SceneWalk-style structure improved BERTScore recall, SODA, and ROUGE-L while keeping most of `v2`'s precision gain
+- qualitative comparison shows better visible sequence coverage, but some outputs still include too much transcript/audio detail
+- if another iteration is attempted, it should preserve the `v3` structure while reducing non-visible dialogue carryover
+- freeze candidate:
+- yes, strongest so far but not frozen while target remains closer to `0.7`
+
+### Prompt Candidate `v4`
+
+- version label: `v4`
+- prompt files used:
+- `prompts/benchmark_versions/describe_scene_v4.txt`
+- `prompts/benchmark_versions/fallback_describe_scene_v4.txt`
+- `prompts/benchmark_versions/describe_scene_short_v4.txt`
+- benchmark date:
+- `2026-06-06`
+- reason for change:
+- targeted follow-up to `v3`
+- preserved `v3`'s SceneWalk-style visual structure while tightening audio/dialogue use
+- intended to reduce non-visible transcript carryover without losing visual recall
+- `Matched BERTScore F1`:
+- `0.5830`
+- `BERTScore Precision`:
+- `0.6006`
+- `BERTScore Recall`:
+- `0.5671`
+- `Matched ROUGE-L F1`:
+- `0.2284`
+- `SODA F1`:
+- `0.0886`
+- `SODA Precision`:
+- `0.0570`
+- `SODA Recall`:
+- `0.1986`
+- `Total matched pairs`:
+- `113`
+- baseline comparison:
+- `Matched BERTScore F1`: `0.5723 -> 0.5830` (`+0.0107`)
+- `BERTScore Precision`: `0.5212 -> 0.6006` (`+0.0794`)
+- `BERTScore Recall`: `0.6352 -> 0.5671` (`-0.0681`)
+- `Matched ROUGE-L F1`: `0.1771 -> 0.2284` (`+0.0513`)
+- `SODA F1`: `0.0686 -> 0.0886` (`+0.0200`)
+- `v3` comparison:
+- `Matched BERTScore F1`: `0.5836 -> 0.5830` (`-0.0006`)
+- `BERTScore Precision`: `0.5933 -> 0.6006` (`+0.0073`)
+- `BERTScore Recall`: `0.5750 -> 0.5671` (`-0.0079`)
+- `Matched ROUGE-L F1`: `0.2256 -> 0.2284` (`+0.0028`)
+- `SODA F1`: `0.0878 -> 0.0886` (`+0.0008`)
+- qualitative takeaway:
+- `v4` is more visually disciplined than `v3` and improves SODA/ROUGE-L slightly
+- the tighter audio restraint raises precision but lowers recall, causing a small BERTScore F1 drop from `v3`
+- `v4` is useful evidence but does not beat `v3` on the primary metric
+- freeze candidate:
+- yes, but weaker than `v3` if BERTScore F1 remains the primary selection metric
+
+## Temporal Aggregation Experiment Ledger
+
+Aggregation experiments are development-only. They do not remove or replace prompt results. They evaluate whether fixed, reference-independent temporal grouping better matches SceneWalk's annotation granularity.
+
+### Aggregation Policy: `fixed_window`
+
+- policy label: `fixed_window`
+- implementation:
+- added to `test/benchmarks/run_scenewalk_benchmark.py`
+- CLI options:
+- `--aggregate-predictions fixed_window`
+- `--aggregation-window-sec <seconds>`
+- `--aggregation-max-gap-sec <seconds>`
+- merging rule:
+- sort Kairos predicted segments by timestamp
+- merge adjacent predictions while the combined span stays within the fixed window
+- do not merge across gaps larger than `max_gap_sec`
+- concatenate the existing Kairos scene descriptions in temporal order
+- use no SceneWalk captions or reference wording during merging
+
+### Aggregation Development Results
+
+All runs used the same 2-video SceneWalk development subset.
+
+| Prompt/output source | Aggregation policy | Window | BERTScore F1 | Precision | Recall | ROUGE-L F1 | SODA F1 | Matched pairs |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `v3` output | none | none | `0.5836` | `0.5933` | `0.5750` | `0.2256` | `0.0878` | `113` |
+| `v4` output | none | none | `0.5830` | `0.6006` | `0.5671` | `0.2284` | `0.0886` | `113` |
+| `v3` output | `fixed_window` | `10s` | `0.5861` | not recorded | not recorded | `0.2311` | `0.1244` | `126` |
+| `v3` output | `fixed_window` | `13s` | `0.5851` | not recorded | not recorded | `0.2318` | `0.1429` | `129` |
+| `v3` output | `fixed_window` | `15s` | `0.5841` | not recorded | not recorded | `0.2294` | `0.1528` | `129` |
+| `v3` output | `fixed_window` | `20s` | `0.5835` | not recorded | not recorded | `0.2207` | `0.1722` | `129` |
+| `v3` output | `fixed_window` | `25s` | `0.5825` | not recorded | not recorded | `0.2127` | `0.1792` | `128` |
+| `v3` output | `fixed_window` | `30s` | `0.5800` | not recorded | not recorded | `0.2041` | `0.1840` | `124` |
+| `v3` output | `fixed_window` | `45s` | `0.5784` | not recorded | not recorded | `0.1884` | `0.1521` | `91` |
+| `v4` output | `fixed_window` | `8s` | `0.5841` | not recorded | not recorded | `0.2305` | `0.1065` | `121` |
+| `v4` output | `fixed_window` | `10s` | `0.5862` | not recorded | not recorded | `0.2346` | `0.1258` | `126` |
+| `v4` output | `fixed_window` | `12s` | `0.5878` | not recorded | not recorded | `0.2357` | `0.1397` | `129` |
+| `v4` output | `fixed_window` | `13s` | `0.5879` | `0.5938` | `0.5834` | `0.2358` | `0.1450` | `129` |
+| `v4` output | `fixed_window` | `14s` | `0.5873` | `0.5908` | `0.5850` | `0.2366` | `0.1509` | `130` |
+
+### Best Aggregation Candidate So Far
+
+- prompt/output source: `v4`
+- aggregation policy: `fixed_window`
+- window: `13s`
+- max gap: `5s`
+- result file:
+- `test/benchmarks/results/scenewalk_results_20260606_104931.json`
+- development metrics:
+- `Matched BERTScore F1`: `0.5879`
+- `BERTScore Precision`: `0.5938`
+- `BERTScore Recall`: `0.5834`
+- `Matched ROUGE-L F1`: `0.2358`
+- `SODA F1`: `0.1450`
+- `SODA Precision`: `0.1052`
+- `SODA Recall`: `0.2342`
+- `Total matched pairs`: `129`
+- per-video aggregation:
+- video 1: `301` raw Kairos scenes merged to `193` evaluated segments
+- video 2: `166` raw Kairos scenes merged to `106` evaluated segments
+- interpretation:
+- fixed-window aggregation breaks the previous SODA ceiling and improves the primary BERTScore from `0.5836` to `0.5879`
+- the BERTScore gain is modest, but SODA improves substantially because the evaluated units better match SceneWalk's temporal annotation scale
+- very large windows improve temporal precision up to a point but lower BERTScore because merged descriptions become too broad
+- the best BERTScore policy is a short fixed window around `12-13s`, while the best SODA-only policy is wider around `30s`
+- recommended development selection if BERTScore remains primary: `v4` plus `fixed_window` with `13s` window and `5s` max gap
+
+### Aggregation Policy: `fixed_window` + Abstractive Rewrite
+
+This experiment was added after fixed-window concatenation improved the development result but did not reach the `0.6` BERTScore target. It preserves all existing prompt-version and fixed-window aggregation results.
+
+- policy label: `fixed_window_rewrite_v1`
+- base prompt/output source: `v4`
+- base aggregation policy: `fixed_window`
+- window: `13s`
+- max gap: `5s`
+- aggregation rewrite prompt:
+- `prompts/benchmark_versions/aggregate_scene_segments_v1.txt`
+- implementation:
+- added benchmark-only rewrite support to `test/benchmarks/run_scenewalk_benchmark.py`
+- added `--rewrite-aggregates`
+- added `--aggregation-rewrite-prompt`
+- added `--rewrite-max-workers`
+- each rewrite receives only Kairos predicted scene descriptions and timestamps from the merged group
+- SceneWalk reference captions are not used during rewriting
+- original Kairos pipeline outputs remain unchanged
+
+Run command:
+
+```bash
+python test/benchmarks/run_scenewalk_benchmark.py --max-videos 2 --skip-pipeline --output-cache-name scenewalk_outputs --aggregate-predictions fixed_window --aggregation-window-sec 13 --aggregation-max-gap-sec 5 --rewrite-aggregates --aggregation-rewrite-prompt prompts/benchmark_versions/aggregate_scene_segments_v1.txt --rewrite-max-workers 6
+```
+
+Result file:
+
+- `test/benchmarks/results/scenewalk_results_20260606_110228.json`
+
+Development metrics:
+
+- `Matched BERTScore F1`: `0.5777`
+- `BERTScore Precision`: `0.6136`
+- `BERTScore Recall`: `0.5468`
+- `Matched ROUGE-L F1`: `0.2063`
+- `SODA F1`: `0.1273`
+- `SODA Precision`: `0.0924`
+- `SODA Recall`: `0.2055`
+- `Total matched pairs`: `129`
+
+Per-video results:
+
+- video 1 `mDvkux01G3A`: `301` raw Kairos scenes, `193` rewritten aggregated segments, `80` ground-truth segments, `78` matched pairs, `SODA F1` `0.1143`
+- video 2 `X9MAf245Yag`: `166` raw Kairos scenes, `106` rewritten aggregated segments, `51` ground-truth segments, `51` matched pairs, `SODA F1` `0.1403`
+
+Interpretation:
+
+- abstractive rewriting did not beat the current best result
+- BERTScore F1 dropped from `0.5879` to `0.5777`
+- precision increased from `0.5938` to `0.6136`, but recall dropped from `0.5834` to `0.5468`
+- ROUGE-L dropped from `0.2358` to `0.2063`
+- SODA dropped from `0.1450` to `0.1273`
+- the rewrite likely made the aggregated descriptions cleaner and more conservative, but it removed or generalized details needed to match SceneWalk references
+- do not freeze `fixed_window_rewrite_v1`
+- current best development configuration remains `v4` plus `fixed_window`, `13s` window, `5s` max gap
 
 ## Decision Standard For Freezing The Prompt
 
