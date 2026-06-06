@@ -9,7 +9,6 @@ Paper:   https://arxiv.org/abs/2411.16173
 """
 import json
 import os
-import re
 import subprocess
 from collections import defaultdict
 from pathlib import Path
@@ -17,19 +16,31 @@ from urllib.parse import parse_qs, urlparse
 
 
 def _get_scenewalk_token():
-    """Read the token saved by `huggingface-cli login` from the cache file,
-    ignoring the HF_TOKEN env var (which may belong to a different account
-    used by other parts of the project)."""
+    """Resolve a Hugging Face token for SceneWalk access.
+
+    Preference order:
+    1. `HF_TOKEN` from the environment
+    2. token saved by `huggingface-cli login`
+    3. library default resolution
+    """
+    env_token = (os.environ.get("HF_TOKEN") or "").strip()
+    if env_token:
+        return env_token
+
     token_path = Path.home() / ".cache" / "huggingface" / "token"
     if token_path.exists():
         return token_path.read_text().strip()
-    return True  # fallback: let the library try its own resolution
+    return True
 
 
 def load_scenewalk_dataset(split="train", streaming=True):
     from datasets import load_dataset
-    return load_dataset("IVLLab/SceneWalk", split=split, streaming=streaming,
-                        token=_get_scenewalk_token())
+    return load_dataset(
+        "IVLLab/SceneWalk",
+        split=split,
+        streaming=streaming,
+        token=_get_scenewalk_token(),
+    )
 
 
 def _parse_time_str(time_str):
@@ -70,13 +81,7 @@ def _extract_caption(conversations):
 
 def group_segments_by_video(dataset, max_videos=10, min_segments=5,
                             min_duration_sec=120, max_scan=50000):
-    """Stream through SceneWalk and group segments by video ID.
-
-    The `id` field in SceneWalk IS the YouTube video ID.  Multiple entries
-    with the same `id` are different temporal segments of the same video.
-
-    Returns a list of video dicts, each containing all its segments sorted by time.
-    """
+    """Stream through SceneWalk and group segments by video ID."""
     video_segments = defaultdict(list)
     scanned = 0
 
@@ -127,7 +132,7 @@ def group_segments_by_video(dataset, max_videos=10, min_segments=5,
 
 
 def _download_env():
-    """Build a subprocess env with deno and ffmpeg on PATH."""
+    """Build a subprocess env with ffmpeg and common user bins on PATH."""
     env = os.environ.copy()
     extra = [
         str(Path.home() / ".deno" / "bin"),
@@ -171,71 +176,74 @@ def _transcode_to_h264(input_path, env, timeout=600):
     return False
 
 
-def download_youtube_video(url, output_path, timeout=300):
-    """Download a YouTube video via yt-dlp. Returns True on success.
+def _yt_dlp_command(format_selector, output_path, url):
+    return [
+        "yt-dlp",
+        "--js-runtimes", "node",
+        "--remote-components", "ejs:github",
+        "-f", format_selector,
+        "--merge-output-format", "mp4",
+        "-o", str(output_path),
+        "--no-playlist",
+        "--socket-timeout", "30",
+        url,
+    ]
 
-    Prefers H.264 to avoid AV1 decode failures in OpenCV.
-    Falls back to any format + ffmpeg transcode if H.264 isn't available.
-    """
+
+def download_youtube_video(url, output_path, timeout=300):
+    """Download a YouTube video via yt-dlp. Returns True on success."""
     output_path = Path(output_path)
     env = _download_env()
 
     if output_path.exists() and output_path.stat().st_size > 0:
         if _check_av1(str(output_path)):
-            print(f"  [AV1] Existing file uses AV1 codec, transcoding to H.264...")
+            print("  [AV1] Existing file uses AV1 codec, transcoding to H.264...")
             if _transcode_to_h264(output_path, env):
-                print(f"  [AV1] Transcode successful")
+                print("  [AV1] Transcode successful")
                 return True
-            print(f"  [AV1] Transcode failed, re-downloading...")
+            print("  [AV1] Transcode failed, re-downloading...")
             output_path.unlink()
         else:
             return True
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Try 1: request H.264 directly
     fmt_h264 = "bestvideo[vcodec~='^avc'][height<=720]+bestaudio/best[vcodec~='^avc'][height<=720]"
     try:
         result = subprocess.run(
-            [
-                "yt-dlp",
-                "-f", fmt_h264,
-                "--merge-output-format", "mp4",
-                "-o", str(output_path),
-                "--no-playlist",
-                "--socket-timeout", "30",
-                url,
-            ],
-            capture_output=True, text=True, timeout=timeout, env=env,
+            _yt_dlp_command(fmt_h264, output_path, url),
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
         )
         if result.returncode == 0 and output_path.exists() and output_path.stat().st_size > 0:
             return True
     except (subprocess.TimeoutExpired, FileNotFoundError):
         pass
 
-    # Try 2: any format, then transcode AV1 → H.264
     if output_path.exists():
         output_path.unlink()
+
     try:
         result = subprocess.run(
-            [
-                "yt-dlp",
-                "-f", "bestvideo[height<=720]+bestaudio/best[height<=720]/best",
-                "--merge-output-format", "mp4",
-                "-o", str(output_path),
-                "--no-playlist",
-                "--socket-timeout", "30",
+            _yt_dlp_command(
+                "bestvideo[height<=720]+bestaudio/best[height<=720]/best",
+                output_path,
                 url,
-            ],
-            capture_output=True, text=True, timeout=timeout, env=env,
+            ),
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
         )
         if result.returncode == 0 and output_path.exists():
             if _check_av1(str(output_path)):
-                print(f"  [AV1] Downloaded AV1, transcoding to H.264...")
+                print("  [AV1] Downloaded AV1, transcoding to H.264...")
                 if _transcode_to_h264(output_path, env):
-                    print(f"  [AV1] Transcode successful")
+                    print("  [AV1] Transcode successful")
                     return True
-                print(f"  [WARN] Transcode failed")
+                print("  [WARN] Transcode failed")
                 output_path.unlink()
                 return False
             return True

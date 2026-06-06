@@ -12,16 +12,19 @@ def compute_bertscore(predictions, references, lang="en",
     Uses deberta-large-mnli (350M params) instead of xlarge (900M) to avoid
     OOM on long scene descriptions.  Processes in small batches.
     """
-    if torch.cuda.is_available():
+    use_cuda = torch.cuda.is_available()
+    device = "cuda:0" if use_cuda else "cpu"
+
+    if use_cuda:
         torch.cuda.empty_cache()
         gc.collect()
 
     P, R, F1 = bert_score(
         predictions, references,
         lang=lang, model_type=model_type, verbose=False,
-        batch_size=batch_size, device="cuda:0",
+        batch_size=batch_size, device=device,
     )
-    if torch.cuda.is_available():
+    if use_cuda:
         torch.cuda.empty_cache()
         gc.collect()
 
