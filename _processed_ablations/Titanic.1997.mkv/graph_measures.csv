@@ -1,6 +1,6 @@
-variant,database_name,node_count,non_scene_node_count,relationship_count,simple_edge_count,narrative_relationship_count,spatial_relationship_count,temporal_relationship_count,edge_density_directed,average_degree,weakly_connected_components,largest_wcc_size,largest_wcc_ratio,strongly_connected_components,largest_scc_size,largest_scc_ratio,average_shortest_path_length,graph_diameter,global_efficiency,reciprocity,status,error
-full,titanic-1997-mkv-full,2288,433,19660,15585,13607,2759,3294,0.2969%,13.62,15,2274,99.39%,2071,218,9.53%,432.4,1854,4.02%,5.61%,success,
-no_yolo,titanic-1997-mkv-no-yolo,2257,402,16986,14001,12242,1746,2998,0.2740%,12.41,3,2255,99.91%,2042,216,9.57%,436.4,1854,3.82%,5.69%,success,
-no_asr,titanic-1997-mkv-no-asr,2316,461,21364,16875,14592,4373,2399,0.3140%,14.57,8,2309,99.70%,2082,234,10.10%,427.3,1854,4.10%,5.74%,success,
-no_ast,titanic-1997-mkv-no-ast,2322,467,20815,16586,15158,2629,3028,0.3070%,14.29,9,2314,99.66%,2082,241,10.38%,419.1,1854,4.05%,5.03%,success,
-no_blip,titanic-1997-mkv-no-blip,2212,357,15109,11056,9284,2237,3588,0.2249%,10.00,15,2198,99.37%,2019,193,8.73%,469.3,1854,3.56%,8.10%,success,
+variant,edge_density_directed,average_degree,weakly_connected_components,largest_wcc_size,largest_wcc_ratio,strongly_connected_components,largest_scc_size,largest_scc_ratio,average_shortest_path_length,graph_diameter,global_efficiency,reciprocity
+full,0.2969%,13.62,15,2274,99.39%,2071,218,9.53%,432.4,1854,4.02%,5.61%
+no_blip,0.2249%,10.00,15,2198,99.37%,2019,193,8.73%,469.3,1854,3.56%,8.10%
+no_yolo,0.2740%,12.41,3,2255,99.91%,2042,216,9.57%,436.4,1854,3.82%,5.69%
+no_asr,0.3140%,14.57,8,2309,99.70%,2082,234,10.10%,427.3,1854,4.10%,5.74%
+no_ast,0.3070%,14.29,9,2314,99.66%,2082,241,10.38%,419.1,1854,4.05%,5.03%

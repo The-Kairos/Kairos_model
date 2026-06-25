@@ -18,10 +18,11 @@ from src.kg_neo4j import (
 
 
 VIDEO_PATH = "Titanic.1997.mkv"
-VARIANTS = ("full", "no_yolo", "no_asr", "no_ast", "no_blip")
+VARIANTS = ("full", "no_blip", "no_yolo", "no_asr", "no_ast")
 ABLATION_ROOT = PROJECT_ROOT / "_processed_ablations" / "Titanic.1997.mkv"
 SUMMARY_PATH = ABLATION_ROOT / "ablation_summary.json"
 OUTPUT_CSV = ABLATION_ROOT / "graph_measures.csv"
+OUTPUT_PERC_CSV = ABLATION_ROOT / "graph_measures_perc.csv"
 
 
 def emit(message: str) -> None:
@@ -61,6 +62,22 @@ def format_decimal_1(value) -> str:
         return f"{float(value):.1f}"
     except Exception:
         return ""
+
+
+def format_delta_vs_full(value, full_value, *, percentage_already_formatted: bool = False) -> str:
+    try:
+        if percentage_already_formatted:
+            current = float(str(value).rstrip("%"))
+            baseline = float(str(full_value).rstrip("%"))
+        else:
+            current = float(value)
+            baseline = float(full_value)
+    except Exception:
+        return str(value)
+    if baseline == 0:
+        return str(value)
+    pct = ((current - baseline) / baseline) * 100.0
+    return f"{value} ({pct:+.1f}%)"
 
 
 def relationship_key(rel: dict) -> tuple[str, str, str] | None:
@@ -484,14 +501,6 @@ def main():
     variant_databases = load_variant_database_names()
     fieldnames = [
         "variant",
-        "database_name",
-        "node_count",
-        "non_scene_node_count",
-        "relationship_count",
-        "simple_edge_count",
-        "narrative_relationship_count",
-        "spatial_relationship_count",
-        "temporal_relationship_count",
         "edge_density_directed",
         "average_degree",
         "weakly_connected_components",
@@ -504,8 +513,6 @@ def main():
         "graph_diameter",
         "global_efficiency",
         "reciprocity",
-        "status",
-        "error",
     ]
 
     rows = []
@@ -517,9 +524,6 @@ def main():
             emit(f"[measure] {variant} -> {database_name}")
             row = {
                 "variant": variant,
-                "database_name": database_name,
-                "status": "success",
-                "error": "",
             }
             try:
                 node_ids, raw_edges = fetch_graph(driver, database_name)
@@ -532,9 +536,21 @@ def main():
                     drop_gds_projection(driver, database_name, graph_name)
                 if row.get("node_count"):
                     row["largest_scc_ratio"] = row.get("largest_scc_size", 0) / row["node_count"]
-                row.update(count_relationship_families_from_checkpoint(load_variant_checkpoint(variant)))
                 # GDS path and SCC measures are computed on the whole projected graph using '*', '*'.
                 # Scene nodes dominate this graph, so path-based measures may move only modestly across ablations.
+                for extraneous_key in (
+                    "node_count",
+                    "non_scene_node_count",
+                    "relationship_count",
+                    "simple_edge_count",
+                    "narrative_relationship_count",
+                    "spatial_relationship_count",
+                    "temporal_relationship_count",
+                    "database_name",
+                    "status",
+                    "error",
+                ):
+                    row.pop(extraneous_key, None)
                 row["edge_density_directed"] = format_percentage_4(row.get("edge_density_directed"))
                 row["largest_wcc_ratio"] = format_percentage(row.get("largest_wcc_ratio"))
                 row["largest_scc_ratio"] = format_percentage(row.get("largest_scc_ratio"))
@@ -543,10 +559,6 @@ def main():
                 row["average_degree"] = format_decimal_2(row.get("average_degree"))
                 row["average_shortest_path_length"] = format_decimal_1(row.get("average_shortest_path_length"))
             except Exception as exc:
-                row.update({
-                    "status": "failure",
-                    "error": f"{type(exc).__name__}: {exc}",
-                })
                 for field in fieldnames:
                     row.setdefault(field, "")
             rows.append(row)
@@ -558,7 +570,38 @@ def main():
         writer.writeheader()
         writer.writerows(rows)
 
+    rows_by_variant = {row.get("variant"): row for row in rows}
+    full_row = rows_by_variant.get("full", {})
+    perc_rows = []
+    percentage_fields = {
+        "edge_density_directed",
+        "largest_wcc_ratio",
+        "largest_scc_ratio",
+        "global_efficiency",
+        "reciprocity",
+    }
+    for variant in VARIANTS:
+        base_row = rows_by_variant.get(variant, {"variant": variant})
+        perc_row = {"variant": variant}
+        for field in fieldnames[1:]:
+            value = base_row.get(field, "")
+            if variant == "full":
+                perc_row[field] = value
+                continue
+            perc_row[field] = format_delta_vs_full(
+                value,
+                full_row.get(field, ""),
+                percentage_already_formatted=field in percentage_fields,
+            )
+        perc_rows.append(perc_row)
+
+    with OUTPUT_PERC_CSV.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(perc_rows)
+
     emit(f"Wrote measures CSV: {OUTPUT_CSV}")
+    emit(f"Wrote percentage measures CSV: {OUTPUT_PERC_CSV}")
 
 
 if __name__ == "__main__":

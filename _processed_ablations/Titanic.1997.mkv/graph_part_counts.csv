@@ -1,0 +1,37 @@
+part,full,no_blip,no_yolo,no_asr,no_ast
+[meta],titanic-1997-mkv-full,titanic-1997-mkv-no-blip,titanic-1997-mkv-no-yolo,titanic-1997-mkv-no-asr,titanic-1997-mkv-no-ast
+[nodes],433,357,402,461,467
+  -> node_character,21,21,16,20,12
+  -> node_object,20,28,16,20,10
+  -> node_location,21,13,13,20,10
+  -> node_action,217,174,206,272,263
+  -> node_emotion,10,15,12,10,10
+  -> node_topic,144,106,139,119,162
+[relationships:narrative],10215,6673,9723,10810,12263
+  -> rel_next,1854,1854,1854,1854,1854
+  -> rel_has_topic,6359,2892,6285,7966,8001
+  -> rel_does,409,307,384,354,634
+  -> rel_interacts_with,26,8,8,29,6
+  -> rel_involves,133,114,121,84,132
+  -> rel_targets,55,90,66,26,56
+  -> rel_feels,411,450,369,426,504
+  -> rel_speaks_to,96,66,83,8,103
+  -> rel_mentions,872,892,553,63,973
+[relationships:spatial],7412,6140,5462,9056,6738
+  -> rel_is_shown_in,2067,1280,1598,2534,1815
+  -> rel_occurs_in,2586,2623,2118,2149,2294
+  -> rel_in,1787,1143,1067,2369,1571
+  -> rel_near,865,969,610,1669,954
+  -> rel_left_of,5,43,1,24,9
+  -> rel_right_of,5,43,1,24,9
+  -> rel_in_front_of,42,16,28,115,33
+  -> rel_behind,42,16,28,115,33
+  -> rel_on,13,7,11,57,19
+  -> rel_inside,0,0,0,0,1
+[relationships:temporal],2008,2291,1794,1413,1801
+  -> rel_causes,345,475,286,202,274
+  -> rel_continues_into,666,691,629,356,608
+  -> rel_after,236,273,216,217,236
+  -> rel_before,236,273,216,217,236
+  -> rel_overlaps,525,579,447,421,447
+[meta:error],,,,,
