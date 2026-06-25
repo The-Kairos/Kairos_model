@@ -3,29 +3,44 @@ Scene
 Character
 Object
 Location
-Action
+Action (an event actively done by human)
 Emotion
 Topic
 
-Fixed relations (all are unidirectional)
-Scene <NEXT> Scene
-/ Scene <REFERENCES_PAST> (Previous) Scene 
-Scene <HAS_TOPIC> Topic
-Character/Object/Location <IS_SHOWN_IN> Scene
-Character/Object <IS_IN> Location
-Action <OCCURS_IN> Scene
-Character <DOES> Action
-Character <INTERACTS_WITH> Object
-Action <INVOLVES> Object
-Action <TARGETS> Character/Object
-Character <FEELS> Emotion
-Action/Character/Object/Topic <CAUSES> Emotion
-Character <SPEAKS_TO> Character
-Character <MENTIONS> Topic/Character/Object/Location
+Fixed relations (all are unidirectional unless said otherwise)
+    Narrative relations
+        Scene <NEXT> Scene
+        Scene <HAS_TOPIC> Topic
+        Location <IS_SHOWN_IN> Scene
+        Character <DOES> Action <OCCURS_IN> Scene 
+        Character <INTERACTS_WITH> Object <IS_SHOWN_IN> Scene
+        Action <INVOLVES> Object <IS_SHOWN_IN> Scene
+        Action <TARGETS> Character/Object <IS_SHOWN_IN> Scene
+        Character <FEELS> Emotion <IS_SHOWN_IN> Scene
+        Action/Character/Object/Topic <CAUSES> Emotion/Topic <IS_SHOWN_IN> Scene
+        Character <SPEAKS_TO> Character
+        Character <MENTIONS> Topic/Character/Object/Location
 
+    Spatial relations
+        Character/Object <IN> Location 
+        Character/Object <NEAR> Character/Object (bidirectional)
+        Character/Object <LEFT_OF> Character/Object (inverse relation by code to make <RIGHT_OF>)
+        Character/Object <IN_FRONT_OF> Character/Object (inverse relation by code to make <BEHIND>)
+        Object <ON> Object/Location
+        Object <INSIDE> Object/Location
+
+    temporal interval relations
+        Action <CONTINUES_INTO> Action <OCCURS_IN> Scene 
+        Action1 <AFTER> Action2 <(action1) OCCURS_IN> Scene (inverse relation by code to make <BEFORE>)
+        Action1 <OVERLAPS> Action2 <(action1) OCCURS_IN> Scene (bidirectional)
+
+        (can you also add "<OCCURS_IN> Scene" in the as code? not the llm so the prompt is the same just add the "<OCCURS_IN> Scene" when parsing)
+
+        (CONTINUES_INTO is casual; AFTER is non-related but happened sequentially)
 -- 
 
-During scene description creation, the scenes will first be summarized into very short scene descriptions on the first phase. Then the product of the first phase will be used to create longer scene descriptions in the second phase. Before the second phase, I want all the short scene descriptions to be concatenated together and used to extract character arcs, location, action, emotions, and topic notes that we are using. 
+
+During scene description creation, the scenes will first be summarized into very short scene descriptions on the first phase. Then the product of the first phase will be used to create longer scene descriptions in the second phase. Before the second phase, I want all the short scene descriptions to be concatenated together and used to extract character arcs, location, action, emotions, and topic nodes that we are using. 
 
 You will plan a system that will follow the code conventions in main, and you edit src\kg_node_list.py to create a function that will output a list of nodes. that function will be referenced in src\scene_description.py after the first phase and before the second phase to concatenated the short summaries together and create a list of potential nodes. those nodes will be in added in the checkpoint following this format:
 
