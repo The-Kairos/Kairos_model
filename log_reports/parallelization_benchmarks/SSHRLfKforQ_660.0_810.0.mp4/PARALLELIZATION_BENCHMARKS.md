@@ -1,0 +1,37 @@
+# Parallelization Benchmarks
+
+| Timestamp | Video | Mode | Embedding Provider | Embedding Model | Total Wall Sec | Pyscene Sec | Audio and Visual Components | Scene Desc Sec | Narrative Sec | Synopsis Sec | Embedding Sec |
+| --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 2026-06-25 17:19:32 UTC | SSHRLfKforQ_660.0_810.0.mp4 | sequential | gemini | gemini-embedding-001 | 89.830 | 0.848 | 29.034 | 6.555 | 10.227 | 20.757 | 1.565 |
+
+## 2026-06-25 17:19:32 UTC | SSHRLfKforQ_660.0_810.0.mp4 | sequential
+
+- Video path: `/home/Kairos_model/test/benchmarks/cache/qvh_videos/SSHRLfKforQ_660.0_810.0.mp4`
+- Low memory mode: `True`
+- Debug: `False`
+- Quiet: `True`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `89.830` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 0.848 |
+| save_clips | - |
+| sample_frames | 0.226 |
+| caption_frames | 11.482 |
+| sample_fps | 1.799 |
+| detect_object_yolo | 5.941 |
+| audio_scan | 11.634 |
+| asr_timings | 10.439 |
+| ast_timings | 6.951 |
+| describe_scenes | 6.555 |
+| summarize_scenes | 10.227 |
+| synthesize_synopsis | 20.757 |
+| make_embedding | 1.565 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 11.714 |
+| branch_yolo_total | 7.745 |
+| branch_audio_total | 29.034 |

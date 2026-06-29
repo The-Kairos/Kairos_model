@@ -5,6 +5,7 @@
 | 2026-04-07 21:37:43 UTC | Argentina_v_France_Full_Penalty_Shoot-out.mp4 | semi_parallel | gemini | gemini-embedding-001 | 343.951 | 2.563 | 225.986 | 80.753 | 14.275 | 11.155 | 3.951 |
 | 2026-04-08 02:43:14 UTC | Argentina_v_France_Full_Penalty_Shoot-out.mp4 | semi_parallel | gemini | gemini-embedding-001 | 325.569 | 2.607 | 226.544 | 66.905 | 12.389 | 7.695 | 4.176 |
 | 2026-04-08 09:07:04 UTC | Argentina_v_France_Full_Penalty_Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 232.376 | 2.540 | 89.859 | 92.262 | 23.624 | 15.379 | 3.948 |
+| 2026-05-08 09:19:31 UTC | Argentina_v_France_Full_Penalty_Shoot-out.mp4 | parallel | gemini | gemini-embedding-001 | 325.148 | 3.397 | 175.480 | 100.106 | 23.866 | 12.475 | 4.349 |
 
 ## 2026-04-07 21:37:43 UTC | Argentina_v_France_Full_Penalty_Shoot-out.mp4 | semi_parallel
 
@@ -101,3 +102,35 @@
 | branch_blip_total | 89.859 |
 | branch_yolo_total | 41.855 |
 | branch_audio_total | 78.382 |
+
+## 2026-05-08 09:19:31 UTC | Argentina_v_France_Full_Penalty_Shoot-out.mp4 | parallel
+
+- Video path: `/home/Kairos_model/.tmp/kairos/jobs/007386f6-e8c6-48ca-8daa-0230d7ae653b/Argentina_v_France_Full_Penalty_Shoot-out.mp4`
+- Low memory mode: `False`
+- Debug: `False`
+- Quiet: `True`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `325.148` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 3.397 |
+| save_clips | - |
+| sample_frames | 7.625 |
+| caption_frames | 90.582 |
+| sample_fps | 9.418 |
+| detect_object_yolo | 34.567 |
+| audio_scan | 45.700 |
+| asr_timings | 24.096 |
+| ast_timings | 129.768 |
+| describe_scenes | 100.106 |
+| summarize_scenes | 23.866 |
+| synthesize_synopsis | 12.475 |
+| make_embedding | 4.349 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 98.214 |
+| branch_yolo_total | 43.991 |
+| branch_audio_total | 175.480 |

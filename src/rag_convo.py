@@ -188,7 +188,7 @@ def build_contexts(checkpoint: dict):
     return [c for c in (scenes + synopsis) if c and c.strip()]
 
 
-MAX_EMBED_BATCH = 250  # Vertex AI embed_content supports up to 250 items per request.
+MAX_EMBED_BATCH = 100  # Vertex AI embed_content supports up to 250 items per request.
 
 
 def embed_contexts(

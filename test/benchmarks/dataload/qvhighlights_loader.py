@@ -27,12 +27,16 @@ VIDEOS_TARBALL_URL = (
 def download_qvhighlights_annotations(cache_dir, split="val"):
     """Download QVHighlights annotation JSONL from GitHub.
 
+    For test split, downloads the version with ground truth labels.
     Returns path to the downloaded JSONL file.
     """
     cache_dir = Path(cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
 
-    filename = f"highlight_{split}_release.jsonl"
+    if split == "test":
+        filename = "highlight_test_with_gt.jsonl"
+    else:
+        filename = f"highlight_{split}_release.jsonl"
     local_path = cache_dir / filename
 
     if local_path.exists() and local_path.stat().st_size > 0:
@@ -70,6 +74,7 @@ def load_annotations(jsonl_path):
                 "query": entry.get("query", ""),
                 "vid": entry.get("vid", ""),
                 "relevant_windows": entry.get("relevant_windows", []),
+                "relevant_clip_ids": entry.get("relevant_clip_ids", []),
                 "saliency_scores": entry.get("saliency_scores", []),
                 "duration": entry.get("duration", 0),
             })
@@ -154,7 +159,10 @@ def download_videos_tarball(cache_dir, video_dir):
     print(f"[QVH] Extracting tarball to {video_dir}...")
     try:
         with tarfile.open(str(tarball_path), "r:gz") as tar:
-            tar.extractall(path=str(video_dir), filter="data")
+            try:
+                tar.extractall(path=str(video_dir), filter="data")
+            except TypeError:
+                tar.extractall(path=str(video_dir))
         print(f"[QVH] Extraction complete")
         return True
     except Exception as e:
@@ -168,6 +176,7 @@ def _download_env():
     extra = [
         str(Path.home() / ".local" / "bin"),
         str(Path.home() / ".deno" / "bin"),
+        "/opt/conda/lib/python3.10/site-packages/static_ffmpeg/bin/linux",
     ]
     env["PATH"] = os.pathsep.join(extra + [env.get("PATH", "")])
     return env
@@ -193,6 +202,8 @@ def download_video_ytdlp(vid, video_dir, timeout=300):
 
     cmd = [
         "yt-dlp",
+        "--js-runtimes", "node",
+        "--remote-components", "ejs:github",
         "-f", "bestvideo[vcodec~='^avc'][height<=720]+bestaudio/best[vcodec~='^avc'][height<=720]",
         "--merge-output-format", "mp4",
         "-o", str(output_path),
@@ -228,6 +239,67 @@ def download_video_ytdlp(vid, video_dir, timeout=300):
     if output_path.exists():
         output_path.unlink()
     return None
+
+
+def extract_videos_from_tarball(tarball_path, video_dir, cache_dir, split="val"):
+    """Extract split-specific videos from the full QVHighlights tarball.
+
+    Reads the annotation JSONL to determine which video IDs belong to the
+    requested split, then streams through the tarball extracting only those
+    files. This avoids writing the full ~134 GB of videos to disk.
+
+    Returns the number of videos extracted.
+    """
+    tarball_path = Path(tarball_path)
+    video_dir = Path(video_dir)
+    cache_dir = Path(cache_dir)
+    video_dir.mkdir(parents=True, exist_ok=True)
+
+    ann_path = download_qvhighlights_annotations(cache_dir, split=split)
+    if ann_path is None:
+        print(f"[QVH] Cannot determine {split} video IDs without annotations")
+        return 0
+
+    split_vids = set()
+    with open(ann_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            entry = json.loads(line)
+            split_vids.add(entry.get("vid", ""))
+    split_vids.discard("")
+    print(f"[QVH] {len(split_vids)} unique video IDs in {split} split")
+
+    already = set()
+    for mp4 in video_dir.glob("*.mp4"):
+        already.add(mp4.stem)
+    needed = split_vids - already
+    if not needed:
+        print(f"[QVH] All {len(split_vids)} {split} videos already extracted")
+        return len(split_vids)
+    print(f"[QVH] {len(already)} already cached, {len(needed)} to extract")
+
+    count = 0
+    print(f"[QVH] Streaming tarball {tarball_path} ...")
+    with tarfile.open(str(tarball_path), "r:gz") as tar:
+        for member in tar:
+            if not member.isfile() or not member.name.endswith(".mp4"):
+                continue
+            basename = member.name.split("/")[-1]
+            stem = basename.replace(".mp4", "")
+            if stem not in needed:
+                continue
+            member.name = basename
+            tar.extract(member, path=str(video_dir))
+            count += 1
+            if count % 50 == 0:
+                print(f"  [QVH] Extracted {count}/{len(needed)} ...")
+    print(f"[QVH] Extracted {count} {split} videos to {video_dir}")
+    return count + len(already)
+
+
+extract_val_videos_from_tarball = extract_videos_from_tarball
 
 
 def find_video_file(vid, video_dir):
@@ -273,8 +345,6 @@ def prepare_qvhighlights(cache_dir, video_dir, split="val", max_videos=None):
     video_ids = sorted(grouped.keys())
     print(f"[QVH] {len(video_ids)} unique videos")
 
-    tarball_ok = download_videos_tarball(cache_dir, video_dir)
-
     result = []
     skipped = 0
     for vid in video_ids:
@@ -282,7 +352,7 @@ def prepare_qvhighlights(cache_dir, video_dir, split="val", max_videos=None):
             break
 
         video_path = find_video_file(vid, video_dir)
-        if video_path is None and not tarball_ok:
+        if video_path is None:
             video_path = download_video_ytdlp(vid, video_dir)
         if video_path is None:
             skipped += 1

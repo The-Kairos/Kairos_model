@@ -1,0 +1,37 @@
+# Parallelization Benchmarks
+
+| Timestamp | Video | Mode | Embedding Provider | Embedding Model | Total Wall Sec | Pyscene Sec | Audio and Visual Components | Scene Desc Sec | Narrative Sec | Synopsis Sec | Embedding Sec |
+| --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 2026-06-25 22:51:37 UTC | Zhx9Ki9bUkE_510.0_660.0.mp4 | sequential | gemini | gemini-embedding-001 | 136.658 | 0.787 | 55.601 | 8.348 | 6.476 | 9.720 | 3.547 |
+
+## 2026-06-25 22:51:37 UTC | Zhx9Ki9bUkE_510.0_660.0.mp4 | sequential
+
+- Video path: `/home/Kairos_model/test/benchmarks/cache/qvh_videos/Zhx9Ki9bUkE_510.0_660.0.mp4`
+- Low memory mode: `True`
+- Debug: `False`
+- Quiet: `True`
+- Embedding provider: `gemini`
+- Embedding model: `gemini-embedding-001`
+- Total wall time: `136.658` sec
+
+| Step | Wall Time (sec) |
+| --- | ---: |
+| get_scene_list | 0.787 |
+| save_clips | - |
+| sample_frames | 0.854 |
+| caption_frames | 39.005 |
+| sample_fps | 2.203 |
+| detect_object_yolo | 8.712 |
+| audio_scan | 14.864 |
+| asr_timings | 11.031 |
+| ast_timings | 29.698 |
+| describe_scenes | 8.348 |
+| summarize_scenes | 6.476 |
+| synthesize_synopsis | 9.720 |
+| make_embedding | 3.547 |
+
+| Branch | Wall Time (sec) |
+| --- | ---: |
+| branch_blip_total | 39.865 |
+| branch_yolo_total | 10.921 |
+| branch_audio_total | 55.601 |

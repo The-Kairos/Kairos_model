@@ -217,5 +217,22 @@ __marimo__/
 **/.fps/
 **/.frames/
 **/.yolo/
-test/benchmarks/cache/videos/
-test/benchmarks/cache/scenewalk_outputs_heldout/
+
+# ── Benchmark Caches ──────────────────────────────────
+# QVHighlights cache (tarball, videos, outputs, annotations, logs)
+test/benchmarks/cache/qvhighlights/
+
+# SceneWalk cache (outputs, version backups, manifests, aggregation rewrites)
+test/benchmarks/cache/scenewalk/
+
+# TIB cache (outputs, manifests, videos)
+test/benchmarks/cache/tib/
+
+# Temporary files
+.tmp/
+
+# Claude Code session data
+.claude/
+
+# Runtime processed outputs
+_processed/
