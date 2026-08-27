@@ -25,13 +25,13 @@ Concrete approaches to close the gap between Kairos (mAP Avg=20.64) and current 
 
 ## Strategy 2: Two-Stage Retrieval (Retrieve + Rerank)
 
-**Gap addressed:** Kairos does single-pass embedding retrieval. The MAGMaR winner adds LLM reranking.
+**Gap addressed:** Kairos does single-pass embedding retrieval. Adding LLM reranking is a proven improvement.
 
 **What to do:**
 1. Stage 1: Current embedding retrieval (fast, high recall) — retrieve top-20 scenes
 2. Stage 2: LLM reranking — send the query + top-20 scene descriptions to an LLM, ask it to rank by relevance
 
-**Precedent:** "Decoupling Semantics and Logic" (ACL 2026 MAGMaR #1) uses exactly this pattern. They also strategically exclude noisy modalities (OCR/ASR) from Stage 1 but include them in Stage 2.
+**Precedent:** "Decoupling Semantics and Logic" (ACL 2026, [arXiv:2606.07924](https://arxiv.org/abs/2606.07924)) uses exactly this pattern — coarse dense retrieval then fine LLM reranking. They also strategically exclude noisy modalities (OCR/ASR) from Stage 1 but include them in Stage 2. (Note: that system won the MAGMaR competition, which is a different task — cross-video corpus search — but the two-stage retrieval strategy applies to within-video retrieval too.)
 
 **Expected impact:** High. Reranking catches semantic nuances that embedding similarity misses.
 

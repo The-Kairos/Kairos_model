@@ -22,9 +22,10 @@ Kairos uses a "segment → describe → embed → retrieve" pipeline. This docum
 ### Decoupling Semantics and Logic (ACL 2026 MAGMaR Workshop)
 - **Paper:** [arXiv:2606.07924](https://arxiv.org/abs/2606.07924)
 - **Pipeline:** Chunk video → generate multimodal descriptions → dense embedding retrieval → LLM reranking with full context (including OCR/ASR)
-- **Results:** **#1 on MAGMaR Retrieval leaderboard**
+- **Results:** #1 on MAGMaR Retrieval leaderboard
 - **Difference from Kairos:** Two-stage retrieval (coarse dense retrieval + fine LLM reranking). Strategically excludes noisy modalities (OCR/ASR) during initial retrieval but re-incorporates them during reranking.
-- **Significance:** **Closest architectural match to Kairos.** Also a Video RAG pipeline. The two-stage retrieval strategy is something Kairos could adopt.
+- **Significance:** The winning *system* uses a pipeline similar to Kairos (chunk → describe → retrieve → rerank). However, the MAGMaR *benchmark* itself is cross-video corpus search across ~110K multilingual videos with persona-constrained generation — a fundamentally different task from what Kairos does (within-video retrieval). The two-stage retrieval strategy is worth adopting regardless.
+- **Note:** MAGMaR was dropped as a candidate benchmark — see [07_BENCHMARK_ALTERNATIVES_HONEST_ASSESSMENT.md](07_BENCHMARK_ALTERNATIVES_HONEST_ASSESSMENT.md).
 
 ### GranAlign (AAAI 2026)
 - **Paper:** [arXiv:2601.00584](https://arxiv.org/abs/2601.00584)
@@ -84,10 +85,10 @@ Kairos uses a "segment → describe → embed → retrieve" pipeline. This docum
 - **Approach:** Dual-channel retrieval: graph-based textual knowledge + multimodal context. Cross-video knowledge graphs.
 - **Target:** Cross-video understanding, not within-video MR.
 
-### CARVE / V-RAGBench (2026)
+### CARVE / V-RAGBench (2026) — DROPPED
 - **Paper:** [arXiv:2606.13141](https://arxiv.org/abs/2606.13141)
 - **Approach:** Parallel retrievers across modality-granularity configurations → chunk-adaptive reranking → interleaved evidence generation
-- **Significance:** Establishes a benchmark for Video RAG systems. Operates at chunk level within videos.
+- **Note:** Dropped as a candidate benchmark. Uses egocentric (first-person head-mounted camera) video — too much domain shift for Kairos's BLIP/YOLO pipeline. Also requires Ego4D license agreement + 5.4TB download. See [07_BENCHMARK_ALTERNATIVES_HONEST_ASSESSMENT.md](07_BENCHMARK_ALTERNATIVES_HONEST_ASSESSMENT.md).
 
 ### ForeSea (ECCV 2026)
 - **Paper:** [arXiv:2603.22872](https://arxiv.org/abs/2603.22872)
