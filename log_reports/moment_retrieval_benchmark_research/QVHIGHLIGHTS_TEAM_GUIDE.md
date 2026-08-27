@@ -1,17 +1,20 @@
 # QVHighlights Benchmarking — Team Reference Guide
 
-> **Purpose:** This document explains how Kairos was benchmarked on the QVHighlights moment retrieval dataset. Written in Q&A style for the team. Includes a new temporal offset metric (Section 7) that measures how many seconds off our predictions are, and a plan for a holdout demo (Section 8) running Kairos and Moment-DETR side by side on an unseen video to show that Kairos can compete with a supervised model despite never being trained on this dataset.
+> **Purpose:** This document explains how Kairos was benchmarked on the QVHighlights moment retrieval dataset. Written in Q&A style for the team. Includes a new temporal offset metric (Section 9) that measures how many seconds off our predictions are, and a plan for a holdout demo (Section 10) running Kairos and Moment-DETR side by side on an unseen video to see how they both work.
 
 ### Table of Contents
 
 1. [The Benchmark](#section-1-the-benchmark) — What is QVHighlights, dataset splits, why no leaderboard
 2. [How Kairos Makes a Prediction](#section-2-how-kairos-makes-a-prediction) — End-to-end pipeline, embeddings, cosine similarity, scene merging
-3. [The Evaluation Metrics](#section-3-the-evaluation-metrics) — IoU, R@1, mAP explained with worked examples
-4. [Our Results and What They Mean](#section-4-our-results-and-what-they-mean) — Kairos scores, comparison tables, what is Moment-DETR
-5. [Why Kairos Struggles](#section-5-why-kairos-struggles-the-granularity-problem) — Scene boundaries don't match GT moment boundaries
-6. [Where Our Files Are](#section-6-where-our-files-are) — Code and data file locations
-7. [The Temporal Offset Metric](#section-7-the-temporal-offset-metric) — New metric measuring seconds off, results on 1,542 predictions
-8. [Holdout Demo Plan](#section-8-next-step--holdout-demo-kairos-vs-moment-detr) — Side-by-side comparison on an unseen video (PLANNED)
+3. [How QVHighlights Was Built and How Moment-DETR Works](#section-3-how-the-qvhighlights-team-built-everything-data-to-model) — From YouTube videos to trained model, step by step with diagrams
+4. [Why These Metrics](#section-4-why-these-metrics) — How the dataset and systems connect to IoU, Recall, and mAP
+5. [The Evaluation Metrics in Detail](#section-5-the-evaluation-metrics-in-detail) — Worked examples with numbers for IoU, R@1, mAP
+6. [Our Results and What They Mean](#section-6-our-results-and-what-they-mean) — Kairos scores, comparison tables
+7. [Why Kairos Struggles](#section-7-why-kairos-struggles) — Scene boundaries don't match GT moment boundaries
+8. [Where Our Files Are](#section-8-where-our-files-are) — Code and data file locations
+9. [The Temporal Offset Metric](#section-9-the-temporal-offset-metric) — New metric measuring seconds off, results on 1,542 predictions
+10. [Holdout Demo Plan](#section-10-holdout-demo-plan) — Side-by-side comparison on an unseen video (PLANNED)
+11. [Is Comparing Kairos to Supervised Models Valid?](#section-11-is-comparing-kairos-to-supervised-models-valid) — Standard practice, published examples, best benchmark for MR
 
 ---
 
@@ -217,7 +220,535 @@ We used a 5-second merge gap, meaning any two retrieved scenes within 5 seconds 
 
 ---
 
-## Section 3: The Evaluation Metrics
+## Section 3: How the QVHighlights Team Built Everything (Data to Model)
+
+This section explains what the QVHighlights authors (Lei et al.) actually did — from collecting YouTube videos to training Moment-DETR. All details come from the paper ([arXiv:2107.09609](https://arxiv.org/abs/2107.09609), NeurIPS 2021).
+
+### Step 1 — Collect raw YouTube videos
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 1: VIDEO COLLECTION                           │
+│                                                     │
+│  Searched YouTube for:                              │
+│    "daily vlog", "travel vlog", "news hurricane"    │
+│                                                     │
+│  Filters:                                           │
+│    - Uploaded after 2016                            │
+│    - At least 100 views                             │
+│    - Not heavily disliked                           │
+│                                                     │
+│  Raw video lengths: 5–30 minutes each               │
+│                                                     │
+│  Result: thousands of raw YouTube videos            │
+│    → 4,473 daily vlog queries                       │
+│    → 4,694 travel vlog queries                      │
+│    → 1,143 news queries                             │
+└─────────────────────────────────────────────────────┘
+```
+
+### Step 2 — Cut into 150-second clips
+
+The raw 5–30 minute videos were **trimmed into 150-second segments**. This is why every QVHighlights video is exactly 150 seconds. They did this to keep annotation manageable — watching a 30-minute video and labeling moments would take too long and produce inconsistent results.
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 2: TRIM TO 150 SECONDS                       │
+│                                                     │
+│  Raw video:  [0:00 ──────────────────── 12:30]      │
+│                                                     │
+│  Trimmed:    [2:00 ──── 4:30]  = 150 seconds        │
+│              [5:00 ──── 7:30]  = 150 seconds        │
+│              [8:00 ──── 10:30] = 150 seconds        │
+│                                                     │
+│  Each 150-second clip becomes one "video" in the    │
+│  dataset. Total: 10,148 videos.                     │
+└─────────────────────────────────────────────────────┘
+```
+
+### Step 3 — Divide each video into 2-second clips
+
+Every 150-second video is split into a grid of **75 clips** (150 / 2 = 75). Each clip is exactly 2 seconds. This is the fundamental unit of annotation — annotators select which 2-second clips are relevant to a query.
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 3: SPLIT INTO 2-SECOND CLIPS                  │
+│                                                     │
+│  Video (150 seconds):                               │
+│                                                     │
+│  [0-2s][2-4s][4-6s][6-8s] ... [146-148s][148-150s]  │
+│   clip   clip  clip  clip       clip       clip     │
+│    #1     #2    #3    #4        #74        #75      │
+│                                                     │
+│  75 clips per video, each exactly 2 seconds         │
+│                                                     │
+│  This is also why Moment-DETR extracts features     │
+│  every 2 seconds — one feature vector per clip.     │
+└─────────────────────────────────────────────────────┘
+```
+
+### Step 4 — Annotators write queries and select moments
+
+Amazon Mechanical Turk workers (543 took a qualification test, 48% passed) did two things per video:
+
+**4A.** Watch the 150-second video and **write a query** describing something interesting they saw — a free-form English sentence like _"Girls are having drinks together at a wooden bench on a deck."_
+
+**4B.** Then the same worker sees a grid of all 75 clips and **clicks on every clip relevant to their query**. Consecutive selected clips form a **moment**.
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 4: ANNOTATION (by Mechanical Turk workers)    │
+│                                                     │
+│  4A. Worker watches video, writes query:            │
+│      "Girls having drinks at a wooden bench"        │
+│                                                     │
+│  4B. Worker sees clip grid, selects relevant ones:  │
+│                                                     │
+│  [  ][  ][  ][  ][  ][  ][  ][  ][  ][  ][  ]       │
+│   2s  4s  6s  8s 10s ... ... ... ... ... ...        │
+│                                                     │
+│  [  ][  ][  ][  ][  ][  ][  ][  ][XX][XX][XX]       │
+│                                        ▲  ▲  ▲      │
+│                                    selected clips   │
+│  [XX][XX][XX][XX][  ][  ][  ][  ][  ][  ][  ]       │
+│   ▲  ▲  ▲  ▲                                       │
+│   selected clips                                    │
+│                                                     │
+│  Consecutive selections → one MOMENT:               │
+│  Moment = [110s → 124s]  (7 clips × 2s = 14s)      │
+│                                                     │
+│  Multiple disjoint selections are allowed.          │
+│  Average: 1.8 moments per query.                    │
+│  Average moment length: 24.6 seconds.               │
+└─────────────────────────────────────────────────────┘
+```
+
+**What is a "moment"?** A moment is a continuous time window where the described event happens. It is made of consecutive 2-second clips selected by the annotator. A query can have multiple moments (e.g., a person cooking appears at 10-30s and again at 80-95s).
+
+### Step 5 — Different annotators rate saliency
+
+A **separate group** of 3 workers rates each selected clip on a 5-point scale. This is a second pass — the clips were already selected as relevant in Step 4. Now the question is: **how relevant is each clip compared to the others?**
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 5: SALIENCY ANNOTATION (3 different workers)  │
+│                                                     │
+│  Query: "Girls having drinks at a bench"            │
+│  Moment clips: [110s][112s][114s][116s][118s]...    │
+│                                                     │
+│  Worker A:      4     5     5     3     4           │
+│  Worker B:      3     5     4     4     3           │
+│  Worker C:      4     4     5     3     4           │
+│                                                     │
+│  All 3 scores are kept (used for highlight eval).   │
+│  Kairos does not use saliency — only moments.       │
+└─────────────────────────────────────────────────────┘
+```
+
+### Q: What exactly are saliency scores and why do they matter?
+
+**Saliency** = how important or interesting a clip is relative to the query. Not all clips within a moment are equally relevant. Example:
+
+```
+Query: "Girls having drinks at a bench"
+Moment: [110s → 124s]
+
+Clip [110-112s]: Girls walking toward bench         → Score: 3 (Fair)
+Clip [112-114s]: Girls sit down, pick up drinks     → Score: 4 (Good)
+Clip [114-116s]: Girls clinking glasses, laughing   → Score: 5 (Very Good)
+Clip [116-118s]: Close-up of drinks on table        → Score: 3 (Fair)
+Clip [118-120s]: Girls talking, drinks in hand      → Score: 4 (Good)
+Clip [120-122s]: One girl looking at phone          → Score: 2 (Bad)
+Clip [122-124s]: Girls resume conversation          → Score: 3 (Fair)
+```
+
+All 7 clips are inside the moment (they're all "relevant"), but clip [114-116s] is the **most salient** — it captures the core of what the query describes. Clip [120-122s] is the **least salient** — she's looking at her phone, barely related to "having drinks."
+
+**The rating scale:**
+| Score | Label | Meaning |
+|-------|-------|---------|
+| 5 | Very Good | This clip perfectly captures what the query describes |
+| 4 | Good | Clearly relevant, shows the described activity |
+| 3 | Fair | Somewhat relevant, partially matches |
+| 2 | Bad | Barely relevant, only loosely connected |
+| 1 | Very Bad | Not relevant (annotator probably made a mistake selecting it) |
+
+**Why 3 workers per clip?** Different people have different opinions about what's "interesting." By collecting 3 independent ratings, the evaluation becomes more robust. The paper keeps all 3 scores — during evaluation, a clip is compared against each annotator separately, and results are averaged.
+
+**How saliency is used in QVHighlights evaluation:**
+
+The benchmark has **two tasks**, not one:
+
+1. **Moment Retrieval (MR)** — predict the time window where an event happens. This is what we benchmarked Kairos on. Saliency scores are NOT used here.
+
+2. **Highlight Detection (HD)** — rank all 2-second clips by how interesting they are for the query. This IS where saliency scores are used. A clip rated "Very Good" (5) by at least 2 of 3 annotators is considered a "highlight." The model must score these clips higher than non-highlight clips.
+
+```
+Moment Retrieval: "WHERE does this happen?"  → uses moment annotations
+Highlight Detection: "WHICH clips are most interesting?" → uses saliency scores
+```
+
+**Kairos was only evaluated on Moment Retrieval.** We did not evaluate highlight detection because Kairos returns whole scenes, not per-clip saliency rankings. Moment-DETR has a separate saliency prediction head that outputs one score per clip for highlight detection.
+
+**How Moment-DETR uses saliency during training:**
+
+The saliency loss forces the model to learn that clips inside moments should score higher than clips outside, and that high-saliency clips should score higher than low-saliency clips:
+
+```
+Loss = max(0, 0.2 + score(low-saliency clip) - score(high-saliency clip))
+     + max(0, 0.2 + score(clip outside moment) - score(clip inside moment))
+
+If the model correctly ranks high > low by at least 0.2, loss = 0 (good).
+If the model ranks them wrong, loss > 0 (penalized).
+```
+
+**The authors found that this saliency loss helps moment retrieval too — jointly learning to rank clip importance makes the model better at finding moment boundaries.**
+
+### Step 6 — Split into train/val/test
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 6: DATA SPLIT                                 │
+│                                                     │
+│  Total: 10,310 queries across 10,148 videos         │
+│         18,367 moments                              │
+│                                                     │
+│  Train:  70%  →  7,218 queries  (for training)      │
+│  Val:    15%  →  1,550 queries  (for tuning)        │
+│  Test:   15%  →  1,542 queries  (for final eval)    │
+│                                                     │
+│  Kairos used NONE of the train or val data.         │
+│  We only evaluated on the test split.               │
+└─────────────────────────────────────────────────────┘
+```
+
+### Step 7 — Extract video features for Moment-DETR
+
+Before training, Moment-DETR needs **numerical representations** of each 2-second clip. Two feature extractors run on every clip:
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 7: FEATURE EXTRACTION (for Moment-DETR)       │
+│                                                     │
+│  Each 2-second clip goes through TWO models:        │
+│                                                     │
+│  A) CLIP ViT-B/32 (visual encoder)                  │
+│     → 512 numbers per clip                          │
+│     → captures what objects/scenes are in the clip  │
+│                                                     │
+│  B) SlowFast R50 (video action model)               │
+│     → 2304 numbers per clip                         │
+│     → captures motion and actions in the clip       │
+│                                                     │
+│  Combined: 512 + 2304 = 2816 numbers per clip       │
+│                                                     │
+│  A 150-second video has 75 clips:                   │
+│  Video features = 75 × 2816 numbers                 │
+│                                                     │
+│  The query text also goes through CLIP text encoder: │
+│  Query features = ~11 tokens × 512 numbers          │
+│                                                     │
+│  Both are projected down to 256 dimensions via      │
+│  2-layer perceptrons, then concatenated.             │
+└─────────────────────────────────────────────────────┘
+```
+
+**Key difference from Kairos:** Moment-DETR uses pre-trained visual feature extractors (CLIP, SlowFast) that operate directly on video pixels. Kairos converts video to text first (BLIP captions, YOLO objects, Whisper audio), then embeds the text. Moment-DETR never sees text descriptions of scenes — it works with raw visual features.
+
+### Step 8 — Train Moment-DETR
+
+The model is a transformer encoder-decoder with **10 moment queries**. Each moment query is a learned slot that specializes in detecting moments at specific locations and lengths.
+
+```
+┌─────────────────────────────────────────────────────┐
+│  STEP 8: MOMENT-DETR ARCHITECTURE                   │
+│                                                     │
+│  INPUT:                                             │
+│    Video features: 75 clips × 256 dims              │
+│    Query features: ~11 tokens × 256 dims            │
+│    Combined: ~86 vectors × 256 dims                 │
+│                                                     │
+│         ┌─────────────────────┐                     │
+│         │   ENCODER (2 layers)│                     │
+│         │                     │                     │
+│         │  Self-attention over│                     │
+│         │  ALL video clips +  │                     │
+│         │  ALL query tokens   │                     │
+│         │  simultaneously     │                     │
+│         │                     │                     │
+│         │  This is where the  │                     │
+│         │  model learns which │                     │
+│         │  clips match which  │                     │
+│         │  query words        │                     │
+│         └────────┬────────────┘                     │
+│                  │                                  │
+│         ┌────────▼────────────┐                     │
+│         │  DECODER (2 layers) │                     │
+│         │                     │                     │
+│         │  10 moment queries  │                     │
+│         │  attend to encoder  │                     │
+│         │  output via cross-  │                     │
+│         │  attention          │                     │
+│         │                     │                     │
+│         │  Each slot learns   │                     │
+│         │  to detect moments  │                     │
+│         │  at specific parts  │                     │
+│         │  of the video       │                     │
+│         └────────┬────────────┘                     │
+│                  │                                  │
+│         ┌────────▼────────────┐                     │
+│         │  PREDICTION HEADS   │                     │
+│         │                     │                     │
+│         │  For each of 10     │                     │
+│         │  slots, predict:    │                     │
+│         │                     │                     │
+│         │  1. Center + Width  │                     │
+│         │     (where is the   │                     │
+│         │      moment?)       │                     │
+│         │                     │                     │
+│         │  2. Foreground or   │                     │
+│         │     Background?     │                     │
+│         │     (is this slot   │                     │
+│         │      a real moment  │                     │
+│         │      or empty?)     │                     │
+│         └─────────────────────┘                     │
+│                                                     │
+│  OUTPUT: 10 predictions, each with:                 │
+│    - center (0.0 to 1.0, normalized by video)       │
+│    - width  (0.0 to 1.0, normalized by video)       │
+│    - confidence (foreground probability)             │
+│                                                     │
+│  Convert to timestamps:                             │
+│    start = (center - width/2) × 150                 │
+│    end   = (center + width/2) × 150                 │
+│                                                     │
+│  Example: center=0.5, width=0.2                     │
+│    start = (0.5 - 0.1) × 150 = 60.0s               │
+│    end   = (0.5 + 0.1) × 150 = 90.0s               │
+│    → Prediction: [60.0s, 90.0s]                     │
+└─────────────────────────────────────────────────────┘
+```
+
+### Q: What are "moment queries" and why 10?
+
+Moment queries are 10 **learned slots** — each one is a 256-dimensional vector that the model learns during training. They are NOT actual text queries. Think of them as 10 empty buckets. During training, each bucket learns to specialize:
+
+- Slot 1 might learn to detect short moments near the start of the video
+- Slot 2 might learn to detect short moments near the end
+- Slot 3 might learn to detect long moments in the middle
+
+The authors tested 5, 10, 20, 50, and 100 slots. 10 worked best — more slots caused confusion because the model struggled to assign ground truths to so many slots.
+
+### Q: How does Moment-DETR learn? (The training loop)
+
+For each training example (video + query + correct moments):
+
+```
+┌─────────────────────────────────────────────────────┐
+│  TRAINING — ONE EXAMPLE                             │
+│                                                     │
+│  1. Model outputs 10 predictions                    │
+│     Pred 1: [20s-40s] conf=0.82                     │
+│     Pred 2: [60s-90s] conf=0.71                     │
+│     Pred 3: [0s-10s]  conf=0.45                     │
+│     ...                                             │
+│     Pred 10: [100s-120s] conf=0.12                  │
+│                                                     │
+│  2. Ground truth has 2 moments:                     │
+│     GT A: [22s-38s]                                 │
+│     GT B: [65s-85s]                                 │
+│     (+ 8 empty "background" slots)                  │
+│                                                     │
+│  3. HUNGARIAN MATCHING — find the best assignment:  │
+│     Pred 1 ↔ GT A  (IoU=0.72, good match)          │
+│     Pred 2 ↔ GT B  (IoU=0.68, good match)          │
+│     Pred 3 ↔ background (no GT to match)            │
+│     ...                                             │
+│     Pred 10 ↔ background                            │
+│                                                     │
+│  4. Compute LOSSES (how wrong was each prediction): │
+│                                                     │
+│     a) L1 loss — are center+width close to GT?      │
+│        |pred_center - gt_center| +                  │
+│        |pred_width - gt_width|                      │
+│                                                     │
+│     b) IoU loss — does the window overlap GT?       │
+│        1 - IoU(pred, gt)                            │
+│                                                     │
+│     c) Classification loss — did the model say      │
+│        "foreground" for matched slots and            │
+│        "background" for unmatched ones?              │
+│                                                     │
+│     d) Saliency loss — did the model rank clips     │
+│        inside moments higher than clips outside?     │
+│                                                     │
+│  5. BACKPROPAGATION — adjust all model weights      │
+│     to reduce these losses                          │
+│                                                     │
+│  6. Repeat 7,218 × 200 = 1,443,600 times           │
+│     (200 epochs on the training set)                │
+│     Takes ~12 hours on a single RTX 2080Ti GPU      │
+└─────────────────────────────────────────────────────┘
+```
+
+### Q: What is Hungarian matching?
+
+The model outputs 10 predictions, but there are usually only 1-2 ground truth moments. We need to decide **which prediction gets compared to which ground truth** before computing the loss. You can't just compare all 10 to all 2 — that would count the same GT moment multiple times.
+
+The **Hungarian algorithm** finds the optimal one-to-one assignment that minimizes total cost. It is the same algorithm used in DETR for object detection (Carion et al., 2020). Unmatched predictions are assigned to "background" — they should predict low confidence.
+
+### Q: Why foreground/background instead of class labels?
+
+In object detection (DETR), each prediction gets a class label like "dog", "car", "person." But in moment retrieval, there are no classes — a moment is just "relevant" or "not relevant" to the query. So Moment-DETR uses:
+
+- **Foreground** = this slot detected a real moment
+- **Background** = this slot is empty, no moment here
+
+The foreground probability acts as a confidence score for ranking predictions.
+
+### Q: How is this different from what Kairos does?
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  MOMENT-DETR (supervised):                          │
+│                                                     │
+│    Video pixels                                     │
+│         → CLIP + SlowFast features (2816 dims)      │
+│         → Transformer encoder-decoder               │
+│         → Directly predicts [center, width]          │
+│         → Convert to [start, end] timestamps        │
+│                                                     │
+│    Trained on 7,218 examples with correct answers.  │
+│    The model learns to directly output timestamps.  │
+│    No scene detection, no text descriptions,         │
+│    no cosine similarity search.                      │
+│                                                     │
+│  ─────────────────────────────────────────────────── │
+│                                                     │
+│  KAIROS (zero-shot):                                │
+│                                                     │
+│    Video pixels                                     │
+│         → PySceneDetect cuts into scenes            │
+│         → BLIP/YOLO/Whisper extract features        │
+│         → GPT-4o writes text descriptions           │
+│         → Gemini embeds descriptions (768 dims)     │
+│         → Cosine similarity finds best match        │
+│         → Returns scene boundaries as prediction    │
+│                                                     │
+│    Never trained on QVHighlights.                   │
+│    Never sees correct answers during processing.     │
+│    Relies on general language understanding.         │
+│    Cannot predict arbitrary timestamps — only       │
+│    scene boundaries set by PySceneDetect.            │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+### Q: Full timeline of what the QVHighlights team did
+
+| Step | What they did                                                      | Result                                 |
+| ---- | ------------------------------------------------------------------ | -------------------------------------- |
+| 1    | Searched YouTube for daily vlogs, travel vlogs, news videos        | Thousands of raw 5-30 minute videos    |
+| 2    | Trimmed each into 150-second segments                              | 10,148 clips, each exactly 150 seconds |
+| 3    | Split each 150-second clip into 75 two-second clips                | The basic annotation unit              |
+| 4    | Hired 543 Mechanical Turk workers, 48% passed a qualification test | ~260 qualified annotators              |
+| 5    | Workers watched videos and wrote free-form queries                 | 10,310 natural language queries        |
+| 6    | Same workers selected relevant 2-second clips for their query      | 18,367 moments (avg 24.6s each)        |
+| 7    | Different workers rated each selected clip 1-5 for saliency        | 3 ratings per clip                     |
+| 8    | Split 70/15/15 into train/val/test                                 | 7,218 / 1,550 / 1,542 queries          |
+| 9    | Extracted CLIP + SlowFast features from every 2-second clip        | 75 × 2816 feature vectors per video    |
+| 10   | Trained Moment-DETR for 200 epochs (~12 hours, 1 GPU)              | R1@0.5 = 52.89%, mAP Avg = 30.73%      |
+| 11   | Pretrained on YouTube ASR captions, then finetuned                 | R1@0.5 = 59.78%, mAP Avg = 36.14%      |
+| 12   | Total cost: ~$16,000 over ~3 months for annotations                | Published at NeurIPS 2021              |
+
+---
+
+## Section 4: Why These Metrics
+
+Now that you know what QVHighlights looks like (Section 1), how Kairos predicts (Section 2), and how the dataset was built and Moment-DETR was trained (Section 3), this section explains **why we use IoU, Recall, and mAP** and how they connect to the prediction task.
+
+### Q: What are we actually comparing?
+
+Both systems output a predicted time window. The dataset has a ground truth time window. We need to measure how close the prediction is to the answer.
+
+```
+What the dataset gives us (ground truth):
+  Query: "Girls having drinks at a bench"
+  Correct answer: [110.0s → 140.0s]     ← human-annotated moment
+
+What Kairos outputs (prediction):
+  Best matching scene: [119.6s → 146.8s]  ← based on cosine similarity
+
+What Moment-DETR outputs (prediction):
+  Highest-confidence slot: [112.3s → 138.5s]  ← based on center+width head
+
+Question: how good is each prediction?
+```
+
+### Q: Why IoU?
+
+Both the ground truth and the prediction are time windows with a start and end. **IoU (Intersection over Union)** measures how much they overlap as a fraction of their combined span. It produces a single number between 0 (no overlap) and 1 (perfect match).
+
+We use IoU because:
+
+- It works regardless of how long the moment is — a 5-second and a 50-second moment are measured on the same 0-to-1 scale
+- It penalizes predictions that are too narrow AND too wide — not just whether the prediction is in the right area
+- It is the standard overlap metric used across all temporal grounding and object detection research
+
+### Q: Why Recall at K (R@K)?
+
+Systems return multiple predictions ranked by confidence. **R@K at IoU=T** asks: _"How often does at least one of the top-K predictions have IoU >= T with the ground truth?"_
+
+We use Recall because:
+
+- It tells us the **success rate** — what percentage of queries does the system get right
+- R@1 measures whether the system's best guess is correct
+- R@5 measures whether the correct answer appears anywhere in the top 5 — useful for systems like Kairos where the right scene might not rank first but is in the top few
+- The IoU threshold (0.5, 0.7) controls how strict "correct" is — 0.5 means at least half overlap, 0.7 means strong overlap
+
+### Q: Why mAP?
+
+Recall only checks "is there a good prediction in the top K?" — it doesn't care about **ranking quality**. Two systems could both have R@5=100%, but one puts the correct answer at rank 1 and the other at rank 5. **mAP (Mean Average Precision)** rewards putting correct answers higher in the ranking.
+
+We use mAP because:
+
+- It is the official primary metric of the QVHighlights benchmark (all papers report it)
+- It captures ranking quality, not just hit-or-miss
+- mAP Avg (averaged across 10 IoU thresholds from 0.5 to 0.95) is the harshest single-number summary — it requires good overlap at strict thresholds too
+- It is directly comparable across papers since everyone computes it with the same official evaluation code
+
+### Q: How do these metrics connect to the two systems?
+
+```
+                        Ground Truth
+                     [110.0s → 140.0s]
+                            │
+               ┌────────────┴────────────┐
+               │                         │
+         Kairos prediction         Moment-DETR prediction
+        [119.6s → 146.8s]         [112.3s → 138.5s]
+               │                         │
+          IoU = 0.554                IoU = 0.847
+               │                         │
+        R@1 at IoU=0.5:            R@1 at IoU=0.5:
+          HIT (0.554 >= 0.5)         HIT (0.847 >= 0.5)
+               │                         │
+        R@1 at IoU=0.7:            R@1 at IoU=0.7:
+          MISS (0.554 < 0.7)         HIT (0.847 >= 0.7)
+               │                         │
+          mAP accounts             mAP accounts
+          for ALL 10 preds         for ALL 10 preds
+          and their ranking        and their ranking
+```
+
+**Key insight:** Moment-DETR gets higher IoU because it was trained to predict precise boundaries. Kairos gets lower IoU not because it finds the wrong part of the video, but because its scene boundaries (set by PySceneDetect) don't align with the annotated moment boundaries.
+
+The detailed calculations with worked examples follow in Section 5.
+
+---
+
+## Section 5: The Evaluation Metrics in Detail
 
 ### Q: What is IoU?
 
@@ -319,7 +850,7 @@ mAP Avg is the harshest because it includes very strict thresholds (0.90, 0.95) 
 
 ---
 
-## Section 4: Our Results and What They Mean
+## Section 6: Our Results and What They Mean
 
 ### Q: What did Kairos score?
 
@@ -363,37 +894,7 @@ Kairos beats CLIP zero-shot by **2.3x** on R@1 and **2.7x** on mAP. Also beats t
 
 Kairos sits **mid-pack** among zero-shot methods — above CLIP and UniVTG, below Moment-GPT and GranAlign.
 
-### Q: What is Moment-DETR and why is it "supervised"?
-
-**Moment-DETR** (from [arXiv:2107.09609](https://arxiv.org/abs/2107.09609)) is a transformer-based neural network that was **trained on the QVHighlights training set** (7,218 labeled examples).
-
-"Supervised" means it saw thousands of examples like:
-
-```
-Training example:
-  Video features: [CLIP visual features at 2-second intervals]
-  Query: "A man opens a car door"
-  Correct answer: [45.0s, 52.0s]
-```
-
-Through **backpropagation** (gradient descent), it learned:
-
-- Which visual features correspond to which query words
-- How to directly predict precise [start, end] timestamps
-- How confident to be in each prediction
-
-**Think of it like an exam:**
-
-- **Moment-DETR** = studied 7,218 practice problems with answer keys
-- **Kairos** = walked in cold, has never seen the exam, uses general knowledge
-
-That's why Kairos at 38.91% vs. Moment-DETR at 52.89% is impressive — zero training, yet beating two supervised methods.
-
-**"Moment-DETR w/ PT"** means it was **pretrained** on additional data (pseudo-labels from YouTube ASR captions) before fine-tuning — even more supervision.
-
----
-
-## Section 5: Why Kairos Struggles (The Granularity Problem)
+## Section 7: Why Kairos Struggles
 
 ### Q: What is the scene granularity mismatch?
 
@@ -424,7 +925,7 @@ The 4.3x gap between short and long confirms the structural mismatch.
 
 ---
 
-## Section 6: Where Our Files Are
+## Section 8: Where Our Files Are
 
 ### Key files in the repository
 
@@ -455,7 +956,7 @@ The 4.3x gap between short and long confirms the structural mismatch.
 
 ---
 
-## Section 7: The Temporal Offset Metric
+## Section 9: The Temporal Offset Metric
 
 ### Q: What's the problem with current metrics?
 
@@ -528,7 +1029,7 @@ We ran this metric on all 1,542 predictions. Results:
 
 ---
 
-## Section 8: Next Step — Holdout Demo (Kairos vs Moment-DETR)
+## Section 10: Holdout Demo Plan
 
 ### Q: What is the holdout demo?
 
@@ -611,6 +1112,94 @@ Kairos returns a single scene inside the correct region, but the scene is shorte
 
 ---
 
+## Section 11: Is Comparing Kairos to Supervised Models Valid?
+
+### Q: Are we comparing apples to oranges?
+
+Kairos is zero-shot (never trained on QVHighlights). Moment-DETR is supervised (trained on 7,218 labeled examples). Putting them in the same table might look unfair. But **every published zero-shot moment retrieval paper does exactly this**, and it is standard practice.
+
+### Q: Who else does this? Give me examples.
+
+**Moment-GPT** (AAAI 2025, [arXiv:2501.07972](https://arxiv.org/abs/2501.07972)):
+
+- Tables 1, 2, and 8 all mix fully-supervised (FS), weakly-supervised (WS), unsupervised (US), and zero-shot (ZS) methods in the same table
+- Compares directly against Moment-DETR, UMT, VTimeLLM, TimeChat
+- No special justification given — treated as standard
+
+**GranAlign** (AAAI 2026, [arXiv:2601.00584](https://arxiv.org/abs/2601.00584)):
+
+- Tables 1, 2, 4, 5 include supervised methods alongside zero-shot results
+- Each row is labeled "FS/WS/US/ZS" so the reader knows the setting
+- States: _"As a zero-shot method, GranAlign incurs no training cost"_ while showing it exceeds some supervised methods
+
+**The QVHighlights paper itself** (Lei et al., NeurIPS 2021):
+
+- Table 3 includes CLIP (zero-shot) in the same table as MCN, CAL, XML, Moment-DETR (all supervised)
+- The authors who created QVHighlights put zero-shot and supervised methods in the same table
+
+**The convention established by:**
+
+- Diwan et al. (2023) and Luo et al. (2023) — cited by Moment-GPT as establishing the zero-shot VMR evaluation setting, including comparison against supervised baselines
+
+### Q: Why is this comparison allowed?
+
+The comparison answers a specific question: **"How much does training on labeled data help compared to what a general-purpose system can do without any training?"**
+
+Nobody claims a zero-shot system "beat" a supervised system as if they had equal resources. The table shows the **gap** between the two approaches and whether it is narrowing over time.
+
+The key requirements are:
+
+1. **Honest labeling** — mark each method as FS, WS, or ZS so the reader knows
+2. **Same evaluation code** — all methods run through the same metrics (we use the official Moment-DETR eval code)
+3. **Same test split** — everyone evaluates on the same 1,542 queries
+4. **Compare within your own category too** — don't only compare against supervised. Show where you stand among other zero-shot methods
+
+We do all four of these in Section 6.
+
+### Q: So is QVHighlights the right benchmark for moment retrieval?
+
+**Yes.** Since we are benchmarking QA and moment retrieval separately, QVHighlights only needs to be the best option for moment retrieval — and it is. Here's why:
+
+| Why QVHighlights is the best MR benchmark | Details                                                                                                                                                                                     |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Most baselines to compare against**     | Every MR paper from 2021 to 2026 reports QVHighlights numbers — Moment-DETR, CLIP, Moment-GPT, GranAlign, REZE, UniVTG. No other MR benchmark has this many zero-shot comparisons available |
+| **Reviewers expect it**                   | It is THE standard moment retrieval benchmark. A paper claiming MR results without QVHighlights would be questioned                                                                         |
+| **No access barriers**                    | Videos come as a pre-cut tarball, official eval code is public, annotations are on GitHub. No NDAs, no license agreements, no multi-TB downloads                                            |
+| **No video rot**                          | ActivityNet has lost 30-40% of its YouTube videos. QVHighlights videos are pre-cut and hosted — they won't disappear                                                                        |
+| **150s video length is fine**             | Since we test long-video capability through QA benchmarks separately, QVHighlights only needs to test whether the retrieval + matching works. It does that well                |
+
+**The alternatives and why they're worse for MR specifically:**
+
+| Benchmark                      | Why not for MR                                                                                                                                                    |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MAD (Movie Audio Descriptions) | NDA required + must source 650 movies yourself. Very few zero-shot baselines (CLIP ZS gets 2.2%, only one other ZS method). High cost, few comparisons            |
+| Charades-STA                   | Videos are only ~30 seconds — even shorter than QVHighlights. Fewer scenes per video for Kairos                                                                   |
+| ActivityNet Captions           | 30-40% of YouTube videos are dead. Results are not reproducible                                                                                                   |
+| Ego4D NLQ                      | First-person (egocentric) video — significant domain shift. BLIP/YOLO may perform poorly on shaky head-mounted camera footage. 5.4TB download + license agreement |
+
+### Q: What about the other evaluations?
+
+Kairos is being evaluated on **separate tasks**, each with its own benchmark:
+
+| Task                 | What it tests                               | Benchmark                        |
+| -------------------- | ------------------------------------------- | -------------------------------- |
+| **Moment Retrieval** | Given a query + video, find the time window | **QVHighlights** (this document) |
+| **QA / RAG Chatbot** | Answering questions about video content     | Being determined separately      |
+
+QVHighlights tests whether Kairos can **find the right moment** in a video. QA benchmarks test whether Kairos can **answer questions** about a video. Each benchmark evaluates one capability. QVHighlights does not need to test everything — it just needs to test MR, and it's the best at that.
+
+### Q: Bottom line — what's the plan?
+
+**For the journal paper:**
+
+1. **QVHighlights for MR** — already done, results in this document
+2. **Separate QA benchmark** — being determined
+3. **MAD** — if movie access can be arranged, to show MR on hour-long videos (same task, same metrics, but on 1-3 hour movies where Kairos's pipeline actually matters)
+
+**The positioning:** Kairos is a general-purpose video understanding system. Moment retrieval is one of many things it can do. QVHighlights is the best MR benchmark because it has the most baselines to compare against, no access barriers, and every MR paper reports results on it.
+
+---
+
 ## Appendix: How the Benchmark Was Run (Timeline)
 
 | Date             | What happened                                                                                                                                                                                                                                                      |
@@ -628,9 +1217,9 @@ Kairos returns a single scene inside the correct region, but the scene is shorte
 
 | Task                                 | Status  | Description                                                     |
 | ------------------------------------ | ------- | --------------------------------------------------------------- |
-| Temporal offset metric               | DONE    | Implemented, run on all 1,542 predictions. Results in Section 7 |
-| Holdout demo (Kairos vs Moment-DETR) | PLANNED | Side-by-side on one unseen video. Plan in Section 8             |
+| Temporal offset metric               | DONE    | Implemented, run on all 1,542 predictions. Results in Section 9 |
+| Holdout demo (Kairos vs Moment-DETR) | PLANNED | Side-by-side on one unseen video. Plan in Section 10            |
 
 ---
 
-_This document covers the complete QVHighlights benchmarking methodology. For the original papers, see the arXiv links above. For implementation details, see the code files listed in Section 6._
+_This document covers the complete QVHighlights benchmarking methodology. For the original papers, see the arXiv links above. For implementation details, see the code files listed in Section 8._
