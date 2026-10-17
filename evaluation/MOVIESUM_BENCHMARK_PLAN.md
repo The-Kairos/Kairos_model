@@ -59,7 +59,8 @@ Compared numerically with [MovieSum Table 3](https://aclanthology.org/2024.findi
 ## 6. Next decisions
 
 - Improve event selection and inspect upstream narrative accuracy while keeping the 650-750-word requirement fixed across systems where supported. Treat Titanic as a development example because it has been used for prompt tuning.
-- Run fresh full-movie timing pilots locally and on the VM, then freeze prompts and scoring settings before evaluating held-out movies.
+- Pilot next: **Yes Man (2008)** (comedy/romance), **Baby Driver (2017)** (action/crime), **Get Out (2017)** (horror/mystery/thriller), then **The Martian (2015)** (sci-fi/adventure/drama). Confirm test-split membership; check turning points, endings, and upstream omissions. These broaden genre coverage, without covering every genre.
+- Record fresh full-movie timings locally and on the VM. Treat pilots used for prompt tuning as development examples; freeze prompts and scoring before evaluating held-out movies.
 - Validate Video ReCap without MovieSum-specific fine-tuning. Use matched movies and documented input/metric differences for direct system comparisons.
 - Report aggregate ROUGE, then add BERTScore and a smaller blinded human review of factuality, plot coverage, and coherence.
 - Save each movie ID, reference, generated summary, model version, prompt, settings, processing time, failure status, and scores. Keep reference summaries out of generation inputs.
