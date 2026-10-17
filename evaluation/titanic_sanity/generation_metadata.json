@@ -1,11 +1,11 @@
 {
   "deployment": "gpt-4o-kairos",
   "response_model": "gpt-4o-2024-11-20",
-  "elapsed_seconds": 15.504439899988938,
+  "elapsed_seconds": 18.176891000010073,
   "usage": {
-    "completion_tokens": 1780,
-    "prompt_tokens": 1967,
-    "total_tokens": 3747,
+    "completion_tokens": 924,
+    "prompt_tokens": 3247,
+    "total_tokens": 4171,
     "completion_tokens_details": {
       "accepted_prediction_tokens": 0,
       "audio_tokens": 0,
@@ -14,17 +14,17 @@
     },
     "prompt_tokens_details": {
       "audio_tokens": 0,
-      "cached_tokens": 0
+      "cached_tokens": 3072
     },
     "latency_checkpoint": {
-      "engine_tbt_ms": 3,
-      "engine_ttft_ms": 84,
-      "engine_ttlt_ms": 5547,
-      "pre_inference_ms": 88,
-      "service_tbt_ms": 3,
-      "service_ttft_ms": 403,
-      "service_ttlt_ms": 5861,
-      "user_visible_ttft_ms": 316
+      "engine_tbt_ms": 4,
+      "engine_ttft_ms": 35,
+      "engine_ttlt_ms": 3362,
+      "pre_inference_ms": 87,
+      "service_tbt_ms": 4,
+      "service_ttft_ms": 412,
+      "service_ttlt_ms": 3734,
+      "user_visible_ttft_ms": 324
     }
   },
   "source": "_processed\\Titanic.1997.mkv\\checkpoint.json",
@@ -32,5 +32,90 @@
   "input_sha256": "61d4c9b2ba39703dceb70d775ba2d730007ebade3667ec2dcd02bbbd8241cf4e",
   "temperature": 0.2,
   "top_p": 1.0,
-  "reference_in_generation": false
+  "reference_in_generation": false,
+  "length_control": {
+    "target": 700,
+    "minimum": 650,
+    "maximum": 750,
+    "counting": "str.split",
+    "passed": true
+  },
+  "attempts": [
+    {
+      "words": 908,
+      "response_model": "gpt-4o-2024-11-20",
+      "usage": {
+        "completion_tokens": 1153,
+        "prompt_tokens": 1994,
+        "total_tokens": 3147,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 1920
+        },
+        "latency_checkpoint": {
+          "engine_tbt_ms": 4,
+          "engine_ttft_ms": 37,
+          "engine_ttlt_ms": 4138,
+          "pre_inference_ms": 87,
+          "service_tbt_ms": 4,
+          "service_ttft_ms": 728,
+          "service_ttlt_ms": 4824,
+          "user_visible_ttft_ms": 642
+        }
+      }
+    },
+    {
+      "words": 714,
+      "response_model": "gpt-4o-2024-11-20",
+      "usage": {
+        "completion_tokens": 924,
+        "prompt_tokens": 3247,
+        "total_tokens": 4171,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 3072
+        },
+        "latency_checkpoint": {
+          "engine_tbt_ms": 4,
+          "engine_ttft_ms": 35,
+          "engine_ttlt_ms": 3362,
+          "pre_inference_ms": 87,
+          "service_tbt_ms": 4,
+          "service_ttft_ms": 412,
+          "service_ttlt_ms": 3734,
+          "user_visible_ttft_ms": 324
+        }
+      }
+    }
+  ],
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a precise and reliable assistant."
+    },
+    {
+      "role": "user",
+      "content": "Write a factual plot synopsis targeting 700 words, strictly between 650 and 750 whitespace-separated words. Use six paragraphs of about 115 words each. Plan the length before writing and check it before returning. Use only the supplied narrative as evidence, not prior knowledge of the film. Explain the main characters, their motivations and relationships, major events, causal connections, conflicts, resolutions, and ending where supported. Preserve any framing story and flashback structure. Use concrete events rather than thematic commentary. Omit camera descriptions, production logos, incidental sounds, speculative interpretations, and disconnected details that cannot be established as plot events. Do not invent missing details or repeat missing-detail disclaimers. Do not pad to meet the word target. Return only the synopsis in prose paragraphs, with no title or analysis.\n\nINPUT NARRATIVE:\n### Fully Merged Coherent Summary (Scenes 0\u20131854, 00:00:00.000 to 03:14:44.631)\n\nThe film opens with serene visuals of mountains, clouds, and stars, accompanied by the caption \"The Great American Journey,\" setting a reflective and grandiose tone. Surreal imagery transitions to black-and-white scenes with text overlays, including \"how did we do,\" as a man stands in darkness. Disconnected visuals follow, featuring people in water, a man performing tricks with a dog, and an old ship with passengers, creating a mix of somber, lighthearted, and historical tones. The title \"Titanic\" is revealed amidst dramatic visuals of light beams in a dark sky, hinting at the tragedy of the Titanic.\n\nUnderwater exploration begins, showing a vessel with lights in a dark environment. Captions ambiguously reference \"spaceship\" and \"alien ship,\" but the visuals suggest a submarine exploring the Titanic wreckage. Abstract visuals, including celestial imagery and sonar-like sounds, create a mysterious atmosphere. Scenes of underwater exploration are interspersed with symbolic and introspective moments, such as a man reflecting in a mirror, staring out a window, and questioning with the text \"what is this.\" The imagery blends human struggle with cosmic elements, while underwater visuals of the Titanic wreckage and a submerged cave-like area convey mystery and suspense.\n\nA reflective moment highlights the emotional impact of encountering the Titanic wreck, with haunting descriptions of the ship emerging \"like a ghost ship.\" The narration shifts to the Titanic's sinking at 2:30 AM on April 15, 1912, while disjointed visuals, such as a man on a plane and another with a rifle, create a disconnect. Scenes of underwater exploration continue, showing a shipwreck, underwater caves, and text overlays like \"Titanic the Great Escape.\" A diver explores the Titanic wreck, with narration confirming the setting and emphasizing the extreme conditions of deep-sea exploration, including immense pressure and technical challenges.\n\nThe narrative focuses on a high-stakes underwater operation led by Brock Lovett, the team leader. The team coordinates tasks such as descending along the shipwreck's hull and exploring specific areas like the D deck reception and dining room. Despite moments of tension and frustration, professionalism and teamwork dominate as the mission progresses. Visuals depict divers navigating underwater caves, illuminated by light beams, and encountering eerie sights such as skulls and glowing marine life. Dialogue conveys the team's efforts to navigate the wreck, with instructions like \"Get in there\" and \"What's the doorframe? Launch it,\" adding urgency to the operation.\n\nThe exploration culminates in moments of awe and discovery. A diver investigates underwater surroundings with a light beam, expressing calmness and wonder. A submarine emits a light beam near a wrecked boat, where fire and light are visible inside, suggesting a significant find. The atmosphere remains somber and mysterious, reflecting the gravity of the Titanic's tragedy and the challenges of uncovering its history. The underwater team navigates near the shipwreck, identifying key locations within the wreck, such as a \"bedroom door,\" and celebrates reaching their goal with excitement. Emotional reactions emerge when a speaker disdainfully references \"Hockley's bed,\" expressing contempt for its historical association. Technological tools, including submarines and robotic devices, aid the investigation of significant objects. Dialogue conveys urgency and curiosity, with instructions like \"Flip it over\" and \"Drop it,\" emphasizing precision and focus. A man observes monitors and reacts with excitement, declaring, \"It's payday, boys,\" signaling a breakthrough.\n\nThe story transitions to an elderly woman, Rose Calvert, who is introduced in a domestic setting. She reflects on her past while watching TV, where a discussion about artifact recovery and ethical concerns unfolds. Rose becomes intrigued by a recovered drawing of a nude woman, which she identifies as herself, saying, \"The woman in the picture is me.\" Brock Lovett contacts Rose, asking if she knows about the \"Heart of the Ocean,\" a diamond necklace tied to the Titanic's history. Rose confirms her connection to the artifact and agrees to join the expedition.\n\nRose arrives aboard the *Keldysh*, where Brock welcomes her. She reflects on the Titanic's sinking and the necklace's history, explaining its transformation from the \"Blue Diamond of the Crown\" into the \"Heart of the Ocean.\" She recounts its immense value and historical significance, adding that it disappeared with the Titanic. The narrative shifts between forensic analysis of recovered artifacts and Rose's personal recollections, blending technical investigation with emotional storytelling. As Rose prepares to recount her Titanic experience, the film transitions to visuals of icy waters and the Titanic hitting an iceberg, \"punching holes like Morse code.\" The disaster is described in forensic detail, but Rose contrasts this with her emotional perspective, saying, \"Of course, the experience of it was... somewhat different.\"\n\nIn a dimly lit room, Rose begins recounting her memories of the Titanic, describing its pristine condition and calling it \"the ship of dreams,\" vividly recalling sensory details like the smell of fresh paint and unused china. The scene transitions to visuals of the Titanic docked at a port, where passengers and crew bustle about. A man confidently declares, \"God himself could not sink this ship,\" emphasizing the ship's perceived invincibility. Amid the excitement, societal dynamics emerge as a man remarks to Ruth, \"Your daughter is far too difficult to impress,\" highlighting contrasting attitudes toward the Titanic's grandeur. Rose reflects on her life, describing it as \"an endless parade\" of shallow social events, feeling isolated and unnoticed.\n\nJack Dawson, a third-class passenger, is introduced through a card game where he wins his Titanic ticket. Jack and his friends, Fabrizio and Tommy, board the ship with excitement, contrasting with the formality of the upper-class passengers. Rose, feeling trapped by societal expectations and her engagement to Caledon Hockley, contemplates suicide by jumping off the ship's stern. Jack intervenes, saving her life and beginning their connection. Their interaction is charged with emotional intensity, as Jack's humor and sincerity contrast with Rose's guarded demeanor.\n\nJack and Rose's bond deepens as they spend time together, sharing stories and moments of vulnerability. Jack introduces Rose to the lively steerage party, where they dance, laugh, and embrace the carefree spirit of the lower decks. Meanwhile, Cal grows increasingly controlling, asserting his dominance over Rose and emphasizing societal expectations. Rose's mother pressures her to marry Cal to secure their family's financial future, further highlighting the constraints of her privileged yet stifling life.\n\nAs Jack and Rose's relationship blossoms, they navigate the rigid class boundaries aboard the Titanic. Jack shares his philosophy of living life to the fullest, encouraging Rose to break free from societal constraints. Their connection is symbolized by moments of intimacy and shared aspirations, such as Jack teaching Rose to spit \"like a man\" and their playful banter about freedom and exploration.\n\nThe narrative also introduces subtle foreshadowing of the Titanic's impending disaster. Discussions of increasing the ship's speed and lighting the last boilers underscore the looming danger, blending routine operations with a sense of urgency. Amidst the grandeur of the Titanic and the contrasting atmospheres of its upper and lower decks, Jack and Rose's growing connection serves as a focal point, highlighting their defiance of societal norms and the emotional depth of their relationship.\n\nThe Titanic's collision with an iceberg marks the turning point, triggering chaos and tragedy. Urgent commands\u2014\"Iceberg, right ahead!\"\u2014and frantic efforts to mitigate damage fail as the ship's critical condition becomes clear. Passengers experience denial, fear, and resignation as lifeboats are prepared, revealing class divisions and moral dilemmas. Jack and Rose navigate the ship's disarray, with Rose demonstrating determination as she moves through flooded hallways to free Jack. The sinking progresses, with chaotic visuals of water flooding staircases and hallways, gunshots enforcing evacuation protocols, and passengers grappling with freezing water and limited lifeboats. Emotional sacrifices and moments of courage emerge, such as musicians playing to maintain calm and a couple holding hands in quiet solidarity.\n\nJack and Rose's bond remains central as they struggle to survive in the freezing ocean. Jack urges Rose to live a full life, expressing his love and selflessness. Rose promises, \"I'll never let go,\" as Jack succumbs to the cold. Rose survives, clinging to a piece of debris until rescued. The elderly Rose reflects on Jack's impact, stating he \"saved me in every way that a person can be saved.\" She reveals she has no photograph of him, preserving his memory in her heart.\n\nThe film concludes with surreal and symbolic imagery, including a grand ballroom where Jack and Rose reunite in a romantic embrace, surrounded by the Titanic's passengers. The iconic song \"My Heart Will Go On\" plays, underscoring themes of enduring love, sacrifice, and memory."
+    },
+    {
+      "role": "assistant",
+      "content": "The film begins with serene visuals of mountains, clouds, and stars, accompanied by the caption \"The Great American Journey,\" establishing a reflective tone. Surreal imagery transitions to black-and-white scenes with text overlays, including \"how did we do,\" as a man stands in darkness. Disconnected visuals follow, featuring people in water, a man performing tricks with a dog, and an old ship with passengers, creating a mix of somber, lighthearted, and historical tones. The title \"Titanic\" appears amidst dramatic visuals of light beams in a dark sky, hinting at the tragedy to come. Underwater exploration begins, showing a vessel with lights in a dark environment, suggesting a submarine investigating the Titanic wreckage. Abstract visuals and sonar-like sounds create a mysterious atmosphere.\n\nThe narrative introduces Brock Lovett, the leader of an underwater expedition exploring the Titanic wreck. His team navigates the ship's remains, encountering eerie sights such as skulls and glowing marine life. The operation focuses on specific areas of the wreck, including the D deck reception and dining room, with dialogue emphasizing urgency and precision. Despite moments of tension, the team demonstrates professionalism and teamwork as they uncover artifacts and navigate the wreckage. The exploration culminates in moments of awe and discovery, including a significant find inside a wrecked boat illuminated by fire and light. Emotional reactions emerge when a speaker disdainfully references \"Hockley's bed,\" expressing contempt for its historical association. Technological tools, such as submarines and robotic devices, aid the investigation, with dialogue conveying urgency and curiosity.\n\nThe story transitions to an elderly woman, Rose Calvert, introduced in a domestic setting. She watches TV coverage of artifact recovery and ethical concerns surrounding the Titanic wreck. Rose becomes intrigued by a recovered drawing of a nude woman, identifying herself as the subject and saying, \"The woman in the picture is me.\" Brock Lovett contacts Rose, asking about the \"Heart of the Ocean,\" a diamond necklace tied to the Titanic's history. Rose confirms her connection to the artifact and agrees to join the expedition. Aboard the *Keldysh*, Brock welcomes Rose, who reflects on the Titanic's sinking and the necklace's transformation from the \"Blue Diamond of the Crown\" into the \"Heart of the Ocean.\" Rose recounts its immense value and disappearance with the Titanic, blending forensic analysis of artifacts with her personal recollections.\n\nRose begins recounting her memories of the Titanic, describing its pristine condition and calling it \"the ship of dreams.\" She vividly recalls sensory details, such as the smell of fresh paint and unused china. The scene transitions to visuals of the Titanic docked at a port, bustling with passengers and crew. A man confidently declares, \"God himself could not sink this ship,\" emphasizing the ship's perceived invincibility. Amid the excitement, societal dynamics emerge, as a man remarks to Ruth, \"Your daughter is far too difficult to impress,\" highlighting contrasting attitudes toward the Titanic's grandeur. Rose reflects on her life, describing it as \"an endless parade\" of shallow social events, feeling isolated and unnoticed. Jack Dawson, a third-class passenger, is introduced through a card game where he wins his Titanic ticket. Jack and his friends, Fabrizio and Tommy, board the ship with excitement, contrasting with the formality of the upper-class passengers.\n\nRose, feeling trapped by societal expectations and her engagement to Caledon Hockley, contemplates suicide by jumping off the ship's stern. Jack intervenes, saving her life and beginning their connection. Their interaction is charged with emotional intensity, as Jack's humor and sincerity contrast with Rose's guarded demeanor. Jack and Rose's bond deepens as they spend time together, sharing stories and moments of vulnerability. Jack introduces Rose to the lively steerage party, where they dance, laugh, and embrace the carefree spirit of the lower decks. Meanwhile, Cal grows increasingly controlling, asserting his dominance over Rose and emphasizing societal expectations. Rose's mother pressures her to marry Cal to secure their family's financial future, further highlighting the constraints of her privileged yet stifling life. Jack encourages Rose to break free from societal norms, symbolized by moments of intimacy and shared aspirations.\n\nThe Titanic's collision with an iceberg marks the turning point, triggering chaos and tragedy. Urgent commands\u2014\"Iceberg, right ahead!\"\u2014and frantic efforts to mitigate damage fail as the ship's critical condition becomes clear. Passengers experience denial, fear, and resignation as lifeboats are prepared, revealing class divisions and moral dilemmas. Jack and Rose navigate the ship's disarray, with Rose demonstrating determination as she moves through flooded hallways to free Jack. The sinking progresses, with chaotic visuals of water flooding staircases and hallways, gunshots enforcing evacuation protocols, and passengers grappling with freezing water and limited lifeboats. Emotional sacrifices and moments of courage emerge, such as musicians playing to maintain calm and a couple holding hands in quiet solidarity. Jack and Rose's bond remains central as they struggle to survive in the freezing ocean. Jack urges Rose to live a full life, expressing his love and selflessness. Rose promises, \"I'll never let go,\" as Jack succumbs to the cold.\n\nRose survives, clinging to a piece of debris until rescued. The elderly Rose reflects on Jack's impact, stating he \"saved me in every way that a person can be saved.\" She reveals she has no photograph of him, preserving his memory in her heart. The film concludes with surreal and symbolic imagery, including a grand ballroom where Jack and Rose reunite in a romantic embrace, surrounded by the Titanic's passengers. The iconic song \"My Heart Will Go On\" plays, underscoring themes of enduring love, sacrifice, and memory."
+    },
+    {
+      "role": "user",
+      "content": "That draft has 908 words and FAILED validation. You must remove about 208 words. Rewrite substantially, using exactly 5 compact paragraphs of about 140 words each, with a maximum of 150 words per paragraph. Total must be 650-750 whitespace-separated words. Eliminate repeated exploration details and thematic commentary. Use only the original narrative, preserve supported major events and ending, and return only prose. Do not add unsupported details to reach the minimum."
+    }
+  ]
 }

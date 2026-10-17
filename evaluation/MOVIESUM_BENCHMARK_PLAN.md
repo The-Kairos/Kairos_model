@@ -23,18 +23,18 @@ Our first candidate is **[Video ReCap: Recursive Captioning of Hour-Long Videos 
 
 Its demo accepts a video file and produces a whole-video summary through internal captioning stages. We still need to validate setup, runtime, and suitability for movies; its original evaluation focuses on egocentric activities.
 
-## 3. Scope, allocation, and time
+## 3. Scope and total processing time
 
-Use the **official 200-movie test split**, divided among **six people: 34 movies each for two people and 33 each for four**. Match movie title, year, and version; keep assignments fixed across models and record unavailable movies and processing failures. Wikipedia references may differ from the released movie or screenplay.
+Use the **official 200-movie test split**. Match movie title, year, and version; use the same movies across models and record unavailable movies and processing failures. Wikipedia references may differ from the released movie or screenplay.
 
 Provisional Kairos estimates for **two-hour movies, processed one at a time**:
 
-| Hardware | Per movie | 33-34 movies/person | 100 movies |
+| Hardware | Per movie | 100 movies total | 200 movies total |
 |---|---:|---:|---:|
-| Local laptop (GTX 1660 Ti) | ~5 hours | ~165-170 hours | ~500 hours (~21 continuous days) |
-| VM (NVIDIA L4; Titanic-based extrapolation) | ~2.7 hours | ~89-91 hours | ~270 hours (~11 continuous days) |
+| Local laptop (GTX 1660 Ti) | ~5 hours | ~500 hours (~21 days) | ~1,000 hours (~42 days) |
+| VM (NVIDIA L4; Titanic-based extrapolation) | ~2.7 hours | ~270 hours (~11 days) | ~540 hours (~23 days) |
 
-These are extrapolations from historical **summed stage timings**, not fresh end-to-end benchmarks: [local clips](../logs/New%20BLIP%20params/) averaged ~2.5 processing hours/video hour; the [VM Titanic record](../logs/_processed/Titanic.1997.mkv_20260312_201859.json) totals ~4.36 hours for a 3.25-hour movie. Cached reruns make start/end timestamps unreliable. Run a fresh full-movie pilot on each setup before fixing allocations; current optimizations and knowledge-graph extraction may change runtime. For 100 movies locally, budget **500-700 processing hours**, excluding setup, downloads, evaluation, and review. Parallel work requires sufficient compute and API capacity; estimate other models separately.
+These are extrapolations from historical **summed stage timings**, not fresh end-to-end benchmarks: [local clips](../logs/New%20BLIP%20params/) averaged ~2.5 processing hours/video hour; the [VM Titanic record](../logs/_processed/Titanic.1997.mkv_20260312_201859.json) totals ~4.36 hours for a 3.25-hour movie. Cached reruns make start/end timestamps unreliable. Run a fresh full-movie pilot on each setup before fixing the schedule; current optimizations and knowledge-graph extraction may change runtime. Days assume continuous operation on one machine. Locally, budget **500-700 hours for 100 movies** or **1,000-1,400 hours for all 200**, excluding setup, downloads, retries, evaluation, and review. Parallel work requires sufficient compute and API capacity; estimate other models separately.
 
 ## 4. Evaluation measures and frameworks
 
@@ -50,12 +50,16 @@ These are extrapolations from historical **summed stage timings**, not fresh end
 
 **Initial choice:** ROUGE and BERTScore baselines, QAEval or QAPyramid for plot coverage, and blinded human review of factuality and coherence. Verify claims against movie evidence where possible; absence from the reference does not establish an error.
 
-## 5. Outputs and next decisions
+## 5. Sanity test results
 
-Save each movie ID, reference summary, generated summary, model version, prompt, settings, processing time, failure status, and evaluation scores. Keep reference summaries out of model inputs.
+The [Titanic sanity check](titanic_sanity/RESULTS.md) regenerated final synthesis from the saved narrative, without rerunning video processing. The summary is **714 words**, within the validated 650-750-word range, versus the reference's 680. ROUGE-1/2/L F1 is **43.67 / 10.72 / 15.99** on a 0-100 scale; all three improved after shortening.
 
-The [Titanic sanity check](titanic_sanity/RESULTS.md) has revised-summary ROUGE scores above two published Vicuna zero-shot baselines on all three measures, but this is one movie versus test-set averages, not evidence of overall superiority. Its summary is also too long and misses important events.
+Compared numerically with [MovieSum Table 3](https://aclanthology.org/2024.findings-acl.239.pdf#page=4), Kairos is **higher than zero-shot Vicuna and TextRank + Vicuna on all three ROUGE measures**. Against zero-shot FLAN-UL2 and Moving-window Vicuna, it is higher on ROUGE-1/2 but lower on ROUGE-L. This is one video-derived development example versus published screenplay-based test-set averages, so it does not establish overall superiority. Important plot events are still missing.
 
-Next, control summary length, inspect upstream narrative accuracy, and freeze the prompt and scoring settings before evaluating held-out movies. Titanic is a development example once used for prompt tuning. Report aggregate ROUGE results, then add BERTScore and a smaller blinded human review of factuality, plot coverage, and coherence.
+## 6. Next decisions
 
-Use the paper's zero-shot scores as context; a direct performance claim requires matched movies and documented input/metric differences. Validate Video ReCap without MovieSum-specific fine-tuning before including it as a separate video baseline.
+- Improve event selection and inspect upstream narrative accuracy while keeping the 650-750-word requirement fixed across systems where supported. Treat Titanic as a development example because it has been used for prompt tuning.
+- Run fresh full-movie timing pilots locally and on the VM, then freeze prompts and scoring settings before evaluating held-out movies.
+- Validate Video ReCap without MovieSum-specific fine-tuning. Use matched movies and documented input/metric differences for direct system comparisons.
+- Report aggregate ROUGE, then add BERTScore and a smaller blinded human review of factuality, plot coverage, and coherence.
+- Save each movie ID, reference, generated summary, model version, prompt, settings, processing time, failure status, and scores. Keep reference summaries out of generation inputs.

@@ -10,6 +10,12 @@ To reproduce scores from the project root:
 python evaluation/titanic_sanity/run_summary_check.py
 ```
 
-Requires `rouge-score`, `nltk`, and existing project dependencies. The script calls the configured model only if `generated_summary.txt` is absent. With the saved output present, scoring requires no API call.
+Requires `rouge-score`, `nltk`, and existing project dependencies. With the saved output present, scoring requires no API call. To archive the previous result and regenerate with a validated 650-750-word limit, run:
+
+```powershell
+python evaluation/titanic_sanity/run_summary_check.py --regenerate
+```
+
+Generation uses only the saved narrative and allows up to five attempts to meet the length range; it never receives the reference. A failed generation leaves the saved summary intact.
 
 This is a one-movie diagnostic, not a fresh end-to-end benchmark. See the [benchmark plan](../MOVIESUM_BENCHMARK_PLAN.md) for the broader study.

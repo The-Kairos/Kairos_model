@@ -1,0 +1,36 @@
+{
+  "deployment": "gpt-4o-kairos",
+  "response_model": "gpt-4o-2024-11-20",
+  "elapsed_seconds": 15.504439899988938,
+  "usage": {
+    "completion_tokens": 1780,
+    "prompt_tokens": 1967,
+    "total_tokens": 3747,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 3,
+      "engine_ttft_ms": 84,
+      "engine_ttlt_ms": 5547,
+      "pre_inference_ms": 88,
+      "service_tbt_ms": 3,
+      "service_ttft_ms": 403,
+      "service_ttlt_ms": 5861,
+      "user_visible_ttft_ms": 316
+    }
+  },
+  "source": "_processed\\Titanic.1997.mkv\\checkpoint.json",
+  "input_field": "narratives[-1].narrative",
+  "input_sha256": "61d4c9b2ba39703dceb70d775ba2d730007ebade3667ec2dcd02bbbd8241cf4e",
+  "temperature": 0.2,
+  "top_p": 1.0,
+  "reference_in_generation": false
+}
