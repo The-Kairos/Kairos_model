@@ -23,33 +23,25 @@ Our first candidate is **[Video ReCap: Recursive Captioning of Hour-Long Videos 
 
 Its demo accepts a video file and produces a whole-video summary through internal captioning stages. We still need to validate setup, runtime, and suitability for movies; its original evaluation focuses on egocentric activities.
 
-## 3. Scope and work allocation
+## 3. Scope, allocation, and time
 
-Use the **official 200-movie test split**, rather than all 2,200 entries. Obtain movies legally and match title, year, and version. Wikipedia summaries are human references, but may differ from the released movie or screenplay.
+Use the **official 200-movie test split**, divided among **six people: 34 movies each for two people and 33 each for four**. Match movie title, year, and version; keep assignments fixed across models and record unavailable movies and processing failures. Wikipedia references may differ from the released movie or screenplay.
 
-Divide the test set among **six people**:
+Run a small pilot first. **Kairos compute time per person = 33-34 movies x measured hours per movie**: at 2 hours per movie, allow 66-68 compute hours, plus setup, downloads, retries, and review. Parallel work requires sufficient compute and API capacity; estimate other models separately.
 
-| Assignment | Movies per person | Total |
-|---|---:|---:|
-| People 1–2 | 34 | 68 |
-| People 3–6 | 33 | 132 |
-| **Total** | | **200** |
+## 4. Evaluation measures and frameworks
 
-Keep assignments fixed across models so every system is evaluated on the same movies. Record unavailable movies and processing failures.
+- **[ROUGE-1/2/L](https://aclanthology.org/W04-1013/):** word and sequence overlap; retain as baselines for comparison with MovieSum.
+- **[BERTScore](https://arxiv.org/abs/1904.09675):** semantic similarity using contextual token embeddings; tolerates different wording. Report precision, recall, and F1.
+- **[QAEval](https://aclanthology.org/2021.tacl-1.47/):** question-based reference coverage; checks whether the generated summary can answer questions derived from the human summary.
+- **[QAPyramid](https://arxiv.org/abs/2412.07096):** fine-grained content coverage through questions about individual reference facts; helps identify omissions.
+- **[FABLES](https://arxiv.org/abs/2404.01261):** an evaluation framework and annotated dataset for narrative faithfulness and content selection, rather than a standalone similarity score.
+- **[STORYSUMM](https://aclanthology.org/2024.emnlp-main.557/):** a benchmark for testing whether evaluators detect narrative factual errors, rather than a summary similarity metric.
+- **[BooookScore](https://arxiv.org/abs/2310.00785):** long-summary coherence evaluation based on sentence-level error detection; complements factuality and coverage checks.
+- **[BARTScore](https://arxiv.org/abs/2106.11520):** generation-probability-based scoring, with variants targeting informativeness, fluency, or factuality.
+- **[G-Eval](https://aclanthology.org/2023.emnlp-main.153/):** LLM-based evaluation using explicit criteria; useful for relevance, coherence, fluency, and consistency, with human validation.
 
-## 4. Estimated time per person: Kairos only
-
-First run a small pilot to measure processing time and check summary quality. For sequential processing on one machine per person:
-
-**Time per person ≈ 33–34 movies × average processing hours per movie.**
-
-| Assumed processing time per movie | Time per person |
-|---|---:|
-| 1 hour | 33–34 hours |
-| 2 hours | 66–68 hours |
-| 4 hours | 132–136 hours |
-
-These are illustrative compute estimates, not measured Kairos runtimes. Add setup, downloads, retries, and review separately. Six people shorten elapsed time only if compute and API capacity allow simultaneous runs. Estimate other models separately.
+**Initial choice:** ROUGE and BERTScore baselines, QAEval or QAPyramid for plot coverage, and blinded human review of factuality and coherence. Verify claims against movie evidence where possible; absence from the reference does not establish an error.
 
 ## 5. Outputs and next decisions
 
