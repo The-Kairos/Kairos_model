@@ -4,7 +4,7 @@
 
 [MovieSum (ACL 2024)](https://aclanthology.org/2024.findings-acl.239/) introduces **2,200 English screenplay–summary pairs**. The summaries are human-written Wikipedia plot summaries; these are the references we want to use.
 
-The paper also analyzes the dataset and tests existing text summarization models: **screenplay → generated summary → comparison with the Wikipedia summary**. We can explore those experiments later; our focus is using the reference summaries to evaluate video summarization.
+The paper also analyzes the dataset and tests existing text summarization models: **screenplay → generated summary → comparison with the Wikipedia summary**. Its experiments cover **simple/extractive baselines, zero-shot models, and fine-tuned models**. We will compare with its **zero-shot results only**, since Kairos uses pretrained models without MovieSum-specific fine-tuning. Our main focus remains the human reference summaries for video evaluation.
 
 - [Dataset and splits](https://huggingface.co/datasets/rohitsaxena/MovieSum)
 - [MovieSum code](https://github.com/saxenarohit/MovieSum)
@@ -27,7 +27,14 @@ Its demo accepts a video file and produces a whole-video summary through interna
 
 Use the **official 200-movie test split**, divided among **six people: 34 movies each for two people and 33 each for four**. Match movie title, year, and version; keep assignments fixed across models and record unavailable movies and processing failures. Wikipedia references may differ from the released movie or screenplay.
 
-Run a small pilot first. **Kairos compute time per person = 33-34 movies x measured hours per movie**: at 2 hours per movie, allow 66-68 compute hours, plus setup, downloads, retries, and review. Parallel work requires sufficient compute and API capacity; estimate other models separately.
+Provisional Kairos estimates for **two-hour movies, processed one at a time**:
+
+| Hardware | Per movie | 33-34 movies/person | 100 movies |
+|---|---:|---:|---:|
+| Local laptop (GTX 1660 Ti) | ~5 hours | ~165-170 hours | ~500 hours (~21 continuous days) |
+| VM (NVIDIA L4; Titanic-based extrapolation) | ~2.7 hours | ~89-91 hours | ~270 hours (~11 continuous days) |
+
+These are extrapolations from historical **summed stage timings**, not fresh end-to-end benchmarks: [local clips](../logs/New%20BLIP%20params/) averaged ~2.5 processing hours/video hour; the [VM Titanic record](../logs/_processed/Titanic.1997.mkv_20260312_201859.json) totals ~4.36 hours for a 3.25-hour movie. Cached reruns make start/end timestamps unreliable. Run a fresh full-movie pilot on each setup before fixing allocations; current optimizations and knowledge-graph extraction may change runtime. For 100 movies locally, budget **500-700 processing hours**, excluding setup, downloads, evaluation, and review. Parallel work requires sufficient compute and API capacity; estimate other models separately.
 
 ## 4. Evaluation measures and frameworks
 
@@ -45,6 +52,10 @@ Run a small pilot first. **Kairos compute time per person = 33-34 movies x measu
 
 ## 5. Outputs and next decisions
 
-Save each movie ID, reference summary, generated summary, model version, prompt, settings, processing time, and failure status. Keep reference summaries out of model inputs.
+Save each movie ID, reference summary, generated summary, model version, prompt, settings, processing time, failure status, and evaluation scores. Keep reference summaries out of model inputs.
 
-After the pilot, freeze the protocol and choose automatic metrics plus a smaller blinded human review of factual accuracy, plot coverage, and coherence.
+The [Titanic sanity check](titanic_sanity/RESULTS.md) has revised-summary ROUGE scores above two published Vicuna zero-shot baselines on all three measures, but this is one movie versus test-set averages, not evidence of overall superiority. Its summary is also too long and misses important events.
+
+Next, control summary length, inspect upstream narrative accuracy, and freeze the prompt and scoring settings before evaluating held-out movies. Titanic is a development example once used for prompt tuning. Report aggregate ROUGE results, then add BERTScore and a smaller blinded human review of factuality, plot coverage, and coherence.
+
+Use the paper's zero-shot scores as context; a direct performance claim requires matched movies and documented input/metric differences. Validate Video ReCap without MovieSum-specific fine-tuning before including it as a separate video baseline.
