@@ -1,5 +1,35 @@
 # Prompt caching benchmark
 
+Latest committed findings: [local full-workflow conclusion](LOCAL_PIPELINE_CONCLUSION.md),
+[stage timings and cache usage](LOCAL_PIPELINE_RESULTS.md), and
+[source-based quality review](LOCAL_PIPELINE_QUALITY.md). Outputs differ;
+neither equal factual quality nor a consistent speedup was established.
+
+## Complete local LLM workflow
+
+`run_local_pipeline.py` runs the actual two-pass scene description stage, fresh
+narrative generation, and fresh synopsis generation for every saved scene in
+three short videos. It records the execution host at run time, package versions,
+input/code hashes, model deployment/API version, stage and total wall time,
+token/cache usage, retries, and output checks. It does not run on a VM or reuse
+saved LLM outputs. Azure inference and network time are included.
+
+```powershell
+python evaluation/prompt_cache/run_local_pipeline.py --output evaluation/prompt_cache/local_pipeline_repeat --repetitions 3
+python evaluation/prompt_cache/analyze_local_pipeline.py evaluation/prompt_cache/local_pipeline_repeat
+python evaluation/prompt_cache/build_local_review.py evaluation/prompt_cache/local_pipeline_repeat
+python -m unittest discover -s test -p test_local_pipeline.py -v
+```
+
+The completed local run is in `local_pipeline_20261020/RESULTS.md` and its
+source-based spot review is in `local_pipeline_20261020/QUALITY_REVIEW.md`.
+Generated outputs stay local under the ignored run directory. First trials are
+not guaranteed cold. Repeated trials regenerate upstream context. The normal
+50000-character reduction threshold is preserved; short inputs may not trigger
+tree reduction, which has a separate offline regression check.
+
+## Earlier isolated-stage experiments
+
 Start with [MERGE_READINESS.md](MERGE_READINESS.md) for the current merge decision.
 The default prompt order is restored. Experimental rearrangement is disabled
 unless `KAIROS_CACHE_FRIENDLY_PROMPTS=1` is set. Provider-side caching is not

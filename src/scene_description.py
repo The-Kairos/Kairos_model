@@ -285,7 +285,7 @@ def format_single_description(
 
     # If yolo is a list of track summaries (new format)
     if isinstance(yolo, list):
-        from src.frame_obj_d_yolo import format_track_summaries
+        from src.track_formatting import format_track_summaries
 
         for idx, cap in enumerate(captions or []):
             lines.append(f"Frame {idx}:")

@@ -38,5 +38,23 @@ performance; no VM comparison or whole-video speedup has been demonstrated.
 | Malala speech | 3.80 s | 5.76 s |
 | CCTV | 4.80 s | 11.61 s |
 
-Keep this PR in draft pending a comparison on the target VM and further
-source-based quality review. The experimental ordering remains off by default.
+Keep this PR in draft for review of the local performance and quality findings.
+The experimental ordering remains off by default; no VM benchmark is required
+for this local study.
+
+### Follow-up: complete local LLM workflow
+
+Recorded host at execution: `the-Kewl-Laptop` (Windows 11). No VM pipeline was
+used. All scene reports, intermediate narratives, and final reports were
+regenerated from saved non-LLM clues for three short videos, with three paired
+repetitions: 18 workflows and 1,026 successful API calls, no failed attempts or
+retries. Median total LLM times were 34.10 vs 38.93 seconds for speech, 48.64 vs
+41.20 seconds for story, and 32.47 vs 41.67 seconds for visual footage
+(original vs cache-friendly). Speed improvements were not consistent.
+
+The outputs are not identical. Source-based spot review found differences in
+selected content and factual/event-time details in both layouts; equal quality
+is not established. Keep the experimental ordering off. See
+`LOCAL_PIPELINE_CONCLUSION.md`, `LOCAL_PIPELINE_RESULTS.md`, and
+`LOCAL_PIPELINE_QUALITY.md` in `evaluation/prompt_cache/`. Raw outputs and request
+traces remain local. The follow-up focused suite passes 34 tests.
