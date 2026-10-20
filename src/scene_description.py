@@ -5,6 +5,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from src.debug_utils import apply_gpt_normalization
 from src.debug_utils import print_prefixed
+from src.llm_metrics import measured_chat_completion, measured_stage
+from src.prompt_layout import prepare_template
 
 
 def describe_flash_scene(
@@ -14,7 +16,9 @@ def describe_flash_scene(
                         model = "gemini-2.5-flash",
                         gpt_deployment = "gpt-4o-kairos",
                         gpt_temperature = 0.3,
-                        video_path: str | None = None
+                        video_path: str | None = None,
+                        metric_attempt: int = 1,
+                        cache_friendly_layout: bool | None = None,
                          ) -> str:
     """
     Takes ONE raw scene description (string) and returns
@@ -27,7 +31,7 @@ def describe_flash_scene(
 
     # Load template prompt from external file
     with open(prompt_path, "r", encoding="utf-8") as f:
-        template = f.read()
+        template = prepare_template(f.read(), enabled=cache_friendly_layout)
 
     # Insert scene text into {{SCENE_TEXT}} placeholder
     normalized_text = apply_gpt_normalization(scene_text)
@@ -41,7 +45,7 @@ def describe_flash_scene(
         resp = chat.send_message(prompt)
         answer = resp.text.strip()
     elif "gpt" in model.lower():
-        response = client.chat.completions.create(
+        response = measured_chat_completion(client, stage="scene:" + Path(prompt_path).stem, attempt=metric_attempt,
             messages=[
                 {
                     "role": "system",
@@ -63,6 +67,7 @@ def describe_flash_scene(
     return answer
 
 
+@measured_stage("scene_descriptions")
 def describe_scenes(
     scenes: list,
     client,
@@ -144,6 +149,7 @@ def describe_scenes(
                     prompt_path=prompt_used,
                     model=model,
                     video_path=video_path,
+                    metric_attempt=attempt + 1,
                 )
             except Exception as exc:
                 if _is_responsible_ai_error(exc):

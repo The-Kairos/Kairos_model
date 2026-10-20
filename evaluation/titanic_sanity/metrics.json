@@ -1,0 +1,22 @@
+{
+  "method": "Same raw responses replayed offline through old and corrected normalizers; no new API calls.",
+  "required_question_count": 22,
+  "missing_answers_before": 22,
+  "missing_answers_after": 0,
+  "restored_answers": 22,
+  "timestamps_before": {
+    "source_explicit_timestamp_count": 2,
+    "emitted_timestamp_fields": 34,
+    "timestamp_fields_absent_from_narrative": 30
+  },
+  "timestamps_after": {
+    "source_explicit_timestamp_count": 2,
+    "emitted_timestamp_fields": 0,
+    "timestamp_fields_absent_from_narrative": 0
+  },
+  "limitations": [
+    "Preserving an answer does not validate its factual accuracy.",
+    "Timestamp membership does not establish that a timestamp belongs to the stated event.",
+    "Missing source timing cannot be recovered by this guard; event times become unknown."
+  ]
+}

@@ -21,5 +21,8 @@ Rules:
 - If timestamp is genuinely missing, set it to "Not explicitly stated".
 - If detail is missing, set text to "Not explicitly stated."
 
+- The overall narrative range does not identify individual clip times. Do not estimate times or copy example timestamps.
+- Missing timing does not mean missing events: keep source-supported descriptions and use "Not explicitly stated" only for unavailable timing fields.
+
 INPUT NARRATIVE:
 {text}

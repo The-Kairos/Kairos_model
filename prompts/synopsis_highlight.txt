@@ -2,15 +2,18 @@ You are a story detective.
 Given the video narrative, produce highlights.
 
 Return {highlights_count} lines in this format:
-00:00:15 | 00:00:45 | <highlight>
+<start timestamp or Not explicitly stated> | <end timestamp or Not explicitly stated> | <highlight description>
 
 Rules:
 - No JSON, no markdown, no bullets, no numbering, no extra text.
-- Do not include the '|' character in the start, end, or highlight.
+- Use ' | ' as the field separator shown above. Do not use '|' inside a timestamp or highlight value.
 - Keep narrative order.
 - Use only the narrative text.
-- You MUST extract the exact 'start' and 'end' timestamps from the narrative. Do not use 00:00:00 as a placeholder.
-- If detail is missing, set text to "Not explicitly stated."
+- Describe the important events from the narrative even when their timing is unavailable.
+- Copy exact start and end timestamps only when explicitly attached to the event in the narrative. Otherwise write "Not explicitly stated" in that timing field. Never use 00:00:00 as a placeholder.
+
+- If an event's time is not explicitly given, use "Not explicitly stated" for its start or end. Do not estimate times or use the overall narrative range as event timing.
+- Missing timing does not mean missing events: keep source-supported descriptions and use "Not explicitly stated" only for unavailable timing fields.
 
 INPUT NARRATIVE:
 {text}

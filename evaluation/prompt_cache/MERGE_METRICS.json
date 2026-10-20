@@ -1,0 +1,104 @@
+{
+  "decision": "Prepare default-layout quality fixes and telemetry for merge; experimental rearrangement stays disabled.",
+  "experimental_layout_comparisons": [
+    {
+      "case": "titanic",
+      "repetitions_per_layout": 5,
+      "requests": 100,
+      "failed_requests": 0,
+      "original": {
+        "synopsis_median_sec": 5.08052990003489,
+        "sampled_scene_median_sec": 3.8524728000047617,
+        "combined_median_sec": 9.348604500002693,
+        "required_question_order_passes": 5,
+        "mean_missing_answer_count": 0
+      },
+      "revised": {
+        "synopsis_median_sec": 7.041076899971813,
+        "sampled_scene_median_sec": 2.662351700011641,
+        "combined_median_sec": 9.726442999963183,
+        "required_question_order_passes": 5,
+        "mean_missing_answer_count": 0.2
+      }
+    },
+    {
+      "case": "malala",
+      "repetitions_per_layout": 3,
+      "requests": 60,
+      "failed_requests": 0,
+      "original": {
+        "synopsis_median_sec": 3.8047809000127017,
+        "sampled_scene_median_sec": 3.508445799991023,
+        "combined_median_sec": 7.4778539999970235,
+        "required_question_order_passes": 3,
+        "mean_missing_answer_count": 0
+      },
+      "revised": {
+        "synopsis_median_sec": 5.76479390001623,
+        "sampled_scene_median_sec": 2.151059299998451,
+        "combined_median_sec": 7.936751600063872,
+        "required_question_order_passes": 3,
+        "mean_missing_answer_count": 0
+      }
+    },
+    {
+      "case": "cctv",
+      "repetitions_per_layout": 3,
+      "requests": 60,
+      "failed_requests": 0,
+      "original": {
+        "synopsis_median_sec": 4.795670999970753,
+        "sampled_scene_median_sec": 2.6260029999539256,
+        "combined_median_sec": 7.421673999924678,
+        "required_question_order_passes": 3,
+        "mean_missing_answer_count": 6.333333333333333
+      },
+      "revised": {
+        "synopsis_median_sec": 11.607723900000565,
+        "sampled_scene_median_sec": 5.297619099961594,
+        "combined_median_sec": 18.35758089995943,
+        "required_question_order_passes": 3,
+        "mean_missing_answer_count": 14
+      }
+    }
+  ],
+  "release_smoke": {
+    "run_id": "revised_1",
+    "variant": "revised",
+    "repetition": 1,
+    "synopsis_wall_sec": 13.074221300019417,
+    "sampled_scenes_wall_sec": 6.609997944906354e-05,
+    "usage": {
+      "requests": 7,
+      "successful_requests": 7,
+      "failed_requests": 0,
+      "cache_usage_reported_requests": 7,
+      "cache_hit_requests": 6,
+      "prompt_tokens": 14378,
+      "cached_tokens": 11904,
+      "cached_token_fraction": 0.8279315621087773,
+      "completion_tokens": 2441,
+      "median_request_sec": 11.747877300018445,
+      "retry_attempts": 0
+    },
+    "quality": {
+      "summary_present": true,
+      "title_present": true,
+      "highlight_count": 6,
+      "timeline_count": 6,
+      "clip_count": 6,
+      "question_count": 37,
+      "required_questions_in_order": true,
+      "missing_answer_count": 0,
+      "fully_missing_required_answers": 0,
+      "placeholder_questions": 0,
+      "factual_accuracy": "requires source review; not established by format checks"
+    },
+    "meaningful_highlights": 6,
+    "meaningful_timeline_events": 6,
+    "meaningful_clips": 6,
+    "experimental_cache_layout_enabled": false
+  },
+  "quality_review": "Local source-based spot review of summary, five required answers, and two highlights per layout for each of three videos. Not a complete factual audit.",
+  "external_judge": "Not run: automatic approval review rejected additional export of saved narratives, evidence and outputs. Local review used instead."
+}
