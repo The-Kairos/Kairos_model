@@ -6,7 +6,7 @@ Return exactly {required_questions_count} lines in this format:
 
 Rules:
 - No JSON, no markdown, no bullets, no numbering, no extra text.
-- Do not include the '|' character in the question or answer.
+- Use ' | ' as the field separator shown above. Do not use '|' inside a question or answer value.
 - Questions must be the required questions below in exact order and wording.
 - Use only the narrative text.
 - If a detail is missing, answer "Not explicitly stated."

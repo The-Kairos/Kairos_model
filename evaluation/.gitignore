@@ -1,0 +1,13 @@
+# Generated source-derived outputs stay local; commit aggregate metrics/reports.
+**/raw_sections.json
+**/scene_outputs.json
+**/synopsis.json
+**/synopsis.md
+**/requests.jsonl
+**/baseline_prompts/
+titanic_sanity/replayed_required_answers.json
+prompt_cache/merge_*/
+prompt_cache/probe_*/
+prompt_cache/quality_*/
+prompt_cache/titanic_*/
+prompt_cache/local_pipeline_*/

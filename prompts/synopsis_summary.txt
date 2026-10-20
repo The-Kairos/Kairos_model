@@ -6,7 +6,7 @@ Return exactly ONE line in this format:
 
 Rules:
 - No JSON, no markdown, no bullets, no numbering, no extra text.
-- Do not include the '|' character in the chat_name or summary.
+- Use ' | ' as the field separator shown above. Do not use '|' inside a title or summary value.
 - Use only the narrative text.
 - If a detail is missing, say "Not explicitly stated."
 - "chat_name" must be 3-5 words and concrete (not creative).

@@ -7,6 +7,8 @@ from pathlib import Path
 from urllib.parse import quote
 from openai import AzureOpenAI
 from src.path_utils import load_kairos_env
+from src.llm_metrics import measured_chat_completion, measured_stage
+from src.prompt_layout import prepare_template, prepare_narrative_prompt as _prepare_narrative_prompt
 
 # Load environment variables from project root dynamically
 load_kairos_env(override=True)
@@ -450,15 +452,13 @@ def _build_repair_prompt(
         + "RAW OUTPUT:\n"
         + (raw_text or "")
     )
-
-
 def _build_generated_fill_prompt(
     narrative_text: str,
     existing_questions: list[str],
     missing_count: int,
 ) -> str:
     existing_block = "\n".join([f"- {q}" for q in existing_questions]) if existing_questions else "None"
-    return (
+    prompt = (
         "You are a story detective.\n"
         "Generate additional user-likely questions and answer them from the narrative.\n"
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
@@ -476,6 +476,7 @@ def _build_generated_fill_prompt(
         "INPUT NARRATIVE:\n"
         f"{narrative_text}\n"
     )
+    return _prepare_narrative_prompt(prompt, narrative_text)
 
 
 def _timecode_to_seconds(timecode: str | None):
@@ -659,7 +660,7 @@ def _build_questions_prompt(
         if strict
         else ""
     )
-    return (
+    prompt = (
         strict_block
         +
         "Return ONE valid JSON object only. No markdown, no extra text.\n"
@@ -678,6 +679,7 @@ def _build_questions_prompt(
         "INPUT NARRATIVE:\n"
         f"{narrative_text}\n"
     )
+    return _prepare_narrative_prompt(prompt, narrative_text)
 
 
 def _extract_questions(payload) -> list:
@@ -936,8 +938,44 @@ def _clean_question_text(text: str) -> str:
 
 def _normalize_question_key(text: str) -> str:
     s = _clean_question_text(text).lower()
+    # Models sometimes omit punctuation even when asked to copy questions.
+    # Match words rather than discarding correctly answered questions for that.
+    s = re.sub(r"[^\w\s]", " ", s)
     s = re.sub(r"\s+", " ", s)
-    return s
+    return s.strip()
+
+
+def _ground_synopsis_timestamps(synopsis: dict, narrative: str) -> dict:
+    """Reject fabricated timecodes; overall narrative ranges are not events."""
+    pattern = r"\b\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?\b"
+    def time_key(value):
+        if not isinstance(value, str) or not re.fullmatch(pattern, value.strip()):
+            return None
+        hours, minutes, seconds = value.strip().split(":")
+        if int(minutes) >= 60 or float(seconds) >= 60:
+            return None
+        return round(int(hours) * 3600 + int(minutes) * 60 + float(seconds), 3)
+
+    source_lines = []
+    for line in narrative.splitlines():
+        # A heading spanning the entire narrative gives no event alignment.
+        if (line.lstrip().startswith("#") and re.search(r"\b(summary|narrative)\b", line, re.IGNORECASE)
+                and re.search(r"\bto\b", line) and len(re.findall(pattern, line)) >= 2):
+            continue
+        source_lines.append(line)
+    supported = {time_key(value) for value in re.findall(pattern, "\n".join(source_lines))}
+    supported.discard(None)
+    result = dict(synopsis)
+    for section in ("video_highlights", "video_timeline", "suggested_clips"):
+        entries = []
+        for original in synopsis.get(section, []):
+            entry = dict(original)
+            for field in ("timestamp", "start", "end"):
+                if field in entry and time_key(entry[field]) not in supported:
+                    entry[field] = "Not explicitly stated"
+            entries.append(entry)
+        result[section] = entries
+    return result
 
 def _normalize_scene_text(value, fallback: str) -> str:
     if isinstance(value, str) and value.strip():
@@ -1029,14 +1067,14 @@ def _is_responsible_ai_error(exc: Exception) -> bool:
     )
 
 
-def call_gpt(client, deployment, prompt, retries: int = GPT_MAX_RETRIES, retry_base_sec: float = GPT_RETRY_BASE_SEC):
+def call_gpt(client, deployment, prompt, retries: int = GPT_MAX_RETRIES, retry_base_sec: float = GPT_RETRY_BASE_SEC, *, stage: str = "summary"):
     """
     Minimal GPT call using AzureOpenAI client
     """
     last_exc = None
     for attempt in range(retries):
         try:
-            response = client.chat.completions.create(
+            response = measured_chat_completion(client, stage=stage, attempt=attempt + 1,
                 messages=[
                     {"role": "system", "content": "You are a precise and reliable assistant."},
                     {"role": "user", "content": prompt}
@@ -1088,12 +1126,12 @@ def call_gpt_safe(
     raw_fallback: str | None = None,
 ):
     try:
-        return call_gpt(client, deployment, prompt)
+        return call_gpt(client, deployment, prompt, stage=context)
     except Exception as exc:
         _debug_print(debug, f"{context}: primary prompt failed due to API error: {exc}")
         if safe_prompt:
             try:
-                return call_gpt(client, deployment, safe_prompt)
+                return call_gpt(client, deployment, safe_prompt, stage=context + ":safe")
             except Exception as exc2:
                 _debug_print(debug, f"{context}: safe prompt failed due to API error: {exc2}")
         if isinstance(raw_fallback, str):
@@ -1108,7 +1146,7 @@ def call_gpt_safe(
 PROMPTS_DIR = Path(__file__).resolve().parents[1] / "prompts"
 
 def load_prompt(filename: str) -> str:
-    return (PROMPTS_DIR / filename).read_text(encoding="utf-8")
+    return prepare_template((PROMPTS_DIR / filename).read_text(encoding="utf-8"))
 
 SEGMENT_PROMPT = load_prompt("chunk_summary.txt")
 FALLBACK_SEGMENT_PROMPT = load_prompt("fallback_chunk_summary.txt")
@@ -1220,12 +1258,13 @@ def _build_safe_section_prompt(
         )
     else:
         schema = "Use a JSON object.\n"
-    return (
+    prompt = (
         header
         + schema
         + "INPUT NARRATIVE:\n"
         + narrative_text
     )
+    return _prepare_narrative_prompt(prompt, narrative_text)
 
 # ----------------------
 # 5. Summarize segments with carryover context
@@ -1240,7 +1279,7 @@ def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: s
     )
     summary = None
     try:
-        summary = call_gpt(client, deployment, segment_prompt)
+        summary = call_gpt(client, deployment, segment_prompt, stage="narrative:chunk")
     except Exception as exc:
         _debug_print(debug, f"condense_chunk: primary prompt failed: {exc}")
         try:
@@ -1248,7 +1287,7 @@ def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: s
                 carryover_context=pre_carryover_context,
                 scene_chunk=chunk_text
             )
-            summary = call_gpt(client, deployment, fallback_prompt)
+            summary = call_gpt(client, deployment, fallback_prompt, stage="narrative:chunk:safe")
         except Exception as exc2:
             _debug_print(debug, f"condense_chunk: fallback prompt failed: {exc2}")
             # Last-resort: preserve input so downstream isn't broken
@@ -1258,7 +1297,7 @@ def condense_chunk(client, deployment, chunk_text: str, pre_carryover_context: s
         segment_narrative=summary
     )
     try:
-        new_carryover_context = call_gpt(client, deployment, carryover_prompt)
+        new_carryover_context = call_gpt(client, deployment, carryover_prompt, stage="narrative:carryover")
     except Exception as exc:
         _debug_print(debug, f"condense_chunk: carryover prompt failed: {exc}")
         new_carryover_context = pre_carryover_context
@@ -1325,7 +1364,7 @@ def _parallel_map_summaries(client, deployment, scene_chunks: list[dict], max_wo
     def _task(chunk: dict):
         prompt = _build_scene_chunk_summary_prompt(chunk)
         try:
-            summary = call_gpt(client, deployment, prompt)
+            summary = call_gpt(client, deployment, prompt, stage="narrative:map")
         except Exception as exc:
             _debug_print(debug, f"_parallel_map_summaries: chunk {chunk['index']} failed after retries, fallback to raw chunk: {exc}")
             summary = chunk["text"]
@@ -1367,7 +1406,7 @@ def _parallel_reduce_summaries(
         def _task(group_idx: int, group_items: list[dict]):
             prompt = _build_reduce_prompt(group_items, round_idx)
             try:
-                merged = call_gpt(client, deployment, prompt).strip()
+                merged = call_gpt(client, deployment, prompt, stage="narrative:reduce").strip()
             except Exception as exc:
                 _debug_print(debug, f"_parallel_reduce_summaries: group {group_idx} failed after retries, fallback concatenate: {exc}")
                 merged = "\n".join(item["text"] for item in group_items)
@@ -1418,6 +1457,7 @@ def chunk_narrative(narrative: str, chunk_size: int = CHUNK_SIZE, debug: bool = 
     _debug_print(debug, f"chunk_narrative: splitting narrative len={len(narrative)} to {len(chunks)} chunks")
     return chunks
 
+@measured_stage("narrative")
 def summarize_scenes(
     client,
     deployment,
@@ -1490,7 +1530,7 @@ def summarize_scenes(
     if len(narrative) > summary_len:
         final_prompt = _build_narrative_consistency_prompt(narrative)
         try:
-            narrative = call_gpt(client, deployment, final_prompt).strip()
+            narrative = call_gpt(client, deployment, final_prompt, stage="narrative:consistency").strip()
             narratives.append({
                 "narrative_len": len(narrative),
                 "chunk_len": 1,
@@ -1509,6 +1549,7 @@ def summarize_scenes(
 # ----------------------
 # 6. Full narrative synthesis
 # ----------------------
+@measured_stage("synopsis")
 def synthesize_synopsis(
     client,
     deployment,
@@ -1607,7 +1648,7 @@ def synthesize_synopsis(
             _debug_print(debug, f"synopsis {name} [error] {exc}")
 
         try:
-            text = call_gpt(client, deployment, prompt)
+            text = call_gpt(client, deployment, prompt, stage="synopsis:" + name)
             _log_ok(text)
             return name, text
         except Exception as exc:
@@ -1615,7 +1656,7 @@ def synthesize_synopsis(
 
         if safe_prompt:
             try:
-                text = call_gpt(client, deployment, safe_prompt)
+                text = call_gpt(client, deployment, safe_prompt, stage="synopsis:" + name + ":safe")
                 _log_ok(text)
                 return name, text
             except Exception as exc2:
@@ -1833,6 +1874,7 @@ def synthesize_synopsis(
             "INPUT NARRATIVE:\n"
             f"{narrative_text}\n"
         )
+        monolith_prompt = _prepare_narrative_prompt(monolith_prompt, narrative_text)
         synopsis_text = call_gpt_safe(
             client,
             deployment,
@@ -2002,6 +2044,7 @@ def synthesize_synopsis(
                 "DRAFT JSON:\n"
                 f"{json.dumps(draft_synopsis, ensure_ascii=False)}\n"
             )
+            consistency_prompt = _prepare_narrative_prompt(consistency_prompt, narrative_text)
             consistency_text = call_gpt_safe(
                 client,
                 deployment,
@@ -2035,6 +2078,7 @@ def synthesize_synopsis(
         except Exception as exc:
             _debug_print(debug, f"synthesize_synopsis: consistency pass failed: {exc}")
 
+    synopsis_json = _ground_synopsis_timestamps(synopsis_json, narrative_text)
     synopsis_text = json.dumps(synopsis_json, ensure_ascii=False)
     synopsis_md = render_synopsis_markdown(
         synopsis_json,

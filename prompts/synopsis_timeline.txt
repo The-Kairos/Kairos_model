@@ -6,12 +6,15 @@ Return {timeline_count} lines in this format:
 
 Rules:
 - No JSON, no markdown, no bullets, no numbering, no extra text.
-- Do not include the '|' character in the timestamp or event.
+- Use ' | ' as the field separator shown above. Do not use '|' inside a timestamp or event value.
 - Events must be ideally be 1 word but you can use upto 3 if really needed.
 - Keep chronological order.
 - Use only the narrative text.
 - You MUST extract the exact 'timestamp' for the event from the narrative. Do not use 00:00:00 as a placeholder.
 - If detail is missing, set text to "Not explicitly stated."
+
+- If an event's time is not explicitly given, use "Not explicitly stated" for its timestamp. Do not estimate times or use the overall narrative range as event timing.
+- Missing timing does not mean missing events: keep source-supported descriptions and use "Not explicitly stated" only for unavailable timing fields.
 
 INPUT NARRATIVE:
 {text}

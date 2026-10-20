@@ -1,0 +1,2394 @@
+{
+  "status": "complete",
+  "started_utc": "2026-10-20T18:07:04.163624+00:00",
+  "host": {
+    "system": "Windows",
+    "node": "the-Kewl-Laptop",
+    "release": "11",
+    "version": "10.0.26200",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "logical_cpus": 16,
+    "total_ram_bytes": 17005907968
+  },
+  "packages": {
+    "openai": "1.106.1",
+    "httpx": "0.28.1",
+    "python-dotenv": "1.0.1",
+    "psutil": "6.1.1"
+  },
+  "config": {
+    "deployment": "gpt-4o-kairos",
+    "scene_history": 5,
+    "scene_workers": 8,
+    "narrative_workers": 6,
+    "chunk_chars": 20000,
+    "target_narrative_chars": 50000,
+    "reduce_group_size": 4,
+    "scene_cooldown_sec": 0,
+    "temperature_scene": 0.3,
+    "temperature_summary": 0.2,
+    "synopsis_concurrency": 7,
+    "sdk_retries": 0,
+    "api_version": "2024-12-01-preview"
+  },
+  "endpoint_sha256": "9bef277b05d797d457d3aa329a611a35ee55050938475934da3e9c965467eb7f",
+  "sources": {
+    "speech": {
+      "path": "logs\\_processed\\Watch Malala Yousafzai's Nobel Peace Prize acceptance speech.mp4_20260319_082306.json",
+      "sha256": "bf8508a2f73f68ad994c1d7ad90444c3c999ea118b814b8611ca6a669ced6896",
+      "scene_count": 22,
+      "evidence_sha256": "a775685fc1ebb61f2772753c9f04352e337949112561144c4a89bcdf78e45ede"
+    },
+    "story": {
+      "path": "logs\\_processed\\Young Sheldon - First Day of High School.mp4_20260329_115239.json",
+      "sha256": "e86eb576106684b2a75384b31dd08db2565a3516ca30817d0ff955b16949b332",
+      "scene_count": 34,
+      "evidence_sha256": "98f8c67f15ce4a9e55dc5e40ceccfe9eac852ccea1b77d1d36ff5bd5bf534865"
+    },
+    "visual": {
+      "path": "logs\\_processed\\CCTV Dogs.mp4_20260312_213941.json",
+      "sha256": "b20c67f3da6293dd6eed34f13d40f1da094565ebfbff64f1bf67f061964af9ac",
+      "scene_count": 16,
+      "evidence_sha256": "c3cf17f56d775ceaa1536056c5e7b8af673b85a8e1ef0a03d95dabf859f480b1"
+    }
+  },
+  "working_files_sha256": {
+    "src\\synopsis_synthesis.py": "0a3b4a1e0568f3628448fab95f65bc38598991dd37e5c13e71f0c2325ed8b75b",
+    "src\\scene_description.py": "8faed56f843cf5cd05b5620fd778ec82b2c761372ac272d24aa548571f55ad10",
+    "src\\prompt_layout.py": "5f70f70aa306c7796cb6fd487f8101d7f3746785855626363c91c5c7c7a7d6ce",
+    "src\\track_formatting.py": "7ed315334503279ea529b07720d653ad3fdf978f30cae54f124b9884197c4d3c",
+    "prompts\\chunk_summary.txt": "60ea1f7d0ac5b9c53402a951a486f9d6ca2b28d73902009d3e174906b0242291",
+    "prompts\\chunk_summary_carryover.txt": "a4fd197c909b174f4edea283c1f4a70f92165c31f548b500956eb8b35accbbb1",
+    "prompts\\describe_scene.txt": "5cc6301fb9a5dc6f21c1ad9b540d59201100746f73c6abe036175310e615f7b4",
+    "prompts\\describe_scene_short.txt": "894d7f54fe8d6de3b68b3fae5859eb15b7147d913d20f72554647271455c8a14",
+    "prompts\\fallback_chunk_summary.txt": "55647442c1f5e1ea13b0dd22df485a0ecbeb2017930fa0a1c049f94b54502103",
+    "prompts\\fallback_describe_scene.txt": "763dd5d5539cfa73f9edf30aa00078ee6c735e1acec7607504e201797ac2dac8",
+    "prompts\\generate_answer.txt": "e9f427fd1895fb3dcec47dd5eb95cf8374360d62bc72b3bc5847327795072dbf",
+    "prompts\\synopsis_clips.txt": "9f73949f95c24646ef23dbac19e5a2d8679c4733c388ddaef99b9867e6cafcb7",
+    "prompts\\synopsis_consistency_pass.txt": "745f8eefad6cd8355b98796ac38f72722e8f91a8b3a2463a5a431ad9e8ebd0f1",
+    "prompts\\synopsis_highlight.txt": "2dc4eb868755ac927b25d9d532e91511d0077db675f5ac9ee3b4d6f66ec7fed1",
+    "prompts\\synopsis_qna_generated.txt": "f782ca911b40d4ad49ff1204938bb330411235a6db26226af15deae36816baf7",
+    "prompts\\synopsis_qna_predefined.txt": "546cb6601161afd367d8123cd961872d3db5c3280b18adc84b103ac52727e2d7",
+    "prompts\\synopsis_summary.txt": "c071d53fef5ba49e3b84d2484206da28e247b8a063cc2dc08b5362b5cc1e7da7",
+    "prompts\\synopsis_timeline.txt": "6628250520eeccc4fce0e76c0453a0c22f4847117f166955695d814d8e638ef2",
+    "prompts\\synposis_rag.txt": "6ba3f3daf16fec48c29e51765ec141dfd93e1d1ad4df7078948a03e7fa7ced7c"
+  },
+  "scope": "All saved scenes, production two-pass scene history, newly generated narrative, newly generated synopsis.",
+  "excluded": [
+    "video decoding",
+    "scene detection",
+    "ASR inference",
+    "caption/detection inference",
+    "embeddings"
+  ],
+  "limitations": [
+    "Azure model inference and network latency are included in locally measured wall times.",
+    "First trials are not verified cold; no cache clearing or artificial cache-busting is used.",
+    "Repeats regenerate intermediate context; they are not necessarily exact-prompt cache repeats.",
+    "Tree reduction runs only if the production 50000-character narrative threshold is exceeded.",
+    "SDK retries are disabled for visibility; normal application retries remain enabled.",
+    "Format and coverage checks are not exhaustive factual verification."
+  ],
+  "runs": [
+    {
+      "run_id": "speech_original_1",
+      "case": "speech",
+      "variant": "original",
+      "repetition": 1,
+      "trial_kind": "first_use_not_verified_cold",
+      "available_ram_bytes": 6317342720,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 25.52294679998886,
+        "narrative": 5.491752200003248,
+        "synopsis": 12.186846199969295,
+        "total_llm": 43.20162149996031
+      },
+      "usage": {
+        "requests": 53,
+        "successful_requests": 53,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 53,
+        "cache_hit_requests": 0,
+        "prompt_tokens": 42896,
+        "cached_tokens": 0,
+        "cached_token_fraction": 0.0,
+        "completion_tokens": 11203,
+        "median_request_sec": 3.0428010000032373,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 0,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 22,
+      "scenes_out": 22,
+      "narrative_chars": 6211,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 44,
+          "successful_requests": 44,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 44,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 24151,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 7725,
+          "median_request_sec": 2.867599099990912,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 2,
+          "successful_requests": 2,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 2,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 7664,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1340,
+          "median_request_sec": 4.879263850016287,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 11081,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2138,
+          "median_request_sec": 11.273013399972115,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 31,
+        "unknown_timestamp_fields": 2,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "speech_cache_friendly_1",
+      "case": "speech",
+      "variant": "cache_friendly",
+      "repetition": 1,
+      "trial_kind": "first_use_not_verified_cold",
+      "available_ram_bytes": 6255960064,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 22.222572600003332,
+        "narrative": 4.540062699990813,
+        "synopsis": 12.171909799973946,
+        "total_llm": 38.934647399990354
+      },
+      "usage": {
+        "requests": 53,
+        "successful_requests": 53,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 53,
+        "cache_hit_requests": 5,
+        "prompt_tokens": 42337,
+        "cached_tokens": 6528,
+        "cached_token_fraction": 0.15419136925148216,
+        "completion_tokens": 10893,
+        "median_request_sec": 2.643524300015997,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 5,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 1,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 22,
+      "scenes_out": 22,
+      "narrative_chars": 6106,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 44,
+          "successful_requests": 44,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 44,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 23953,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 7162,
+          "median_request_sec": 2.4433749500021804,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 2,
+          "successful_requests": 2,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 2,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 7149,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1344,
+          "median_request_sec": 4.247074200015049,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 5,
+          "prompt_tokens": 11235,
+          "cached_tokens": 6528,
+          "cached_token_fraction": 0.581041388518024,
+          "completion_tokens": 2387,
+          "median_request_sec": 10.938869300007354,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 5,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 22,
+        "unknown_timestamp_fields": 9,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "story_original_1",
+      "case": "story",
+      "variant": "original",
+      "repetition": 1,
+      "trial_kind": "first_use_not_verified_cold",
+      "available_ram_bytes": 6341767168,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 30.834622700000182,
+        "narrative": 5.036101099976804,
+        "synopsis": 12.773539400019217,
+        "total_llm": 48.64434659999097
+      },
+      "usage": {
+        "requests": 78,
+        "successful_requests": 78,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 78,
+        "cache_hit_requests": 0,
+        "prompt_tokens": 75711,
+        "cached_tokens": 0,
+        "cached_token_fraction": 0.0,
+        "completion_tokens": 17159,
+        "median_request_sec": 2.797631649969844,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 1,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 34,
+      "scenes_out": 34,
+      "narrative_chars": 8943,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 68,
+          "successful_requests": 68,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 68,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 47156,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 12968,
+          "median_request_sec": 2.729945550003322,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 3,
+          "successful_requests": 3,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 3,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 12196,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2094,
+          "median_request_sec": 4.537510699999984,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 16359,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2097,
+          "median_request_sec": 11.539538000011817,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 28,
+        "unknown_timestamp_fields": 5,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "story_cache_friendly_1",
+      "case": "story",
+      "variant": "cache_friendly",
+      "repetition": 1,
+      "trial_kind": "first_use_not_verified_cold",
+      "available_ram_bytes": 6331920384,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 29.67222380003659,
+        "narrative": 8.34021329996176,
+        "synopsis": 14.653329399996437,
+        "total_llm": 52.66589230002137
+      },
+      "usage": {
+        "requests": 78,
+        "successful_requests": 78,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 78,
+        "cache_hit_requests": 3,
+        "prompt_tokens": 76002,
+        "cached_tokens": 5760,
+        "cached_token_fraction": 0.07578747927686114,
+        "completion_tokens": 17012,
+        "median_request_sec": 2.6146036999998614,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 6,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 1,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 34,
+      "scenes_out": 34,
+      "narrative_chars": 9584,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 68,
+          "successful_requests": 68,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 68,
+          "cache_hit_requests": 1,
+          "prompt_tokens": 47251,
+          "cached_tokens": 1280,
+          "cached_token_fraction": 0.027089373769867305,
+          "completion_tokens": 12455,
+          "median_request_sec": 2.4782536500133574,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 3,
+          "successful_requests": 3,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 3,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 11664,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2180,
+          "median_request_sec": 5.562262999999803,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 2,
+          "prompt_tokens": 17087,
+          "cached_tokens": 4480,
+          "cached_token_fraction": 0.26218762802130274,
+          "completion_tokens": 2377,
+          "median_request_sec": 10.928635399963241,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 6
+        },
+        "numeric_timestamp_fields": 36,
+        "unknown_timestamp_fields": 0,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "visual_original_1",
+      "case": "visual",
+      "variant": "original",
+      "repetition": 1,
+      "trial_kind": "first_use_not_verified_cold",
+      "available_ram_bytes": 6321741824,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 21.08430380001664,
+        "narrative": 7.772684200026561,
+        "synopsis": 12.594291099987458,
+        "total_llm": 41.451367200003006
+      },
+      "usage": {
+        "requests": 40,
+        "successful_requests": 40,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 40,
+        "cache_hit_requests": 0,
+        "prompt_tokens": 26027,
+        "cached_tokens": 0,
+        "cached_token_fraction": 0.0,
+        "completion_tokens": 7418,
+        "median_request_sec": 3.009363499993924,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 17,
+        "fully_missing_required_answers": 3,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 16,
+      "scenes_out": 16,
+      "narrative_chars": 3747,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 32,
+          "successful_requests": 32,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 32,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 13573,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 4780,
+          "median_request_sec": 2.3008833499916364,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 1,
+          "successful_requests": 1,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 1,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 4257,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 928,
+          "median_request_sec": 7.770500999991782,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 8197,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1710,
+          "median_request_sec": 10.316973500011954,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 31,
+        "unknown_timestamp_fields": 2,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "visual_cache_friendly_1",
+      "case": "visual",
+      "variant": "cache_friendly",
+      "repetition": 1,
+      "trial_kind": "first_use_not_verified_cold",
+      "available_ram_bytes": 6325379072,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 25.98981100000674,
+        "narrative": 7.5278963999589905,
+        "synopsis": 12.77312789997086,
+        "total_llm": 46.29093089996604
+      },
+      "usage": {
+        "requests": 40,
+        "successful_requests": 40,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 40,
+        "cache_hit_requests": 5,
+        "prompt_tokens": 26303,
+        "cached_tokens": 5120,
+        "cached_token_fraction": 0.1946546021366384,
+        "completion_tokens": 7476,
+        "median_request_sec": 3.062378600036027,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 5,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 20,
+        "fully_missing_required_answers": 4,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 16,
+      "scenes_out": 16,
+      "narrative_chars": 4275,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 32,
+          "successful_requests": 32,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 32,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 13290,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 4629,
+          "median_request_sec": 2.431283349986188,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 1,
+          "successful_requests": 1,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 1,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 4179,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1001,
+          "median_request_sec": 7.525547299999744,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 5,
+          "prompt_tokens": 8834,
+          "cached_tokens": 5120,
+          "cached_token_fraction": 0.5795788997056825,
+          "completion_tokens": 1846,
+          "median_request_sec": 12.289588299987372,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 5,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 30,
+        "unknown_timestamp_fields": 1,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "speech_cache_friendly_2",
+      "case": "speech",
+      "variant": "cache_friendly",
+      "repetition": 2,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 6437679104,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 24.8490376000409,
+        "narrative": 7.773915699974168,
+        "synopsis": 12.71325730002718,
+        "total_llm": 45.33628829999361
+      },
+      "usage": {
+        "requests": 53,
+        "successful_requests": 53,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 53,
+        "cache_hit_requests": 5,
+        "prompt_tokens": 42851,
+        "cached_tokens": 7040,
+        "cached_token_fraction": 0.16429021493080675,
+        "completion_tokens": 10496,
+        "median_request_sec": 2.6306515999604017,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 5,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 0,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 22,
+      "scenes_out": 22,
+      "narrative_chars": 6791,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 44,
+          "successful_requests": 44,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 44,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 24097,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 6957,
+          "median_request_sec": 2.4334199000149965,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 2,
+          "successful_requests": 2,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 2,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 6917,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1430,
+          "median_request_sec": 6.329878349992214,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 5,
+          "prompt_tokens": 11837,
+          "cached_tokens": 7040,
+          "cached_token_fraction": 0.5947452901917716,
+          "completion_tokens": 2109,
+          "median_request_sec": 11.284238499996718,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 5,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 22,
+        "unknown_timestamp_fields": 9,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "speech_original_2",
+      "case": "speech",
+      "variant": "original",
+      "repetition": 2,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 6446538752,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 24.009305000014137,
+        "narrative": 5.1507013000082225,
+        "synopsis": 4.941417599970009,
+        "total_llm": 34.101539199997205
+      },
+      "usage": {
+        "requests": 53,
+        "successful_requests": 53,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 53,
+        "cache_hit_requests": 0,
+        "prompt_tokens": 41710,
+        "cached_tokens": 0,
+        "cached_token_fraction": 0.0,
+        "completion_tokens": 10868,
+        "median_request_sec": 2.616287899960298,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 0,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 22,
+      "scenes_out": 22,
+      "narrative_chars": 5723,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 44,
+          "successful_requests": 44,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 44,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 23898,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 7566,
+          "median_request_sec": 2.5106201999878976,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 2,
+          "successful_requests": 2,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 2,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 7557,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1222,
+          "median_request_sec": 5.004306699964218,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 10255,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2080,
+          "median_request_sec": 3.7797797999810427,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 24,
+        "unknown_timestamp_fields": 9,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "story_cache_friendly_2",
+      "case": "story",
+      "variant": "cache_friendly",
+      "repetition": 2,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 5930360832,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 27.79649109998718,
+        "narrative": 8.124525099992752,
+        "synopsis": 5.274195900012273,
+        "total_llm": 41.195268300012685
+      },
+      "usage": {
+        "requests": 78,
+        "successful_requests": 78,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 78,
+        "cache_hit_requests": 4,
+        "prompt_tokens": 76946,
+        "cached_tokens": 8192,
+        "cached_token_fraction": 0.10646427364645336,
+        "completion_tokens": 17245,
+        "median_request_sec": 3.0028174000035506,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 0,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 34,
+      "scenes_out": 34,
+      "narrative_chars": 9934,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 68,
+          "successful_requests": 68,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 68,
+          "cache_hit_requests": 1,
+          "prompt_tokens": 46904,
+          "cached_tokens": 1280,
+          "cached_token_fraction": 0.027289783387344363,
+          "completion_tokens": 12737,
+          "median_request_sec": 2.9191450500220526,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 3,
+          "successful_requests": 3,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 3,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 12010,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2315,
+          "median_request_sec": 6.510828299971763,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 3,
+          "prompt_tokens": 18032,
+          "cached_tokens": 6912,
+          "cached_token_fraction": 0.38331854480922806,
+          "completion_tokens": 2193,
+          "median_request_sec": 4.03795159998117,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 33,
+        "unknown_timestamp_fields": 0,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "story_original_2",
+      "case": "story",
+      "variant": "original",
+      "repetition": 2,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 5802459136,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 25.253373499959707,
+        "narrative": 10.266473900002893,
+        "synopsis": 4.891418699990027,
+        "total_llm": 40.41134120000061
+      },
+      "usage": {
+        "requests": 78,
+        "successful_requests": 78,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 78,
+        "cache_hit_requests": 2,
+        "prompt_tokens": 78160,
+        "cached_tokens": 2560,
+        "cached_token_fraction": 0.032753326509723645,
+        "completion_tokens": 17315,
+        "median_request_sec": 2.5803646999702323,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 0,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 34,
+      "scenes_out": 34,
+      "narrative_chars": 10638,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 68,
+          "successful_requests": 68,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 68,
+          "cache_hit_requests": 2,
+          "prompt_tokens": 47143,
+          "cached_tokens": 2560,
+          "cached_token_fraction": 0.05430286574889167,
+          "completion_tokens": 12735,
+          "median_request_sec": 2.4834858500398695,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 3,
+          "successful_requests": 3,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 3,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 11963,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2480,
+          "median_request_sec": 8.044964500004426,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 19054,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2100,
+          "median_request_sec": 4.051006000023335,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 32,
+        "unknown_timestamp_fields": 1,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "visual_cache_friendly_2",
+      "case": "visual",
+      "variant": "cache_friendly",
+      "repetition": 2,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 5656530944,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 10.346780699968804,
+        "narrative": 7.31601359997876,
+        "synopsis": 4.942178400000557,
+        "total_llm": 22.605069899989758
+      },
+      "usage": {
+        "requests": 40,
+        "successful_requests": 40,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 40,
+        "cache_hit_requests": 1,
+        "prompt_tokens": 25665,
+        "cached_tokens": 1024,
+        "cached_token_fraction": 0.03989869472043639,
+        "completion_tokens": 7284,
+        "median_request_sec": 2.2138497999985702,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 5,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 20,
+        "fully_missing_required_answers": 5,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 16,
+      "scenes_out": 16,
+      "narrative_chars": 3777,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 32,
+          "successful_requests": 32,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 32,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 13236,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 4661,
+          "median_request_sec": 1.822012149990769,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 1,
+          "successful_requests": 1,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 1,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 4204,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 914,
+          "median_request_sec": 7.313534200016875,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 1,
+          "prompt_tokens": 8225,
+          "cached_tokens": 1024,
+          "cached_token_fraction": 0.1244984802431611,
+          "completion_tokens": 1709,
+          "median_request_sec": 3.888961200020276,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 5,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 27,
+        "unknown_timestamp_fields": 4,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "visual_original_2",
+      "case": "visual",
+      "variant": "original",
+      "repetition": 2,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 5658202112,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 10.384357800008729,
+        "narrative": 5.722561399976257,
+        "synopsis": 4.089619899983518,
+        "total_llm": 20.19659780000802
+      },
+      "usage": {
+        "requests": 40,
+        "successful_requests": 40,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 40,
+        "cache_hit_requests": 0,
+        "prompt_tokens": 25880,
+        "cached_tokens": 0,
+        "cached_token_fraction": 0.0,
+        "completion_tokens": 7427,
+        "median_request_sec": 2.11929470000905,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 5,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 16,
+        "fully_missing_required_answers": 4,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 16,
+      "scenes_out": 16,
+      "narrative_chars": 4006,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 32,
+          "successful_requests": 32,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 32,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 13196,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 4704,
+          "median_request_sec": 1.840200750011718,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 1,
+          "successful_requests": 1,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 1,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 4263,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 960,
+          "median_request_sec": 5.719982999959029,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 8421,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1763,
+          "median_request_sec": 3.4010723000392318,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 5,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 29,
+        "unknown_timestamp_fields": 2,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "speech_original_3",
+      "case": "speech",
+      "variant": "original",
+      "repetition": 3,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 5707866112,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 16.29208230000222,
+        "narrative": 7.310606799961533,
+        "synopsis": 4.716141799988691,
+        "total_llm": 28.318907400011085
+      },
+      "usage": {
+        "requests": 53,
+        "successful_requests": 53,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 53,
+        "cache_hit_requests": 0,
+        "prompt_tokens": 42963,
+        "cached_tokens": 0,
+        "cached_token_fraction": 0.0,
+        "completion_tokens": 11134,
+        "median_request_sec": 2.4362707000109367,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 1,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 22,
+      "scenes_out": 22,
+      "narrative_chars": 6260,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 44,
+          "successful_requests": 44,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 44,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 23945,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 7708,
+          "median_request_sec": 2.071808749984484,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 2,
+          "successful_requests": 2,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 2,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 7685,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1376,
+          "median_request_sec": 7.218364750035107,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 11333,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2050,
+          "median_request_sec": 3.6470486000180244,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 26,
+        "unknown_timestamp_fields": 7,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "speech_cache_friendly_3",
+      "case": "speech",
+      "variant": "cache_friendly",
+      "repetition": 3,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 5711855616,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 14.290411199966911,
+        "narrative": 5.240056100010406,
+        "synopsis": 12.864991799986456,
+        "total_llm": 32.395513400027994
+      },
+      "usage": {
+        "requests": 53,
+        "successful_requests": 53,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 53,
+        "cache_hit_requests": 5,
+        "prompt_tokens": 42371,
+        "cached_tokens": 6528,
+        "cached_token_fraction": 0.1540676406032428,
+        "completion_tokens": 10597,
+        "median_request_sec": 2.704837099998258,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 0,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 22,
+      "scenes_out": 22,
+      "narrative_chars": 6087,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 44,
+          "successful_requests": 44,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 44,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 24107,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 7062,
+          "median_request_sec": 2.3684398499899544,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 2,
+          "successful_requests": 2,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 2,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 7029,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1344,
+          "median_request_sec": 4.421012300008442,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 5,
+          "prompt_tokens": 11235,
+          "cached_tokens": 6528,
+          "cached_token_fraction": 0.581041388518024,
+          "completion_tokens": 2191,
+          "median_request_sec": 11.47495240002172,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 23,
+        "unknown_timestamp_fields": 10,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "story_original_3",
+      "case": "story",
+      "variant": "original",
+      "repetition": 3,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 5800824832,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 28.823080600006506,
+        "narrative": 7.397301200020593,
+        "synopsis": 13.982621199975256,
+        "total_llm": 50.20311780000338
+      },
+      "usage": {
+        "requests": 78,
+        "successful_requests": 78,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 78,
+        "cache_hit_requests": 2,
+        "prompt_tokens": 76967,
+        "cached_tokens": 2560,
+        "cached_token_fraction": 0.0332610079644523,
+        "completion_tokens": 17536,
+        "median_request_sec": 2.8274664499913342,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 6,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 0,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 34,
+      "scenes_out": 34,
+      "narrative_chars": 9470,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 68,
+          "successful_requests": 68,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 68,
+          "cache_hit_requests": 2,
+          "prompt_tokens": 47210,
+          "cached_tokens": 2560,
+          "cached_token_fraction": 0.05422579961872485,
+          "completion_tokens": 13202,
+          "median_request_sec": 2.7069742000021506,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 3,
+          "successful_requests": 3,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 3,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 12411,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2235,
+          "median_request_sec": 7.208166199969128,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 17346,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2099,
+          "median_request_sec": 11.3023542999872,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 6
+        },
+        "numeric_timestamp_fields": 35,
+        "unknown_timestamp_fields": 1,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "story_cache_friendly_3",
+      "case": "story",
+      "variant": "cache_friendly",
+      "repetition": 3,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 5815517184,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 24.730362400005106,
+        "narrative": 7.684434900002088,
+        "synopsis": 8.2459424000117,
+        "total_llm": 40.66079589998117
+      },
+      "usage": {
+        "requests": 78,
+        "successful_requests": 78,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 78,
+        "cache_hit_requests": 5,
+        "prompt_tokens": 77617,
+        "cached_tokens": 10752,
+        "cached_token_fraction": 0.1385263537627066,
+        "completion_tokens": 17377,
+        "median_request_sec": 2.465355449967319,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 1,
+        "fully_missing_required_answers": 0,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 34,
+      "scenes_out": 34,
+      "narrative_chars": 10455,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 68,
+          "successful_requests": 68,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 68,
+          "cache_hit_requests": 1,
+          "prompt_tokens": 47124,
+          "cached_tokens": 1024,
+          "cached_token_fraction": 0.02172990408284526,
+          "completion_tokens": 12571,
+          "median_request_sec": 2.3766034500440583,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 3,
+          "successful_requests": 3,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 3,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 11817,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 2407,
+          "median_request_sec": 7.17896990000736,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 4,
+          "prompt_tokens": 18676,
+          "cached_tokens": 9728,
+          "cached_token_fraction": 0.5208824159348897,
+          "completion_tokens": 2399,
+          "median_request_sec": 3.901908999949228,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 31,
+        "unknown_timestamp_fields": 2,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "visual_original_3",
+      "case": "visual",
+      "variant": "original",
+      "repetition": 3,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 6106284032,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 10.681925799988676,
+        "narrative": 9.460173500003293,
+        "synopsis": 12.329014200018719,
+        "total_llm": 32.4711678000167
+      },
+      "usage": {
+        "requests": 40,
+        "successful_requests": 40,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 40,
+        "cache_hit_requests": 0,
+        "prompt_tokens": 26162,
+        "cached_tokens": 0,
+        "cached_token_fraction": 0.0,
+        "completion_tokens": 7541,
+        "median_request_sec": 2.2528029499808326,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 6,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 20,
+        "fully_missing_required_answers": 5,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 16,
+      "scenes_out": 16,
+      "narrative_chars": 4134,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 32,
+          "successful_requests": 32,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 32,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 13408,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 4567,
+          "median_request_sec": 2.039468000002671,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 1,
+          "successful_requests": 1,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 1,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 4081,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 996,
+          "median_request_sec": 9.45762719999766,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 8673,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1978,
+          "median_request_sec": 11.149813099997118,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 6,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 31,
+        "unknown_timestamp_fields": 2,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    },
+    {
+      "run_id": "visual_cache_friendly_3",
+      "case": "visual",
+      "variant": "cache_friendly",
+      "repetition": 3,
+      "trial_kind": "repeat_video_regenerated_context",
+      "available_ram_bytes": 6158635008,
+      "status": "complete",
+      "wall_sec": {
+        "scene_descriptions": 23.5908352000406,
+        "narrative": 5.953313000034541,
+        "synopsis": 12.130053800006863,
+        "total_llm": 41.67431239999132
+      },
+      "usage": {
+        "requests": 40,
+        "successful_requests": 40,
+        "failed_requests": 0,
+        "cache_usage_reported_requests": 40,
+        "cache_hit_requests": 0,
+        "prompt_tokens": 25613,
+        "cached_tokens": 0,
+        "cached_token_fraction": 0.0,
+        "completion_tokens": 7447,
+        "median_request_sec": 2.9276825499837287,
+        "retry_attempts": 0
+      },
+      "response_models": [
+        "gpt-4o-2024-11-20"
+      ],
+      "quality": {
+        "summary_present": true,
+        "title_present": true,
+        "highlight_count": 5,
+        "timeline_count": 6,
+        "clip_count": 5,
+        "question_count": 37,
+        "required_questions_in_order": true,
+        "missing_answer_count": 17,
+        "fully_missing_required_answers": 4,
+        "placeholder_questions": 0,
+        "factual_accuracy": "requires source review; not established by format checks"
+      },
+      "scenes_in": 16,
+      "scenes_out": 16,
+      "narrative_chars": 3944,
+      "narrative_passes": 1,
+      "tree_reduce_requests": 0,
+      "additional_synopsis_requests": 0,
+      "usage_by_stage": {
+        "scene_descriptions": {
+          "requests": 32,
+          "successful_requests": 32,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 32,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 13078,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 4671,
+          "median_request_sec": 2.5768641000031494,
+          "retry_attempts": 0
+        },
+        "narrative": {
+          "requests": 1,
+          "successful_requests": 1,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 1,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 4261,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 921,
+          "median_request_sec": 5.951046400004998,
+          "retry_attempts": 0
+        },
+        "synopsis": {
+          "requests": 7,
+          "successful_requests": 7,
+          "failed_requests": 0,
+          "cache_usage_reported_requests": 7,
+          "cache_hit_requests": 0,
+          "prompt_tokens": 8274,
+          "cached_tokens": 0,
+          "cached_token_fraction": 0.0,
+          "completion_tokens": 1855,
+          "median_request_sec": 11.107620200025849,
+          "retry_attempts": 0
+        }
+      },
+      "output_checks": {
+        "scene_order_and_count_preserved": true,
+        "meaningful_descriptions": {
+          "video_highlights": 5,
+          "video_timeline": 6,
+          "suggested_clips": 5
+        },
+        "numeric_timestamp_fields": 27,
+        "unknown_timestamp_fields": 4,
+        "timestamp_fields_not_exactly_in_saved_evidence": 0,
+        "note": "Timestamp membership and description counts do not establish factual correctness or event alignment."
+      }
+    }
+  ],
+  "finished_utc": "2026-10-20T18:18:45.836007+00:00",
+  "comparisons": {
+    "speech": {
+      "cohorts": {
+        "original": {
+          "stage_wall_median_sec": {
+            "scene_descriptions": 24.009305000014137,
+            "narrative": 5.491752200003248,
+            "synopsis": 4.941417599970009,
+            "total_llm": 34.101539199997205
+          },
+          "first_trial_total_sec": 43.20162149996031,
+          "repeat_trial_total_median_sec": 31.210223300004145,
+          "usage_by_stage": {
+            "scene_descriptions": {
+              "requests": 132,
+              "successful_requests": 132,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 132,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 71994,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 22999,
+              "median_request_sec": 2.5461964999849442,
+              "retry_attempts": 0
+            },
+            "narrative": {
+              "requests": 6,
+              "successful_requests": 6,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 6,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 22906,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 3938,
+              "median_request_sec": 5.317883199983044,
+              "retry_attempts": 0
+            },
+            "synopsis": {
+              "requests": 21,
+              "successful_requests": 21,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 21,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 32669,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 6268,
+              "median_request_sec": 3.908683200017549,
+              "retry_attempts": 0
+            }
+          }
+        },
+        "cache_friendly": {
+          "stage_wall_median_sec": {
+            "scene_descriptions": 22.222572600003332,
+            "narrative": 5.240056100010406,
+            "synopsis": 12.71325730002718,
+            "total_llm": 38.934647399990354
+          },
+          "first_trial_total_sec": 38.934647399990354,
+          "repeat_trial_total_median_sec": 38.8659008500108,
+          "usage_by_stage": {
+            "scene_descriptions": {
+              "requests": 132,
+              "successful_requests": 132,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 132,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 72157,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 21181,
+              "median_request_sec": 2.438342700013891,
+              "retry_attempts": 0
+            },
+            "narrative": {
+              "requests": 6,
+              "successful_requests": 6,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 6,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 21095,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 4118,
+              "median_request_sec": 4.712896299985005,
+              "retry_attempts": 0
+            },
+            "synopsis": {
+              "requests": 21,
+              "successful_requests": 21,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 21,
+              "cache_hit_requests": 15,
+              "prompt_tokens": 34307,
+              "cached_tokens": 20096,
+              "cached_token_fraction": 0.5857696679977847,
+              "completion_tokens": 6687,
+              "median_request_sec": 11.015168700017966,
+              "retry_attempts": 0
+            }
+          }
+        }
+      },
+      "paired_total_ratios": [
+        {
+          "repetition": 1,
+          "cache_friendly_over_original": 0.9012311586505178
+        },
+        {
+          "repetition": 2,
+          "cache_friendly_over_original": 1.3294499123370163
+        },
+        {
+          "repetition": 3,
+          "cache_friendly_over_original": 1.1439535057773915
+        }
+      ]
+    },
+    "story": {
+      "cohorts": {
+        "original": {
+          "stage_wall_median_sec": {
+            "scene_descriptions": 28.823080600006506,
+            "narrative": 7.397301200020593,
+            "synopsis": 12.773539400019217,
+            "total_llm": 48.64434659999097
+          },
+          "first_trial_total_sec": 48.64434659999097,
+          "repeat_trial_total_median_sec": 45.307229500001995,
+          "usage_by_stage": {
+            "scene_descriptions": {
+              "requests": 204,
+              "successful_requests": 204,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 204,
+              "cache_hit_requests": 4,
+              "prompt_tokens": 141509,
+              "cached_tokens": 5120,
+              "cached_token_fraction": 0.03618144428976249,
+              "completion_tokens": 38905,
+              "median_request_sec": 2.6757306499930564,
+              "retry_attempts": 0
+            },
+            "narrative": {
+              "requests": 9,
+              "successful_requests": 9,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 9,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 36570,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 6809,
+              "median_request_sec": 6.91614769998705,
+              "retry_attempts": 0
+            },
+            "synopsis": {
+              "requests": 21,
+              "successful_requests": 21,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 21,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 52759,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 6296,
+              "median_request_sec": 4.212972300010733,
+              "retry_attempts": 0
+            }
+          }
+        },
+        "cache_friendly": {
+          "stage_wall_median_sec": {
+            "scene_descriptions": 27.79649109998718,
+            "narrative": 8.124525099992752,
+            "synopsis": 8.2459424000117,
+            "total_llm": 41.195268300012685
+          },
+          "first_trial_total_sec": 52.66589230002137,
+          "repeat_trial_total_median_sec": 40.928032099996926,
+          "usage_by_stage": {
+            "scene_descriptions": {
+              "requests": 204,
+              "successful_requests": 204,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 204,
+              "cache_hit_requests": 3,
+              "prompt_tokens": 141279,
+              "cached_tokens": 3584,
+              "cached_token_fraction": 0.025368242980202294,
+              "completion_tokens": 37763,
+              "median_request_sec": 2.477861249994021,
+              "retry_attempts": 0
+            },
+            "narrative": {
+              "requests": 9,
+              "successful_requests": 9,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 9,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 35491,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 6902,
+              "median_request_sec": 6.510828299971763,
+              "retry_attempts": 0
+            },
+            "synopsis": {
+              "requests": 21,
+              "successful_requests": 21,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 21,
+              "cache_hit_requests": 9,
+              "prompt_tokens": 53795,
+              "cached_tokens": 21120,
+              "cached_token_fraction": 0.39260154289432103,
+              "completion_tokens": 6969,
+              "median_request_sec": 4.190124700020533,
+              "retry_attempts": 0
+            }
+          }
+        }
+      },
+      "paired_total_ratios": [
+        {
+          "repetition": 1,
+          "cache_friendly_over_original": 1.0826724168606912
+        },
+        {
+          "repetition": 2,
+          "cache_friendly_over_original": 1.0193986904847412
+        },
+        {
+          "repetition": 3,
+          "cache_friendly_over_original": 0.8099257114262021
+        }
+      ]
+    },
+    "visual": {
+      "cohorts": {
+        "original": {
+          "stage_wall_median_sec": {
+            "scene_descriptions": 10.681925799988676,
+            "narrative": 7.772684200026561,
+            "synopsis": 12.329014200018719,
+            "total_llm": 32.4711678000167
+          },
+          "first_trial_total_sec": 41.451367200003006,
+          "repeat_trial_total_median_sec": 26.33388280001236,
+          "usage_by_stage": {
+            "scene_descriptions": {
+              "requests": 96,
+              "successful_requests": 96,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 96,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 40177,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 14051,
+              "median_request_sec": 2.06979894998949,
+              "retry_attempts": 0
+            },
+            "narrative": {
+              "requests": 3,
+              "successful_requests": 3,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 3,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 12601,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 2884,
+              "median_request_sec": 7.770500999991782,
+              "retry_attempts": 0
+            },
+            "synopsis": {
+              "requests": 21,
+              "successful_requests": 21,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 21,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 25291,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 5451,
+              "median_request_sec": 10.035283099976368,
+              "retry_attempts": 0
+            }
+          }
+        },
+        "cache_friendly": {
+          "stage_wall_median_sec": {
+            "scene_descriptions": 23.5908352000406,
+            "narrative": 7.31601359997876,
+            "synopsis": 12.130053800006863,
+            "total_llm": 41.67431239999132
+          },
+          "first_trial_total_sec": 46.29093089996604,
+          "repeat_trial_total_median_sec": 32.13969114999054,
+          "usage_by_stage": {
+            "scene_descriptions": {
+              "requests": 96,
+              "successful_requests": 96,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 96,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 39604,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 13961,
+              "median_request_sec": 2.074323800014099,
+              "retry_attempts": 0
+            },
+            "narrative": {
+              "requests": 3,
+              "successful_requests": 3,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 3,
+              "cache_hit_requests": 0,
+              "prompt_tokens": 12644,
+              "cached_tokens": 0,
+              "cached_token_fraction": 0.0,
+              "completion_tokens": 2836,
+              "median_request_sec": 7.313534200016875,
+              "retry_attempts": 0
+            },
+            "synopsis": {
+              "requests": 21,
+              "successful_requests": 21,
+              "failed_requests": 0,
+              "cache_usage_reported_requests": 21,
+              "cache_hit_requests": 6,
+              "prompt_tokens": 25333,
+              "cached_tokens": 6144,
+              "cached_token_fraction": 0.24252950696719694,
+              "completion_tokens": 5410,
+              "median_request_sec": 10.167423499980941,
+              "retry_attempts": 0
+            }
+          }
+        }
+      },
+      "paired_total_ratios": [
+        {
+          "repetition": 1,
+          "cache_friendly_over_original": 1.1167528124370933
+        },
+        {
+          "repetition": 2,
+          "cache_friendly_over_original": 1.1192513770799941
+        },
+        {
+          "repetition": 3,
+          "cache_friendly_over_original": 1.2834251190673187
+        }
+      ]
+    }
+  },
+  "paired_total_ratio_median": 1.1167528124370933,
+  "exploratory_paired_ratio_95pct_interval": [
+    0.9012311586505178,
+    1.2834251190673187
+  ],
+  "interval_limit": "Small sequential sample with shared service/network conditions; this does not prove equivalence.",
+  "exact_output_comparison": [
+    {
+      "case": "speech",
+      "repetition": 1,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 22
+    },
+    {
+      "case": "speech",
+      "repetition": 2,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 22
+    },
+    {
+      "case": "speech",
+      "repetition": 3,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 22
+    },
+    {
+      "case": "story",
+      "repetition": 1,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 34
+    },
+    {
+      "case": "story",
+      "repetition": 2,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 34
+    },
+    {
+      "case": "story",
+      "repetition": 3,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 34
+    },
+    {
+      "case": "visual",
+      "repetition": 1,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 16
+    },
+    {
+      "case": "visual",
+      "repetition": 2,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 16
+    },
+    {
+      "case": "visual",
+      "repetition": 3,
+      "identical_final_report": false,
+      "identical_final_narrative": false,
+      "identical_scene_reports": 0,
+      "scene_reports_compared": 16
+    }
+  ],
+  "publication_scope": "Aggregate metadata only; raw model outputs, source evidence, and request traces remain local."
+}
