@@ -188,7 +188,7 @@ def build_contexts(checkpoint: dict):
     return [c for c in (scenes + synopsis) if c and c.strip()]
 
 
-MAX_EMBED_BATCH = 250  # Vertex AI embed_content supports up to 250 items per request.
+MAX_EMBED_BATCH = 100  # Gemini Developer API accepts at most 100 requests per batch.
 
 
 def embed_contexts(
@@ -205,6 +205,8 @@ def embed_contexts(
         return []
     if batch_size < 1:
         raise ValueError("batch_size must be >= 1")
+    if provider_name == 'gemini':
+        batch_size = min(batch_size, 100)
 
     embeddings = []
     for start in range(0, len(contexts), batch_size):
