@@ -1,6 +1,6 @@
 # Titanic sanity check
 
-Evaluate the [revised summary](generated_summary.txt) against the [user-supplied MovieSum reference](reference_summary.txt). See **[RESULTS.md](RESULTS.md)** for measured scores, paper context, and interpretation.
+Evaluate the [revised summary](generated_summary.txt) against the [MovieSum reference](reference_summary.txt), verified on 2026-10-21 to match the official test-split Wikipedia plot summary after whitespace normalization. See **[RESULTS.md](RESULTS.md)** for measured scores and the [four-movie zero-shot comparison](../pilot/RESULTS.md) for Titanic alongside the local pilots.
 
 This folder evaluates only the revised summary. The saved narrative, prompt, and metadata document its provenance. `metrics.json` contains revised-only ROUGE, chrF, and length diagnostics.
 

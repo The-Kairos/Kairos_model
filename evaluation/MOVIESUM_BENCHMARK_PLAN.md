@@ -56,11 +56,29 @@ The [Titanic sanity check](titanic_sanity/RESULTS.md) regenerated final synthesi
 
 Compared numerically with [MovieSum Table 3](https://aclanthology.org/2024.findings-acl.239.pdf#page=4), Kairos is **higher than zero-shot Vicuna and TextRank + Vicuna on all three ROUGE measures**. Against zero-shot FLAN-UL2 and Moving-window Vicuna, it is higher on ROUGE-1/2 but lower on ROUGE-L. This is one video-derived development example versus published screenplay-based test-set averages, so it does not establish overall superiority. Important plot events are still missing.
 
-## 6. Next decisions
+## 6. Pilot test results
 
-- Improve event selection and inspect upstream narrative accuracy while keeping the 650-750-word requirement fixed across systems where supported. Treat Titanic as a development example because it has been used for prompt tuning.
-- Pilot next: **Yes Man (2008)** (comedy/romance), **Baby Driver (2017)** (action/crime), **Get Out (2017)** (horror/mystery/thriller), then **The Martian (2015)** (sci-fi/adventure/drama). Confirm test-split membership; check turning points, endings, and upstream omissions. These broaden genre coverage, without covering every genre.
-- Record fresh full-movie timings locally and on the VM. Treat pilots used for prompt tuning as development examples; freeze prompts and scoring before evaluating held-out movies.
-- Validate Video ReCap without MovieSum-specific fine-tuning. Use matched movies and documented input/metric differences for direct system comparisons.
-- Report aggregate ROUGE, then add BERTScore and a smaller blinded human review of factuality, plot coverage, and coherence.
-- Save each movie ID, reference, generated summary, model version, prompt, settings, processing time, failure status, and scores. Keep reference summaries out of generation inputs.
+**Does Kairos beat the published zero-shot baselines across all measures? No.** The four-movie average is numerically higher on ROUGE-1/2 F1 and lower on ROUGE-L F1 than all four baselines. The three-movie average is higher on ROUGE-1 than all four, but its ROUGE-2 is below FLAN-UL2. BERTScore settings remain unaligned, so higher raw values do not establish an advantage.
+
+| Measure | Three-movie average | Four-movie average | Difference from strongest zero-shot: three / four |
+|---|---:|---:|---:|
+| ROUGE-1 F1 | 27.47 | 31.52 | +3.85 / +7.90 |
+| ROUGE-2 F1 | 3.73 | 5.48 | -0.56 / +1.19 |
+| ROUGE-L F1 | 13.44 | 14.08 | -8.57 / -7.93 |
+| BERTScore precision | 81.07 | 81.29 | Not comparable yet |
+| BERTScore recall | 80.35 | 80.83 | Not comparable yet |
+| BERTScore F1 | 80.71 | 81.06 | Not comparable yet |
+
+Three movies are Baby Driver, Get Out and The Martian; four adds Titanic. Scores use a 0-100 scale. All reference texts match the official MovieSum Wikipedia summaries (Titanic after whitespace normalization), and ROUGE scores were reproduced. The [concise pilot report](pilot/RESULTS.md) includes all 12 local P/R/F1 values and margins against every zero-shot baseline. The paper publishes only six of these measures; separate ROUGE precision/recall comparisons are unavailable.
+
+These are selected video diagnostics versus published screenplay test-set averages. Titanic was used for tuning; the three local movie cuts remain unverified. Yes Man was skipped. Missing plot events remain a concern, and resumed timings are not fresh end-to-end measurements.
+
+## 7. Next decisions
+
+- Investigate upstream plot omissions and character identification before claiming better summary quality; review turning points and endings against actual movie evidence.
+- Verify complete movie versions and replace questionable copies. Run Yes Man only after obtaining a complete, decodable input.
+- Align BERTScore model, layer, rescaling and truncation with the paper where possible, and verify ROUGE preprocessing. Keep unmatched scores labeled as contextual comparisons.
+- Freeze prompts, summary length (650-750 words), retry policy and scoring before evaluating new held-out movies. Treat Titanic and these pilots as development examples.
+- Record fresh full-movie timings locally and on the VM using bounded YOLO batches of 4, FP32 and unchanged 4 FPS sampling; exclude cached restart timings from runtime estimates.
+- Validate Video ReCap and other baselines on matched movies without MovieSum-specific fine-tuning. Add question-based coverage evaluation and blinded human review of factuality and coherence.
+- Preserve movie IDs, references, generated summaries, model/prompt versions, settings, timings, failures and scores. Keep references out of generation inputs.

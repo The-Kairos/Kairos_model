@@ -1,0 +1,342 @@
+{
+  "created_utc": "2026-10-21T08:57:30.216443+00:00",
+  "paper_table": "https://aclanthology.org/2024.findings-acl.239.pdf#page=4",
+  "comparison_type": "descriptive comparison to published aggregate scores, not matched-film baseline outputs",
+  "dataset": "rohitsaxena/MovieSum",
+  "test_file_sha256": "512ec5fe1ec53eb0f2a2b7c0788d58548e4f283bda70c37c56016154ea597388",
+  "scoring": {
+    "rouge_score_version": "0.1.2",
+    "use_stemmer": true,
+    "rougeL": "whole-summary LCS, not ROUGE-Lsum",
+    "scale": "0-100 F1"
+  },
+  "movies": [
+    {
+      "title": "Titanic",
+      "year": 1997,
+      "imdb_id": "tt0120338",
+      "split": "test",
+      "saved_folder": "evaluation\\titanic_sanity",
+      "summary_words": 714,
+      "reference_words": 680,
+      "reference_exact_match": false,
+      "reference_whitespace_normalized_match": true,
+      "official_reference_sha256": "57a7b19407ef5728ba4608eec0d07ddb6f6a5787eb4b64e2d86bbd6999401a6d",
+      "saved_reference_sha256": "5c6eb3bcfe17268ae58891bda9925777aa388bfa2ad0269300be2e66be4ef5fa",
+      "summary_sha256": "b94fb9003eeff14915a0b8e333e79acc0c3820d30744ddbd6c7405a567268c21",
+      "rouge_f1_100": [
+        43.671766342141865,
+        10.724233983286908,
+        15.99443671766342
+      ],
+      "saved_metrics_reproduced": true,
+      "rouge_precision_recall_f1": {
+        "rouge1": {
+          "precision": 0.4266304347826087,
+          "recall": 0.4472934472934473,
+          "f1": 0.43671766342141866
+        },
+        "rouge2": {
+          "precision": 0.10476190476190476,
+          "recall": 0.10984308131241084,
+          "f1": 0.10724233983286909
+        },
+        "rougeL": {
+          "precision": 0.15625,
+          "recall": 0.16381766381766383,
+          "f1": 0.1599443671766342
+        }
+      },
+      "bertscore": {
+        "precision": 0.8197371363639832,
+        "recall": 0.8224378824234009,
+        "f1": 0.8210853338241577,
+        "hash": "roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.57.1)",
+        "device": "cpu",
+        "rescale_with_baseline": false,
+        "elapsed_seconds": 3.8451445000246167,
+        "limitation": "Standard tokenizer truncation applies; long summaries exceed the model token window."
+      },
+      "delta_vs_published_averages": {
+        "FLAN-UL2 8K": [
+          20.051766342141864,
+          6.434233983286908,
+          -6.015563282336581
+        ],
+        "Vicuna 13B 16K": [
+          27.321766342141864,
+          7.174233983286908,
+          0.5544367176634211
+        ],
+        "TextRank + Vicuna 13B 16K": [
+          26.531766342141864,
+          7.044233983286908,
+          0.5244367176634199
+        ],
+        "Moving-window Vicuna 13B 16K": [
+          24.111766342141866,
+          7.4042339832869075,
+          -2.5755632823365797
+        ]
+      }
+    },
+    {
+      "title": "Baby Driver",
+      "year": 2017,
+      "imdb_id": "tt3890160",
+      "split": "test",
+      "saved_folder": "evaluation\\pilot\\local_20261020\\baby_driver",
+      "summary_words": 741,
+      "reference_words": 625,
+      "reference_exact_match": true,
+      "reference_whitespace_normalized_match": true,
+      "official_reference_sha256": "2c82c93e5511a6bfccc13d6e78fd51e7740abaea1802fe0828c230e06be1f87a",
+      "saved_reference_sha256": "2c82c93e5511a6bfccc13d6e78fd51e7740abaea1802fe0828c230e06be1f87a",
+      "summary_sha256": "47422599f0db520f4d7a81182337fa178aeef4108ce0adc1a8f36ad22a071bb9",
+      "rouge_f1_100": [
+        28.385228095582914,
+        4.205946337926033,
+        13.468501086169443
+      ],
+      "saved_metrics_reproduced": true,
+      "rouge_precision_recall_f1": {
+        "rouge1": {
+          "precision": 0.26273458445040215,
+          "recall": 0.30866141732283464,
+          "f1": 0.28385228095582915
+        },
+        "rouge2": {
+          "precision": 0.038926174496644296,
+          "recall": 0.04574132492113565,
+          "f1": 0.04205946337926033
+        },
+        "rougeL": {
+          "precision": 0.12466487935656836,
+          "recall": 0.14645669291338584,
+          "f1": 0.13468501086169443
+        }
+      },
+      "bertscore": {
+        "precision": 0.8122896552085876,
+        "recall": 0.8118782043457031,
+        "f1": 0.8120838403701782,
+        "hash": "roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.57.1)",
+        "device": "cpu",
+        "rescale_with_baseline": false,
+        "limitation": "Standard tokenizer truncation applies; long summaries exceed the model token window."
+      },
+      "delta_vs_published_averages": {
+        "FLAN-UL2 8K": [
+          4.765228095582913,
+          -0.08405366207396714,
+          -8.541498913830559
+        ],
+        "Vicuna 13B 16K": [
+          12.035228095582912,
+          0.6559463379260331,
+          -1.9714989138305565
+        ],
+        "TextRank + Vicuna 13B 16K": [
+          11.245228095582913,
+          0.5259463379260327,
+          -2.0014989138305577
+        ],
+        "Moving-window Vicuna 13B 16K": [
+          8.825228095582915,
+          0.8859463379260331,
+          -5.101498913830557
+        ]
+      }
+    },
+    {
+      "title": "Get Out",
+      "year": 2017,
+      "imdb_id": "tt5052448",
+      "split": "test",
+      "saved_folder": "evaluation\\pilot\\local_20261020\\get_out",
+      "summary_words": 724,
+      "reference_words": 716,
+      "reference_exact_match": true,
+      "reference_whitespace_normalized_match": true,
+      "official_reference_sha256": "6a08e7ac0bfbe6836bdcbdd4e2ddba22eae5a2fa1b8c70c6df02c690bbe584e4",
+      "saved_reference_sha256": "6a08e7ac0bfbe6836bdcbdd4e2ddba22eae5a2fa1b8c70c6df02c690bbe584e4",
+      "summary_sha256": "898391d1cc4f399193f2ea1a70d0a76d7e3c2ebbb1b60440e052eb3e68864531",
+      "rouge_f1_100": [
+        25.12010981468772,
+        3.0240549828178693,
+        12.628689087165409
+      ],
+      "saved_metrics_reproduced": true,
+      "rouge_precision_recall_f1": {
+        "rouge1": {
+          "precision": 0.25068493150684934,
+          "recall": 0.2517193947730399,
+          "f1": 0.2512010981468772
+        },
+        "rouge2": {
+          "precision": 0.03017832647462277,
+          "recall": 0.030303030303030304,
+          "f1": 0.030240549828178694
+        },
+        "rougeL": {
+          "precision": 0.12602739726027398,
+          "recall": 0.1265474552957359,
+          "f1": 0.1262868908716541
+        }
+      },
+      "bertscore": {
+        "precision": 0.8090917468070984,
+        "recall": 0.8022781610488892,
+        "f1": 0.8056705594062805,
+        "hash": "roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.57.1)",
+        "device": "cpu",
+        "rescale_with_baseline": false,
+        "limitation": "Standard tokenizer truncation applies; long summaries exceed the model token window."
+      },
+      "delta_vs_published_averages": {
+        "FLAN-UL2 8K": [
+          1.5001098146877183,
+          -1.2659450171821307,
+          -9.381310912834593
+        ],
+        "Vicuna 13B 16K": [
+          8.770109814687718,
+          -0.5259450171821305,
+          -2.811310912834591
+        ],
+        "TextRank + Vicuna 13B 16K": [
+          7.980109814687719,
+          -0.6559450171821308,
+          -2.841310912834592
+        ],
+        "Moving-window Vicuna 13B 16K": [
+          5.560109814687721,
+          -0.2959450171821305,
+          -5.941310912834592
+        ]
+      }
+    },
+    {
+      "title": "The Martian",
+      "year": 2015,
+      "imdb_id": "tt3659388",
+      "split": "test",
+      "saved_folder": "evaluation\\pilot\\local_20261020\\the_martian",
+      "summary_words": 668,
+      "reference_words": 667,
+      "reference_exact_match": true,
+      "reference_whitespace_normalized_match": true,
+      "official_reference_sha256": "e7b6bb6ac4d800b3865ef289c7f919af168c1ef6c15b791eaa60ca9306f003fd",
+      "saved_reference_sha256": "e7b6bb6ac4d800b3865ef289c7f919af168c1ef6c15b791eaa60ca9306f003fd",
+      "summary_sha256": "923869dc9f1f1bb205e71cacbcf06056993af3ce1c760b146dd70520a99abedb",
+      "rouge_f1_100": [
+        28.906823184152604,
+        3.9676708302718584,
+        14.233308877476153
+      ],
+      "saved_metrics_reproduced": true,
+      "rouge_precision_recall_f1": {
+        "rouge1": {
+          "precision": 0.29271916790490343,
+          "recall": 0.2855072463768116,
+          "f1": 0.289068231841526
+        },
+        "rouge2": {
+          "precision": 0.04017857142857143,
+          "recall": 0.03918722786647315,
+          "f1": 0.039676708302718584
+        },
+        "rougeL": {
+          "precision": 0.14413075780089152,
+          "recall": 0.14057971014492754,
+          "f1": 0.14233308877476153
+        }
+      },
+      "bertscore": {
+        "precision": 0.8106249570846558,
+        "recall": 0.7964908480644226,
+        "f1": 0.8034957647323608,
+        "hash": "roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.57.1)",
+        "device": "cpu",
+        "rescale_with_baseline": false,
+        "limitation": "Standard tokenizer truncation applies; long summaries exceed the model token window."
+      },
+      "delta_vs_published_averages": {
+        "FLAN-UL2 8K": [
+          5.2868231841526026,
+          -0.32232916972814163,
+          -7.776691122523848
+        ],
+        "Vicuna 13B 16K": [
+          12.556823184152602,
+          0.4176708302718586,
+          -1.2066911225238464
+        ],
+        "TextRank + Vicuna 13B 16K": [
+          11.766823184152603,
+          0.28767083027185825,
+          -1.2366911225238475
+        ],
+        "Moving-window Vicuna 13B 16K": [
+          9.346823184152605,
+          0.6476708302718586,
+          -4.336691122523847
+        ]
+      }
+    }
+  ],
+  "four_movie_macro": [
+    31.520981859141276,
+    5.480476533575667,
+    14.081233942118606
+  ],
+  "three_movie_local_pilot_macro": [
+    27.470720364807747,
+    3.7325573836719204,
+    13.443499683603669
+  ],
+  "published_zero_shot_test_averages": {
+    "FLAN-UL2 8K": [
+      23.62,
+      4.29,
+      22.01
+    ],
+    "Vicuna 13B 16K": [
+      16.35,
+      3.55,
+      15.44
+    ],
+    "TextRank + Vicuna 13B 16K": [
+      17.14,
+      3.68,
+      15.47
+    ],
+    "Moving-window Vicuna 13B 16K": [
+      19.56,
+      3.32,
+      18.57
+    ]
+  },
+  "published_zero_shot_bertscore_precision_recall_f1": {
+    "FLAN-UL2 8K": [
+      52.9,
+      49.57,
+      50.87
+    ],
+    "Vicuna 13B 16K": [
+      48.89,
+      48.49,
+      47.07
+    ],
+    "TextRank + Vicuna 13B 16K": [
+      59.24,
+      49.05,
+      53.57
+    ],
+    "Moving-window Vicuna 13B 16K": [
+      54.95,
+      48.7,
+      51.53
+    ]
+  }
+}
