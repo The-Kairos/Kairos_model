@@ -41,6 +41,8 @@ def run_yolo_on_frame(
         conf=conf,
         iou=iou,
         device=device,
+        half=False,
+        imgsz=640,
         stream=True,
         verbose=False
     )
@@ -73,25 +75,64 @@ def run_yolo_track_on_frames(
     iou: float = 0.45,
     tracker: str = "bytetrack.yaml",
     device: str | None = None,
+    batch_size: int = 4,
 ):
     """
-    Run YOLOv8 tracking on a list of frames.
-    Returns a list of results or None if tracking fails.
+    Track explicitly bounded batches, preserving IDs within this scene.
+
+    Passing an image list to Ultralytics creates a single batch even with
+    stream=True. Long scenes can therefore exceed GPU memory. Reset existing
+    trackers at scene boundaries and consume each frame before submitting the next.
     """
     try:
-        results = model.track(
-            frames,
-            conf=conf,
-            iou=iou,
-            device=device,
-            tracker=tracker,
-            persist=True,
-            verbose=False,
-            stream=True,
-        )
-        return results
+        predictor = getattr(model, "predictor", None)
+        for scene_tracker in getattr(predictor, "trackers", []) or []:
+            scene_tracker.reset()
+
+        def iter_results():
+            for offset in range(0, len(frames), batch_size):
+                chunk = frames[offset:offset + batch_size]
+                yield from model.track(
+                    chunk[0] if batch_size == 1 else chunk,
+                    conf=conf,
+                    iou=iou,
+                    device=device,
+                    tracker=tracker,
+                    persist=True,
+                    verbose=False,
+                    stream=True,
+                    half=False,
+                    imgsz=640,
+                )
+
+        return iter_results()
     except Exception:
         return None
+
+
+def _track_with_backoff(model, frames, batch_size, **kwargs):
+    """Retry the entire scene after OOM, discarding partial tracks/results."""
+    attempted = []
+    while True:
+        attempted.append(batch_size)
+        try:
+            results = run_yolo_track_on_frames(model, frames, batch_size=batch_size, **kwargs)
+            parsed = _parse_yolo_results(results, model) if results is not None else {}
+            return parsed, {'batch_size': batch_size, 'attempted_batches': attempted,
+                            'half': False, 'imgsz': 640}
+        except torch.cuda.OutOfMemoryError:
+            if batch_size == 1:
+                raise
+            batch_size = max(1, batch_size // 2)
+        # Outside the except block so its traceback no longer holds failed tensors.
+        predictor = getattr(model, 'predictor', None)
+        if predictor is not None:
+            predictor.results = None
+            predictor.batch = None
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        print_prefixed('(YOLOv8)', f'CUDA OOM: restarting scene with batch {batch_size}.')
 
 
 def _parse_yolo_results(results, model):
@@ -621,6 +662,8 @@ def detect_object_yolo(
     moving_with_speed_ratio=(0.5, 2.0),
     moving_with_min_speed: float = 1.0,
     device: str | None = None,
+    batch_size: int | None = None,
+    scene_completed=None,
 ):
     """
     Run YOLO on a list of scenes.
@@ -637,6 +680,9 @@ def detect_object_yolo(
         updated scenes with YOLO outputs added
     """
 
+    batch_size = int(batch_size if batch_size is not None else os.getenv('KAIROS_YOLO_BATCH_SIZE', '4'))
+    if batch_size < 1:
+        raise ValueError('YOLO batch size must be positive')
     model = YOLO(model_size)
 
     results_scenes = []
@@ -646,18 +692,18 @@ def detect_object_yolo(
 
         frames = scene.get(frame_key, [])
         yolo_dict = {}
+        inference_info = {'batch_size': batch_size, 'attempted_batches': [], 'half': False, 'imgsz': 640}
 
         if use_bytetrack and frames:
-            results = run_yolo_track_on_frames(
+            yolo_dict, inference_info = _track_with_backoff(
                 model,
                 frames,
+                batch_size=batch_size,
                 conf=conf,
                 iou=iou,
                 tracker=tracker,
                 device=device,
             )
-            if results is not None:
-                yolo_dict = _parse_yolo_results(results, model)
 
         if not yolo_dict:
             # fallback to per-frame detection
@@ -696,6 +742,9 @@ def detect_object_yolo(
         )
 
         new_scene[summary_key] = track_summaries
+        new_scene['yolo_inference'] = inference_info
+        if scene_completed is not None:
+            scene_completed(new_scene)
         results_scenes.append(new_scene)
 
         if debug:

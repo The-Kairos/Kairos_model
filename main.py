@@ -556,6 +556,7 @@ def run_blip_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
 
 
 def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool, quiet: bool):
+    from src.yolo_progress import YoloSceneProgress
     branch_scenes = clone_scenes(scenes)
     updates = {}
     fps_output_dir = f"{output_dir}/.fps" if debug else None
@@ -566,13 +567,34 @@ def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
     if all_scenes_have_key(branch_scenes, "yolo_detections"):
         return branch_scenes, updates
 
-    if not all_scenes_have_key(branch_scenes, "yolo_frames"):
+    batch_size = int(os.getenv('KAIROS_YOLO_BATCH_SIZE', '4'))
+    model_path = Path('model/yolov8s.pt')
+    model_stat = model_path.stat()
+    progress = YoloSceneProgress(Path(output_dir) / '.yolo_progress', test_video, {
+        'batch_size': batch_size, 'half': False, 'imgsz': 640, 'fps': yolo_action_fps,
+        'resolution': frame_resolution, 'conf': yolo_conf_thres, 'iou': yolo_iou_thres,
+        'model': str(model_path.resolve()), 'model_bytes': model_stat.st_size,
+        'model_mtime_ns': model_stat.st_mtime_ns,
+    })
+    resumed = 0
+    for scene in branch_scenes:
+        if 'yolo_detections' not in scene:
+            cached = progress.load(scene)
+            if cached is not None:
+                scene.update(cached)
+                resumed += 1
+    pending = [scene for scene in branch_scenes if 'yolo_detections' not in scene]
+    emit(f'YOLO: {resumed} scenes restored; {len(pending)} remaining; batch {batch_size}, FP32.', quiet=quiet)
+    if not pending:
+        return branch_scenes, updates
+
+    if not all_scenes_have_key(pending, "yolo_frames"):
         if fps_output_dir:
             emit(f"Saving sampled fps in: {fps_output_dir}", quiet=quiet)
         with maybe_silence(quiet):
-            branch_scenes, updates["sample_fps"] = sample_fps_log(
+            pending, updates["sample_fps"] = sample_fps_log(
                 input_video_path=test_video,
-                scenes=branch_scenes,
+                scenes=pending,
                 fps=yolo_action_fps,
                 new_size=frame_resolution,
                 output_dir=fps_output_dir,
@@ -582,8 +604,8 @@ def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
 
     section("Running YOLOv8...", quiet=quiet)
     with maybe_silence(quiet):
-        branch_scenes, updates["detect_object_yolo"] = detect_object_yolo_log(
-            scenes=branch_scenes,
+        detected, updates["detect_object_yolo"] = detect_object_yolo_log(
+            scenes=pending,
             model_size="model/yolov8s.pt",
             conf=yolo_conf_thres,
             iou=yolo_iou_thres,
@@ -592,7 +614,10 @@ def run_yolo_branch(test_video: str, output_dir: str, scenes: list, debug: bool,
             summary_key="yolo_detections",
             debug=debug,
             device=yolo_device,
+            batch_size=batch_size,
+            scene_completed=progress.save,
         )
+    branch_scenes = merge_scene_variants(branch_scenes, detected)
     updates["branch_yolo_total"] = {
         "step": "branch_yolo_total",
         "wall_time_sec": round(time.time() - branch_start, 5),

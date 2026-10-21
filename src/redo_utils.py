@@ -52,7 +52,7 @@ STEP_LOG_KEYS = {
 
 SCENE_KEYS = {
     "frame_captions": ["frame_captions"],
-    "yolo": ["yolo_detections"],
+    "yolo": ["yolo_detections", "yolo_inference"],
     "audio_natural": ["audio_natural"],
     "audio_speech": ["audio_speech"],
     "llm": ["llm_scene_description"],
@@ -159,6 +159,14 @@ def apply_redo(
                 if key in steps_log:
                     steps_log.pop(key, None)
                     changed = True
+
+    if 'yolo' in redo_set and output_dir:
+        # Invalidate scene sidecars without recursively deleting cached artifacts.
+        import uuid
+        progress = Path(output_dir) / '.yolo_progress'
+        progress.mkdir(parents=True, exist_ok=True)
+        (progress / 'generation.txt').write_text(uuid.uuid4().hex, encoding='utf-8')
+        changed = True
 
     if "rag" in redo_set and output_dir:
         rag_path = Path(output_dir) / "rag_embedding.json"
